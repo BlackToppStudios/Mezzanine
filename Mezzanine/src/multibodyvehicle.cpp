@@ -71,7 +71,7 @@ namespace Mezzanine
     // Utility and Configuration
 
     WorldEntityType MultiBodyVehicle::GetType() const
-        { return Mezzanine::WO_MultiBodyVehicle; }
+        { return Mezzanine::WE_MultiBodyVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization

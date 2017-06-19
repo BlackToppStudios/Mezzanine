@@ -180,8 +180,8 @@ namespace Mezzanine
             XML::Node InitDataNode = SelfRoot.AppendChild( Point2PointConstraint::GetSerializableName() + "InitData" );
 
             if( InitDataNode.AppendAttribute("Version").SetValue("1") &&
-                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetProxyID() ) : false ) &&
-                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetProxyID() ) : false ) )
+                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetComponentID() ) : false ) &&
+                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetComponentID() ) : false ) )
             {
                 if( this->ProxA != NULL ) {
                     XML::Node PivotANode = InitDataNode.AppendChild("PivotA");

@@ -64,40 +64,27 @@ namespace Mezzanine
             // We want to be able to preserve all our settings and set a mesh seemlessly, but the underlying implementation doesn't support that.
             // So we need a cache of all the settings we can access.  Our base class already handles two such settings, so we can skip those.
 
-            /// @internal
             /// @brief A pointer to the internal Entity this proxy is based on.
             Ogre::Entity* GraphicsEntity;
-            /// @internal
             /// @brief A pointer to the mesh being used by this proxy.
             Mesh* ProxyMesh;
 
-            /// @internal
             /// @brief Stores the maximum distance this object can be from the camera before it is clipped/culled.
             Real RenderDist;
-            /// @internal
             /// @brief A bitmask which will be compared against to determine which lights apply to this object.
             UInt32 LightMask;
-            /// @internal
             /// @brief Stores whether or not this object should be rendered, regardless of other criteria.
             Boole SceneVisible;
-            /// @internal
             /// @brief Stores whether or not this object can cast shadows on other objects.
             Boole CanCastShadows;
 
-            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
-            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
-            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-            /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
             /// @param ObjectMesh A pointer to the mesh to be applied to this proxy.
             virtual void CreateEntity(Mesh* ObjectMesh);
-            /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             virtual void CreateEntity(const String& MeshName, const String& GroupName);
-            /// @internal
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
         public:
@@ -130,8 +117,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const;
             /// @copydoc WorldProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
@@ -192,13 +179,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeMesh(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.

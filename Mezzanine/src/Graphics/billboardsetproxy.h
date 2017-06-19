@@ -70,22 +70,14 @@ namespace Mezzanine
             /// @brief Const Iterator type for Billboard instances stored by this class.
             typedef BillboardContainer::const_iterator   ConstBillboardIterator;
         protected:
-            /// @internal
             /// @brief Container storing all of the Billboard instances created by this proxy.
             BillboardContainer Billboards;
-            /// @internal
             /// @brief A pointer to the internal BillboardSet this proxy is based on.
             Ogre::BillboardSet* GraphicsBillboardSet;
 
-            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
-            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
-            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-            /// @internal
             /// @param InitialPoolSize The number of billboards to reserve space for.
             /// @brief Creates an internal BillboardSet to be used by the calling instance.
             virtual void CreateBillboardSet(const UInt32 InitialPoolSize);
-            /// @internal
             /// @brief Destroys the internal BillboardSet in use by this proxy.
             virtual void DestroyBillboardSet();
         public:
@@ -104,8 +96,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const;
             /// @copydoc WorldProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
@@ -216,13 +208,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the Billboards of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeBillboards(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the Billboards of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.

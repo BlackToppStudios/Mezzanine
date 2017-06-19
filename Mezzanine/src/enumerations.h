@@ -78,6 +78,30 @@ namespace Mezzanine
         Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
     };
 
+    /// @brief Used by all World proxies to describe what their derived types are.
+    enum ComponentType
+    {
+        CT_Audio_First = 100,
+        CT_Audio_Listener,
+        CT_Audio_SoundProxy,
+        CT_Audio_Last,
+
+        CT_Graphics_First = 200,
+        CT_Graphics_BillboardSetProxy,
+        CT_Graphics_CameraProxy,
+        CT_Graphics_EntityProxy,
+        CT_Graphics_LightProxy,
+        CT_Graphics_LineGroupProxy,
+        CT_Graphics_ParticleSystemProxy,
+        CT_Graphics_Last,
+
+        CT_Physics_First = 300,
+        CT_Physics_GhostProxy,
+        CT_Physics_RigidProxy,
+        CT_Physics_SoftProxy,
+        CT_Physics_Last
+    };
+
     /// @brief Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.
     /// @details This enum is used by the UI and graphics sub-systems for when a change in orientation is detected.  Under normal circumstances
     /// this kind of thing should only occur in mobile devices such as SmartPhones and Tablets.  However this can be forced on other devices/platforms.
@@ -98,50 +122,11 @@ namespace Mezzanine
     {
         PL_Unpaused          = 0,
 
-        PL_PausePhysics      = ( 1u << 0 ),
-        PL_PauseParticles    = ( 1u << 1 ),
-        PL_PauseAnimations   = ( 1u << 2 ),
+        PL_PausePhysics      = EnumBit(1),
+        PL_PauseParticles    = EnumBit(2),
+        PL_PauseAnimations   = EnumBit(3),
 
         PL_PauseAll          = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations
-    };
-
-    /// @brief Used by all World proxies to describe what their derived types are.
-    enum ProxyType
-    {
-        PT_Audio_First                  = EnumBit(1),
-
-        PT_Audio_Listener               = EnumBit(1),
-        PT_Audio_SoundProxy             = EnumBit(2),
-
-        PT_Audio_Last                   = EnumBit(2),
-
-        PT_Audio_All_Proxies            = ( PT_Audio_Listener | PT_Audio_SoundProxy ),
-
-        PT_Graphics_First               = EnumBit(3),
-
-        PT_Graphics_BillboardSetProxy   = EnumBit(3),
-        PT_Graphics_CameraProxy         = EnumBit(4),
-        PT_Graphics_EntityProxy         = EnumBit(5),
-        PT_Graphics_LightProxy          = EnumBit(6),
-        PT_Graphics_LineGroupProxy      = EnumBit(7),
-        PT_Graphics_ParticleSystemProxy = EnumBit(8),
-
-        PT_Graphics_Last                = EnumBit(8),
-
-        PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy | PT_Graphics_EntityProxy |
-                                            PT_Graphics_LightProxy | PT_Graphics_LineGroupProxy | PT_Graphics_ParticleSystemProxy ),
-
-        PT_Physics_First                = EnumBit(9),
-
-        PT_Physics_GhostProxy           = EnumBit(9),
-        PT_Physics_RigidProxy           = EnumBit(10),
-        PT_Physics_SoftProxy            = EnumBit(11),
-
-        PT_Physics_Last                 = EnumBit(11),
-
-        PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy ),
-
-        PT_All_Proxies                  = ( PT_Audio_All_Proxies | PT_Graphics_All_Proxies | PT_Physics_All_Proxies )
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.
@@ -176,72 +161,72 @@ namespace Mezzanine
     /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
     enum WorldEntityType
     {
-        WO_None                   = 0,          ///< Used to help report error conditions.
+        WE_None                   = 0,          ///< Used to help report error conditions.
         // Terrain Objects
-        WO_TerrainFirst           = EnumBit(1),
+        WE_TerrainFirst           = EnumBit(1),
 
-        WO_MeshTerrain            = EnumBit(1),
-        WO_HeightfieldTerrain     = EnumBit(2),
-        WO_VectorFieldTerrain     = EnumBit(3),
-        WO_VoxelTerrain           = EnumBit(4),
-        WO_MarchingCubeTerrain    = EnumBit(5),
-        WO_UnknownTerrain         = EnumBit(6),
+        WE_MeshTerrain            = EnumBit(1),
+        WE_HeightfieldTerrain     = EnumBit(2),
+        WE_VectorFieldTerrain     = EnumBit(3),
+        WE_VoxelTerrain           = EnumBit(4),
+        WE_MarchingCubeTerrain    = EnumBit(5),
+        WE_UnknownTerrain         = EnumBit(6),
 
-        WO_TerrainLast            = EnumBit(6),
+        WE_TerrainLast            = EnumBit(6),
 
-        WO_AllTerrains            = WO_MeshTerrain | WO_HeightfieldTerrain | WO_VectorFieldTerrain |
-                                    WO_VoxelTerrain | WO_MarchingCubeTerrain | WO_UnknownTerrain,
+        WE_AllTerrains            = WE_MeshTerrain | WE_HeightfieldTerrain | WE_VectorFieldTerrain |
+                                    WE_VoxelTerrain | WE_MarchingCubeTerrain | WE_UnknownTerrain,
 
         // Debris Objects
-        WO_DebrisFirst            = EnumBit(7),
+        WE_DebrisFirst            = EnumBit(7),
 
-        WO_RigidDebris            = EnumBit(7),
-        WO_SoftDebris             = EnumBit(8),
-        WO_UnknownDebris          = EnumBit(9),
+        WE_RigidDebris            = EnumBit(7),
+        WE_SoftDebris             = EnumBit(8),
+        WE_UnknownDebris          = EnumBit(9),
 
-        WO_DebrisLast             = EnumBit(9),
+        WE_DebrisLast             = EnumBit(9),
 
-        WO_AllDebris              = WO_RigidDebris | WO_SoftDebris | WO_UnknownDebris,
+        WE_AllDebris              = WE_RigidDebris | WE_SoftDebris | WE_UnknownDebris,
 
         // AreaEffect Objects
-        WO_AreaEffectFirst        = EnumBit(10),
+        WE_AreaEffectFirst        = EnumBit(10),
 
-        WO_AreaEffectGravityField = EnumBit(10),
-        WO_AreaEffectGravityWell  = EnumBit(11),
-        WO_AreaEffectFieldOfForce = EnumBit(12),
-        WO_AreaEffectPlaceHolder1 = EnumBit(13),
-        WO_AreaEffectPlaceHolder2 = EnumBit(14),
-        WO_AreaEffectUnknown      = EnumBit(15),
+        WE_AreaEffectGravityField = EnumBit(10),
+        WE_AreaEffectGravityWell  = EnumBit(11),
+        WE_AreaEffectFieldOfForce = EnumBit(12),
+        WE_AreaEffectPlaceHolder1 = EnumBit(13),
+        WE_AreaEffectPlaceHolder2 = EnumBit(14),
+        WE_AreaEffectUnknown      = EnumBit(15),
 
-        WO_AreaEffectLast         = EnumBit(15),
+        WE_AreaEffectLast         = EnumBit(15),
 
-        WO_AllAreaEffects         = WO_AreaEffectGravityField | WO_AreaEffectGravityWell | WO_AreaEffectFieldOfForce |
-                                    WO_AreaEffectPlaceHolder1 | WO_AreaEffectPlaceHolder2 | WO_AreaEffectUnknown,
+        WE_AllAreaEffects         = WE_AreaEffectGravityField | WE_AreaEffectGravityWell | WE_AreaEffectFieldOfForce |
+                                    WE_AreaEffectPlaceHolder1 | WE_AreaEffectPlaceHolder2 | WE_AreaEffectUnknown,
 
         // Actor Objects
-        WO_ActorFirst             = EnumBit(16),
+        WE_ActorFirst             = EnumBit(16),
 
-        WO_ActorPlaceHolder1      = EnumBit(16),
-        WO_ActorPlaceHolder2      = EnumBit(17),
-        WO_ActorPlaceHolder3      = EnumBit(18),
+        WE_ActorPlaceHolder1      = EnumBit(16),
+        WE_ActorPlaceHolder2      = EnumBit(17),
+        WE_ActorPlaceHolder3      = EnumBit(18),
 
-        WO_ActorLast              = EnumBit(18),
+        WE_ActorLast              = EnumBit(18),
 
-        WO_AllActors              = WO_ActorPlaceHolder1 | WO_ActorPlaceHolder2 | WO_ActorPlaceHolder3,
+        WE_AllActors              = WE_ActorPlaceHolder1 | WE_ActorPlaceHolder2 | WE_ActorPlaceHolder3,
 
         // Vehicle Objects
-        WO_VehicleFirst           = EnumBit(19),
+        WE_VehicleFirst           = EnumBit(19),
 
-        WO_MultiBodyVehicle       = EnumBit(19),
-        WO_RaycastVehicle         = EnumBit(20),
-        WO_SimpleVehicle          = EnumBit(21),
-        WO_VehiclePlaceHolder1    = EnumBit(22),
-        WO_VehiclePlaceHolder2    = EnumBit(23),
+        WE_MultiBodyVehicle       = EnumBit(19),
+        WE_RaycastVehicle         = EnumBit(20),
+        WE_SimpleVehicle          = EnumBit(21),
+        WE_VehiclePlaceHolder1    = EnumBit(22),
+        WE_VehiclePlaceHolder2    = EnumBit(23),
 
-        WO_VehicleLast            = EnumBit(23),
+        WE_VehicleLast            = EnumBit(23),
 
-        WO_AllVehicles            = WO_MultiBodyVehicle | WO_RaycastVehicle | WO_SimpleVehicle |
-                                    WO_VehiclePlaceHolder1 | WO_VehiclePlaceHolder2
+        WE_AllVehicles            = WE_MultiBodyVehicle | WE_RaycastVehicle | WE_SimpleVehicle |
+                                    WE_VehiclePlaceHolder1 | WE_VehiclePlaceHolder2
     };
 }//Mezzanine
 

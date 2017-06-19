@@ -201,8 +201,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType CameraProxy::GetProxyType() const
-            { return Mezzanine::PT_Graphics_CameraProxy; }
+        Mezzanine::ComponentType CameraProxy::GetComponentType() const
+            { return Mezzanine::CT_Graphics_CameraProxy; }
 
         Boole CameraProxy::IsStatic() const
             { return false; }

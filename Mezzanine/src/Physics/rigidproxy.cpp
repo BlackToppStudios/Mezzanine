@@ -107,9 +107,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType RigidProxy::GetProxyType() const
+        Mezzanine::ComponentType RigidProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_RigidProxy;
+            return Mezzanine::CT_Physics_RigidProxy;
         }
 
         void RigidProxy::AddToWorld()

@@ -230,7 +230,7 @@ namespace Mezzanine
             {
                 ALCcontext* ListenerContext = this->CreateContext();
                 OALS::Listener* NewListener = new OALS::Listener(SelfRoot,ListenerContext,this);
-                this->ProxyIDGen.ReserveID(NewListener->GetProxyID());
+                this->ProxyIDGen.ReserveID(NewListener->GetComponentID());
                 this->Listeners.push_back(NewListener);
                 return NewListener;
             }
@@ -349,14 +349,14 @@ namespace Mezzanine
             {
                 for( ConstListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    if( (*ListIt)->GetProxyID() == ID ) {
+                    if( (*ListIt)->GetComponentID() == ID ) {
                         return (*ListIt);
                     }
                 }
 
                 for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyID() == ID ) {
+                    if( (*ProxIt)->GetComponentID() == ID ) {
                         return (*ProxIt);
                     }
                 }
@@ -372,10 +372,10 @@ namespace Mezzanine
             UInt32 SoundScapeManager::GetNumProxies(const UInt32 Types) const
             {
                 UInt32 Count = 0;
-                if( Types & Mezzanine::PT_Audio_Listener )
+                if( Types == Mezzanine::CT_Audio_Listener )
                     Count += this->GetNumListeners();
 
-                if( Types & Mezzanine::PT_Audio_SoundProxy )
+                if( Types == Mezzanine::CT_Audio_SoundProxy )
                     Count += this->GetNumSoundProxies();
 
                 return Count;
@@ -391,18 +391,18 @@ namespace Mezzanine
 
             void SoundScapeManager::DestroyProxy(WorldProxy* ToBeDestroyed)
             {
-                if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_Listener ) {
+                if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_Listener ) {
                     this->DestroyListener( static_cast<OALS::Listener*>( ToBeDestroyed ) );
-                }else if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_SoundProxy ) {
+                }else if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_SoundProxy ) {
                     this->DestroySoundProxy( static_cast<OALS::SoundProxy*>( ToBeDestroyed ) );
                 }
             }
 
             void SoundScapeManager::DestroyAllProxies(const UInt32 Types)
             {
-                if( Types & Mezzanine::PT_Audio_SoundProxy ) {
+                if( Types & Mezzanine::CT_Audio_SoundProxy ) {
                     this->DestroyAllSoundProxies();
-                }else if( Types & Mezzanine::PT_Audio_Listener ) {
+                }else if( Types & Mezzanine::CT_Audio_Listener ) {
                     this->DestroyAllListeners();
                 }
             }
@@ -430,11 +430,11 @@ namespace Mezzanine
                     if( (*ListIt) == ToBeDestroyed ) {
                         ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
 
-                        WorldEntity* Parent = (*ListIt)->GetParentObject();
+                        WorldEntity* Parent = (*ListIt)->GetParentEntity();
                         if( Parent )
-                            Parent->RemoveProxy( (*ListIt) );
+                            Parent->RemoveComponent( (*ListIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
                         delete ToBeDestroyed;
                         this->Listeners.erase(ListIt);
                     }
@@ -448,11 +448,11 @@ namespace Mezzanine
             {
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    WorldEntity* Parent = (*ListIt)->GetParentObject();
+                    WorldEntity* Parent = (*ListIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ListIt) );
+                        Parent->RemoveComponent( (*ListIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetComponentID() );
                     delete (*ListIt);
                 }
                 this->Listeners.clear();
@@ -470,11 +470,11 @@ namespace Mezzanine
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed ) {
-                        WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                        WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                         if( Parent )
-                            Parent->RemoveProxy( (*ProxIt) );
+                            Parent->RemoveComponent( (*ProxIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
                         delete ToBeDestroyed;
                         this->Proxies.erase(ProxIt);
                     }
@@ -485,11 +485,11 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
                     delete (*ProxIt);
                 }
                 this->Proxies.clear();

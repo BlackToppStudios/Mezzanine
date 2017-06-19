@@ -66,26 +66,19 @@ namespace Mezzanine
         protected:
             friend class Viewport;
 
-            /// @internal
             /// @brief A vector3 representing the fixed axis on which this camera will always Yaw/rotate.
             Vector3 FixedYawAxis;
-            /// @internal
             /// @brief A pointer to the internal Camera this proxy is based on.
             Ogre::Camera* GraphicsCamera;
-            /// @internal
             /// @brief This is a pointer to the Viewport this camera is attached to, if any.
             Viewport* CameraVP;
-            /// @internal
             /// @brief A Boole storing whether or not the FixedYawAxis is being used.
             Boole UseFixedYaw;
 
-            /// @internal
             /// @brief Creates an internal Camera to be used by the calling instance.
             virtual void CreateCamera();
-            /// @internal
             /// @brief Destroys the internal Camera in use by this proxy.
             virtual void DestroyCamera();
-            /// @internal
             /// @brief Generates a name for this Camera to placate the internal system.
             /// @note This will no longer be necessary in after the switch to Ogre 2.0.
             /// @return Returns a string containing the auto-generated name of this Camera.
@@ -108,8 +101,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const;
             /// @copydoc WorldProxy::IsStatic() const
             virtual Boole IsStatic() const;
 

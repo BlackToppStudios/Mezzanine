@@ -96,9 +96,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType GhostProxy::GetProxyType() const
+        Mezzanine::ComponentType GhostProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_GhostProxy;
+            return Mezzanine::CT_Physics_GhostProxy;
         }
 
         void GhostProxy::AddToWorld()

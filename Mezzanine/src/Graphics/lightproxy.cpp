@@ -132,8 +132,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType LightProxy::GetProxyType() const
-            { return Mezzanine::PT_Graphics_LightProxy; }
+        Mezzanine::ComponentType LightProxy::GetComponentType() const
+            { return Mezzanine::CT_Graphics_LightProxy; }
 
         Boole LightProxy::IsStatic() const
             { return false; }

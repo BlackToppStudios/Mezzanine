@@ -81,7 +81,7 @@ namespace Mezzanine
         /// @return Returns a UInt32 representing the number of WorldProxy instances contained in this manager.
         virtual UInt32 GetNumProxies() const = 0;
         /// @brief Gets the number of WorldProxy instances of a certain type(s) in this manager.
-        /// @param Types A bitmask of all the WorldProxy types to check for.  See the ProxyType enum for more information.
+        /// @param Types A bitmask of all the WorldProxy types to check for.  See the ComponentType enum for more information.
         /// @return Returns the number of WorldProxy instances of the specified types are being stored by this manager.
         virtual UInt32 GetNumProxies(const UInt32 Types) const = 0;
         /// @brief Gets all the proxies being stored by this manager.

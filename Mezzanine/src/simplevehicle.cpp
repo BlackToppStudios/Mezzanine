@@ -71,7 +71,7 @@ namespace Mezzanine
     // Utility and Configuration
 
     WorldEntityType SimpleVehicle::GetType() const
-        { return Mezzanine::WO_SimpleVehicle; }
+        { return Mezzanine::WE_SimpleVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization

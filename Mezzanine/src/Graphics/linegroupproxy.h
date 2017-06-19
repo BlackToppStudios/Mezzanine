@@ -126,8 +126,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const;
             /// @copydoc WorldProxy::IsStatic() const
             virtual Boole IsStatic() const;
 

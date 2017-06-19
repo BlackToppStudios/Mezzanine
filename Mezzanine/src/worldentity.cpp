@@ -55,26 +55,26 @@
 namespace Mezzanine
 {
     WorldEntity::WorldEntity(World* TheWorld) :
-        PrimaryProxy(NULL),
+        PrimaryProxy(nullptr),
         ParentWorld(TheWorld)
         {  }
 
     WorldEntity::WorldEntity(const String& Name, World* TheWorld) :
         ObjectName(Name),
-        PrimaryProxy(NULL),
+        PrimaryProxy(nullptr),
         ParentWorld(TheWorld)
         {  }
 
     WorldEntity::~WorldEntity()
         {  }
 
-    void WorldEntity::DestroyAllProxies()
+    void WorldEntity::DestroyAllComponents()
     {
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
         {
             WorldProxyManager* ProxMan = (*ProxIt)->GetCreator();
-            (*ProxIt)->_Bind(NULL);
+            (*ProxIt)->_Bind(nullptr);
             ProxMan->DestroyProxy(*ProxIt);
             ++ProxIt;
         }
@@ -92,26 +92,26 @@ namespace Mezzanine
 
     Boole WorldEntity::IsInWorld() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldEntity is in world.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query if WorldEntity is in world.");
         return this->PrimaryProxy->IsInWorld();
     }
 
     Boole WorldEntity::IsStatic() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query if WorldEntity is static.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query if WorldEntity is static.");
         return this->PrimaryProxy->IsStatic();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Proxy Management
+    // Component Management
 
-    void WorldEntity::AddProxy(WorldProxy* ToAdd)
+    void WorldEntity::AddComponent(WorldProxy* ToAdd)
     {
         ToAdd->_Bind( this );
         this->Proxies.push_back(ToAdd);
     }
 
-    WorldProxy* WorldEntity::RemoveProxy(WorldProxy* ToRemove)
+    WorldProxy* WorldEntity::RemoveComponent(WorldProxy* ToRemove)
     {
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
@@ -122,17 +122,17 @@ namespace Mezzanine
             }
             ++ProxIt;
         }
-        return NULL;
+        return nullptr;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::RemoveAllProxiesOfType(const UInt32 Types)
+    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponentsOfType(const ComponentType Type)
     {
         ProxyContainer Ret;
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
         {
-            if( (*ProxIt)->GetProxyType() & Types ) {
-                (*ProxIt)->_Bind( NULL );
+            if( (*ProxIt)->GetComponentType() == Type ) {
+                (*ProxIt)->_Bind( nullptr );
                 Ret.push_back( (*ProxIt) );
                 ProxIt = this->Proxies.erase(ProxIt);
             }else{
@@ -142,52 +142,83 @@ namespace Mezzanine
         return Ret;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::RemoveAllProxies()
+    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast)
     {
         ProxyContainer Ret;
         ProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
-            { (*ProxIt)->_Bind( NULL ); }
+        {
+            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
+                (*ProxIt)->_Bind( nullptr );
+                Ret.push_back( (*ProxIt) );
+                ProxIt = this->Proxies.erase(ProxIt);
+            }else{
+                ++ProxIt;
+            }
+        }
+        return Ret;
+    }
+
+    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponents()
+    {
+        ProxyContainer Ret;
+        ProxyIterator ProxIt = this->Proxies.begin();
+        while( ProxIt != this->Proxies.end() )
+            { (*ProxIt)->_Bind( nullptr ); }
         Ret.swap(this->Proxies);
         return Ret;
     }
 
-    Whole WorldEntity::GetNumProxies() const
+    Whole WorldEntity::GetNumComponents() const
     {
         return this->Proxies.size();
     }
 
-    WorldProxy* WorldEntity::GetProxy(const Whole Index) const
+    WorldProxy* WorldEntity::GetComponent(const Whole Index) const
     {
         return this->Proxies.at(Index);
     }
 
-    WorldProxy* WorldEntity::GetProxy(const UInt32 Types, Whole TypeIndex) const
+    WorldProxy* WorldEntity::GetComponent(const ComponentType Type, Whole TypeIndex) const
     {
         ConstProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
         {
-            if( (*ProxIt)->GetProxyType() & Types ) {
+            if( (*ProxIt)->GetComponentType() == Type ) {
                 if( TypeIndex == 0 ) return (*ProxIt);
                 else --TypeIndex;
             }
             ++ProxIt;
         }
-        return NULL;
+        return nullptr;
     }
 
-    const WorldEntity::ProxyContainer& WorldEntity::GetProxies() const
+    WorldProxy* WorldEntity::GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const
+    {
+        ConstProxyIterator ProxIt = this->Proxies.begin();
+        while( ProxIt != this->Proxies.end() )
+        {
+            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
+                if( TypeIndex == 0 ) return (*ProxIt);
+                else --TypeIndex;
+            }
+            ++ProxIt;
+        }
+        return nullptr;
+    }
+
+    const WorldEntity::ProxyContainer& WorldEntity::GetComponents() const
     {
         return this->Proxies;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::GetProxies(const UInt32 Types) const
+    WorldEntity::ProxyContainer WorldEntity::GetComponents(const ComponentType Type) const
     {
         ProxyContainer Ret;
         ConstProxyIterator ProxIt = this->Proxies.begin();
         while( ProxIt != this->Proxies.end() )
         {
-            if( (*ProxIt)->GetProxyType() & Types ) {
+            if( (*ProxIt)->GetComponentType() == Type ) {
                 Ret.push_back(*ProxIt);
             }
             ++ProxIt;
@@ -195,9 +226,26 @@ namespace Mezzanine
         return Ret;
     }
 
+    WorldEntity::ProxyContainer WorldEntity::GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const
+    {
+        ProxyContainer Ret;
+        ConstProxyIterator ProxIt = this->Proxies.begin();
+        while( ProxIt != this->Proxies.end() )
+        {
+            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
+                Ret.push_back(*ProxIt);
+            }
+            ++ProxIt;
+        }
+        return Ret;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Proxy Management
+
     void WorldEntity::SetPrimaryProxy(WorldProxy* Primary)
     {
-        assert(this == Primary->GetParentObject() && "WorldProxies can only be made PrimaryProxy of a WorldEntity they are bound to.");
+        assert(this == Primary->GetParentEntity() && "WorldProxies can only be made PrimaryProxy of a WorldEntity they are bound to.");
         this->PrimaryProxy = Primary;
     }
 
@@ -238,7 +286,7 @@ namespace Mezzanine
 
     Transform WorldEntity::GetTransform() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetTransform();
     }
 
@@ -256,7 +304,7 @@ namespace Mezzanine
 
     Vector3 WorldEntity::GetLocation() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetLocation();
     }
 
@@ -274,7 +322,7 @@ namespace Mezzanine
 
     Quaternion WorldEntity::GetOrientation() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetOrientation();
     }
 
@@ -292,7 +340,7 @@ namespace Mezzanine
 
     Vector3 WorldEntity::GetScale() const
     {
-        assert(this->PrimaryProxy != NULL && "Valid proxy is needed to query WorldEntity transform.");
+        assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query WorldEntity transform.");
         return this->PrimaryProxy->GetScale();
     }
 
@@ -393,7 +441,7 @@ namespace Mezzanine
             for( ConstProxyIterator ProxIt = BegProx ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 XML::Node ProxyNode = ProxiesNode.AppendChild( (*ProxIt)->GetDerivedSerializableName() );
-                if( ProxyNode.AppendAttribute("ProxyID").SetValue( (*ProxIt)->GetProxyID() ) &&
+                if( ProxyNode.AppendAttribute("ComponentID").SetValue( (*ProxIt)->GetComponentID() ) &&
                     ProxyNode.AppendAttribute("ManagerType").SetValue( (*ProxIt)->GetCreator()->GetInterfaceType() ) )
                 {
                     continue;
@@ -452,7 +500,7 @@ namespace Mezzanine
 
     void WorldEntity::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
 
         XML::Attribute CurrAttrib;
         XML::Node ProxiesNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Proxies" );
@@ -465,21 +513,21 @@ namespace Mezzanine
 
                 for( XML::NodeIterator ProxyNodeIt = ProxiesNode.begin() ; ProxyNodeIt != ProxiesNode.end() ; ++ProxyNodeIt )
                 {
-                    WorldProxyManager* ProxMan = NULL;
-                    UInt32 ProxyID = 0;
+                    WorldProxyManager* ProxMan = nullptr;
+                    UInt32 ComponentID = 0;
 
-                    CurrAttrib = (*ProxyNodeIt).GetAttribute("ProxyID");
+                    CurrAttrib = (*ProxyNodeIt).GetAttribute("ComponentID");
                     if( !CurrAttrib.Empty() )
-                        ProxyID = CurrAttrib.AsUint();
+                        ComponentID = CurrAttrib.AsUint();
 
                     CurrAttrib = (*ProxyNodeIt).GetAttribute("ManagerType");
                     if( !CurrAttrib.Empty() )
                         ProxMan = this->ParentWorld->GetProxyManager( static_cast<ManagerBase::ManagerType>( CurrAttrib.AsUint() ) );
 
-                    if( ProxyID != 0 && ProxMan != NULL ) {
-                        WorldProxy* ToAdd = ProxMan->GetProxyByID(ProxyID);
-                        if( ToAdd != NULL ) {
-                            this->AddProxy( ToAdd );
+                    if( ComponentID != 0 && ProxMan != nullptr ) {
+                        WorldProxy* ToAdd = ProxMan->GetProxyByID(ComponentID);
+                        if( ToAdd != nullptr ) {
+                            this->AddComponent( ToAdd );
                         }else{
                             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"WorldProxy of the specified ID does not exist.");
                         }

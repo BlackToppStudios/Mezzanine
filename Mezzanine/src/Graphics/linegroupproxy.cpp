@@ -393,8 +393,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType LineGroupProxy::GetProxyType() const
-            { return Mezzanine::PT_Graphics_LineGroupProxy; }
+        Mezzanine::ComponentType LineGroupProxy::GetComponentType() const
+            { return Mezzanine::CT_Graphics_LineGroupProxy; }
 
         Boole LineGroupProxy::IsStatic() const
             { return false; }

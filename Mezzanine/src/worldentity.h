@@ -66,22 +66,17 @@ namespace Mezzanine
         /// @brief Const Iterator type for WorldProxy instances stored by this class.
         typedef ProxyContainer::const_iterator         ConstProxyIterator;
     protected:
-        /// @internal
         /// @brief A container of the proxies that share this objects transform.
         ProxyContainer Proxies;
-        /// @internal
         /// @brief The name of the object.
         String ObjectName;
-        /// @internal
         /// @brief A pointer to the proxy that is used for various queries, such as transform.
         WorldProxy* PrimaryProxy;
-        /// @internal
         /// @brief This is the world this object belongs to and will be inserted in/removed from.
         World* ParentWorld;
 
-        /// @internal
-        /// @brief Destroys every WorldProxy in this object.
-        void DestroyAllProxies();
+        /// @brief Destroys every WorldEntityComponent in this object.
+        void DestroyAllComponents();
     public:
         /// @brief Blank constructor.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -118,58 +113,79 @@ namespace Mezzanine
         virtual Boole IsStatic() const;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Proxy Management
+        // Component Management
 
-        /// @brief Adds a WorldProxy to this WorldEntity.
-        /// @remarks The order in which WorldProxy instances are inserted/stored slightly matters.  The first (index 0) proxy
-        /// will be treated as the primary transform proxy.  When this object is queried for it's transform, that is the proxy
+        /// @brief Adds a WorldEntityComponent to this WorldEntity.
+        /// @remarks The order in which WorldEntityComponent instances are inserted/stored slightly matters.  The first (index 0) Component
+        /// will be treated as the primary transform Component.  When this object is queried for it's transform, that is the Component
         /// that will be queried and thus used to represent this objects transform.  Prefab WorldEntities provided by the
         /// engine will have this taken care of for you.  However when using custom WorldEntities or heavily modifying/removing
-        /// WorldProxy instances from a WorldEntity, take care.
-        /// @param ToAdd A pointer to the WorldProxy to be added.
-        virtual void AddProxy(WorldProxy* ToAdd);
-        /// @brief Removes a WorldProxy from this WorldEntity.
+        /// WorldEntityComponent instances from a WorldEntity, take care.
+        /// @param ToAdd A pointer to the WorldEntityComponent to be added.
+        virtual void AddComponent(WorldProxy* ToAdd);
+        /// @brief Removes a WorldEntityComponent from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
-        /// care about the placement of proxies and tampering with that can disrupt their operation.
-        /// @param ToRemove A pointer to the WorldProxy to be removed.
-        /// @return Returns a pointer to the removed WorldProxy or NULL if the WorldProxy was not in this WorldEntity.
-        virtual WorldProxy* RemoveProxy(WorldProxy* ToRemove);
-        /// @brief Removes all WorldProxy instances of the specified types from this WorldEntity.
+        /// care about the placement of Components and tampering with that can disrupt their operation.
+        /// @param ToRemove A pointer to the WorldEntityComponent to be removed.
+        /// @return Returns a pointer to the removed WorldEntityComponent or nullptr if the WorldEntityComponent was not in this WorldEntity.
+        virtual WorldProxy* RemoveComponent(WorldProxy* ToRemove);
+        /// @brief Removes all WorldEntityComponent instances of the specified types from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
-        /// care about the placement of proxies and tampering with that can disrupt their operation.
-        /// @param Types A bitfield of the types of WorldProxy instances to remove.
-        /// @return Returns a container of the removed proxies.
-        virtual ProxyContainer RemoveAllProxiesOfType(const UInt32 Types);
-        /// @brief Removes all WorldProxy instances from this WorldEntity.
+        /// care about the placement of Components and tampering with that can disrupt their operation.
+        /// @param Type The type of WorldEntityComponent to be removed.
+        /// @return Returns a container of the removed Components.
+        virtual ProxyContainer RemoveAllComponentsOfType(const ComponentType Type);
+        /// @brief Removes all WorldEntityComponent instances of the specified types from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
-        /// care about the placement of proxies and tampering with that can disrupt their operation.
-        /// @return Returns a container of the removed proxies.
-        virtual ProxyContainer RemoveAllProxies();
+        /// care about the placement of Components and tampering with that can disrupt their operation.
+        /// @param TypeFirst The first type in the range to be considered when removing Components.
+        /// @param TypeLast The last type in the range to be considered when removing Components.
+        /// @return Returns a container of the removed Components.
+        virtual ProxyContainer RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast);
+        /// @brief Removes all WorldEntityComponent instances from this WorldEntity.
+        /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
+        /// care about the placement of Components and tampering with that can disrupt their operation.
+        /// @return Returns a container of the removed Components.
+        virtual ProxyContainer RemoveAllComponents();
 
-        /// @brief Gets the number of WorldProxy instances in this WorldEntity.
+        /// @brief Gets the number of WorldEntityComponent instances in this WorldEntity.
         /// @return Returns the number of WorldProxies being stored in this WorldEntity.
-        virtual Whole GetNumProxies() const;
-        /// @brief Gets the WorldProxy by index.
-        /// @param Index The index of the WorldProxy to retrieve.
-        /// @return Returns a pointer to the WorldProxy at the specified index.
-        virtual WorldProxy* GetProxy(const Whole Index) const;
-        /// @brief Gets the Nth WorldProxy among the proxies of the specified types.
-        /// @param Types The types to be considered when getting the Nth WorldProxy.
-        /// @param TypeIndex The Nth WorldProxy to retrieve.
-        /// @return Returns a pointer to the WorldProxy at the specified index.
-        virtual WorldProxy* GetProxy(const UInt32 Types, Whole TypeIndex) const;
+        virtual Whole GetNumComponents() const;
+        /// @brief Gets the WorldEntityComponent by index.
+        /// @param Index The index of the WorldEntityComponent to retrieve.
+        /// @return Returns a pointer to the WorldEntityComponent at the specified index.
+        virtual WorldProxy* GetComponent(const Whole Index) const;
+        /// @brief Gets the Nth WorldEntityComponent among the Components of the specified types.
+        /// @param Type The type to be considered when getting the Nth WorldEntityComponent.
+        /// @param TypeIndex The Nth WorldEntityComponent to retrieve.
+        /// @return Returns a pointer to the WorldEntityComponent at the specified index.
+        virtual WorldProxy* GetComponent(const ComponentType Type, Whole TypeIndex) const;
+        /// @brief Gets the Nth WorldEntityComponent among the Components of the specified types.
+        /// @param TypeFirst The first type in the range to be considered when getting the Nth component.
+        /// @param TypeLast The last type in the range to be considered when getting the Nth component.
+        /// @param TypeIndex The Nth WorldEntityComponent to retrieve.
+        /// @return Returns a pointer to the WorldEntityComponent at the specified index.
+        virtual WorldProxy* GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const;
 
         /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
-        /// @return Returns a const reference to the internal WorldProxy storage.
-        virtual const ProxyContainer& GetProxies() const;
+        /// @return Returns a const reference to the internal WorldEntityComponent storage.
+        virtual const ProxyContainer& GetComponents() const;
         /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
-        /// @param Types A bitfield of the types of WorldProxies to retrieve.
-        /// @return Returns a container of all the proxies in this WorldEntity of the specified type.
-        virtual ProxyContainer GetProxies(const UInt32 Types) const;
+        /// @param Type The type of WorldEntityComponent to retrieve.
+        /// @return Returns a container of all the Components in this WorldEntity of the specified type.
+        virtual ProxyContainer GetComponents(const ComponentType Type) const;
+        /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
+        /// @param TypeFirst The first type in the range to be considered when getting the Nth component.
+        /// @param TypeLast The last type in the range to be considered when getting the Nth component.
+        /// @return Returns a container of all the Components in this WorldEntity of the specified type.
+        virtual ProxyContainer GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Proxy Management
 
         /// @brief Sets the primary proxy in this WorldEntity.
-        /// @remarks The primary proxy is responsible for being the WorldProxy to be queried where it doesn't
-        /// make sense to query multiple proxies, such as if you want to know the location of the WorldEntity.
+        /// @remarks The primary proxy is responsible for being the Component to be queried where it doesn't
+        /// make sense to query multiple Components, such as if you want to know the location of the WorldEntity.
         /// The GetLocation() method is directed to the primary proxy.  This is not limited to just location,
         /// and is also responsible for other transform and non-transform queries. @n @n
         /// Every WorldEntity instance should have the PrimaryProxy set as a part of it's initialization
@@ -276,9 +292,9 @@ namespace Mezzanine
         /// @param Delta The amount of time since the last update in microseconds.
         virtual void _Update(const Whole Delta) = 0;
         /// @internal
-        /// @brief Updates the transforms of all the WorldProxy instances in this object except for one.
-        /// @param Exclude The WorldProxy to be exempted from the sync (usually because it already has the updated transform).
-        /// @param NewTrans The transform to be applied to each WorldProxy other than the Exclude.
+        /// @brief Updates the transforms of all the WorldEntityComponent instances in this object except for one.
+        /// @param Exclude The WorldEntityComponent to be exempted from the sync (usually because it already has the updated transform).
+        /// @param NewTrans The transform to be applied to each WorldEntityComponent other than the Exclude.
         virtual void _SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans);
     };//WorldEntity
 }//Mezzanine

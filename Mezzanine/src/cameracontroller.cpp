@@ -137,7 +137,12 @@ namespace Mezzanine
         assert(this->Controlled != NULL && "Must have a valid camera pointer to work with the controller.");
 
         Ray GroundRay(this->Controlled->GetLocation(),Vector3::Neg_Unit_Y());
-        this->RayCaster.SetProxyTypes(Mezzanine::WO_AllTerrains);
+        this->RayCaster.SetFilterFunction(
+            [](WorldProxy* Prox) {
+                WorldEntity* Ent = Prox->GetParentEntity();
+                return ( Ent && ( Ent->GetType() & Mezzanine::WE_AllTerrains ) );
+            }
+        );
         RayQueryHit Result = this->RayCaster.GetFirstShapeResult(GroundRay);
         if( Result.IsValid() ) {
             return Result.Distance;

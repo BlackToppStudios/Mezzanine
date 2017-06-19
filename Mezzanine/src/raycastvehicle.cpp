@@ -71,7 +71,7 @@ namespace Mezzanine
     // Utility and Configuration
 
     WorldEntityType RaycastVehicle::GetType() const
-        { return Mezzanine::WO_RaycastVehicle; }
+        { return Mezzanine::WE_RaycastVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization

@@ -111,9 +111,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Mezzanine::ProxyType Listener::GetProxyType() const
+            Mezzanine::ComponentType Listener::GetComponentType() const
             {
-                return Mezzanine::PT_Audio_Listener;
+                return Mezzanine::CT_Audio_Listener;
             }
 
             void Listener::SetVelocity(const Vector3& Vel)

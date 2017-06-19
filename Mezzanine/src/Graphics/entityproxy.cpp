@@ -104,18 +104,6 @@ namespace Mezzanine
         EntityProxy::~EntityProxy()
             { this->DestroyEntity(); }
 
-        void EntityProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-        {
-            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
-            this->ProtoSerializeMesh(SelfRoot);
-        }
-
-        void EntityProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-        {
-            this->ProtoDeSerializeMesh(SelfRoot);
-            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
-        }
-
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
             if( ObjectMesh != NULL ) {
@@ -146,9 +134,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType EntityProxy::GetProxyType() const
+        Mezzanine::ComponentType EntityProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Graphics_EntityProxy;
+            return Mezzanine::CT_Graphics_EntityProxy;
         }
 
         Boole EntityProxy::IsStatic() const
@@ -304,6 +292,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
+        void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeMesh(SelfRoot);
+        }
+
         void EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
@@ -321,6 +317,13 @@ namespace Mezzanine
             }else{
                 SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName() + "Mesh",true);
             }
+        }
+
+        void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeMesh(SelfRoot);
+            this->ProtoDeSerializeInWorld(SelfRoot);
         }
 
         void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
