@@ -297,8 +297,8 @@ public:
         }//Shape (mesh) Tests
 
         {//Utility Tests
-            {//Get/SetTypes Test
-                UInt32 ProxFilter = Mezzanine::PT_Graphics_BillboardSetProxy;
+            /*{//Get/SetTypes Test
+                Mezzanine::ComponentType ProxFilter = Mezzanine::CT_Graphics_BillboardSetProxy;
                 TestRayQuery.SetProxyTypes(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
@@ -315,7 +315,7 @@ public:
                       "GetProxyTypes()_const" );
 
                 TestRayQuery.SetProxyTypes(std::numeric_limits<UInt32>::max());
-            }//Get/SetTypes Test
+            }//Get/SetTypes Test //*/
 
             {//Get/SetQuery Test
                 UInt32 QueryFilter = 2;
@@ -341,7 +341,7 @@ public:
         }//Utility Tests
 
         {//Serialize Test
-            String Expected( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Expected( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             Graphics::RenderableRayQuery TestRayQuery(SceneMan);
@@ -353,7 +353,7 @@ public:
         }//Serialize Test
 
         {//Deserialize Test
-            String Source( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Source( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             StringStream Buffer;
@@ -364,9 +364,8 @@ public:
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
-            Boole ProxyTypesMatch = TestRayQuery.GetProxyTypes() == std::numeric_limits<UInt32>::max();
             Boole QueryFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
-            TEST( WorldMatch && ProxyTypesMatch && QueryFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( WorldMatch && QueryFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
         }//Deserialize Test
     }
 

@@ -287,8 +287,8 @@ public:
         }//Shape Tests
 
         {//Utility Tests
-            {//Get/SetTypes Test
-                UInt32 ProxFilter = Mezzanine::PT_Physics_GhostProxy;
+            /*{//Get/SetTypes Test
+                Mezzanine::ComponentType ProxFilter = Mezzanine::CT_Physics_GhostProxy;
                 TestRayQuery.SetProxyTypes(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
@@ -305,7 +305,7 @@ public:
                       "GetProxyTypes()_const" );
 
                 TestRayQuery.SetProxyTypes(std::numeric_limits<UInt32>::max());
-            }//Get/SetTypes Test
+            }//Get/SetTypes Test //*/
 
             {//Get/SetQuery Test
                 UInt32 QueryFilter = Physics::CF_SensorFilter;
@@ -329,7 +329,7 @@ public:
         }//Utility Tests
 
         {//Serialize Test
-            String Expected( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Expected( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             Physics::CollidableRayQuery TestRayQuery(PhysMan);
@@ -341,20 +341,19 @@ public:
         }//Serialize Test
 
         {//Deserialize Test
-            String Source( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Source( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             StringStream Buffer;
             Buffer.str(Source);
             Doc.Load(Buffer);
 
-            Physics::CollidableRayQuery TestRayQuery(NULL);// <- This is #Dicey
+            Physics::CollidableRayQuery TestRayQuery(NULL);
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
-            Boole ProxyTypesMatch = TestRayQuery.GetProxyTypes() == std::numeric_limits<UInt32>::max();
             Boole CollisionFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
-            TEST( WorldMatch && ProxyTypesMatch && CollisionFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( WorldMatch && CollisionFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
         }//Deserialize Test
     }
 
