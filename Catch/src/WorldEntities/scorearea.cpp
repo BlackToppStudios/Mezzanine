@@ -50,7 +50,7 @@ Boole ScoreArea::AllObjectsAtRest()
 
     for( ObjectIterator ObjIt = this->OverlappingObjects.begin() ; ObjIt != this->OverlappingObjects.end() ; ObjIt++ )
     {
-        ProxyContainer ColProxies = (*ObjIt)->GetProxies(Mezzanine::PT_Physics_All_Proxies);
+        ProxyContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
         for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
         {
             if( static_cast<Physics::CollidableProxy*>( *ProxIt )->IsActive() )

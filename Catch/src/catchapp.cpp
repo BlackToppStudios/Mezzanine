@@ -61,8 +61,8 @@ CatchApp::CatchApp() :
                              new PlaneDragger(PlaneOfPlay) );
     this->PickerFilter = [this](const RayQueryHit& ToFilter) {
         if( ToFilter.IsValid() ) {
-            WorldEntity* ParentObject = ToFilter.Object->GetParentObject();
-            if( ParentObject->GetType() & Mezzanine::WO_AllDebris ) {
+            WorldEntity* ParentObject = ToFilter.Object->GetParentEntity();
+            if( ParentObject->GetType() & Mezzanine::WE_AllDebris ) {
                 return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
             }
         }

@@ -32,7 +32,7 @@ void StartArea::CreateStartArea(const Vector3& HalfAreaSize)
 
     if( SceneMan != NULL ) {
         ParSysProx = SceneMan->CreateParticleSystemProxy("StartVortex");
-        this->AddProxy(ParSysProx);
+        this->AddComponent(ParSysProx);
 
         Graphics::ParticleEmitter* ParSysEmit = ParSysProx->GetEmitter(0);
         ParSysEmit->SetCustomParam( "width",StringTools::ConvertToString( HalfAreaSize.X * Real(1.8) ) );
@@ -62,7 +62,7 @@ Vector3 StartArea::GetParticleSystemOffset() const
 // Utility
 
 Graphics::ParticleSystemProxy* StartArea::GetParticleSystemProxy() const
-    { return static_cast<Graphics::ParticleSystemProxy*>( this->GetProxy(Mezzanine::PT_Graphics_ParticleSystemProxy,0) ); }
+    { return static_cast<Graphics::ParticleSystemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ParticleSystemProxy,0) ); }
 
 void StartArea::SetParticleMinimumTimeToLive(const Real MinTTL)
 {
@@ -103,11 +103,11 @@ void StartArea::ApplyEffect()
     if( !this->AddedObjects.empty() ) {
         for( ObjectIterator ObjIt = this->AddedObjects.begin() ; ObjIt != this->AddedObjects.end() ; ObjIt++ )
         {
-            ProxyContainer ColProxies = (*ObjIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy | Mezzanine::PT_Physics_SoftProxy);
+            ProxyContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
             for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
             {
                 static_cast<Physics::CollidableProxy*>( *ProxIt )->SetCollisionResponse(false);
-                if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                     static_cast<Physics::RigidProxy*>( *ProxIt )->SetGravity( ZeroGrav );
                 }
             }
@@ -118,11 +118,11 @@ void StartArea::ApplyEffect()
         const Vector3 WorldGrav = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
         for( ObjectIterator ObjIt = this->RemovedObjects.begin() ; ObjIt != this->RemovedObjects.end() ; ObjIt++ )
         {
-            ProxyContainer ColProxies = (*ObjIt)->GetProxies(Mezzanine::PT_Physics_RigidProxy | Mezzanine::PT_Physics_SoftProxy);
+            ProxyContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
             for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
             {
                 static_cast<Physics::CollidableProxy*>( *ProxIt )->SetCollisionResponse(true);
-                if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                     static_cast<Physics::RigidProxy*>( *ProxIt )->SetGravity( WorldGrav );
                 }
             }
