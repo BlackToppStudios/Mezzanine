@@ -154,7 +154,7 @@ namespace Mezzanine
             btScalar addSingleResult(btCollisionWorld::LocalRayResult& rayResult, bool normalInWorldSpace)
             {
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && ( FilterFunct && FilterFunct(Prox) ) ) {
+                if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
                     return this->btCollisionWorld::ClosestRayResultCallback::addSingleResult(rayResult,normalInWorldSpace);
                 }
                 return rayResult.m_hitFraction;
@@ -199,7 +199,7 @@ namespace Mezzanine
             {
                 this->m_collisionObject = rayResult.m_collisionObject;
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && ( FilterFunct && FilterFunct(Prox) ) ) {
+                if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
                     btVector3 BtHitLoc;
                     BtHitLoc.setInterpolate3(this->RayStart,this->RayEnd,rayResult.m_hitFraction);
 
@@ -349,7 +349,7 @@ namespace Mezzanine
             RayCallback.m_collisionFilterMask = this->ColFilter;
 
             InternalWorld->rayTest(Start,End,RayCallback);
-            if( RayCallback.m_collisionObject != NULL ) {
+            if( RayCallback.m_collisionObject != nullptr ) {
                 Ret.Distance = RayCallback.m_rayFromWorld.distance(RayCallback.m_hitPointWorld);
                 Ret.HitLocation.ExtractBulletVector3(RayCallback.m_hitPointWorld);
                 Ret.HitNormal.ExtractBulletVector3(RayCallback.m_hitNormalWorld);

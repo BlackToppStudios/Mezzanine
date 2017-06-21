@@ -297,24 +297,23 @@ public:
         }//Shape (mesh) Tests
 
         {//Utility Tests
-            /*{//Get/SetTypes Test
-                Mezzanine::ComponentType ProxFilter = Mezzanine::CT_Graphics_BillboardSetProxy;
-                TestRayQuery.SetProxyTypes(ProxFilter);
+            {//Get/SetTypes Test
+                RayQuery::FilterFunction ProxFilter = [](WorldProxy* ToFilter) {
+                    return ( ToFilter->GetComponentType() == Mezzanine::CT_Graphics_BillboardSetProxy );
+                };
+                TestRayQuery.SetFilterFunction(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
                 RayQuery::ResultContainer MultiTestResult = TestRayQuery.GetAllShapeResults(FilterTestRay);
                 TEST( MultiTestResult.size() == 1 &&
                       this->VerifyResult( MultiTestResult[0], BBSet, 75.0 ),
-                      "SetProxyTypes(const_UInt32)_Multi" );
+                      "SetFilterFunction(const_FilterFunction)_Multi" );
 
                 RayQueryHit SingleTestResult = TestRayQuery.GetFirstShapeResult(FilterTestRay);
                 TEST( this->VerifyResult( SingleTestResult, BBSet, 75.0 ),
-                      "SetProxyTypes(const_UInt32)_Single" );
+                      "SetFilterFunction(const_FilterFunction)_Single" );
 
-                TEST( TestRayQuery.GetProxyTypes() == ProxFilter,
-                      "GetProxyTypes()_const" );
-
-                TestRayQuery.SetProxyTypes(std::numeric_limits<UInt32>::max());
+                TestRayQuery.SetFilterFunction(RayQuery::FilterFunction());
             }//Get/SetTypes Test //*/
 
             {//Get/SetQuery Test

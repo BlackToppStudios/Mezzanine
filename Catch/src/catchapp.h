@@ -65,7 +65,6 @@ protected:
     CatchApp::GameState CurrentState;
 
     MousePicker Picker;
-    MousePicker::FilterDelegate PickerFilter;
 
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
@@ -122,7 +121,6 @@ public:
     World* GetTheWorld() const;
 
     MousePicker& GetPicker();
-    const MousePicker::FilterDelegate& GetPickerFilter() const;
 
     ThrowableContainer& GetThrowables();
     LevelManager* GetLevelManager() const;

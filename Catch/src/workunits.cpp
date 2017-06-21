@@ -274,7 +274,7 @@ CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
 void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     if( !UIMan->MouseIsInUISystem() ) {
-        this->CatchApplication->GetPicker().Execute(this->CatchApplication->GetPickerFilter());
+        this->CatchApplication->GetPicker().Execute(nullptr);
     }
 }
 

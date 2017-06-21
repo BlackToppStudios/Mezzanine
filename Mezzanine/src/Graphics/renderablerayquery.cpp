@@ -181,7 +181,7 @@ namespace Mezzanine
         bool AABBQueryListener::queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast(obj);
-            if( Prox != NULL && ( FilterFunct && FilterFunct(Prox) ) ) {
+            if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
                 RayQueryHit NewHit;
                 NewHit.Object = Prox;
                 NewHit.Distance = distance;
@@ -233,17 +233,15 @@ namespace Mezzanine
 
         Boole ShapeQueryListener::HandleEntity(Ogre::MovableObject* obj)
         {
-            RenderableProxy* MezzObj = RenderableProxy::_Upcast( obj );
-            if( MezzObj == NULL )
-                return false;
-            if( !( FilterFunct && FilterFunct(MezzObj) ) )
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            if( FilterFunct ? Prox == nullptr && !FilterFunct(Prox) : Prox == nullptr )
                 return false;
 
             Real ResultDistance = std::numeric_limits<Real>::max();
             Integer ResultSubMesh = -1;
             RayResult Result(MathTools::PS_Neither,Vector3(0,0,0));
 
-            Mesh* ObjMesh = static_cast<EntityProxy*>( MezzObj )->GetMesh();
+            Mesh* ObjMesh = static_cast<EntityProxy*>( Prox )->GetMesh();
             Whole NumSubMeshes = ObjMesh->GetNumSubMeshes();
             for( Whole CurrSubMesh = 0 ; CurrSubMesh < NumSubMeshes ; ++CurrSubMesh )
             {
@@ -252,9 +250,9 @@ namespace Mezzanine
 
                 for( Whole IdxCount = 0 ; IdxCount < Indices.size() ; IdxCount += 3 )
                 {
-                    Vector3 PointA = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 0] ] );
-                    Vector3 PointB = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 1] ] );
-                    Vector3 PointC = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 2] ] );
+                    Vector3 PointA = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 0] ] );
+                    Vector3 PointB = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 1] ] );
+                    Vector3 PointC = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 2] ] );
                     RayResult SingleResult = MathTools::Intersects(PointA,PointB,PointC,this->CastRay);
 
                     if( SingleResult.first != MathTools::PS_Neither ) {
@@ -270,7 +268,7 @@ namespace Mezzanine
 
             if( Result.first != MathTools::PS_Neither ) {
                 RayQueryHit NewHit;
-                NewHit.Object = MezzObj;
+                NewHit.Object = Prox;
                 NewHit.Distance = ResultDistance;
                 NewHit.HitLocation = Result.second;
                 NewHit.HitNormal = -(this->CastRay.Normal);
@@ -283,10 +281,10 @@ namespace Mezzanine
 
         Boole ShapeQueryListener::HandleBillboardSet(Ogre::MovableObject* obj)
         {
-            RenderableProxy* CastedObj = RenderableProxy::_Upcast( obj );
-            if( CastedObj != NULL && ( FilterFunct && FilterFunct(CastedObj) ) ) {
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
                 Ogre::BillboardSet* OgreCasted = static_cast<Ogre::BillboardSet*>(obj);
-                return this->HandleBillboardSetNoCheck( CastedObj, OgreCasted );
+                return this->HandleBillboardSetNoCheck( Prox, OgreCasted );
             }
             return false;
         }
@@ -351,14 +349,14 @@ namespace Mezzanine
 
         Boole ShapeQueryListener::HandleParticleSystem(Ogre::MovableObject* obj)
         {
-            RenderableProxy* CastedObj = RenderableProxy::_Upcast( obj );
-            if( CastedObj != NULL && ( FilterFunct && FilterFunct(CastedObj) ) ) {
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            if( FilterFunct ? Prox == nullptr && !FilterFunct(Prox) : Prox == nullptr ) {
                 Ogre::ParticleSystem* OgreCasted = static_cast<Ogre::ParticleSystem*>(obj);
                 Ogre::ParticleSystemRenderer* Renderer = OgreCasted->getRenderer();
                 if( OgreCasted->getRenderer()->getType() == "billboard" ) {
                     typedef Ogre::BillboardParticleRenderer RendererType;
                     Ogre::BillboardSet* BillSet = static_cast<RendererType*>(Renderer)->getBillboardSet();
-                    return this->HandleBillboardSetNoCheck( CastedObj, BillSet );
+                    return this->HandleBillboardSetNoCheck( Prox, BillSet );
                 }else{
                     MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,
                                    "An unsupported Particle renderer type was found during shape raycast test.");
@@ -394,8 +392,8 @@ namespace Mezzanine
         // RenderableRayQuery Methods
 
         RenderableRayQuery::RenderableRayQuery(SceneManager* ToQuery) :
-            SceneMan(NULL),
-            QueryTool(NULL),
+            SceneMan(nullptr),
+            QueryTool(nullptr),
             QueryFilter(std::numeric_limits<UInt32>::max())
             { this->UpdateQueryTool(ToQuery); }
 
@@ -405,12 +403,12 @@ namespace Mezzanine
         void RenderableRayQuery::UpdateQueryTool(SceneManager* NewQuery)
         {
             if( this->SceneMan != NewQuery ) {
-                if( this->QueryTool != NULL ) {
+                if( this->QueryTool != nullptr ) {
                     this->SceneMan->_GetGraphicsWorldPointer()->destroyQuery(this->QueryTool);
-                    this->QueryTool = NULL;
+                    this->QueryTool = nullptr;
                 }
 
-                if( NewQuery != NULL ) {
+                if( NewQuery != nullptr ) {
                     this->QueryTool = NewQuery->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(),Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                     this->QueryTool->setQueryTypeMask(std::numeric_limits<UInt32>::max());
                     this->QueryTool->setSortByDistance(true);

@@ -126,14 +126,6 @@ namespace Mezzanine
             Col_Debris_Terrain          ///< Specifies a collision between a Debris and some Terrain.
         };
 
-        /// @brief This is used by the PhysicsProxy child classes to describe which proxy type they are.
-        enum ComponentType
-        {
-            CT_Rigid  = 1,
-            CT_Soft   = 2,
-            CT_Ghost  = 3
-        };
-
         /// @brief This is a collection of flags designed to describe what to draw when the Debug Drawer is enabled.
         /// @details Most of these options work, with the exception of text-based modes and contact point modes.
         enum DebugDrawMode
@@ -156,6 +148,14 @@ namespace Mezzanine
             DDM_DrawNormals           = EnumBit(15),
 
             DDM_All                   = -1
+        };
+
+        /// @brief This is a listing of only the Components that exist in the Physics subsystem.
+        enum PhysicsComponentType
+        {
+            PCT_Rigid  = 1,
+            PCT_Soft   = 2,
+            PCT_Ghost  = 3
         };
     }//Physics
 }//Mezzanine
