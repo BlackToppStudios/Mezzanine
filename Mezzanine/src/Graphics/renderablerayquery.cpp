@@ -234,7 +234,7 @@ namespace Mezzanine
         Boole ShapeQueryListener::HandleEntity(Ogre::MovableObject* obj)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
-            if( FilterFunct ? Prox == nullptr && !FilterFunct(Prox) : Prox == nullptr )
+            if( !(FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) )
                 return false;
 
             Real ResultDistance = std::numeric_limits<Real>::max();
