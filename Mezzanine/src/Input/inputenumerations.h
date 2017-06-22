@@ -576,23 +576,23 @@ namespace Mezzanine
         /// @brief An enum listing containing the different kind of input devices, useful for some query functions.
         enum InputDevice
         {
-            DEVICE_UNKNOWN    = 0,
-            DEVICE_KEYBOARD   = 1,
-            DEVICE_MOUSE      = 2,
-            DEVICE_JOYSTICK   = 3,
-            DEVICE_CONTROLLER = 4,
-            DEVICE_MULTITOUCH = 5
+            DEVICE_UNKNOWN    = 0,  ///< Used for error conditions and more exotic inputs, such as custom sequences and OS text.
+            DEVICE_KEYBOARD   = 1,  ///< Keyboard Device.
+            DEVICE_MOUSE      = 2,  ///< Mouse Device.
+            DEVICE_JOYSTICK   = 3,  ///< Joystick Device.
+            DEVICE_CONTROLLER = 4,  ///< Controller/Gamepad Device.
+            DEVICE_MULTITOUCH = 5   ///< Touch Device.
         };//InputDevice
 
-        /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press
+        /// @brief An Optional listing of value that can be used in a MetaCode to represent the information of a button press
         /// @details This is optional set of values that can make working with buttons easier. The values the engine pass
         /// via the the event manager will all use these where ever appropriate.
         enum ButtonState
         {
-            BUTTON_LIFTING = 1,     /**< Used when the key stops being pressed. */
-            BUTTON_UP = 2,          /**< The default state of a key. */
-            BUTTON_PRESSING = 4,    /**< This is used at the exact point in time that a key goes from unpressed to pressed. */
-            BUTTON_DOWN = 8         /**< This is used the entire time a key is down.  */
+            BUTTON_LIFTING = 1,     ///< Used when the key stops being pressed.
+            BUTTON_UP = 2,          ///< The default state of a key.
+            BUTTON_PRESSING = 4,    ///< This is used at the exact point in time that a key goes from unpressed to pressed.
+            BUTTON_DOWN = 8         ///< This is used the entire time a key is down.
         };//ButtonState
 
         /// @brief A convenience enum that stores the maximum number of states for various input devices.

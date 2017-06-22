@@ -411,6 +411,7 @@ namespace Mezzanine
             if( this->IsKeyboardEvent() ) return Input::DEVICE_KEYBOARD;
             else if( this->IsMouseEvent() ) return Input::DEVICE_MOUSE;
             else if( this->IsMultitouchEvent() ) return Input::DEVICE_MULTITOUCH;
+            else if( this->IsJoystickEvent() ) return Input::DEVICE_JOYSTICK;
             else if( this->IsControllerEvent() ) return Input::DEVICE_CONTROLLER;
             else return Input::DEVICE_UNKNOWN;
         }
