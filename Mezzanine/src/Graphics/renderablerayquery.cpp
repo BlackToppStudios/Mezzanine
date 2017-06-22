@@ -181,7 +181,8 @@ namespace Mezzanine
         bool AABBQueryListener::queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast(obj);
-            if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 RayQueryHit NewHit;
                 NewHit.Object = Prox;
                 NewHit.Distance = distance;
@@ -234,7 +235,8 @@ namespace Mezzanine
         Boole ShapeQueryListener::HandleEntity(Ogre::MovableObject* obj)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
-            if( !(FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) )
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( !( FilterResult && Prox != nullptr ) )
                 return false;
 
             Real ResultDistance = std::numeric_limits<Real>::max();
@@ -282,7 +284,8 @@ namespace Mezzanine
         Boole ShapeQueryListener::HandleBillboardSet(Ogre::MovableObject* obj)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
-            if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 Ogre::BillboardSet* OgreCasted = static_cast<Ogre::BillboardSet*>(obj);
                 return this->HandleBillboardSetNoCheck( Prox, OgreCasted );
             }
@@ -350,7 +353,8 @@ namespace Mezzanine
         Boole ShapeQueryListener::HandleParticleSystem(Ogre::MovableObject* obj)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
-            if( FilterFunct ? Prox == nullptr && !FilterFunct(Prox) : Prox == nullptr ) {
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 Ogre::ParticleSystem* OgreCasted = static_cast<Ogre::ParticleSystem*>(obj);
                 Ogre::ParticleSystemRenderer* Renderer = OgreCasted->getRenderer();
                 if( OgreCasted->getRenderer()->getType() == "billboard" ) {

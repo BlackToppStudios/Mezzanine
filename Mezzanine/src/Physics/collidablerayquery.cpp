@@ -154,7 +154,8 @@ namespace Mezzanine
             btScalar addSingleResult(btCollisionWorld::LocalRayResult& rayResult, bool normalInWorldSpace)
             {
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
+                Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+                if( FilterResult && Prox != nullptr ) {
                     return this->btCollisionWorld::ClosestRayResultCallback::addSingleResult(rayResult,normalInWorldSpace);
                 }
                 return rayResult.m_hitFraction;
@@ -199,7 +200,8 @@ namespace Mezzanine
             {
                 this->m_collisionObject = rayResult.m_collisionObject;
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( FilterFunct ? Prox != nullptr && FilterFunct(Prox) : Prox != nullptr ) {
+                Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+                if( FilterResult && Prox != nullptr ) {
                     btVector3 BtHitLoc;
                     BtHitLoc.setInterpolate3(this->RayStart,this->RayEnd,rayResult.m_hitFraction);
 
