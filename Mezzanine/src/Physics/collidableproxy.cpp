@@ -296,18 +296,6 @@ namespace Mezzanine
         CollidableProxy::~CollidableProxy()
             {  }
 
-        void CollidableProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-        {
-            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
-            this->ProtoSerializeShape(SelfRoot);
-        }
-
-        void CollidableProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-        {
-            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
-            this->ProtoDeSerializeShape(SelfRoot);
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
@@ -665,6 +653,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
+        void CollidableProxy::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeShape(SelfRoot);
+        }
+
         void CollidableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->WorldProxy::ProtoSerializeProperties(SelfRoot);
@@ -703,6 +699,13 @@ namespace Mezzanine
             }else{
                 SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName() + "Shape",true);
             }
+        }
+
+        void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeShape(SelfRoot);
+            this->ProtoDeSerializeInWorld(SelfRoot);
         }
 
         void CollidableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

@@ -107,12 +107,12 @@ namespace Mezzanine
 
         Collision::~Collision()
         {
-            WorldEntity* ObjectA = this->ProxyA->GetParentObject();
-            /*if( ObjectA ) {
+            /*WorldEntity* ObjectA = this->ProxyA->GetParentEntity();
+            if( ObjectA ) {
                 ObjectA->_NotifyCollisionState(this,Physics::Col_End);
             }
 
-            WorldEntity* ObjectB = this->ProxyB->GetParentObject();
+            WorldEntity* ObjectB = this->ProxyB->GetParentEntity();
             if( ObjectB ) {
                 ObjectB->_NotifyCollisionState(this,Physics::Col_End);
             }//*/
@@ -155,10 +155,10 @@ namespace Mezzanine
             { return this->ProxyB; }
 
         WorldEntity* Collision::GetObjectA() const
-            { return this->ProxyA->GetParentObject(); }
+            { return this->ProxyA->GetParentEntity(); }
 
         WorldEntity* Collision::GetObjectB() const
-            { return this->ProxyB->GetParentObject(); }
+            { return this->ProxyB->GetParentEntity(); }
 
         Boole Collision::PairsMatch(WorldEntity* A, WorldEntity* B) const
         {

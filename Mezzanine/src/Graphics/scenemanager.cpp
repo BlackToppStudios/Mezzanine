@@ -424,7 +424,7 @@ namespace Mezzanine
         BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const XML::Node& SelfRoot)
         {
             BillboardSetProxy* NewProxy = new BillboardSetProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -439,7 +439,7 @@ namespace Mezzanine
         CameraProxy* SceneManager::CreateCamera(const XML::Node& SelfRoot)
         {
             CameraProxy* NewProxy = new CameraProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -468,7 +468,7 @@ namespace Mezzanine
         EntityProxy* SceneManager::CreateEntityProxy(const XML::Node& SelfRoot)
         {
             EntityProxy* NewProxy = new EntityProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -490,7 +490,7 @@ namespace Mezzanine
         LightProxy* SceneManager::CreateLightProxy(const XML::Node& SelfRoot)
         {
             LightProxy* NewProxy = new LightProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -505,7 +505,7 @@ namespace Mezzanine
         LineGroupProxy* SceneManager::CreateLineGroupProxy(const XML::Node& SelfRoot)
         {
             LineGroupProxy* NewProxy = new LineGroupProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -520,7 +520,7 @@ namespace Mezzanine
         ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const XML::Node& SelfRoot)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -546,7 +546,7 @@ namespace Mezzanine
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyID() == ID ) {
+                if( (*ProxIt)->GetComponentID() == ID ) {
                     return (*ProxIt);
                 }
             }
@@ -560,13 +560,10 @@ namespace Mezzanine
 
         UInt32 SceneManager::GetNumProxies(const UInt32 Types) const
         {
-            if( ( Types & Mezzanine::PT_Graphics_All_Proxies ) == Mezzanine::PT_Graphics_All_Proxies )
-                return this->GetNumProxies();
-
             UInt32 Count = 0;
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
+                if( (*ProxIt)->GetComponentType() == Types ) {
                     ++Count;
                 }
             }
@@ -583,11 +580,11 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -600,12 +597,12 @@ namespace Mezzanine
             ProxyContainer ToKeep;
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                if( (*ProxIt)->GetComponentType() & Types ) {
+                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
                     delete (*ProxIt);
                 }else{
                     ToKeep.push_back( *ProxIt );
@@ -619,11 +616,11 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                 if( Parent )
-                    Parent->RemoveProxy( (*ProxIt) );
+                    Parent->RemoveComponent( (*ProxIt) );
 
-                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();
@@ -669,7 +666,7 @@ namespace Mezzanine
         void SceneManager::PauseAllParticles(Boole Pause)
         {
             for( SceneManager::ProxyIterator it = Proxies.begin() ; it != Proxies.end() ; it++ )
-                if( (*it)->GetProxyType() == Mezzanine::PT_Graphics_ParticleSystemProxy )
+                if( (*it)->GetComponentType() == Mezzanine::CT_Graphics_ParticleSystemProxy )
                     static_cast<ParticleSystemProxy*>( (*it) )->PauseParticleSystem(Pause);
         }
 

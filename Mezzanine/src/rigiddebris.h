@@ -107,14 +107,14 @@ namespace Mezzanine
 
         /// @brief Gets a pointer to the graphics portion of this debris.
         /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
-        /// setting Mezzanine::PT_Graphics_EntityProxy as the type.  Depending on the world configuration one may not
+        /// setting Mezzanine::CT_Graphics_EntityProxy as the type.  Depending on the world configuration one may not
         /// exist, for example of no SceneManager was created with the world.  Please be aware of these configurations
         /// when working with these methods.
         /// @return Returns a pointer to the Entity proxy representing the graphics portion of this debris.
         virtual Graphics::EntityProxy* GetEntityProxy() const;
         /// @brief Gets a pointer to the physics portion of this debris.
         /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
-        /// setting Mezzanine::PT_Physics_RigidProxy as the type.  Depending on the world configuration one may not
+        /// setting Mezzanine::CT_Physics_RigidProxy as the type.  Depending on the world configuration one may not
         /// exist, for example of no PhysicsManager was created with the world.  Please be aware of these configurations
         /// when working with these methods.
         /// @return Returns a pointer to the Rigid proxy representing the physics portion of this debris.

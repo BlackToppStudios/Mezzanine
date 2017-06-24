@@ -237,7 +237,7 @@ namespace Mezzanine
                         ConvertedCodes = std::move( MetaCode::CreateMetaCodes( InternalEvents[CurrEv] ) );
                         for( MetaCode CurrCode : ConvertedCodes )
                         {
-                            MetaCodeIterator InsertPos = std::lower_bound(this->InputDeltas.begin(),this->InputDeltas.end(),CurrCode);
+                            MetaCodeIterator InsertPos = std::lower_bound(this->InputDeltas.begin(),this->InputDeltas.end(),CurrCode,MultiDeviceCompare);
                             this->InputDeltas.insert(InsertPos,CurrCode);
                         }
                         break;
@@ -310,12 +310,11 @@ namespace Mezzanine
                         { break; }
                 }// switch event type
             }// for each event
-            std::sort(this->InputDeltas.begin(),this->InputDeltas.end(),MultiDeviceCompare);
         }
 
         MetaCodeContainer InputManager::UpdateKeyboard(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd)
         {
-            MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::KEY_LAST));
+            MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::KEY_LAST),MultiDeviceCompare);
             MetaCodeContainer Ret = std::move( this->SystemKeyboard->_Update(UpdateBegin,UpdateEnd) );
             UpdateBegin = UpdateEnd;
             return Ret;
@@ -323,7 +322,7 @@ namespace Mezzanine
 
         MetaCodeContainer InputManager::UpdateMouse(MetaCodeIterator& UpdateBegin, const MetaCodeIterator RangeEnd)
         {
-            MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::MOUSE_LAST));
+            MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::MOUSE_LAST),MultiDeviceCompare);
             MetaCodeContainer Ret = std::move( this->SystemMouse->_Update(UpdateBegin,UpdateEnd) );
             UpdateBegin = UpdateEnd;
             return Ret;
@@ -334,7 +333,7 @@ namespace Mezzanine
             MetaCodeContainer Ret;
             for( Whole X = 0 ; X < this->GetNumControllers() ; ++X )
             {
-                MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::JOYSTICK_LAST,X));
+                MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::JOYSTICK_LAST,X),MultiDeviceCompare);
                 MetaCodeContainer Temp = std::move( this->Joysticks[X]->_Update(UpdateBegin,UpdateEnd) );
                 Ret.insert(Ret.end(),Temp.begin(),Temp.end());
                 UpdateBegin = UpdateEnd;
@@ -347,7 +346,7 @@ namespace Mezzanine
             MetaCodeContainer Ret;
             for( Whole X = 0 ; X < this->GetNumControllers() ; ++X )
             {
-                MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::CONTROLLER_LAST,X));
+                MetaCodeIterator UpdateEnd = std::lower_bound(UpdateBegin,RangeEnd,MetaCode(0,Input::CONTROLLER_LAST,X),MultiDeviceCompare);
                 MetaCodeContainer Temp = std::move( this->Controllers[X]->_Update(UpdateBegin,UpdateEnd) );
                 Ret.insert(Ret.end(),Temp.begin(),Temp.end());
                 UpdateBegin = UpdateEnd;
@@ -466,12 +465,12 @@ namespace Mezzanine
             //    return;
             //}
 
-            // Setup some containers .
+            // Setup some containers.
             MetaCodeContainer GeneratedCodes(4);
             MetaCodeContainer TempCodes;
-            // Setup some iterators .
-            MetaCodeIterator UpdateBegin = this->InputDeltas.begin();
+            // Setup some iterators.
             const MetaCodeIterator RangeEnd = this->InputDeltas.end();
+            MetaCodeIterator UpdateBegin = std::lower_bound(this->InputDeltas.begin(),RangeEnd,MetaCode(0,Input::KEY_FIRST),MultiDeviceCompare);
 
             TempCodes = std::move( this->UpdateKeyboard(UpdateBegin,RangeEnd) );
             GeneratedCodes.insert(GeneratedCodes.end(),TempCodes.begin(),TempCodes.end());

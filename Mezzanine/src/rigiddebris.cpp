@@ -87,7 +87,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             RigProx = PhysMan->CreateRigidProxy(Mass);
-            this->AddProxy( RigProx );
+            this->AddComponent( RigProx );
             this->SetPrimaryProxy( RigProx );
         }
 
@@ -95,7 +95,7 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             EntProx = SceneMan->CreateEntityProxy();
-            this->AddProxy( EntProx );
+            this->AddComponent( EntProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -109,7 +109,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             RigProx = PhysMan->CreateRigidProxy(Mass,DebShape);
-            this->AddProxy( RigProx );
+            this->AddComponent( RigProx );
             this->SetPrimaryProxy( RigProx );
         }
 
@@ -117,7 +117,7 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             EntProx = SceneMan->CreateEntityProxy(DebMesh);
-            this->AddProxy( EntProx );
+            this->AddComponent( EntProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -128,20 +128,20 @@ namespace Mezzanine
     void RigidDebris::DestroyRigidDebris()
     {
         this->RemoveFromWorld();
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
     WorldEntityType RigidDebris::GetType() const
-        { return Mezzanine::WO_RigidDebris; }
+        { return Mezzanine::WE_RigidDebris; }
 
     Graphics::EntityProxy* RigidDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
+        { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
 
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
-        { return static_cast<Physics::RigidProxy*>( this->GetProxy(Mezzanine::PT_Physics_RigidProxy,0) ); }
+        { return static_cast<Physics::RigidProxy*>( this->GetComponent(Mezzanine::CT_Physics_RigidProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization

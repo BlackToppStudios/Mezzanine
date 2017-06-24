@@ -170,6 +170,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanagerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}worldentity.h"
+        "${${PROJECT_NAME}_SRC_DIR}worldentitycomponent.h"
         "${${PROJECT_NAME}_SRC_DIR}worldentitymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}worldproxymanager.h"
@@ -697,6 +698,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}world.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldentity.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}worldentitycomponent.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         # Audio Items

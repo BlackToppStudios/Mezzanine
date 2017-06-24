@@ -133,20 +133,19 @@ namespace Mezzanine
         class MEZZ_LIB SingleHitRayCallback : public btCollisionWorld::ClosestRayResultCallback
         {
         protected:
-            /// @brief A bitmask containing the types of proxies we want when returning the results.
-            UInt32 Filter;
+            /// @brief A custom filter for potential ray query hits.
+            RayQuery::FilterFunction FilterFunct;
         public:
             /// @brief Class constructor.
             /// @param Start The point in world space where the ray originates.
             /// @param End The point in world space where the ray ends.
-            /// @param QueryFilter A bitmask containing the types of objects we want when returning the results.
-            SingleHitRayCallback(const btVector3& Start, const btVector3& End, const UInt32 QueryFilter) :
+            /// @param Filter The function that will filter hit results.
+            SingleHitRayCallback(const btVector3& Start, const btVector3& End, const RayQuery::FilterFunction Filter) :
                 btCollisionWorld::ClosestRayResultCallback(Start,End),
-                Filter(QueryFilter)
+                FilterFunct(Filter)
                 {  }
             /// @brief Class destructor.
-            ~SingleHitRayCallback()
-                {  }
+            ~SingleHitRayCallback() = default;
 
             /// @brief Callback method for when an object is found on the ray.
             /// @param rayResult Result containing the hit information.
@@ -155,7 +154,8 @@ namespace Mezzanine
             btScalar addSingleResult(btCollisionWorld::LocalRayResult& rayResult, bool normalInWorldSpace)
             {
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && Prox->GetProxyType() & this->Filter ) {
+                Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+                if( FilterResult && Prox != nullptr ) {
                     return this->btCollisionWorld::ClosestRayResultCallback::addSingleResult(rayResult,normalInWorldSpace);
                 }
                 return rayResult.m_hitFraction;
@@ -177,21 +177,20 @@ namespace Mezzanine
             btVector3 RayStart;
             /// @brief The point in world space where the ray ends.
             btVector3 RayEnd;
-            /// @brief A bitmask containing the types of proxies we want when returning the results.
-            UInt32 Filter;
+            /// @brief A custom filter for potential ray query hits.
+            RayQuery::FilterFunction FilterFunct;
         public:
             /// @brief Class constructor.
             /// @param Start The point in world space where the ray originates.
             /// @param End The point in world space where the ray ends.
-            /// @param QueryFilter A bitmask containing the types of objects we want when returning the results.
-            MultiHitRayCallback(const btVector3& Start, const btVector3& End, const UInt32 QueryFilter) :
+            /// @param Filter The function that will filter hit results.
+            MultiHitRayCallback(const btVector3& Start, const btVector3& End, const RayQuery::FilterFunction Filter) :
                 RayStart(Start),
                 RayEnd(End),
-                Filter(QueryFilter)
+                FilterFunct(Filter)
                 {  }
             /// @brief Class destructor.
-            ~MultiHitRayCallback()
-                {  }
+            ~MultiHitRayCallback() = default;
 
             /// @brief Callback method for when an object is found on the ray.
             /// @param rayResult Result containing the hit information.
@@ -201,7 +200,8 @@ namespace Mezzanine
             {
                 this->m_collisionObject = rayResult.m_collisionObject;
                 CollidableProxy* Prox = CollidableProxy::_Upcast(rayResult.m_collisionObject);
-                if( Prox != NULL && Prox->GetProxyType() & this->Filter ) {
+                Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+                if( FilterResult && Prox != nullptr ) {
                     btVector3 BtHitLoc;
                     BtHitLoc.setInterpolate3(this->RayStart,this->RayEnd,rayResult.m_hitFraction);
 
@@ -221,14 +221,14 @@ namespace Mezzanine
                 return rayResult.m_hitFraction;
             }
 
-            /// @brief Sets the filter used to determine the types of proxies to be returned.
-            /// @param QueryFilter A bitmask containing the types of proxies to return.
-            void SetFilter(UInt32 QueryFilter)
-                { this->Filter = QueryFilter; }
-            /// @brief Gets the filter used to determine the types of proxies to be returned.
-            /// @return Returns a bitmask of the types of proxies considered valid returns.
-            UInt32 GetFilter() const
-                { return this->Filter; }
+            /// @brief Sets the custom function that can filter ray query results.
+            /// @param Filter The function that will filter hit results.
+            void SetFilter(const RayQuery::FilterFunction Filter)
+                { this->FilterFunct = Filter; }
+            /// @brief Gets the custom function that will filter ray query results.
+            /// @return Returns the function object currently filtering results from this callback.
+            RayQuery::FilterFunction GetFilter() const
+                { return this->FilterFunct; }
             /// @brief Gets the current results of the query.
             /// @return Returns the results of the query.
             const RayQuery::ResultContainer& GetResults() const
@@ -251,7 +251,6 @@ namespace Mezzanine
         CollidableRayQuery::CollidableRayQuery(PhysicsManager* ToQuery) :
             PhysicsMan(ToQuery),
             RayCastLength(15000),
-            ProxyTypesFilter(std::numeric_limits<UInt32>::max()),
             ColFilter(std::numeric_limits<UInt32>::max())
             {  }
 
@@ -264,11 +263,11 @@ namespace Mezzanine
         World* CollidableRayQuery::GetWorld() const
             { return this->PhysicsMan->GetWorld(); }
 
-        void CollidableRayQuery::SetProxyTypes(const UInt32 Filter)
-            { this->ProxyTypesFilter = Filter; }
+        void CollidableRayQuery::SetFilterFunction(const RayQuery::FilterFunction Filter)
+            { this->FilterFunct = Filter; }
 
-        UInt32 CollidableRayQuery::GetProxyTypes() const
-            { return this->ProxyTypesFilter; }
+        RayQuery::FilterFunction CollidableRayQuery::GetFilterFunction() const
+            { return this->FilterFunct; }
 
         void CollidableRayQuery::SetQueryFilter(const UInt32 Filter)
             { this->ColFilter = Filter; }
@@ -299,10 +298,9 @@ namespace Mezzanine
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             btBroadphaseInterface* Broadphase = InternalWorld->getBroadphase();
-            SingleHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
+            SingleHitRayCallback RayCallback(Start,End,this->FilterFunct);
             RayCallback.m_collisionFilterGroup = btBroadphaseProxy::AllFilter;
             RayCallback.m_collisionFilterMask = this->ColFilter;
-            //RayCallback.m_flags |=
             BroadphaseOnlyCallback BroadphaseCallback(Start,End,InternalWorld,RayCallback);
 
             Broadphase->rayTest(Start,End,BroadphaseCallback);
@@ -325,10 +323,9 @@ namespace Mezzanine
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
             btBroadphaseInterface* Broadphase = InternalWorld->getBroadphase();
-            MultiHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
+            MultiHitRayCallback RayCallback(Start,End,this->FilterFunct);
             RayCallback.m_collisionFilterGroup = btBroadphaseProxy::AllFilter;
             RayCallback.m_collisionFilterMask = this->ColFilter;
-            //RayCallback.m_flags |=
             BroadphaseOnlyCallback BroadphaseCallback(Start,End,InternalWorld,RayCallback);
 
             Broadphase->rayTest(Start,End,BroadphaseCallback);
@@ -349,13 +346,12 @@ namespace Mezzanine
             btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
-            SingleHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
+            SingleHitRayCallback RayCallback(Start,End,this->FilterFunct);
             RayCallback.m_collisionFilterGroup = btBroadphaseProxy::AllFilter;
             RayCallback.m_collisionFilterMask = this->ColFilter;
-            //RayCallback.m_flags |=
 
             InternalWorld->rayTest(Start,End,RayCallback);
-            if( RayCallback.m_collisionObject != NULL ) {
+            if( RayCallback.m_collisionObject != nullptr ) {
                 Ret.Distance = RayCallback.m_rayFromWorld.distance(RayCallback.m_hitPointWorld);
                 Ret.HitLocation.ExtractBulletVector3(RayCallback.m_hitPointWorld);
                 Ret.HitNormal.ExtractBulletVector3(RayCallback.m_hitNormalWorld);
@@ -372,10 +368,9 @@ namespace Mezzanine
             btVector3 End = Cast.GetPointAtDistance(this->RayCastLength).GetBulletVector3();
 
             btCollisionWorld* InternalWorld = this->PhysicsMan->_GetPhysicsWorldPointer();
-            MultiHitRayCallback RayCallback(Start,End,this->ProxyTypesFilter);
+            MultiHitRayCallback RayCallback(Start,End,this->FilterFunct);
             RayCallback.m_collisionFilterGroup = btBroadphaseProxy::AllFilter;
             RayCallback.m_collisionFilterMask = this->ColFilter;
-            //RayCallback.m_flags |=
 
             InternalWorld->rayTest(Start,End,RayCallback);
             RayCallback.SortResults();
@@ -395,7 +390,6 @@ namespace Mezzanine
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
                 SelfRoot.AppendAttribute("RayCastLength").SetValue( this->GetRayLength() ) &&
-                SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
                 SelfRoot.AppendAttribute("QueryFilter").SetValue( this->GetQueryFilter() ) )
             {
                 return;
@@ -417,10 +411,6 @@ namespace Mezzanine
                     CurrAttrib = SelfRoot.GetAttribute("RayCastLength");
                     if( !CurrAttrib.Empty() )
                         this->SetRayLength( CurrAttrib.AsReal() );
-
-                    CurrAttrib = SelfRoot.GetAttribute("ProxyTypesFilter");
-                    if( !CurrAttrib.Empty() )
-                        this->SetProxyTypes( CurrAttrib.AsUint() );
 
                     CurrAttrib = SelfRoot.GetAttribute("QueryFilter");
                     if( !CurrAttrib.Empty() )

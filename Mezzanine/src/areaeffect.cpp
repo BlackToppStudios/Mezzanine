@@ -94,7 +94,7 @@ namespace Mezzanine
             }else{
                 Ghost = PhysMan->CreateGhostProxy(Shape);
             }
-            this->AddProxy(Ghost);
+            this->AddComponent(Ghost);
             this->SetPrimaryProxy(Ghost);
 
             UInt16 ColGroup = Physics::CF_SensorFilter;
@@ -107,17 +107,17 @@ namespace Mezzanine
     void AreaEffect::DestroyAreaEffect()
     {
         this->RemoveFromWorld();
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     Mezzanine::WorldEntityType AreaEffect::GetType() const
-        { return Mezzanine::WO_AreaEffectUnknown; }
+        { return Mezzanine::WE_AreaEffectUnknown; }
 
     Physics::GhostProxy* AreaEffect::GetGhostProxy() const
-        { return static_cast<Physics::GhostProxy*>( this->GetProxy(Mezzanine::PT_Physics_GhostProxy,0) ); }
+        { return static_cast<Physics::GhostProxy*>( this->GetComponent(Mezzanine::CT_Physics_GhostProxy,0) ); }
 
     void AreaEffect::ApplyEffect()
     {
@@ -180,7 +180,7 @@ namespace Mezzanine
 
     void AreaEffect::_Update(const Whole Delta)
     {
-        if( this->PrimaryProxy->GetProxyType() != Mezzanine::PT_Physics_GhostProxy )
+        if( this->PrimaryProxy->GetComponentType() != Mezzanine::CT_Physics_GhostProxy )
             return;
 
         this->AddedObjects.clear();
@@ -194,7 +194,7 @@ namespace Mezzanine
         for( UInt32 ProxIndex = 0 ; ProxIndex < NumProxies ; ++ProxIndex )
         {
             Physics::CollidableProxy* CurrProxy = Ghost->GetShapeOverlappingProxy( ProxIndex );
-            WorldEntity* CurrObject = ( CurrProxy ? CurrProxy->GetParentObject() : NULL );
+            WorldEntity* CurrObject = ( CurrProxy ? CurrProxy->GetParentEntity() : NULL );
             if( CurrObject != NULL ) {
                 // We need to check for unique world objects just in case a world object contains multiple collidable proxies
                 ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );

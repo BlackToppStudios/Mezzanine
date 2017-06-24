@@ -169,16 +169,6 @@ namespace Mezzanine
                 delete this->SoundDecoder;
             }
 
-            void OALS::SoundProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-            {
-                this->WorldProxy::ProtoSerializeImpl(SelfRoot);
-            }
-
-            void OALS::SoundProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-            {
-                this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
-            }
-
             void OALS::SoundProxy::MakeCurrent(ALCcontext* Context)
             {
                 ALCcontext* CurrContext = alcGetCurrentContext();
@@ -246,8 +236,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Mezzanine::ProxyType OALS::SoundProxy::GetProxyType() const
-                { return Mezzanine::PT_Audio_SoundProxy; }
+            Mezzanine::ComponentType OALS::SoundProxy::GetComponentType() const
+                { return Mezzanine::CT_Audio_SoundProxy; }
 
             Boole OALS::SoundProxy::IsValid() const
                 { return ( this->SoundDecoder && this->SoundDecoder->GetStream() ); }//add parameters to check the sources
@@ -993,6 +983,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
+            void OALS::SoundProxy::ProtoSerialize(XML::Node& ParentNode) const
+            {
+                this->WorldProxy::ProtoSerialize(ParentNode); // Temporary
+            }
+
             void OALS::SoundProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
                 this->WorldProxy::ProtoSerializeProperties(SelfRoot);
@@ -1039,6 +1034,11 @@ namespace Mezzanine
             void OALS::SoundProxy::ProtoSerializeEffects(XML::Node& SelfRoot) const
             {
                 MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                this->WorldProxy::ProtoDeSerialize(SelfRoot); // Temporary
             }
 
             void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

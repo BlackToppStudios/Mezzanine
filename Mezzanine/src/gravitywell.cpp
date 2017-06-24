@@ -93,7 +93,7 @@ namespace Mezzanine
     // Utility
 
     Mezzanine::WorldEntityType GravityWell::GetType() const
-        { return Mezzanine::WO_AreaEffectGravityWell; }
+        { return Mezzanine::WE_AreaEffectGravityWell; }
 
     void GravityWell::ApplyEffect()
     {
@@ -109,10 +109,10 @@ namespace Mezzanine
         if( !this->AllowWorldGrav && !this->AddedObjects.empty() ){
             for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
             {
-                const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherComponents = (*AddedIt)->GetComponents();
+                for( ConstProxyIterator ProxIt = OtherComponents.begin() ; ProxIt != OtherComponents.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                    if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                         Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
                         RigProx->SetGravity( Vector3(0,0,0) );
                     }
@@ -143,10 +143,10 @@ namespace Mezzanine
                 }
 
                 //Apply the Force
-                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherComponents = (*ObjIt)->GetComponents();
+                for( ConstProxyIterator ProxIt = OtherComponents.begin() ; ProxIt != OtherComponents.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                    if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                         Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
 
                         Real Mass = RigProx->GetMass();
@@ -164,10 +164,10 @@ namespace Mezzanine
             const Vector3 WorldGravity = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
-                const ProxyContainer& OtherProxies = (*RemovedIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherComponents = (*RemovedIt)->GetComponents();
+                for( ConstProxyIterator ProxIt = OtherComponents.begin() ; ProxIt != OtherComponents.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                    if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                         Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
                         RigProx->SetGravity( WorldGravity );
                     }

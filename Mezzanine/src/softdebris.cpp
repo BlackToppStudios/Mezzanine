@@ -83,7 +83,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             SofProx = PhysMan->CreateSoftProxy(Mass);
-            this->AddProxy( SofProx );
+            this->AddComponent( SofProx );
             this->SetPrimaryProxy( SofProx );
         }
 
@@ -91,27 +91,27 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
             EntProx = SceneMan->CreateEntityProxy();
-            this->AddProxy( EntProx );
+            this->AddComponent( EntProx );
         }
     }
 
     void SoftDebris::DestroySoftDebris()
     {
         this->RemoveFromWorld();
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
     WorldEntityType SoftDebris::GetType() const
-        { return Mezzanine::WO_SoftDebris; }
+        { return Mezzanine::WE_SoftDebris; }
 
     Graphics::EntityProxy* SoftDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
+        { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
 
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
-        { return static_cast<Physics::SoftProxy*>( this->GetProxy(Mezzanine::PT_Physics_SoftProxy,0) ); }
+        { return static_cast<Physics::SoftProxy*>( this->GetComponent(Mezzanine::CT_Physics_SoftProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization

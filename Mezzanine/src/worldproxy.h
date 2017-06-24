@@ -41,6 +41,7 @@
 #define _worldproxy_h
 
 #include "transformableobject.h"
+#include "worldentitycomponent.h"
 
 namespace Mezzanine
 {
@@ -49,24 +50,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for proxy objects belonging to the various 3D subsystems.
     ///////////////////////////////////////
-    class MEZZ_LIB WorldProxy : public TransformableObject
+    class MEZZ_LIB WorldProxy : public WorldEntityComponent, public TransformableObject
     {
-    protected:
-        /// @internal
-        /// @brief Pointer to the Object this proxy belongs to.
-        WorldEntity* ParentObject;
-        /// @internal
-        /// @brief The unique ID assigned to the type of proxy an instance is.
-        UInt32 ProxyID;
-
-        /// @internal
-        /// @brief Implementation method for serializing additional sets of data.
-        /// @param SelfRoot The root node containing all the serialized data for this instance.
-        virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
-        /// @internal
-        /// @brief Implementation method for deseriailizing additional sets of data.
-        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
     public:
         /// @brief Blank constructor.
         WorldProxy();
@@ -74,14 +59,11 @@ namespace Mezzanine
         /// @param ID The unique ID assigned to the type of proxy an instance is.
         WorldProxy(const UInt32 ID);
         /// @brief Class destructor.
-        virtual ~WorldProxy();
+        virtual ~WorldProxy() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Accessor for the type of proxy.
-        /// @return Returns enum value for the type of proxy this object is.
-        virtual Mezzanine::ProxyType GetProxyType() const = 0;
         /// @brief Performs all the necessary task to ensure this object is connected to it's respective world and ready for use.
         virtual void AddToWorld() = 0;
         /// @brief Unhooks this proxy from it's respective world.
@@ -92,17 +74,6 @@ namespace Mezzanine
         /// @brief Checks of the object is meant to have it's geometry/transform updated frequently.
         /// @return Returns true if the object is meant to be stationary, false otherwise.
         virtual Boole IsStatic() const = 0;
-
-        /// @brief Gets a pointer to the parent object controlling this proxy.
-        /// @return Returns a pointer to the WorldEntity controlling this proxy, or NULL if this proxy isn't bound to a WorldEntity.
-        virtual WorldEntity* GetParentObject() const;
-        /// @brief Gets the unique ID of this proxy.
-        /// @remarks Proxy IDs are only unique to their family of proxies belonging to a specific subsystem.  Across subsystems IDs can be reused.
-        /// @return Returns a UInt32 containing the unique ID for this proxy.
-        virtual UInt32 GetProxyID() const;
-        /// @brief Gets a pointer to this proxies creator.
-        /// @return Returns a pointer to the WorldProxyManager that created this WorldProxy.
-        virtual WorldProxyManager* GetCreator() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
@@ -179,6 +150,9 @@ namespace Mezzanine
         /// @brief Convert this class to an XML::Node ready for serialization.
         /// @param ParentNode The point in the XML hierarchy that all this instance should be appended to.
         virtual void ProtoSerialize(XML::Node& ParentNode) const;
+        /// @brief Convert the in world status of this class to an XML::Attribute ready for serialization.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        virtual void ProtoSerializeInWorld(XML::Node& SelfRoot) const;
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
@@ -186,6 +160,9 @@ namespace Mezzanine
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+        /// @brief Take the data stored in an XML Node and overwrite the in world status of this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+        virtual void ProtoDeSerializeInWorld(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
@@ -197,14 +174,6 @@ namespace Mezzanine
         /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
         /// @return A string containing the name of this class.
         static String GetSerializableName();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        /// @internal
-        /// @brief Binds this proxy to a WorldEntity.
-        /// @param NewParent A pointer to the WorldEntity taking possession of this proxy.
-        virtual void _Bind(WorldEntity* NewParent);
     };//WorldProxy
 }//Mezzanine
 

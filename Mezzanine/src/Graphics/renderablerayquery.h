@@ -74,8 +74,8 @@ namespace Mezzanine
             SceneManager* SceneMan;
             /// @brief A pointer to the internal query.
             Ogre::RaySceneQuery* QueryTool;
-            /// @brief A mask of the types of objects to return as results.
-            UInt32 ProxyTypesFilter;
+            /// @brief A custom filter for potential ray query hits.
+            FilterFunction FilterFunct;
             /// @brief A filter for categories of graphics objects to return as results.
             UInt32 QueryFilter;
 
@@ -96,10 +96,10 @@ namespace Mezzanine
             virtual void SetWorld(World* ToQuery);
             /// @copydoc RayQuery::GetWorld() const
             virtual World* GetWorld() const;
-            /// @copydoc RayQuery::SetProxyTypes(const UInt32)
-            virtual void SetProxyTypes(const UInt32 Filter);
-            /// @copydoc RayQuery::GetProxyTypes() const
-            virtual UInt32 GetProxyTypes() const;
+            /// @copydoc RayQuery::SetFilterFunction(const RayQuery::FilterFunction)
+            virtual void SetFilterFunction(const RayQuery::FilterFunction Filter);
+            /// @copydoc RayQuery::GetFilterFunction() const
+            virtual RayQuery::FilterFunction GetFilterFunction() const;
             /// @copydoc RayQuery::SetQueryFilter(const UInt32)
             /// @remarks This method compares against the same filter set in RenderableProxy::SetQueryFilter method.
             virtual void SetQueryFilter(const UInt32 Filter);
@@ -120,7 +120,7 @@ namespace Mezzanine
             /// @copydoc RayQuery::GetFirstAABBResult(const Ray&)
             virtual RayQueryHit GetFirstAABBResult(const Ray& Cast) const;
             /// @copydoc RayQuery::GetAllAABBResults(const Ray&, const Whole)
-            virtual ResultContainer GetAllAABBResults(const Ray& Cast, const Whole Limit = 0) const;
+            virtual RayQuery::ResultContainer GetAllAABBResults(const Ray& Cast, const Whole Limit = 0) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Precise Query
@@ -128,7 +128,7 @@ namespace Mezzanine
             /// @copydoc RayQuery::GetFirstShapeResult(const Ray&)
             virtual RayQueryHit GetFirstShapeResult(const Ray& Cast) const;
             /// @copydoc RayQuery::GetAllShapeResults(const Ray&, const Whole)
-            virtual ResultContainer GetAllShapeResults(const Ray& Cast, const Whole Limit = 0) const;
+            virtual RayQuery::ResultContainer GetAllShapeResults(const Ray& Cast, const Whole Limit = 0) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

@@ -63,35 +63,25 @@ namespace Mezzanine
             class MEZZ_LIB Listener : public iListener
             {
             protected:
-                /// @internal
                 /// @brief This stores the current orientation of this listener.
                 Quaternion Orientation;
-                /// @internal
                 /// @brief This stores the current velocity of this listener.
                 Vector3 Velocity;
-                /// @internal
                 /// @brief This stores the current location of this listener in 3D space.
                 Vector3 Location;
-                /// @internal
                 /// @brief This stores the amount of meters to be assumed in one unit of world space.
                 Real MPU;
-                /// @internal
                 /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
                 Real VolumeModifier;
-                /// @internal
-                /// @brief This is a pointer to the managert that created this listener.
+                /// @brief This is a pointer to the manager that created this listener.
                 OALS::SoundScapeManager* Manager;
-                /// @internal
                 /// @brief This is a pointer to the OALS context this listener belongs to.
                 ALCcontext* Context;
-                /// @internal
                 /// @brief This tracks whether this listener is in the world and active or not.
                 Boole InWorld;
 
-                /// @internal
-                /// @brief Converts our orientation into something OpanAL can read/use.
+                /// @brief Converts our orientation into something OpenAL can read/use.
                 void ConvertBuffer(Real* OrientationArray);
-                /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
                 void MakeCurrent();
             public:
@@ -111,8 +101,8 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc WorldProxy::GetProxyType() const
-                virtual Mezzanine::ProxyType GetProxyType() const;
+                /// @copydoc WorldProxy::GetComponentType() const
+                virtual Mezzanine::ComponentType GetComponentType() const;
 
                 /// @copydoc iListener::SetVelocity(const Vector3& Vel)
                 virtual void SetVelocity(const Vector3& Vel);

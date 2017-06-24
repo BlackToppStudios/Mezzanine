@@ -50,33 +50,15 @@
 
 namespace Mezzanine
 {
-    WorldProxy::WorldProxy() :
-        ParentObject(NULL),
-        ProxyID(0)
+    WorldProxy::WorldProxy()
         {  }
 
     WorldProxy::WorldProxy(const UInt32 ID) :
-        ParentObject(NULL),
-        ProxyID(ID)
+        WorldEntityComponent(ID)
         {  }
-
-    WorldProxy::~WorldProxy()
-        {  }
-
-    void WorldProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-        { this->ProtoSerializeProperties(SelfRoot); }
-
-    void WorldProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-        { this->ProtoDeSerializeProperties(SelfRoot); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
-
-    WorldEntity* WorldProxy::GetParentObject() const
-        { return this->ParentObject; }
-
-    UInt32 WorldProxy::GetProxyID() const
-        { return this->ProxyID; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -84,19 +66,22 @@ namespace Mezzanine
     void WorldProxy::ProtoSerialize(XML::Node& ParentNode) const
     {
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+        this->ProtoSerializeInWorld(SelfRoot);
+        this->ProtoSerializeProperties(SelfRoot);
+    }
+
+    void WorldProxy::ProtoSerializeInWorld(XML::Node& SelfRoot) const
+    {
         if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
             SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName(),true);
         }
-
-        this->ProtoSerializeImpl(SelfRoot);
     }
 
     void WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
         XML::Node PropertiesNode = SelfRoot.AppendChild( WorldProxy::GetSerializableName() + "Properties" );
 
-        if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-            PropertiesNode.AppendAttribute("ProxyID").SetValue(this->ProxyID) )
+        if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
         {
             XML::Node LocationNode = PropertiesNode.AppendChild("Location");
             this->GetLocation().ProtoSerialize( LocationNode );
@@ -113,15 +98,14 @@ namespace Mezzanine
 
     void WorldProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
-        Boole WasInWorld = false;
+        this->ProtoDeSerializeProperties(SelfRoot);
+        this->ProtoDeSerializeInWorld(SelfRoot);
+    }
+
+    void WorldProxy::ProtoDeSerializeInWorld(const XML::Node& SelfRoot)
+    {
         XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-        if( !InWorldAttrib.Empty() ) {
-            WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-        }
-
-        this->ProtoDeSerializeImpl(SelfRoot);
-
-        if( WasInWorld ) {
+        if( !InWorldAttrib.Empty() && StringTools::ConvertToBool( InWorldAttrib.AsString() ) ) {
             this->AddToWorld();
         }
     }
@@ -133,10 +117,6 @@ namespace Mezzanine
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
-                CurrAttrib = PropertiesNode.GetAttribute("ProxyID");
-                if( !CurrAttrib.Empty() )
-                    this->ProxyID = static_cast<UInt32>( CurrAttrib.AsUint() );
-
                 XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
                 if( !PositionNode.Empty() ) {
                     Vector3 Loc(PositionNode);
@@ -167,17 +147,6 @@ namespace Mezzanine
 
     String WorldProxy::GetSerializableName()
         { return "WorldProxy"; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Methods
-
-    void WorldProxy::_Bind(WorldEntity* NewParent)
-    {
-        if( ParentObject != NewParent ) {
-            ParentObject = NewParent;
-            /// @todo Notify something?  Perhaps use the new event system?
-        }
-    }
 }//Mezzanine
 
 #endif

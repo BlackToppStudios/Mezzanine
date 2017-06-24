@@ -820,7 +820,7 @@ namespace Mezzanine
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -842,7 +842,7 @@ namespace Mezzanine
         RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
         {
             RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -857,7 +857,7 @@ namespace Mezzanine
         SoftProxy* PhysicsManager::CreateSoftProxy(const XML::Node& SelfRoot)
         {
             SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -880,7 +880,7 @@ namespace Mezzanine
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyID() == ID ) {
+                if( (*ProxIt)->GetComponentID() == ID ) {
                     return (*ProxIt);
                 }
             }
@@ -894,13 +894,10 @@ namespace Mezzanine
 
         UInt32 PhysicsManager::GetNumProxies(const UInt32 Types) const
         {
-            if( ( Types & Mezzanine::PT_Physics_All_Proxies ) == Mezzanine::PT_Physics_All_Proxies )
-                return this->GetNumProxies();
-
             UInt32 Count = 0;
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
+                if( (*ProxIt)->GetComponentType() == Types ) {
                     ++Count;
                 }
             }
@@ -917,11 +914,11 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -934,12 +931,12 @@ namespace Mezzanine
             ProxyContainer ToKeep;
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                if( (*ProxIt)->GetComponentType() & Types ) {
+                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
                     delete (*ProxIt);
                 }else{
                     ToKeep.push_back( *ProxIt );
@@ -953,11 +950,11 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldEntity* Parent = (*ProxIt)->GetParentObject();
+                WorldEntity* Parent = (*ProxIt)->GetParentEntity();
                 if( Parent )
-                    Parent->RemoveProxy( (*ProxIt) );
+                    Parent->RemoveComponent( (*ProxIt) );
 
-                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
                 delete (*ProxIt);
             }
             this->Proxies.clear();

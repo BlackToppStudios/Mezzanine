@@ -298,24 +298,23 @@ public:
 
         {//Utility Tests
             {//Get/SetTypes Test
-                UInt32 ProxFilter = Mezzanine::PT_Graphics_BillboardSetProxy;
-                TestRayQuery.SetProxyTypes(ProxFilter);
+                RayQuery::FilterFunction ProxFilter = [](WorldProxy* ToFilter) {
+                    return ( ToFilter->GetComponentType() == Mezzanine::CT_Graphics_BillboardSetProxy );
+                };
+                TestRayQuery.SetFilterFunction(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
                 RayQuery::ResultContainer MultiTestResult = TestRayQuery.GetAllShapeResults(FilterTestRay);
                 TEST( MultiTestResult.size() == 1 &&
                       this->VerifyResult( MultiTestResult[0], BBSet, 75.0 ),
-                      "SetProxyTypes(const_UInt32)_Multi" );
+                      "SetFilterFunction(const_FilterFunction)_Multi" );
 
                 RayQueryHit SingleTestResult = TestRayQuery.GetFirstShapeResult(FilterTestRay);
                 TEST( this->VerifyResult( SingleTestResult, BBSet, 75.0 ),
-                      "SetProxyTypes(const_UInt32)_Single" );
+                      "SetFilterFunction(const_FilterFunction)_Single" );
 
-                TEST( TestRayQuery.GetProxyTypes() == ProxFilter,
-                      "GetProxyTypes()_const" );
-
-                TestRayQuery.SetProxyTypes(std::numeric_limits<UInt32>::max());
-            }//Get/SetTypes Test
+                TestRayQuery.SetFilterFunction(RayQuery::FilterFunction());
+            }//Get/SetTypes Test //*/
 
             {//Get/SetQuery Test
                 UInt32 QueryFilter = 2;
@@ -341,7 +340,7 @@ public:
         }//Utility Tests
 
         {//Serialize Test
-            String Expected( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Expected( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             Graphics::RenderableRayQuery TestRayQuery(SceneMan);
@@ -353,7 +352,7 @@ public:
         }//Serialize Test
 
         {//Deserialize Test
-            String Source( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Source( "<?xml version=\"1.0\"?><RenderableRayQuery Version=\"1\" WorldName=\"RenderableRayTestWorld\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             StringStream Buffer;
@@ -364,9 +363,8 @@ public:
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
-            Boole ProxyTypesMatch = TestRayQuery.GetProxyTypes() == std::numeric_limits<UInt32>::max();
             Boole QueryFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
-            TEST( WorldMatch && ProxyTypesMatch && QueryFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( WorldMatch && QueryFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
         }//Deserialize Test
     }
 

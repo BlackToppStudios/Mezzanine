@@ -73,14 +73,7 @@ namespace Mezzanine
             { this->ParentObject = PO; }
 
         void SimpleMotionState::SetSyncObject(TransformableObject* TO)
-        {
-            //UInt32 ProxType = WP->GetProxyType();
-            //if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
-                this->SyncObject = TO;
-            //}else{
-            //    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
-            //}
-        }
+            { this->SyncObject = TO; }
 
         void SimpleMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }

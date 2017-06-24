@@ -29,7 +29,7 @@ void LevelZone::CreateLevelZone()
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( SceneMan != NULL ) {
         EntProx = SceneMan->CreateEntityProxy();
-        this->AddProxy(EntProx);
+        this->AddComponent(EntProx);
     }
 }
 
@@ -42,10 +42,10 @@ void LevelZone::DestroyLevelZone()
 // Utility
 
 Mezzanine::WorldEntityType LevelZone::GetType() const
-    { return Mezzanine::WO_AreaEffectUnknown; }
+    { return Mezzanine::WE_AreaEffectUnknown; }
 
 Graphics::EntityProxy* LevelZone::GetEntityProxy() const
-    { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
+    { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
 
 Boole LevelZone::IsInside(WorldEntity* Object)
     { return ( std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), Object ) != this->OverlappingObjects.end() ); }

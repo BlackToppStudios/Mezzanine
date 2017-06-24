@@ -96,7 +96,7 @@ namespace Mezzanine
     // Utility
 
     Mezzanine::WorldEntityType FieldOfForce::GetType() const
-        { return Mezzanine::WO_AreaEffectFieldOfForce; }
+        { return Mezzanine::WE_AreaEffectFieldOfForce; }
 
     void FieldOfForce::ApplyEffect()
     {
@@ -145,10 +145,10 @@ namespace Mezzanine
                     AppliedStrength = 0;
 
                 //Apply the Force
-                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ProxyContainer& OtherComponents = (*ObjIt)->GetComponents();
+                for( ConstProxyIterator ProxIt = OtherComponents.begin() ; ProxIt != OtherComponents.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
+                    if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                         Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
                         RigProx->ApplyForce( Direction * AppliedStrength );
                     }

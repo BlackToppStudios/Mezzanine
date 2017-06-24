@@ -62,14 +62,11 @@ namespace Mezzanine
         class MEZZ_LIB LightProxy : public RenderableProxy
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal Light this proxy is based on.
             Ogre::Light* GraphicsLight;
 
-            /// @internal
             /// @brief Creates an internal light to be used by the calling instance.
             virtual void CreateLight();
-            /// @internal
             /// @brief Destroys the internal light in use by this proxy.
             virtual void DestroyLight();
         public:
@@ -93,8 +90,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc WorldProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const;
             /// @copydoc WorldProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
@@ -197,9 +194,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const

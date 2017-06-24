@@ -160,9 +160,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType SoftProxy::GetProxyType() const
+        Mezzanine::ComponentType SoftProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_SoftProxy;
+            return Mezzanine::CT_Physics_SoftProxy;
         }
 
         void SoftProxy::AddToWorld()
