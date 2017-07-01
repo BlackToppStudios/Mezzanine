@@ -126,7 +126,7 @@ namespace Mezzanine
 
         WorldEntity* Parent = Target->GetParentEntity();
         if( Parent != NULL ) {
-            WorldProxy* NewTarget = Parent->GetComponent(DesiredTypeFirst,0);
+            WorldProxy* NewTarget = static_cast<WorldProxy*>( Parent->GetComponent(DesiredTypeFirst,0) );
             return ( NewTarget != NULL ? NewTarget : Target );
         }
         return Target;
@@ -258,7 +258,7 @@ namespace Mezzanine
 
         WorldEntity* Parent = Target->GetParentEntity();
         if( Parent != NULL ) {
-            WorldProxy* NewTarget = Parent->GetComponent(DesiredTypeFirst,0);
+            WorldProxy* NewTarget = static_cast<WorldProxy*>( Parent->GetComponent(DesiredTypeFirst,0) );
             return ( NewTarget != NULL ? NewTarget : Target );
         }
         return Target;

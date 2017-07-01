@@ -113,7 +113,7 @@ namespace Mezzanine
         Boole RenderableProxy::IsInWorld() const
             { return this->InWorld; }
 
-        WorldProxyManager* RenderableProxy::GetCreator() const
+        EntityComponentManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////

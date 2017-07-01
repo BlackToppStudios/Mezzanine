@@ -104,8 +104,8 @@ namespace Mezzanine
             /// @copydoc WorldProxy::IsInWorld() const
             virtual Boole IsInWorld() const;
 
-            /// @copydoc WorldProxy::GetCreator() const
-            virtual WorldProxyManager* GetCreator() const;
+            /// @copydoc WorldEntityComponent::GetCreator() const
+            virtual EntityComponentManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties

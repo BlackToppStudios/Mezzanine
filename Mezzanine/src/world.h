@@ -43,7 +43,7 @@
 
 #include "enumerations.h"
 #include "worldentitymanager.h"
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 
 namespace Mezzanine
 {
@@ -191,11 +191,11 @@ namespace Mezzanine
         /// @brief This is will find the WorldEntity manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @return This returns a pointer to a WorldEntityManager, or a NULL pointer if no matching manager exists.
-        WorldEntityManager* GetObjectManager(const Whole ManagerToGet) const;
+        WorldEntityManager* GetEntityManager(const Whole ManagerToGet) const;
         /// @brief This is will find the WorldProxy manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
-        /// @return This returns a pointer to a WorldProxyManager, or a NULL pointer if no matching manager exists.
-        WorldProxyManager* GetProxyManager(const Whole ManagerToGet) const;
+        /// @return This returns a pointer to a EntityComponentManager, or a NULL pointer if no matching manager exists.
+        EntityComponentManager* GetComponentManager(const Whole ManagerToGet) const;
         /// @brief This removes a manager by finding the matching pointer.
         /// @param ToBeRemoved A pointer to the manager to be removed.
         void RemoveManager(WorldManager* ToBeRemoved);

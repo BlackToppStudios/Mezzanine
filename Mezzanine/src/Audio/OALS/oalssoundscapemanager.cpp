@@ -141,7 +141,7 @@ namespace Mezzanine
                     AudioMan->_UnregisterSoundScapeManager(this);
                 }
 
-                this->DestroyAllProxies();
+                this->DestroyAllComponents();
                 this->DestroyAllListeners();
             }
 
@@ -335,7 +335,7 @@ namespace Mezzanine
                 return NULL;
             }
 
-            WorldProxy* SoundScapeManager::CreateProxy(const XML::Node& SelfRoot)
+            WorldEntityComponent* SoundScapeManager::CreateComponent(const XML::Node& SelfRoot)
             {
                 if( SelfRoot.Name() == OALS::Listener::GetSerializableName() ) return this->CreateListener(SelfRoot);
                 else if( SelfRoot.Name() == OALS::SoundProxy::GetSerializableName() ) return this->CreateSoundProxy(SelfRoot);
@@ -345,7 +345,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
 
-            WorldProxy* SoundScapeManager::GetProxyByID(const UInt32 ID) const
+            WorldEntityComponent* SoundScapeManager::GetComponentByID(const UInt32 ID) const
             {
                 for( ConstListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
@@ -364,12 +364,12 @@ namespace Mezzanine
                 return NULL;
             }
 
-            UInt32 SoundScapeManager::GetNumProxies() const
+            UInt32 SoundScapeManager::GetNumComponents() const
             {
                 return ( this->GetNumListeners() + this->GetNumSoundProxies() );
             }
 
-            UInt32 SoundScapeManager::GetNumProxies(const UInt32 Types) const
+            UInt32 SoundScapeManager::GetNumComponents(const UInt32 Types) const
             {
                 UInt32 Count = 0;
                 if( Types == Mezzanine::CT_Audio_Listener )
@@ -381,15 +381,15 @@ namespace Mezzanine
                 return Count;
             }
 
-            WorldProxyManager::WorldProxyVec SoundScapeManager::GetProxies() const
+            EntityComponentManager::ComponentVec SoundScapeManager::GetComponents() const
             {
-                WorldProxyVec Ret;
+                ComponentVec Ret;
                 Ret.insert(Ret.end(),this->Listeners.begin(),this->Listeners.end());
                 Ret.insert(Ret.end(),this->Proxies.begin(),this->Proxies.end());
                 return Ret;
             }
 
-            void SoundScapeManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+            void SoundScapeManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
             {
                 if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_Listener ) {
                     this->DestroyListener( static_cast<OALS::Listener*>( ToBeDestroyed ) );
@@ -398,7 +398,7 @@ namespace Mezzanine
                 }
             }
 
-            void SoundScapeManager::DestroyAllProxies(const UInt32 Types)
+            void SoundScapeManager::DestroyAllComponents(const UInt32 Types)
             {
                 if( Types & Mezzanine::CT_Audio_SoundProxy ) {
                     this->DestroyAllSoundProxies();
@@ -407,7 +407,7 @@ namespace Mezzanine
                 }
             }
 
-            void SoundScapeManager::DestroyAllProxies()
+            void SoundScapeManager::DestroyAllComponents()
             {
                 this->DestroyAllSoundProxies();
                 this->DestroyAllListeners();

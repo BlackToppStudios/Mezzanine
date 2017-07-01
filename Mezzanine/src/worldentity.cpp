@@ -43,7 +43,7 @@
 #include "worldentity.h"
 #include "world.h"
 #include "worldproxy.h"
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 #include "serialization.h"
 #include "exception.h"
 #include "entresol.h"
@@ -54,35 +54,46 @@
 
 namespace Mezzanine
 {
+    Boole ComponentCompare(WorldEntityComponent* CompFirst, WorldEntityComponent* CompSecond)
+    {
+        /// @todo This is placeholder for now.
+        return CompFirst->GetComponentType() < CompSecond->GetComponentType();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // WorldEntity
+
     WorldEntity::WorldEntity(World* TheWorld) :
         PrimaryProxy(nullptr),
-        ParentWorld(TheWorld)
+        ParentWorld(TheWorld),
+        ProxyStartIndex(0)
         {  }
 
     WorldEntity::WorldEntity(const String& Name, World* TheWorld) :
         ObjectName(Name),
         PrimaryProxy(nullptr),
-        ParentWorld(TheWorld)
-        {  }
-
-    WorldEntity::~WorldEntity()
+        ParentWorld(TheWorld),
+        ProxyStartIndex(0)
         {  }
 
     void WorldEntity::DestroyAllComponents()
     {
-        ProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            WorldProxyManager* ProxMan = (*ProxIt)->GetCreator();
-            (*ProxIt)->_Bind(nullptr);
-            ProxMan->DestroyProxy(*ProxIt);
-            ++ProxIt;
+            EntityComponentManager* ComponentMan = (*CompIt)->GetCreator();
+            (*CompIt)->_Bind(nullptr);
+            ComponentMan->DestroyComponent(*CompIt);
+            ++CompIt;
         }
-        this->Proxies.clear();
+        this->Components.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
+
+    Mezzanine::WorldEntityType WorldEntity::GetType() const
+        { return Mezzanine::WE_Generic; }
 
     const String& WorldEntity::GetName() const
         { return this->ObjectName; }
@@ -105,137 +116,148 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Component Management
 
-    void WorldEntity::AddComponent(WorldProxy* ToAdd)
+    void WorldEntity::AddComponent(WorldEntityComponent* ToAdd)
     {
         ToAdd->_Bind( this );
-        this->Proxies.push_back(ToAdd);
+        ComponentIterator CompIt = std::lower_bound(this->Components.begin(),this->Components.end(),ToAdd,ComponentCompare);
+        this->Components.insert(CompIt,ToAdd);
     }
 
-    WorldProxy* WorldEntity::RemoveComponent(WorldProxy* ToRemove)
+    WorldEntityComponent* WorldEntity::RemoveComponent(WorldEntityComponent* ToRemove)
     {
-        ProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt) == ToRemove ) {
-                this->Proxies.erase(ProxIt);
+            if( (*CompIt) == ToRemove ) {
+                this->Components.erase(CompIt);
                 return ToRemove;
             }
-            ++ProxIt;
+            ++CompIt;
         }
         return nullptr;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponentsOfType(const ComponentType Type)
+    WorldEntity::ComponentContainer WorldEntity::RemoveAllComponentsOfType(const ComponentType Type)
     {
-        ProxyContainer Ret;
-        ProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentContainer Ret;
+        ComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() == Type ) {
-                (*ProxIt)->_Bind( nullptr );
-                Ret.push_back( (*ProxIt) );
-                ProxIt = this->Proxies.erase(ProxIt);
+            if( (*CompIt)->GetComponentType() == Type ) {
+                (*CompIt)->_Bind( nullptr );
+                Ret.push_back( (*CompIt) );
+                CompIt = this->Components.erase(CompIt);
             }else{
-                ++ProxIt;
+                ++CompIt;
             }
         }
         return Ret;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast)
+    WorldEntity::ComponentContainer WorldEntity::RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast)
     {
-        ProxyContainer Ret;
-        ProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentContainer Ret;
+        ComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
-                (*ProxIt)->_Bind( nullptr );
-                Ret.push_back( (*ProxIt) );
-                ProxIt = this->Proxies.erase(ProxIt);
+            if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
+                (*CompIt)->_Bind( nullptr );
+                Ret.push_back( (*CompIt) );
+                CompIt = this->Components.erase(CompIt);
             }else{
-                ++ProxIt;
+                ++CompIt;
             }
         }
         return Ret;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::RemoveAllComponents()
+    WorldEntity::ComponentContainer WorldEntity::RemoveAllComponents()
     {
-        ProxyContainer Ret;
-        ProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
-            { (*ProxIt)->_Bind( nullptr ); }
-        Ret.swap(this->Proxies);
+        ComponentContainer Ret;
+        ComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
+            { (*CompIt)->_Bind( nullptr ); }
+        Ret.swap(this->Components);
         return Ret;
     }
 
     Whole WorldEntity::GetNumComponents() const
     {
-        return this->Proxies.size();
+        return this->Components.size();
     }
 
-    WorldProxy* WorldEntity::GetComponent(const Whole Index) const
+    WorldEntityComponent* WorldEntity::GetComponent(const Whole Index) const
     {
-        return this->Proxies.at(Index);
+        return this->Components.at(Index);
     }
 
-    WorldProxy* WorldEntity::GetComponent(const ComponentType Type, Whole TypeIndex) const
+    WorldEntityComponent* WorldEntity::GetComponent(const ComponentType Type, Whole TypeIndex) const
     {
-        ConstProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ConstComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() == Type ) {
-                if( TypeIndex == 0 ) return (*ProxIt);
+            if( (*CompIt)->GetComponentType() == Type ) {
+                if( TypeIndex == 0 ) return (*CompIt);
                 else --TypeIndex;
             }
-            ++ProxIt;
+            ++CompIt;
         }
         return nullptr;
     }
 
-    WorldProxy* WorldEntity::GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const
+    WorldEntityComponent* WorldEntity::GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const
     {
-        ConstProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ConstComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
-                if( TypeIndex == 0 ) return (*ProxIt);
+            if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
+                if( TypeIndex == 0 ) return (*CompIt);
                 else --TypeIndex;
             }
-            ++ProxIt;
+            ++CompIt;
         }
         return nullptr;
     }
 
-    const WorldEntity::ProxyContainer& WorldEntity::GetComponents() const
-    {
-        return this->Proxies;
-    }
+    WorldEntity::ComponentRange WorldEntity::GetNonProxyRange()
+        { return ComponentRange(this->Components.begin(),this->Components.begin() + this->ProxyStartIndex); }
 
-    WorldEntity::ProxyContainer WorldEntity::GetComponents(const ComponentType Type) const
+    WorldEntity::ConstComponentRange WorldEntity::GetNonProxyRange() const
+        { return ConstComponentRange(this->Components.begin(),this->Components.begin() + this->ProxyStartIndex); }
+
+    WorldEntity::ComponentRange WorldEntity::GetProxyRange()
+        { return ComponentRange(this->Components.begin() + this->ProxyStartIndex,this->Components.end()); }
+
+    WorldEntity::ConstComponentRange WorldEntity::GetProxyRange() const
+        { return ConstComponentRange(this->Components.begin() + this->ProxyStartIndex,this->Components.end()); }
+
+    const WorldEntity::ComponentContainer& WorldEntity::GetComponents() const
+        { return this->Components; }
+
+    WorldEntity::ComponentContainer WorldEntity::GetComponents(const ComponentType Type) const
     {
-        ProxyContainer Ret;
-        ConstProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentContainer Ret;
+        ConstComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() == Type ) {
-                Ret.push_back(*ProxIt);
+            if( (*CompIt)->GetComponentType() == Type ) {
+                Ret.push_back(*CompIt);
             }
-            ++ProxIt;
+            ++CompIt;
         }
         return Ret;
     }
 
-    WorldEntity::ProxyContainer WorldEntity::GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const
+    WorldEntity::ComponentContainer WorldEntity::GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const
     {
-        ProxyContainer Ret;
-        ConstProxyIterator ProxIt = this->Proxies.begin();
-        while( ProxIt != this->Proxies.end() )
+        ComponentContainer Ret;
+        ConstComponentIterator CompIt = this->Components.begin();
+        while( CompIt != this->Components.end() )
         {
-            if( (*ProxIt)->GetComponentType() >= TypeFirst && (*ProxIt)->GetComponentType() <= TypeLast ) {
-                Ret.push_back(*ProxIt);
+            if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
+                Ret.push_back(*CompIt);
             }
-            ++ProxIt;
+            ++CompIt;
         }
         return Ret;
     }
@@ -259,14 +281,16 @@ namespace Mezzanine
 
     void WorldEntity::AddToWorld()
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->AddToWorld(); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->AddToWorld(); }
     }
 
     void WorldEntity::RemoveFromWorld()
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->RemoveFromWorld(); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->RemoveFromWorld(); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -274,14 +298,16 @@ namespace Mezzanine
 
     void WorldEntity::SetTransform(const Transform& Trans)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetTransform(Trans); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetTransform(Trans); }
     }
 
     void WorldEntity::SetTransform(const Vector3& Loc, const Quaternion& Ori)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetTransform(Loc,Ori); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetTransform(Loc,Ori); }
     }
 
     Transform WorldEntity::GetTransform() const
@@ -292,14 +318,16 @@ namespace Mezzanine
 
     void WorldEntity::SetLocation(const Vector3& Loc)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetLocation(Loc); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetLocation(Loc); }
     }
 
     void WorldEntity::SetLocation(const Real X, const Real Y, const Real Z)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetLocation(X,Y,Z); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetLocation(X,Y,Z); }
     }
 
     Vector3 WorldEntity::GetLocation() const
@@ -310,14 +338,16 @@ namespace Mezzanine
 
     void WorldEntity::SetOrientation(const Quaternion& Ori)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetOrientation(Ori); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetOrientation(Ori); }
     }
 
     void WorldEntity::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetOrientation(X,Y,Z,W); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetOrientation(X,Y,Z,W); }
     }
 
     Quaternion WorldEntity::GetOrientation() const
@@ -328,14 +358,16 @@ namespace Mezzanine
 
     void WorldEntity::SetScale(const Vector3& Sc)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetScale(Sc); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetScale(Sc); }
     }
 
     void WorldEntity::SetScale(const Real X, const Real Y, const Real Z)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->SetScale(X,Y,Z); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->SetScale(X,Y,Z); }
     }
 
     Vector3 WorldEntity::GetScale() const
@@ -346,56 +378,65 @@ namespace Mezzanine
 
     void WorldEntity::Translate(const Vector3& Trans)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Translate(Trans); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Translate(Trans); }
     }
 
     void WorldEntity::Translate(const Real X, const Real Y, const Real Z)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Translate(X,Y,Z); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Translate(X,Y,Z); }
     }
 
     void WorldEntity::Yaw(const Real Angle)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Yaw(Angle); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Yaw(Angle); }
     }
 
     void WorldEntity::Pitch(const Real Angle)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Pitch(Angle); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Pitch(Angle); }
     }
 
     void WorldEntity::Roll(const Real Angle)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Roll(Angle); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Roll(Angle); }
     }
 
     void WorldEntity::Rotate(const Vector3& Axis, const Real Angle)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Rotate(Axis,Angle); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Rotate(Axis,Angle); }
     }
 
     void WorldEntity::Rotate(const Quaternion& Rotation)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Rotate(Rotation); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Rotate(Rotation); }
     }
 
     void WorldEntity::Scale(const Vector3& Sc)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Scale(Sc); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Scale(Sc); }
     }
 
     void WorldEntity::Scale(const Real X, const Real Y, const Real Z)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
-            { (*ProxIt)->Scale(X,Y,Z); }
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
+            { static_cast<WorldProxy*>(Prox)->Scale(X,Y,Z); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -406,7 +447,7 @@ namespace Mezzanine
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
         this->ProtoSerializeProperties(SelfRoot);
-        this->ProtoSerializeProxies(SelfRoot);
+        this->ProtoSerializeComponents(SelfRoot);
     }
 
     void WorldEntity::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -430,35 +471,35 @@ namespace Mezzanine
         }
     }
 
-    void WorldEntity::ProtoSerializeProxies(XML::Node& SelfRoot) const
+    void WorldEntity::ProtoSerializeComponents(XML::Node& SelfRoot) const
     {
-        XML::Node ProxiesNode = SelfRoot.AppendChild( WorldEntity::GetSerializableName() + "Proxies" );
+        XML::Node ComponentsNode = SelfRoot.AppendChild( WorldEntity::GetSerializableName() + "Components" );
 
-        if( ProxiesNode.AppendAttribute("Version").SetValue("1") &&
-            ProxiesNode.AppendAttribute("ProxyCount").SetValue( this->Proxies.size() ) )
+        if( ComponentsNode.AppendAttribute("Version").SetValue("1") &&
+            ComponentsNode.AppendAttribute("ProxyCount").SetValue( this->Components.size() ) )
         {
-            const ConstProxyIterator BegProx = this->Proxies.begin();
-            for( ConstProxyIterator ProxIt = BegProx ; ProxIt != this->Proxies.end() ; ++ProxIt )
+            const ConstComponentIterator BegProx = this->Components.begin();
+            for( ConstComponentIterator CompIt = BegProx ; CompIt != this->Components.end() ; ++CompIt )
             {
-                XML::Node ProxyNode = ProxiesNode.AppendChild( (*ProxIt)->GetDerivedSerializableName() );
-                if( ProxyNode.AppendAttribute("ComponentID").SetValue( (*ProxIt)->GetComponentID() ) &&
-                    ProxyNode.AppendAttribute("ManagerType").SetValue( (*ProxIt)->GetCreator()->GetInterfaceType() ) )
+                XML::Node ProxyNode = ComponentsNode.AppendChild( (*CompIt)->GetDerivedSerializableName() );
+                if( ProxyNode.AppendAttribute("ComponentID").SetValue( (*CompIt)->GetComponentID() ) &&
+                    ProxyNode.AppendAttribute("ManagerType").SetValue( (*CompIt)->GetCreator()->GetInterfaceType() ) )
                 {
                     continue;
                 }else{
-                    SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Proxies",true);
+                    SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Components",true);
                 }
             }
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Proxies",true);
+            SerializeError("Create XML Attribute Values",WorldEntity::GetSerializableName() + "Components",true);
         }
     }
 
     void WorldEntity::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
-        this->ProtoDeSerializeProxies(SelfRoot);
+        this->ProtoDeSerializeComponents(SelfRoot);
         this->ProtoDeSerializeProperties(SelfRoot);
     }
 
@@ -498,22 +539,22 @@ namespace Mezzanine
         }
     }
 
-    void WorldEntity::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
+    void WorldEntity::ProtoDeSerializeComponents(const XML::Node& SelfRoot)
     {
         this->DestroyAllComponents();
 
         XML::Attribute CurrAttrib;
-        XML::Node ProxiesNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Proxies" );
+        XML::Node ComponentsNode = SelfRoot.GetChild( WorldEntity::GetSerializableName() + "Components" );
 
-        if( !ProxiesNode.Empty() ) {
-            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
-                //CurrAttrib = ProxiesNode.GetAttribute("ProxyCount");
+        if( !ComponentsNode.Empty() ) {
+            if(ComponentsNode.GetAttribute("Version").AsInt() == 1) {
+                //CurrAttrib = ComponentsNode.GetAttribute("ProxyCount");
                 //if( !CurrAttrib.Empty() )
-                //    this->Proxies.resize( CurrAttrib.AsUint() );
+                //    this->Components.resize( CurrAttrib.AsUint() );
 
-                for( XML::NodeIterator ProxyNodeIt = ProxiesNode.begin() ; ProxyNodeIt != ProxiesNode.end() ; ++ProxyNodeIt )
+                for( XML::NodeIterator ProxyNodeIt = ComponentsNode.begin() ; ProxyNodeIt != ComponentsNode.end() ; ++ProxyNodeIt )
                 {
-                    WorldProxyManager* ProxMan = nullptr;
+                    EntityComponentManager* CompMan = nullptr;
                     UInt32 ComponentID = 0;
 
                     CurrAttrib = (*ProxyNodeIt).GetAttribute("ComponentID");
@@ -522,10 +563,10 @@ namespace Mezzanine
 
                     CurrAttrib = (*ProxyNodeIt).GetAttribute("ManagerType");
                     if( !CurrAttrib.Empty() )
-                        ProxMan = this->ParentWorld->GetProxyManager( static_cast<ManagerBase::ManagerType>( CurrAttrib.AsUint() ) );
+                        CompMan = this->ParentWorld->GetComponentManager( static_cast<ManagerBase::ManagerType>( CurrAttrib.AsUint() ) );
 
-                    if( ComponentID != 0 && ProxMan != nullptr ) {
-                        WorldProxy* ToAdd = ProxMan->GetProxyByID(ComponentID);
+                    if( ComponentID != 0 && CompMan != nullptr ) {
+                        WorldEntityComponent* ToAdd = CompMan->GetComponentByID(ComponentID);
                         if( ToAdd != nullptr ) {
                             this->AddComponent( ToAdd );
                         }else{
@@ -536,10 +577,10 @@ namespace Mezzanine
 
                 return;
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntity::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntity::GetSerializableName() + "Components" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntity::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntity::GetSerializableName() + "Components" + " was not found in the provided XML node, which was expected.");
         }
     }
 
@@ -552,12 +593,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
+    void WorldEntity::_Update(const Whole Delta)
+        {  }
+
     void WorldEntity::_SyncTransforms(WorldProxy* Exclude, const Transform& NewTrans)
     {
-        for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
+        ComponentRange Range = this->GetProxyRange();
+        for( WorldEntityComponent* Prox : Range )
         {
-            if( (*ProxIt) != Exclude ) {
-                (*ProxIt)->SetTransform(NewTrans);
+            if( Prox != Exclude ) {
+                static_cast<WorldProxy*>(Prox)->SetTransform(NewTrans);
             }
         }
     }

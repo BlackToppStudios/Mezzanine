@@ -305,7 +305,7 @@ namespace Mezzanine
         Boole CollidableProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
-        WorldProxyManager* CollidableProxy::GetCreator() const
+        EntityComponentManager* CollidableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////

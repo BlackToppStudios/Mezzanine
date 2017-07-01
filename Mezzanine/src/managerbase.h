@@ -69,7 +69,7 @@ namespace Mezzanine
         {
             // Utility Types
 
-            MT_Undefined              = 0,
+            MT_Undefined               = 0,
 
             // Entresol Managers              // Namespaces
 
@@ -91,13 +91,13 @@ namespace Mezzanine
 
             // World Managers                 // Namespaces
 
-            MT_WorldProxyManagerFirst  = 100,
+            MT_EntityComponentManagerFirst = 100,
 
-            MT_PhysicsManager          = 105, // Physics
-            MT_SceneManager            = 106, // Graphics
-            MT_SoundScapeManager       = 107, // Audio
+            MT_PhysicsManager              = 105, // Physics
+            MT_SceneManager                = 106, // Graphics
+            MT_SoundScapeManager           = 107, // Audio
 
-            MT_WorldProxyManagerLast   = 199,
+            MT_EntityComponentManagerLast  = 199,
             MT_WorldEntityManagerFirst = 200,
 
             MT_ActorManager            = 201, // Mezzanine
@@ -112,7 +112,7 @@ namespace Mezzanine
 
             MT_UserManagerFirst        = 1000,
 
-            MT_UserCreated             = 1001  ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+            MT_UserCreated             = 1001
         };
     protected:
         /// @internal

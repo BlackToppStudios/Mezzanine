@@ -42,7 +42,7 @@
 
 #include "ray.h"
 #include "worldproxy.h"
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 
 namespace Mezzanine
 {

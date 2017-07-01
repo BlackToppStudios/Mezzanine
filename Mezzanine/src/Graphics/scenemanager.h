@@ -46,7 +46,7 @@
 #include "singleton.h"
 
 #include "uidgenerator.h"
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 #include "worldmanagerfactory.h"
 
 #include "Graphics/graphicsenumerations.h"
@@ -83,7 +83,7 @@ namespace Mezzanine
         /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
         /// scenemanager types, and more.
         ///////////////////////////////////////
-        class MEZZ_LIB SceneManager : public WorldProxyManager
+        class MEZZ_LIB SceneManager : public EntityComponentManager
         {
         public:
             /// @brief Basic container type for RenderableProxy storage by this class.
@@ -321,8 +321,8 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
-            WorldProxy* CreateProxy(const XML::Node& SelfRoot);
+            /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
+            WorldEntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -332,22 +332,22 @@ namespace Mezzanine
             /// @return Returns a pointer to the RenderableProxy at the specified index.
             RenderableProxy* GetProxy(const UInt32 Index) const;
 
-            /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
-            WorldProxy* GetProxyByID(const UInt32 ID) const;
+            /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
+            WorldEntityComponent* GetComponentByID(const UInt32 ID) const;
 
-            /// @copydoc WorldProxyManager::GetNumProxies() const
-            UInt32 GetNumProxies() const;
-            /// @copydoc WorldProxyManager::GetNumProxies(const UInt32) const
-            UInt32 GetNumProxies(const UInt32 Types) const;
-            /// @copydoc WorldProxyManager::GetProxies() const
-            WorldProxyManager::WorldProxyVec GetProxies() const;
+            /// @copydoc EntityComponentManager::GetNumComponents() const
+            UInt32 GetNumComponents() const;
+            /// @copydoc EntityComponentManager::GetNumComponents(const UInt32) const
+            UInt32 GetNumComponents(const UInt32 Types) const;
+            /// @copydoc EntityComponentManager::GetComponents() const
+            EntityComponentManager::ComponentVec GetComponents() const;
 
-            /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
-            void DestroyProxy(WorldProxy* ToBeDestroyed);
-            /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
-            void DestroyAllProxies(const UInt32 Types);
-            /// @copydoc WorldProxyManager::DestroyAllProxies()
-            void DestroyAllProxies();
+            /// @copydoc EntityComponentManager::DestroyComponent(WorldEntityComponent*)
+            void DestroyComponent(WorldEntityComponent* ToBeDestroyed);
+            /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
+            void DestroyAllComponents(const UInt32 Types);
+            /// @copydoc EntityComponentManager::DestroyAllComponents()
+            void DestroyAllComponents();
 
             #ifndef SWIG
             /// @brief Gets an iterator to the first Renderable Proxy in this manager.

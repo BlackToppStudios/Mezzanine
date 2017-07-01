@@ -200,7 +200,7 @@ namespace Mezzanine
             {  }//this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan); }//SceneMan->CreateLineGroupProxy(); }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-            { if( this->WireFrame != NULL ) delete this->WireFrame; }//SceneMan->DestroyProxy( this->WireFrame ); }
+            { if( this->WireFrame != NULL ) delete this->WireFrame; }//SceneMan->DestroyComponent( this->WireFrame ); }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
@@ -363,7 +363,7 @@ namespace Mezzanine
         const ManagerBase::ManagerType PhysicsManager::InterfaceType = ManagerBase::MT_PhysicsManager;
 
         PhysicsManager::PhysicsManager(World* Creator) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -391,7 +391,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -417,7 +417,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -501,7 +501,7 @@ namespace Mezzanine
             }
 
             this->DestroyAllConstraints();
-            this->DestroyAllProxies();
+            this->DestroyAllComponents();
             this->DestroyAllWorldTriggers();
 
             this->Deinitialize();
@@ -862,7 +862,7 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        WorldProxy* PhysicsManager::CreateProxy(const XML::Node& SelfRoot)
+        WorldEntityComponent* PhysicsManager::CreateComponent(const XML::Node& SelfRoot)
         {
             if( SelfRoot.Name() == RigidProxy::GetSerializableName() ) return this->CreateRigidProxy(SelfRoot);
             else if( SelfRoot.Name() == GhostProxy::GetSerializableName() ) return this->CreateGhostProxy(SelfRoot);
@@ -876,7 +876,7 @@ namespace Mezzanine
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        WorldProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
+        WorldEntityComponent* PhysicsManager::GetComponentByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -887,12 +887,12 @@ namespace Mezzanine
             return NULL;
         }
 
-        UInt32 PhysicsManager::GetNumProxies() const
+        UInt32 PhysicsManager::GetNumComponents() const
         {
             return this->Proxies.size();
         }
 
-        UInt32 PhysicsManager::GetNumProxies(const UInt32 Types) const
+        UInt32 PhysicsManager::GetNumComponents(const UInt32 Types) const
         {
             UInt32 Count = 0;
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
@@ -904,12 +904,12 @@ namespace Mezzanine
             return Count;
         }
 
-        WorldProxyManager::WorldProxyVec PhysicsManager::GetProxies() const
+        EntityComponentManager::ComponentVec PhysicsManager::GetComponents() const
         {
-            return WorldProxyVec(this->Proxies.begin(),this->Proxies.end());
+            return ComponentVec(this->Proxies.begin(),this->Proxies.end());
         }
 
-        void PhysicsManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+        void PhysicsManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -926,7 +926,7 @@ namespace Mezzanine
             }
         }
 
-        void PhysicsManager::DestroyAllProxies(const UInt32 Types)
+        void PhysicsManager::DestroyAllComponents(const UInt32 Types)
         {
             ProxyContainer ToKeep;
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
@@ -946,7 +946,7 @@ namespace Mezzanine
             this->Proxies.swap(ToKeep);
         }
 
-        void PhysicsManager::DestroyAllProxies()
+        void PhysicsManager::DestroyAllComponents()
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {

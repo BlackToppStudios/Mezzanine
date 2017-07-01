@@ -187,28 +187,28 @@ namespace Mezzanine
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(XML::Node&)
                 Audio::SoundProxy* CreateSoundProxy(const XML::Node& SelfRoot);
 
-                /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
-                WorldProxy* CreateProxy(const XML::Node& SelfRoot);
+                /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
+                WorldEntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // General Proxy Management
 
-                /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
-                WorldProxy* GetProxyByID(const UInt32 ID) const;
+                /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
+                WorldEntityComponent* GetComponentByID(const UInt32 ID) const;
 
-                /// @copydoc WorldProxyManager::GetNumProxies() const
-                UInt32 GetNumProxies() const;
-                /// @copydoc WorldProxyManager::GetNumProxies(const UInt32
-                UInt32 GetNumProxies(const UInt32 Types) const;
-                /// @copydoc WorldProxyManager::GetProxies() const
-                WorldProxyManager::WorldProxyVec GetProxies() const;
+                /// @copydoc EntityComponentManager::GetNumComponents() const
+                UInt32 GetNumComponents() const;
+                /// @copydoc EntityComponentManager::GetNumComponents(const UInt32
+                UInt32 GetNumComponents(const UInt32 Types) const;
+                /// @copydoc EntityComponentManager::GetComponents() const
+                EntityComponentManager::ComponentVec GetComponents() const;
 
-                /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
-                void DestroyProxy(WorldProxy* ToBeDestroyed);
-                /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
-                void DestroyAllProxies(const UInt32 Types);
-                /// @copydoc WorldProxyManager::DestroyAllProxies()
-                void DestroyAllProxies();
+                /// @copydoc EntityComponentManager::DestroyComponent(WorldEntityComponent*)
+                void DestroyComponent(WorldEntityComponent* ToBeDestroyed);
+                /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
+                void DestroyAllComponents(const UInt32 Types);
+                /// @copydoc EntityComponentManager::DestroyAllComponents()
+                void DestroyAllComponents();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Specific Proxy Management

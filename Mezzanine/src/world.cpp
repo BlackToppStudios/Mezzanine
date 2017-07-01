@@ -169,7 +169,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
         // Start with constraints and anything else that is linking the objects.
         // Nuke the metadata while we're at it.
-        if( PhysMan != NULL ) {
+        if( PhysMan != nullptr ) {
             PhysMan->DestroyAllConstraints();
             PhysMan->DestroyAllWorldTriggers();
             PhysMan->ClearPhysicsMetaData();
@@ -179,13 +179,13 @@ namespace Mezzanine
         AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->GetManager(ManagerBase::MT_AreaEffectManager) );
         DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->GetManager(ManagerBase::MT_DebrisManager) );
         // Now get the higher level world objects.  They'll take out their bound proxies as they go.
-        if( ActorMan != NULL ) {
+        if( ActorMan != nullptr ) {
             ActorMan->DestroyAllActors();
         }
-        if( AreaEffectMan != NULL ) {
+        if( AreaEffectMan != nullptr ) {
             AreaEffectMan->DestroyAllAreaEffects();
         }
-        if( DebrisMan != NULL ) {
+        if( DebrisMan != nullptr ) {
             DebrisMan->DestroyAllDebris();
         }
 
@@ -193,15 +193,15 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->GetManager(ManagerBase::MT_SceneManager) );
         // Now deal with any dangling proxies.
         // Any additional minor cleanup related to these managers can be done after proxy cleanup as well.
-        if( PhysMan != NULL ) {
-            PhysMan->DestroyAllProxies();
+        if( PhysMan != nullptr ) {
+            PhysMan->DestroyAllComponents();
         }
-        if( SceneMan != NULL ) {
-            SceneMan->DestroyAllProxies();
+        if( SceneMan != nullptr ) {
+            SceneMan->DestroyAllComponents();
             SceneMan->DisableSky();
         }
-        if( SoundScapeMan != NULL ) {
-            SoundScapeMan->DestroyAllProxies();
+        if( SoundScapeMan != nullptr ) {
+            SoundScapeMan->DestroyAllComponents();
         }
     }
 
@@ -328,27 +328,27 @@ namespace Mezzanine
             if( (*ManIter)->GetInterfaceType() == ManagerToGet )
                 return *ManIter;
         }
-        return NULL;
+        return nullptr;
     }
 
-    WorldEntityManager* World::GetObjectManager(const Whole ManagerToGet) const
+    WorldEntityManager* World::GetEntityManager(const Whole ManagerToGet) const
     {
         if( ManagerToGet >= ManagerBase::MT_WorldEntityManagerFirst &&
             ManagerToGet <= ManagerBase::MT_WorldEntityManagerLast )
         {
             return static_cast<WorldEntityManager*>( this->GetManager(ManagerToGet) );
         }
-        return NULL;
+        return nullptr;
     }
 
-    WorldProxyManager* World::GetProxyManager(const Whole ManagerToGet) const
+    EntityComponentManager* World::GetComponentManager(const Whole ManagerToGet) const
     {
-        if( ManagerToGet >= ManagerBase::MT_WorldProxyManagerFirst &&
-            ManagerToGet <= ManagerBase::MT_WorldProxyManagerLast )
+        if( ManagerToGet >= ManagerBase::MT_EntityComponentManagerFirst &&
+            ManagerToGet <= ManagerBase::MT_EntityComponentManagerLast )
         {
-            return static_cast<WorldProxyManager*>( this->GetManager(ManagerToGet) );
+            return static_cast<EntityComponentManager*>( this->GetManager(ManagerToGet) );
         }
-        return NULL;
+        return nullptr;
     }
 
     void World::RemoveManager(WorldManager* ToBeRemoved)
