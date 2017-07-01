@@ -103,8 +103,8 @@ void StartArea::ApplyEffect()
     if( !this->AddedObjects.empty() ) {
         for( ObjectIterator ObjIt = this->AddedObjects.begin() ; ObjIt != this->AddedObjects.end() ; ObjIt++ )
         {
-            ProxyContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
-            for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
+            ComponentContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
+            for( ComponentIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
             {
                 static_cast<Physics::CollidableProxy*>( *ProxIt )->SetCollisionResponse(false);
                 if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
@@ -118,8 +118,8 @@ void StartArea::ApplyEffect()
         const Vector3 WorldGrav = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
         for( ObjectIterator ObjIt = this->RemovedObjects.begin() ; ObjIt != this->RemovedObjects.end() ; ObjIt++ )
         {
-            ProxyContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
-            for( ProxyIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
+            ComponentContainer ColProxies = (*ObjIt)->GetComponents(Mezzanine::CT_Physics_RigidProxy,Mezzanine::CT_Physics_SoftProxy);
+            for( ComponentIterator ProxIt = ColProxies.begin() ; ProxIt != ColProxies.end() ; ++ProxIt )
             {
                 static_cast<Physics::CollidableProxy*>( *ProxIt )->SetCollisionResponse(true);
                 if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
