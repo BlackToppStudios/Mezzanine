@@ -88,7 +88,7 @@ class crashonclosetests : public UnitTestGroup
                 Simulation.GetSimulationWork()->DoWork(Ignored);
                 TestOutput << "Location of an RigidProxy to prevent optimization: " << RigidA->GetLocation() << endl;
                 TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
-                TestOutput << "Some information from the simulation to prevent optimizing the crash out: " << Simulation.GetNumProxies();
+                TestOutput << "Some information from the simulation to prevent optimizing the crash out: " << Simulation.GetNumComponents();
             }
 
 
