@@ -81,12 +81,15 @@ namespace Mezzanine
     /// @brief Used by all World proxies to describe what their derived types are.
     enum ComponentType
     {
-        CT_Audio_First = 100,
+        CT_ComponentLast = 999,  ///< Placeholder for sorting
+        CT_ProxyFirst = 1000,    ///< Placeholder for sorting
+
+        CT_Audio_First = 1100,
         CT_Audio_Listener,
         CT_Audio_SoundProxy,
         CT_Audio_Last,
 
-        CT_Graphics_First = 200,
+        CT_Graphics_First = 1200,
         CT_Graphics_BillboardSetProxy,
         CT_Graphics_CameraProxy,
         CT_Graphics_EntityProxy,
@@ -95,7 +98,7 @@ namespace Mezzanine
         CT_Graphics_ParticleSystemProxy,
         CT_Graphics_Last,
 
-        CT_Physics_First = 300,
+        CT_Physics_First = 1300,
         CT_Physics_GhostProxy,
         CT_Physics_RigidProxy,
         CT_Physics_SoftProxy,

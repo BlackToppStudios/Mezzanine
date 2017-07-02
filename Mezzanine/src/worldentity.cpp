@@ -121,6 +121,9 @@ namespace Mezzanine
         ToAdd->_Bind( this );
         ComponentIterator CompIt = std::lower_bound(this->Components.begin(),this->Components.end(),ToAdd,ComponentCompare);
         this->Components.insert(CompIt,ToAdd);
+        if( ToAdd->GetComponentType() < Mezzanine::CT_ProxyFirst ) {
+            ++(this->ProxyStartIndex);
+        }
     }
 
     WorldEntityComponent* WorldEntity::RemoveComponent(WorldEntityComponent* ToRemove)
@@ -130,6 +133,9 @@ namespace Mezzanine
         {
             if( (*CompIt) == ToRemove ) {
                 this->Components.erase(CompIt);
+                if( ToRemove->GetComponentType() < Mezzanine::CT_ProxyFirst ) {
+                    --(this->ProxyStartIndex);
+                }
                 return ToRemove;
             }
             ++CompIt;
@@ -141,16 +147,21 @@ namespace Mezzanine
     {
         ComponentContainer Ret;
         ComponentIterator CompIt = this->Components.begin();
+        Whole RemovedNonProxyCount = 0;
         while( CompIt != this->Components.end() )
         {
             if( (*CompIt)->GetComponentType() == Type ) {
                 (*CompIt)->_Bind( nullptr );
                 Ret.push_back( (*CompIt) );
+                if( (*CompIt)->GetComponentType() < Mezzanine::CT_ProxyFirst ) {
+                    ++RemovedNonProxyCount;
+                }
                 CompIt = this->Components.erase(CompIt);
             }else{
                 ++CompIt;
             }
         }
+        this->ProxyStartIndex -= RemovedNonProxyCount;
         return Ret;
     }
 
@@ -158,16 +169,21 @@ namespace Mezzanine
     {
         ComponentContainer Ret;
         ComponentIterator CompIt = this->Components.begin();
+        Whole RemovedNonProxyCount = 0;
         while( CompIt != this->Components.end() )
         {
             if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
                 (*CompIt)->_Bind( nullptr );
                 Ret.push_back( (*CompIt) );
+                if( (*CompIt)->GetComponentType() < Mezzanine::CT_ProxyFirst ) {
+                    ++RemovedNonProxyCount;
+                }
                 CompIt = this->Components.erase(CompIt);
             }else{
                 ++CompIt;
             }
         }
+        this->ProxyStartIndex -= RemovedNonProxyCount;
         return Ret;
     }
 
@@ -178,6 +194,7 @@ namespace Mezzanine
         while( CompIt != this->Components.end() )
             { (*CompIt)->_Bind( nullptr ); }
         Ret.swap(this->Components);
+        this->ProxyStartIndex = 0;
         return Ret;
     }
 
