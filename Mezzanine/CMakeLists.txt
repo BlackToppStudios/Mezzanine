@@ -114,7 +114,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}hashedstring.h"
         "${${PROJECT_NAME}_SRC_DIR}interpolator.h"
         "${${PROJECT_NAME}_SRC_DIR}interval.h"
-		"${${PROJECT_NAME}_SRC_DIR}iteratorrange.h"
+        "${${PROJECT_NAME}_SRC_DIR}iteratorrange.h"
         "${${PROJECT_NAME}_SRC_DIR}linesegment.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
