@@ -44,7 +44,6 @@
 
 #include "enumerations.h"
 #include "ray.h"
-#include "worldproxymanager.h"
 #include "worldentity.h"
 
 #include "Graphics/cameraproxy.h"

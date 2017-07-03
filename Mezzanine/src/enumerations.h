@@ -73,20 +73,23 @@ namespace Mezzanine
     /// Quadratic is where the force applied drops by the attenuation value times the distance squared (strength - (attenuation amount * distance to AE center * distance to AE center)).
     enum AttenuationStyle
     {
-        Att_None,        ///< No Attentuation, Equal strength through.
-        Att_Linear,      ///< Linear attentuation, Strength weaker farther from center.
-        Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
+        Att_None,        ///< No Attenuation, Equal strength through.
+        Att_Linear,      ///< Linear attenuation, Strength weaker farther from center.
+        Att_Quadratic    ///< Quadratic/Exponential Attenuation, similar to real gravity, it tapers of more the further from the center you get.
     };
 
     /// @brief Used by all World proxies to describe what their derived types are.
     enum ComponentType
     {
-        CT_Audio_First = 100,
+        CT_ComponentLast = 999,  ///< Placeholder for sorting
+        CT_ProxyFirst = 1000,    ///< Placeholder for sorting
+
+        CT_Audio_First = 1100,
         CT_Audio_Listener,
         CT_Audio_SoundProxy,
         CT_Audio_Last,
 
-        CT_Graphics_First = 200,
+        CT_Graphics_First = 1200,
         CT_Graphics_BillboardSetProxy,
         CT_Graphics_CameraProxy,
         CT_Graphics_EntityProxy,
@@ -95,7 +98,7 @@ namespace Mezzanine
         CT_Graphics_ParticleSystemProxy,
         CT_Graphics_Last,
 
-        CT_Physics_First = 300,
+        CT_Physics_First = 1300,
         CT_Physics_GhostProxy,
         CT_Physics_RigidProxy,
         CT_Physics_SoftProxy,
@@ -162,68 +165,70 @@ namespace Mezzanine
     enum WorldEntityType
     {
         WE_None                   = 0,          ///< Used to help report error conditions.
+        // Generic Entities
+        WE_Generic                = EnumBit(1),
         // Terrain Objects
-        WE_TerrainFirst           = EnumBit(1),
+        WE_TerrainFirst           = EnumBit(2),
 
-        WE_MeshTerrain            = EnumBit(1),
-        WE_HeightfieldTerrain     = EnumBit(2),
-        WE_VectorFieldTerrain     = EnumBit(3),
-        WE_VoxelTerrain           = EnumBit(4),
-        WE_MarchingCubeTerrain    = EnumBit(5),
-        WE_UnknownTerrain         = EnumBit(6),
+        WE_MeshTerrain            = EnumBit(2),
+        WE_HeightfieldTerrain     = EnumBit(3),
+        WE_VectorFieldTerrain     = EnumBit(4),
+        WE_VoxelTerrain           = EnumBit(5),
+        WE_MarchingCubeTerrain    = EnumBit(6),
+        WE_UnknownTerrain         = EnumBit(7),
 
-        WE_TerrainLast            = EnumBit(6),
+        WE_TerrainLast            = EnumBit(7),
 
         WE_AllTerrains            = WE_MeshTerrain | WE_HeightfieldTerrain | WE_VectorFieldTerrain |
                                     WE_VoxelTerrain | WE_MarchingCubeTerrain | WE_UnknownTerrain,
 
         // Debris Objects
-        WE_DebrisFirst            = EnumBit(7),
+        WE_DebrisFirst            = EnumBit(8),
 
-        WE_RigidDebris            = EnumBit(7),
-        WE_SoftDebris             = EnumBit(8),
-        WE_UnknownDebris          = EnumBit(9),
+        WE_RigidDebris            = EnumBit(8),
+        WE_SoftDebris             = EnumBit(9),
+        WE_UnknownDebris          = EnumBit(10),
 
-        WE_DebrisLast             = EnumBit(9),
+        WE_DebrisLast             = EnumBit(10),
 
         WE_AllDebris              = WE_RigidDebris | WE_SoftDebris | WE_UnknownDebris,
 
         // AreaEffect Objects
-        WE_AreaEffectFirst        = EnumBit(10),
+        WE_AreaEffectFirst        = EnumBit(11),
 
-        WE_AreaEffectGravityField = EnumBit(10),
-        WE_AreaEffectGravityWell  = EnumBit(11),
-        WE_AreaEffectFieldOfForce = EnumBit(12),
-        WE_AreaEffectPlaceHolder1 = EnumBit(13),
-        WE_AreaEffectPlaceHolder2 = EnumBit(14),
-        WE_AreaEffectUnknown      = EnumBit(15),
+        WE_AreaEffectGravityField = EnumBit(11),
+        WE_AreaEffectGravityWell  = EnumBit(12),
+        WE_AreaEffectFieldOfForce = EnumBit(13),
+        WE_AreaEffectPlaceHolder1 = EnumBit(14),
+        WE_AreaEffectPlaceHolder2 = EnumBit(15),
+        WE_AreaEffectUnknown      = EnumBit(16),
 
-        WE_AreaEffectLast         = EnumBit(15),
+        WE_AreaEffectLast         = EnumBit(16),
 
         WE_AllAreaEffects         = WE_AreaEffectGravityField | WE_AreaEffectGravityWell | WE_AreaEffectFieldOfForce |
                                     WE_AreaEffectPlaceHolder1 | WE_AreaEffectPlaceHolder2 | WE_AreaEffectUnknown,
 
         // Actor Objects
-        WE_ActorFirst             = EnumBit(16),
+        WE_ActorFirst             = EnumBit(17),
 
-        WE_ActorPlaceHolder1      = EnumBit(16),
-        WE_ActorPlaceHolder2      = EnumBit(17),
-        WE_ActorPlaceHolder3      = EnumBit(18),
+        WE_ActorPlaceHolder1      = EnumBit(17),
+        WE_ActorPlaceHolder2      = EnumBit(18),
+        WE_ActorPlaceHolder3      = EnumBit(19),
 
-        WE_ActorLast              = EnumBit(18),
+        WE_ActorLast              = EnumBit(19),
 
         WE_AllActors              = WE_ActorPlaceHolder1 | WE_ActorPlaceHolder2 | WE_ActorPlaceHolder3,
 
         // Vehicle Objects
-        WE_VehicleFirst           = EnumBit(19),
+        WE_VehicleFirst           = EnumBit(20),
 
-        WE_MultiBodyVehicle       = EnumBit(19),
-        WE_RaycastVehicle         = EnumBit(20),
-        WE_SimpleVehicle          = EnumBit(21),
-        WE_VehiclePlaceHolder1    = EnumBit(22),
-        WE_VehiclePlaceHolder2    = EnumBit(23),
+        WE_MultiBodyVehicle       = EnumBit(20),
+        WE_RaycastVehicle         = EnumBit(21),
+        WE_SimpleVehicle          = EnumBit(22),
+        WE_VehiclePlaceHolder1    = EnumBit(23),
+        WE_VehiclePlaceHolder2    = EnumBit(24),
 
-        WE_VehicleLast            = EnumBit(23),
+        WE_VehicleLast            = EnumBit(24),
 
         WE_AllVehicles            = WE_MultiBodyVehicle | WE_RaycastVehicle | WE_SimpleVehicle |
                                     WE_VehiclePlaceHolder1 | WE_VehiclePlaceHolder2

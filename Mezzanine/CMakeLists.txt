@@ -95,6 +95,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
         "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}entitycomponentmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}entresol.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanagerfactory.h"
@@ -113,6 +114,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}hashedstring.h"
         "${${PROJECT_NAME}_SRC_DIR}interpolator.h"
         "${${PROJECT_NAME}_SRC_DIR}interval.h"
+        "${${PROJECT_NAME}_SRC_DIR}iteratorrange.h"
         "${${PROJECT_NAME}_SRC_DIR}linesegment.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
@@ -173,7 +175,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldentitycomponent.h"
         "${${PROJECT_NAME}_SRC_DIR}worldentitymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
-        "${${PROJECT_NAME}_SRC_DIR}worldproxymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         # Audio Items
         "${${PROJECT_NAME}_SRC_DIR}Audio/acousticproxy.h"

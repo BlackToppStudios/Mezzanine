@@ -132,11 +132,11 @@ namespace Mezzanine
 
                     CurrAttrib = InitDataNode.GetAttribute("ProxyA-ID");
                     if( !CurrAttrib.Empty() )
-                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetComponentByID( CurrAttrib.AsUint() ) );
 
                     CurrAttrib = InitDataNode.GetAttribute("ProxyB-ID");
                     if( !CurrAttrib.Empty() )
-                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetComponentByID( CurrAttrib.AsUint() ) );
 
                     XML::Node PivotANode = InitDataNode.GetChild("PivotATransform").GetFirstChild();
                     if( !PivotANode.Empty() ) {

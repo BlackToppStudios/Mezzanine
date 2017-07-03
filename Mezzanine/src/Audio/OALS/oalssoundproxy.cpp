@@ -357,7 +357,7 @@ namespace Mezzanine
                 return false;
             }
 
-            WorldProxyManager* OALS::SoundProxy::GetCreator() const
+            EntityComponentManager* OALS::SoundProxy::GetCreator() const
             {
                 return this->Manager;
             }

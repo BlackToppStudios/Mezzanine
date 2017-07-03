@@ -689,7 +689,7 @@ namespace Mezzanine
                     this->DestroyAllSounds();
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
                     {
-                        (*SSM)->DestroyAllProxies();
+                        (*SSM)->DestroyAllComponents();
                         (*SSM)->DestroyAllListeners();
                     }
 

@@ -29,7 +29,7 @@ void CatchPlayer::SetIdentity(GameProfile* CatchPlayerProfile)
 void CatchPlayer::InitWorldEntities(World* GameWorld)
 {
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( GameWorld->GetManager( ManagerBase::MT_SceneManager ) );
-    if( SceneMan != NULL && SceneMan->GetNumProxies(Mezzanine::CT_Graphics_CameraProxy) == 0 ) {
+    if( SceneMan != NULL && SceneMan->GetNumComponents(Mezzanine::CT_Graphics_CameraProxy) == 0 ) {
         Graphics::CameraProxy* PlayCam = SceneMan->CreateCamera();
         PlayCam->SetNearClipDistance(0.5);
         PlayCam->LookAt(Vector3(0,0,0));

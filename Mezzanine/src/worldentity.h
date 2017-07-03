@@ -42,38 +42,51 @@
 
 #include "enumerations.h"
 #include "transformableobject.h"
-#include "Physics/physicsenumerations.h"
+#include "sortedvector.h"
+
+#ifndef SWIG
+    #include "iteratorrange.h"
+#endif
 
 namespace Mezzanine
 {
     class World;
+    class WorldEntityComponent;
     class WorldProxy;
-    namespace Physics
-    {
-        class Collision;
-    }
+
+    /// @brief A comparison method for WorldEntityComponent instances for sorting.
+    /// @param CompFirst The first Component to compare.
+    /// @param CompSecond The second Component to compare.
+    /// @return Returns true if the first Component should come before the second Component.
+    Boole MEZZ_LIB ComponentCompare(WorldEntityComponent* CompFirst, WorldEntityComponent* CompSecond);
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class from which classes that are insertable into the physical world.
+    /// @brief This is the base class for objects that exist in the World.
     ///////////////////////////////////////
     class MEZZ_LIB WorldEntity : public TransformableObject
     {
     public:
-        /// @brief Basic container type for WorldProxy storage by this class.
-        typedef std::vector< WorldProxy* >             ProxyContainer;
-        /// @brief Iterator type for WorldProxy instances stored by this class.
-        typedef ProxyContainer::iterator               ProxyIterator;
-        /// @brief Const Iterator type for WorldProxy instances stored by this class.
-        typedef ProxyContainer::const_iterator         ConstProxyIterator;
+        /// @brief Basic container type for WorldEntityComponent storage by this class.
+        using ComponentContainer = std::vector< WorldEntityComponent* >;
+        /// @brief Iterator type for WorldEntityComponent instances stored by this class.
+        using ComponentIterator = ComponentContainer::iterator;
+        /// @brief Const Iterator type for WorldEntityComponent instances stored by this class.
+        using ConstComponentIterator = ComponentContainer::const_iterator;
+        /// @brief Convenience type for passing around a range of components.
+        using ComponentRange = IteratorRange<ComponentIterator>;
+        /// @brief Convenience type for passing around a const range of components.
+        using ConstComponentRange = IteratorRange<ConstComponentIterator>;
     protected:
-        /// @brief A container of the proxies that share this objects transform.
-        ProxyContainer Proxies;
+        /// @brief A container of the components that share this objects transform.
+        ComponentContainer Components;
         /// @brief The name of the object.
         String ObjectName;
         /// @brief A pointer to the proxy that is used for various queries, such as transform.
         WorldProxy* PrimaryProxy;
         /// @brief This is the world this object belongs to and will be inserted in/removed from.
         World* ParentWorld;
+        /// @brief The index of the component container where proxies begin.
+        UInt32 ProxyStartIndex;
 
         /// @brief Destroys every WorldEntityComponent in this object.
         void DestroyAllComponents();
@@ -86,14 +99,14 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         WorldEntity(const String& Name, World* TheWorld);
         /// @brief Class destructor.
-        virtual ~WorldEntity();
+        virtual ~WorldEntity() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
         /// @brief Gets the type of the object instance
         /// @return Returns the type of the object instance
-        virtual Mezzanine::WorldEntityType GetType() const = 0;
+        virtual Mezzanine::WorldEntityType GetType() const;
         /// @brief Gets the name of this object.
         /// @return Returns a string containing the name of this object.
         virtual const String& GetName() const;
@@ -116,37 +129,32 @@ namespace Mezzanine
         // Component Management
 
         /// @brief Adds a WorldEntityComponent to this WorldEntity.
-        /// @remarks The order in which WorldEntityComponent instances are inserted/stored slightly matters.  The first (index 0) Component
-        /// will be treated as the primary transform Component.  When this object is queried for it's transform, that is the Component
-        /// that will be queried and thus used to represent this objects transform.  Prefab WorldEntities provided by the
-        /// engine will have this taken care of for you.  However when using custom WorldEntities or heavily modifying/removing
-        /// WorldEntityComponent instances from a WorldEntity, take care.
         /// @param ToAdd A pointer to the WorldEntityComponent to be added.
-        virtual void AddComponent(WorldProxy* ToAdd);
+        virtual void AddComponent(WorldEntityComponent* ToAdd);
         /// @brief Removes a WorldEntityComponent from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of Components and tampering with that can disrupt their operation.
         /// @param ToRemove A pointer to the WorldEntityComponent to be removed.
         /// @return Returns a pointer to the removed WorldEntityComponent or nullptr if the WorldEntityComponent was not in this WorldEntity.
-        virtual WorldProxy* RemoveComponent(WorldProxy* ToRemove);
+        virtual WorldEntityComponent* RemoveComponent(WorldEntityComponent* ToRemove);
         /// @brief Removes all WorldEntityComponent instances of the specified types from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of Components and tampering with that can disrupt their operation.
         /// @param Type The type of WorldEntityComponent to be removed.
         /// @return Returns a container of the removed Components.
-        virtual ProxyContainer RemoveAllComponentsOfType(const ComponentType Type);
+        virtual WorldEntity::ComponentContainer RemoveAllComponentsOfType(const ComponentType Type);
         /// @brief Removes all WorldEntityComponent instances of the specified types from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of Components and tampering with that can disrupt their operation.
         /// @param TypeFirst The first type in the range to be considered when removing Components.
         /// @param TypeLast The last type in the range to be considered when removing Components.
         /// @return Returns a container of the removed Components.
-        virtual ProxyContainer RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast);
+        virtual WorldEntity::ComponentContainer RemoveAllComponentsOfTypes(const ComponentType TypeFirst, const ComponentType TypeLast);
         /// @brief Removes all WorldEntityComponent instances from this WorldEntity.
         /// @warning This method is intended for use with custom WorldEntity implementations.  Many WorldEntities in engine
         /// care about the placement of Components and tampering with that can disrupt their operation.
         /// @return Returns a container of the removed Components.
-        virtual ProxyContainer RemoveAllComponents();
+        virtual WorldEntity::ComponentContainer RemoveAllComponents();
 
         /// @brief Gets the number of WorldEntityComponent instances in this WorldEntity.
         /// @return Returns the number of WorldProxies being stored in this WorldEntity.
@@ -154,31 +162,46 @@ namespace Mezzanine
         /// @brief Gets the WorldEntityComponent by index.
         /// @param Index The index of the WorldEntityComponent to retrieve.
         /// @return Returns a pointer to the WorldEntityComponent at the specified index.
-        virtual WorldProxy* GetComponent(const Whole Index) const;
+        virtual WorldEntityComponent* GetComponent(const Whole Index) const;
         /// @brief Gets the Nth WorldEntityComponent among the Components of the specified types.
         /// @param Type The type to be considered when getting the Nth WorldEntityComponent.
         /// @param TypeIndex The Nth WorldEntityComponent to retrieve.
         /// @return Returns a pointer to the WorldEntityComponent at the specified index.
-        virtual WorldProxy* GetComponent(const ComponentType Type, Whole TypeIndex) const;
+        virtual WorldEntityComponent* GetComponent(const ComponentType Type, Whole TypeIndex) const;
         /// @brief Gets the Nth WorldEntityComponent among the Components of the specified types.
         /// @param TypeFirst The first type in the range to be considered when getting the Nth component.
         /// @param TypeLast The last type in the range to be considered when getting the Nth component.
         /// @param TypeIndex The Nth WorldEntityComponent to retrieve.
         /// @return Returns a pointer to the WorldEntityComponent at the specified index.
-        virtual WorldProxy* GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const;
+        virtual WorldEntityComponent* GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const;
+
+    #ifndef SWIG
+        /// @brief Gets the range of non-proxy components in this WorldEntity.
+        /// @return Returns an iterator pair to the non-proxy portion of the components stored in this WorldEntity.
+        virtual WorldEntity::ComponentRange GetNonProxyRange();
+        /// @brief Gets the const range of non-proxy components in this WorldEntity.
+        /// @return Returns a const iterator pair to the non-proxy portion of the components stored in this WorldEntity.
+        virtual WorldEntity::ConstComponentRange GetNonProxyRange() const;
+        /// @brief Gets the range of proxy components in this WorldEntity.
+        /// @return Returns an iterator pair to the proxy portion of the components stored in this WorldEntity.
+        virtual WorldEntity::ComponentRange GetProxyRange();
+        /// @brief Gets the const range of proxy components in this WorldEntity.
+        /// @return Returns a const iterator pair to the proxy portion of the components stored in this WorldEntity.
+        virtual WorldEntity::ConstComponentRange GetProxyRange() const;
+    #endif // SWIG
 
         /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
         /// @return Returns a const reference to the internal WorldEntityComponent storage.
-        virtual const ProxyContainer& GetComponents() const;
+        virtual const WorldEntity::ComponentContainer& GetComponents() const;
         /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
         /// @param Type The type of WorldEntityComponent to retrieve.
         /// @return Returns a container of all the Components in this WorldEntity of the specified type.
-        virtual ProxyContainer GetComponents(const ComponentType Type) const;
+        virtual WorldEntity::ComponentContainer GetComponents(const ComponentType Type) const;
         /// @brief Gets a container of the WorldProxies stored in this WorldEntity.
         /// @param TypeFirst The first type in the range to be considered when getting the Nth component.
         /// @param TypeLast The last type in the range to be considered when getting the Nth component.
         /// @return Returns a container of all the Components in this WorldEntity of the specified type.
-        virtual ProxyContainer GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const;
+        virtual WorldEntity::ComponentContainer GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Proxy Management
@@ -262,9 +285,9 @@ namespace Mezzanine
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @brief Convert the proxies of this class to an XML::Node ready for serialization.
+        /// @brief Convert the Components of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
-        virtual void ProtoSerializeProxies(XML::Node& SelfRoot) const;
+        virtual void ProtoSerializeComponents(XML::Node& SelfRoot) const;
 
         /// @brief Take the data stored in an XML Node and overwrite this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
@@ -272,9 +295,9 @@ namespace Mezzanine
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
-        /// @brief Take the data stored in an XML Node and overwrite the proxies of this object with it.
+        /// @brief Take the data stored in an XML Node and overwrite the Components of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        virtual void ProtoDeSerializeProxies(const XML::Node& SelfRoot);
+        virtual void ProtoDeSerializeComponents(const XML::Node& SelfRoot);
 
         /// @brief Gets the most derived serializable name of this WorldEntity.
         /// @note When creating a new WorldEntity class verify this method has a valid return for it in order for serialization to work properly.
@@ -290,7 +313,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Performs any object specific behaviors that need to be updated per tick.
         /// @param Delta The amount of time since the last update in microseconds.
-        virtual void _Update(const Whole Delta) = 0;
+        virtual void _Update(const Whole Delta);
         /// @internal
         /// @brief Updates the transforms of all the WorldEntityComponent instances in this object except for one.
         /// @param Exclude The WorldEntityComponent to be exempted from the sync (usually because it already has the updated transform).

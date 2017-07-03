@@ -145,11 +145,11 @@ namespace Mezzanine
                     AppliedStrength = 0;
 
                 //Apply the Force
-                const ProxyContainer& OtherComponents = (*ObjIt)->GetComponents();
-                for( ConstProxyIterator ProxIt = OtherComponents.begin() ; ProxIt != OtherComponents.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*ObjIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                         RigProx->ApplyForce( Direction * AppliedStrength );
                     }
                 }

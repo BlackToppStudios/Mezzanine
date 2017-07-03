@@ -190,7 +190,7 @@ namespace Mezzanine
                 return false;
             }
 
-            WorldProxyManager* Listener::GetCreator() const
+            EntityComponentManager* Listener::GetCreator() const
             {
                 return this->Manager;
             }

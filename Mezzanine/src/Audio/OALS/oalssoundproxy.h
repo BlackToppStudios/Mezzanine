@@ -208,8 +208,8 @@ namespace Mezzanine
                 /// @copydoc WorldProxy::IsStatic() const
                 virtual Boole IsStatic() const;
 
-                /// @copydoc WorldProxy::GetCreator() const
-                virtual WorldProxyManager* GetCreator() const;
+                /// @copydoc WorldEntityComponent::GetCreator() const
+                virtual EntityComponentManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback

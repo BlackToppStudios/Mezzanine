@@ -182,7 +182,7 @@ namespace Mezzanine
         const ManagerBase::ManagerType SceneManager::InterfaceType = ManagerBase::MT_SceneManager;
 
         SceneManager::SceneManager(World* Creator, const String& InternalManagerTypeName) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -193,7 +193,7 @@ namespace Mezzanine
         }
 
         SceneManager::SceneManager(World* Creator, const XML::Node& XMLNode) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             ThreadResources(NULL)
         {
             this->SMD = new SceneManagerData(this);
@@ -525,7 +525,7 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        WorldProxy* SceneManager::CreateProxy(const XML::Node& SelfRoot)
+        WorldEntityComponent* SceneManager::CreateComponent(const XML::Node& SelfRoot)
         {
             if( SelfRoot.Name() == BillboardSetProxy::GetSerializableName() ) return this->CreateBillboardSetProxy(SelfRoot);
             else if( SelfRoot.Name() == CameraProxy::GetSerializableName() ) return this->CreateCamera(SelfRoot);
@@ -542,7 +542,7 @@ namespace Mezzanine
         RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        WorldProxy* SceneManager::GetProxyByID(const UInt32 ID) const
+        WorldEntityComponent* SceneManager::GetComponentByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -553,12 +553,12 @@ namespace Mezzanine
             return NULL;
         }
 
-        UInt32 SceneManager::GetNumProxies() const
+        UInt32 SceneManager::GetNumComponents() const
         {
             return this->Proxies.size();
         }
 
-        UInt32 SceneManager::GetNumProxies(const UInt32 Types) const
+        UInt32 SceneManager::GetNumComponents(const UInt32 Types) const
         {
             UInt32 Count = 0;
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
@@ -570,12 +570,12 @@ namespace Mezzanine
             return Count;
         }
 
-        WorldProxyManager::WorldProxyVec SceneManager::GetProxies() const
+        EntityComponentManager::ComponentVec SceneManager::GetComponents() const
         {
-            return WorldProxyVec(this->Proxies.begin(),this->Proxies.end());
+            return ComponentVec(this->Proxies.begin(),this->Proxies.end());
         }
 
-        void SceneManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+        void SceneManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -592,7 +592,7 @@ namespace Mezzanine
             }
         }
 
-        void SceneManager::DestroyAllProxies(const UInt32 Types)
+        void SceneManager::DestroyAllComponents(const UInt32 Types)
         {
             ProxyContainer ToKeep;
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
@@ -612,7 +612,7 @@ namespace Mezzanine
             this->Proxies.swap(ToKeep);
         }
 
-        void SceneManager::DestroyAllProxies()
+        void SceneManager::DestroyAllComponents()
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -688,7 +688,7 @@ namespace Mezzanine
         void SceneManager::Deinitialize()
         {
             if( this->Initialized ) {
-                this->DestroyAllProxies();
+                this->DestroyAllComponents();
                 this->Initialized = false;
             }
         }

@@ -47,11 +47,11 @@ namespace Mezzanine
     namespace Audio
     {
         SoundScapeManager::SoundScapeManager(World* Creator) :
-            WorldProxyManager(Creator)
+            EntityComponentManager(Creator)
             {  }
 
         SoundScapeManager::SoundScapeManager(World* Creator, XML::Node& XMLNode) :
-            WorldProxyManager(Creator)
+            EntityComponentManager(Creator)
             {  }
 
         SoundScapeManager::~SoundScapeManager()

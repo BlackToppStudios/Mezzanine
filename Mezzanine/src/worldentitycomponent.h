@@ -49,7 +49,7 @@
 namespace Mezzanine
 {
     class WorldEntity;
-    class WorldProxyManager;
+    class EntityComponentManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for components comprising the functionality of an Entity.
     ///////////////////////////////////////
@@ -83,9 +83,9 @@ namespace Mezzanine
         /// @remarks Component IDs are only unique to their family of proxies belonging to a specific subsystem.  Across subsystems IDs can be reused.
         /// @return Returns a UInt32 containing the unique ID for this component.
         virtual UInt32 GetComponentID() const;
-        /// @brief Gets a pointer to this proxies creator.
-        /// @return Returns a pointer to the WorldProxyManager that created this WorldEntityComponent.
-        virtual WorldProxyManager* GetCreator() const = 0;
+        /// @brief Gets a pointer to this components creator.
+        /// @return Returns a pointer to the EntityComponentManager that created this WorldEntityComponent.
+        virtual EntityComponentManager* GetCreator() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

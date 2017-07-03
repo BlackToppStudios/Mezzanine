@@ -46,7 +46,7 @@
 namespace Mezzanine
 {
     class WorldEntity;
-    class WorldProxyManager;
+    class EntityComponentManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for proxy objects belonging to the various 3D subsystems.
     ///////////////////////////////////////
