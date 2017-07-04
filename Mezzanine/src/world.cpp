@@ -331,12 +331,12 @@ namespace Mezzanine
         return nullptr;
     }
 
-    WorldEntityManager* World::GetEntityManager(const Whole ManagerToGet) const
+    EntityManager* World::GetEntityManager(const Whole ManagerToGet) const
     {
-        if( ManagerToGet >= ManagerBase::MT_WorldEntityManagerFirst &&
-            ManagerToGet <= ManagerBase::MT_WorldEntityManagerLast )
+        if( ManagerToGet >= ManagerBase::MT_EntityManagerFirst &&
+            ManagerToGet <= ManagerBase::MT_EntityManagerLast )
         {
-            return static_cast<WorldEntityManager*>( this->GetManager(ManagerToGet) );
+            return static_cast<EntityManager*>( this->GetManager(ManagerToGet) );
         }
         return nullptr;
     }

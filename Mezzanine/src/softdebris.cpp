@@ -46,7 +46,7 @@
 #include "softdebris.h"
 
 #include "Graphics/scenemanager.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 
 #include "Physics/physicsmanager.h"
 #include "Physics/softproxy.h"
@@ -87,11 +87,11 @@ namespace Mezzanine
             this->SetPrimaryProxy( SofProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy();
-            this->AddComponent( EntProx );
+            ItemProx = SceneMan->CreateItemProxy();
+            this->AddComponent( ItemProx );
         }
     }
 
@@ -104,11 +104,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldEntityType SoftDebris::GetType() const
-        { return Mezzanine::WE_SoftDebris; }
+    EntityType SoftDebris::GetType() const
+        { return Mezzanine::ET_SoftDebris; }
 
-    Graphics::EntityProxy* SoftDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
+    Graphics::ItemProxy* SoftDebris::GetItemProxy() const
+        { return static_cast<Graphics::ItemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ItemProxy,0) ); }
 
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
         { return static_cast<Physics::SoftProxy*>( this->GetComponent(Mezzanine::CT_Physics_SoftProxy,0) ); }

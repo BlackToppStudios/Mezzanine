@@ -284,7 +284,7 @@ namespace Mezzanine
             {  }
 
         CollidableProxy::CollidableProxy(const UInt32 ID, PhysicsManager* Creator) :
-            WorldProxy(ID),
+            EntityProxy(ID),
             //BodyScale(1,1,1),
             ProxyShape(NULL),
             ScalerShape(NULL),
@@ -663,7 +663,7 @@ namespace Mezzanine
 
         void CollidableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
             XML::Node PropertiesNode = SelfRoot.AppendChild( CollidableProxy::GetSerializableName() + "Properties" );
 
@@ -710,7 +710,7 @@ namespace Mezzanine
 
         void CollidableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( CollidableProxy::GetSerializableName() + "Properties" );

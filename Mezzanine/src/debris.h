@@ -43,14 +43,14 @@
 /// @file
 /// @brief This file contains the declaration for the debris class used to represent a small loose object in the world.
 
-#include "worldentity.h"
+#include "entity.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple world object without a large structure ideal for representing loose small objects.
     ///////////////////////////////////////
-    class MEZZ_LIB Debris : public WorldEntity
+    class MEZZ_LIB Debris : public Entity
     {
     protected:
     public:
@@ -73,14 +73,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node&) const
+        /// @copydoc Mezzanine::Entity::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node&)
+        /// @copydoc Mezzanine::Entity::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::Entity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
+        /// @copydoc Mezzanine::Entity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////

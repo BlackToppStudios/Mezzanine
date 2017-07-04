@@ -126,9 +126,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
-            /// @copydoc WorldProxy::IsStatic() const
+            /// @copydoc EntityProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -181,14 +181,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////

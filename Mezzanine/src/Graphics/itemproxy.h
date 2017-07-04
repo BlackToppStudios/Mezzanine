@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsentityproxy_h
-#define _graphicsentityproxy_h
+#ifndef _graphicsitemproxy_h
+#define _graphicsitemproxy_h
 
 /// @file
 /// @brief This file contains the declaration for the World proxy wrapping basic entity(mesh) functionality.
@@ -58,7 +58,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the proxy class for placing and manipulating a mesh in the scene.
         ///////////////////////////////////////
-        class MEZZ_LIB EntityProxy : public RenderableProxy
+        class MEZZ_LIB ItemProxy : public RenderableProxy
         {
         protected:
             // We want to be able to preserve all our settings and set a mesh seemlessly, but the underlying implementation doesn't support that.
@@ -89,26 +89,26 @@ namespace Mezzanine
             virtual void DestroyEntity();
         public:
             /// @brief Blank constructor.
-            /// @param ID The unique ID assigned to this EntityProxy.
+            /// @param ID The unique ID assigned to this ItemProxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(const UInt32 ID, SceneManager* Creator);
+            ItemProxy(const UInt32 ID, SceneManager* Creator);
             /// @brief Loaded Mesh constructor.
-            /// @param ID The unique ID assigned to this EntityProxy.
+            /// @param ID The unique ID assigned to this ItemProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator);
+            ItemProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator);
             /// @brief Standard constructor.
-            /// @param ID The unique ID assigned to this EntityProxy.
+            /// @param ID The unique ID assigned to this ItemProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator);
+            ItemProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this proxy.
-            EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator);
+            ItemProxy(const XML::Node& SelfRoot, SceneManager* Creator);
             /// @brief Class destructor.
-            virtual ~EntityProxy();
+            virtual ~ItemProxy();
 
             /// @todo Create sub-entity access methods on this class.
             /// @todo Create minor material manipulation methods on this class.
@@ -117,14 +117,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
-            /// @copydoc WorldProxy::IsStatic() const
+            /// @copydoc EntityProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
-            /// @copydoc WorldProxy::AddToWorld()
+            /// @copydoc EntityProxy::AddToWorld()
             virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
+            /// @copydoc EntityProxy::RemoveFromWorld()
             virtual void RemoveFromWorld();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -179,25 +179,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeMesh(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node)
+            /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeMesh(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -209,7 +209,7 @@ namespace Mezzanine
             virtual Ogre::Entity* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
             virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
-        };//EntityProxy
+        };//ItemProxy
     }//Graphics
 }//Mezzanine
 

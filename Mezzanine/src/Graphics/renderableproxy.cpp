@@ -70,7 +70,7 @@ namespace Mezzanine
         }
 
         RenderableProxy::RenderableProxy(const UInt32 ID, SceneManager* Creator) :
-            WorldProxy(ID),
+            EntityProxy(ID),
             GraphicsNode(NULL),
             Manager(Creator),
             VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
@@ -239,7 +239,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
             XML::Node PropertiesNode = SelfRoot.AppendChild( RenderableProxy::GetSerializableName() + "Properties" );
 
@@ -259,7 +259,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RenderableProxy::GetSerializableName() + "Properties" );

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldentitycomponent_h
-#define _worldentitycomponent_h
+#ifndef _entitycomponent_h
+#define _entitycomponent_h
 
 #include "enumerations.h"
 
@@ -48,26 +48,26 @@
 
 namespace Mezzanine
 {
-    class WorldEntity;
+    class Entity;
     class EntityComponentManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for components comprising the functionality of an Entity.
     ///////////////////////////////////////
-    class MEZZ_LIB WorldEntityComponent
+    class MEZZ_LIB EntityComponent
     {
     protected:
         /// @brief Pointer to the Entity this component belongs to.
-        WorldEntity* ParentEntity;
+        Entity* ParentEntity;
         /// @brief The ID of the component that unique among the pool it belongs to.
         UInt32 ComponentID;
     public:
         /// @brief Blank constructor.
-        WorldEntityComponent();
+        EntityComponent();
         /// @brief Normal/ID constructor.
         /// @param ID The unique ID assigned to the type of component an instance is.
-        WorldEntityComponent(const UInt32 ID);
+        EntityComponent(const UInt32 ID);
         /// @brief Class destructor.
-        virtual ~WorldEntityComponent() = default;
+        virtual ~EntityComponent() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -77,14 +77,14 @@ namespace Mezzanine
         virtual Mezzanine::ComponentType GetComponentType() const = 0;
 
         /// @brief Gets a pointer to the parent Entity controlling this component.
-        /// @return Returns a pointer to the WorldEntity controlling this component, or nullptr if this component isn't bound to a WorldEntity.
-        virtual WorldEntity* GetParentEntity() const;
+        /// @return Returns a pointer to the Entity controlling this component, or nullptr if this component isn't bound to a Entity.
+        virtual Entity* GetParentEntity() const;
         /// @brief Gets the unique ID of this component.
         /// @remarks Component IDs are only unique to their family of proxies belonging to a specific subsystem.  Across subsystems IDs can be reused.
         /// @return Returns a UInt32 containing the unique ID for this component.
         virtual UInt32 GetComponentID() const;
         /// @brief Gets a pointer to this components creator.
-        /// @return Returns a pointer to the EntityComponentManager that created this WorldEntityComponent.
+        /// @return Returns a pointer to the EntityComponentManager that created this EntityComponent.
         virtual EntityComponentManager* GetCreator() const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -104,8 +104,8 @@ namespace Mezzanine
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @brief Gets the most derived serializable name of this WorldEntityComponent.
-        /// @note When creating a new WorldEntityComponent class verify this method has a valid return for it in order for serialization to work properly.
+        /// @brief Gets the most derived serializable name of this EntityComponent.
+        /// @note When creating a new EntityComponent class verify this method has a valid return for it in order for serialization to work properly.
         /// @return Returns the name of the XML tag from the most derived class of "this".
         virtual String GetDerivedSerializableName() const;
         /// @brief Get the name of the the XML tag the component class will leave behind as its instances are serialized.
@@ -116,10 +116,10 @@ namespace Mezzanine
         // Internal Methods
 
         /// @internal
-        /// @brief Binds this component to a WorldEntity.
-        /// @param NewParent A pointer to the WorldEntity taking possession of this component.
-        virtual void _Bind(WorldEntity* NewParent);
-    };//WorldEntityComponent
+        /// @brief Binds this component to a Entity.
+        /// @param NewParent A pointer to the Entity taking possession of this component.
+        virtual void _Bind(Entity* NewParent);
+    };//EntityComponent
 }//Mezzanine
 
 #endif

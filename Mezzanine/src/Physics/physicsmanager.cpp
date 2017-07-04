@@ -59,7 +59,7 @@
 
 #include "Graphics/graphicsmanager.h"
 
-// WorldEntity Manager includes are here for the debug draw work unit dependency setting
+// Entity Manager includes are here for the debug draw work unit dependency setting
 #include "actormanager.h"
 #include "areaeffectmanager.h"
 #include "debrismanager.h"
@@ -67,7 +67,7 @@
 #include "stringtool.h"
 #include "vector3.h"
 #include "worldtrigger.h"
-#include "worldentity.h"
+#include "entity.h"
 #include "crossplatform.h"
 #include "entresol.h"
 #include "world.h"
@@ -699,7 +699,7 @@ namespace Mezzanine
                         break;
                     }
                 }// */
-                // Old method involving detecting the actual WorldEntity pair
+                // Old method involving detecting the actual Entity pair
                 CollidableProxy* ProxA = NULL;
                 CollidableProxy* ProxB = NULL;
                 /// @todo This is an absurd round-about way to get the data we need,
@@ -862,7 +862,7 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        WorldEntityComponent* PhysicsManager::CreateComponent(const XML::Node& SelfRoot)
+        EntityComponent* PhysicsManager::CreateComponent(const XML::Node& SelfRoot)
         {
             if( SelfRoot.Name() == RigidProxy::GetSerializableName() ) return this->CreateRigidProxy(SelfRoot);
             else if( SelfRoot.Name() == GhostProxy::GetSerializableName() ) return this->CreateGhostProxy(SelfRoot);
@@ -876,7 +876,7 @@ namespace Mezzanine
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        WorldEntityComponent* PhysicsManager::GetComponentByID(const UInt32 ID) const
+        EntityComponent* PhysicsManager::GetComponentByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -909,12 +909,12 @@ namespace Mezzanine
             return ComponentVec(this->Proxies.begin(),this->Proxies.end());
         }
 
-        void PhysicsManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
+        void PhysicsManager::DestroyComponent(EntityComponent* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
@@ -932,7 +932,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( (*ProxIt)->GetComponentType() & Types ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
@@ -950,7 +950,7 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                Entity* Parent = (*ProxIt)->GetParentEntity();
                 if( Parent )
                     Parent->RemoveComponent( (*ProxIt) );
 

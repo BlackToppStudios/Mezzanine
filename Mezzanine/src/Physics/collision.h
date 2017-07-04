@@ -53,7 +53,7 @@ class btManifoldPoint;
 
 namespace Mezzanine
 {
-    class WorldEntity;
+    class Entity;
     namespace Physics
     {
         class PhysicsManager;
@@ -125,17 +125,17 @@ namespace Mezzanine
             /// @return Returns a pointer to the second CollidableProxy in this event.
             virtual CollidableProxy* GetProxyB() const;
             /// @brief Gets the parent Object of CollidableProxy A.
-            /// @return Returns a pointer to the parent WorldEntity of CollidableProxyA.
-            virtual WorldEntity* GetObjectA() const;
+            /// @return Returns a pointer to the parent Entity of CollidableProxyA.
+            virtual Entity* GetObjectA() const;
             /// @brief Gets the parent Object of CollidableProxy B.
-            /// @return Returns a pointer to the parent WorldEntity of CollidableProxyB.
-            virtual WorldEntity* GetObjectB() const;
+            /// @return Returns a pointer to the parent Entity of CollidableProxyB.
+            virtual Entity* GetObjectB() const;
 
-            /// @brief Convenience function to see if the provided WorldEntity pair match the pair in this class.
-            /// @param A The first WorldEntity to be compared.  Will be checked against both objects in this collision.
-            /// @param B The second WorldEntity to be compared.  Will be checked against both objects in this collision.
+            /// @brief Convenience function to see if the provided Entity pair match the pair in this class.
+            /// @param A The first Entity to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second Entity to be compared.  Will be checked against both objects in this collision.
             /// @return Returns a Boole, true if the pairs match, false otherwise.
-            virtual Boole PairsMatch(WorldEntity* A, WorldEntity* B) const;
+            virtual Boole PairsMatch(Entity* A, Entity* B) const;
             /// @brief Convenience function to see if the provided CollidableProxy pair match the pair in this class.
             /// @param A The first CollidableProxy to be compared.  Will be checked against both objects in this collision.
             /// @param B The second CollidableProxy to be compared.  Will be checked against both objects in this collision.

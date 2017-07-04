@@ -76,19 +76,19 @@ namespace Mezzanine
             /// @return Returns true if this sound proxy is emitting in a specific direction, false if it's emitting in all directions.
             virtual Boole IsDirectingSound() const = 0;
 
-            /// @copydoc Mezzanine::WorldProxy::AddToWorld()
+            /// @copydoc Mezzanine::EntityProxy::AddToWorld()
             /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the
             /// world and resume it's playback when added back in.  You also cannot start playback while outside of the world.  If you
             /// want to prevent the resuming of playback when added back into the world be sure to manually call "Stop()" before adding
             /// the proxy back into the world.
             virtual void AddToWorld() = 0;
-            /// @copydoc Mezzanine::WorldProxy::RemoveFromWorld()
+            /// @copydoc Mezzanine::EntityProxy::RemoveFromWorld()
             /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the
             /// world and resume it's playback when added back in.  You also cannot start playback while outside of the world.  If you
             /// want to prevent the resuming of playback when added back into the world be sure to manually call "Stop()" before adding
             /// the proxy back into the world.
             virtual void RemoveFromWorld() = 0;
-            /// @copydoc Mezzanine::WorldProxy::IsInWorld()
+            /// @copydoc Mezzanine::EntityProxy::IsInWorld()
             virtual Boole IsInWorld() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////

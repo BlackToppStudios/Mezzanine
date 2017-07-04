@@ -85,7 +85,11 @@
 #include "datatypes.h"
 #include "debris.h"
 #include "debrismanager.h"
+#include "entity.h"
+#include "entitycomponent.h"
 #include "entitycomponentmanager.h"
+#include "entitymanager.h"
+#include "entityproxy.h"
 #include "enumerations.h"
 #include "exception.h"
 #include "managerbase.h"
@@ -105,9 +109,6 @@
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
-#include "worldentity.h"
-#include "worldentitymanager.h"
-#include "worldproxy.h"
 
 #ifndef SWIG
 #include "appeventdispatcher.h"

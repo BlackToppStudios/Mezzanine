@@ -56,7 +56,7 @@ namespace Ogre
 namespace Mezzanine
 {
     class TransformableObject;
-    class WorldEntity;
+    class Entity;
     namespace Physics
     {
         class RigidProxy;
@@ -154,7 +154,7 @@ namespace Mezzanine
             void SetParentObject(Physics::RigidProxy* PO);
 
             /// @brief Adds a TransformableObject to this motionstate, which will force it's transform to sync with the parent RigidProxy.
-            /// @param ToBeAdded A pointer to the WorldEntity being added.
+            /// @param ToBeAdded A pointer to the Entity being added.
             void AddSyncObject(TransformableObject* ToBeAdded);
             /// @brief Gets a TransformableObject being sync'd by this motionstate by it's index.
             /// @param Index The index of the sync object to retrieve.
@@ -192,9 +192,9 @@ namespace Mezzanine
         /// @internal
         /// @brief This class is used by the RigidProxy class to sync between the physics world and other subsystems.
         /// @details This class provides the link for position and orientation between all the worlds in the engine.
-        /// This is called on every step(frame) of the world to sync the WorldEntity if it has moved.
+        /// This is called on every step(frame) of the world to sync the Entity if it has moved.
         ///////////////////////////////////////
-        class WorldEntityMotionState : public btMotionState
+        class EntityMotionState : public btMotionState
         {
         protected:
             /// @internal
@@ -205,22 +205,22 @@ namespace Mezzanine
             Physics::RigidProxy* ParentObject;
             /// @internal
             /// @brief The other proxy being sync'd to the RigidProxy transform.
-            WorldEntity* SyncObject;
+            Entity* SyncObject;
         public:
             /// @brief Blank constructor.
-            WorldEntityMotionState();
+            EntityMotionState();
             /// @brief Class constructor.
             /// @param PO A pointer to the parent physics object.
-            WorldEntityMotionState(Physics::RigidProxy* PO);
+            EntityMotionState(Physics::RigidProxy* PO);
             /// @brief Class destructor.
-            virtual ~WorldEntityMotionState();
+            virtual ~EntityMotionState();
 
             /// @brief Sets the parent object to be updated.
             /// @param PO A pointer to the parent physics object.
             void SetParentObject(Physics::RigidProxy* PO);
             /// @brief Sets the proxy to be sync'd.
-            /// @param WO A pointer to the WorldEntity that will be sync'd with the physics object transform.
-            void SetSyncObject(WorldEntity* WO);
+            /// @param WO A pointer to the Entity that will be sync'd with the physics object transform.
+            void SetSyncObject(Entity* WO);
 
             /// @brief Sets the initial position.
             /// @note This information is only grabbed when the object is added to the world.
@@ -239,7 +239,7 @@ namespace Mezzanine
             /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
             /// @param worldTrans The location and orientation data.
             void setWorldTransform(const btTransform& worldTrans);
-        };//WorldEntityMotionState
+        };//EntityMotionState
     }//Internal
 }//Mezzanine
 

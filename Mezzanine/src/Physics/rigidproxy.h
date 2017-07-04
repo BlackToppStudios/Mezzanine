@@ -47,7 +47,7 @@ class btRigidBody;
 
 namespace Mezzanine
 {
-    class WorldEntity;
+    class Entity;
     class CollisionShape;
 
     namespace Physics
@@ -137,12 +137,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
 
-            /// @copydoc WorldProxy::AddToWorld()
+            /// @copydoc EntityProxy::AddToWorld()
             virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
+            /// @copydoc EntityProxy::RemoveFromWorld()
             virtual void RemoveFromWorld();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@ namespace Mezzanine
             // Transform Synchronization
 
             /*/// @brief Adds a TransformableObject that will force it's transform to sync with this RigidProxy.
-            /// @param ToBeAdded A pointer to the WorldEntity being added.
+            /// @param ToBeAdded A pointer to the Entity being added.
             virtual void AddSyncObject(TransformableObject* ToBeAdded);
             /// @brief Gets a TransformableObject being sync'd to this RigidProxy by it's index.
             /// @param Index The index of the sync object to retrieve.
@@ -272,21 +272,21 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc WorldProxy::_Bind(WorldEntity*)
-            virtual void _Bind(WorldEntity* NewParent);
+            /// @copydoc EntityProxy::_Bind(Entity*)
+            virtual void _Bind(Entity* NewParent);
 
             /// @internal
             /// @brief Accessor for the internal rigid body physics proxy.

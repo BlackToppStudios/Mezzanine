@@ -42,7 +42,7 @@
 #define _actor_h
 
 #include "datatypes.h"
-#include "worldentity.h"
+#include "entity.h"
 
 /// @file
 /// @brief The base class for all Actors is defined here.
@@ -54,7 +54,7 @@ namespace Mezzanine
     /// @details The actor classes are responsible for character and character-like objects in the
     /// 3D world.
     ///////////////////////////////////////
-    class MEZZ_LIB Actor : public WorldEntity
+    class MEZZ_LIB Actor : public Entity
     {
     protected:
     public:

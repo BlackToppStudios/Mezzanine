@@ -197,7 +197,7 @@
 
  @section Sophisticated Sophisticated Systems
 
-  @ref Mezzanine::WorldEntity "WorldEntities - Items in the world"
+  @ref Mezzanine::Entity "WorldEntities - Items in the world"
 
   @ref Mezzanine::EventBase
 

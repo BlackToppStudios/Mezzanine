@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file contains the declaration for the base class from which graphics proxies inherit.
 
-#include "worldproxy.h"
+#include "entityproxy.h"
 #include "axisalignedbox.h"
 
 namespace Ogre
@@ -60,22 +60,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base proxy class for world proxies wrapping functionality of the graphics subsystem.
         ///////////////////////////////////////
-        class MEZZ_LIB RenderableProxy : public WorldProxy
+        class MEZZ_LIB RenderableProxy : public EntityProxy
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal object storing the proxy transform.
             Ogre::SceneNode* GraphicsNode;
-            /// @internal
             /// @brief This is a pointer to the scene manager that created and owns this proxy.
             SceneManager* Manager;
-            /// @internal
             /// @brief This is a bitmask identifying this objects type when being rendered.  Used for advanced visibility configuration.
             UInt32 VisibilityMask;
-            /// @internal
             /// @brief This is a bitmask identifying this objects type when being queried.  Used for advanced query configuration.
             UInt32 QueryMask;
-            /// @internal
             /// @brief This stores whether the proxy is currently in the graphics world or not.
             Boole InWorld;
         public:
@@ -97,14 +92,14 @@ namespace Mezzanine
             /// @return Returns an AxisAlignedBox containing the AABB of this graphics proxy.
             virtual AxisAlignedBox GetAABB() const;
 
-            /// @copydoc WorldProxy::AddToWorld()
+            /// @copydoc EntityProxy::AddToWorld()
             virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
+            /// @copydoc EntityProxy::RemoveFromWorld()
             virtual void RemoveFromWorld();
-            /// @copydoc WorldProxy::IsInWorld() const
+            /// @copydoc EntityProxy::IsInWorld() const
             virtual Boole IsInWorld() const;
 
-            /// @copydoc WorldEntityComponent::GetCreator() const
+            /// @copydoc EntityComponent::GetCreator() const
             virtual EntityComponentManager* GetCreator() const;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -160,62 +155,62 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
 
-            /// @copydoc WorldProxy::SetTransform(const Transform&)
+            /// @copydoc EntityProxy::SetTransform(const Transform&)
             virtual void SetTransform(const Transform& Trans);
-            /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
+            /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
             virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
-            /// @copydoc WorldProxy::GetTransform() const
+            /// @copydoc EntityProxy::GetTransform() const
             virtual Transform GetTransform() const;
 
-            /// @copydoc WorldProxy::SetLocation(const Vector3&)
+            /// @copydoc EntityProxy::SetLocation(const Vector3&)
             virtual void SetLocation(const Vector3& Loc);
-            /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
+            /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
             virtual void SetLocation(const Real X, const Real Y, const Real Z);
-            /// @copydoc WorldProxy::GetLocation() const
+            /// @copydoc EntityProxy::GetLocation() const
             virtual Vector3 GetLocation() const;
-            /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
+            /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
             virtual void SetOrientation(const Quaternion& Ori);
-            /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
+            /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
             virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-            /// @copydoc WorldProxy::GetOrientation() const
+            /// @copydoc EntityProxy::GetOrientation() const
             virtual Quaternion GetOrientation() const;
-            /// @copydoc WorldProxy::SetScale(const Vector3&)
+            /// @copydoc EntityProxy::SetScale(const Vector3&)
             virtual void SetScale(const Vector3& Sc);
-            /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
+            /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
             virtual void SetScale(const Real X, const Real Y, const Real Z);
-            /// @copydoc WorldProxy::GetScale() const
+            /// @copydoc EntityProxy::GetScale() const
             virtual Vector3 GetScale() const;
 
-            /// @copydoc WorldProxy::Translate(const Vector3&)
+            /// @copydoc EntityProxy::Translate(const Vector3&)
             virtual void Translate(const Vector3& Trans);
-            /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
+            /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
             virtual void Translate(const Real X, const Real Y, const Real Z);
-            /// @copydoc WorldProxy::Yaw(const Real)
+            /// @copydoc EntityProxy::Yaw(const Real)
             virtual void Yaw(const Real Angle);
-            /// @copydoc WorldProxy::Pitch(const Real)
+            /// @copydoc EntityProxy::Pitch(const Real)
             virtual void Pitch(const Real Angle);
-            /// @copydoc WorldProxy::Roll(const Real)
+            /// @copydoc EntityProxy::Roll(const Real)
             virtual void Roll(const Real Angle);
-            /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
+            /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
             virtual void Rotate(const Vector3& Axis, const Real Angle);
-            /// @copydoc WorldProxy::Rotate(const Quaternion&)
+            /// @copydoc EntityProxy::Rotate(const Quaternion&)
             virtual void Rotate(const Quaternion& Rotation);
-            /// @copydoc WorldProxy::Scale(const Vector3&)
+            /// @copydoc EntityProxy::Scale(const Vector3&)
             virtual void Scale(const Vector3& Scale);
-            /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
+            /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
             virtual void Scale(const Real X, const Real Y, const Real Z);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////

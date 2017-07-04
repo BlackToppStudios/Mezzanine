@@ -37,21 +37,21 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldentitycomponent_cpp
-#define _worldentitycomponent_cpp
+#ifndef _entitycomponent_cpp
+#define _entitycomponent_cpp
 
-#include "worldentitycomponent.h"
+#include "entitycomponent.h"
 #include "serialization.h"
 #include "exception.h"
 
 namespace Mezzanine
 {
-    WorldEntityComponent::WorldEntityComponent() :
+    EntityComponent::EntityComponent() :
         ParentEntity(nullptr),
         ComponentID(0)
         {  }
 
-    WorldEntityComponent::WorldEntityComponent(const UInt32 ID) :
+    EntityComponent::EntityComponent(const UInt32 ID) :
         ParentEntity(nullptr),
         ComponentID(ID)
         {  }
@@ -59,43 +59,43 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    WorldEntity* WorldEntityComponent::GetParentEntity() const
+    Entity* EntityComponent::GetParentEntity() const
         { return this->ParentEntity; }
 
-    UInt32 WorldEntityComponent::GetComponentID() const
+    UInt32 EntityComponent::GetComponentID() const
         { return this->ComponentID; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    void WorldEntityComponent::ProtoSerialize(XML::Node& ParentNode) const
+    void EntityComponent::ProtoSerialize(XML::Node& ParentNode) const
     {
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
         this->ProtoSerializeProperties(SelfRoot);
     }
 
-    void WorldEntityComponent::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    void EntityComponent::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldEntityComponent::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.AppendChild( EntityComponent::GetSerializableName() + "Properties" );
 
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
             PropertiesNode.AppendAttribute("ComponentID").SetValue(this->ComponentID) )
         {
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldEntityComponent::GetSerializableName() + "Properties",true);
+            SerializeError("Create XML Attribute Values",EntityComponent::GetSerializableName() + "Properties",true);
         }
     }
 
-    void WorldEntityComponent::ProtoDeSerialize(const XML::Node& SelfRoot)
+    void EntityComponent::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
         this->ProtoDeSerializeProperties(SelfRoot);
     }
 
-    void WorldEntityComponent::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    void EntityComponent::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         XML::Attribute CurrAttrib;
-        XML::Node PropertiesNode = SelfRoot.GetChild( WorldEntityComponent::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.GetChild( EntityComponent::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -103,23 +103,23 @@ namespace Mezzanine
                 if( !CurrAttrib.Empty() )
                     this->ComponentID = static_cast<UInt32>( CurrAttrib.AsUint() );
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldEntityComponent::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EntityComponent::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldEntityComponent::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EntityComponent::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 
-    String WorldEntityComponent::GetDerivedSerializableName() const
-        { return WorldEntityComponent::GetSerializableName(); }
+    String EntityComponent::GetDerivedSerializableName() const
+        { return EntityComponent::GetSerializableName(); }
 
-    String WorldEntityComponent::GetSerializableName()
-        { return "WorldEntityComponent"; }
+    String EntityComponent::GetSerializableName()
+        { return "EntityComponent"; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void WorldEntityComponent::_Bind(WorldEntity* NewParent)
+    void EntityComponent::_Bind(Entity* NewParent)
     {
         if( this->ParentEntity != NewParent ) {
             this->ParentEntity = NewParent;

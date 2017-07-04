@@ -37,13 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsentityproxy_cpp
-#define _graphicsentityproxy_cpp
+#ifndef _graphicsitemproxy_cpp
+#define _graphicsitemproxy_cpp
 
 /// @file
 /// @brief This file contains the implementation for the World proxy wrapping basic entity(mesh) functionality.
 
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 #include "Graphics/scenemanager.h"
 #include "Graphics/meshmanager.h"
 #include "Graphics/mesh.h"
@@ -61,7 +61,7 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        EntityProxy::EntityProxy(const UInt32 ID, SceneManager* Creator) :
+        ItemProxy::ItemProxy(const UInt32 ID, SceneManager* Creator) :
             RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
@@ -71,7 +71,7 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->CreateEntity(NULL); }
 
-        EntityProxy::EntityProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator) :
+        ItemProxy::ItemProxy(const UInt32 ID, Mesh* TheMesh, SceneManager* Creator) :
             RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
@@ -81,7 +81,7 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->CreateEntity(TheMesh); }
 
-        EntityProxy::EntityProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator) :
+        ItemProxy::ItemProxy(const UInt32 ID, const String& MeshName, const String& GroupName, SceneManager* Creator) :
             RenderableProxy(ID,Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
@@ -91,7 +91,7 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->CreateEntity(MeshName,GroupName); }
 
-        EntityProxy::EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
+        ItemProxy::ItemProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),
             ProxyMesh(NULL),
@@ -101,10 +101,10 @@ namespace Mezzanine
             CanCastShadows(true)
             { this->ProtoDeSerialize(SelfRoot); }
 
-        EntityProxy::~EntityProxy()
+        ItemProxy::~ItemProxy()
             { this->DestroyEntity(); }
 
-        void EntityProxy::CreateEntity(Mesh* ObjectMesh)
+        void ItemProxy::CreateEntity(Mesh* ObjectMesh)
         {
             if( ObjectMesh != NULL ) {
                 this->GraphicsEntity = this->Manager->_GetGraphicsWorldPointer()->createEntity( ObjectMesh->_GetInternalMesh() );
@@ -117,13 +117,13 @@ namespace Mezzanine
             this->ProxyMesh = ObjectMesh;
         }
 
-        void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
+        void ItemProxy::CreateEntity(const String& MeshName, const String& GroupName)
         {
             Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,GroupName);
             this->CreateEntity(TheMesh);
         }
 
-        void EntityProxy::DestroyEntity()
+        void ItemProxy::DestroyEntity()
         {
             if( this->GraphicsEntity ) {
                 this->GraphicsNode->detachObject( this->GraphicsEntity );
@@ -134,17 +134,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ComponentType EntityProxy::GetComponentType() const
+        Mezzanine::ComponentType ItemProxy::GetComponentType() const
         {
-            return Mezzanine::CT_Graphics_EntityProxy;
+            return Mezzanine::CT_Graphics_ItemProxy;
         }
 
-        Boole EntityProxy::IsStatic() const
+        Boole ItemProxy::IsStatic() const
         {
             return false;
         }
 
-        void EntityProxy::AddToWorld()
+        void ItemProxy::AddToWorld()
         {
             if( this->GraphicsEntity && !this->InWorld ) {
                 this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
@@ -153,7 +153,7 @@ namespace Mezzanine
             }
         }
 
-        void EntityProxy::RemoveFromWorld()
+        void ItemProxy::RemoveFromWorld()
         {
             if( this->GraphicsEntity && this->InWorld ) {
                 this->GraphicsEntity->setVisibilityFlags(0);
@@ -165,7 +165,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Mesh Management
 
-        void EntityProxy::SetMesh(const String& MeshName, const String& Group)
+        void ItemProxy::SetMesh(const String& MeshName, const String& Group)
         {
             if( this->GraphicsEntity ) {
                 this->DestroyEntity();
@@ -180,7 +180,7 @@ namespace Mezzanine
             this->GraphicsEntity->setRenderingDistance( this->RenderDist );
         }
 
-        void EntityProxy::SetMesh(Mesh* ObjectMesh)
+        void ItemProxy::SetMesh(Mesh* ObjectMesh)
         {
             if( this->GraphicsEntity ) {
                 this->DestroyEntity();
@@ -195,7 +195,7 @@ namespace Mezzanine
             this->GraphicsEntity->setRenderingDistance( this->RenderDist );
         }
 
-        Mesh* EntityProxy::GetMesh() const
+        Mesh* ItemProxy::GetMesh() const
         {
             return this->ProxyMesh;
         }
@@ -203,7 +203,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderableProxy Properties
 
-        void EntityProxy::SetVisible(const Boole Visible)
+        void ItemProxy::SetVisible(const Boole Visible)
         {
             this->SceneVisible = Visible;
             if( this->GraphicsEntity ) {
@@ -211,12 +211,12 @@ namespace Mezzanine
             }
         }
 
-        Boole EntityProxy::GetVisible() const
+        Boole ItemProxy::GetVisible() const
         {
             return this->SceneVisible;
         }
 
-        void EntityProxy::SetCastShadows(const Boole CastShadows)
+        void ItemProxy::SetCastShadows(const Boole CastShadows)
         {
             this->CanCastShadows = CastShadows;
             if( this->GraphicsEntity ) {
@@ -224,17 +224,17 @@ namespace Mezzanine
             }
         }
 
-        Boole EntityProxy::GetCastShadows() const
+        Boole ItemProxy::GetCastShadows() const
         {
             return this->CanCastShadows;
         }
 
-        Boole EntityProxy::GetReceiveShadows() const
+        Boole ItemProxy::GetReceiveShadows() const
         {
             return ( this->GraphicsEntity ? this->GraphicsEntity->getReceivesShadows() : false );
         }
 
-        void EntityProxy::SetLightMask(const UInt32 Mask)
+        void ItemProxy::SetLightMask(const UInt32 Mask)
         {
             this->LightMask = Mask;
             if( this->GraphicsEntity ) {
@@ -242,12 +242,12 @@ namespace Mezzanine
             }
         }
 
-        UInt32 EntityProxy::GetLightMask() const
+        UInt32 ItemProxy::GetLightMask() const
         {
             return this->LightMask;
         }
 
-        void EntityProxy::SetVisibilityMask(const UInt32 Mask)
+        void ItemProxy::SetVisibilityMask(const UInt32 Mask)
         {
             this->VisibilityMask = Mask;
             if( this->GraphicsEntity && this->InWorld ) {
@@ -255,12 +255,12 @@ namespace Mezzanine
             }
         }
 
-        UInt32 EntityProxy::GetVisibilityMask() const
+        UInt32 ItemProxy::GetVisibilityMask() const
         {
             return this->VisibilityMask;
         }
 
-        void EntityProxy::SetQueryMask(const UInt32 Mask)
+        void ItemProxy::SetQueryMask(const UInt32 Mask)
         {
             this->QueryMask = Mask;
             if( this->GraphicsEntity && this->InWorld ) {
@@ -268,12 +268,12 @@ namespace Mezzanine
             }
         }
 
-        UInt32 EntityProxy::GetQueryMask() const
+        UInt32 ItemProxy::GetQueryMask() const
         {
             return this->QueryMask;
         }
 
-        void EntityProxy::SetRenderDistance(const Real Distance)
+        void ItemProxy::SetRenderDistance(const Real Distance)
         {
             this->RenderDist = Distance;
             if( this->GraphicsEntity ) {
@@ -281,7 +281,7 @@ namespace Mezzanine
             }
         }
 
-        Real EntityProxy::GetRenderDistance() const
+        Real ItemProxy::GetRenderDistance() const
         {
             return this->RenderDist;
         }
@@ -292,7 +292,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
+        void ItemProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
             this->ProtoSerializeInWorld(SelfRoot);
@@ -300,14 +300,14 @@ namespace Mezzanine
             this->ProtoSerializeMesh(SelfRoot);
         }
 
-        void EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        void ItemProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
         }
 
-        void EntityProxy::ProtoSerializeMesh(XML::Node& SelfRoot) const
+        void ItemProxy::ProtoSerializeMesh(XML::Node& SelfRoot) const
         {
-            XML::Node MeshNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Mesh" );
+            XML::Node MeshNode = SelfRoot.AppendChild( ItemProxy::GetSerializableName() + "Mesh" );
 
             if( MeshNode.AppendAttribute("Version").SetValue("1") &&
                 MeshNode.AppendAttribute("ProxyMeshName").SetValue( this->ProxyMesh ? this->ProxyMesh->GetName() : "" ) &&
@@ -315,26 +315,26 @@ namespace Mezzanine
             {
                 return;
             }else{
-                SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName() + "Mesh",true);
+                SerializeError("Create XML Attribute Values",ItemProxy::GetSerializableName() + "Mesh",true);
             }
         }
 
-        void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        void ItemProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeMesh(SelfRoot);
             this->ProtoDeSerializeInWorld(SelfRoot);
         }
 
-        void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        void ItemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
         }
 
-        void EntityProxy::ProtoDeSerializeMesh(const XML::Node& SelfRoot)
+        void ItemProxy::ProtoDeSerializeMesh(const XML::Node& SelfRoot)
         {
             XML::Attribute CurrAttrib;
-            XML::Node MeshNode = SelfRoot.GetChild( EntityProxy::GetSerializableName() + "Mesh" );
+            XML::Node MeshNode = SelfRoot.GetChild( ItemProxy::GetSerializableName() + "Mesh" );
 
             if( !MeshNode.Empty() ) {
                 if(MeshNode.GetAttribute("Version").AsInt() == 1) {
@@ -358,19 +358,19 @@ namespace Mezzanine
             }
         }
 
-        String EntityProxy::GetDerivedSerializableName() const
-            { return EntityProxy::GetSerializableName(); }
+        String ItemProxy::GetDerivedSerializableName() const
+            { return ItemProxy::GetSerializableName(); }
 
-        String EntityProxy::GetSerializableName()
-            { return "EntityProxy"; }
+        String ItemProxy::GetSerializableName()
+            { return "ItemProxy"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        Ogre::Entity* EntityProxy::_GetGraphicsObject() const
+        Ogre::Entity* ItemProxy::_GetGraphicsObject() const
             { return this->GraphicsEntity; }
 
-        Ogre::MovableObject* EntityProxy::_GetBaseGraphicsObject() const
+        Ogre::MovableObject* ItemProxy::_GetBaseGraphicsObject() const
             { return this->GraphicsEntity; }
     }//Graphics
 }//Mezzanine

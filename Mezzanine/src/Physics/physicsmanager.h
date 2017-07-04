@@ -479,7 +479,7 @@ namespace Mezzanine
             SoftProxy* CreateSoftProxy(const XML::Node& SelfRoot);
 
             /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
-            WorldEntityComponent* CreateComponent(const XML::Node& SelfRoot);
+            EntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -490,7 +490,7 @@ namespace Mezzanine
             CollidableProxy* GetProxy(const UInt32 Index) const;
 
             /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
-            WorldEntityComponent* GetComponentByID(const UInt32 ID) const;
+            EntityComponent* GetComponentByID(const UInt32 ID) const;
 
             /// @copydoc EntityComponentManager::GetNumComponents() const
             UInt32 GetNumComponents() const;
@@ -499,8 +499,8 @@ namespace Mezzanine
             /// @copydoc EntityComponentManager::GetComponents() const
             EntityComponentManager::ComponentVec GetComponents() const;
 
-            /// @copydoc EntityComponentManager::DestroyComponent(WorldEntityComponent*)
-            void DestroyComponent(WorldEntityComponent* ToBeDestroyed);
+            /// @copydoc EntityComponentManager::DestroyComponent(EntityComponent*)
+            void DestroyComponent(EntityComponent* ToBeDestroyed);
             /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
             void DestroyAllComponents(const UInt32 Types);
             /// @copydoc EntityComponentManager::DestroyAllComponents()

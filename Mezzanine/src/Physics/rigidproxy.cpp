@@ -92,7 +92,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::WorldEntityMotionState( this ) );
+            this->PhysicsRigidBody->setMotionState( new Internal::EntityMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if( Mass == 0.0 ) {
                 this->CollisionGroup = Physics::CF_StaticFilter;
@@ -415,10 +415,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void RigidProxy::_Bind(WorldEntity* NewParent)
+        void RigidProxy::_Bind(Entity* NewParent)
         {
-            WorldProxy::_Bind(NewParent);
-            Internal::WorldEntityMotionState* MS = static_cast<Internal::WorldEntityMotionState*>( this->PhysicsRigidBody->getMotionState() );
+            EntityProxy::_Bind(NewParent);
+            Internal::EntityMotionState* MS = static_cast<Internal::EntityMotionState*>( this->PhysicsRigidBody->getMotionState() );
             MS->SetSyncObject(NewParent);
         }
 
