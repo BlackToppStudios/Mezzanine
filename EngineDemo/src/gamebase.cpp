@@ -489,7 +489,7 @@ void LoadContent()
         namestream << robotprefix << c;
         RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
         RigDeb->AddToWorld();
@@ -501,7 +501,7 @@ void LoadContent()
         namestream << robotprefix << (c+4);
         RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
         RigDeb->AddToWorld();
@@ -514,7 +514,7 @@ void LoadContent()
         namestream << robotprefix << (c+7);
         RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
         if (c+7==7)
             {Robot7=RigDeb;}
@@ -527,54 +527,54 @@ void LoadContent()
     namestream << robotprefix << 9;
     RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-    RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+    RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
     object5 = DebrisMan->CreateRigidDebris("Plane",0);
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
-    object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
+    object5->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
     object6 = DebrisMan->CreateRigidDebris("Ramp",0);
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
-    object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
+    object6->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
     object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass);
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
-    object1->GetEntityProxy()->SetMesh(filerobot,groupname);
+    object1->GetItemProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
     object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0);
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
-    object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
+    object2->GetItemProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
     object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0);
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
-    object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object3->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
     object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass);
     object4->GetRigidProxy()->SetCollisionShape(RobitCH);
-    object4->GetEntityProxy()->SetMesh(filerobot,groupname);
+    object4->GetItemProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
     object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0);
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
-    object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object7->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
     object7->GetRigidProxy()->SetDamping(0.3,0.0);
