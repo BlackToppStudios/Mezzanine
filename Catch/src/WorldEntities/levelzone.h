@@ -35,17 +35,17 @@ public:
     // Utility
 
     /// @copydoc Mezzanine::AreaEffect::GetType() const
-    virtual Mezzanine::WorldEntityType GetType() const;
+    virtual Mezzanine::EntityType GetType() const;
     /// @brief Gets a pointer to the graphics portion of this zone.
-    /// @return Returns a pointer to the Entity proxy representing the graphics portion of this zone.
-    virtual Graphics::EntityProxy* GetEntityProxy() const;
+    /// @return Returns a pointer to the Item proxy representing the graphics portion of this zone.
+    virtual Graphics::ItemProxy* GetItemProxy() const;
 
     /// @copydoc Mezzanine::AreaEffect::ApplyEffect()
     virtual void ApplyEffect() = 0;
     /// @brief Checks if an object is inside this zone.
     /// @param Object The object to check inside this zone for.
     /// @return Returns true if the provided object is currently in this zone, false otherwise.
-    virtual Boole IsInside(WorldEntity* Object);
+    virtual Boole IsInside(Entity* Object);
     /// @brief Checks if this zone is false.
     /// @return Returns true if this zone contains no objects, false otherwise.
     virtual Boole IsEmpty();

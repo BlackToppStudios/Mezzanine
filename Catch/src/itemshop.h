@@ -10,7 +10,7 @@ using namespace Mezzanine;
 class ItemShop
 {
     protected:
-        Graphics::EntityProxy* SelectionSphere;
+        Graphics::ItemProxy* SelectionSphere;
         Whole StarterCash;
         Whole CurrentCash;
         std::vector<ItemShopItem*> Items;

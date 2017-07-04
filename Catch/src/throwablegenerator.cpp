@@ -149,7 +149,7 @@ Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
     Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
     Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);
     // ©reated->GetRigidProxy()->SetActivationState(Physics::WOAS_DisableDeactivation);
-    Created->GetEntityProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
+    Created->GetItemProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
     Created->SetOrientation(Quaternion(MathTools::GetPi(),Vector3(0,1,0)));
 
     /*if("Rubber"==Throwable)

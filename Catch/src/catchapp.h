@@ -103,7 +103,7 @@ public:
 
     void SetVisibleScreens(const CatchApp::GameState State);
 
-    Boole IsAThrowable(WorldEntity* Throwable) const;
+    Boole IsAThrowable(Entity* Throwable) const;
     Boole IsInsideAnyStartZone(Debris* Throwable) const;
     void RegisterStartArea(StartArea* Start);
     void AddThrowable(Debris* Throwable);
