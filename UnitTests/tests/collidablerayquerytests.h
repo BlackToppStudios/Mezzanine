@@ -68,7 +68,7 @@ public:
     /// @param ExpectedProxy A pointer to the proxy we expect to be in the result.
     /// @param ExpectedDistance The distance we expect the proxy to be at.
     /// @return Returns true if the result contains the values we expect, false otherwise.
-    Boole VerifyResult(const RayQueryHit& Result, WorldProxy* ExpectedProxy, Real ExpectedDistance)
+    Boole VerifyResult(const RayQueryHit& Result, EntityProxy* ExpectedProxy, Real ExpectedDistance)
     {
         Boole ObjectMatch = ( Result.Object == ExpectedProxy );
         Boole DistanceMatch = ( Result.Distance < ExpectedDistance + 0.00001 ) && ( Result.Distance > ExpectedDistance - 0.00001 );
@@ -288,7 +288,7 @@ public:
 
         {//Utility Tests
             {//Get/SetTypes Test
-                RayQuery::FilterFunction ProxFilter = [](WorldProxy* ToFilter) {
+                RayQuery::FilterFunction ProxFilter = [](EntityProxy* ToFilter) {
                     return ( ToFilter->GetComponentType() == Mezzanine::CT_Physics_GhostProxy );
                 };
                 TestRayQuery.SetFilterFunction(ProxFilter);

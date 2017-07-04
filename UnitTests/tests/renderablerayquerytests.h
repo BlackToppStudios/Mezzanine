@@ -68,7 +68,7 @@ public:
     /// @param ExpectedProxy A pointer to the proxy we expect to be in the result.
     /// @param ExpectedDistance The distance we expect the proxy to be at.
     /// @return Returns true if the result contains the values we expect, false otherwise.
-    Boole VerifyResult(const RayQueryHit& Result, WorldProxy* ExpectedProxy, Real ExpectedDistance)
+    Boole VerifyResult(const RayQueryHit& Result, EntityProxy* ExpectedProxy, Real ExpectedDistance)
     {
         Boole ObjectMatch = ( Result.Object == ExpectedProxy );
         Boole DistanceMatch = ( Result.Distance < ExpectedDistance + 0.00001 ) && ( Result.Distance > ExpectedDistance - 0.00001 );
@@ -98,45 +98,45 @@ public:
         Graphics::Mesh* TestSphere = SphereGen.GenerateMesh("TestSphere","Internal","BaseWhiteNoLighting","Internal");
 
         // Create entities.  Descriptions are relative to default camera perspective.
-        Graphics::EntityProxy* Entity01 = SceneMan->CreateEntityProxy(TestBox);
-        Entity01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
-        Entity01->AddToWorld();
-        Graphics::EntityProxy* Entity02 = SceneMan->CreateEntityProxy(TestBox);
-        Entity02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
-        Entity02->AddToWorld();
-        Graphics::EntityProxy* Entity03 = SceneMan->CreateEntityProxy(TestBox);
-        Entity03->SetLocation(0.0,25.0,0.0);// 25 units above.
-        Entity03->AddToWorld();
-        Graphics::EntityProxy* Entity04 = SceneMan->CreateEntityProxy(TestBox);
-        Entity04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
-        Entity04->AddToWorld();
-        Graphics::EntityProxy* Entity05 = SceneMan->CreateEntityProxy(TestBox);
-        Entity05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
-        Entity05->SetScale(2.0,2.0,2.0);
-        Entity05->AddToWorld();
-        Graphics::EntityProxy* Entity06 = SceneMan->CreateEntityProxy(TestBox);
-        Entity06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
-        Entity06->SetScale(0.5,0.5,0.5);
-        Entity06->AddToWorld();
-        Graphics::EntityProxy* Entity07 = SceneMan->CreateEntityProxy(TestBox);
-        Entity07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
-        Entity07->AddToWorld();
-        Graphics::EntityProxy* Entity08 = SceneMan->CreateEntityProxy(TestSphere);
-        Entity08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
-        Entity08->AddToWorld();
-        Graphics::EntityProxy* Entity09 = SceneMan->CreateEntityProxy(TestSphere);
-        Entity09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
-        Entity09->AddToWorld();
-        Graphics::EntityProxy* Entity10 = SceneMan->CreateEntityProxy(TestSphere);
-        Entity10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
-        Entity10->AddToWorld();
-        Graphics::EntityProxy* Entity11 = SceneMan->CreateEntityProxy(TestSphere);
-        Entity11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
-        Entity11->AddToWorld();
-        Graphics::EntityProxy* Entity12 = SceneMan->CreateEntityProxy(TestSphere);
-        Entity12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
-        Entity12->SetScale(2.0,2.0,2.0);
-        Entity12->AddToWorld();
+        Graphics::ItemProxy* Item01 = SceneMan->CreateItemProxy(TestBox);
+        Item01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
+        Item01->AddToWorld();
+        Graphics::ItemProxy* Item02 = SceneMan->CreateItemProxy(TestBox);
+        Item02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
+        Item02->AddToWorld();
+        Graphics::ItemProxy* Item03 = SceneMan->CreateItemProxy(TestBox);
+        Item03->SetLocation(0.0,25.0,0.0);// 25 units above.
+        Item03->AddToWorld();
+        Graphics::ItemProxy* Item04 = SceneMan->CreateItemProxy(TestBox);
+        Item04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
+        Item04->AddToWorld();
+        Graphics::ItemProxy* Item05 = SceneMan->CreateItemProxy(TestBox);
+        Item05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
+        Item05->SetScale(2.0,2.0,2.0);
+        Item05->AddToWorld();
+        Graphics::ItemProxy* Item06 = SceneMan->CreateItemProxy(TestBox);
+        Item06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
+        Item06->SetScale(0.5,0.5,0.5);
+        Item06->AddToWorld();
+        Graphics::ItemProxy* Item07 = SceneMan->CreateItemProxy(TestBox);
+        Item07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
+        Item07->AddToWorld();
+        Graphics::ItemProxy* Item08 = SceneMan->CreateItemProxy(TestSphere);
+        Item08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
+        Item08->AddToWorld();
+        Graphics::ItemProxy* Item09 = SceneMan->CreateItemProxy(TestSphere);
+        Item09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
+        Item09->AddToWorld();
+        Graphics::ItemProxy* Item10 = SceneMan->CreateItemProxy(TestSphere);
+        Item10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
+        Item10->AddToWorld();
+        Graphics::ItemProxy* Item11 = SceneMan->CreateItemProxy(TestSphere);
+        Item11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
+        Item11->AddToWorld();
+        Graphics::ItemProxy* Item12 = SceneMan->CreateItemProxy(TestSphere);
+        Item12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
+        Item12->SetScale(2.0,2.0,2.0);
+        Item12->AddToWorld();
 
         Graphics::BillboardSetProxy* BBSet = SceneMan->CreateBillboardSetProxy(1);
         BBSet->SetLocation(75.0,0.0,0.0);
@@ -153,7 +153,7 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity01, 20.0 ) &&
+                      this->VerifyResult( TestResults[0], Item01, 20.0 ) &&
                       this->VerifyResult( TestResults[1], BBSet, 70.0 ),
                       "AABB_Unit_X_RayTest" );
             }//Test 1
@@ -162,7 +162,7 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Entity02, 20.0 ),
+                      this->VerifyResult( TestResults[0], Item02, 20.0 ),
                       "AABB_Neg_Unit_X_RayTest" );
             }//Test 2
 
@@ -170,8 +170,8 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Y());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity03, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Entity12, 90.0 ),
+                      this->VerifyResult( TestResults[0], Item03, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Item12, 90.0 ),
                       "AABB_Unit_Y_RayTest" );
             }//Test 3
 
@@ -186,15 +186,15 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity10, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Entity11, 45.0 ),
+                      this->VerifyResult( TestResults[0], Item10, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Item11, 45.0 ),
                       "AABB_Unit_Z_RayTest_MultiHit" );
             }//Test 5
 
             {//Test 6
                 Ray AABBTestRay(ZeroVec,Vector3::Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstAABBResult(AABBTestRay);
-                TEST( this->VerifyResult( TestResult, Entity10, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Item10, 20.0 ),
                       "AABB_Unit_Z_RayTest_SingleHit" );
             }//Test 6
 
@@ -202,15 +202,15 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity04, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Entity05, 40.0 ),
+                      this->VerifyResult( TestResults[0], Item04, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Item05, 40.0 ),
                       "AABB_Neg_Unit_Z_RayTest_MultiHit" );
             }//Test 7
 
             {//Test 8
                 Ray AABBTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstAABBResult(AABBTestRay);
-                TEST( this->VerifyResult( TestResult, Entity04, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Item04, 20.0 ),
                       "AABB_Neg_Unit_Z_RayTest_SingleHit" );
             }//Test 8
 
@@ -218,7 +218,7 @@ public:
                 Ray AABBTestRay(ZeroVec,Vector3(45.0,50.0,50.0).Normalize());//Setting 1,1,1 here doesn't work because Ogre's ray test method is more susceptible to precision loss than Bullet.
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllAABBResults(AABBTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Entity07, 83.8152618 ),
+                      this->VerifyResult( TestResults[0], Item07, 83.8152618 ),
                       "AABB_Unit_X_Y_Z_RayTest" );
             }//Test 9
         }//AABB Tests
@@ -228,7 +228,7 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity01, 20.0 ) &&
+                      this->VerifyResult( TestResults[0], Item01, 20.0 ) &&
                       this->VerifyResult( TestResults[1], BBSet, 75.0 ),
                       "Shape_Unit_X_RayTest" );
             }//Test 1
@@ -237,7 +237,7 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_X());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Entity02, 20.0 ),
+                      this->VerifyResult( TestResults[0], Item02, 20.0 ),
                       "Shape_Neg_Unit_X_RayTest" );
             }//Test 2
 
@@ -245,8 +245,8 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Unit_Y());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity03, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Entity12, 92.9289398 ),
+                      this->VerifyResult( TestResults[0], Item03, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Item12, 92.9289398 ),
                       "Shape_Unit_Y_RayTest" );
             }//Test 3
 
@@ -275,15 +275,15 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 2 &&
-                      this->VerifyResult( TestResults[0], Entity04, 20.0 ) &&
-                      this->VerifyResult( TestResults[1], Entity05, 40.0 ),
+                      this->VerifyResult( TestResults[0], Item04, 20.0 ) &&
+                      this->VerifyResult( TestResults[1], Item05, 40.0 ),
                       "Shape_Neg_Unit_Z_RayTest_MultiHit" );
             }//Test 7
 
             {//Test 8
                 Ray ShapeTestRay(ZeroVec,Vector3::Neg_Unit_Z());
                 RayQueryHit TestResult = TestRayQuery.GetFirstShapeResult(ShapeTestRay);
-                TEST( this->VerifyResult( TestResult, Entity04, 20.0 ),
+                TEST( this->VerifyResult( TestResult, Item04, 20.0 ),
                       "Shape_Neg_Unit_Z_RayTest_SingleHit" );
             }//Test 8
 
@@ -291,14 +291,14 @@ public:
                 Ray ShapeTestRay(ZeroVec,Vector3(45.0,50.0,50.0).Normalize());
                 RayQuery::ResultContainer TestResults = TestRayQuery.GetAllShapeResults(ShapeTestRay);
                 TEST( TestResults.size() == 1 &&
-                      this->VerifyResult( TestResults[0], Entity07, 83.8152695 ),
+                      this->VerifyResult( TestResults[0], Item07, 83.8152695 ),
                       "Shape_Unit_X_Y_Z_RayTest" );
             }//Test 9
         }//Shape (mesh) Tests
 
         {//Utility Tests
             {//Get/SetTypes Test
-                RayQuery::FilterFunction ProxFilter = [](WorldProxy* ToFilter) {
+                RayQuery::FilterFunction ProxFilter = [](EntityProxy* ToFilter) {
                     return ( ToFilter->GetComponentType() == Mezzanine::CT_Graphics_BillboardSetProxy );
                 };
                 TestRayQuery.SetFilterFunction(ProxFilter);
@@ -318,7 +318,7 @@ public:
 
             {//Get/SetQuery Test
                 UInt32 QueryFilter = 2;
-                Entity01->SetQueryMask( Entity01->GetQueryMask() & ~QueryFilter );
+                Item01->SetQueryMask( Item01->GetQueryMask() & ~QueryFilter );
                 BBSet->SetQueryMask( QueryFilter );
                 TestRayQuery.SetQueryFilter(QueryFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
