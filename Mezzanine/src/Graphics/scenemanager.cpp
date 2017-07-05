@@ -48,7 +48,7 @@
 
 #include "areaeffectmanager.h"
 #include "plane.h"
-#include "worldentity.h"
+#include "entity.h"
 #include "stringtool.h"
 #include "entresol.h"
 #include "world.h"
@@ -56,7 +56,7 @@
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/cameraproxy.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/linegroupproxy.h"
 #include "Graphics/particlesystemproxy.h"
@@ -444,30 +444,30 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy()
+        ItemProxy* SceneManager::CreateItemProxy()
         {
-            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),this);
+            ItemProxy* NewProxy = new ItemProxy(this->ProxyIDGen.GenerateID(),this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
+        ItemProxy* SceneManager::CreateItemProxy(Mesh* TheMesh)
         {
-            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),TheMesh,this);
+            ItemProxy* NewProxy = new ItemProxy(this->ProxyIDGen.GenerateID(),TheMesh,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName)
+        ItemProxy* SceneManager::CreateItemProxy(const String& MeshName, const String& GroupName)
         {
-            EntityProxy* NewProxy = new EntityProxy(this->ProxyIDGen.GenerateID(),MeshName,GroupName,this);
+            ItemProxy* NewProxy = new ItemProxy(this->ProxyIDGen.GenerateID(),MeshName,GroupName,this);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(const XML::Node& SelfRoot)
+        ItemProxy* SceneManager::CreateItemProxy(const XML::Node& SelfRoot)
         {
-            EntityProxy* NewProxy = new EntityProxy(SelfRoot,this);
+            ItemProxy* NewProxy = new ItemProxy(SelfRoot,this);
             this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
             this->Proxies.push_back(NewProxy);
             return NewProxy;
@@ -525,11 +525,11 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        WorldEntityComponent* SceneManager::CreateComponent(const XML::Node& SelfRoot)
+        EntityComponent* SceneManager::CreateComponent(const XML::Node& SelfRoot)
         {
             if( SelfRoot.Name() == BillboardSetProxy::GetSerializableName() ) return this->CreateBillboardSetProxy(SelfRoot);
             else if( SelfRoot.Name() == CameraProxy::GetSerializableName() ) return this->CreateCamera(SelfRoot);
-            else if( SelfRoot.Name() == EntityProxy::GetSerializableName() ) return this->CreateEntityProxy(SelfRoot);
+            else if( SelfRoot.Name() == ItemProxy::GetSerializableName() ) return this->CreateItemProxy(SelfRoot);
             else if( SelfRoot.Name() == LightProxy::GetSerializableName() ) return this->CreateLightProxy(SelfRoot);
             else if( SelfRoot.Name() == LineGroupProxy::GetSerializableName() ) return this->CreateLineGroupProxy(SelfRoot);
             else if( SelfRoot.Name() == ParticleSystemProxy::GetSerializableName() ) return this->CreateParticleSystemProxy(SelfRoot);
@@ -542,7 +542,7 @@ namespace Mezzanine
         RenderableProxy* SceneManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        WorldEntityComponent* SceneManager::GetComponentByID(const UInt32 ID) const
+        EntityComponent* SceneManager::GetComponentByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
@@ -575,12 +575,12 @@ namespace Mezzanine
             return ComponentVec(this->Proxies.begin(),this->Proxies.end());
         }
 
-        void SceneManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
+        void SceneManager::DestroyComponent(EntityComponent* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
@@ -598,7 +598,7 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( (*ProxIt)->GetComponentType() & Types ) {
-                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
@@ -616,7 +616,7 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                Entity* Parent = (*ProxIt)->GetParentEntity();
                 if( Parent )
                     Parent->RemoveComponent( (*ProxIt) );
 

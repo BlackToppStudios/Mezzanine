@@ -54,7 +54,7 @@
 namespace Mezzanine
 {
     Actor::Actor() :
-        WorldEntity("",NULL)
+        Entity("",NULL)
         {  }
 
     Actor::~Actor()

@@ -331,7 +331,7 @@ namespace Mezzanine
 
             void Listener::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
                 XML::Node PropertiesNode = SelfRoot.AppendChild( Listener::GetSerializableName() + "Properties" );
 
@@ -350,7 +350,7 @@ namespace Mezzanine
 
             void Listener::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             {
-                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
                 XML::Attribute CurrAttrib;
                 XML::Node PropertiesNode = SelfRoot.GetChild( Listener::GetSerializableName() + "Properties" );

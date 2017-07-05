@@ -41,7 +41,7 @@
 #define _rayquery_h
 
 #include "ray.h"
-#include "worldproxy.h"
+#include "entityproxy.h"
 #include "entitycomponentmanager.h"
 
 namespace Mezzanine
@@ -61,7 +61,7 @@ namespace Mezzanine
         /// @brief The index of the child item of the hit Object.
         Integer SubObject;
         /// @brief A pointer to the object hit.
-        WorldProxy* Object;
+        EntityProxy* Object;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
@@ -92,8 +92,8 @@ namespace Mezzanine
             { return this->IsValid() && !this->Object->IsStatic(); }
 
         /// @brief Gets the parent world object of the proxy hit by this ray query.
-        /// @return Returns a WorldEntity pointer to the parent of the it proxy.
-        WorldEntity* GetObjectParent() const
+        /// @return Returns a Entity pointer to the parent of the it proxy.
+        Entity* GetObjectParent() const
             { return this->Object->GetParentEntity(); }
         /// @brief Gets the hit location in world space.
         /// @return Returns a Vector3 containing the world location of the ray hit.
@@ -214,7 +214,7 @@ namespace Mezzanine
         // Member Types
 
         /// @brief Function type for the optional custom filter.
-        using FilterFunction = std::function<Boole(WorldProxy*)>;
+        using FilterFunction = std::function<Boole(EntityProxy*)>;
         /// @brief Convenience type for the container of results produced by this class.
         using ResultContainer = std::vector<RayQueryHit>;
         /// @brief Iterator type for results returned by this class.

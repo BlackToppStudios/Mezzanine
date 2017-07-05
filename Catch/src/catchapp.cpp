@@ -59,9 +59,9 @@ CatchApp::CatchApp() :
     this->Picker.Initialize( static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) )->GetSystemMouse(),
                              new Graphics::RenderableRayQuery( static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) ) ),
                              new PlaneDragger(PlaneOfPlay) );
-    RayQuery::FilterFunction QueryFilter = [this](WorldProxy* ToFilter) {
-        WorldEntity* ParentObject = ToFilter->GetParentEntity();
-        if( ParentObject->GetType() & Mezzanine::WE_AllDebris ) {
+    RayQuery::FilterFunction QueryFilter = [this](EntityProxy* ToFilter) {
+        Entity* ParentObject = ToFilter->GetParentEntity();
+        if( ParentObject->GetType() & Mezzanine::ET_AllDebris ) {
             return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
         }
         return false;
@@ -1937,7 +1937,7 @@ void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
     }
 }
 
-Boole CatchApp::IsAThrowable(WorldEntity* Throwable) const
+Boole CatchApp::IsAThrowable(Entity* Throwable) const
 {
     for( ThrowableContainer::const_iterator ObjIt = this->ThrownItems.begin() ; ObjIt != this->ThrownItems.end() ; ObjIt++ )
     {

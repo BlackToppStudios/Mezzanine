@@ -72,26 +72,26 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
-        /// @copydoc Mezzanine::WorldEntity::GetType() const
-        virtual WorldEntityType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetType() const
+        virtual EntityType GetType() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldEntity::ProtoSerializeProperties(XML::Node&) const
+        /// @copydoc Mezzanine::Entity::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldEntity::ProtoDeSerializeProperties(const XML::Node&)
+        /// @copydoc Mezzanine::Entity::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldEntity::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::Entity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldEntity::GetSerializableName()
+        /// @copydoc Mezzanine::Entity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldEntity::_Update(const Whole)
+        /// @copydoc Mezzanine::Entity::_Update(const Whole)
         virtual void _Update(const Whole Delta);
     };//RaycastVehicle
 

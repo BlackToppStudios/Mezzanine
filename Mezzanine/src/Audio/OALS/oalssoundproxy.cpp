@@ -985,12 +985,12 @@ namespace Mezzanine
 
             void OALS::SoundProxy::ProtoSerialize(XML::Node& ParentNode) const
             {
-                this->WorldProxy::ProtoSerialize(ParentNode); // Temporary
+                this->EntityProxy::ProtoSerialize(ParentNode); // Temporary
             }
 
             void OALS::SoundProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
                 XML::Node PropertiesNode = SelfRoot.AppendChild( OALS::SoundProxy::GetSerializableName() + "Properties" );
 
@@ -1038,12 +1038,12 @@ namespace Mezzanine
 
             void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
             {
-                this->WorldProxy::ProtoDeSerialize(SelfRoot); // Temporary
+                this->EntityProxy::ProtoDeSerialize(SelfRoot); // Temporary
             }
 
             void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             {
-                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
                 XML::Attribute CurrAttrib;
                 XML::Node PropertiesNode = SelfRoot.GetChild( OALS::SoundProxy::GetSerializableName() + "Properties" );

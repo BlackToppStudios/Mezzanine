@@ -25,11 +25,11 @@ LevelZone::~LevelZone()
 
 void LevelZone::CreateLevelZone()
 {
-    Graphics::EntityProxy* EntProx = NULL;
+    Graphics::ItemProxy* ItemProx = NULL;
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
     if( SceneMan != NULL ) {
-        EntProx = SceneMan->CreateEntityProxy();
-        this->AddComponent(EntProx);
+        ItemProx = SceneMan->CreateItemProxy();
+        this->AddComponent(ItemProx);
     }
 }
 
@@ -41,13 +41,13 @@ void LevelZone::DestroyLevelZone()
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
 
-Mezzanine::WorldEntityType LevelZone::GetType() const
-    { return Mezzanine::WE_AreaEffectUnknown; }
+Mezzanine::EntityType LevelZone::GetType() const
+    { return Mezzanine::ET_AreaEffectUnknown; }
 
-Graphics::EntityProxy* LevelZone::GetEntityProxy() const
-    { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
+Graphics::ItemProxy* LevelZone::GetItemProxy() const
+    { return static_cast<Graphics::ItemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ItemProxy,0) ); }
 
-Boole LevelZone::IsInside(WorldEntity* Object)
+Boole LevelZone::IsInside(Entity* Object)
     { return ( std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), Object ) != this->OverlappingObjects.end() ); }
 
 Boole LevelZone::IsEmpty()

@@ -48,7 +48,7 @@
 namespace Mezzanine
 {
     class World;
-    class WorldEntity;
+    class Entity;
     namespace Input
     {
         class Mouse;
@@ -91,16 +91,16 @@ namespace Mezzanine
         /// @return Returns a pointer to the proxy that will be dragged.
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const = 0;
 
-        /// @brief Checks the parent WorldEntity (if available) for more suitable proxies to be dragged.
+        /// @brief Checks the parent Entity (if available) for more suitable proxies to be dragged.
         /// @param Target A pointer to the target to be dragged.
-        /// @return Returns a pointer to a sibling WorldProxy from the parent WorldEntity if a better match is found, or the Target parameter if not.
-        virtual WorldProxy* GetBestProxy(WorldProxy* Target) const = 0;
+        /// @return Returns a pointer to a sibling EntityProxy from the parent Entity if a better match is found, or the Target parameter if not.
+        virtual EntityProxy* GetBestProxy(EntityProxy* Target) const = 0;
         /// @brief Gets the object currently being dragged by this dragger.
         /// @return Returns a pointer to the object currently being dragged, or NULL if no object is being dragged.
-        virtual WorldProxy* GetCurrentTarget() const = 0;
+        virtual EntityProxy* GetCurrentTarget() const = 0;
         /// @brief Gets the last object that was dragged by this dragger.
-        /// @return Returns a pointer to the last WorldProxy moved by this dragger.
-        virtual WorldProxy* GetLastTarget() const = 0;
+        /// @return Returns a pointer to the last EntityProxy moved by this dragger.
+        virtual EntityProxy* GetLastTarget() const = 0;
 
         /// @brief Gets whether or not the dragger is currently dragging a target.
         /// @return Returns true if an object is currently being manipulated by this dragger, false otherwise.
@@ -111,7 +111,7 @@ namespace Mezzanine
         /// @param Offset The local space location of where the object was "grabbed".
         /// @param MouseRay A ray cast from the mouse position on the screen to the world.
         /// @return Returns true if an object was grappled for dragging, false if the target failed to meet draggable criteria.
-        virtual Boole StartDragging(WorldProxy* Target, const Vector3& Offset, const Ray& MouseRay) = 0;
+        virtual Boole StartDragging(EntityProxy* Target, const Vector3& Offset, const Ray& MouseRay) = 0;
         /// @brief Moves the object being dragged according to the mouse movement.
         /// @param MouseRay A ray cast from the mouse position on the screen to the world.
         /// @param Cursor A pointer to the mouse being used to drag the target.
@@ -166,18 +166,18 @@ namespace Mezzanine
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;
         /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const;
-        /// @copydoc MousePickDragger::GetBestProxy(WorldProxy*) const
-        virtual WorldProxy* GetBestProxy(WorldProxy* Target) const;
+        /// @copydoc MousePickDragger::GetBestProxy(EntityProxy*) const
+        virtual EntityProxy* GetBestProxy(EntityProxy* Target) const;
         /// @copydoc MousePickDragger::GetCurrentTarget() const
-        virtual WorldProxy* GetCurrentTarget() const;
+        virtual EntityProxy* GetCurrentTarget() const;
         /// @copydoc MousePickDragger::GetLastTarget() const
-        virtual WorldProxy* GetLastTarget() const;
+        virtual EntityProxy* GetLastTarget() const;
 
         /// @copydoc MousePickDragger::IsDragging() const
         virtual Boole IsDragging() const;
 
-        /// @copydoc MousePickDragger::StartDragging(WorldProxy*, const Vector3&, const Ray&)
-        virtual Boole StartDragging(WorldProxy* Target, const Vector3& Offset, const Ray& MouseRay);
+        /// @copydoc MousePickDragger::StartDragging(EntityProxy*, const Vector3&, const Ray&)
+        virtual Boole StartDragging(EntityProxy* Target, const Vector3& Offset, const Ray& MouseRay);
         /// @copydoc MousePickDragger::ContinueDragging(const Ray&, Input::Mouse*)
         virtual void ContinueDragging(const Ray& MouseRay, Input::Mouse* Cursor);
         /// @copydoc MousePickDragger::StopDragging()
@@ -237,18 +237,18 @@ namespace Mezzanine
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;
         /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets, const FilterDelegate& Filter) const;
-        /// @copydoc MousePickDragger::GetBestProxy(WorldProxy*) const
-        virtual WorldProxy* GetBestProxy(WorldProxy* Target) const;
+        /// @copydoc MousePickDragger::GetBestProxy(EntityProxy*) const
+        virtual EntityProxy* GetBestProxy(EntityProxy* Target) const;
         /// @copydoc MousePickDragger::GetCurrentTarget() const
-        virtual WorldProxy* GetCurrentTarget() const;
+        virtual EntityProxy* GetCurrentTarget() const;
         /// @copydoc MousePickDragger::GetLastTarget() const
-        virtual WorldProxy* GetLastTarget() const;
+        virtual EntityProxy* GetLastTarget() const;
 
         /// @copydoc MousePickDragger::IsDragging() const
         virtual Boole IsDragging() const;
 
-        /// @copydoc MousePickDragger::StartDragging(WorldProxy*, const Vector3&, const Ray&)
-        virtual Boole StartDragging(WorldProxy* Target, const Vector3& Offset, const Ray& MouseRay);
+        /// @copydoc MousePickDragger::StartDragging(EntityProxy*, const Vector3&, const Ray&)
+        virtual Boole StartDragging(EntityProxy* Target, const Vector3& Offset, const Ray& MouseRay);
         /// @copydoc MousePickDragger::ContinueDragging(const Ray&, Input::Mouse*)
         virtual void ContinueDragging(const Ray& MouseRay, Input::Mouse* Cursor);
         /// @copydoc MousePickDragger::StopDragging()

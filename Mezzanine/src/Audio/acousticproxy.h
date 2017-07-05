@@ -43,7 +43,7 @@
 #ifndef _audioacousticproxy_h
 #define _audioacousticproxy_h
 
-#include "worldproxy.h"
+#include "entityproxy.h"
 
 namespace Mezzanine
 {
@@ -52,7 +52,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for proxies belonging the Audio subsystem.
         ///////////////////////////////////////
-        class AcousticProxy : public WorldProxy
+        class AcousticProxy : public EntityProxy
         {
         public:
             /// @brief Blank constructor.
@@ -61,7 +61,7 @@ namespace Mezzanine
             /// @brief ID constructor.
             /// @param ID The unique ID of this proxy.
             AcousticProxy(const UInt32 ID) :
-                WorldProxy(ID)
+                EntityProxy(ID)
                 {  }
             /// @brief Class destructor.
             virtual ~AcousticProxy()

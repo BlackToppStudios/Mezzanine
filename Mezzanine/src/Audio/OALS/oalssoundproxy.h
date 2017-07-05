@@ -170,7 +170,7 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc WorldProxy::GetComponentType() const
+                /// @copydoc EntityProxy::GetComponentType() const
                 virtual Mezzanine::ComponentType GetComponentType() const;
 
                 /// @copydoc iSound::IsValid() const
@@ -203,12 +203,12 @@ namespace Mezzanine
                 /// @copydoc Audio::SoundProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
 
-                /// @copydoc WorldProxy::IsInWorld()
+                /// @copydoc EntityProxy::IsInWorld()
                 virtual Boole IsInWorld() const;
-                /// @copydoc WorldProxy::IsStatic() const
+                /// @copydoc EntityProxy::IsStatic() const
                 virtual Boole IsStatic() const;
 
-                /// @copydoc WorldEntityComponent::GetCreator() const
+                /// @copydoc EntityComponent::GetCreator() const
                 virtual EntityComponentManager* GetCreator() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
@@ -295,49 +295,49 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
-                /// @copydoc WorldProxy::SetTransform(const Transform&)
+                /// @copydoc EntityProxy::SetTransform(const Transform&)
                 virtual void SetTransform(const Transform& Trans);
-                /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
+                /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
                 virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
-                /// @copydoc WorldProxy::GetTransform() const
+                /// @copydoc EntityProxy::GetTransform() const
                 virtual Transform GetTransform() const;
 
-                /// @copydoc WorldProxy::SetLocation(const Vector3&)
+                /// @copydoc EntityProxy::SetLocation(const Vector3&)
                 virtual void SetLocation(const Vector3& Loc);
-                /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
+                /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
                 virtual void SetLocation(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::GetLocation() const
+                /// @copydoc EntityProxy::GetLocation() const
                 virtual Vector3 GetLocation() const;
-                /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
+                /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
                 virtual void SetOrientation(const Quaternion& Ori);
-                /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
+                /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
                 virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-                /// @copydoc WorldProxy::GetOrientation() const
+                /// @copydoc EntityProxy::GetOrientation() const
                 virtual Quaternion GetOrientation() const;
-                /// @copydoc WorldProxy::SetScale(const Vector3&)
+                /// @copydoc EntityProxy::SetScale(const Vector3&)
                 virtual void SetScale(const Vector3& Sc);
-                /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
+                /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
                 virtual void SetScale(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::GetScale() const
+                /// @copydoc EntityProxy::GetScale() const
                 virtual Vector3 GetScale() const;
 
-                /// @copydoc WorldProxy::Translate(const Vector3&)
+                /// @copydoc EntityProxy::Translate(const Vector3&)
                 virtual void Translate(const Vector3& Trans);
-                /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
+                /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
                 virtual void Translate(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::Yaw(const Real)
+                /// @copydoc EntityProxy::Yaw(const Real)
                 virtual void Yaw(const Real Angle);
-                /// @copydoc WorldProxy::Pitch(const Real)
+                /// @copydoc EntityProxy::Pitch(const Real)
                 virtual void Pitch(const Real Angle);
-                /// @copydoc WorldProxy::Roll(const Real)
+                /// @copydoc EntityProxy::Roll(const Real)
                 virtual void Roll(const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
+                /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
                 virtual void Rotate(const Vector3& Axis, const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Quaternion&)
+                /// @copydoc EntityProxy::Rotate(const Quaternion&)
                 virtual void Rotate(const Quaternion& Rotation);
-                /// @copydoc WorldProxy::Scale(const Vector3&)
+                /// @copydoc EntityProxy::Scale(const Vector3&)
                 virtual void Scale(const Vector3& Scale);
-                /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
+                /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
                 virtual void Scale(const Real X, const Real Y, const Real Z);
 
                 ///////////////////////////////////////////////////////////////////////////////
@@ -367,9 +367,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+                /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
                 virtual void ProtoSerialize(XML::Node& ParentNode) const;
-                /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+                /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
                 virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
                 /// @brief Convert the Decoder used by this class to an XML::Node ready for serialization.
                 /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -381,9 +381,9 @@ namespace Mezzanine
                 /// @param SelfRoot The root node containing all the serialized data for this instance.
                 virtual void ProtoSerializeEffects(XML::Node& SelfRoot) const;
 
-                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node)
+                /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
                 virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-                /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+                /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
                 virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
                 /// @brief Take the data stored in an XML Node and overwrite the Decoder used by this object with it.
                 /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
@@ -395,7 +395,7 @@ namespace Mezzanine
                 /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
                 virtual void ProtoDeSerializeEffects(const XML::Node& SelfRoot);
 
-                /// @copydoc WorldProxy::GetDerivedSerializableName() const
+                /// @copydoc EntityProxy::GetDerivedSerializableName() const
                 virtual String GetDerivedSerializableName() const;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.

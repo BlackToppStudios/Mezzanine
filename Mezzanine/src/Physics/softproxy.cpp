@@ -118,7 +118,7 @@ namespace Mezzanine
 
             this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
             PhysicsObject=PhysicsSoftBody;
-            PhysicsObject->setUserPointer( (WorldEntity*)this );
+            PhysicsObject->setUserPointer( (Entity*)this );
             PhysicsShape = PhysicsSoftBody->getCollisionShape();
             PhysicsSoftBody->setTotalMass(mass, true);
             PhysicsSoftBody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
@@ -130,7 +130,7 @@ namespace Mezzanine
             CreateManualMesh(CurMesh);
 
             this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
-            Ogre::Any OgreRef( (WorldEntity*)this );
+            Ogre::Any OgreRef( (Entity*)this );
             GraphicsObject->setUserAny(OgreRef);
 
             this->PhysicsSoftBody->m_clusters[0]->m_collide = true;// */

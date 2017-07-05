@@ -69,7 +69,7 @@ namespace Mezzanine
         class RenderableProxy;
         class BillboardSetProxy;
         class CameraProxy;
-        class EntityProxy;
+        class ItemProxy;
         class LightProxy;
         class LineGroupProxy;
         class ParticleSystemProxy;
@@ -275,22 +275,22 @@ namespace Mezzanine
             /// @return Returns a pointer to the created camera.
             CameraProxy* CreateCamera(const XML::Node& SelfRoot);
 
-            /// @brief Creates a new EntityProxy.
+            /// @brief Creates a new ItemProxy.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy();
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy();
+            /// @brief Creates a new ItemProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(Mesh* TheMesh);
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy(Mesh* TheMesh);
+            /// @brief Creates a new ItemProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy(const String& MeshName, const String& GroupName);
+            /// @brief Creates a new ItemProxy.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
+            ItemProxy* CreateItemProxy(const XML::Node& SelfRoot);
 
             /// @brief Creates a new LightProxy.
             /// @return Returns a pointer to the created proxy.
@@ -322,7 +322,7 @@ namespace Mezzanine
             ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot);
 
             /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
-            WorldEntityComponent* CreateComponent(const XML::Node& SelfRoot);
+            EntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -333,7 +333,7 @@ namespace Mezzanine
             RenderableProxy* GetProxy(const UInt32 Index) const;
 
             /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
-            WorldEntityComponent* GetComponentByID(const UInt32 ID) const;
+            EntityComponent* GetComponentByID(const UInt32 ID) const;
 
             /// @copydoc EntityComponentManager::GetNumComponents() const
             UInt32 GetNumComponents() const;
@@ -342,8 +342,8 @@ namespace Mezzanine
             /// @copydoc EntityComponentManager::GetComponents() const
             EntityComponentManager::ComponentVec GetComponents() const;
 
-            /// @copydoc EntityComponentManager::DestroyComponent(WorldEntityComponent*)
-            void DestroyComponent(WorldEntityComponent* ToBeDestroyed);
+            /// @copydoc EntityComponentManager::DestroyComponent(EntityComponent*)
+            void DestroyComponent(EntityComponent* ToBeDestroyed);
             /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
             void DestroyAllComponents(const UInt32 Types);
             /// @copydoc EntityComponentManager::DestroyAllComponents()

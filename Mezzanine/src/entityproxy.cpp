@@ -37,11 +37,11 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldproxy_cpp
-#define _worldproxy_cpp
+#ifndef _entityproxy_cpp
+#define _entityproxy_cpp
 
-#include "worldproxy.h"
-#include "worldentity.h"
+#include "entityproxy.h"
+#include "entity.h"
 
 #include "enumerations.h"
 #include "exception.h"
@@ -50,11 +50,11 @@
 
 namespace Mezzanine
 {
-    WorldProxy::WorldProxy()
+    EntityProxy::EntityProxy()
         {  }
 
-    WorldProxy::WorldProxy(const UInt32 ID) :
-        WorldEntityComponent(ID)
+    EntityProxy::EntityProxy(const UInt32 ID) :
+        EntityComponent(ID)
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -63,23 +63,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    void WorldProxy::ProtoSerialize(XML::Node& ParentNode) const
+    void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
     {
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
         this->ProtoSerializeInWorld(SelfRoot);
         this->ProtoSerializeProperties(SelfRoot);
     }
 
-    void WorldProxy::ProtoSerializeInWorld(XML::Node& SelfRoot) const
+    void EntityProxy::ProtoSerializeInWorld(XML::Node& SelfRoot) const
     {
         if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-            SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName(),true);
+            SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName(),true);
         }
     }
 
-    void WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+    void EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldProxy::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Properties" );
 
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
         {
@@ -92,17 +92,17 @@ namespace Mezzanine
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName() + "Properties",true);
+            SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName() + "Properties",true);
         }
     }
 
-    void WorldProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+    void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
         this->ProtoDeSerializeProperties(SelfRoot);
         this->ProtoDeSerializeInWorld(SelfRoot);
     }
 
-    void WorldProxy::ProtoDeSerializeInWorld(const XML::Node& SelfRoot)
+    void EntityProxy::ProtoDeSerializeInWorld(const XML::Node& SelfRoot)
     {
         XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
         if( !InWorldAttrib.Empty() && StringTools::ConvertToBool( InWorldAttrib.AsString() ) ) {
@@ -110,10 +110,10 @@ namespace Mezzanine
         }
     }
 
-    void WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+    void EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         XML::Attribute CurrAttrib;
-        XML::Node PropertiesNode = SelfRoot.GetChild( WorldProxy::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.GetChild( EntityProxy::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -135,18 +135,18 @@ namespace Mezzanine
                     this->SetScale(Scale);
                 }
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EntityProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EntityProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 
-    String WorldProxy::GetDerivedSerializableName() const
-        { return WorldProxy::GetSerializableName(); }
+    String EntityProxy::GetDerivedSerializableName() const
+        { return EntityProxy::GetSerializableName(); }
 
-    String WorldProxy::GetSerializableName()
-        { return "WorldProxy"; }
+    String EntityProxy::GetSerializableName()
+        { return "EntityProxy"; }
 }//Mezzanine
 
 #endif

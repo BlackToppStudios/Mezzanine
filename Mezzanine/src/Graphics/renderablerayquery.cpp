@@ -41,7 +41,7 @@
 #define _graphicsrenderablerayquery_cpp
 
 #include "Graphics/renderablerayquery.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/particlesystemproxy.h"
 #include "Graphics/scenemanager.h"
@@ -243,7 +243,7 @@ namespace Mezzanine
             Integer ResultSubMesh = -1;
             RayResult Result(MathTools::PS_Neither,Vector3(0,0,0));
 
-            Mesh* ObjMesh = static_cast<EntityProxy*>( Prox )->GetMesh();
+            Mesh* ObjMesh = static_cast<ItemProxy*>( Prox )->GetMesh();
             Whole NumSubMeshes = ObjMesh->GetNumSubMeshes();
             for( Whole CurrSubMesh = 0 ; CurrSubMesh < NumSubMeshes ; ++CurrSubMesh )
             {

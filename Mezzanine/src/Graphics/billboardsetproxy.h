@@ -96,9 +96,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
-            /// @copydoc WorldProxy::IsStatic() const
+            /// @copydoc EntityProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -208,25 +208,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the Billboards of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeBillboards(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node)
+            /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the Billboards of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeBillboards(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////

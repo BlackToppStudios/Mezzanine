@@ -37,22 +37,22 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _entitycomponentmanager_h
-#define _entitycomponentmanager_h
+#ifndef _componentmanager_h
+#define _componentmanager_h
 
 #include "worldmanager.h"
 
 namespace Mezzanine
 {
-    class WorldEntityComponent;
+    class EntityComponent;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is an interface class for a world manager responsible for the management of WorldEntityComponent instances.
+    /// @brief This is an interface class for a world manager responsible for the management of EntityComponent instances.
     ///////////////////////////////////////
     class MEZZ_LIB EntityComponentManager : public WorldManager
     {
     public:
-        /// @brief Convenience type for a vector of stored WorldEntityComponent instances.
-        using ComponentVec = std::vector<WorldEntityComponent*>;
+        /// @brief Convenience type for a vector of stored EntityComponent instances.
+        using ComponentVec = std::vector<EntityComponent*>;
     protected:
     public:
         /// @brief Class constructor.
@@ -66,22 +66,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Component Management
 
-        /// @brief Creates a new WorldEntityComponent via XML.
+        /// @brief Creates a new EntityComponent via XML.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created component.
-        virtual WorldEntityComponent* CreateComponent(const XML::Node& SelfRoot) = 0;
+        virtual EntityComponent* CreateComponent(const XML::Node& SelfRoot) = 0;
 
-        /// @brief Gets the WorldEntityComponent via its ID.
+        /// @brief Gets the EntityComponent via its ID.
         /// @param ID The unique identifier belonging to the component.
-        /// @return Returns a pointer to the WorldEntityComponent with the specified ID.
-        virtual WorldEntityComponent* GetComponentByID(const UInt32 ID) const = 0;
+        /// @return Returns a pointer to the EntityComponent with the specified ID.
+        virtual EntityComponent* GetComponentByID(const UInt32 ID) const = 0;
 
-        /// @brief Gets the number of WorldEntityComponent instances in this manager.
-        /// @return Returns a UInt32 representing the number of WorldEntityComponent instances contained in this manager.
+        /// @brief Gets the number of EntityComponent instances in this manager.
+        /// @return Returns a UInt32 representing the number of EntityComponent instances contained in this manager.
         virtual UInt32 GetNumComponents() const = 0;
-        /// @brief Gets the number of WorldEntityComponent instances of a certain type(s) in this manager.
-        /// @param Types A bitmask of all the WorldEntityComponent types to check for.  See the ComponentType enum for more information.
-        /// @return Returns the number of WorldEntityComponent instances of the specified types are being stored by this manager.
+        /// @brief Gets the number of EntityComponent instances of a certain type(s) in this manager.
+        /// @param Types A bitmask of all the EntityComponent types to check for.  See the ComponentType enum for more information.
+        /// @return Returns the number of EntityComponent instances of the specified types are being stored by this manager.
         virtual UInt32 GetNumComponents(const UInt32 Types) const = 0;
         /// @brief Gets all the components being stored by this manager.
         /// @warning DO NOT delete any of the components returned by this method directly.  You will have a bad time.
@@ -89,13 +89,13 @@ namespace Mezzanine
         /// @return Returns a vector of all the components in this manager.
         virtual EntityComponentManager::ComponentVec GetComponents() const = 0;
 
-        /// @brief Deletes a WorldEntityComponent.
-        /// @param ToBeDestroyed A pointer to the WorldEntityComponent you want deleted.
-        virtual void DestroyComponent(WorldEntityComponent* ToBeDestroyed) = 0;
-        /// @brief Deletes all stored WorldEntityComponent instances of the specified type(s).
-        /// @param Types A bitmask of all the WorldEntityComponent types to be destroyed.
+        /// @brief Deletes a EntityComponent.
+        /// @param ToBeDestroyed A pointer to the EntityComponent you want deleted.
+        virtual void DestroyComponent(EntityComponent* ToBeDestroyed) = 0;
+        /// @brief Deletes all stored EntityComponent instances of the specified type(s).
+        /// @param Types A bitmask of all the EntityComponent types to be destroyed.
         virtual void DestroyAllComponents(const UInt32 Types) = 0;
-        /// @brief Deletes all stored WorldEntityComponent instances.
+        /// @brief Deletes all stored EntityComponent instances.
         virtual void DestroyAllComponents() = 0;
     };//EntityComponentManager
 }//Mezzanine

@@ -46,7 +46,7 @@
 #include "rigiddebris.h"
 
 #include "Graphics/scenemanager.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 
 #include "Physics/physicsmanager.h"
 #include "Physics/rigidproxy.h"
@@ -91,11 +91,11 @@ namespace Mezzanine
             this->SetPrimaryProxy( RigProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy();
-            this->AddComponent( EntProx );
+            ItemProx = SceneMan->CreateItemProxy();
+            this->AddComponent( ItemProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -113,11 +113,11 @@ namespace Mezzanine
             this->SetPrimaryProxy( RigProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy(DebMesh);
-            this->AddComponent( EntProx );
+            ItemProx = SceneMan->CreateItemProxy(DebMesh);
+            this->AddComponent( ItemProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -134,11 +134,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldEntityType RigidDebris::GetType() const
-        { return Mezzanine::WE_RigidDebris; }
+    EntityType RigidDebris::GetType() const
+        { return Mezzanine::ET_RigidDebris; }
 
-    Graphics::EntityProxy* RigidDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetComponent(Mezzanine::CT_Graphics_EntityProxy,0) ); }
+    Graphics::ItemProxy* RigidDebris::GetItemProxy() const
+        { return static_cast<Graphics::ItemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ItemProxy,0) ); }
 
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
         { return static_cast<Physics::RigidProxy*>( this->GetComponent(Mezzanine::CT_Physics_RigidProxy,0) ); }

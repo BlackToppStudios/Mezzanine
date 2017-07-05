@@ -90,9 +90,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
-            /// @copydoc WorldProxy::IsStatic() const
+            /// @copydoc EntityProxy::IsStatic() const
             virtual Boole IsStatic() const;
 
             /// @brief Sets the direction the light will be emitted from this source.
@@ -194,14 +194,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////

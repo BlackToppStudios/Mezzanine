@@ -41,7 +41,7 @@
 #ifndef _terrain_h
 #define _terrain_h
 
-#include "worldentity.h"
+#include "entity.h"
 
 namespace Mezzanine
 {
@@ -50,7 +50,7 @@ namespace Mezzanine
     /// @details The terrain classes are responsible for large collections of static objects in the
     /// 3D world.
     ///////////////////////////////////////
-    class MEZZ_LIB Terrain : public WorldEntity
+    class MEZZ_LIB Terrain : public Entity
     {
     protected:
     public:

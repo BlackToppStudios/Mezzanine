@@ -44,7 +44,7 @@
 
 #include "enumerations.h"
 #include "ray.h"
-#include "worldentity.h"
+#include "entity.h"
 
 #include "Graphics/cameraproxy.h"
 #include "Graphics/scenemanager.h"
@@ -137,9 +137,9 @@ namespace Mezzanine
 
         Ray GroundRay(this->Controlled->GetLocation(),Vector3::Neg_Unit_Y());
         this->RayCaster.SetFilterFunction(
-            [](WorldProxy* Prox) {
-                WorldEntity* Ent = Prox->GetParentEntity();
-                return ( Ent && ( Ent->GetType() & Mezzanine::WE_AllTerrains ) );
+            [](EntityProxy* Prox) {
+                Entity* Ent = Prox->GetParentEntity();
+                return ( Ent && ( Ent->GetType() & Mezzanine::ET_AllTerrains ) );
             }
         );
         RayQueryHit Result = this->RayCaster.GetFirstShapeResult(GroundRay);

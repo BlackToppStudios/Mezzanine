@@ -60,7 +60,7 @@
 #include "entresol.h"
 #include "exception.h"
 #include "stringtool.h"
-#include "worldentity.h"
+#include "entity.h"
 
 namespace Mezzanine
 {
@@ -335,7 +335,7 @@ namespace Mezzanine
                 return NULL;
             }
 
-            WorldEntityComponent* SoundScapeManager::CreateComponent(const XML::Node& SelfRoot)
+            EntityComponent* SoundScapeManager::CreateComponent(const XML::Node& SelfRoot)
             {
                 if( SelfRoot.Name() == OALS::Listener::GetSerializableName() ) return this->CreateListener(SelfRoot);
                 else if( SelfRoot.Name() == OALS::SoundProxy::GetSerializableName() ) return this->CreateSoundProxy(SelfRoot);
@@ -345,7 +345,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
 
-            WorldEntityComponent* SoundScapeManager::GetComponentByID(const UInt32 ID) const
+            EntityComponent* SoundScapeManager::GetComponentByID(const UInt32 ID) const
             {
                 for( ConstListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
@@ -389,7 +389,7 @@ namespace Mezzanine
                 return Ret;
             }
 
-            void SoundScapeManager::DestroyComponent(WorldEntityComponent* ToBeDestroyed)
+            void SoundScapeManager::DestroyComponent(EntityComponent* ToBeDestroyed)
             {
                 if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_Listener ) {
                     this->DestroyListener( static_cast<OALS::Listener*>( ToBeDestroyed ) );
@@ -430,7 +430,7 @@ namespace Mezzanine
                     if( (*ListIt) == ToBeDestroyed ) {
                         ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
 
-                        WorldEntity* Parent = (*ListIt)->GetParentEntity();
+                        Entity* Parent = (*ListIt)->GetParentEntity();
                         if( Parent )
                             Parent->RemoveComponent( (*ListIt) );
 
@@ -448,7 +448,7 @@ namespace Mezzanine
             {
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    WorldEntity* Parent = (*ListIt)->GetParentEntity();
+                    Entity* Parent = (*ListIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ListIt) );
 
@@ -470,7 +470,7 @@ namespace Mezzanine
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed ) {
-                        WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                        Entity* Parent = (*ProxIt)->GetParentEntity();
                         if( Parent )
                             Parent->RemoveComponent( (*ProxIt) );
 
@@ -485,7 +485,7 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    WorldEntity* Parent = (*ProxIt)->GetParentEntity();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 

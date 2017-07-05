@@ -98,7 +98,7 @@ namespace Mezzanine
             MT_SoundScapeManager           = 107, // Audio
 
             MT_EntityComponentManagerLast  = 199,
-            MT_WorldEntityManagerFirst = 200,
+            MT_EntityManagerFirst = 200,
 
             MT_ActorManager            = 201, // Mezzanine
             MT_AreaEffectManager       = 202, // Mezzanine
@@ -106,7 +106,7 @@ namespace Mezzanine
             MT_TerrainManager          = 208, // Mezzanine
             MT_VehicleManager          = 209, // Mezzanine
 
-            MT_WorldEntityManagerLast  = 299,
+            MT_EntityManagerLast  = 299,
 
             // Other Managers                 // Namespaces
 

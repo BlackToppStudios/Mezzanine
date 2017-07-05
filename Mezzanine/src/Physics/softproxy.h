@@ -79,12 +79,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetComponentType() const
+            /// @copydoc EntityProxy::GetComponentType() const
             virtual Mezzanine::ComponentType GetComponentType() const;
 
-            /// @copydoc WorldProxy::AddToWorld()
+            /// @copydoc EntityProxy::AddToWorld()
             virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
+            /// @copydoc EntityProxy::RemoveFromWorld()
             virtual void RemoveFromWorld();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -96,47 +96,47 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
 
-            /// @copydoc WorldProxy::SetLocation(const Vector3&)
+            /// @copydoc EntityProxy::SetLocation(const Vector3&)
             virtual void SetLocation(const Vector3& Loc);
-            /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
+            /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
             virtual void SetLocation(const Real X, const Real Y, const Real Z);
-            /// @copydoc WorldProxy::GetLocation() const
+            /// @copydoc EntityProxy::GetLocation() const
             virtual Vector3 GetLocation() const;
-            /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
+            /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
             virtual void SetOrientation(const Quaternion& Ori);
-            /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
+            /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
             virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-            /// @copydoc WorldProxy::GetOrientation() const
+            /// @copydoc EntityProxy::GetOrientation() const
             virtual Quaternion GetOrientation() const;
             /// @copydoc CollidableProxy::SetScale(const Vector3&)
             virtual void SetScale(const Vector3& Sc);
             /// @copydoc CollidableProxy::SetScale(const Real, const Real, const Real)
             virtual void SetScale(const Real X, const Real Y, const Real Z);
-            /// @copydoc WorldProxy::GetScale() const
+            /// @copydoc EntityProxy::GetScale() const
             virtual Vector3 GetScale() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
             virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the nodes (and their specific properties) of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSeriailzeNodes(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node&)
             virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the nodes (and their specific properties) of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSeriailzeNodes(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////

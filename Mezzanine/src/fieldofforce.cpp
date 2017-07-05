@@ -95,14 +95,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldEntityType FieldOfForce::GetType() const
-        { return Mezzanine::WE_AreaEffectFieldOfForce; }
+    Mezzanine::EntityType FieldOfForce::GetType() const
+        { return Mezzanine::ET_AreaEffectFieldOfForce; }
 
     void FieldOfForce::ApplyEffect()
     {
-        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a WorldEntity.
+        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a Entity.
         /// Instead this should perhaps apply only to the ones in the field, or perhaps apply force based on the proxy position
-        /// rather than the WorldEntity position to get more interesting results.
+        /// rather than the Entity position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
         AreaEffect::ApplyEffect();
         if(0 == this->Strength)
