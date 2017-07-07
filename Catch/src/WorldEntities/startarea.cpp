@@ -171,9 +171,9 @@ StartArea* StartAreaFactory::CreateStartArea(const String& Name, World* TheWorld
     { return new StartArea(Name,TheWorld,HalfAreaSize); }
 
 StartArea* StartAreaFactory::CreateStartArea(const XML::Node& XMLNode, World* TheWorld)
-    { return static_cast<StartArea*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+    { return static_cast<StartArea*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-AreaEffect* StartAreaFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+Entity* StartAreaFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
 {
     Vector3 HalfSize;
     NameValuePairMap::const_iterator ParamIt;
@@ -192,10 +192,10 @@ AreaEffect* StartAreaFactory::CreateAreaEffect(const String& Name, World* TheWor
     return new StartArea(Name,TheWorld,HalfSize);
 }
 
-AreaEffect* StartAreaFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+Entity* StartAreaFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
     { return new StartArea(XMLNode,TheWorld); }
 
-void StartAreaFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+void StartAreaFactory::DestroyEntity(Entity* ToBeDestroyed)
     { delete ToBeDestroyed; }
 
 #endif

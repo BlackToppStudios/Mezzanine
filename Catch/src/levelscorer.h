@@ -10,36 +10,34 @@ class CatchApp;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This keeps track of the available levels and is primarily responsible for their loading.
-/// @details
 ///////////////////////////////////////
 class LevelScorer
 {
 public:
+    /// @brief Container type for ScoreAreas tracked within this class.
+    using ScoreAreaContainer = std::vector<ScoreArea*>;
     /// @brief Container type for Throwables stored and operated on within this class.
-    typedef std::vector<Debris*>            ThrowableContainer;
+    using ThrowableContainer = std::vector<Debris*>;
     /// @brief Container type for storing the score values for each throwable type.
-    typedef std::map<String,Whole>          ItemScoreContainer;
+    using ItemScoreContainer = std::map<String,Whole>;
     /// @brief Convenience typedef for passing a throwable and the score associated with it.
-    typedef std::pair<Debris*,Whole>        ThrowableScorePair;
+    using ThrowableScorePair = std::pair<Debris*,Whole>;
     /// @brief Convenience typedef for passing both the normal and bonus throwable score.
-    typedef std::pair<Whole,Whole>          ScorePair;
+    using ScorePair = std::pair<Whole,Whole>;
 protected:
-    /// @internal
+    /// @brief Container storing all the score areas being tracked for scoring.
+    ScoreAreaContainer TrackedScoreAreas;
     /// @brief Container storing all of the scores for known throwables.
     ItemScoreContainer ItemScoreValues;
-    /// @internal
     /// @brief A pointer to the Mezzanine root.
     Entresol* TheEntresol;
-    /// @internal
     /// @brief A pointer to the game root.
     CatchApp* GameApp;
 
-    /// @internal
     /// @brief Gets the normal score value of a throwable.
     /// @param Item A pointer to the throwable to check for.
     /// @return Returns a Whole representing the normal score of the specified throwable.
     Whole GetItemScoreValue(Debris* Item);
-    /// @internal
     /// @brief Gets the highest multiplier to be applied among all the score zones a throwable is in.
     /// @param Throwable A pointer to the throwable to check for.
     /// @return Returns a Real representing the highest bonus to be applied to the specified throwable.
