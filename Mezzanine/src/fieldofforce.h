@@ -94,8 +94,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @copydoc Mezzanine::Entity::GetType() const
-        virtual Mezzanine::EntityType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetEntityType() const
+        virtual Mezzanine::EntityType GetEntityType() const;
 
         /// @copydoc Mezzanine::Entity::ApplyEffect()
         virtual void ApplyEffect();
@@ -183,12 +183,12 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual FieldOfForce* CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc Mezzanine::EntityFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc Mezzanine::EntityFactory::CreateAreaEffect(const XML::Node&)
-        virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc Mezzanine::EntityFactory::DestroyAreaEffect(AreaEffect*)
-        virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed);
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//FieldOfForceFactory
 }//Mezzanine
 

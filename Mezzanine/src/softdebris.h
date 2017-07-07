@@ -95,8 +95,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
-        /// @copydoc Mezzanine::Entity::GetType() const
-        virtual EntityType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetEntityType() const
+        virtual EntityType GetEntityType() const;
 
         /// @brief Gets a pointer to the graphics portion of this debris.
         /// @remarks This is a convenience method that just calls "GetProxy(const UInt32 Types, Whole TypeIndex) const",
@@ -157,12 +157,12 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual SoftDebris* CreateSoftDebris(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc DebrisFactory::CreateDebris(const String&, World*, const NameValuePairMap&)
-        virtual Debris* CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc DebrisFactory::CreateDebris(const XML::Node&, World*)
-        virtual Debris* CreateDebris(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc DebrisFactory::DestroyDebris(Debris* ToBeDestroyed)
-        virtual void DestroyDebris(Debris* ToBeDestroyed);
+        /// @copydoc EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc EntityFactory::CreateEntity(const XML::Node&, World*)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc EntityFactory::DestroyEntity(Entity* ToBeDestroyed)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//SoftDebrisFactory
 }//Mezzanine
 

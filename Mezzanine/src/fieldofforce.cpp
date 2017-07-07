@@ -95,7 +95,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::EntityType FieldOfForce::GetType() const
+    Mezzanine::EntityType FieldOfForce::GetEntityType() const
         { return Mezzanine::ET_AreaEffectFieldOfForce; }
 
     void FieldOfForce::ApplyEffect()
@@ -287,15 +287,15 @@ namespace Mezzanine
         { return new FieldOfForce(Name,AEShape,TheWorld); }
 
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<FieldOfForce*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<FieldOfForce*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* FieldOfForceFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
         { return new FieldOfForce(Name,TheWorld); }
 
-    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* FieldOfForceFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new FieldOfForce(XMLNode,TheWorld); }
 
-    void FieldOfForceFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void FieldOfForceFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

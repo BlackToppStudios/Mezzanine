@@ -42,6 +42,7 @@
 #define _terrain_h
 
 #include "entity.h"
+#include "entityfactory.h"
 
 namespace Mezzanine
 {
@@ -63,32 +64,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Terrain objects.
     ///////////////////////////////////////
-    class MEZZ_LIB TerrainFactory
+    class MEZZ_LIB TerrainFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        TerrainFactory() {  }
+        TerrainFactory() = default;
         /// @brief Class destructor.
-        virtual ~TerrainFactory() {  }
-
-        /// @brief Gets the name of the Terrain that is created by this factory.
-        /// @return Returns the typename of the Terrain created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a Terrain of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the Terrain created.
-        virtual Terrain* CreateTerrain(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a Terrain from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the Terrain created.
-        virtual Terrain* CreateTerrain(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a Terrain created by this factory.
-        /// @param ToBeDestroyed A pointer to the Terrain to be destroyed.
-        virtual void DestroyTerrain(Terrain* ToBeDestroyed) = 0;
+        virtual ~TerrainFactory() = default;
     };//TerrainFactory
 }//Mezzanine
 

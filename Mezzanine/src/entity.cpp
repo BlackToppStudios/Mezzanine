@@ -76,6 +76,12 @@ namespace Mezzanine
         ProxyStartIndex(0)
         {  }
 
+    Entity::Entity(const XML::Node& SelfRoot, World* TheWorld) :
+        PrimaryProxy(nullptr),
+        ParentWorld(TheWorld),
+        ProxyStartIndex(0)
+        { this->ProtoDeSerialize(SelfRoot); }
+
     void Entity::DestroyAllComponents()
     {
         ComponentIterator CompIt = this->Components.begin();
@@ -92,7 +98,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    Mezzanine::EntityType Entity::GetType() const
+    Mezzanine::EntityType Entity::GetEntityType() const
         { return Mezzanine::ET_Generic; }
 
     const String& Entity::GetName() const
@@ -623,6 +629,21 @@ namespace Mezzanine
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // EntityFactory Methods
+
+    String GenericEntityFactory::GetTypeName() const
+        { return Entity::GetSerializableName(); }
+
+    Entity* GenericEntityFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+        { return new Entity(Name,TheWorld); }
+
+    Entity* GenericEntityFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
+        { return new Entity(XMLNode,TheWorld); }
+
+    void GenericEntityFactory::DestroyEntity(Entity* ToBeDestroyed)
+        { delete ToBeDestroyed; }
 }//Mezzanine
 
 #endif

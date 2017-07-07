@@ -44,6 +44,7 @@
 /// @brief This file contains the declaration for the vehicle base class used to represent a solid self-propelling object.
 
 #include "entity.h"
+#include "entityfactory.h"
 
 namespace Mezzanine
 {
@@ -70,32 +71,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Vehicle objects.
     ///////////////////////////////////////
-    class MEZZ_LIB VehicleFactory
+    class MEZZ_LIB VehicleFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        VehicleFactory() {  }
+        VehicleFactory() = default;
         /// @brief Class destructor.
-        virtual ~VehicleFactory() {  }
-
-        /// @brief Gets the name of the Vehicle that is created by this factory.
-        /// @return Returns the typename of the Vehicle created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a Vehicle of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the Vehicle created.
-        virtual Vehicle* CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a Vehicle from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the Vehicle created.
-        virtual Vehicle* CreateVehicle(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a Vehicle created by this factory.
-        /// @param ToBeDestroyed A pointer to the Vehicle to be destroyed.
-        virtual void DestroyVehicle(Vehicle* ToBeDestroyed) = 0;
+        virtual ~VehicleFactory() = default;
     };//VehicleFactory
 }//Mezzanine
 

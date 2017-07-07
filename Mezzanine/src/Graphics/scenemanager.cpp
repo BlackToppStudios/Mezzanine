@@ -46,7 +46,6 @@
 
 #include "UI/uimanager.h"
 
-#include "areaeffectmanager.h"
 #include "plane.h"
 #include "entity.h"
 #include "stringtool.h"
@@ -70,47 +69,36 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        /// @brief Stores internal data for the SCeneManager to keep it from cluttering the Header file
+        /// @brief Stores internal data for the SceneManager to keep it from cluttering the Header file
         /// @internal
         class SceneManagerData
         {
-            public:
-
-            /// @internal
-            /// @brief A Pointer to the scenemanager this works with
+        public:
+            /// @brief A Pointer to the SceneManager this works with
             SceneManager* SM;
-
-            /// @internal
             /// @brief The currently active sky, if set to anything other than SkyNone, then the 5 other skycache variable may have meaning
             SceneManager::SkyMethod ActiveSky;
 
             // The SkyCache
-            /// @internal
             /// @brief The Name of the Material the sky is made of
             String SkyMaterialName;
-            /// @internal
             /// @brief The orientation of the sky, unless it's a Skyplane, this this is all 0s
             Quaternion SkyOrientation;
-            /// @internal
             /// @brief The name of the group the sky material is in
             String SkyMaterialGroupName;
-            /// @internal
             /// @brief When is the sky drawn, first or per Z-order
             Boole SkyDrawnFirst;
-            /// @internal
             /// @brief Used to describe a skyplane instead of orientation
             Plane SkyThePlane;
 
             /// @brief The size
             unsigned short ShadowTextureSize;
 
-            /// @internal
-            /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
+            /// @brief Pointer for the Ogre SceneManager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;
 
-            /// @internal
-            /// @brief Disable the sky ina given scenemanager
-            /// @param ScenePTR A pointer to the scenmanager.
+            /// @brief Disable the sky in a given SceneManager
+            /// @param ScenePTR A pointer to the SceneManager.
             void DisableSky(SceneManager* ScenePTR)
             {
                 switch(ActiveSky)
@@ -130,7 +118,6 @@ namespace Mezzanine
                 ActiveSky = SceneManager::SkyNone;
             }
 
-            /// @internal
             /// @brief update the information that is cached about the sky
             void UpdateSkyCache(
                             SceneManager::SkyMethod FreshSkyMethod = SceneManager::SkyNone,
@@ -149,9 +136,8 @@ namespace Mezzanine
                 SkyThePlane=FreshSkyThePlane;
             }
 
-            /// @internal
-            /// @brief Create One of these, the data every scenemanager needs.
-            /// @param _SM A pointer to the scenemanager this with work with in general
+            /// @brief Create One of these, the data every SceneManager needs.
+            /// @param _SM A pointer to the SceneManager this with work with in general
             SceneManagerData(SceneManager* _SM):
                 SM(_SM),
                 ActiveSky(SceneManager::SkyNone),
@@ -167,7 +153,6 @@ namespace Mezzanine
             }
 
 
-            /// @internal
             /// @brief Destructor
             ~SceneManagerData()
             {

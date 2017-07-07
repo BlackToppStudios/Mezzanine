@@ -71,9 +71,7 @@
 #endif
 
 #include "actor.h"
-#include "actormanager.h"
 #include "areaeffect.h"
-#include "areaeffectmanager.h"
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
@@ -84,7 +82,6 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "debris.h"
-#include "debrismanager.h"
 #include "entity.h"
 #include "entitycomponent.h"
 #include "entitycomponentmanager.h"
@@ -105,7 +102,6 @@
 #include "vector2.h"
 #include "vector3.h"
 #include "vehicle.h"
-#include "vehiclemanager.h"
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
@@ -153,7 +149,6 @@
 #include "trackiterator.h"
 #include "triangle.h"
 #include "terrain.h"
-#include "terrainmanager.h"
 #include "uidgenerator.h"
 #include "worldtrigger.h"
 #include "version.h"

@@ -134,7 +134,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    EntityType RigidDebris::GetType() const
+    EntityType RigidDebris::GetEntityType() const
         { return Mezzanine::ET_RigidDebris; }
 
     Graphics::ItemProxy* RigidDebris::GetItemProxy() const
@@ -189,9 +189,9 @@ namespace Mezzanine
         { return new RigidDebris(Name,Mass,DebMesh,DebShape,TheWorld); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
+        { return static_cast<RigidDebris*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* RigidDebrisFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
         NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
@@ -201,10 +201,10 @@ namespace Mezzanine
         return new RigidDebris(Name,Mass,TheWorld);
     }
 
-    Debris* RigidDebrisFactory::CreateDebris(const XML::Node& XMLNode, World* TheWorld)
+    Entity* RigidDebrisFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new RigidDebris(XMLNode,TheWorld); }
 
-    void RigidDebrisFactory::DestroyDebris(Debris* ToBeDestroyed)
+    void RigidDebrisFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

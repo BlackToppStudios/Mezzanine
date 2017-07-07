@@ -70,7 +70,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    EntityType MultiBodyVehicle::GetType() const
+    EntityType MultiBodyVehicle::GetEntityType() const
         { return Mezzanine::ET_MultiBodyVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
