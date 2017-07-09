@@ -255,17 +255,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
-        /// @brief The Entity being managed.
-        Entity* ManagedEntity;
+        /// @brief The name of the Entity being managed.
+        const String ManagedEntityName;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
 
         /// @brief Text-less constructor.
         /// @param Name The name of the event being fired.
-        /// @param Managed The Entity being managed.
-        EntityManagementEvent(const EventNameType& Name, Entity* Managed) :
-            Event(Name), ManagedEntity(Managed) {  }
+        /// @param Managed The name of the Entity being managed.
+        EntityManagementEvent(const EventNameType& Name, const String& ManagedName) :
+            Event(Name), ManagedEntityName(ManagedName) {  }
         /// @brief Class destructor.
         virtual ~EntityManagementEvent() = default;
     };//EntityManagementEvent

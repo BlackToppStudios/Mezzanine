@@ -232,7 +232,7 @@ namespace Mezzanine
         EntityIterator InsertPos = std::lower_bound(this->Entities.begin(),this->Entities.end(),ToAdd,EntityInserter);
         this->Entities.insert(InsertPos,ToAdd);
 
-        EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityCreated,ToAdd);
+        EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityCreated,ToAdd->GetName());
         this->Publisher.DispatchEvent(EntEv);
     }
 
@@ -443,8 +443,9 @@ namespace Mezzanine
     {
         for( ConstEntityIterator EntIt = this->Entities.begin() ; EntIt != this->Entities.end() ; ++EntIt )
         {
-            if( (*EntIt)->GetName() == Name )
+            if( (*EntIt)->GetName() == Name ) {
                 return (*EntIt);
+            }
         }
         return nullptr;
     }
@@ -460,7 +461,7 @@ namespace Mezzanine
         if( EntIt != this->Entities.end() ) {
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
-                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt));
+                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
                 this->Publisher.DispatchEvent(EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
@@ -478,7 +479,7 @@ namespace Mezzanine
         if( EntIt != this->Entities.end() ) {
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
-                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt));
+                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
                 this->Publisher.DispatchEvent(EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
@@ -496,7 +497,7 @@ namespace Mezzanine
         {
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
-                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt));
+                EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
                 this->Publisher.DispatchEvent(EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
