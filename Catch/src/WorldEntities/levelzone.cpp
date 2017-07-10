@@ -41,7 +41,7 @@ void LevelZone::DestroyLevelZone()
 ///////////////////////////////////////////////////////////////////////////////
 // Utility
 
-Mezzanine::EntityType LevelZone::GetType() const
+Mezzanine::EntityType LevelZone::GetEntityType() const
     { return Mezzanine::ET_AreaEffectUnknown; }
 
 Graphics::ItemProxy* LevelZone::GetItemProxy() const

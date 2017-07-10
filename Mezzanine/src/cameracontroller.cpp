@@ -139,7 +139,7 @@ namespace Mezzanine
         this->RayCaster.SetFilterFunction(
             [](EntityProxy* Prox) {
                 Entity* Ent = Prox->GetParentEntity();
-                return ( Ent && ( Ent->GetType() & Mezzanine::ET_AllTerrains ) );
+                return ( Ent && ( Ent->GetEntityType() & Mezzanine::ET_AllTerrains ) );
             }
         );
         RayQueryHit Result = this->RayCaster.GetFirstShapeResult(GroundRay);

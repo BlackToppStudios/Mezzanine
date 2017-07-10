@@ -41,6 +41,7 @@
 #define _areaeffect_h
 
 #include "entity.h"
+#include "entityfactory.h"
 #include "colourvalue.h"
 
 namespace Mezzanine
@@ -179,32 +180,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of AreaEffect objects.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffectFactory
+    class MEZZ_LIB AreaEffectFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        AreaEffectFactory() {  }
+        AreaEffectFactory() = default;
         /// @brief Class destructor.
-        virtual ~AreaEffectFactory() {  }
-
-        /// @brief Gets the name of the AreaEffect that is created by this factory.
-        /// @return Returns the typename of the AreaEffect created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a AreaEffect of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a AreaEffect from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a AreaEffect created by this factory.
-        /// @param ToBeDestroyed A pointer to the AreaEffect to be destroyed.
-        virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed) = 0;
+        virtual ~AreaEffectFactory() = default;
     };//AreaEffectFactory
 }//Mezzanine
 

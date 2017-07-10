@@ -24,12 +24,13 @@ Whole LevelScorer::GetItemScoreValue(Debris* Item)
 Real LevelScorer::FindHighestMultiplier(Debris* Throwable)
 {
     Real RetMulti = 0.0;
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+    EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+    for( Entity* CurrEnt : ScoreRange )
     {
-        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
-            ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+        AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+        if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
+            ScoreArea* CurrScore = static_cast<ScoreArea*>( CurrAE );
             Real ScoreMulti = CurrScore->GetScoreMultiplier();
             AreaEffect::ObjectContainer& Overlapping = CurrScore->GetOverlappingObjects();
             for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
@@ -73,13 +74,14 @@ Whole LevelScorer::CalculateTimerScore()
         ThrowableContainer& Throwables = this->GameApp->GetThrowables();
         Whole ActorsInScoreZones = 0;
 
-        AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-        AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-        for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+        EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+        EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+        for( Entity* CurrEnt : ScoreRange )
         {
-            if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+            if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
                 //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
-                AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+                AreaEffect::ObjectContainer& Overlapping = CurrAE->GetOverlappingObjects();
                 for( AreaEffect::ObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
                 {
                     if( this->GameApp->IsAThrowable( *ObjIt ) )
@@ -246,11 +248,12 @@ Whole LevelScorer::PresentFinalScore()
 Whole LevelScorer::GetNumScoreAreas() const
 {
     Whole ScoreAreaCount = 0;
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+    EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+    for( Entity* CurrEnt : ScoreRange )
     {
-        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+        AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+        if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
             ++ScoreAreaCount;
         }
     }
@@ -260,13 +263,14 @@ Whole LevelScorer::GetNumScoreAreas() const
 Whole LevelScorer::GetNumAddedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+    EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+    for( Entity* CurrEnt : ScoreRange )
     {
-        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+        AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+        if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
             //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
-            AreaEffect::ObjectContainer& Added = (*ScoreIt)->GetAddedObjects();
+            AreaEffect::ObjectContainer& Added = CurrAE->GetAddedObjects();
             for( AreaEffect::ConstObjectIterator ObjIt = Added.begin() ; ObjIt != Added.end() ; ++ObjIt )
             {
                 if( this->GameApp->IsAThrowable( *ObjIt ) )
@@ -280,13 +284,14 @@ Whole LevelScorer::GetNumAddedThrowables() const
 Whole LevelScorer::GetNumOverlappingThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+    EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+    for( Entity* CurrEnt : ScoreRange )
     {
-        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+        AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+        if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
             //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
-            AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+            AreaEffect::ObjectContainer& Overlapping = CurrAE->GetOverlappingObjects();
             for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
             {
                 if( this->GameApp->IsAThrowable( *ObjIt ) )
@@ -300,13 +305,14 @@ Whole LevelScorer::GetNumOverlappingThrowables() const
 Whole LevelScorer::GetNumRemovedThrowables() const
 {
     Whole ThrowableCount = 0;
-    AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_AreaEffectManager) );
-    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
-    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    EntityManager* EntMan = static_cast<EntityManager*>( this->GameApp->GetTheWorld()->GetManager(ManagerBase::MT_EntityManager) );
+    EntityManager::EntityRange ScoreRange = EntMan->GetAreaEffectRange();
+    for( Entity* CurrEnt : ScoreRange )
     {
-        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+        AreaEffect* CurrAE = static_cast<AreaEffect*>( CurrEnt );
+        if( CurrAE->GetDerivedSerializableName() == "ScoreArea" ) {
             //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
-            AreaEffect::ObjectContainer& Removed = (*ScoreIt)->GetRemovedObjects();
+            AreaEffect::ObjectContainer& Removed = CurrAE->GetRemovedObjects();
             for( AreaEffect::ConstObjectIterator ObjIt = Removed.begin() ; ObjIt != Removed.end() ; ++ObjIt )
             {
                 if( this->GameApp->IsAThrowable( *ObjIt ) )

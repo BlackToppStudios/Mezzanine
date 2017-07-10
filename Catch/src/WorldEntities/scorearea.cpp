@@ -130,9 +130,9 @@ ScoreArea* ScoreAreaFactory::CreateScoreArea(const String& Name, World* TheWorld
     { return new ScoreArea(Name,TheWorld,HalfAreaSize); }
 
 ScoreArea* ScoreAreaFactory::CreateScoreArea(const XML::Node& XMLNode, World* TheWorld)
-    { return static_cast<ScoreArea*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+    { return static_cast<ScoreArea*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-AreaEffect* ScoreAreaFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+Entity* ScoreAreaFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
 {
     Vector3 HalfSize;
     NameValuePairMap::const_iterator ParamIt;
@@ -151,10 +151,10 @@ AreaEffect* ScoreAreaFactory::CreateAreaEffect(const String& Name, World* TheWor
     return new ScoreArea(Name,TheWorld,HalfSize);
 }
 
-AreaEffect* ScoreAreaFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+Entity* ScoreAreaFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
     { return new ScoreArea(XMLNode,TheWorld); }
 
-void ScoreAreaFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+void ScoreAreaFactory::DestroyEntity(Entity* ToBeDestroyed)
     { delete ToBeDestroyed; }
 
 #endif

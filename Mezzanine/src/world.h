@@ -47,23 +47,10 @@
 
 namespace Mezzanine
 {
-    class ActorManager;
-    class AreaEffectManager;
-    class DebrisManager;
-    class TerrainManager;
     class WorldManager;
     class WorldManagerFactory;
-    namespace Audio
-    {
-        class SoundScapeManager;
-    }
-    namespace Graphics
-    {
-        class SceneManager;
-    }
     namespace Physics
     {
-        class PhysicsManager;
         class ManagerConstructionInfo;
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -75,33 +62,28 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for factories that construct known manager types.
-        typedef std::map<String,WorldManagerFactory*>      ManagerFactoryMap;
+        using ManagerFactoryMap = std::map<String,WorldManagerFactory*>;
         /// @brief Iterator type for manager factories stored by this class.
-        typedef ManagerFactoryMap::iterator                ManagerFactoryIterator;
+        using ManagerFactoryIterator = ManagerFactoryMap::iterator;
         /// @brief Const Iterator type for manager factories stored by this class.
-        typedef ManagerFactoryMap::const_iterator          ConstManagerFactoryIterator;
+        using ConstManagerFactoryIterator = ManagerFactoryMap::const_iterator;
         /// @brief Basic container type for @ref WorldManager storage by this class.
-        typedef std::vector< WorldManager* >               WorldManagerContainer;
+        using WorldManagerContainer = std::vector< WorldManager* >;
         /// @brief Iterator type for @ref WorldManager instances stored by this class.
-        typedef WorldManagerContainer::iterator            WorldManagerIterator;
+        using WorldManagerIterator = WorldManagerContainer::iterator;
         /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
-        typedef WorldManagerContainer::const_iterator      ConstWorldManagerIterator;
+        using ConstWorldManagerIterator = WorldManagerContainer::const_iterator;
     protected:
-        /// @internal
         /// @brief A global container for registered factories for WorldManagers.
         static ManagerFactoryMap ManagerFactories;
-        /// @internal
         /// @brief A container storing all the managers belonging to this world.
         WorldManagerContainer WorldManagers;
-        /// @internal
         /// @brief Unique string identifier for world.
         String Name;
 
-        /// @internal
         /// @brief Helper function used to assist construction.
         void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const WorldManagerContainer& ManagerToBeAdded);
 
-        /// @internal
         /// @brief Checks if all managers currently stored in this World have been initialized.
         /// @return Returns true if all stored managers have been initialized, false otherwise.
         Boole VerifyManagerInitializations();
@@ -207,7 +189,7 @@ namespace Mezzanine
 
         /// @brief This gets the list of managers in the world.
         /// @return This returns a reference to a vector containing the managers in this world.
-        WorldManagerContainer& GetWorldManagers();
+        World::WorldManagerContainer& GetWorldManagers();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Factories Management

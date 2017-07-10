@@ -43,6 +43,7 @@
 #include "enumerations.h"
 #include "transformableobject.h"
 #include "sortedvector.h"
+#include "entityfactory.h"
 
 #ifndef SWIG
     #include "iteratorrange.h"
@@ -98,6 +99,10 @@ namespace Mezzanine
         /// @param Name The name to be given to this object.
         /// @param TheWorld A pointer to the world this object belongs to.
         Entity(const String& Name, World* TheWorld);
+        /// @brief XML constructor.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        Entity(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~Entity() = default;
 
@@ -106,7 +111,7 @@ namespace Mezzanine
 
         /// @brief Gets the type of the object instance
         /// @return Returns the type of the object instance
-        virtual Mezzanine::EntityType GetType() const;
+        virtual Mezzanine::EntityType GetEntityType() const;
         /// @brief Gets the name of this object.
         /// @return Returns a string containing the name of this object.
         virtual const String& GetName() const;
@@ -320,6 +325,29 @@ namespace Mezzanine
         /// @param NewTrans The transform to be applied to each EntityComponent other than the Exclude.
         virtual void _SyncTransforms(EntityProxy* Exclude, const Transform& NewTrans);
     };//Entity
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A factory type for the creation of generic Entity objects.
+    ///////////////////////////////////////
+    class MEZZ_LIB GenericEntityFactory : public EntityFactory
+    {
+    public:
+        /// @brief Class constructor.
+        GenericEntityFactory() = default;
+        /// @brief Class destructor.
+        virtual ~GenericEntityFactory() = default;
+
+        /// @brief Gets the name of the Entity that is created by this factory.
+        /// @return Returns the typename of the Entity created by this factory.
+        virtual String GetTypeName() const;
+
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
+    };//GenericEntityFactory
 }//Mezzanine
 
 #endif

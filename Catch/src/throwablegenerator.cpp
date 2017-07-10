@@ -136,7 +136,7 @@ ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
 
 Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
 {
-    DebrisManager* DebMan = static_cast<DebrisManager*>( Entresol::GetSingletonPtr()->GetWorld(0)->GetManager(ManagerBase::MT_DebrisManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( Entresol::GetSingletonPtr()->GetWorld(0)->GetManager(ManagerBase::MT_EntityManager) );
     ThrowableData* ToBeCreated = GetThrowableData(Throwable);
     if(!ToBeCreated)
         return NULL;
@@ -144,7 +144,7 @@ Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
     (ToBeCreated->ThrowableCount)++;
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
 
-    RigidDebris* Created = DebMan->CreateRigidDebris(NameGen.str(),ToBeCreated->Mass);
+    RigidDebris* Created = EntMan->CreateRigidDebris(NameGen.str(),ToBeCreated->Mass);
     Created->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
     Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);

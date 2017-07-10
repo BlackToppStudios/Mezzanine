@@ -54,11 +54,7 @@
 #include "world.h"
 
 // Manager Includes
-#include "actormanager.h"
-#include "areaeffectmanager.h"
-#include "debrismanager.h"
-#include "terrainmanager.h"
-#include "vehiclemanager.h"
+#include "entitymanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/meshmanager.h"
 #include "Graphics/scenemanager.h"
@@ -155,11 +151,7 @@ namespace Mezzanine
         // Unregister types
         World::DestroyAllManagerFactories();
         Entresol::DestroyAllManagerFactories();
-        ActorManager::DestroyAllActorFactories();
-        AreaEffectManager::DestroyAllAreaEffectFactories();
-        DebrisManager::DestroyAllDebrisFactories();
-        TerrainManager::DestroyAllTerrainFactories();
-        VehicleManager::DestroyAllVehicleFactories();
+        EntityManager::DestroyAllEntityFactories();
 
         // Shutdown internals
         this->DestroyOgre();
@@ -174,12 +166,7 @@ namespace Mezzanine
         //Add default manager factories
         Entresol::AddAllEngineDefaultManagerFactories();
         World::AddAllEngineDefaultManagerFactories();
-        //Add default object factories
-        ActorManager::AddAllDefaultActorFactories();
-        AreaEffectManager::AddAllDefaultAreaEffectFactories();
-        DebrisManager::AddAllDefaultDebrisFactories();
-        TerrainManager::AddAllDefaultTerrainFactories();
-        VehicleManager::AddAllDefaultVehicleFactories();
+        EntityManager::AddAllDefaultEntityFactories();
         //Set some sane Defaults for some values
         this->ManualLoopBreak = 0;
 
@@ -236,12 +223,7 @@ namespace Mezzanine
         //Add default manager factories
         Entresol::AddAllEngineDefaultManagerFactories();
         World::AddAllEngineDefaultManagerFactories();
-        //Add default object factories
-        ActorManager::AddAllDefaultActorFactories();
-        AreaEffectManager::AddAllDefaultAreaEffectFactories();
-        DebrisManager::AddAllDefaultDebrisFactories();
-        TerrainManager::AddAllDefaultTerrainFactories();
-        VehicleManager::AddAllDefaultVehicleFactories();
+        EntityManager::AddAllDefaultEntityFactories();
         //Set some sane Defaults for some values.
         this->ManualLoopBreak = false;
 

@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,45 +37,49 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-
-#ifndef _actor_h
-#define _actor_h
+#ifndef _entityfactory_h
+#define _entityfactory_h
 
 #include "datatypes.h"
-#include "entity.h"
-#include "entityfactory.h"
-
-/// @file
-/// @brief The base class for all Actors is defined here.
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class from which all the actors inherit.
-    /// @details The actor classes are responsible for character and character-like objects in the
-    /// 3D world.
-    ///////////////////////////////////////
-    class MEZZ_LIB Actor : public Entity
+    class World;
+    class Entity;
+    namespace XML
     {
-    protected:
+        class Node;
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A base factory type for the creation of Entity objects.
+    ///////////////////////////////////////
+    class MEZZ_LIB EntityFactory
+    {
     public:
         /// @brief Class constructor.
-        Actor();
+        EntityFactory() = default;
         /// @brief Class destructor.
-        virtual ~Actor();
-    };//Actor
+        virtual ~EntityFactory() = default;
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief A base factory type for the creation of Actor objects.
-    ///////////////////////////////////////
-    class MEZZ_LIB ActorFactory : public EntityFactory
-    {
-    public:
-        /// @brief Class constructor.
-        ActorFactory() = default;
-        /// @brief Class destructor.
-        virtual ~ActorFactory() = default;
-    };//ActorFactory
+        /// @brief Gets the name of the Entity that is created by this factory.
+        /// @return Returns the typename of the Entity created by this factory.
+        virtual String GetTypeName() const = 0;
+
+        /// @brief Creates a Entity of the type represented by this factory.
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param Params A NameValuePairList containing the params to be applied during construction.
+        /// @return Returns a pointer to the Entity created.
+        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
+        /// @brief Creates a Entity from XML.
+        /// @param XMLNode The node of the xml document to construct from.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @return Returns a pointer to the Entity created.
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) = 0;
+        /// @brief Destroys a Entity created by this factory.
+        /// @param ToBeDestroyed A pointer to the Entity to be destroyed.
+        virtual void DestroyEntity(Entity* ToBeDestroyed) = 0;
+    };//EntityFactory
 }//Mezzanine
 
 #endif

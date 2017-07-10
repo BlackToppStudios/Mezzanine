@@ -60,9 +60,7 @@
 #include "Graphics/graphicsmanager.h"
 
 // Entity Manager includes are here for the debug draw work unit dependency setting
-#include "actormanager.h"
-#include "areaeffectmanager.h"
-#include "debrismanager.h"
+#include "entitymanager.h"
 
 #include "stringtool.h"
 #include "vector3.h"
@@ -1433,25 +1431,23 @@ namespace Mezzanine
                 if( GraphicsMan )
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
-                ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
-                AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->ParentWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-                DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->ParentWorld->GetManager(ManagerBase::MT_DebrisManager) );
+                EntityManager* EntMan = static_cast<EntityManager*>( this->ParentWorld->GetManager(ManagerBase::MT_EntityManager) );
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
                 this->DebugDrawWork->AddDependency( this->SimulationWork );
-                if( ActorMan )
-                    this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
-                if( AEMan )
-                    this->DebugDrawWork->AddDependency( AEMan->GetAreaEffectUpdateWork() );
-                if( DebrisMan )
-                    this->DebugDrawWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
+                if( EntMan ) {
+                    this->DebugDrawWork->AddDependency( EntMan->GetActorUpdateWork() );
+                    this->DebugDrawWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
+                    this->DebugDrawWork->AddDependency( EntMan->GetDebrisUpdateWork() );
+                }
 
                 // World Trigger Update work configuration
                 this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork, "WorldTriggerUpdateWork" );
                 this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
-                if( DebrisMan )
-                    this->WorldTriggerUpdateWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
+                if( EntMan ) {
+                    this->WorldTriggerUpdateWork->AddDependency( EntMan->GetDebrisUpdateWork() );
+                }
 
                 this->Initialized = true;
             }

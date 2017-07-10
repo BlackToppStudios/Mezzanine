@@ -61,7 +61,7 @@ CatchApp::CatchApp() :
                              new PlaneDragger(PlaneOfPlay) );
     RayQuery::FilterFunction QueryFilter = [this](EntityProxy* ToFilter) {
         Entity* ParentObject = ToFilter->GetParentEntity();
-        if( ParentObject->GetType() & Mezzanine::ET_AllDebris ) {
+        if( ParentObject->GetEntityType() & Mezzanine::ET_AllDebris ) {
             return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
         }
         return false;
@@ -1644,8 +1644,8 @@ void CatchApp::VerifySettings()
 
 void CatchApp::RegisterTypes()
 {
-    AreaEffectManager::AddAreaEffectFactory( new ScoreAreaFactory() );
-    AreaEffectManager::AddAreaEffectFactory( new StartAreaFactory() );
+    EntityManager::AddEntityFactory( new ScoreAreaFactory() );
+    EntityManager::AddEntityFactory( new StartAreaFactory() );
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
@@ -1746,7 +1746,7 @@ int CatchApp::GetCatchin()
     this->VerifySettings();
 
     // Get our manager pointers we'll use.
-    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( this->TheWorld->GetManager(ManagerBase::MT_EntityManager) );
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
     Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
     Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
@@ -1781,16 +1781,16 @@ int CatchApp::GetCatchin()
 
     this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
     this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
-    this->PauseWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->PauseWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PauseWork, "PauseWork" );
 
     this->HUDUpdateWork = new CatchHUDUpdateWorkUnit(this);
     this->HUDUpdateWork->AddDependency( UIMan->GetWidgetUpdateWork() );
-    this->HUDUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->HUDUpdateWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->HUDUpdateWork, "HUDUpdateWork" );
 
     this->EndLevelWork = new CatchEndLevelWorkUnit(this);
-    this->EndLevelWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->EndLevelWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EndLevelWork, "EndLevelWork" );
 
     this->RegisterTypes();
@@ -1800,7 +1800,7 @@ int CatchApp::GetCatchin()
     this->TheWorld->Initialize();
 
     this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( ScriptingMan );
-    this->LuaScriptWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->LuaScriptWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();

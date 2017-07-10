@@ -92,7 +92,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::EntityType GravityWell::GetType() const
+    Mezzanine::EntityType GravityWell::GetEntityType() const
         { return Mezzanine::ET_AreaEffectGravityWell; }
 
     void GravityWell::ApplyEffect()
@@ -287,15 +287,15 @@ namespace Mezzanine
         { return new GravityWell(Name,AEShape,TheWorld); }
 
     GravityWell* GravityWellFactory::CreateGravityWell(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<GravityWell*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<GravityWell*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityWellFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* GravityWellFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
         { return new GravityWell(Name,TheWorld); }
 
-    AreaEffect* GravityWellFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* GravityWellFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new GravityWell(XMLNode,TheWorld); }
 
-    void GravityWellFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void GravityWellFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

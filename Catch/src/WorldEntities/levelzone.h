@@ -34,14 +34,12 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    /// @copydoc Mezzanine::AreaEffect::GetType() const
-    virtual Mezzanine::EntityType GetType() const;
+    /// @copydoc Mezzanine::AreaEffect::GetEntityType() const
+    virtual Mezzanine::EntityType GetEntityType() const;
     /// @brief Gets a pointer to the graphics portion of this zone.
     /// @return Returns a pointer to the Item proxy representing the graphics portion of this zone.
     virtual Graphics::ItemProxy* GetItemProxy() const;
 
-    /// @copydoc Mezzanine::AreaEffect::ApplyEffect()
-    virtual void ApplyEffect() = 0;
     /// @brief Checks if an object is inside this zone.
     /// @param Object The object to check inside this zone for.
     /// @return Returns true if the provided object is currently in this zone, false otherwise.

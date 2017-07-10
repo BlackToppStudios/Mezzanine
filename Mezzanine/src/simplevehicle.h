@@ -71,8 +71,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
-        /// @copydoc Mezzanine::Entity::GetType() const
-        virtual EntityType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetEntityType() const
+        virtual EntityType GetEntityType() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

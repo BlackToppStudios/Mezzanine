@@ -75,7 +75,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::EntityType GravityField::GetType() const
+    Mezzanine::EntityType GravityField::GetEntityType() const
         { return Mezzanine::ET_AreaEffectGravityField; }
 
     void GravityField::ApplyEffect()
@@ -185,15 +185,15 @@ namespace Mezzanine
         { return new GravityField(Name,AEShape,TheWorld); }
 
     GravityField* GravityFieldFactory::CreateGravityField(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<GravityField*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<GravityField*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityFieldFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* GravityFieldFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
         { return new GravityField(Name,TheWorld); }
 
-    AreaEffect* GravityFieldFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* GravityFieldFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new GravityField(XMLNode,TheWorld); }
 
-    void GravityFieldFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void GravityFieldFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

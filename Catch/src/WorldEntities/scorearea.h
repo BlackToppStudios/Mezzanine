@@ -77,7 +77,7 @@ public:
     /// @brief Class destructor.
     virtual ~ScoreAreaFactory();
 
-    /// @copydoc Mezzanine::WorldEntityFactory::GetTypeName() const
+    /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
     virtual String GetTypeName() const;
 
     /// @brief Creates a ScoreArea object.
@@ -90,12 +90,12 @@ public:
     /// @param TheWorld A pointer to the world this object belongs to.
     virtual ScoreArea* CreateScoreArea(const XML::Node& XMLNode, World* TheWorld);
 
-    /// @copydoc Mezzanine::WorldEntityFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)
-    virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-    /// @copydoc Mezzanine::WorldEntityFactory::CreateAreaEffect(const XML::Node&)
-    virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld);
-    /// @copydoc Mezzanine::WorldEntityFactory::DestroyAreaEffect(AreaEffect*)
-    virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed);
+    /// @copydoc Mezzanine::EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
+    virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+    /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&)
+    virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+    /// @copydoc Mezzanine::EntityFactory::DestroyAreaEffect(Entity*)
+    virtual void DestroyEntity(Entity* ToBeDestroyed) override;
 };//ScoreAreaFactory
 
 #endif
