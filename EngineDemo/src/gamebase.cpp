@@ -487,7 +487,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = EntMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -499,7 +500,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = EntMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
@@ -512,7 +514,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = EntMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
         RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
@@ -525,54 +528,62 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = EntMan->CreateRigidDebris(namestream.str(),mass);
+    RigDeb = EntMan->CreateRigidDebris(mass);
+    RigDeb->SetName(namestream.str());
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
     RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = EntMan->CreateRigidDebris("Plane",0);
+    object5 = EntMan->CreateRigidDebris(0);
+    object5->SetName("Plane");
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object5->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = EntMan->CreateRigidDebris("Ramp",0);
+    object6 = EntMan->CreateRigidDebris(0);
+    object6->SetName("Ramp");
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
     object6->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = EntMan->CreateRigidDebris("RobotWayUpFrontRight",mass);
+    object1 = EntMan->CreateRigidDebris(mass);
+    object1->SetName("RobotWayUpFrontRight");
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
     object1->GetItemProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = EntMan->CreateRigidDebris("WoodSphere",150.0);
+    object2 = EntMan->CreateRigidDebris(150.0);
+    object2->SetName("WoodSphere");
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
     object2->GetItemProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = EntMan->CreateRigidDebris("MetalSphere",200.0);
+    object3 = EntMan->CreateRigidDebris(200.0);
+    object3->SetName("MetalSphere");
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
     object3->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = EntMan->CreateRigidDebris("RobotWayUpFrontLeft",mass);
+    object4 = EntMan->CreateRigidDebris(mass);
+    object4->SetName("RobotWayUpFrontLeft");
     object4->GetRigidProxy()->SetCollisionShape(RobitCH);
     object4->GetItemProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = EntMan->CreateRigidDebris("MetalSphere2",800.0);
+    object7 = EntMan->CreateRigidDebris(800.0);
+    object7->SetName("MetalSphere2");
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
     object7->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
@@ -581,13 +592,15 @@ void LoadContent()
     object7->AddToWorld();
 
     //GravityField
-    /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
+    /*GravityField* Reverse = EntMan->CreateGravityField(Vector3(0.0,-100.0,0.0));
+    Reverse->SetName("UpField");
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     PhysMan->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     //GravityWell
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    /*GravityWell* BlackHole = EntMan->CreateGravityWell(Vector3(0.0,200.0,-300.0));
+    BlackHole->SetName("BlackHole");
     BlackHole->GetPhysicsSettings()->SetCollisionShape(new Physics::SphereCollisionShape("GravWellShape",750.0));
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(1000.0);
