@@ -62,7 +62,7 @@ public:
     /// @brief This is called when Automatic tests are run
     void RunAutomaticTests()
     {
-        UIDGenerator IDGen;
+        UIDGenerator<UInt32> IDGen;
         // [1,int_max]
         Boole ReserveSuccess1 = IDGen.ReserveID(3);
         // [1,2] [4,int_max]
