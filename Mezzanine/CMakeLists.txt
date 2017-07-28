@@ -688,7 +688,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}track.cpp"
         "${${PROJECT_NAME}_SRC_DIR}transform.cpp"
         "${${PROJECT_NAME}_SRC_DIR}triangle.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}uidgenerator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}unicode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector2.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector3.cpp"
