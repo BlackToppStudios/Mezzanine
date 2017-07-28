@@ -144,7 +144,8 @@ Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
     (ToBeCreated->ThrowableCount)++;
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
 
-    RigidDebris* Created = EntMan->CreateRigidDebris(NameGen.str(),ToBeCreated->Mass);
+    RigidDebris* Created = EntMan->CreateRigidDebris(ToBeCreated->Mass);
+    Created->SetName(NameGen.str());
     Created->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
     Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);

@@ -14,8 +14,8 @@ ScoreArea::ScoreArea(World* TheWorld) :
     ScoreMultiplier(1.0)
     {  }
 
-ScoreArea::ScoreArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize) :
-    LevelZone(Name,TheWorld,HalfAreaSize),
+ScoreArea::ScoreArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize) :
+    LevelZone(EntID,TheWorld,HalfAreaSize),
     ScoreMultiplier(1.0)
     { this->CreateScoreArea(HalfAreaSize); }
 
@@ -126,13 +126,13 @@ ScoreAreaFactory::~ScoreAreaFactory()
 String ScoreAreaFactory::GetTypeName() const
     { return ScoreArea::GetSerializableName(); }
 
-ScoreArea* ScoreAreaFactory::CreateScoreArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize)
-    { return new ScoreArea(Name,TheWorld,HalfAreaSize); }
+ScoreArea* ScoreAreaFactory::CreateScoreArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize)
+    { return new ScoreArea(EntID,TheWorld,HalfAreaSize); }
 
 ScoreArea* ScoreAreaFactory::CreateScoreArea(const XML::Node& XMLNode, World* TheWorld)
     { return static_cast<ScoreArea*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-Entity* ScoreAreaFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+Entity* ScoreAreaFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
 {
     Vector3 HalfSize;
     NameValuePairMap::const_iterator ParamIt;
@@ -148,7 +148,7 @@ Entity* ScoreAreaFactory::CreateEntity(const String& Name, World* TheWorld, cons
     if( ParamIt != Params.end() )
         HalfSize.Z = StringTools::ConvertToReal( (*ParamIt).second );
 
-    return new ScoreArea(Name,TheWorld,HalfSize);
+    return new ScoreArea(EntID,TheWorld,HalfSize);
 }
 
 Entity* ScoreAreaFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)

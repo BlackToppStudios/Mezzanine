@@ -21,13 +21,13 @@ protected:
     virtual void DestroyLevelZone();
 public:
     /// @brief Blank constructor.
-    /// @param TheWorld A pointer to the world this object belongs to.
+    /// @param TheWorld A pointer to the world this LevelZone belongs to.
     LevelZone(World* TheWorld);
     /// @brief Class constructor.
-    /// @param Name The name to be given to this object.
-    /// @param TheWorld A pointer to the world this object belongs to.
+    /// @param EntID The unique ID of the LevelZone.
+    /// @param TheWorld A pointer to the world this LevelZone belongs to.
     /// @param HalfZoneSize Half of the size on each axis of the zone.
-    LevelZone(const String& Name, World* TheWorld, const Vector3& HalfZoneSize);
+    LevelZone(const EntityID& EntID, World* TheWorld, const Vector3& HalfZoneSize);
     /// @brief Class constructor.
     virtual ~LevelZone();
 

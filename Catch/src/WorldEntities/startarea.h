@@ -23,10 +23,10 @@ public:
     /// @param TheWorld A pointer to the world this object belongs to.
     StartArea(World* TheWorld);
     /// @brief Class constructor.
-    /// @param Name The name to be given to this object.
+    /// @param EntID The unique ID of the StartArea.
     /// @param TheWorld A pointer to the world this object belongs to.
     /// @param HalfAreaSize Half of the size on each axis of the start area.
-    StartArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize);
+    StartArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize);
     /// @brief XML constructor.
     /// @param SelfRoot An XML::Node containing the data to populate this class with.
     /// @param TheWorld A pointer to the world this object belongs to.
@@ -91,18 +91,18 @@ public:
     /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
     virtual String GetTypeName() const;
 
-    /// @brief Creates a StartArea object.
-    /// @param Name The name to be given to this object.
-    /// @param TheWorld A pointer to the world this object belongs to.
-    /// @param HalfAreaSize Half of the size on each axis of the start area.
-    virtual StartArea* CreateStartArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize);
-    /// @brief Creates a StartArea object.
+    /// @brief Creates a StartArea.
+    /// @param EntID The unique ID of the StartArea.
+    /// @param TheWorld A pointer to the world this StartArea belongs to.
+    /// @param HalfAreaSize Half of the size on each axis of the StartArea.
+    virtual StartArea* CreateStartArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize);
+    /// @brief Creates a StartArea.
     /// @param XMLNode The node of the xml document to construct from.
-    /// @param TheWorld A pointer to the world this object belongs to.
+    /// @param TheWorld A pointer to the world this StartArea belongs to.
     virtual StartArea* CreateStartArea(const XML::Node& XMLNode, World* TheWorld);
 
-    /// @copydoc Mezzanine::EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
-    virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+    /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+    virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
     /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&)
     virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
     /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)

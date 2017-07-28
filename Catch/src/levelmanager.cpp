@@ -80,7 +80,8 @@ void LoadFerris()
     //----------
 
     // Create the Wheel
-    RigidDebris* FerrisWheel = EntMan->CreateRigidDebris("FerrisWheel",100.0);
+    RigidDebris* FerrisWheel = EntMan->CreateRigidDebris(100.0);
+    FerrisWheel->SetName("FerrisWheel");
     FerrisWheel->GetRigidProxy()->SetDamping(0,0.1);
     FerrisWheel->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Wheel") ); // The names aren't being loaded as we expected
     FerrisWheel->GetItemProxy()->SetMesh("wheel.mesh",FerrisGroup);
@@ -89,49 +90,57 @@ void LoadFerris()
 
     // Create the trayz
     Real TrayMass = 50.0;
-    RigidDebris* Tray1 = EntMan->CreateRigidDebris("Tray1",TrayMass);
+    RigidDebris* Tray1 = EntMan->CreateRigidDebris(TrayMass);
+    Tray1->SetName("Tray1");
     Tray1->GetRigidProxy()->SetDamping(0,0.1);
     Tray1->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray1->GetItemProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray1->SetLocation(30.4,14.3,0);
     Tray1->AddToWorld();
-    RigidDebris* Tray2 = EntMan->CreateRigidDebris("Tray2",TrayMass);
+    RigidDebris* Tray2 = EntMan->CreateRigidDebris(TrayMass);
+    Tray2->SetName("Tray2");
     Tray2->GetRigidProxy()->SetDamping(0,0.1);
     Tray2->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray2->GetItemProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray2->SetLocation(169.6,14.3,0);
     Tray2->AddToWorld();
-    RigidDebris* Tray3 = EntMan->CreateRigidDebris("Tray3",TrayMass);
+    RigidDebris* Tray3 = EntMan->CreateRigidDebris(TrayMass);
+    Tray3->SetName("Tray3");
     Tray3->GetRigidProxy()->SetDamping(0,0.1);
     Tray3->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray3->GetItemProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray3->SetLocation(30.4,-42.7,0);
     Tray3->AddToWorld();
-    RigidDebris* Tray4 = EntMan->CreateRigidDebris("Tray4",TrayMass);
+    RigidDebris* Tray4 = EntMan->CreateRigidDebris(TrayMass);
+    Tray4->SetName("Tray4");
     Tray4->GetRigidProxy()->SetDamping(0,0.1);
     Tray4->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray4->GetItemProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray4->SetLocation(169.6,-42.7,0);
     Tray4->AddToWorld();
-    RigidDebris* Tray5 = EntMan->CreateRigidDebris("Tray5",TrayMass);
+    RigidDebris* Tray5 = EntMan->CreateRigidDebris(TrayMass);
+    Tray5->SetName("Tray5");
     Tray5->GetRigidProxy()->SetDamping(0,0.1);
     Tray5->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray5->GetItemProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray5->SetLocation(71.5,55.4,0);
     Tray5->AddToWorld();
-    RigidDebris* Tray6 = EntMan->CreateRigidDebris("Tray6",TrayMass);
+    RigidDebris* Tray6 = EntMan->CreateRigidDebris(TrayMass);
+    Tray6->SetName("Tray6");
     Tray6->GetRigidProxy()->SetDamping(0,0.1);
     Tray6->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray6->GetItemProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray6->SetLocation(128.5,55.4,0);
     Tray6->AddToWorld();
-    RigidDebris* Tray7 = EntMan->CreateRigidDebris("Tray7",TrayMass);
+    RigidDebris* Tray7 = EntMan->CreateRigidDebris(TrayMass);
+    Tray7->SetName("Tray7");
     Tray7->GetRigidProxy()->SetDamping(0,0.1);
     Tray7->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray7->GetItemProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray7->SetLocation(71.5,-83.8,0);
     Tray7->AddToWorld();
-    RigidDebris* Tray8 = EntMan->CreateRigidDebris("Tray8",TrayMass);
+    RigidDebris* Tray8 = EntMan->CreateRigidDebris(TrayMass);
+    Tray8->SetName("Tray8");
     Tray8->GetRigidProxy()->SetDamping(0,0.1);
     Tray8->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray8->GetItemProxy()->SetMesh("purpletray.mesh",FerrisGroup);
@@ -229,7 +238,8 @@ void LoadFerris()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
 
-    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea1",StartZoneParams) );
+    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone->SetName("StartArea1");
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
     StartZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",FerrisGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(11.0);
@@ -243,7 +253,8 @@ void LoadFerris()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
 
-    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone->SetName("ScoreArea1");
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
     ScoreZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",FerrisGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(100,0,0);
@@ -257,28 +268,32 @@ void LoadFerris()
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
     Graphics::Mesh* BonusScoreMesh = Graphics::Procedural::BoxCornerGenerator(BonusScoreSize,4.0).GenerateMesh("BonusAreaMesh",FerrisGroup,"Basic/Purple",CommonGroup);
 
-    ScoreArea* BonusZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","BonusArea1",BonusZoneParams) );
+    ScoreArea* BonusZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",BonusZoneParams) );
+    BonusZone1->SetName("BonusArea1");
     BonusZone1->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone1->GetItemProxy()->SetMesh(BonusScoreMesh);
     BonusZone1->SetScoreMultiplier(2.0);
     BonusZone1->SetLocation(169.6,14.3,0);
     BonusZone1->AddToWorld();
     BonusZone1->SetSyncTarget(Tray2);// */
-    ScoreArea* BonusZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","BonusArea2",BonusZoneParams) );
+    ScoreArea* BonusZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",BonusZoneParams) );
+    BonusZone2->SetName("BonusArea2");
     BonusZone2->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone2->GetItemProxy()->SetMesh(BonusScoreMesh);
     BonusZone2->SetScoreMultiplier(2.0);
     BonusZone2->SetLocation(30.4,-42.7,0);
     BonusZone2->AddToWorld();
     BonusZone2->SetSyncTarget(Tray3);// */
-    ScoreArea* BonusZone3 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","BonusArea3",BonusZoneParams) );
+    ScoreArea* BonusZone3 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",BonusZoneParams) );
+    BonusZone3->SetName("BonusArea3");
     BonusZone3->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone3->GetItemProxy()->SetMesh(BonusScoreMesh);
     BonusZone3->SetScoreMultiplier(2.0);
     BonusZone3->SetLocation(71.5,55.4,0);
     BonusZone3->AddToWorld();
     BonusZone3->SetSyncTarget(Tray5);// */
-    ScoreArea* BonusZone4 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","BonusArea4",BonusZoneParams) );
+    ScoreArea* BonusZone4 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",BonusZoneParams) );
+    BonusZone4->SetName("BonusArea4");
     BonusZone4->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
     BonusZone4->GetItemProxy()->SetMesh(BonusScoreMesh);
     BonusZone4->SetScoreMultiplier(2.0);
@@ -339,7 +354,8 @@ void LoadBigCurve()
     // -no files to be loaded for this level-
 
     // Create the Cave
-    RigidDebris* CurveCave = EntMan->CreateRigidDebris("CurveCave",0);
+    RigidDebris* CurveCave = EntMan->CreateRigidDebris(0);
+    CurveCave->SetName("CurveCave");
     CurveCave->GetRigidProxy()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("Cave","cave.mesh",BigCurveGroup));
     CurveCave->GetItemProxy()->SetMesh("cave.mesh",BigCurveGroup);
     CurveCave->SetLocation(130,0,-10);
@@ -390,7 +406,8 @@ void LoadBigCurve()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
 
-    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea1",StartZoneParams) );
+    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone->SetName("StartArea1");
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
     StartZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BigCurveGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(8.0);
@@ -404,7 +421,8 @@ void LoadBigCurve()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
 
-    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone->SetName("ScoreArea1");
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
     ScoreZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",BigCurveGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(120,-20,-10);
@@ -477,7 +495,8 @@ void LoadBlowsNotSucks()
     //----------
 
     // Create the fan
-    RigidDebris* Fan = EntMan->CreateRigidDebris("Fan",25);
+    RigidDebris* Fan = EntMan->CreateRigidDebris(25);
+    Fan->SetName("Fan");
     Fan->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Fan") );
     Fan->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
     Fan->GetItemProxy()->SetMesh("fan.mesh",BlowsNotSucksGroup);
@@ -485,13 +504,15 @@ void LoadBlowsNotSucks()
     Fan->SetOrientation(Quaternion(MathTools::GetQuarterPi(),Vector3(0,0,1)));
     Fan->AddToWorld();
 
-    RigidDebris* FanBody = EntMan->CreateRigidDebris("FanBody",0);
+    RigidDebris* FanBody = EntMan->CreateRigidDebris(0);
+    FanBody->SetName("FanBody");
     FanBody->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("Body","body.mesh",BlowsNotSucksGroup) );
     FanBody->GetItemProxy()->SetMesh("body.mesh",BlowsNotSucksGroup);
     FanBody->SetLocation(132.5,-70,25);
     FanBody->AddToWorld();
 
-    RigidDebris* FanButton = EntMan->CreateRigidDebris("FanButton",2.5);
+    RigidDebris* FanButton = EntMan->CreateRigidDebris(2.5);
+    FanButton->SetName("FanButton");
     FanButton->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateConvexHull("Button","button.mesh",BlowsNotSucksGroup) );
     FanButton->GetRigidProxy()->SetGravity( Vector3(0,0,0) );
     FanButton->GetRigidProxy()->SetAngularMovementFactor(Vector3(0,0,0));
@@ -520,7 +541,8 @@ void LoadBlowsNotSucks()
     // Create the field of force for the wind generated by the fan
     Vector3 FanWindSize(60,115,60);
     Quaternion FanWindOrientation(MathTools::GetQuarterPi(),Vector3(0,0,1));
-    FieldOfForce* FanWind = EntMan->CreateFieldOfForce("FanWind");
+    FieldOfForce* FanWind = EntMan->CreateFieldOfForce();
+    FanWind->SetName("FanWind");
     FanWind->GetGhostProxy()->SetCollisionShape( new Physics::CylinderCollisionShape("FanWindShape",60,115,Vector3::Unit_Y()) );
     FanWind->SetOrientation(FanWindOrientation);
     FanWind->SetDirectionOfForce(Vector3(-1,1,0));
@@ -542,7 +564,8 @@ void LoadBlowsNotSucks()
     PhysMan->AddWorldTrigger(FanTrigger);
 
     // Create the goal tray
-    RigidDebris* GoalTray = EntMan->CreateRigidDebris("GoalTray",0);
+    RigidDebris* GoalTray = EntMan->CreateRigidDebris(0);
+    GoalTray->SetName("GoalTray");
     GoalTray->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("GoalShape","tray.mesh",BlowsNotSucksGroup) );
     GoalTray->GetItemProxy()->SetMesh("tray.mesh",BlowsNotSucksGroup);
     GoalTray->SetLocation(-170,100,0);
@@ -592,7 +615,8 @@ void LoadBlowsNotSucks()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
 
-    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea1",StartZoneParams) );
+    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone->SetName("StartArea1");
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
     StartZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",BlowsNotSucksGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(6.0);
@@ -608,7 +632,8 @@ void LoadBlowsNotSucks()
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
     Graphics::Mesh* ScoreArea1Mesh = Graphics::Procedural::BoxCornerGenerator(Score1Size,4.0).GenerateMesh("ScoreArea1Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
-    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZone1Params) );
+    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZone1Params) );
+    ScoreZone1->SetName("ScoreArea1");
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreArea1Shape);
     ScoreZone1->GetItemProxy()->SetMesh(ScoreArea1Mesh);
     ScoreZone1->SetLocation(-10.5,-100.0,0.0);
@@ -622,7 +647,8 @@ void LoadBlowsNotSucks()
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
     Graphics::Mesh* ScoreArea2Mesh = Graphics::Procedural::BoxCornerGenerator(Score2Size,4.0).GenerateMesh("ScoreArea2Mesh",BlowsNotSucksGroup,"Basic/Blue",CommonGroup);
 
-    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea2",ScoreZone2Params) );
+    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZone2Params) );
+    ScoreZone2->SetName("ScoreArea2");
     ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreArea2Shape);
     ScoreZone2->GetItemProxy()->SetMesh(ScoreArea2Mesh);
     ScoreZone2->SetLocation(-170,100,0);
@@ -700,7 +726,8 @@ void LoadJustice()
     //----------
 
     // Create Lady Justice
-    RigidDebris* LadyJustice = EntMan->CreateRigidDebris("LadyJustice",0);
+    RigidDebris* LadyJustice = EntMan->CreateRigidDebris(0);
+    LadyJustice->SetName("LadyJustice");
     LadyJustice->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("LadyShape","lady.mesh",JusticeGroup) );
     LadyJustice->GetItemProxy()->SetMesh("lady.mesh",JusticeGroup);
     LadyJustice->SetLocation(12,-60,-103.35);
@@ -708,7 +735,8 @@ void LoadJustice()
 
     // Create the scale object
     Real ScaleMass = 50.0;
-    RigidDebris* JusticeScale = EntMan->CreateRigidDebris("JusticeScale",ScaleMass);
+    RigidDebris* JusticeScale = EntMan->CreateRigidDebris(ScaleMass);
+    JusticeScale->SetName("JusticeScale");
     JusticeScale->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Scale") );
     JusticeScale->GetRigidProxy()->SetDamping(0.5,0.80);
     JusticeScale->GetItemProxy()->SetMesh("scale.mesh",JusticeGroup);
@@ -717,22 +745,26 @@ void LoadJustice()
 
     // Create the union objects
     Real UnionMass = 5.0;
-    RigidDebris* Union1 = EntMan->CreateRigidDebris("Union1",UnionMass);
+    RigidDebris* Union1 = EntMan->CreateRigidDebris(UnionMass);
+    Union1->SetName("Union1");
     Union1->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
     Union1->GetItemProxy()->SetMesh("union.mesh",JusticeGroup);
     Union1->SetLocation(-112,0.2,-16.4);
     Union1->AddToWorld();
-    RigidDebris* Union2 = EntMan->CreateRigidDebris("Union2",UnionMass);
+    RigidDebris* Union2 = EntMan->CreateRigidDebris(UnionMass);
+    Union2->SetName("Union2");
     Union2->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
     Union2->GetItemProxy()->SetMesh("union.mesh",JusticeGroup);
     Union2->SetLocation(-112,0.2,16.4);
     Union2->AddToWorld();
-    RigidDebris* Union3 = EntMan->CreateRigidDebris("Union3",UnionMass);
+    RigidDebris* Union3 = EntMan->CreateRigidDebris(UnionMass);
+    Union3->SetName("Union3");
     Union3->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
     Union3->GetItemProxy()->SetMesh("union.mesh",JusticeGroup);
     Union3->SetLocation(112,0.2,-16.4);
     Union3->AddToWorld();
-    RigidDebris* Union4 = EntMan->CreateRigidDebris("Union4",UnionMass);
+    RigidDebris* Union4 = EntMan->CreateRigidDebris(UnionMass);
+    Union4->SetName("Union4");
     Union4->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
     Union4->GetItemProxy()->SetMesh("union.mesh",JusticeGroup);
     Union4->SetLocation(112,0.2,16.4);
@@ -740,7 +772,8 @@ void LoadJustice()
 
     // Create the trays
     Real TrayMass = 25.0;
-    RigidDebris* Tray1 = EntMan->CreateRigidDebris("Tray1",TrayMass);
+    RigidDebris* Tray1 = EntMan->CreateRigidDebris(TrayMass);
+    Tray1->SetName("Tray1");
     Tray1->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray1->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Tray1->GetRigidProxy()->SetAngularMovementFactor(Vector3(1,0,1));
@@ -748,7 +781,8 @@ void LoadJustice()
     Tray1->GetItemProxy()->SetMesh("tray.mesh",JusticeGroup);
     Tray1->SetLocation(-112,-35,0);
     Tray1->AddToWorld();
-    RigidDebris* Tray2 = EntMan->CreateRigidDebris("Tray2",TrayMass);
+    RigidDebris* Tray2 = EntMan->CreateRigidDebris(TrayMass);
+    Tray2->SetName("Tray2");
     Tray2->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
     Tray2->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Tray2->GetRigidProxy()->SetAngularMovementFactor(Vector3(1,0,1));
@@ -821,14 +855,16 @@ void LoadJustice()
     Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
     Graphics::Mesh* StartAreaMesh = Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JusticeGroup,"Basic/Green",CommonGroup);
 
-    StartArea* StartZone1 = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea1",StartZoneParams) );
+    StartArea* StartZone1 = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone1->SetName("StartArea1");
     StartZone1->GetGhostProxy()->SetCollisionShape(StartAreaShape);
     StartZone1->GetItemProxy()->SetMesh(StartAreaMesh);
     StartZone1->SetParticleMinimumTimeToLive(3.0);
     StartZone1->SetParticleMaximumTimeToLive(4.0);
     StartZone1->SetLocation(-160,120,0);
     StartZone1->AddToWorld();
-    StartArea* StartZone2 = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea2",StartZoneParams) );
+    StartArea* StartZone2 = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone2->SetName("StartArea2");
     StartZone2->GetGhostProxy()->SetCollisionShape(StartAreaShape);
     StartZone2->GetItemProxy()->SetMesh(StartAreaMesh);
     StartZone2->SetParticleMinimumTimeToLive(3.0);
@@ -844,12 +880,14 @@ void LoadJustice()
     Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
     Graphics::Mesh* ScoreAreaMesh = Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JusticeGroup,"Basic/Blue",CommonGroup);
 
-    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone1->SetName("ScoreArea1");
     ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
     ScoreZone1->GetItemProxy()->SetMesh(ScoreAreaMesh);
     ScoreZone1->SetLocation(-113,-40,0);
     ScoreZone1->AddToWorld();// */
-    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea2",ScoreZoneParams) );
+    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone2->SetName("ScoreArea2");
     ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
     ScoreZone2->GetItemProxy()->SetMesh(ScoreAreaMesh);
     ScoreZone2->SetLocation(113,-40,0);
@@ -907,7 +945,8 @@ void LoadRollers()
     // Setup and Create the shapes that will be used.
 
     // Create the basic terrain that will be used
-    RigidDebris* RollersFrame = EntMan->CreateRigidDebris("RollersFrame",0);
+    RigidDebris* RollersFrame = EntMan->CreateRigidDebris(0);
+    RollersFrame->SetName("RollersFrame");
     RollersFrame->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("FrameShape","frame.mesh",RollersGroup) );
     RollersFrame->GetRigidProxy()->SetFriction(1.0);
     RollersFrame->GetItemProxy()->SetMesh("frame.mesh",RollersGroup);
@@ -923,7 +962,8 @@ void LoadRollers()
         Vector3 Location(112.4+(XStride*X),-20,0);
         StringStream Namestream;
         Namestream << "Roller" << (X+1);
-        RigidDebris* Roller = EntMan->CreateRigidDebris(Namestream.str(),10);
+        RigidDebris* Roller = EntMan->CreateRigidDebris(10);
+        Roller->SetName(Namestream.str());
         Roller->GetRigidProxy()->SetCollisionShape(RollerShape);
         Roller->GetRigidProxy()->SetFriction(1.0);
         Roller->GetItemProxy()->SetMesh("rubberroller.mesh",RollersGroup);
@@ -976,7 +1016,8 @@ void LoadRollers()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
 
-    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","ScoreArea1",StartZoneParams) );
+    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone->SetName("ScoreArea1");
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
     StartZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",RollersGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
@@ -990,7 +1031,8 @@ void LoadRollers()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
 
-    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone->SetName("ScoreArea1");
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
     ScoreZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",RollersGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(140,20,0);
@@ -1066,20 +1108,23 @@ void LoadJustBounce()
     //----------
 
     // Create the basic terrain that will be used
-    RigidDebris* TopWall = EntMan->CreateRigidDebris("TopWall",0);
+    RigidDebris* TopWall = EntMan->CreateRigidDebris(0);
+    TopWall->SetName("TopWall");
     TopWall->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("WallShape","wall.mesh",JustBounceGroup) );
     TopWall->GetRigidProxy()->SetRestitution(0.5);
     TopWall->GetItemProxy()->SetMesh("wall.mesh",JustBounceGroup);
     TopWall->SetLocation(0,85,0);
     TopWall->AddToWorld();
 
-    RigidDebris* Basket = EntMan->CreateRigidDebris("Basket",0);
+    RigidDebris* Basket = EntMan->CreateRigidDebris(0);
+    Basket->SetName("Basket");
     Basket->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Basket") );
     Basket->GetItemProxy()->SetMesh("basket.mesh",JustBounceGroup);
     Basket->SetLocation(165,-25,0);
     Basket->AddToWorld();
 
-    RigidDebris* ElasticFloor = EntMan->CreateRigidDebris("ElasticFloor",0);
+    RigidDebris* ElasticFloor = EntMan->CreateRigidDebris(0);
+    ElasticFloor->SetName("ElasticFloor");
     ElasticFloor->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("ElasticBed") );// ©ShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
     ElasticFloor->GetRigidProxy()->SetRestitution(1.0);
     //ElasticFloor->GetRigidProxy()->SetFriction(0.4);
@@ -1087,7 +1132,8 @@ void LoadJustBounce()
     ElasticFloor->SetLocation(-20,-70,0);
     ElasticFloor->AddToWorld();
 
-    RigidDebris* ElasticCase = EntMan->CreateRigidDebris("ElasticCase",0);
+    RigidDebris* ElasticCase = EntMan->CreateRigidDebris(0);
+    ElasticCase->SetName("ElasticCase");
     ElasticCase->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("CaseShape","case.mesh",JustBounceGroup) );
     ElasticCase->GetItemProxy()->SetMesh("case.mesh",JustBounceGroup);
     ElasticCase->SetLocation(-20,-71,0);
@@ -1128,7 +1174,8 @@ void LoadJustBounce()
     StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
     StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
 
-    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea","StartArea1",StartZoneParams) );
+    StartArea* StartZone = static_cast<StartArea*>( EntMan->CreateEntity("StartArea",StartZoneParams) );
+    StartZone->SetName("StartArea1");
     StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
     StartZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(StartSize,4.0).GenerateMesh("StartAreaMesh",JustBounceGroup,"Basic/Green",CommonGroup) );
     StartZone->SetParticleMinimumTimeToLive(5.0);
@@ -1142,7 +1189,8 @@ void LoadJustBounce()
     ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
     ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
 
-    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( EntMan->CreateEntity("ScoreArea",ScoreZoneParams) );
+    ScoreZone->SetName("ScoreArea1");
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
     ScoreZone->GetItemProxy()->SetMesh( Graphics::Procedural::BoxCornerGenerator(ScoreSize,4.0).GenerateMesh("ScoreAreaMesh",JustBounceGroup,"Basic/Blue",CommonGroup) );
     ScoreZone->SetLocation(158,-25,0);
