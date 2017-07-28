@@ -144,8 +144,8 @@ namespace Mezzanine
             XML::Node InitDataNode = SelfRoot.AppendChild( GearConstraint::GetSerializableName() + "InitData" );
 
             if( InitDataNode.AppendAttribute("Version").SetValue("1") &&
-                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetComponentID() ) : false ) &&
-                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetComponentID() ) : false ) )
+                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetComponentID().ID ) : false ) &&
+                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetComponentID().ID ) : false ) )
             {
                 if( this->ProxA != NULL ) {
                     XML::Node AxisANode = InitDataNode.AppendChild("AxisA");

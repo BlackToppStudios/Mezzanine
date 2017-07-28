@@ -59,12 +59,12 @@ namespace Mezzanine
     protected:
     public:
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        RaycastVehicle(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the RaycastVehicle.
+        /// @param TheWorld A pointer to the world this RaycastVehicle belongs to.
+        RaycastVehicle(const EntityID& EntID, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this RaycastVehicle belongs to.
         RaycastVehicle(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~RaycastVehicle();
@@ -98,7 +98,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A factory type for the creation of RaycastVehicle objects.
     ///////////////////////////////////////
-    class MEZZ_LIB RaycastVehicleFactory
+    class MEZZ_LIB RaycastVehicleFactory : public VehicleFactory
     {
     public:
         /// @brief Class constructor.
@@ -106,20 +106,20 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~RaycastVehicleFactory();
 
-        /// @copydoc VehicleFactory::GetTypeName() const
+        /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a RaycastVehicle object.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual RaycastVehicle* CreateRaycastVehicle(const String& Name, World* TheWorld);
+        /// @brief Creates a RaycastVehicle.
+        /// @param EntID The unique ID of the RaycastVehicle.
+        /// @param TheWorld A pointer to the world this RaycastVehicle belongs to.
+        virtual RaycastVehicle* CreateRaycastVehicle(const EntityID& EntID, World* TheWorld);
 
-        /// @copydoc VehicleFactory::CreateVehicle(const String&, World*, const NameValuePairMap&)
-        virtual Vehicle* CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc VehicleFactory::CreateVehicle(const XML::Node&, World*)
-        virtual Vehicle* CreateVehicle(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc VehicleFactory::DestroyVehicle(Vehicle*)
-        virtual void DestroyVehicle(Vehicle* ToBeDestroyed);
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&, World*)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//RaycastVehicleFactory
 }//Mezzanine
 

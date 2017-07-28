@@ -44,6 +44,7 @@
 #include "transformableobject.h"
 #include "sortedvector.h"
 #include "entityfactory.h"
+#include "entityid.h"
 
 #ifndef SWIG
     #include "iteratorrange.h"
@@ -80,8 +81,10 @@ namespace Mezzanine
     protected:
         /// @brief A container of the components that share this objects transform.
         ComponentContainer Components;
-        /// @brief The name of the object.
-        String ObjectName;
+        /// @brief The name of the Entity.
+        String EntityName;
+        /// @brief The unique ID of the Entity.
+        EntityID ID;
         /// @brief A pointer to the proxy that is used for various queries, such as transform.
         EntityProxy* PrimaryProxy;
         /// @brief This is the world this object belongs to and will be inserted in/removed from.
@@ -92,13 +95,13 @@ namespace Mezzanine
         /// @brief Destroys every EntityComponent in this object.
         void DestroyAllComponents();
     public:
-        /// @brief Blank constructor.
+        /// @brief Compatibility constructor.
         /// @param TheWorld A pointer to the world this object belongs to.
         Entity(World* TheWorld);
-        /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
+        /// @brief Simple constructor.
+        /// @param EntID The unique ID of the Entity.
         /// @param TheWorld A pointer to the world this object belongs to.
-        Entity(const String& Name, World* TheWorld);
+        Entity(const EntityID& EntID, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -109,25 +112,33 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Configuration
 
-        /// @brief Gets the type of the object instance
-        /// @return Returns the type of the object instance
+        /// @brief Gets the type of the Entity instance
+        /// @return Returns the type of the Entity instance
         virtual Mezzanine::EntityType GetEntityType() const;
-        /// @brief Gets the name of this object.
-        /// @return Returns a string containing the name of this object.
-        virtual const String& GetName() const;
-        /// @brief Gets the world this object currently belongs to.
-        /// @return Returns a pointer to the world that owns this object.
+        /// @brief Gets the unique ID of the Entity instance.
+        /// @return Returns an EntityID containing the unique identity of this Entity.
+        virtual EntityID GetEntityID() const;
+        /// @brief Gets the world this Entity currently belongs to.
+        /// @return Returns a pointer to the world that owns this Entity.
         virtual World* GetWorld() const;
 
-        /// @brief Gets whether or not this object is currently in the world.
+        /// @brief Sets the optional name of this Entity.
+        /// @remarks The name does not need to be unique or set at all.  It is an optional useful parameter for debugging.
+        /// @param Name The name to be given to the Entity.
+        virtual void SetName(const String& Name);
+        /// @brief Gets the name of this Entity.
+        /// @return Returns a string containing the name of this Entity.
+        virtual const String& GetName() const;
+
+        /// @brief Gets whether or not this Entity is currently in the world.
         /// @remarks This will check the status of the first proxy (index 0) and query only it.
-        /// If this object is empty the method will return false.
-        /// @return Returns a Boole indicating if this object has been added to the world.
+        /// If this Entity is empty the method will return false.
+        /// @return Returns a Boole indicating if this Entity has been added to the world.
         virtual Boole IsInWorld() const;
-        /// @brief Checks of the object is meant to have it's geometry/transform updated frequently.
+        /// @brief Checks of the Entity is meant to have it's geometry/transform updated frequently.
         /// @remarks This will check the status of the first proxy (index 0) and query only it.
-        /// If this object is empty the method will return true.
-        /// @return Returns true if the object is meant to be stationary, false otherwise.
+        /// If this Entity is empty the method will return true.
+        /// @return Returns true if the Entity is meant to be stationary, false otherwise.
         virtual Boole IsStatic() const;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -228,9 +239,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Working with the World
 
-        /// @brief Adds the object to the World.
+        /// @brief Adds the Entity to the World.
         virtual void AddToWorld();
-        /// @brief Removes the object from the World.
+        /// @brief Removes the Entity from the World.
         virtual void RemoveFromWorld();
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -285,7 +296,7 @@ namespace Mezzanine
         // Serialization
 
         /// @brief Convert this class to an XML::Node ready for serialization.
-        /// @param ParentNode The point in the XML hierarchy that all this renderable should be appended to.
+        /// @param ParentNode The point in the XML hierarchy that all this Entity should be appended to.
         virtual void ProtoSerialize(XML::Node& ParentNode) const;
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -341,8 +352,8 @@ namespace Mezzanine
         /// @return Returns the typename of the Entity created by this factory.
         virtual String GetTypeName() const;
 
-        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
-        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
         /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&)
         virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
         /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)

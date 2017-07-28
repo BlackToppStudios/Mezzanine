@@ -297,10 +297,10 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
-            UIDGenerator ProxyIDGen;
+            UIDGenerator<UInt32> ProxyIDGen;
             /// @internal
             /// @brief Generator responsible for creating unique IDs for Constraint instances.
-            UIDGenerator ConstraintIDGen;
+            UIDGenerator<UInt32> ConstraintIDGen;
 
             /// @internal
             /// @brief A container storing all of the proxies owned by this manager.

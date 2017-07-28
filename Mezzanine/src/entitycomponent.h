@@ -41,6 +41,7 @@
 #define _entitycomponent_h
 
 #include "enumerations.h"
+#include "entitycomponentid.h"
 
 #ifndef SWIG
     #include "XML/xml.h"
@@ -59,13 +60,13 @@ namespace Mezzanine
         /// @brief Pointer to the Entity this component belongs to.
         Entity* ParentEntity;
         /// @brief The ID of the component that unique among the pool it belongs to.
-        UInt32 ComponentID;
+        EntityComponentID ComponentID;
     public:
         /// @brief Blank constructor.
         EntityComponent();
         /// @brief Normal/ID constructor.
         /// @param ID The unique ID assigned to the type of component an instance is.
-        EntityComponent(const UInt32 ID);
+        EntityComponent(const EntityComponentID& ID);
         /// @brief Class destructor.
         virtual ~EntityComponent() = default;
 
@@ -82,7 +83,7 @@ namespace Mezzanine
         /// @brief Gets the unique ID of this component.
         /// @remarks Component IDs are only unique to their family of proxies belonging to a specific subsystem.  Across subsystems IDs can be reused.
         /// @return Returns a UInt32 containing the unique ID for this component.
-        virtual UInt32 GetComponentID() const;
+        virtual EntityComponentID GetComponentID() const;
         /// @brief Gets a pointer to this components creator.
         /// @return Returns a pointer to the EntityComponentManager that created this EntityComponent.
         virtual EntityComponentManager* GetCreator() const = 0;

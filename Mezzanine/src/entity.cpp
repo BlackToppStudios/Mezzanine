@@ -69,8 +69,8 @@ namespace Mezzanine
         ProxyStartIndex(0)
         {  }
 
-    Entity::Entity(const String& Name, World* TheWorld) :
-        ObjectName(Name),
+    Entity::Entity(const EntityID& EntID, World* TheWorld) :
+        ID(EntID),
         PrimaryProxy(nullptr),
         ParentWorld(TheWorld),
         ProxyStartIndex(0)
@@ -84,13 +84,11 @@ namespace Mezzanine
 
     void Entity::DestroyAllComponents()
     {
-        ComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
+        for( EntityComponent* Comp : this->Components )
         {
-            EntityComponentManager* ComponentMan = (*CompIt)->GetCreator();
-            (*CompIt)->_Bind(nullptr);
-            ComponentMan->DestroyComponent(*CompIt);
-            ++CompIt;
+            EntityComponentManager* ComponentMan = Comp->GetCreator();
+            Comp->_Bind(nullptr);
+            ComponentMan->DestroyComponent(Comp);
         }
         this->Components.clear();
     }
@@ -101,11 +99,17 @@ namespace Mezzanine
     Mezzanine::EntityType Entity::GetEntityType() const
         { return Mezzanine::ET_Generic; }
 
-    const String& Entity::GetName() const
-        { return this->ObjectName; }
+    EntityID Entity::GetEntityID() const
+        { return this->ID; }
 
     World* Entity::GetWorld() const
         { return this->ParentWorld; }
+
+    void Entity::SetName(const String& Name)
+        { this->EntityName = Name; }
+
+    const String& Entity::GetName() const
+        { return this->EntityName; }
 
     Boole Entity::IsInWorld() const
     {
@@ -196,9 +200,8 @@ namespace Mezzanine
     Entity::ComponentContainer Entity::RemoveAllComponents()
     {
         ComponentContainer Ret;
-        ComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
-            { (*CompIt)->_Bind( nullptr ); }
+        for( EntityComponent* Comp : this->Components )
+            { Comp->_Bind( nullptr ); }
         Ret.swap(this->Components);
         this->ProxyStartIndex = 0;
         return Ret;
@@ -216,28 +219,24 @@ namespace Mezzanine
 
     EntityComponent* Entity::GetComponent(const ComponentType Type, Whole TypeIndex) const
     {
-        ConstComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
+        for( EntityComponent* Comp : this->Components )
         {
-            if( (*CompIt)->GetComponentType() == Type ) {
-                if( TypeIndex == 0 ) return (*CompIt);
+            if( Comp->GetComponentType() == Type ) {
+                if( TypeIndex == 0 ) return Comp;
                 else --TypeIndex;
             }
-            ++CompIt;
         }
         return nullptr;
     }
 
     EntityComponent* Entity::GetComponent(const ComponentType TypeFirst, const ComponentType TypeLast, Whole TypeIndex) const
     {
-        ConstComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
+        for( EntityComponent* Comp : this->Components )
         {
-            if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
-                if( TypeIndex == 0 ) return (*CompIt);
+            if( Comp->GetComponentType() >= TypeFirst && Comp->GetComponentType() <= TypeLast ) {
+                if( TypeIndex == 0 ) return Comp;
                 else --TypeIndex;
             }
-            ++CompIt;
         }
         return nullptr;
     }
@@ -260,13 +259,11 @@ namespace Mezzanine
     Entity::ComponentContainer Entity::GetComponents(const ComponentType Type) const
     {
         ComponentContainer Ret;
-        ConstComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
+        for( EntityComponent* Comp : this->Components )
         {
-            if( (*CompIt)->GetComponentType() == Type ) {
-                Ret.push_back(*CompIt);
+            if( Comp->GetComponentType() == Type ) {
+                Ret.push_back(Comp);
             }
-            ++CompIt;
         }
         return Ret;
     }
@@ -274,13 +271,11 @@ namespace Mezzanine
     Entity::ComponentContainer Entity::GetComponents(const ComponentType TypeFirst, const ComponentType TypeLast) const
     {
         ComponentContainer Ret;
-        ConstComponentIterator CompIt = this->Components.begin();
-        while( CompIt != this->Components.end() )
+        for( EntityComponent* Comp : this->Components )
         {
-            if( (*CompIt)->GetComponentType() >= TypeFirst && (*CompIt)->GetComponentType() <= TypeLast ) {
-                Ret.push_back(*CompIt);
+            if( Comp->GetComponentType() >= TypeFirst && Comp->GetComponentType() <= TypeLast ) {
+                Ret.push_back(Comp);
             }
-            ++CompIt;
         }
         return Ret;
     }
@@ -480,6 +475,8 @@ namespace Mezzanine
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
             PropertiesNode.AppendAttribute("Name").SetValue( this->GetName() ) )
         {
+            XML::Node IDNode = PropertiesNode.AppendChild("ID");
+            this->ID.ProtoSerialize( IDNode );
             /// @todo Is serializing transform data necessary?  Proxies have their own copy.
             XML::Node LocationNode = PropertiesNode.AppendChild("Location");
             this->GetLocation().ProtoSerialize( LocationNode );
@@ -505,7 +502,7 @@ namespace Mezzanine
             for( ConstComponentIterator CompIt = BegProx ; CompIt != this->Components.end() ; ++CompIt )
             {
                 XML::Node ProxyNode = ComponentsNode.AppendChild( (*CompIt)->GetDerivedSerializableName() );
-                if( ProxyNode.AppendAttribute("ComponentID").SetValue( (*CompIt)->GetComponentID() ) &&
+                if( ProxyNode.AppendAttribute("ComponentID").SetValue( (*CompIt)->GetComponentID().ID ) &&
                     ProxyNode.AppendAttribute("ManagerType").SetValue( (*CompIt)->GetCreator()->GetInterfaceType() ) )
                 {
                     continue;
@@ -532,10 +529,16 @@ namespace Mezzanine
         XML::Node PropertiesNode = SelfRoot.GetChild( Entity::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
-            if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+            if( PropertiesNode.GetAttribute("Version").AsInt() == 1 ) {
                 CurrAttrib = PropertiesNode.GetAttribute("Name");
-                if( !CurrAttrib.Empty() )
-                    this->ObjectName = CurrAttrib.AsString();
+                if( !CurrAttrib.Empty() ) {
+                    this->SetName( CurrAttrib.AsString() );
+                }
+
+                XML::Node IDNode = PropertiesNode.GetChild("ID").GetFirstChild();
+                if( !IDNode.Empty() ) {
+                    this->ID.ProtoDeSerialize(IDNode);
+                }
 
                 XML::Node PositionNode = PropertiesNode.GetChild("Location").GetFirstChild();
                 if( !PositionNode.Empty() ) {
@@ -570,26 +573,29 @@ namespace Mezzanine
         XML::Node ComponentsNode = SelfRoot.GetChild( Entity::GetSerializableName() + "Components" );
 
         if( !ComponentsNode.Empty() ) {
-            if(ComponentsNode.GetAttribute("Version").AsInt() == 1) {
-                //CurrAttrib = ComponentsNode.GetAttribute("ProxyCount");
-                //if( !CurrAttrib.Empty() )
-                //    this->Components.resize( CurrAttrib.AsUint() );
+            if( ComponentsNode.GetAttribute("Version").AsInt() == 1 ) {
+                CurrAttrib = ComponentsNode.GetAttribute("ProxyCount");
+                if( !CurrAttrib.Empty() ) {
+                    this->Components.resize( CurrAttrib.AsUint() );
+                }
 
                 for( XML::NodeIterator ProxyNodeIt = ComponentsNode.begin() ; ProxyNodeIt != ComponentsNode.end() ; ++ProxyNodeIt )
                 {
                     EntityComponentManager* CompMan = nullptr;
-                    UInt32 ComponentID = 0;
+                    UInt32 CompID = 0;
 
                     CurrAttrib = (*ProxyNodeIt).GetAttribute("ComponentID");
-                    if( !CurrAttrib.Empty() )
-                        ComponentID = CurrAttrib.AsUint();
+                    if( !CurrAttrib.Empty() ) {
+                        CompID = CurrAttrib.AsUint();
+                    }
 
                     CurrAttrib = (*ProxyNodeIt).GetAttribute("ManagerType");
-                    if( !CurrAttrib.Empty() )
+                    if( !CurrAttrib.Empty() ) {
                         CompMan = this->ParentWorld->GetComponentManager( static_cast<ManagerBase::ManagerType>( CurrAttrib.AsUint() ) );
+                    }
 
-                    if( ComponentID != 0 && CompMan != nullptr ) {
-                        EntityComponent* ToAdd = CompMan->GetComponentByID(ComponentID);
+                    if( CompID != 0 && CompMan != nullptr ) {
+                        EntityComponent* ToAdd = CompMan->GetComponentByID(CompID);
                         if( ToAdd != nullptr ) {
                             this->AddComponent( ToAdd );
                         }else{
@@ -636,8 +642,8 @@ namespace Mezzanine
     String GenericEntityFactory::GetTypeName() const
         { return Entity::GetSerializableName(); }
 
-    Entity* GenericEntityFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new Entity(Name,TheWorld); }
+    Entity* GenericEntityFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new Entity(EntID,TheWorld); }
 
     Entity* GenericEntityFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new Entity(XMLNode,TheWorld); }

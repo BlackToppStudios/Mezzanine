@@ -43,6 +43,8 @@
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
 #include "iteratorrange.h"
+#include "entityid.h"
+#include "uidgenerator.h"
 #ifndef SWIG
     #include "eventpublisher.h"
     #include "Threading/workunit.h"
@@ -320,6 +322,8 @@ namespace Mezzanine
         EventPublisher Publisher;
         /// @brief Container storing all Entities belonging to this manager.
         EntityContainer Entities;
+        /// @brief Generator for unique IDs belonging to Entities.
+        UIDGenerator<EntityID::IDType> EntityIDGen;
 
         /// @brief The work unit that updates all the actors stored by this manager.
         ActorUpdateWorkUnit* ActorUpdateWork;
@@ -352,66 +356,57 @@ namespace Mezzanine
         // Prefab Entity Type Creation
 
         /// @brief Creates a new FieldOfForce.
-        /// @param Name The name to be given to the new FieldOfForce.
         /// @return Returns a pointer to the created AreaEffect.
-        FieldOfForce* CreateFieldOfForce(const String& Name);
+        FieldOfForce* CreateFieldOfForce();
         /// @brief Creates a new FieldOfForce.
-        /// @param Name The name to be given to the new FieldOfForce.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new FieldOfForce.
         /// @return Returns a pointer to the created AreaEffect.
-        FieldOfForce* CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape);
+        FieldOfForce* CreateFieldOfForce(Physics::CollisionShape* AEShape);
         /// @brief Creates a new FieldOfForce.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         FieldOfForce* CreateFieldOfForce(const XML::Node& SelfRoot);
         /// @brief Creates a new GravityField.
-        /// @param Name The name to be given to the new GravityField.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityField* CreateGravityField(const String& Name);
+        GravityField* CreateGravityField();
         /// @brief Creates a new GravityField.
-        /// @param Name The name to be given to the new GravityField.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new GravityField.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityField* CreateGravityField(const String& Name, Physics::CollisionShape* AEShape);
+        GravityField* CreateGravityField(Physics::CollisionShape* AEShape);
         /// @brief Creates a new GravityField.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         GravityField* CreateGravityField(const XML::Node& SelfRoot);
         /// @brief Creates a new GravityWell.
-        /// @param Name The name to be given to the new GravityWell.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityWell* CreateGravityWell(const String& Name);
+        GravityWell* CreateGravityWell();
         /// @brief Creates a new GravityWell.
-        /// @param Name The name to be given to the new GravityWell.
         /// @param AEShape A pointer to the Collision shape that will be applied to the new GravityWell.
         /// @return Returns a pointer to the created AreaEffect.
-        GravityWell* CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape);
+        GravityWell* CreateGravityWell(Physics::CollisionShape* AEShape);
         /// @brief Creates a new GravityWell.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created AreaEffect.
         GravityWell* CreateGravityWell(const XML::Node& SelfRoot);
 
         /// @brief Creates a new RigidDebris.
-        /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass);
+        RigidDebris* CreateRigidDebris(const Real Mass);
         /// @brief Creates a new RigidDebris.
-        /// @param Name The name to be given to the new RigidDebris.
         /// @param Mass The mass of the debris object.
         /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
         /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
         /// @return Returns a pointer to the created Debris.
-        RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape);
+        RigidDebris* CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape);
         /// @brief Creates a new RigidDebris.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
         RigidDebris* CreateRigidDebris(const XML::Node& SelfRoot);
         /// @brief Creates a new SoftDebris.
-        /// @param Name The name to be given to the new SoftDebris.
         /// @param Mass The mass of the debris object.
         /// @return Returns a pointer to the created Debris.
-        SoftDebris* CreateSoftDebris(const String& Name, const Real Mass);
+        SoftDebris* CreateSoftDebris(const Real Mass);
         /// @brief Creates a new SoftDebris.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @return Returns a pointer to the created Debris.
@@ -422,23 +417,27 @@ namespace Mezzanine
 
         /// @brief Creates a new Entity.
         /// @param TypeName A string containing the name of the type of Entity to be constructed.
-        /// @param InstanceName A string containing the name to be given to the created Entity.
         /// @param Params A container of additional parameters to be used for the construction of the new Entity.
         /// @return Returns a pointer to the created Entity.
-        Entity* CreateEntity(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
+        Entity* CreateEntity(const String& TypeName, const NameValuePairMap& Params);
         /// @brief Creates a new Entity class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Entity.
         Entity* CreateEntity(const XML::Node& SelfRoot);
 
         /// @brief Gets an Entity by Index.
-        /// @param Index The index of the Entity you wish to retrieve.
+        /// @param Index The index of the Entity to retrieve.
         /// @return Returns a pointer to the Entity at the specified index.
-        virtual Entity* GetEntity(const Whole Index) const;
+        virtual Entity* GetEntityByIndex(const Whole Index) const;
+        /// @brief Gets an Entity by Index.
+        /// @param EntID The unique identity of the Entity to retrieve.
+        /// @return Returns a pointer to the Entity at the specified index.
+        virtual Entity* GetEntityByID(const EntityID& EntID) const;
         /// @brief Gets an Entity by Name.
-        /// @param Name The name of the Entity you wish to retrieve.
+        /// @remarks Names are not forced to be unique.  If multiple Entities share the same name, then the first one found will be returned.
+        /// @param Name The name of the Entity to retrieve.
         /// @return Returns a pointer to the Entity of the specified name.
-        virtual Entity* GetEntity(const String& Name) const;
+        virtual Entity* GetEntityByName(const String& Name) const;
         /// @brief Gets the number of Entities stored in this manager.
         /// @return Returns a whole representing the current Entity count.
         virtual Whole GetNumEntities() const;

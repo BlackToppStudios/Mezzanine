@@ -51,7 +51,7 @@ namespace Mezzanine
         ComponentID(0)
         {  }
 
-    EntityComponent::EntityComponent(const UInt32 ID) :
+    EntityComponent::EntityComponent(const EntityComponentID& ID) :
         ParentEntity(nullptr),
         ComponentID(ID)
         {  }
@@ -62,7 +62,7 @@ namespace Mezzanine
     Entity* EntityComponent::GetParentEntity() const
         { return this->ParentEntity; }
 
-    UInt32 EntityComponent::GetComponentID() const
+    EntityComponentID EntityComponent::GetComponentID() const
         { return this->ComponentID; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -78,9 +78,10 @@ namespace Mezzanine
     {
         XML::Node PropertiesNode = SelfRoot.AppendChild( EntityComponent::GetSerializableName() + "Properties" );
 
-        if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-            PropertiesNode.AppendAttribute("ComponentID").SetValue(this->ComponentID) )
-        {
+        if( PropertiesNode.AppendAttribute("Version").SetValue("1") ) {
+            XML::Node IDNode = PropertiesNode.AppendChild("ID");
+            this->ComponentID.ProtoSerialize( IDNode );
+
             return;
         }else{
             SerializeError("Create XML Attribute Values",EntityComponent::GetSerializableName() + "Properties",true);
@@ -98,15 +99,18 @@ namespace Mezzanine
         XML::Node PropertiesNode = SelfRoot.GetChild( EntityComponent::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
-            if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
-                CurrAttrib = PropertiesNode.GetAttribute("ComponentID");
-                if( !CurrAttrib.Empty() )
-                    this->ComponentID = static_cast<UInt32>( CurrAttrib.AsUint() );
+            if( PropertiesNode.GetAttribute("Version").AsInt() == 1 ) {
+                XML::Node IDNode = PropertiesNode.GetChild("ID").GetFirstChild();
+                if( !IDNode.Empty() ) {
+                    this->ComponentID.ProtoDeSerialize(IDNode);
+                }
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EntityComponent::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION( ExceptionBase::INVALID_VERSION_EXCEPTION,
+                                "Incompatible XML Version for " + (EntityComponent::GetSerializableName() + "Properties") + ": Not Version 1." );
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,EntityComponent::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION( ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,
+                            EntityComponent::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected." );
         }
     }
 

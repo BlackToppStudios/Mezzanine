@@ -46,6 +46,7 @@ namespace Mezzanine
 {
     class World;
     class Entity;
+    class EntityID;
     namespace XML
     {
         class Node;
@@ -66,11 +67,11 @@ namespace Mezzanine
         virtual String GetTypeName() const = 0;
 
         /// @brief Creates a Entity of the type represented by this factory.
-        /// @param Name The name to be given to this object.
+        /// @param EntID The unique ID of the Entity.
         /// @param TheWorld A pointer to the world this object belongs to.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the Entity created.
-        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) = 0;
         /// @brief Creates a Entity from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

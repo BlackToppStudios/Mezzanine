@@ -62,8 +62,8 @@ namespace Mezzanine
         AttenStyle(Mezzanine::Att_None)
         {  }
 
-    FieldOfForce::FieldOfForce(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld),
+    FieldOfForce::FieldOfForce(const EntityID& EntID, World* TheWorld) :
+        AreaEffect(EntID,TheWorld),
         AttenSource(Vector3(0,0,0)),
         Direction(Vector3(0,1,0)),
         AttenAmount(0),
@@ -71,8 +71,8 @@ namespace Mezzanine
         AttenStyle(Mezzanine::Att_None)
         {  }
 
-    FieldOfForce::FieldOfForce(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        AreaEffect(Name,Shape,TheWorld),
+    FieldOfForce::FieldOfForce(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(EntID,Shape,TheWorld),
         AttenSource(Vector3(0,0,0)),
         Direction(Vector3(0,1,0)),
         AttenAmount(0),
@@ -280,17 +280,17 @@ namespace Mezzanine
     String FieldOfForceFactory::GetTypeName() const
         { return FieldOfForce::GetSerializableName(); }
 
-    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, World* TheWorld)
-        { return new FieldOfForce(Name,TheWorld); }
+    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const EntityID& EntID, World* TheWorld)
+        { return new FieldOfForce(EntID,TheWorld); }
 
-    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
-        { return new FieldOfForce(Name,AEShape,TheWorld); }
+    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new FieldOfForce(EntID,AEShape,TheWorld); }
 
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<FieldOfForce*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Entity* FieldOfForceFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new FieldOfForce(Name,TheWorld); }
+    Entity* FieldOfForceFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new FieldOfForce(EntID,TheWorld); }
 
     Entity* FieldOfForceFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new FieldOfForce(XMLNode,TheWorld); }

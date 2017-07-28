@@ -239,11 +239,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Prefab Entity Type Creation
 
-    FieldOfForce* EntityManager::CreateFieldOfForce(const String& Name)
+    FieldOfForce* EntityManager::CreateFieldOfForce()
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            FieldOfForce* Ret = static_cast<FieldOfForceFactory*>( (*AEFactIt).second )->CreateFieldOfForce( Name, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            FieldOfForceFactory* FoFFactory = static_cast<FieldOfForceFactory*>( (*EntFactIt).second );
+            FieldOfForce* Ret = FoFFactory->CreateFieldOfForce( this->EntityIDGen.GenerateID(), this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -251,11 +252,12 @@ namespace Mezzanine
         }
     }
 
-    FieldOfForce* EntityManager::CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape)
+    FieldOfForce* EntityManager::CreateFieldOfForce(Physics::CollisionShape* AEShape)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            FieldOfForce* Ret = static_cast<FieldOfForceFactory*>( (*AEFactIt).second )->CreateFieldOfForce( Name, AEShape, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            FieldOfForceFactory* FoFFactory = static_cast<FieldOfForceFactory*>( (*EntFactIt).second );
+            FieldOfForce* Ret = FoFFactory->CreateFieldOfForce( this->EntityIDGen.GenerateID(), AEShape, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -265,9 +267,10 @@ namespace Mezzanine
 
     FieldOfForce* EntityManager::CreateFieldOfForce(const XML::Node& SelfRoot)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            FieldOfForce* Ret = static_cast<FieldOfForceFactory*>( (*AEFactIt).second )->CreateFieldOfForce( SelfRoot, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( FieldOfForce::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            FieldOfForceFactory* FoFFactory = static_cast<FieldOfForceFactory*>( (*EntFactIt).second );
+            FieldOfForce* Ret = FoFFactory->CreateFieldOfForce( SelfRoot, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -275,11 +278,12 @@ namespace Mezzanine
         }
     }
 
-    GravityField* EntityManager::CreateGravityField(const String& Name)
+    GravityField* EntityManager::CreateGravityField()
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityField* Ret = static_cast<GravityFieldFactory*>( (*AEFactIt).second )->CreateGravityField( Name, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityFieldFactory* GravFieldFactory = static_cast<GravityFieldFactory*>( (*EntFactIt).second );
+            GravityField* Ret = GravFieldFactory->CreateGravityField( this->EntityIDGen.GenerateID(), this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -287,11 +291,12 @@ namespace Mezzanine
         }
     }
 
-    GravityField* EntityManager::CreateGravityField(const String& Name, Physics::CollisionShape* AEShape)
+    GravityField* EntityManager::CreateGravityField(Physics::CollisionShape* AEShape)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityField* Ret = static_cast<GravityFieldFactory*>( (*AEFactIt).second )->CreateGravityField( Name, AEShape, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityFieldFactory* GravFieldFactory = static_cast<GravityFieldFactory*>( (*EntFactIt).second );
+            GravityField* Ret = GravFieldFactory->CreateGravityField( this->EntityIDGen.GenerateID(), AEShape, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -301,9 +306,10 @@ namespace Mezzanine
 
     GravityField* EntityManager::CreateGravityField(const XML::Node& SelfRoot)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityField* Ret = static_cast<GravityFieldFactory*>( (*AEFactIt).second )->CreateGravityField( SelfRoot, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityField::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityFieldFactory* GravFieldFactory = static_cast<GravityFieldFactory*>( (*EntFactIt).second );
+            GravityField* Ret = GravFieldFactory->CreateGravityField( SelfRoot, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -311,11 +317,12 @@ namespace Mezzanine
         }
     }
 
-    GravityWell* EntityManager::CreateGravityWell(const String& Name)
+    GravityWell* EntityManager::CreateGravityWell()
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityWell* Ret = static_cast<GravityWellFactory*>( (*AEFactIt).second )->CreateGravityWell( Name, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityWellFactory* GravWellFactory = static_cast<GravityWellFactory*>( (*EntFactIt).second );
+            GravityWell* Ret = GravWellFactory->CreateGravityWell( this->EntityIDGen.GenerateID(), this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -323,11 +330,12 @@ namespace Mezzanine
         }
     }
 
-    GravityWell* EntityManager::CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape)
+    GravityWell* EntityManager::CreateGravityWell(Physics::CollisionShape* AEShape)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityWell* Ret = static_cast<GravityWellFactory*>( (*AEFactIt).second )->CreateGravityWell( Name, AEShape, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityWellFactory* GravWellFactory = static_cast<GravityWellFactory*>( (*EntFactIt).second );
+            GravityWell* Ret = GravWellFactory->CreateGravityWell( this->EntityIDGen.GenerateID(), AEShape, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -337,9 +345,10 @@ namespace Mezzanine
 
     GravityWell* EntityManager::CreateGravityWell(const XML::Node& SelfRoot)
     {
-        FactoryIterator AEFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
-        if( AEFactIt != this->EntityFactories.end() ) {
-            GravityWell* Ret = static_cast<GravityWellFactory*>( (*AEFactIt).second )->CreateGravityWell( SelfRoot, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( GravityWell::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            GravityWellFactory* GravWellFactory = static_cast<GravityWellFactory*>( (*EntFactIt).second );
+            GravityWell* Ret = GravWellFactory->CreateGravityWell( SelfRoot, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -347,11 +356,12 @@ namespace Mezzanine
         }
     }
 
-    RigidDebris* EntityManager::CreateRigidDebris(const String& Name, const Real Mass)
+    RigidDebris* EntityManager::CreateRigidDebris(const Real Mass)
     {
-        FactoryIterator DebFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
-        if( DebFactIt != this->EntityFactories.end() ) {
-            RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            RigidDebrisFactory* RigidFactory = static_cast<RigidDebrisFactory*>( (*EntFactIt).second );
+            RigidDebris* Ret = RigidFactory->CreateRigidDebris( this->EntityIDGen.GenerateID(), Mass, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -359,11 +369,12 @@ namespace Mezzanine
         }
     }
 
-    RigidDebris* EntityManager::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
+    RigidDebris* EntityManager::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
     {
-        FactoryIterator DebFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
-        if( DebFactIt != this->EntityFactories.end() ) {
-            RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( Name, Mass, DebMesh, DebShape, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            RigidDebrisFactory* RigidFactory = static_cast<RigidDebrisFactory*>( (*EntFactIt).second );
+            RigidDebris* Ret = RigidFactory->CreateRigidDebris( this->EntityIDGen.GenerateID(), Mass, DebMesh, DebShape, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -373,9 +384,10 @@ namespace Mezzanine
 
     RigidDebris* EntityManager::CreateRigidDebris(const XML::Node& SelfRoot)
     {
-        FactoryIterator DebFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
-        if( DebFactIt != this->EntityFactories.end() ) {
-            RigidDebris* Ret = static_cast<RigidDebrisFactory*>( (*DebFactIt).second )->CreateRigidDebris( SelfRoot, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( RigidDebris::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            RigidDebrisFactory* RigidFactory = static_cast<RigidDebrisFactory*>( (*EntFactIt).second );
+            RigidDebris* Ret = RigidFactory->CreateRigidDebris( SelfRoot, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -383,11 +395,12 @@ namespace Mezzanine
         }
     }
 
-    SoftDebris* EntityManager::CreateSoftDebris(const String& Name, const Real Mass)
+    SoftDebris* EntityManager::CreateSoftDebris(const Real Mass)
     {
-        FactoryIterator DebFactIt = this->EntityFactories.find( SoftDebris::GetSerializableName() );
-        if( DebFactIt != this->EntityFactories.end() ) {
-            SoftDebris* Ret = static_cast<SoftDebrisFactory*>( (*DebFactIt).second )->CreateSoftDebris( Name, Mass, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( SoftDebris::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            SoftDebrisFactory* SoftFactory = static_cast<SoftDebrisFactory*>( (*EntFactIt).second );
+            SoftDebris* Ret = SoftFactory->CreateSoftDebris( this->EntityIDGen.GenerateID(), Mass, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -397,9 +410,10 @@ namespace Mezzanine
 
     SoftDebris* EntityManager::CreateSoftDebris(const XML::Node& SelfRoot)
     {
-        FactoryIterator DebFactIt = this->EntityFactories.find( SoftDebris::GetSerializableName() );
-        if( DebFactIt != this->EntityFactories.end() ) {
-            SoftDebris* Ret = static_cast<SoftDebrisFactory*>( (*DebFactIt).second )->CreateSoftDebris( SelfRoot, this->ParentWorld );
+        FactoryIterator EntFactIt = this->EntityFactories.find( SoftDebris::GetSerializableName() );
+        if( EntFactIt != this->EntityFactories.end() ) {
+            SoftDebrisFactory* SoftFactory = static_cast<SoftDebrisFactory*>( (*EntFactIt).second );
+            SoftDebris* Ret = SoftFactory->CreateSoftDebris( SelfRoot, this->ParentWorld );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -410,11 +424,11 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Entity Management
 
-    Entity* EntityManager::CreateEntity(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
+    Entity* EntityManager::CreateEntity(const String& TypeName, const NameValuePairMap& Params)
     {
         FactoryIterator EntFactIt = this->EntityFactories.find( TypeName );
         if( EntFactIt != this->EntityFactories.end() ) {
-            Entity* Ret = (*EntFactIt).second->CreateEntity( InstanceName, this->ParentWorld, Params );
+            Entity* Ret = (*EntFactIt).second->CreateEntity( this->EntityIDGen.GenerateID(), this->ParentWorld, Params );
             this->AddEntity( Ret );
             return Ret;
         }else{
@@ -434,17 +448,27 @@ namespace Mezzanine
         }
     }
 
-    Entity* EntityManager::GetEntity(const Whole Index) const
+    Entity* EntityManager::GetEntityByIndex(const Whole Index) const
     {
         return this->Entities.at(Index);
     }
 
-    Entity* EntityManager::GetEntity(const String& Name) const
+    Entity* EntityManager::GetEntityByID(const EntityID& EntID) const
     {
-        for( ConstEntityIterator EntIt = this->Entities.begin() ; EntIt != this->Entities.end() ; ++EntIt )
+        for( Entity* CurrEnt : this->Entities )
         {
-            if( (*EntIt)->GetName() == Name ) {
-                return (*EntIt);
+            if( CurrEnt->GetEntityID() == EntID ) {
+                return CurrEnt;
+            }
+        }
+    }
+
+    Entity* EntityManager::GetEntityByName(const String& Name) const
+    {
+        for( Entity* CurrEnt : this->Entities )
+        {
+            if( CurrEnt->GetName() == Name ) {
+                return CurrEnt;
             }
         }
         return nullptr;

@@ -135,7 +135,7 @@ namespace Mezzanine
 
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("Distance").SetValue( this->Distance ) &&
-                SelfRoot.AppendAttribute("ObjectID").SetValue( this->Object->GetComponentID() ) &&
+                SelfRoot.AppendAttribute("ObjectID").SetValue( this->Object->GetComponentID().ID ) &&
                 SelfRoot.AppendAttribute("ObjectCreatorType").SetValue( this->Object->GetCreator()->GetInterfaceType() ) &&
                 SelfRoot.AppendAttribute("SubObjectIndex").SetValue( this->SubObject ) )
             {

@@ -58,12 +58,12 @@ namespace Mezzanine
     protected:
     public:
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        SimpleVehicle(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the SimpleVehicle.
+        /// @param TheWorld A pointer to the world this SimpleVehicle belongs to.
+        SimpleVehicle(const EntityID& EntID, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this SimpleVehicle belongs to.
         SimpleVehicle(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~SimpleVehicle();
@@ -97,7 +97,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A factory type for the creation of SimpleVehicle objects.
     ///////////////////////////////////////
-    class MEZZ_LIB SimpleVehicleFactory
+    class MEZZ_LIB SimpleVehicleFactory : public VehicleFactory
     {
     public:
         /// @brief Class constructor.
@@ -105,20 +105,20 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~SimpleVehicleFactory();
 
-        /// @copydoc VehicleFactory::GetTypeName() const
+        /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a SimpleVehicle object.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual SimpleVehicle* CreateSimpleVehicle(const String& Name, World* TheWorld);
+        /// @brief Creates a SimpleVehicle.
+        /// @param EntID The unique ID of the SimpleVehicle.
+        /// @param TheWorld A pointer to the world this SimpleVehicle belongs to.
+        virtual SimpleVehicle* CreateSimpleVehicle(const EntityID& EntID, World* TheWorld);
 
-        /// @copydoc VehicleFactory::CreateVehicle(const String&, World*, const NameValuePairMap&)
-        virtual Vehicle* CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc VehicleFactory::CreateVehicle(const XML::Node&, World*)
-        virtual Vehicle* CreateVehicle(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc VehicleFactory::DestroyVehicle(Vehicle*)
-        virtual void DestroyVehicle(Vehicle* ToBeDestroyed);
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&, World*)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//SimpleVehicleFactory
 }//Mezzanine
 

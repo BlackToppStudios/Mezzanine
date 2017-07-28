@@ -68,17 +68,17 @@ namespace Mezzanine
 {
     AreaEffect::AreaEffect(World* TheWorld) :
         Entity(TheWorld),
-        SyncTarget(NULL)
-        { this->CreateAreaEffect(NULL); }
+        SyncTarget(nullptr)
+        { this->CreateAreaEffect(nullptr); }
 
-    AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
-        Entity(Name,TheWorld),
-        SyncTarget(NULL)
-        { this->CreateAreaEffect(NULL); }
+    AreaEffect::AreaEffect(const EntityID& EntID, World* TheWorld) :
+        Entity(EntID,TheWorld),
+        SyncTarget(nullptr)
+        { this->CreateAreaEffect(nullptr); }
 
-    AreaEffect::AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        Entity(Name,TheWorld),
-        SyncTarget(NULL)
+    AreaEffect::AreaEffect(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        Entity(EntID,TheWorld),
+        SyncTarget(nullptr)
         { this->CreateAreaEffect(Shape); }
 
     AreaEffect::~AreaEffect()
@@ -86,10 +86,10 @@ namespace Mezzanine
 
     void AreaEffect::CreateAreaEffect(Physics::CollisionShape* Shape)
     {
-        Physics::GhostProxy* Ghost = NULL;
+        Physics::GhostProxy* Ghost = nullptr;
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
-        if( PhysMan != NULL ) {
-            if( Shape == NULL ) {
+        if( PhysMan != nullptr ) {
+            if( Shape == nullptr ) {
                 Ghost = PhysMan->CreateGhostProxy();
             }else{
                 Ghost = PhysMan->CreateGhostProxy(Shape);
@@ -121,7 +121,7 @@ namespace Mezzanine
 
     void AreaEffect::ApplyEffect()
     {
-        if( this->SyncTarget != NULL ) {
+        if( this->SyncTarget != nullptr ) {
             this->SetTransform( this->SyncTarget->GetTransform() );
         }
     }
@@ -194,8 +194,8 @@ namespace Mezzanine
         for( UInt32 ProxIndex = 0 ; ProxIndex < NumProxies ; ++ProxIndex )
         {
             Physics::CollidableProxy* CurrProxy = Ghost->GetShapeOverlappingProxy( ProxIndex );
-            Entity* CurrObject = ( CurrProxy ? CurrProxy->GetParentEntity() : NULL );
-            if( CurrObject != NULL ) {
+            Entity* CurrObject = ( CurrProxy ? CurrProxy->GetParentEntity() : nullptr );
+            if( CurrObject != nullptr ) {
                 // We need to check for unique world objects just in case a world object contains multiple collidable proxies
                 ObjectIterator UniqueCheck = std::find( this->OverlappingObjects.begin(), this->OverlappingObjects.end(), CurrObject );
                 if( UniqueCheck == this->OverlappingObjects.end() ) {

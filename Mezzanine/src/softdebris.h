@@ -81,10 +81,10 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         SoftDebris(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
+        /// @param EntID The unique ID of the SoftDebris.
+        /// @param Mass The mass of the SoftDebris object.
         /// @param TheWorld A pointer to the world this object belongs to.
-        SoftDebris(const String& Name, const Real Mass, World* TheWorld);
+        SoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -147,18 +147,18 @@ namespace Mezzanine
         /// @copydoc DebrisFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a SoftDebris object.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual SoftDebris* CreateSoftDebris(const String& Name, const Real Mass, World* TheWorld);
-        /// @brief Creates a SoftDebris object.
+        /// @brief Creates a SoftDebris.
+        /// @param EntID The unique ID of the SoftDebris.
+        /// @param Mass The mass of the SoftDebris.
+        /// @param TheWorld A pointer to the world this SoftDebris belongs to.
+        virtual SoftDebris* CreateSoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld);
+        /// @brief Creates a SoftDebris.
         /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this SoftDebris belongs to.
         virtual SoftDebris* CreateSoftDebris(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
-        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
         /// @copydoc EntityFactory::CreateEntity(const XML::Node&, World*)
         virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
         /// @copydoc EntityFactory::DestroyEntity(Entity* ToBeDestroyed)

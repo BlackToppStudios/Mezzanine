@@ -58,12 +58,12 @@ namespace Mezzanine
     protected:
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this Vehicle belongs to.
         Vehicle(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        Vehicle(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the Vehicle.
+        /// @param TheWorld A pointer to the world this Vehicle belongs to.
+        Vehicle(const EntityID& EntID, World* TheWorld);
         /// @brief Class destructor.
         virtual ~Vehicle();
     };//Vehicle

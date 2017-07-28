@@ -42,6 +42,12 @@
 
 #include "datatypes.h"
 
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
+#include "serialization.h"
+#include "exception.h"
+
 namespace Mezzanine
 {
     /// @addtogroup ECS
@@ -50,13 +56,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a convenience type for uniquely identifying an EntityComponent.
     ///////////////////////////////////////
-    struct MEZZ_LIB EntityComponentID
+    class MEZZ_LIB EntityComponentID
     {
+    public:
         ///////////////////////////////////////////////////////////////////////////////
         // Data Types
 
         /// @brief The underlying type for the ID to be used.
         using IDType = UInt64;
+        /// @brief Convenience constant for representing an invalid internal value.
+        static const IDType InvalidID = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Data Members
@@ -68,7 +77,9 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        EntityComponentID() = delete;
+        EntityComponentID() :
+            ID(EntityComponentID::InvalidID)
+            {  }
         /// @brief IDType constructor.
         /// @param Identifier The unique value for the ID to be used.
         EntityComponentID(const IDType Identifier) :
@@ -80,6 +91,14 @@ namespace Mezzanine
         /// @brief Move constructor.
         /// @param Other The other EntityComponentID to be moved.
         EntityComponentID(EntityComponentID&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Check to see if this EntityComponentID is holding an invalid value.
+        /// @return Returns true if this EntityComponentID is invalid, false otherwise.
+        Boole IsInvalid() const
+            { return ( this->ID == InvalidID ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -114,6 +133,45 @@ namespace Mezzanine
         /// @return Returns true if this EntityComponentID is considered greater than the other.
         Boole operator>(const EntityComponentID& Other) const
             { return this->ID > Other.ID; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param ParentNode The point in the XML hierarchy that all this EntityComponentID should be appended to.
+        void ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild(EntityComponentID::GetSerializableName());
+            if( SelfRoot.AppendAttribute("Version").SetValue("1") && SelfRoot.AppendAttribute("ID").SetValue( this->ID ) ) {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",EntityComponentID::GetSerializableName(),true);
+            }
+        }
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            if( SelfRoot.Name() == EntityComponentID::GetSerializableName() ) {
+                if( SelfRoot.GetAttribute("Version").AsInt() == 1 ) {
+                    CurrAttrib = SelfRoot.GetAttribute("ID");
+                    if( !CurrAttrib.Empty() )
+                        this->ID = static_cast<IDType>( CurrAttrib.AsUint() );
+                }else{
+                    MEZZ_EXCEPTION( ExceptionBase::INVALID_VERSION_EXCEPTION,
+                                    "Incompatible XML Version for " + EntityComponentID::GetSerializableName() + ": Not Version 1." );
+                }
+            }else{
+                MEZZ_EXCEPTION( ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,
+                                EntityComponentID::GetSerializableName() + " was not found in the provided XML node, which was expected." );
+            }
+        }
+
+        /// @brief Get the name of the the XML tag the proxy class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName()
+            { return "EntityComponentID"; }
     };//EntityComponentID
 
     /// @}
