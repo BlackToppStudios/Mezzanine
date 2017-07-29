@@ -240,6 +240,8 @@ namespace Mezzanine
         /// @return A string containing the name of this class.
         static String GetSerializableName();
     };//World
+
+    using WorldManagerContainer = World::WorldManagerContainer;
 }//Mezzanine
 
 #endif
