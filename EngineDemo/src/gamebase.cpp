@@ -361,6 +361,8 @@ void CreateDemoWorld()
     // Create World and all it's lovely Managers
     DemoWorld = TheEntresol->CreateWorld( "DemoWorld", Info, "DefaultSceneManager" );
 
+    TheEntresol->_Log("DemoWorld Allocated\n");
+
     if( DemoWorld == NULL ) {
         throw RuntimeAssertionException(
             "Failed to Create New Demo World",
@@ -449,7 +451,7 @@ void CreateDemoWorld()
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     // CameraNode->AttachObject(Headlight);
 
-    std::cerr << "Finished Creating World\n";
+    TheEntresol->_Log( "Finished Creating World\n" );
 }
 
 void DestroyDemoWorld()
@@ -474,6 +476,7 @@ void DestroyDemoWorld()
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostPhysicsWork );
         DemoPostPhysicsWork = NULL;
     }
+    TheEntresol->_Log("Demo WorkUnits removed\n");
 
     MainCam = NULL;
 
@@ -482,6 +485,7 @@ void DestroyDemoWorld()
         TheEntresol->DestroyWorld( DemoWorld );
         DemoWorld = NULL;
     }
+    TheEntresol->_Log("DemoWorld Destroyed\n");
 
     static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) )->DestroyAllShapes();
 
@@ -670,6 +674,7 @@ void LoadContent()
 
     TheEntresol->_Log("Debris Count ");
     TheEntresol->_Log( DebrisMan->GetNumDebris() );
+    TheEntresol->_Log("\n");
 }
 
 void MakeGUI()
