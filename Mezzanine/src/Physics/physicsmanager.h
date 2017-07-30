@@ -41,21 +41,15 @@
 #define _physicsphysicsmanager_h
 
 //forward Declarations so that we do not need #include "btBulletDynamicsCommon.h"
-class btAxisSweep3;
-class btDefaultCollisionConfiguration;
-class btCollisionDispatcher;
-class btSequentialImpulseConstraintSolver;
-class btSoftRigidDynamicsWorld;
-class btDiscreteDynamicsWorld;
-class btDynamicsWorld;
-class btCollisionShape;
-class btSoftBodyRigidBodyCollisionConfiguration;
-class btGhostPairCallback;
-class btBroadphaseInterface;
 class btCollisionConfiguration;
-class btThreadSupportInterface;
-
-typedef float btScalar;
+class btBroadphaseInterface;
+class btCollisionDispatcher;
+class btConstraintSolver;
+class btDynamicsWorld;
+class btDiscreteDynamicsWorld;
+class btSoftRigidDynamicsWorld;
+class btGhostPairCallback;
+class btCollisionShape;
 
 #include "datatypes.h"
 #ifndef SWIG
@@ -93,8 +87,8 @@ namespace Mezzanine
 
         class ConeTwistConstraint;
         class GearConstraint;
-        class Generic6DofConstraint;
-        class Generic6DofSpringConstraint;
+        class GenericSixDofConstraint;
+        class SixDofSpringConstraint;
         class HingeConstraint;
         class Hinge2Constraint;
         class Point2PointConstraint;
@@ -107,15 +101,12 @@ namespace Mezzanine
         class MEZZ_LIB SimulationWorkUnit : public Threading::DefaultWorkUnit
         {
         protected:
-            /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
         private:
-            /// @internal
             /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             SimulationWorkUnit(const SimulationWorkUnit& Other);
-            /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             SimulationWorkUnit& operator=(const SimulationWorkUnit& Other);
@@ -140,15 +131,12 @@ namespace Mezzanine
         class MEZZ_LIB SimulationMonopolyWorkUnit : public Threading::MonopolyWorkUnit
         {
         protected:
-            /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
         private:
-            /// @internal
             /// @brief Private copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             SimulationMonopolyWorkUnit(const SimulationMonopolyWorkUnit& Other);
-            /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             SimulationMonopolyWorkUnit& operator=(const SimulationMonopolyWorkUnit& Other);
@@ -179,14 +167,11 @@ namespace Mezzanine
         class MEZZ_LIB WorldTriggerUpdateWorkUnit : public Threading::DefaultWorkUnit
         {
         protected:
-            /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
-            /// @internal
             /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             WorldTriggerUpdateWorkUnit(const WorldTriggerUpdateWorkUnit& Other);
-            /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             WorldTriggerUpdateWorkUnit& operator=(const WorldTriggerUpdateWorkUnit& Other);
@@ -211,14 +196,11 @@ namespace Mezzanine
         class MEZZ_LIB DebugDrawWorkUnit : public Threading::DefaultWorkUnit
         {
         protected:
-            /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
-            /// @internal
             /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             DebugDrawWorkUnit(const DebugDrawWorkUnit& Other);
-            /// @internal
             /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             DebugDrawWorkUnit& operator=(const DebugDrawWorkUnit& Other);
@@ -247,37 +229,37 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
-            typedef std::vector< CollidableProxy* >                 ProxyContainer;
+            using ProxyContainer = std::vector< CollidableProxy* >;
             /// @brief Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::iterator                        ProxyIterator;
+            using ProxyIterator = ProxyContainer::iterator;
             /// @brief Const Iterator type for @ref CollidableProxy instances stored by this class.
-            typedef ProxyContainer::const_iterator                  ConstProxyIterator;
+            using ConstProxyIterator = ProxyContainer::const_iterator;
             /// @brief Basic container type for @ref Constraint storage by this class.
-            typedef std::vector< Constraint* >                      ConstraintContainer;
+            using ConstraintContainer = std::vector< Constraint* >;
             /// @brief Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::iterator                   ConstraintIterator;
+            using ConstraintIterator = ConstraintContainer::iterator;
             /// @brief Const Iterator type for @ref Constraint instances stored by this class.
-            typedef ConstraintContainer::const_iterator             ConstConstraintIterator;
+            using ConstConstraintIterator = ConstraintContainer::const_iterator;
             /// @brief Basic container type for @ref WorldTrigger storage by this class.
-            typedef std::vector< WorldTrigger* >                    WorldTriggerContainer;
+            using WorldTriggerContainer = std::vector< WorldTrigger* >;
             /// @brief Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::iterator                 WorldTriggerIterator;
+            using WorldTriggerIterator = WorldTriggerContainer::iterator;
             /// @brief Const Iterator type for @ref WorldTrigger instances stored by this class.
-            typedef WorldTriggerContainer::const_iterator           ConstWorldTriggerIterator;
+            using ConstWorldTriggerIterator = WorldTriggerContainer::const_iterator;
             /// @brief A std::pair to assist with collision sorting operations.
-            typedef std::pair< CollidablePair, Collision* >         CollisionSortPair;
+            using CollisionSortPair = std::pair< CollidablePair, Collision* >;
             /// @brief Basic container type for @ref Collision storage by this class.
-            typedef std::vector< Collision* >                       CollisionContainer;
+            using CollisionContainer = std::vector< Collision* >;
             /// @brief Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::iterator                    CollisionIterator;
+            using CollisionIterator = CollisionContainer::iterator;
             /// @brief Const Iterator type for @ref Collision instances stored by this class.
-            typedef CollisionContainer::const_iterator              ConstCollisionIterator;
+            using ConstCollisionIterator = CollisionContainer::const_iterator;
             /// @brief Container type for storing @ref Collision instances based on the pair of proxies that are colliding.
-            typedef std::map< CollidablePair, Collision* >          CollisionMap;
+            using CollisionMap = std::map< CollidablePair, Collision* >;
             /// @brief Iterator type for sorted @ref Collision instances.
-            typedef CollisionMap::iterator                          CollisionMapIterator;
+            using CollisionMapIterator = CollisionMap::iterator;
             /// @brief Const Iterator type for sorted @ref Collision instances.
-            typedef CollisionMap::const_iterator                    ConstCollisionMapIterator;
+            using ConstCollisionMapIterator = CollisionMap::const_iterator;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -291,93 +273,69 @@ namespace Mezzanine
             friend class WorldTriggerUpdateWorkUnit;
             friend class DebugDrawWorkUnit;
 
-            /// @internal
             /// @brief A copy of the information used to initialize this manager.
             ManagerConstructionInfo WorldConstructionInfo;
 
-            /// @internal
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
             UIDGenerator ProxyIDGen;
-            /// @internal
             /// @brief Generator responsible for creating unique IDs for Constraint instances.
             UIDGenerator ConstraintIDGen;
 
-            /// @internal
             /// @brief A container storing all of the proxies owned by this manager.
             ProxyContainer Proxies;
-            /// @internal
             /// @brief A container storing all of the constraints owned by this manager.
             ConstraintContainer Constraints;
-            /// @internal
-            /// @brief A container storing all of the worldtriggers owned by this manager.
+            /// @brief A container storing all of the world triggers owned by this manager.
             WorldTriggerContainer Triggers;
-            /// @internal
             /// @brief A container tracking all of the existing collisions in the physics world.
             CollisionMap Collisions;
 
-            /// @internal
             /// @brief The amount of time (in seconds) a single simulation step should advance.
             Real StepSize;
-            /// @internal
             /// @brief A Multiplier that adjusts how fast physics runs relative to clock time.
             Real TimeMultiplier;
-            /// @internal
             /// @brief The current rendering mode for the debug drawer.
             Integer DebugRenderMode;
-            /// @internal
             /// @brief A modifier that will determine how many substeps each frame the physics simulation should perform.
             Whole SubstepModifier;
-            /// @internal
             /// @brief The number of threads the internal thread providers should allocate.
             Whole ThreadCount;
-            /// @internal
             /// @brief Whether or not the physics simulation is to step each frame.
             Boole SimulationPaused;
+            /// @brief Whether or not the underlying physics worlds supports soft bodies.
+            Boole IsSoftWorld;
 
-            /// @internal
             /// @brief A pointer to the callback that enables ghost objects internally.
             btGhostPairCallback* GhostCallback;
-            /// @internal
-            /// @brief A pointer to the thread provider for the internal constraint solver.
-            btThreadSupportInterface* BulletSolverThreads;
-            /// @internal
-            /// @brief A pointer to the thread provider for the internal dispatcher (narrowphase).
-            btThreadSupportInterface* BulletDispatcherThreads;
-            /// @internal
             /// @brief A pointer to the physics broadphase of the simulation.
             btBroadphaseInterface* BulletBroadphase;
-            /// @internal
             /// @brief A pointer to the internal collision configuration that enables certain types of objects to collide.
-            btCollisionConfiguration* BulletCollisionConfiguration;
-            /// @internal
+            btCollisionConfiguration* BulletCollisionConfig;
             /// @brief A pointer to the internal dispatcher (narrowphase).
             btCollisionDispatcher* BulletDispatcher;
-            /// @internal
             /// @brief A pointer to the internal constraint solver.
-            btSequentialImpulseConstraintSolver* BulletSolver;
-            /// @internal
+            btConstraintSolver* BulletSolver;
             /// @brief A pointer to the internal physics world.
-            btSoftRigidDynamicsWorld* BulletDynamicsWorld;
-            /// @internal
+            btDiscreteDynamicsWorld* BulletDynamicsWorld;
             /// @brief A pointer to the debug drawer for rendering the physics world.
             InternalDebugDrawer* BulletDrawer;
 
-            /// @internal
             /// @brief The work unit that does the stepping of the simulation.
             Threading::DefaultWorkUnit* SimulationWork;
-            /// @internal
             /// @brief The work unit that processes all world triggers.
             WorldTriggerUpdateWorkUnit* WorldTriggerUpdateWork;
-            /// @internal
             /// @brief The work unit that updates the debug drawer with the latest physics rendering.
             DebugDrawWorkUnit* DebugDrawWork;
 
-            /// @brief This takes care of all the real work in contructing this
+            /// @brief This takes care of all the real work in constructing this.
             /// @details This method is called by all the constructors to insure consistent behavior.
             /// @param Info The construction info class with all the settings you wish the world to have.
             virtual void Construct(const ManagerConstructionInfo& Info);
-            /// @brief Tear down this physics world
+            /// @brief Tear down this physics world.
             virtual void Destroy();
+            /// @brief Gets a casted pointer to the Soft dynamics world.
+            /// @return Returns a valid point to the internal Soft dynamics world, or NULL if soft bodies were not enabled on construction.
+            btSoftRigidDynamicsWorld* GetSoftWorld() const;
 
             /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
             virtual void ProcessAllTriggers();
@@ -385,9 +343,9 @@ namespace Mezzanine
             virtual void ProcessAllCollisions();
 
             /// @brief Internal Callback that is called immediately before each internal substep of the simulation.
-            static void InternalPreTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            static void InternalPreTickCallback(btDynamicsWorld* world, Real timeStep);
             /// @brief Internal Callback that is called immediately after each internal substep of the simulation.
-            static void InternalPostTickCallback(btDynamicsWorld* world, btScalar timeStep);
+            static void InternalPostTickCallback(btDynamicsWorld* world, Real timeStep);
         public:
             /// @brief Default settings constructor.
             /// @param Creator The parent world that is creating the manager.
@@ -412,10 +370,10 @@ namespace Mezzanine
             /// @return Returns whether or not the simulation is paused.
             Boole SimulationIsPaused();
 
-            /// @brief How much faster or slower that reality is the physic ssystem
-            /// @return 1 indicates normal time, less indicates slower and higher indicates faster times
+            /// @brief How much faster or slower that reality is the physic system.
+            /// @return 1 indicates normal time, less indicates slower and higher indicates faster times.
             Real GetTimeMultiplier() const;
-            /// @brief Change how fast the physicsworks relatve to well time
+            /// @brief Change how fast the physics works relative to wall time.
             /// @param value 2.0 to double simulation, .5 to half it.
             void SetTimeMultiplier(const Real &value);
 
@@ -561,34 +519,34 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             GearConstraint* CreateGearConstraint(const XML::Node& SelfRoot);
 
-            /// @brief Creates a new Generic6DofConstraint.
+            /// @brief Creates a new GenericSixDofConstraint.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
             /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
             /// @param TransB The offset and rotation from ProxyBs center of gravity.
             /// @return Returns a pointer to the created constraint.
-            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
-            /// @brief Creates a new Generic6DofConstraint.
+            GenericSixDofConstraint* CreateGenericSixDofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new GenericSixDofConstraint.
             /// @param ProxyB The proxy to be bound to the world.
             /// @param TransB The offset and rotation for the ProxyB pivot/hinge/joint.
             /// @return Returns a pointer to the created constraint.
-            Generic6DofConstraint* CreateGeneric6DofConstraint(RigidProxy* ProxyB, const Transform& TransB);
-            /// @brief Creates a new Generic6DofConstraint.
+            GenericSixDofConstraint* CreateGenericSixDofConstraint(RigidProxy* ProxyB, const Transform& TransB);
+            /// @brief Creates a new GenericSixDofConstraint.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
-            Generic6DofConstraint* CreateGeneric6DofConstraint(const XML::Node& SelfRoot);
+            GenericSixDofConstraint* CreateGenericSixDofConstraint(const XML::Node& SelfRoot);
 
-            /// @brief Creates a new Generic6DofSpringConstraint.
+            /// @brief Creates a new SixDofSpringConstraint.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
             /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
             /// @param TransB The offset and rotation from ProxyBs center of gravity.
             /// @return Returns a pointer to the created constraint.
-            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
-            /// @brief Creates a new Generic6DofSpringConstraint.
+            SixDofSpringConstraint* CreateSixDofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new SixDofSpringConstraint.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created constraint.
-            Generic6DofSpringConstraint* CreateGeneric6DofSpringConstraint(const XML::Node& SelfRoot);
+            SixDofSpringConstraint* CreateSixDofSpringConstraint(const XML::Node& SelfRoot);
 
             /// @brief Creates a new HingeConstraint.
             /// @param ProxyA The first proxy to apply this constraint to.
@@ -767,17 +725,17 @@ namespace Mezzanine
 
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
-            CollisionMapIterator BeginCollision();
+            PhysicsManager::CollisionMapIterator BeginCollision();
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
-            CollisionMapIterator EndCollision();
+            PhysicsManager::CollisionMapIterator EndCollision();
             #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
-            ConstCollisionMapIterator BeginCollision() const;
+            PhysicsManager::ConstCollisionMapIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
-            ConstCollisionMapIterator EndCollision() const;
+            PhysicsManager::ConstCollisionMapIterator EndCollision() const;
             #endif
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -806,7 +764,7 @@ namespace Mezzanine
             void ClearPhysicsMetaData();
             /// @brief Sets the modifier to be used when stepping the physics simulation.
             /// @remarks For the most part, the simulation tick is determined by your target framerate set on Mezzanine::World.  However
-            /// there are some occasions when you will want to have it tick more often, in particular with sensative simulation setups
+            /// there are some occasions when you will want to have it tick more often, in particular with sensitive simulation setups
             /// involving many constraints, or small objects, or fast moving objects, or any combination of those.  In order to make your
             /// simulation more stable you have to tick in smaller intervals, making it less likely for the engine to miss something or
             /// become unstable. When you pass in a modifier it'll ensure it ticks faster by that amount.  For example, if you pass in 2
@@ -853,16 +811,16 @@ namespace Mezzanine
             #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
-            btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer();
+            btDiscreteDynamicsWorld* _GetPhysicsWorldPointer();
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
-            const btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer() const;
+            const btDiscreteDynamicsWorld* _GetPhysicsWorldPointer() const;
             #endif
         };//PhysicsManager
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultPhysicsManagerFactory
-        /// @brief A factory responsible for the creation and destruction of the default physicsmanager.
+        /// @brief A factory responsible for the creation and destruction of the default PhysicsManager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultPhysicsManagerFactory : public WorldManagerFactory
         {

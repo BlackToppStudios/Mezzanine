@@ -157,6 +157,9 @@ namespace Mezzanine
             delete ManualEntity;// */
         }
 
+        btSoftRigidDynamicsWorld* SoftProxy::GetSoftWorld() const
+            { return static_cast<btSoftRigidDynamicsWorld*>( this->Manager->_GetPhysicsWorldPointer() ); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
@@ -168,14 +171,14 @@ namespace Mezzanine
         void SoftProxy::AddToWorld()
         {
             if( !this->IsInWorld() ) {
-                this->Manager->_GetPhysicsWorldPointer()->addSoftBody( this->PhysicsSoftBody, this->CollisionGroup, this->CollisionMask );
+                this->GetSoftWorld()->addSoftBody( this->PhysicsSoftBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
         void SoftProxy::RemoveFromWorld()
         {
             if( this->IsInWorld() ) {
-                this->Manager->_GetPhysicsWorldPointer()->removeSoftBody( this->PhysicsSoftBody );
+                this->GetSoftWorld()->removeSoftBody( this->PhysicsSoftBody );
             }
         }
 

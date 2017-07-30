@@ -53,9 +53,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////
         // CollisionDispatcher functions
 
-        CollisionDispatcher::CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig) :
+        CollisionDispatcher::CollisionDispatcher(PhysicsManager* Phys, btCollisionConfiguration* CollisionConfig) :
             btCollisionDispatcher(CollisionConfig),
-            PhysMan( PhysMan )
+            PhysMan(Phys)
             {  }
 
         CollisionDispatcher::~CollisionDispatcher()
@@ -77,7 +77,7 @@ namespace Mezzanine
             btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ptr;
             // first check the queue
             if( !AlgoCreationQueue.empty() ) {
-                for(AlgoList::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
+                for( AlgoContainer::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
                 {
                     if( Casted == (*QueIt) ) {
                         AlgoCreationQueue.erase(QueIt);
@@ -98,15 +98,15 @@ namespace Mezzanine
             btCollisionDispatcher::freeCollisionAlgorithm(ptr);
         }
 
-        AlgoList* CollisionDispatcher::GetAlgoCreationQueue()
-            { return &AlgoCreationQueue; }
+        AlgoContainer& CollisionDispatcher::GetAlgoCreationQueue()
+            { return this->AlgoCreationQueue; }
 
         ///////////////////////////////////////////////////////////
         // ParallelCollisionDispatcher functions
 
-        ParallelCollisionDispatcher::ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig) :
-            PhysMan( PhysMan ),
-            SpuGatheringCollisionDispatcher(ThreadInterface,MaxNumTasks,CollisionConfig)
+        ParallelCollisionDispatcher::ParallelCollisionDispatcher(PhysicsManager* Phys, btCollisionConfiguration* CollisionConfig, int GrainSize) :
+            btCollisionDispatcherMt(CollisionConfig,GrainSize),
+            PhysMan(Phys)
             {  }
 
         ParallelCollisionDispatcher::~ParallelCollisionDispatcher()
@@ -127,7 +127,7 @@ namespace Mezzanine
             btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ptr;
             // first check the queue
             if( !AlgoCreationQueue.empty() ) {
-                for(AlgoList::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
+                for( AlgoContainer::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
                 {
                     if( Casted == (*QueIt) ) {
                         AlgoCreationQueue.erase(QueIt);
@@ -148,8 +148,8 @@ namespace Mezzanine
             btCollisionDispatcher::freeCollisionAlgorithm(ptr);
         }
 
-        AlgoList* ParallelCollisionDispatcher::GetAlgoCreationQueue()
-            { return &AlgoCreationQueue; }
+        AlgoContainer& ParallelCollisionDispatcher::GetAlgoCreationQueue()
+            { return this->AlgoCreationQueue; }
     }//Physics
 }//Mezzanine
 

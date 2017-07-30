@@ -37,50 +37,42 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physicsgeneric6dofspringconstraint_h
-#define _physicsgeneric6dofspringconstraint_h
+#ifndef _physicsgenericsixdofspringconstraint_h
+#define _physicsgenericsixdofspringconstraint_h
 
-#include "Physics/generic6dofconstraint.h"
+#include "Physics/sixdofconstraint.h"
 
-class btGeneric6DofSpringConstraint;
+class btGeneric6DofSpring2Constraint;
 
 namespace Mezzanine
 {
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Generic6DofSpringConstraint
         /// @brief Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion.
-        /// @details When using functions of this class that require you to specify the index, the springs are arranged like so: @n
-        ///     - 0: Translation X
-        ///     - 1: Translation Y
-        ///     - 2: Translation Z
-        ///     - 3: Rotation X
-        ///     - 4: Rotation Y
-        ///     - 5: Rotation Z
         ///////////////////////////////////////
-        class MEZZ_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
+        class MEZZ_LIB SixDofSpringConstraint : public SixDofConstraint
         {
         protected:
-            /// @copydoc TypedConstraint::_GetConstraintBase() const
-            virtual btGeneric6DofSpringConstraint* Generic6dofSpring() const;
+            /// @brief The internal constraint that this class encapsulates.
+            btGeneric6DofSpring2Constraint* Spring6Dof;
 
             /// @copydoc DualTransformConstraint::CreateConstraint(RigidProxy*, RigidProxy*, const Transform&, const Transform&)
             virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB);
+            /// @copydoc DualTransformConstraint::DestroyConstraint()
+            virtual void DestroyConstraint();
 
-            /// @internal
             /// @brief Single body inheritance constructor.
             /// @param ID The unique identifier assigned to this constraint.
             /// @param Prox1 A pointer to the first/only proxy that will be constrained.
             /// @param Creator A pointer to the manager that created this constraint.
-            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator);
-            /// @internal
+            SixDofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator);
             /// @brief Dual body inheritance constructor.
             /// @param ID The unique identifier assigned to this constraint.
             /// @param Prox1 A pointer to the first proxy that will be constrained.
             /// @param Prox2 A pointer to the second proxy that will be constrained.
             /// @param Creator A pointer to the manager that created this constraint.
-            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator);
+            SixDofSpringConstraint(const UInt32 ID, RigidProxy* Prox1, RigidProxy* Prox2, PhysicsManager* Creator);
         public:
             /// @brief Two proxy Terse constructor.
             /// @param ID The unique identifier assigned to this constraint.
@@ -89,21 +81,175 @@ namespace Mezzanine
             /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
             /// @param TransB The offset and rotation from ProxyBs center of gravity.
             /// @param Creator A pointer to the manager that created this constraint.
-            Generic6DofSpringConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator);
+            SixDofSpringConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @param Creator A pointer to the manager that created this constraint.
-            Generic6DofSpringConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
+            SixDofSpringConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator);
             /// @brief Class destructor.
-            virtual ~Generic6DofSpringConstraint();
+            virtual ~SixDofSpringConstraint();
 
             ////////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Autogenerates the equalibrium points on each axis of this constraint.
+            /// @brief Auto-generates the equilibrium points on each axis of this constraint.
             /// @remarks The current offsets of both bodies in constraint space is what is used as
-            /// the equalibrium points for each axis.
+            /// the equilibrium points for each axis.
             virtual void CalculateSpringEquilibriumPoints();
+            /// @copydoc SixDofConstraint::GetLinearDistance() const
+            virtual Real GetLinearDistance() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Location and Rotation
+
+            /// @copydoc DualTransformConstraint::SetPivotTransforms(const Transform&, const Transform&)
+            virtual void SetPivotTransforms(const Transform& TransA, const Transform& TransB);
+            /// @copydoc DualTransformConstraint::SetPivotATransform(const Transform&)
+            virtual void SetPivotATransform(const Transform& TransA);
+            /// @copydoc DualTransformConstraint::SetPivotBTransform(const Transform&)
+            virtual void SetPivotBTransform(const Transform& TransB);
+            /// @copydoc DualTransformConstraint::GetPivotATransform()
+            virtual Transform GetPivotATransform() const;
+            /// @copydoc DualTransformConstraint::GetPivotBTransform()
+            virtual Transform GetPivotBTransform() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotALocation(const Vector3&)
+            virtual void SetPivotALocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::SetPivotBLocation(const Vector3&)
+            virtual void SetPivotBLocation(const Vector3& Location);
+            /// @copydoc DualTransformConstraint::GetPivotALocation()
+            virtual Vector3 GetPivotALocation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBLocation()
+            virtual Vector3 GetPivotBLocation() const;
+
+            /// @copydoc DualTransformConstraint::SetPivotARotation(const Quaternion&)
+            virtual void SetPivotARotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::SetPivotBRotation(const Quaternion&)
+            virtual void SetPivotBRotation(const Quaternion& Rotation);
+            /// @copydoc DualTransformConstraint::GetPivotARotation()
+            virtual Quaternion GetPivotARotation() const;
+            /// @copydoc DualTransformConstraint::GetPivotBRotation()
+            virtual Quaternion GetPivotBRotation() const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Basic Limit Accessors
+
+            /// @copydoc SixDofConstraint::SetLimit(Whole, Real, Real)
+            virtual void SetLimit(Whole Axis, Real Lower, Real Upper);
+
+            /// @copydoc SixDofConstraint::SetLinearLimitLower(const Vector3&)
+            virtual void SetLinearLimitLower(const Vector3& Limit);
+            /// @copydoc SixDofConstraint::GetLinearLimitLower() const
+            virtual Vector3 GetLinearLimitLower() const;
+            /// @copydoc SixDofConstraint::SetLinearLimitUpper(const Vector3&)
+            virtual void SetLinearLimitUpper(const Vector3& Limit);
+            /// @copydoc SixDofConstraint::GetLinearLimitUpper() const
+            virtual Vector3 GetLinearLimitUpper() const;
+
+            /// @copydoc SixDofConstraint::SetLinearLimitLowerOnAxis(const Real, Whole)
+            void SetLinearLimitLowerOnAxis(const Real Limit, Whole TranslationAxis);
+            /// @copydoc SixDofConstraint::GetLinearLimitLowerOnAxis(Whole) const
+            Real GetLinearLimitLowerOnAxis(Whole TranslationAxis) const;
+            /// @copydoc SixDofConstraint::SetLinearLimitUpperOnAxis(const Real, Whole)
+            void SetLinearLimitUpperOnAxis(const Real Limit, Whole TranslationAxis);
+            /// @copydoc SixDofConstraint::GetLinearLimitUpperOnAxis(Whole) const
+            Real GetLinearLimitUpperOnAxis(Whole TranslationAxis) const;
+
+            /// @copydoc SixDofConstraint::SetAngularLimitUpper(const Vector3&)
+            virtual void SetAngularLimitUpper(const Vector3& Limit);
+            /// @copydoc SixDofConstraint::GetAngularLimitUpper() const
+            virtual Vector3 GetAngularLimitUpper() const;
+            /// @copydoc SixDofConstraint::SetAngularLimitLower(const Vector3&)
+            virtual void SetAngularLimitLower(const Vector3& Limit);
+            /// @copydoc SixDofConstraint::GetAngularLimitLower() const
+            virtual Vector3 GetAngularLimitLower() const;
+
+            /// @copydoc SixDofConstraint::SetAngularLimitLowerOnAxis(const Real, Whole)
+            void SetAngularLimitLowerOnAxis(const Real Limit, Whole RotationAxis);
+            /// @copydoc SixDofConstraint::GetAngularLimitLowerOnAxis(Whole) const
+            Real GetAngularLimitLowerOnAxis(Whole RotationAxis) const;
+            /// @copydoc SixDofConstraint::SetAngularLimitUpperOnAxis(const Real, Whole)
+            void SetAngularLimitUpperOnAxis(const Real Limit, Whole RotationAxis);
+            /// @copydoc SixDofConstraint::GetAngularLimitUpperOnAxis(Whole) const
+            Real GetAngularLimitUpperOnAxis(Whole RotationAxis) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Angular Limit and Motor Details
+
+            /// @copydoc SixDofConstraint::SetAngularMotorTargetVelocity(const Vector3&)
+            virtual void SetAngularMotorTargetVelocity(const Vector3& Velocities);
+            /// @copydoc SixDofConstraint::GetAngularMotorTargetVelocity() const
+            virtual Vector3 GetAngularMotorTargetVelocity() const;
+            /// @copydoc SixDofConstraint::SetAngularMotorTargetVelocityOnAxis(const Real, Whole)
+            virtual void SetAngularMotorTargetVelocityOnAxis(const Real Velocity, Whole Axis);
+            /// @copydoc SixDofConstraint::GetAngularMotorTargetVelocityOnAxis(Whole) const
+            virtual Real GetAngularMotorTargetVelocityOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetAngularMotorMaxForce(const Vector3&)
+            virtual void SetAngularMotorMaxForce(const Vector3& Forces);
+            /// @copydoc SixDofConstraint::GetAngularMotorMaxForce() const
+            virtual Vector3 GetAngularMotorMaxForce() const;
+            /// @copydoc SixDofConstraint::SetAngularMotorMaxForceOnAxis(const Real, Whole)
+            virtual void SetAngularMotorMaxForceOnAxis(const Real Force, Whole Axis);
+            /// @copydoc SixDofConstraint::GetAngularMotorMaxForceOnAxis(Whole) const
+            virtual Real GetAngularMotorMaxForceOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetAngularMotorDamping(const Vector3&)
+            virtual void SetAngularMotorDamping(const Vector3& Dampings);
+            /// @copydoc SixDofConstraint::GetAngularMotorDamping() const
+            virtual Vector3 GetAngularMotorDamping() const;
+            /// @copydoc SixDofConstraint::SetAngularMotorDampingOnAxis(const Real, Whole)
+            virtual void SetAngularMotorDampingOnAxis(const Real Damping, Whole Axis);
+            /// @copydoc SixDofConstraint::GetAngularMotorDampingOnAxis(Whole) const
+            virtual Real GetAngularMotorDampingOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetAngularMotorRestitution(const Vector3&)
+            virtual void SetAngularMotorRestitution(const Vector3& Restitutions);
+            /// @copydoc SixDofConstraint::GetAngularMotorRestitution() const
+            virtual Vector3 GetAngularMotorRestitution() const;
+            /// @copydoc SixDofConstraint::SetAngularMotorRestitutionOnAxis(const Real, Whole)
+            virtual void SetAngularMotorRestitutionOnAxis(const Real Restitution, Whole Axis);
+            /// @copydoc SixDofConstraint::GetAngularMotorRestitutionOnAxis(Whole) const
+            virtual Real GetAngularMotorRestitutionOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetAngularMotorEnabled(const Vector3&)
+            virtual void SetAngularMotorEnabled(const Vector3& Enableds);
+            /// @copydoc SixDofConstraint::GetAngularMotorEnabled() const
+            virtual Vector3 GetAngularMotorEnabled() const;
+            /// @copydoc SixDofConstraint::SetAngularMotorEnabledOnAxis(const Boole, Whole)
+            virtual void SetAngularMotorEnabledOnAxis(const Boole Enabled, Whole Axis);
+            /// @copydoc SixDofConstraint::GetAngularMotorEnabledOnAxis(Whole) const
+            virtual Boole GetAngularMotorEnabledOnAxis(Whole Axis) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
+            // Linear Limit and Motor Details
+
+            /// @copydoc SixDofConstraint::SetLinearMotorMaxForce(const Vector3&)
+            virtual void SetLinearMotorMaxForce(const Vector3& Forces);
+            /// @copydoc SixDofConstraint::SetLinearMotorMaxForceOnAxis(const Real, Whole)
+            virtual void SetLinearMotorMaxForceOnAxis(const Real Force, Whole Axis);
+            /// @copydoc SixDofConstraint::GetLinearMotorMaxForce() const
+            virtual Vector3 GetLinearMotorMaxForce() const;
+            /// @copydoc SixDofConstraint::GetLinearMotorMaxForceOnAxis(Whole) const
+            virtual Real GetLinearMotorMaxForceOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetLinearMotorTargetVelocity(const Vector3&)
+            virtual void SetLinearMotorTargetVelocity(const Vector3& Velocities);
+            /// @copydoc SixDofConstraint::SetLinearMotorTargetVelocityOnAxis(const Real, Whole)
+            virtual void SetLinearMotorTargetVelocityOnAxis(const Real Velocity, Whole Axis);
+            /// @copydoc SixDofConstraint::GetLinearMotorTargetVelocity() const
+            virtual Vector3 GetLinearMotorTargetVelocity() const;
+            /// @copydoc SixDofConstraint::GetLinearMotorTargetVelocityOnAxis(Whole) const
+            virtual Real GetLinearMotorTargetVelocityOnAxis(Whole Axis) const;
+
+            /// @copydoc SixDofConstraint::SetLinearMotorEnabled(const Vector3&)
+            virtual void SetLinearMotorEnabled(const Vector3& Enableds);
+            /// @copydoc SixDofConstraint::SetLinearMotorEnabledOnAxis(const Boole, Whole)
+            virtual void SetLinearMotorEnabledOnAxis(const Boole Enabled, Whole Axis);
+            /// @copydoc SixDofConstraint::GetLinearMotorEnabled() const
+            virtual Vector3 GetLinearMotorEnabled() const;
+            /// @copydoc SixDofConstraint::GetLinearMotorEnabledOnAxis(Whole) const
+            virtual Boole GetLinearMotorEnabledOnAxis(Whole Axis) const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Linear Spring Settings
@@ -115,7 +261,7 @@ namespace Mezzanine
             /// @return A Vector3 with the Stiffness on the X, Y and Z Linear Axis.
             virtual Vector3 GetLinearSpringStiffness() const;
             /// @brief Sets the stiffness on a specific linear axis on this constraint.
-            /// @param Stiffness The amount of resistence to compressing force the spring should have.
+            /// @param Stiffness The amount of resistance to compressing force the spring should have.
             /// @param TranslationAxis The Axis to work with.
             virtual void SetLinearSpringStiffnessOnAxis(const Real Stiffness, Whole TranslationAxis);
             /// @brief Gets the stiffness on a specific linear axis on this constraint.
@@ -139,7 +285,7 @@ namespace Mezzanine
             virtual Real GetLinearSpringDampingOnAxis(Whole TranslationAxis) const;
 
             /// @brief Set whether or not a spring is enabled on a specific linear axis on this constraint.
-            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpreted as 0 for false and any other value for true.
             virtual void SetLinearSpringEnabled(const Vector3& Enabled);
             /// @brief Get the Enabled Status for all Linear Axis
             /// @return A Vector3 with the Enabled Status on the X, Y and Z Linear Axis.
@@ -167,7 +313,7 @@ namespace Mezzanine
             /// @return A Vector3 with the Stiffness on the X, Y and Z Angular Axis.
             virtual Vector3 GetAngularSpringStiffness() const;
             /// @brief Sets the stiffness on a specific angular axis on this constraint.
-            /// @param Stiffness The amount of resistence to compressing force the spring should have.
+            /// @param Stiffness The amount of resistance to compressing force the spring should have.
             /// @param RotationAxis The Axis to work with.
             virtual void SetAngularSpringStiffnessOnAxis(const Real Stiffness, Whole RotationAxis);
             /// @brief Gets the stiffness on a specific angular axis on this constraint.
@@ -191,7 +337,7 @@ namespace Mezzanine
             virtual Real GetAngularSpringDampingOnAxis(Whole RotationAxis) const;
 
             /// @brief Set the Stiffness of the springs on each Angular Axis.
-            /// @param Stiffies A Vector3 containing the X, Y and Z enabled statuses. This is interpretted as 0 for false and any other value for true.
+            /// @param Enableness A Vector3 containing the X, Y and Z enabled statuses. This is interpreted as 0 for false and any other value for true.
             virtual void SetAngularSpringEnabled(const Vector3& Enableness);
             /// @brief Get the Enabled Status for all Angular Axis
             /// @return A Vector3 with the Enabled Status on the X, Y and Z Angular Axis.
@@ -251,6 +397,18 @@ namespace Mezzanine
             virtual Real GetSpringEquilibriumPoint(int Index) const;
 
             ////////////////////////////////////////////////////////////////////////////////
+            // Axis Params
+
+            /// @copydoc Constraint::GetValidParamsOnAxis(int) const
+            virtual Constraint::ParamList GetValidParamsOnAxis(int Axis) const;
+            /// @copydoc Constraint::GetValidLinearAxes() const
+            virtual Constraint::AxisList GetValidLinearAxes() const;
+            /// @copydoc Constraint::GetValidAngularAxes() const
+            virtual Constraint::AxisList GetValidAngularAxes() const;
+            /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
+            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
+
+            ////////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc Constraint::ProtoSerializeProperties(XML::Node&) const
@@ -263,7 +421,13 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
             static String GetSerializableName();
-        };//Generic6DofSpringConstraint
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal
+
+            /// @copydoc Constraint::_GetConstraintBase() const
+            virtual btTypedConstraint* _GetConstraintBase() const;
+        };//SixDofSpringConstraint
     }//Physics
 }//Mezzanine
 

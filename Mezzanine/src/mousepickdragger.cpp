@@ -48,7 +48,7 @@
 #include "Input/mouse.h"
 
 #include "Physics/physicsmanager.h"
-#include "Physics/generic6dofconstraint.h"
+#include "Physics/genericsixdofconstraint.h"
 #include "Physics/point2pointconstraint.h"
 #include "Physics/rigidproxy.h"
 #include "Physics/softproxy.h"
@@ -65,11 +65,11 @@ namespace Mezzanine
         LastTarget(NULL)
         {  }
 
-    Physics::Generic6DofConstraint* PlaneDragger::CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans)
+    Physics::GenericSixDofConstraint* PlaneDragger::CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans)
     {
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( Target->GetCreator() );
 
-        Physics::Generic6DofConstraint* NewDragger = PhysMan->CreateGeneric6DofConstraint(Target,LocalTrans);
+        Physics::GenericSixDofConstraint* NewDragger = PhysMan->CreateGenericSixDofConstraint(Target,LocalTrans);
         NewDragger->SetLinearLimitLower(Vector3(0,0,0));
         NewDragger->SetLinearLimitUpper(Vector3(0,0,0));
         NewDragger->SetAngularLimitLower(Vector3(1,1,1));
@@ -95,7 +95,7 @@ namespace Mezzanine
     const Plane& PlaneDragger::GetDragPlane() const
         { return this->DragPlane; }
 
-    Physics::Generic6DofConstraint* PlaneDragger::GetDraggingConstraint() const
+    Physics::GenericSixDofConstraint* PlaneDragger::GetDraggingConstraint() const
         { return this->Dragger; }
 
     RayQueryHit PlaneDragger::GetBestQueryHit(const RayQuery::ResultContainer& Targets) const
@@ -190,11 +190,11 @@ namespace Mezzanine
         LastTarget(NULL)
         {  }
 
-    Physics::Generic6DofConstraint* DistanceDragger::CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans)
+    Physics::GenericSixDofConstraint* DistanceDragger::CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans)
     {
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( Target->GetCreator() );
 
-        Physics::Generic6DofConstraint* NewDragger = PhysMan->CreateGeneric6DofConstraint(Target,LocalTrans);
+        Physics::GenericSixDofConstraint* NewDragger = PhysMan->CreateGenericSixDofConstraint(Target,LocalTrans);
         NewDragger->SetLinearLimitLower(Vector3(0,0,0));
         NewDragger->SetLinearLimitUpper(Vector3(0,0,0));
         NewDragger->SetAngularLimitLower(Vector3(1,1,1));
@@ -226,7 +226,7 @@ namespace Mezzanine
     void DistanceDragger::DecrementDistance()
         { this->DragDistance -= this->DragIncrement; }
 
-    Physics::Generic6DofConstraint* DistanceDragger::GetDraggingConstraint() const
+    Physics::GenericSixDofConstraint* DistanceDragger::GetDraggingConstraint() const
         { return this->Dragger; }
 
     RayQueryHit DistanceDragger::GetBestQueryHit(const RayQuery::ResultContainer& Targets) const

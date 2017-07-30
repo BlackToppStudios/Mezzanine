@@ -40,7 +40,7 @@
 #ifndef _physicshinge2constraint_h
 #define _physicshinge2constraint_h
 
-#include "Physics/generic6dofspringconstraint.h"
+#include "Physics/sixdofspringconstraint.h"
 
 #ifndef SWIG
 class btHinge2Constraint;
@@ -50,22 +50,19 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Hinge2Constraint
-        /// @brief This is a convience class that will configure a 6DoF spring constraint with 2 angular and 1 linear (with a spring) axes of freedom such that it can behave like a wheel and axel.
+        /// @brief This is a convenience class that will configure a 6DoF spring constraint with 2 angular and 1 linear (with a spring) axes of freedom such that it can behave like a wheel and axel.
         /// @details Simulating a Wheel and Axel is the primary use for this constraint.  The 2 angular axes that it gives you are the axis for rotating the child object around the parents axis
         /// (aka turning the wheel), and the child rotating around it's own local axis (aka spinning the wheel for motion).  The linear axis acts as suspension (which is where the spring comes in).
         /// @n @n
         /// In a normal vehicle use case, Axis1 would be the vertical axis of the main body.  Axis2 would be the X axis of the main body, assuming it is pointed along the Z axis.
         ///////////////////////////////////////
-        class MEZZ_LIB Hinge2Constraint : public Generic6DofSpringConstraint
+        class MEZZ_LIB Hinge2Constraint : public SixDofSpringConstraint
         {
         protected:
             /// @copydoc TypedConstraint::_GetConstraintBase() const
             virtual btHinge2Constraint* Hinge2() const;
-
             /// @copydoc DualTransformConstraint::CreateConstraint(RigidProxy*, RigidProxy*, const Transform&, const Transform&)
             virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB);
-            /// @internal
             /// @brief Conveniece method used primarily for serialization to create an internal constraint.
             /// @param RigidA A pointer to the first proxy that will be constrained.
             /// @param RigidB A pointer to the second proxy that will be constrained.

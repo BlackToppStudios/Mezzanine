@@ -987,9 +987,22 @@ namespace Mezzanine
 
     void Entresol::_LogString(const String& Message)
     {
-        // if it is in the Audiologs then it has already happened so it needs to be logged first
-        if( Message.size() > 0 )
-            { this->_GetLogStream() << Message; }
+        if( Message.size() > 0 ) {
+            this->_GetLogStream() << Message;
+        }
+    }
+
+    void Entresol::_ForceLogFlush()
+    {
+        Threading::DefaultThreadSpecificStorage::Type ThreadStorage(&this->WorkScheduler);
+        this->Aggregator->NextFlushForced();
+        this->Aggregator->DoWork(ThreadStorage);
+        this->WorkScheduler.GetLog().flush();
+        Threading::FrameScheduler::Resource* ThreadResource = this->WorkScheduler.GetThreadResource();
+        ThreadResource->SwapAllBufferedResources();
+        this->Aggregator->NextFlushForced();
+        this->Aggregator->DoWork(ThreadStorage);
+        this->WorkScheduler.GetLog().flush();
     }
 
     Logger& Entresol::_GetLogStream(Threading::ThreadId ID)

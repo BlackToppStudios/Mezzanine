@@ -56,15 +56,15 @@ namespace Mezzanine
         // UniversalConstraint Constraint Functions
 
         UniversalConstraint::UniversalConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2, PhysicsManager* Creator) :
-            Generic6DofConstraint(ID,ProxyA,ProxyB,Creator)
+            GenericSixDofConstraint(ID,ProxyA,ProxyB,Creator)
             { this->CreateConstraint(ProxyA,ProxyB,Anchor,Axis1,Axis2); }
 
         UniversalConstraint::UniversalConstraint(const UInt32 ID, RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB, PhysicsManager* Creator) :
-            Generic6DofConstraint(ID,ProxyA,ProxyB,Creator)
+            GenericSixDofConstraint(ID,ProxyA,ProxyB,Creator)
             { this->CreateConstraint(ProxyA,ProxyB,TransA,TransB); }
 
         UniversalConstraint::UniversalConstraint(const XML::Node& SelfRoot, PhysicsManager* Creator) :
-            Generic6DofConstraint(0,NULL,Creator)
+            GenericSixDofConstraint(0,NULL,Creator)
             { this->ProtoDeSerialize(SelfRoot); }
 
         UniversalConstraint::~UniversalConstraint()

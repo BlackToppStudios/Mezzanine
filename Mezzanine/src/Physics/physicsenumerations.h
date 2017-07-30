@@ -155,6 +155,25 @@ namespace Mezzanine
             PT_Soft   = 2,
             PT_Ghost  = 3
         };
+
+        /// @brief Identify the Axis a bit easier when iterating over them is less convenient than typing an Identifier.
+        enum UsableAxis
+        {
+            LinearStart     = 0,    ///< Convenience type for loops.
+            LinearX         = 0,    ///< Translation on the X axis.
+            LinearY         = 1,    ///< Translation on the Y axis.
+            LinearZ         = 2,    ///< Translation on the Z axis.
+            LinearEnd       = 3,    ///< Convenience type for loops.
+            AngularStart    = 3,    ///< Convenience type for loops.
+            AngularX        = 3,    ///< Rotation on the X axis.
+            AngularY        = 4,    ///< Rotation on the Y axis.
+            AngularZ        = 5,    ///< Rotation on the Z axis.
+            AngularEnd      = 6,    ///< Convenience type for loops.
+
+            AngularXAsRotationAxis = 0,    ///< Rotation on the X axis, when working with only rotational Axis.
+            AngularYAsRotationAxis = 1,    ///< Rotation on the Y axis, when working with only rotational Axis.
+            AngularZAsRotationAxis = 2     ///< Rotation on the Z axis, when working with only rotational Axis.
+        };
     }//physics
 }//Mezzanine
 

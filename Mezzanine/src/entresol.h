@@ -689,6 +689,9 @@ namespace Mezzanine
         /// @param Message The string to log.
         /// @throws Anything GetLogStream could throw.
         void _LogString(const String& Message);
+        /// @brief Forces the contents of the logging buffers to be written to the file.
+        /// @warning This was implemented to debug single threaded portions of the engine.  Use of this method carelessly will likely break your code.
+        void _ForceLogFlush();
         /// @brief A nearly threadsafe logging sink.
         /// @details If ID is not supplied and the thread is managed by the framescheduler this should be thread safe.
         /// @param ID Defaults to the id of the current thread, but can be used to retrieve the logger for any thread.
