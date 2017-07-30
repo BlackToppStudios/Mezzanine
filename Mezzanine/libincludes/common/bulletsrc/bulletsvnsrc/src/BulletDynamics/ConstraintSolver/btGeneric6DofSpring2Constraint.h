@@ -206,7 +206,7 @@ public:
 		m_currentLimitErrorHi.setValue(0.f , 0.f , 0.f );
 		m_currentLinearDiff  .setValue(0.f , 0.f , 0.f );
 
-		for(int i=0; i < 3; i++) 
+		for(int i=0; i < 3; i++)
 		{
 			m_enableMotor[i]            = false;
 			m_servoMotor[i]             = false;
@@ -219,7 +219,7 @@ public:
 			m_equilibriumPoint[i]       = btScalar(0.f);
 			m_targetVelocity[i]         = btScalar(0.f);
 			m_maxMotorForce[i]          = btScalar(0.f);
-			
+
 			m_currentLimit[i]     = 0;
 		}
 	}
@@ -233,12 +233,12 @@ public:
 		m_stopCFM             = other.m_stopCFM;
 		m_motorERP            = other.m_motorERP;
 		m_motorCFM            = other.m_motorCFM;
-		
+
 		m_currentLimitError   = other.m_currentLimitError;
 		m_currentLimitErrorHi = other.m_currentLimitErrorHi;
 		m_currentLinearDiff   = other.m_currentLinearDiff;
 
-		for(int i=0; i < 3; i++) 
+		for(int i=0; i < 3; i++)
 		{
 			m_enableMotor[i]            = other.m_enableMotor[i];
 			m_servoMotor[i]             = other.m_servoMotor[i];
@@ -332,6 +332,8 @@ public:
 	virtual int calculateSerializeBufferSize() const;
 	virtual const char* serialize(void* dataBuffer, btSerializer* serializer) const;
 
+	int getFlags() const { return m_flags; }
+
 	btRotationalLimitMotor2* getRotationalLimitMotor(int index) { return &m_angularLimits[index]; }
 	btTranslationalLimitMotor2* getTranslationalLimitMotor() { return &m_linearLimits; }
 
@@ -368,19 +370,19 @@ public:
 
 	void setAngularLowerLimit(const btVector3& angularLower)
 	{
-		for(int i = 0; i < 3; i++) 
+		for(int i = 0; i < 3; i++)
 			m_angularLimits[i].m_loLimit = btNormalizeAngle(angularLower[i]);
 	}
 
 	void setAngularLowerLimitReversed(const btVector3& angularLower)
 	{
-		for(int i = 0; i < 3; i++) 
+		for(int i = 0; i < 3; i++)
 			m_angularLimits[i].m_hiLimit = btNormalizeAngle(-angularLower[i]);
 	}
 
 	void getAngularLowerLimit(btVector3& angularLower)
 	{
-		for(int i = 0; i < 3; i++) 
+		for(int i = 0; i < 3; i++)
 			angularLower[i] = m_angularLimits[i].m_loLimit;
 	}
 
@@ -471,17 +473,21 @@ public:
 	void setMaxMotorForce(int index, btScalar force);
 
 	void enableSpring(int index, bool onOff);
+	bool isSpringEnabled(int index) const;
 	void setStiffness(int index, btScalar stiffness, bool limitIfNeeded = true); // if limitIfNeeded is true the system will automatically limit the stiffness in necessary situations where otherwise the spring would move unrealistically too widely
+	btScalar getStiffness(int index) const;
 	void setDamping(int index, btScalar damping, bool limitIfNeeded = true); // if limitIfNeeded is true the system will automatically limit the damping in necessary situations where otherwise the spring would blow up
+	btScalar getDamping(int index) const;
 	void setEquilibriumPoint(); // set the current constraint position/orientation as an equilibrium point for all DOF
 	void setEquilibriumPoint(int index);  // set the current constraint position/orientation as an equilibrium point for given DOF
 	void setEquilibriumPoint(int index, btScalar val);
+	btScalar getEquilibriumPoint(int index) const;
 
-	//override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5). 
+	//override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5).
 	//If no axis is provided, it uses the default axis for this constraint.
 	virtual void setParam(int num, btScalar value, int axis = -1);
 	virtual btScalar getParam(int num, int axis = -1) const;
-    
+
     static btScalar btGetMatrixElem(const btMatrix3x3& mat, int index);
     static bool matrixToEulerXYZ(const btMatrix3x3& mat,btVector3& xyz);
     static bool matrixToEulerXZY(const btMatrix3x3& mat,btVector3& xyz);

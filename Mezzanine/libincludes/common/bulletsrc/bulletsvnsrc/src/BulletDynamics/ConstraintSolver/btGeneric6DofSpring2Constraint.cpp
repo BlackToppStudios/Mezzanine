@@ -50,7 +50,7 @@ btGeneric6DofSpring2Constraint::btGeneric6DofSpring2Constraint(btRigidBody& rbA,
 	: btTypedConstraint(D6_SPRING_2_CONSTRAINT_TYPE, rbA, rbB)
 	, m_frameInA(frameInA)
 	, m_frameInB(frameInB)
-	, m_rotateOrder(rotOrder)	
+	, m_rotateOrder(rotOrder)
 	, m_flags(0)
 {
 	calculateTransforms();
@@ -314,7 +314,7 @@ void btGeneric6DofSpring2Constraint::calculateAngleInfo()
 			//Extrinsic rotations are equal to the reversed order intrinsic rotations so the above xyz extrinsic rotations (axes are fixed) are the same as the zy'x" intrinsic rotations (axes are refreshed after each rotation)
 			//that is why xy and YZ planes are chosen (this will describe a zy'x" intrinsic rotation) (see the figure on the left at http://en.wikipedia.org/wiki/Euler_angles under Tait–Bryan angles)
 			// x' = Nperp = N.cross(axis2)
-			// y' = N = axis2.cross(axis0)	
+			// y' = N = axis2.cross(axis0)
 			// z' = z
 			//
 			// x" = X
@@ -324,7 +324,7 @@ void btGeneric6DofSpring2Constraint::calculateAngleInfo()
 			//first rotate around z
 			//second rotate around y'= z.cross(X)
 			//third rotate around x" = X
-			//Original XYZ extrinsic rotation order. 
+			//Original XYZ extrinsic rotation order.
 			//Planes: xy and YZ normals: z, X.  Plane intersection (N) is z.cross(X)
 			btVector3 axis0 = m_calculatedTransformB.getBasis().getColumn(0);
 			btVector3 axis2 = m_calculatedTransformA.getBasis().getColumn(2);
@@ -428,7 +428,7 @@ void btGeneric6DofSpring2Constraint::calculateTransforms(const btTransform& tran
 	{
 		m_factA = miB / miS;
 	}
-	else 
+	else
 	{
 		m_factA = btScalar(0.5f);
 	}
@@ -656,7 +656,7 @@ int btGeneric6DofSpring2Constraint::get_limit_motor_info2(
 	int count = 0;
 	int srow = row * info->rowskip;
 
-	if (limot->m_currentLimit==4) 
+	if (limot->m_currentLimit==4)
 	{
 		btScalar vel = rotational ? angVelA.dot(ax1) - angVelB.dot(ax1) : linVelA.dot(ax1) - linVelB.dot(ax1);
 
@@ -698,7 +698,7 @@ int btGeneric6DofSpring2Constraint::get_limit_motor_info2(
 		srow += info->rowskip;
 		++count;
 	} else
-	if (limot->m_currentLimit==3) 
+	if (limot->m_currentLimit==3)
 	{
 		calculateJacobi(limot,transA,transB,info,srow,ax1,rotational,rotAllowed);
 		info->m_constraintError[srow] = info->fps * limot->m_stopERP * limot->m_currentLimitError * (rotational ? -1 : 1);
@@ -713,7 +713,7 @@ int btGeneric6DofSpring2Constraint::get_limit_motor_info2(
 	{
 		calculateJacobi(limot,transA,transB,info,srow,ax1,rotational,rotAllowed);
 		btScalar tag_vel = rotational ? limot->m_targetVelocity : -limot->m_targetVelocity;
-		btScalar mot_fact = getMotorFactor(limot->m_currentPosition, 
+		btScalar mot_fact = getMotorFactor(limot->m_currentPosition,
 			limot->m_loLimit,
 			limot->m_hiLimit,
 			tag_vel,
@@ -748,8 +748,8 @@ int btGeneric6DofSpring2Constraint::get_limit_motor_info2(
 				hiLimit  = error < 0 && limot->m_servoTarget<limot->m_hiLimit ? limot->m_servoTarget : limot->m_hiLimit;
 			}
 			mot_fact = getMotorFactor(limot->m_currentPosition, lowLimit, hiLimit, tag_vel, info->fps * limot->m_motorERP);
-		} 
-		else 
+		}
+		else
 		{
 			mot_fact = 0;
 		}
@@ -824,7 +824,7 @@ int btGeneric6DofSpring2Constraint::get_limit_motor_info2(
 }
 
 
-//override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5). 
+//override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5).
 //If no axis is provided, it uses the default axis for this constraint.
 void btGeneric6DofSpring2Constraint::setParam(int num, btScalar value, int axis)
 {
@@ -832,23 +832,23 @@ void btGeneric6DofSpring2Constraint::setParam(int num, btScalar value, int axis)
 	{
 		switch(num)
 		{
-			case BT_CONSTRAINT_STOP_ERP : 
+			case BT_CONSTRAINT_STOP_ERP :
 				m_linearLimits.m_stopERP[axis] = value;
 				m_flags |= BT_6DOF_FLAGS_ERP_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_STOP_CFM : 
+			case BT_CONSTRAINT_STOP_CFM :
 				m_linearLimits.m_stopCFM[axis] = value;
 				m_flags |= BT_6DOF_FLAGS_CFM_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_ERP : 
+			case BT_CONSTRAINT_ERP :
 				m_linearLimits.m_motorERP[axis] = value;
 				m_flags |= BT_6DOF_FLAGS_ERP_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_CFM : 
+			case BT_CONSTRAINT_CFM :
 				m_linearLimits.m_motorCFM[axis] = value;
 				m_flags |= BT_6DOF_FLAGS_CFM_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			default : 
+			default :
 				btAssertConstrParams(0);
 		}
 	}
@@ -856,23 +856,23 @@ void btGeneric6DofSpring2Constraint::setParam(int num, btScalar value, int axis)
 	{
 		switch(num)
 		{
-			case BT_CONSTRAINT_STOP_ERP : 
+			case BT_CONSTRAINT_STOP_ERP :
 				m_angularLimits[axis - 3].m_stopERP = value;
 				m_flags |= BT_6DOF_FLAGS_ERP_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_STOP_CFM : 
+			case BT_CONSTRAINT_STOP_CFM :
 				m_angularLimits[axis - 3].m_stopCFM = value;
 				m_flags |= BT_6DOF_FLAGS_CFM_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_ERP : 
+			case BT_CONSTRAINT_ERP :
 				m_angularLimits[axis - 3].m_motorERP = value;
 				m_flags |= BT_6DOF_FLAGS_ERP_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			case BT_CONSTRAINT_CFM : 
+			case BT_CONSTRAINT_CFM :
 				m_angularLimits[axis - 3].m_motorCFM = value;
 				m_flags |= BT_6DOF_FLAGS_CFM_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2);
 				break;
-			default : 
+			default :
 				btAssertConstrParams(0);
 		}
 	}
@@ -883,30 +883,30 @@ void btGeneric6DofSpring2Constraint::setParam(int num, btScalar value, int axis)
 }
 
 //return the local value of parameter
-btScalar btGeneric6DofSpring2Constraint::getParam(int num, int axis) const 
+btScalar btGeneric6DofSpring2Constraint::getParam(int num, int axis) const
 {
 	btScalar retVal = 0;
 	if((axis >= 0) && (axis < 3))
 	{
 		switch(num)
 		{
-			case BT_CONSTRAINT_STOP_ERP : 
+			case BT_CONSTRAINT_STOP_ERP :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_ERP_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_linearLimits.m_stopERP[axis];
 				break;
-			case BT_CONSTRAINT_STOP_CFM : 
+			case BT_CONSTRAINT_STOP_CFM :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_CFM_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_linearLimits.m_stopCFM[axis];
 				break;
-			case BT_CONSTRAINT_ERP : 
+			case BT_CONSTRAINT_ERP :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_ERP_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_linearLimits.m_motorERP[axis];
 				break;
-			case BT_CONSTRAINT_CFM : 
+			case BT_CONSTRAINT_CFM :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_CFM_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_linearLimits.m_motorCFM[axis];
 				break;
-			default : 
+			default :
 				btAssertConstrParams(0);
 		}
 	}
@@ -914,23 +914,23 @@ btScalar btGeneric6DofSpring2Constraint::getParam(int num, int axis) const
 	{
 		switch(num)
 		{
-			case BT_CONSTRAINT_STOP_ERP : 
+			case BT_CONSTRAINT_STOP_ERP :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_ERP_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_angularLimits[axis - 3].m_stopERP;
 				break;
-			case BT_CONSTRAINT_STOP_CFM : 
+			case BT_CONSTRAINT_STOP_CFM :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_CFM_STOP2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_angularLimits[axis - 3].m_stopCFM;
 				break;
-			case BT_CONSTRAINT_ERP : 
+			case BT_CONSTRAINT_ERP :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_ERP_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_angularLimits[axis - 3].m_motorERP;
 				break;
-			case BT_CONSTRAINT_CFM : 
+			case BT_CONSTRAINT_CFM :
 				btAssertConstrParams(m_flags & (BT_6DOF_FLAGS_CFM_MOTO2 << (axis * BT_6DOF_FLAGS_AXIS_SHIFT2)));
 				retVal = m_angularLimits[axis - 3].m_motorCFM;
 				break;
-			default : 
+			default :
 				btAssertConstrParams(0);
 		}
 	}
@@ -941,24 +941,24 @@ btScalar btGeneric6DofSpring2Constraint::getParam(int num, int axis) const
 	return retVal;
 }
 
- 
+
 
 void btGeneric6DofSpring2Constraint::setAxis(const btVector3& axis1,const btVector3& axis2)
 {
 	btVector3 zAxis = axis1.normalized();
 	btVector3 yAxis = axis2.normalized();
 	btVector3 xAxis = yAxis.cross(zAxis); // we want right coordinate system
-	
+
 	btTransform frameInW;
 	frameInW.setIdentity();
 	frameInW.getBasis().setValue( xAxis[0], yAxis[0], zAxis[0],
 	                              xAxis[1], yAxis[1], zAxis[1],
 	                              xAxis[2], yAxis[2], zAxis[2]);
-	
+
 	// now get constraint frame in local coordinate systems
 	m_frameInA = m_rbA.getCenterOfMassTransform().inverse() * frameInW;
 	m_frameInB = m_rbB.getCenterOfMassTransform().inverse() * frameInW;
-	
+
 	calculateTransforms();
 }
 
@@ -1025,6 +1025,15 @@ void btGeneric6DofSpring2Constraint::enableSpring(int index, bool onOff)
 		m_angularLimits[index - 3] .m_enableSpring = onOff;
 }
 
+bool btGeneric6DofSpring2Constraint::isSpringEnabled(int index) const
+{
+    btAssert((index >= 0) && (index < 6));
+	if (index<3)
+		return m_linearLimits.m_enableSpring[index];
+	else
+		return m_angularLimits[index - 3] .m_enableSpring;
+}
+
 void btGeneric6DofSpring2Constraint::setStiffness(int index, btScalar stiffness, bool limitIfNeeded)
 {
 	btAssert((index >= 0) && (index < 6));
@@ -1037,6 +1046,16 @@ void btGeneric6DofSpring2Constraint::setStiffness(int index, btScalar stiffness,
 	}
 }
 
+btScalar btGeneric6DofSpring2Constraint::getStiffness(int index) const
+{
+    btAssert((index >= 0) && (index < 6));
+	if (index<3) {
+		return m_linearLimits.m_springStiffness[index];
+	} else {
+		return m_angularLimits[index - 3].m_springStiffness;
+	}
+}
+
 void btGeneric6DofSpring2Constraint::setDamping(int index, btScalar damping, bool limitIfNeeded)
 {
 	btAssert((index >= 0) && (index < 6));
@@ -1046,6 +1065,16 @@ void btGeneric6DofSpring2Constraint::setDamping(int index, btScalar damping, boo
 	} else {
 		m_angularLimits[index - 3].m_springDamping = damping;
 		m_angularLimits[index - 3].m_springDampingLimited = limitIfNeeded;
+	}
+}
+
+btScalar btGeneric6DofSpring2Constraint::getDamping(int index) const
+{
+    btAssert((index >= 0) && (index < 6));
+	if (index<3) {
+		return m_linearLimits.m_springDamping[index];
+	} else {
+		return m_angularLimits[index - 3].m_springDamping;
 	}
 }
 
@@ -1078,6 +1107,14 @@ void btGeneric6DofSpring2Constraint::setEquilibriumPoint(int index, btScalar val
 		m_angularLimits[index - 3] .m_equilibriumPoint = val;
 }
 
+btScalar btGeneric6DofSpring2Constraint::getEquilibriumPoint(int index) const
+{
+    btAssert((index >= 0) && (index < 6));
+	if (index<3)
+		return m_linearLimits.m_equilibriumPoint[index];
+	else
+		return m_angularLimits[index - 3] .m_equilibriumPoint;
+}
 
 //////////////////////////// btRotationalLimitMotor2 ////////////////////////////////////
 
