@@ -48,6 +48,7 @@
 #include "Physics/softproxy.h"
 
 #include "Physics/conetwistconstraint.h"
+#include "Physics/fixedconstraint.h"
 #include "Physics/gearconstraint.h"
 #include "Physics/genericsixdofconstraint.h"
 #include "Physics/sixdofspringconstraint.h"
@@ -171,8 +172,8 @@ namespace Mezzanine
 
         InternalDebugDrawer::InternalDebugDrawer(Graphics::SceneManager* Manager) :
             SceneMan(Manager),
-            WireFrame(NULL),
-            ErrorLogger(NULL),
+            WireFrame(nullptr),
+            ErrorLogger(nullptr),
             DebugDrawing(Physics::DDM_NoDebug)
             {  }//this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan); }//SceneMan->CreateLineGroupProxy(); }
 
@@ -328,7 +329,7 @@ namespace Mezzanine
                 this->TargetManager->BulletDynamicsWorld->debugDrawWorld();
                 Drawer->FinalizeUpdate();
             }
-            Drawer->SetLogger(NULL);
+            Drawer->SetLogger(nullptr);
         }
 
         ///////////////////////////////////////////////////////////
@@ -347,17 +348,17 @@ namespace Mezzanine
             SimulationPaused(false),
             IsSoftWorld(false),
 
-            GhostCallback(NULL),
-            BulletBroadphase(NULL),
-            BulletCollisionConfig(NULL),
-            BulletDispatcher(NULL),
-            BulletSolver(NULL),
-            BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL),
+            GhostCallback(nullptr),
+            BulletBroadphase(nullptr),
+            BulletCollisionConfig(nullptr),
+            BulletDispatcher(nullptr),
+            BulletSolver(nullptr),
+            BulletDynamicsWorld(nullptr),
+            BulletDrawer(nullptr),
 
-            SimulationWork(NULL),
-            WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL)
+            SimulationWork(nullptr),
+            WorldTriggerUpdateWork(nullptr),
+            DebugDrawWork(nullptr)
         {
             ManagerConstructionInfo Info;
             Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
@@ -374,17 +375,17 @@ namespace Mezzanine
             SimulationPaused(false),
             IsSoftWorld(false),
 
-            GhostCallback(NULL),
-            BulletBroadphase(NULL),
-            BulletCollisionConfig(NULL),
-            BulletDispatcher(NULL),
-            BulletSolver(NULL),
-            BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL),
+            GhostCallback(nullptr),
+            BulletBroadphase(nullptr),
+            BulletCollisionConfig(nullptr),
+            BulletDispatcher(nullptr),
+            BulletSolver(nullptr),
+            BulletDynamicsWorld(nullptr),
+            BulletDrawer(nullptr),
 
-            SimulationWork(NULL),
-            WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL)
+            SimulationWork(nullptr),
+            WorldTriggerUpdateWork(nullptr),
+            DebugDrawWork(nullptr)
         {
             this->Construct(Info);
         }
@@ -399,17 +400,17 @@ namespace Mezzanine
             SimulationPaused(false),
             IsSoftWorld(false),
 
-            GhostCallback(NULL),
-            BulletBroadphase(NULL),
-            BulletCollisionConfig(NULL),
-            BulletDispatcher(NULL),
-            BulletSolver(NULL),
-            BulletDynamicsWorld(NULL),
-            BulletDrawer(NULL),
+            GhostCallback(nullptr),
+            BulletBroadphase(nullptr),
+            BulletCollisionConfig(nullptr),
+            BulletDispatcher(nullptr),
+            BulletSolver(nullptr),
+            BulletDynamicsWorld(nullptr),
+            BulletDrawer(nullptr),
 
-            SimulationWork(NULL),
-            WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL)
+            SimulationWork(nullptr),
+            WorldTriggerUpdateWork(nullptr),
+            DebugDrawWork(nullptr)
         {
             ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
@@ -960,6 +961,21 @@ namespace Mezzanine
         ConeTwistConstraint* PhysicsManager::CreateConeTwistConstraint(const XML::Node& SelfRoot)
         {
             ConeTwistConstraint* NewConstraint = new ConeTwistConstraint(SelfRoot,this);
+            this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        FixedConstraint* PhysicsManager::CreateFixedConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB)
+        {
+            FixedConstraint* NewConstraint = new FixedConstraint(this->ConstraintIDGen.GenerateID(),ProxyA,ProxyB,TransA,TransB,this);
+            this->Constraints.push_back(NewConstraint);
+            return NewConstraint;
+        }
+
+        FixedConstraint* PhysicsManager::CreateFixedConstraint(const XML::Node& SelfRoot)
+        {
+            FixedConstraint* NewConstraint = new FixedConstraint(SelfRoot,this);
             this->ConstraintIDGen.ReserveID(NewConstraint->GetConstraintID());
             this->Constraints.push_back(NewConstraint);
             return NewConstraint;

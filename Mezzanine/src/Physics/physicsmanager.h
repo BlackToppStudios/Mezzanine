@@ -86,6 +86,7 @@ namespace Mezzanine
         class SoftProxy;
 
         class ConeTwistConstraint;
+        class FixedConstraint;
         class GearConstraint;
         class GenericSixDofConstraint;
         class SixDofSpringConstraint;
@@ -499,6 +500,18 @@ namespace Mezzanine
             /// @return Returns a pointer to the created constraint.
             ConeTwistConstraint* CreateConeTwistConstraint(const XML::Node& SelfRoot);
 
+            /// @brief Creates a new FixedConstraint.
+            /// @param ProxyA The First proxy to be bound.
+            /// @param ProxyB  The Second proxy to be bound.
+            /// @param TransA The offset and rotation from ProxyAs center to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center.
+            /// @return Returns a pointer to the created constraint.
+            FixedConstraint* CreateFixedConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
+            /// @brief Creates a new FixedConstraint.
+            /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
+            /// @return Returns a pointer to the created constraint.
+            FixedConstraint* CreateFixedConstraint(const XML::Node& SelfRoot);
+
             /// @brief Creates a new GearConstraint.
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
@@ -522,8 +535,8 @@ namespace Mezzanine
             /// @brief Creates a new GenericSixDofConstraint.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
-            /// @param TransA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
-            /// @param TransB The offset and rotation from ProxyBs center of gravity.
+            /// @param TransA The offset and rotation from ProxyAs center to get to match an offset from ProxyB.
+            /// @param TransB The offset and rotation from ProxyBs center.
             /// @return Returns a pointer to the created constraint.
             GenericSixDofConstraint* CreateGenericSixDofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransA, const Transform& TransB);
             /// @brief Creates a new GenericSixDofConstraint.
