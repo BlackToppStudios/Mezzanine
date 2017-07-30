@@ -94,7 +94,7 @@ namespace Mezzanine
         /// @brief Pre-made manager constructor.
         /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
-        World(const String& WorldName, const WorldManagerContainer& Managers);
+        World(const String& WorldName, const World::WorldManagerContainer& Managers);
         /// @brief Descriptive constructor.
         /// @param WorldName String name of the world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
@@ -105,7 +105,7 @@ namespace Mezzanine
         /// @param Managers A container of pre-made managers to be used by this world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const String& WorldName, const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const World::WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief XML constructor.
         /// @param SelfNode The node that represents the data to populate this world with.
         World(const XML::Node& SelfNode);
@@ -240,8 +240,6 @@ namespace Mezzanine
         /// @return A string containing the name of this class.
         static String GetSerializableName();
     };//World
-
-    using WorldManagerContainer = World::WorldManagerContainer;
 }//Mezzanine
 
 #endif
