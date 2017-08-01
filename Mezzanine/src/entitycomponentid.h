@@ -64,7 +64,6 @@ namespace Mezzanine
 
         /// @brief The underlying type for the ID to be used.
         typedef UInt64 IDType;
-        //using IDType = UInt64;
         /// @brief Convenience constant for representing an invalid internal value.
         static const IDType InvalidID = 0;
 

@@ -69,8 +69,7 @@ namespace Mezzanine
         /// @brief Convenience type for describing the defined type in use by a given instance.
         using SelfType = UIDGenerator<IntType>;
         /// @brief Convenience type for the ID to be used.  Should be some flavor of int.
-        typedef UInt64 IDType;
-        //using IDType = IntType;
+        using IDType = IntType;
         /// @brief Convenience type for free ID ranges used by this class.
         using RangeType = Interval<IDType>;
         /// @brief Basic container type for IDs generated and stored by this class.

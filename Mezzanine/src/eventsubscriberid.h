@@ -58,7 +58,6 @@ namespace Mezzanine
 
         /// @brief The underlying type for the ID to be used.
         typedef uintptr_t IDType;
-        //using IDType = uintptr_t;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Data Members
