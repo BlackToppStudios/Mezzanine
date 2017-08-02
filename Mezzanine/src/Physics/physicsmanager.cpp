@@ -818,7 +818,7 @@ namespace Mezzanine
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -840,7 +840,7 @@ namespace Mezzanine
         RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
         {
             RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -855,7 +855,7 @@ namespace Mezzanine
         SoftProxy* PhysicsManager::CreateSoftProxy(const XML::Node& SelfRoot)
         {
             SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -916,7 +916,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -934,7 +934,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                     delete (*ProxIt);
                 }else{
                     ToKeep.push_back( *ProxIt );
@@ -952,7 +952,7 @@ namespace Mezzanine
                 if( Parent )
                     Parent->RemoveComponent( (*ProxIt) );
 
-                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                 delete (*ProxIt);
             }
             this->Proxies.clear();

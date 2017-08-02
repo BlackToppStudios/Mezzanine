@@ -78,23 +78,23 @@ namespace Mezzanine
         virtual void DestroyRigidDebris();
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
         RigidDebris(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        RigidDebris(const String& Name, const Real Mass, World* TheWorld);
+        /// @param EntID The unique ID of the RigidDebris.
+        /// @param Mass The mass of the RigidDebris.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
+        RigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
+        /// @param EntID The unique ID of the RigidDebris.
+        /// @param Mass The mass of the RigidDebris.
         /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
         /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
+        RigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
         RigidDebris(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~RigidDebris();
@@ -154,25 +154,25 @@ namespace Mezzanine
         /// @copydoc DebrisFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a RigidDebris object.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld);
-        /// @brief Creates a RigidDebris object.
-        /// @param Name The name to be given to this object.
-        /// @param Mass The mass of the debris object.
-        /// @param DebMesh A pointer to the Graphics mesh that will be applied to the debris object.
-        /// @param DebShape A pointer to the Collision shape that will be applied to the debris object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
-        /// @brief Creates a RigidDebris object.
+        /// @brief Creates a RigidDebris.
+        /// @param EntID The unique ID of the RigidDebris.
+        /// @param Mass The mass of the RigidDebris.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
+        virtual RigidDebris* CreateRigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld);
+        /// @brief Creates a RigidDebris.
+        /// @param EntID The unique ID of the RigidDebris.
+        /// @param Mass The mass of the RigidDebris.
+        /// @param DebMesh A pointer to the Graphics mesh that will be applied to the RigidDebris.
+        /// @param DebShape A pointer to the Collision shape that will be applied to the RigidDebris.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
+        virtual RigidDebris* CreateRigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
+        /// @brief Creates a RigidDebris.
         /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this RigidDebris belongs to.
         virtual RigidDebris* CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc EntityFactory::CreateEntity(const String&, World*, const NameValuePairMap&)
-        virtual Entity* CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
         /// @copydoc EntityFactory::CreateEntity(const XML::Node&, World*)
         virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
         /// @copydoc EntityFactory::DestroyEntity(Entity* ToBeDestroyed)

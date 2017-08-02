@@ -59,12 +59,12 @@ namespace Mezzanine
     protected:
     public:
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        MultiBodyVehicle(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the MultiBodyVehicle.
+        /// @param TheWorld A pointer to the world this MultiBodyVehicle belongs to.
+        MultiBodyVehicle(const EntityID& EntID, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this MultiBodyVehicle belongs to.
         MultiBodyVehicle(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~MultiBodyVehicle();
@@ -98,7 +98,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A factory type for the creation of MultiBodyVehicle objects.
     ///////////////////////////////////////
-    class MEZZ_LIB MultiBodyVehicleFactory
+    class MEZZ_LIB MultiBodyVehicleFactory : public VehicleFactory
     {
     public:
         /// @brief Class constructor.
@@ -106,20 +106,20 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~MultiBodyVehicleFactory();
 
-        /// @copydoc VehicleFactory::GetTypeName() const
+        /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a MultiBodyVehicle object.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual MultiBodyVehicle* CreateMultiBodyVehicle(const String& Name, World* TheWorld);
+        /// @brief Creates a MultiBodyVehicle.
+        /// @param EntID The unique ID of the MultiBodyVehicle.
+        /// @param TheWorld A pointer to the world this MultiBodyVehicle belongs to.
+        virtual MultiBodyVehicle* CreateMultiBodyVehicle(const EntityID& EntID, World* TheWorld);
 
-        /// @copydoc VehicleFactory::CreateVehicle(const String&, World*, const NameValuePairMap&)
-        virtual Vehicle* CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc VehicleFactory::CreateVehicle(const XML::Node&, World*)
-        virtual Vehicle* CreateVehicle(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc VehicleFactory::DestroyVehicle(Vehicle*)
-        virtual void DestroyVehicle(Vehicle* ToBeDestroyed);
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const XML::Node&, World*)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//MultiBodyVehicleFactory
 }//Mezzanine
 

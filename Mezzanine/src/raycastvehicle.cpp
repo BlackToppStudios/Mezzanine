@@ -50,8 +50,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // RaycastVehicle Methods
 
-    RaycastVehicle::RaycastVehicle(const String& Name, World* TheWorld) :
-        Vehicle(Name,TheWorld)
+    RaycastVehicle::RaycastVehicle(const EntityID& EntID, World* TheWorld) :
+        Vehicle(EntID,TheWorld)
     {
 
     }
@@ -112,18 +112,18 @@ namespace Mezzanine
     String RaycastVehicleFactory::GetTypeName() const
         { return RaycastVehicle::GetSerializableName(); }
 
-    RaycastVehicle* RaycastVehicleFactory::CreateRaycastVehicle(const String& Name, World* TheWorld)
-        { return new RaycastVehicle(Name,TheWorld); }
+    RaycastVehicle* RaycastVehicleFactory::CreateRaycastVehicle(const EntityID& EntID, World* TheWorld)
+        { return new RaycastVehicle(EntID,TheWorld); }
 
-    Vehicle* RaycastVehicleFactory::CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* RaycastVehicleFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
-        return this->CreateRaycastVehicle(Name,TheWorld);
+        return this->CreateRaycastVehicle(EntID,TheWorld);
     }
 
-    Vehicle* RaycastVehicleFactory::CreateVehicle(const XML::Node& XMLNode, World* TheWorld)
+    Entity* RaycastVehicleFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new RaycastVehicle(XMLNode,TheWorld); }
 
-    void RaycastVehicleFactory::DestroyVehicle(Vehicle* ToBeDestroyed)
+    void RaycastVehicleFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

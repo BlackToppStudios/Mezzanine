@@ -51,8 +51,8 @@ namespace Mezzanine
         Entity(TheWorld)
         {  }
 
-    Debris::Debris(const String& Name, World* TheWorld) :
-        Entity(Name,TheWorld)
+    Debris::Debris(const EntityID& EntID, World* TheWorld) :
+        Entity(EntID,TheWorld)
         {  }
 
     Debris::~Debris()

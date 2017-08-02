@@ -51,8 +51,8 @@ namespace Mezzanine
         Entity(TheWorld)
         {  }
 
-    Vehicle::Vehicle(const String& Name, World* TheWorld) :
-        Entity(Name,TheWorld)
+    Vehicle::Vehicle(const EntityID& EntID, World* TheWorld) :
+        Entity(EntID,TheWorld)
         {  }
 
     Vehicle::~Vehicle()

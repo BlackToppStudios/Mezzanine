@@ -121,7 +121,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
-            UIDGenerator ProxyIDGen;
+            UIDGenerator<UInt32> ProxyIDGen;
             /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
             ProxyContainer Proxies;

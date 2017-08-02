@@ -66,8 +66,8 @@ namespace Mezzanine
         Debris(TheWorld)
         {  }
 
-    SoftDebris::SoftDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld)
+    SoftDebris::SoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateSoftDebris(Mass); }
 
     SoftDebris::SoftDebris(const XML::Node& SelfRoot, World* TheWorld) :
@@ -152,20 +152,21 @@ namespace Mezzanine
     String SoftDebrisFactory::GetTypeName() const
         { return SoftDebris::GetSerializableName(); }
 
-    SoftDebris* SoftDebrisFactory::CreateSoftDebris(const String& Name, const Real Mass, World* TheWorld)
-        { return new SoftDebris(Name,Mass,TheWorld); }
+    SoftDebris* SoftDebrisFactory::CreateSoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld)
+        { return new SoftDebris(EntID,Mass,TheWorld); }
 
     SoftDebris* SoftDebrisFactory::CreateSoftDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<SoftDebris*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Entity* SoftDebrisFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* SoftDebrisFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
         NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
-        if( ParamIt != Params.end() )
+        if( ParamIt != Params.end() ) {
             Mass = StringTools::ConvertToReal( (*ParamIt).second );
+        }
 
-        return new SoftDebris(Name,Mass,TheWorld);
+        return new SoftDebris(EntID,Mass,TheWorld);
     }
 
     Entity* SoftDebrisFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)

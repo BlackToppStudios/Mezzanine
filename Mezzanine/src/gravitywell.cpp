@@ -62,16 +62,16 @@ namespace Mezzanine
         AllowWorldGrav(true)
         {  }
 
-    GravityWell::GravityWell(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld),
+    GravityWell::GravityWell(const EntityID& EntID, World* TheWorld) :
+        AreaEffect(EntID,TheWorld),
         AttenAmount(0),
         Strength(0),
         AttenStyle(Mezzanine::Att_None),
         AllowWorldGrav(true)
         {  }
 
-    GravityWell::GravityWell(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        AreaEffect(Name,Shape,TheWorld),
+    GravityWell::GravityWell(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(EntID,Shape,TheWorld),
         AttenAmount(0),
         Strength(0),
         AttenStyle(Mezzanine::Att_None),
@@ -280,17 +280,17 @@ namespace Mezzanine
     String GravityWellFactory::GetTypeName() const
         { return GravityWell::GetSerializableName(); }
 
-    GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, World* TheWorld)
-        { return new GravityWell(Name,TheWorld); }
+    GravityWell* GravityWellFactory::CreateGravityWell(const EntityID& EntID, World* TheWorld)
+        { return new GravityWell(EntID,TheWorld); }
 
-    GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
-        { return new GravityWell(Name,AEShape,TheWorld); }
+    GravityWell* GravityWellFactory::CreateGravityWell(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new GravityWell(EntID,AEShape,TheWorld); }
 
     GravityWell* GravityWellFactory::CreateGravityWell(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<GravityWell*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Entity* GravityWellFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new GravityWell(Name,TheWorld); }
+    Entity* GravityWellFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new GravityWell(EntID,TheWorld); }
 
     Entity* GravityWellFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new GravityWell(XMLNode,TheWorld); }

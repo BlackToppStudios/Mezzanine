@@ -15,8 +15,8 @@ LevelZone::LevelZone(World* TheWorld) :
     AreaEffect(TheWorld)
     {  }
 
-LevelZone::LevelZone(const String& Name, World* TheWorld, const Vector3& HalfZoneSize) :
-    AreaEffect(Name,TheWorld),
+LevelZone::LevelZone(const EntityID& EntID, World* TheWorld, const Vector3& HalfZoneSize) :
+    AreaEffect(EntID,TheWorld),
     ZoneSize(HalfZoneSize)
     { this->CreateLevelZone(); }
 

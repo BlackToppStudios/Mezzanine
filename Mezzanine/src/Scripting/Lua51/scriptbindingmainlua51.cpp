@@ -2716,176 +2716,210 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_FactoryIterator swig_types[21]
 #define SWIGTYPE_p_FilterFunction swig_types[22]
 #define SWIGTYPE_p_GeometryRayTestResult swig_types[23]
-#define SWIGTYPE_p_ManagerFactoryIterator swig_types[24]
-#define SWIGTYPE_p_ManagerFactoryMap swig_types[25]
-#define SWIGTYPE_p_MathTools__GeometryRayTestResult swig_types[26]
-#define SWIGTYPE_p_MathTools__PlaneSide swig_types[27]
-#define SWIGTYPE_p_MathTools__PlaneTestResult swig_types[28]
-#define SWIGTYPE_p_MathTools__Point3DTestResult swig_types[29]
-#define SWIGTYPE_p_Mezzanine__Actor swig_types[30]
-#define SWIGTYPE_p_Mezzanine__ActorFactory swig_types[31]
-#define SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit swig_types[32]
-#define SWIGTYPE_p_Mezzanine__AngleData swig_types[33]
-#define SWIGTYPE_p_Mezzanine__AreaEffect swig_types[34]
-#define SWIGTYPE_p_Mezzanine__AreaEffectFactory swig_types[35]
-#define SWIGTYPE_p_Mezzanine__AreaEffectUpdateWorkUnit swig_types[36]
-#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[37]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[38]
-#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[39]
-#define SWIGTYPE_p_Mezzanine__CameraController swig_types[40]
-#define SWIGTYPE_p_Mezzanine__Circle swig_types[41]
-#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[42]
-#define SWIGTYPE_p_Mezzanine__Debris swig_types[43]
-#define SWIGTYPE_p_Mezzanine__DebrisFactory swig_types[44]
-#define SWIGTYPE_p_Mezzanine__DebrisUpdateWorkUnit swig_types[45]
-#define SWIGTYPE_p_Mezzanine__DefaultEntityManagerFactory swig_types[46]
-#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[47]
-#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[48]
-#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[49]
-#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[50]
-#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[51]
-#define SWIGTYPE_p_Mezzanine__Entity swig_types[52]
-#define SWIGTYPE_p_Mezzanine__EntityComponent swig_types[53]
-#define SWIGTYPE_p_Mezzanine__EntityComponentManager swig_types[54]
-#define SWIGTYPE_p_Mezzanine__EntityFactory swig_types[55]
-#define SWIGTYPE_p_Mezzanine__EntityManagementEvent swig_types[56]
-#define SWIGTYPE_p_Mezzanine__EntityManager swig_types[57]
-#define SWIGTYPE_p_Mezzanine__EntityProxy swig_types[58]
-#define SWIGTYPE_p_Mezzanine__ExceptionBase swig_types[59]
-#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[60]
-#define SWIGTYPE_p_Mezzanine__FileException swig_types[61]
-#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[62]
-#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[63]
-#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[64]
-#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[65]
-#define SWIGTYPE_p_Mezzanine__GenericEntityFactory swig_types[66]
-#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[67]
-#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[68]
-#define SWIGTYPE_p_Mezzanine__Graphics__RenderableRayQuery swig_types[69]
-#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[70]
-#define SWIGTYPE_p_Mezzanine__GravityField swig_types[71]
-#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[72]
-#define SWIGTYPE_p_Mezzanine__IOException swig_types[73]
-#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[74]
-#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[75]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[76]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[77]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[78]
-#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[79]
-#define SWIGTYPE_p_Mezzanine__InternalException swig_types[80]
-#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[81]
-#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[82]
-#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[83]
-#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[84]
-#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[85]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[86]
-#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[87]
-#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[88]
-#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[89]
-#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[90]
-#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[91]
-#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[92]
-#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[93]
-#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[94]
-#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[95]
-#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[96]
-#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[97]
-#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[98]
-#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[99]
-#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[100]
-#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[101]
-#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[102]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[103]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[104]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[105]
-#define SWIGTYPE_p_Mezzanine__RayQuery swig_types[106]
-#define SWIGTYPE_p_Mezzanine__RayQueryHit swig_types[107]
-#define SWIGTYPE_p_Mezzanine__RectBaseT_float_t swig_types[108]
-#define SWIGTYPE_p_Mezzanine__RectBaseT_int_t swig_types[109]
-#define SWIGTYPE_p_Mezzanine__RectBaseT_unsigned_long_t swig_types[110]
-#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[111]
-#define SWIGTYPE_p_Mezzanine__RigidDebris swig_types[112]
-#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[113]
-#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[114]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[115]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[116]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[117]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[118]
-#define SWIGTYPE_p_Mezzanine__SoftDebris swig_types[119]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[120]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[121]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[122]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[123]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[124]
-#define SWIGTYPE_p_Mezzanine__TerrainUpdateWorkUnit swig_types[125]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[126]
-#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[127]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[128]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[129]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[130]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[131]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[132]
-#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[133]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[134]
-#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[135]
-#define SWIGTYPE_p_Mezzanine__Vehicle swig_types[136]
-#define SWIGTYPE_p_Mezzanine__VehicleFactory swig_types[137]
-#define SWIGTYPE_p_Mezzanine__VehicleUpdateWorkUnit swig_types[138]
-#define SWIGTYPE_p_Mezzanine__World swig_types[139]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[140]
-#define SWIGTYPE_p_Mezzanine__WorldManagerFactory swig_types[141]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[142]
-#define SWIGTYPE_p_ObjectContainer swig_types[143]
-#define SWIGTYPE_p_ObjectIterator swig_types[144]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[145]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[146]
-#define SWIGTYPE_p_Ogre__Plane swig_types[147]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[148]
-#define SWIGTYPE_p_Ogre__Ray swig_types[149]
-#define SWIGTYPE_p_Ogre__Sphere swig_types[150]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[151]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[152]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[153]
-#define SWIGTYPE_p_RayTestResult swig_types[154]
-#define SWIGTYPE_p_ResultContainer swig_types[155]
-#define SWIGTYPE_p_ResultIterator swig_types[156]
-#define SWIGTYPE_p_SDL_Event swig_types[157]
-#define SWIGTYPE_p_WorldManagerContainer swig_types[158]
-#define SWIGTYPE_p_WorldManagerIterator swig_types[159]
-#define SWIGTYPE_p_XML__Node swig_types[160]
-#define SWIGTYPE_p_bool swig_types[161]
-#define SWIGTYPE_p_btQuaternion swig_types[162]
-#define SWIGTYPE_p_btTransform swig_types[163]
-#define SWIGTYPE_p_btVector3 swig_types[164]
-#define SWIGTYPE_p_char swig_types[165]
-#define SWIGTYPE_p_double swig_types[166]
-#define SWIGTYPE_p_float swig_types[167]
-#define SWIGTYPE_p_int swig_types[168]
-#define SWIGTYPE_p_long_long swig_types[169]
-#define SWIGTYPE_p_short swig_types[170]
-#define SWIGTYPE_p_signed_char swig_types[171]
-#define SWIGTYPE_p_std__exception swig_types[172]
-#define SWIGTYPE_p_std__functionT_bool_fMezzanine__EntityProxy_pF_t swig_types[173]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[174]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[175]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[176]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[177]
-#define SWIGTYPE_p_std__shared_ptrT_Mezzanine__EntityManagementEvent_t swig_types[178]
-#define SWIGTYPE_p_std__string swig_types[179]
-#define SWIGTYPE_p_std__stringstream swig_types[180]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__EntityComponent_p_t swig_types[181]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Entity_p_t swig_types[182]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__RayQueryHit_t swig_types[183]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldManager_p_t swig_types[184]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[185]
-#define SWIGTYPE_p_std__wstring swig_types[186]
-#define SWIGTYPE_p_unsigned_char swig_types[187]
-#define SWIGTYPE_p_unsigned_int swig_types[188]
-#define SWIGTYPE_p_unsigned_long swig_types[189]
-#define SWIGTYPE_p_unsigned_long_long swig_types[190]
-#define SWIGTYPE_p_unsigned_short swig_types[191]
-static swig_type_info *swig_types[193];
-static swig_module_info swig_module = {swig_types, 192, 0, 0, 0, 0};
+#define SWIGTYPE_p_IDType swig_types[24]
+#define SWIGTYPE_p_ManagerFactoryIterator swig_types[25]
+#define SWIGTYPE_p_ManagerFactoryMap swig_types[26]
+#define SWIGTYPE_p_MathTools__GeometryRayTestResult swig_types[27]
+#define SWIGTYPE_p_MathTools__PlaneSide swig_types[28]
+#define SWIGTYPE_p_MathTools__PlaneTestResult swig_types[29]
+#define SWIGTYPE_p_MathTools__Point3DTestResult swig_types[30]
+#define SWIGTYPE_p_Mezzanine__Actor swig_types[31]
+#define SWIGTYPE_p_Mezzanine__ActorFactory swig_types[32]
+#define SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit swig_types[33]
+#define SWIGTYPE_p_Mezzanine__AngleData swig_types[34]
+#define SWIGTYPE_p_Mezzanine__AreaEffect swig_types[35]
+#define SWIGTYPE_p_Mezzanine__AreaEffectFactory swig_types[36]
+#define SWIGTYPE_p_Mezzanine__AreaEffectUpdateWorkUnit swig_types[37]
+#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[38]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[39]
+#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[40]
+#define SWIGTYPE_p_Mezzanine__CameraController swig_types[41]
+#define SWIGTYPE_p_Mezzanine__Circle swig_types[42]
+#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[43]
+#define SWIGTYPE_p_Mezzanine__Debris swig_types[44]
+#define SWIGTYPE_p_Mezzanine__DebrisFactory swig_types[45]
+#define SWIGTYPE_p_Mezzanine__DebrisUpdateWorkUnit swig_types[46]
+#define SWIGTYPE_p_Mezzanine__DefaultEntityManagerFactory swig_types[47]
+#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[48]
+#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[49]
+#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[50]
+#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[51]
+#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[52]
+#define SWIGTYPE_p_Mezzanine__Entity swig_types[53]
+#define SWIGTYPE_p_Mezzanine__EntityComponent swig_types[54]
+#define SWIGTYPE_p_Mezzanine__EntityComponentID swig_types[55]
+#define SWIGTYPE_p_Mezzanine__EntityComponentManager swig_types[56]
+#define SWIGTYPE_p_Mezzanine__EntityFactory swig_types[57]
+#define SWIGTYPE_p_Mezzanine__EntityID swig_types[58]
+#define SWIGTYPE_p_Mezzanine__EntityManagementEvent swig_types[59]
+#define SWIGTYPE_p_Mezzanine__EntityManager swig_types[60]
+#define SWIGTYPE_p_Mezzanine__EntityProxy swig_types[61]
+#define SWIGTYPE_p_Mezzanine__ExceptionBase swig_types[62]
+#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[63]
+#define SWIGTYPE_p_Mezzanine__FileException swig_types[64]
+#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[65]
+#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[66]
+#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[67]
+#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[68]
+#define SWIGTYPE_p_Mezzanine__GenericEntityFactory swig_types[69]
+#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[70]
+#define SWIGTYPE_p_Mezzanine__Graphics__Mesh swig_types[71]
+#define SWIGTYPE_p_Mezzanine__Graphics__RenderableRayQuery swig_types[72]
+#define SWIGTYPE_p_Mezzanine__Graphics__SceneManager swig_types[73]
+#define SWIGTYPE_p_Mezzanine__GravityField swig_types[74]
+#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[75]
+#define SWIGTYPE_p_Mezzanine__IOException swig_types[76]
+#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[77]
+#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[78]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[79]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[80]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[81]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[82]
+#define SWIGTYPE_p_Mezzanine__InternalException swig_types[83]
+#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[84]
+#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[85]
+#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[86]
+#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[87]
+#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[88]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[89]
+#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[90]
+#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[91]
+#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[92]
+#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[93]
+#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[94]
+#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[95]
+#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[96]
+#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[97]
+#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[98]
+#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[99]
+#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[100]
+#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[101]
+#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[102]
+#define SWIGTYPE_p_Mezzanine__Physics__CollisionShape swig_types[103]
+#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[104]
+#define SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo swig_types[105]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[106]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[107]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[108]
+#define SWIGTYPE_p_Mezzanine__RayQuery swig_types[109]
+#define SWIGTYPE_p_Mezzanine__RayQueryHit swig_types[110]
+#define SWIGTYPE_p_Mezzanine__RectBaseT_float_t swig_types[111]
+#define SWIGTYPE_p_Mezzanine__RectBaseT_int_t swig_types[112]
+#define SWIGTYPE_p_Mezzanine__RectBaseT_unsigned_long_t swig_types[113]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[114]
+#define SWIGTYPE_p_Mezzanine__RigidDebris swig_types[115]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[116]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[117]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[118]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[119]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[120]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[121]
+#define SWIGTYPE_p_Mezzanine__SoftDebris swig_types[122]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[123]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[124]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[125]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[126]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[127]
+#define SWIGTYPE_p_Mezzanine__TerrainUpdateWorkUnit swig_types[128]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[129]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[130]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[131]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[132]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[133]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[134]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[135]
+#define SWIGTYPE_p_Mezzanine__Vector2LengthCompare swig_types[136]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[137]
+#define SWIGTYPE_p_Mezzanine__Vector3LengthCompare swig_types[138]
+#define SWIGTYPE_p_Mezzanine__Vehicle swig_types[139]
+#define SWIGTYPE_p_Mezzanine__VehicleFactory swig_types[140]
+#define SWIGTYPE_p_Mezzanine__VehicleUpdateWorkUnit swig_types[141]
+#define SWIGTYPE_p_Mezzanine__World swig_types[142]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[143]
+#define SWIGTYPE_p_Mezzanine__WorldManagerFactory swig_types[144]
+#define SWIGTYPE_p_Mezzanine__XML__Attribute swig_types[145]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeIterator swig_types[146]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeStruct swig_types[147]
+#define SWIGTYPE_p_Mezzanine__XML__Document swig_types[148]
+#define SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator swig_types[149]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[150]
+#define SWIGTYPE_p_Mezzanine__XML__NodeIterator swig_types[151]
+#define SWIGTYPE_p_Mezzanine__XML__NodeStruct swig_types[152]
+#define SWIGTYPE_p_Mezzanine__XML__NodeText swig_types[153]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t swig_types[154]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t swig_types[155]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t swig_types[156]
+#define SWIGTYPE_p_Mezzanine__XML__ParseResult swig_types[157]
+#define SWIGTYPE_p_Mezzanine__XML__TreeWalker swig_types[158]
+#define SWIGTYPE_p_Mezzanine__XML__XPathNode swig_types[159]
+#define SWIGTYPE_p_Mezzanine__XML__XPathNodeSet swig_types[160]
+#define SWIGTYPE_p_Mezzanine__XML__XPathParseResult swig_types[161]
+#define SWIGTYPE_p_Mezzanine__XML__XPathQuery swig_types[162]
+#define SWIGTYPE_p_Mezzanine__XML__XPathVariable swig_types[163]
+#define SWIGTYPE_p_Mezzanine__XML__XPathVariableSet swig_types[164]
+#define SWIGTYPE_p_ObjectContainer swig_types[165]
+#define SWIGTYPE_p_ObjectIterator swig_types[166]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[167]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[168]
+#define SWIGTYPE_p_Ogre__Plane swig_types[169]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[170]
+#define SWIGTYPE_p_Ogre__Ray swig_types[171]
+#define SWIGTYPE_p_Ogre__Sphere swig_types[172]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[173]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[174]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[175]
+#define SWIGTYPE_p_RayTestResult swig_types[176]
+#define SWIGTYPE_p_ResultContainer swig_types[177]
+#define SWIGTYPE_p_ResultIterator swig_types[178]
+#define SWIGTYPE_p_SDL_Event swig_types[179]
+#define SWIGTYPE_p_WorldManagerContainer swig_types[180]
+#define SWIGTYPE_p_WorldManagerIterator swig_types[181]
+#define SWIGTYPE_p_XML__Node swig_types[182]
+#define SWIGTYPE_p_attribute_iterator swig_types[183]
+#define SWIGTYPE_p_bool swig_types[184]
+#define SWIGTYPE_p_btQuaternion swig_types[185]
+#define SWIGTYPE_p_btTransform swig_types[186]
+#define SWIGTYPE_p_btVector3 swig_types[187]
+#define SWIGTYPE_p_char swig_types[188]
+#define SWIGTYPE_p_difference_type swig_types[189]
+#define SWIGTYPE_p_double swig_types[190]
+#define SWIGTYPE_p_f_p_void__void swig_types[191]
+#define SWIGTYPE_p_f_size_t__p_void swig_types[192]
+#define SWIGTYPE_p_float swig_types[193]
+#define SWIGTYPE_p_int swig_types[194]
+#define SWIGTYPE_p_iterator swig_types[195]
+#define SWIGTYPE_p_iterator_category swig_types[196]
+#define SWIGTYPE_p_long_long swig_types[197]
+#define SWIGTYPE_p_ptrdiff_t swig_types[198]
+#define SWIGTYPE_p_short swig_types[199]
+#define SWIGTYPE_p_signed_char swig_types[200]
+#define SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t swig_types[201]
+#define SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t swig_types[202]
+#define SWIGTYPE_p_std__exception swig_types[203]
+#define SWIGTYPE_p_std__functionT_bool_fMezzanine__EntityProxy_pF_t swig_types[204]
+#define SWIGTYPE_p_std__istream swig_types[205]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[206]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[207]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[208]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[209]
+#define SWIGTYPE_p_std__shared_ptrT_Mezzanine__EntityManagementEvent_t swig_types[210]
+#define SWIGTYPE_p_std__string swig_types[211]
+#define SWIGTYPE_p_std__stringstream swig_types[212]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__EntityComponent_p_t swig_types[213]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Entity_p_t swig_types[214]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__RayQueryHit_t swig_types[215]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldManager_p_t swig_types[216]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[217]
+#define SWIGTYPE_p_std__wstring swig_types[218]
+#define SWIGTYPE_p_unsigned_char swig_types[219]
+#define SWIGTYPE_p_unsigned_int swig_types[220]
+#define SWIGTYPE_p_unsigned_long swig_types[221]
+#define SWIGTYPE_p_unsigned_long_long swig_types[222]
+#define SWIGTYPE_p_unsigned_short swig_types[223]
+#define SWIGTYPE_p_value_type swig_types[224]
+#define SWIGTYPE_p_wchar_t swig_types[225]
+static swig_type_info *swig_types[227];
+static swig_module_info swig_module = {swig_types, 226, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -23831,15 +23865,14 @@ fail:
 static int _wrap_EntityFactory_CreateEntity__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityFactory *arg1 = (Mezzanine::EntityFactory *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::EntityID *arg2 = 0 ;
   Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
   Mezzanine::NameValuePairMap *arg4 = 0 ;
-  Mezzanine::String temp2 ;
   Mezzanine::Entity *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::EntityFactory::CreateEntity",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityFactory::CreateEntity",1,"Mezzanine::EntityFactory *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityFactory::CreateEntity",2,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityFactory::CreateEntity",2,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EntityFactory::CreateEntity",3,"Mezzanine::World *");
   if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::EntityFactory::CreateEntity",4,"Mezzanine::NameValuePairMap const &");
   
@@ -23847,7 +23880,11 @@ static int _wrap_EntityFactory_CreateEntity__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("EntityFactory_CreateEntity",1,SWIGTYPE_p_Mezzanine__EntityFactory);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityFactory_CreateEntity",2,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("EntityFactory_CreateEntity",3,SWIGTYPE_p_Mezzanine__World);
@@ -23858,7 +23895,7 @@ static int _wrap_EntityFactory_CreateEntity__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("EntityFactory_CreateEntity",4,SWIGTYPE_p_std__mapT_std__string_std__string_t);
   }
   
-  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::String const &)*arg2,arg3,(Mezzanine::NameValuePairMap const &)*arg4);
+  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::EntityID const &)*arg2,arg3,(Mezzanine::NameValuePairMap const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -23961,7 +23998,12 @@ static int _wrap_EntityFactory_CreateEntity(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
       }
       if (_v) {
         {
@@ -23991,7 +24033,7 @@ static int _wrap_EntityFactory_CreateEntity(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityFactory_CreateEntity'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityFactory::CreateEntity(Mezzanine::String const &,Mezzanine::World *,Mezzanine::NameValuePairMap const &)\n"
+    "    Mezzanine::EntityFactory::CreateEntity(Mezzanine::EntityID const &,Mezzanine::World *,Mezzanine::NameValuePairMap const &)\n"
     "    Mezzanine::EntityFactory::CreateEntity(Mezzanine::XML::Node const &,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
@@ -24069,6 +24111,419 @@ static swig_lua_class *swig_EntityFactory_bases[] = {0};
 static const char *swig_EntityFactory_base_names[] = {0};
 static swig_lua_class _wrap_class_EntityFactory = { "EntityFactory", "EntityFactory", &SWIGTYPE_p_Mezzanine__EntityFactory,0, swig_delete_EntityFactory, swig_EntityFactory_methods, swig_EntityFactory_attributes, &swig_EntityFactory_Sf_SwigStatic, swig_EntityFactory_meta, swig_EntityFactory_bases, swig_EntityFactory_base_names };
 
+static int _wrap_EntityID_ID_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::EntityID::IDType arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::ID",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::ID",1,"Mezzanine::EntityID *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityID::ID",2,"Mezzanine::EntityID::IDType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID_ID_set",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  arg2 = (Mezzanine::EntityID::IDType)lua_tonumber(L, 2);
+  if (arg1) (arg1)->ID = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID_ID_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::EntityID::IDType result;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::ID",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::ID",1,"Mezzanine::EntityID *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID_ID_get",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::EntityID::IDType) ((arg1)->ID);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityID__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::EntityID",0,0)
+  result = (Mezzanine::EntityID *)new Mezzanine::EntityID();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityID__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID::IDType arg1 ;
+  Mezzanine::EntityID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::EntityID",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::EntityID::EntityID",1,"Mezzanine::EntityID::IDType const");
+  arg1 = (Mezzanine::EntityID::IDType const)lua_tonumber(L, 1);
+  result = (Mezzanine::EntityID *)new Mezzanine::EntityID(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityID__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = 0 ;
+  Mezzanine::EntityID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::EntityID",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::EntityID::EntityID",1,"Mezzanine::EntityID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_EntityID",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::EntityID *)new Mezzanine::EntityID((Mezzanine::EntityID const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityID__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = 0 ;
+  Mezzanine::EntityID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::EntityID",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::EntityID::EntityID",1,"Mezzanine::EntityID &&");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_EntityID",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::EntityID *)new Mezzanine::EntityID((Mezzanine::EntityID &&)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityID(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_EntityID__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_EntityID__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_EntityID__SWIG_3(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_EntityID__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_EntityID'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::EntityID::EntityID()\n"
+    "    Mezzanine::EntityID::EntityID(Mezzanine::EntityID::IDType const)\n"
+    "    Mezzanine::EntityID::EntityID(Mezzanine::EntityID const &)\n"
+    "    Mezzanine::EntityID::EntityID(Mezzanine::EntityID &&)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_EntityID_IsInvalid(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::IsInvalid",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::IsInvalid",1,"Mezzanine::EntityID const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID_IsInvalid",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityID const *)arg1)->IsInvalid();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::EntityID *arg2 = 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::operator ==",1,"Mezzanine::EntityID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityID::operator ==",2,"Mezzanine::EntityID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID___eq",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID___eq",2,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityID const *)arg1)->operator ==((Mezzanine::EntityID const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::EntityID *arg2 = 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::operator <",1,"Mezzanine::EntityID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityID::operator <",2,"Mezzanine::EntityID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID___lt",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID___lt",2,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityID const *)arg1)->operator <((Mezzanine::EntityID const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID_ProtoSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::ProtoSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::ProtoSerialize",1,"Mezzanine::EntityID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityID::ProtoSerialize",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID_ProtoSerialize",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("EntityID_ProtoSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  ((Mezzanine::EntityID const *)arg1)->ProtoSerialize(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID_ProtoDeSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::ProtoDeSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityID::ProtoDeSerialize",1,"Mezzanine::EntityID *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityID::ProtoDeSerialize",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityID_ProtoDeSerialize",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("EntityID_ProtoDeSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  (arg1)->ProtoDeSerialize((Mezzanine::XML::Node const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityID_GetSerializableName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::EntityID::GetSerializableName",0,0)
+  result = Mezzanine::EntityID::GetSerializableName();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_EntityID(void *obj) {
+Mezzanine::EntityID *arg1 = (Mezzanine::EntityID *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_EntityID(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_EntityID);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_EntityID_attributes[] = {
+    { "ID", _wrap_EntityID_ID_get, _wrap_EntityID_ID_set },
+    {0,0,0}
+};
+static swig_lua_method swig_EntityID_methods[]= {
+    { "IsInvalid", _wrap_EntityID_IsInvalid},
+    { "__eq", _wrap_EntityID___eq},
+    { "__lt", _wrap_EntityID___lt},
+    { "ProtoSerialize", _wrap_EntityID_ProtoSerialize},
+    { "ProtoDeSerialize", _wrap_EntityID_ProtoDeSerialize},
+    {0,0}
+};
+static swig_lua_method swig_EntityID_meta[] = {
+    { "__eq", _wrap_EntityID___eq},
+    { "__lt", _wrap_EntityID___lt},
+    {0,0}
+};
+
+static swig_lua_attribute swig_EntityID_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_EntityID_Sf_SwigStatic_constants[]= {
+    {SWIG_LUA_CONSTTAB_STRING("InvalidID", "Mezzanine::EntityID::InvalidID")},
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_EntityID_Sf_SwigStatic_methods[]= {
+    { "GetSerializableName", _wrap_EntityID_GetSerializableName},
+    {0,0}
+};
+static swig_lua_class* swig_EntityID_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_EntityID_Sf_SwigStatic = {
+    "EntityID",
+    swig_EntityID_Sf_SwigStatic_methods,
+    swig_EntityID_Sf_SwigStatic_attributes,
+    swig_EntityID_Sf_SwigStatic_constants,
+    swig_EntityID_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_EntityID_bases[] = {0};
+static const char *swig_EntityID_base_names[] = {0};
+static swig_lua_class _wrap_class_EntityID = { "EntityID", "EntityID", &SWIGTYPE_p_Mezzanine__EntityID,_proxy__wrap_new_EntityID, swig_delete_EntityID, swig_EntityID_methods, swig_EntityID_attributes, &swig_EntityID_Sf_SwigStatic, swig_EntityID_meta, swig_EntityID_bases, swig_EntityID_base_names };
+
 static int _wrap_ComponentCompare(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
@@ -24126,21 +24581,24 @@ fail:
 
 static int _wrap_new_Entity__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::EntityID *arg1 = 0 ;
   Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
-  Mezzanine::String temp1 ;
   Mezzanine::Entity *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Entity::Entity",2,2)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Entity::Entity",1,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Entity::Entity",1,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Entity::Entity",2,"Mezzanine::World *");
-  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_Entity",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("new_Entity",2,SWIGTYPE_p_Mezzanine__World);
   }
   
-  result = (Mezzanine::Entity *)new Mezzanine::Entity((Mezzanine::String const &)*arg1,arg2);
+  result = (Mezzanine::Entity *)new Mezzanine::Entity((Mezzanine::EntityID const &)*arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -24208,6 +24666,30 @@ static int _wrap_new_Entity(lua_State* L) {
     int _v;
     {
       void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__World, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_Entity__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
       if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
         _v = 0;
       } else {
@@ -24228,30 +24710,11 @@ static int _wrap_new_Entity(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__World, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        return _wrap_new_Entity__SWIG_1(L);
-      }
-    }
-  }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Entity'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Entity::Entity(Mezzanine::World *)\n"
-    "    Mezzanine::Entity::Entity(Mezzanine::String const &,Mezzanine::World *)\n"
+    "    Mezzanine::Entity::Entity(Mezzanine::EntityID const &,Mezzanine::World *)\n"
     "    Mezzanine::Entity::Entity(Mezzanine::XML::Node const &,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
@@ -24281,20 +24744,23 @@ fail:
 }
 
 
-static int _wrap_Entity_GetName(lua_State* L) {
+static int _wrap_Entity_GetEntityID(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Entity *arg1 = (Mezzanine::Entity *) 0 ;
-  Mezzanine::String *result = 0 ;
+  Mezzanine::EntityID result;
   
-  SWIG_check_num_args("Mezzanine::Entity::GetName",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Entity::GetName",1,"Mezzanine::Entity const *");
+  SWIG_check_num_args("Mezzanine::Entity::GetEntityID",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Entity::GetEntityID",1,"Mezzanine::Entity const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Entity,0))){
-    SWIG_fail_ptr("Entity_GetName",1,SWIGTYPE_p_Mezzanine__Entity);
+    SWIG_fail_ptr("Entity_GetEntityID",1,SWIGTYPE_p_Mezzanine__Entity);
   }
   
-  result = (Mezzanine::String *) &((Mezzanine::Entity const *)arg1)->GetName();
-  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  result = ((Mezzanine::Entity const *)arg1)->GetEntityID();
+  {
+    Mezzanine::EntityID * resultptr = new Mezzanine::EntityID((const Mezzanine::EntityID &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__EntityID,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -24319,6 +24785,57 @@ static int _wrap_Entity_GetWorld(lua_State* L) {
   
   result = (Mezzanine::World *)((Mezzanine::Entity const *)arg1)->GetWorld();
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__World,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Entity_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Entity *arg1 = (Mezzanine::Entity *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  
+  SWIG_check_num_args("Mezzanine::Entity::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Entity::SetName",1,"Mezzanine::Entity *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::Entity::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Entity,0))){
+    SWIG_fail_ptr("Entity_SetName",1,SWIGTYPE_p_Mezzanine__Entity);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  (arg1)->SetName((Mezzanine::String const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Entity_GetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Entity *arg1 = (Mezzanine::Entity *) 0 ;
+  Mezzanine::String *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Entity::GetName",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Entity::GetName",1,"Mezzanine::Entity const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Entity,0))){
+    SWIG_fail_ptr("Entity_GetName",1,SWIGTYPE_p_Mezzanine__Entity);
+  }
+  
+  result = (Mezzanine::String *) &((Mezzanine::Entity const *)arg1)->GetName();
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -26419,8 +26936,10 @@ static swig_lua_attribute swig_Entity_attributes[] = {
 };
 static swig_lua_method swig_Entity_methods[]= {
     { "GetEntityType", _wrap_Entity_GetEntityType},
-    { "GetName", _wrap_Entity_GetName},
+    { "GetEntityID", _wrap_Entity_GetEntityID},
     { "GetWorld", _wrap_Entity_GetWorld},
+    { "SetName", _wrap_Entity_SetName},
+    { "GetName", _wrap_Entity_GetName},
     { "IsInWorld", _wrap_Entity_IsInWorld},
     { "IsStatic", _wrap_Entity_IsStatic},
     { "AddComponent", _wrap_Entity_AddComponent},
@@ -26534,15 +27053,14 @@ fail:
 static int _wrap_GenericEntityFactory_CreateEntity__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::GenericEntityFactory *arg1 = (Mezzanine::GenericEntityFactory *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::EntityID *arg2 = 0 ;
   Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
   Mezzanine::NameValuePairMap *arg4 = 0 ;
-  Mezzanine::String temp2 ;
   Mezzanine::Entity *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::GenericEntityFactory::CreateEntity",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GenericEntityFactory::CreateEntity",1,"Mezzanine::GenericEntityFactory *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::GenericEntityFactory::CreateEntity",2,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::GenericEntityFactory::CreateEntity",2,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::GenericEntityFactory::CreateEntity",3,"Mezzanine::World *");
   if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::GenericEntityFactory::CreateEntity",4,"Mezzanine::NameValuePairMap const &");
   
@@ -26550,7 +27068,11 @@ static int _wrap_GenericEntityFactory_CreateEntity__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("GenericEntityFactory_CreateEntity",1,SWIGTYPE_p_Mezzanine__GenericEntityFactory);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("GenericEntityFactory_CreateEntity",2,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("GenericEntityFactory_CreateEntity",3,SWIGTYPE_p_Mezzanine__World);
@@ -26561,7 +27083,7 @@ static int _wrap_GenericEntityFactory_CreateEntity__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("GenericEntityFactory_CreateEntity",4,SWIGTYPE_p_std__mapT_std__string_std__string_t);
   }
   
-  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::String const &)*arg2,arg3,(Mezzanine::NameValuePairMap const &)*arg4);
+  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::EntityID const &)*arg2,arg3,(Mezzanine::NameValuePairMap const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -26664,7 +27186,12 @@ static int _wrap_GenericEntityFactory_CreateEntity(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
       }
       if (_v) {
         {
@@ -26694,7 +27221,7 @@ static int _wrap_GenericEntityFactory_CreateEntity(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'GenericEntityFactory_CreateEntity'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::GenericEntityFactory::CreateEntity(Mezzanine::String const &,Mezzanine::World *,Mezzanine::NameValuePairMap const &)\n"
+    "    Mezzanine::GenericEntityFactory::CreateEntity(Mezzanine::EntityID const &,Mezzanine::World *,Mezzanine::NameValuePairMap const &)\n"
     "    Mezzanine::GenericEntityFactory::CreateEntity(Mezzanine::XML::Node const &,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
@@ -30854,21 +31381,24 @@ fail:
 
 static int _wrap_new_AreaEffect__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::EntityID *arg1 = 0 ;
   Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
-  Mezzanine::String temp1 ;
   Mezzanine::AreaEffect *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::AreaEffect::AreaEffect",2,2)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",2,"Mezzanine::World *");
-  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_AreaEffect",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("new_AreaEffect",2,SWIGTYPE_p_Mezzanine__World);
   }
   
-  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::String const &)*arg1,arg2);
+  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::EntityID const &)*arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AreaEffect,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -30882,17 +31412,20 @@ fail:
 
 static int _wrap_new_AreaEffect__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::EntityID *arg1 = 0 ;
   Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
   Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
-  Mezzanine::String temp1 ;
   Mezzanine::AreaEffect *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::AreaEffect::AreaEffect",3,3)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",1,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",2,"Mezzanine::Physics::CollisionShape *");
   if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::AreaEffect::AreaEffect",3,"Mezzanine::World *");
-  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_AreaEffect",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
     SWIG_fail_ptr("new_AreaEffect",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
@@ -30903,7 +31436,7 @@ static int _wrap_new_AreaEffect__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("new_AreaEffect",3,SWIGTYPE_p_Mezzanine__World);
   }
   
-  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::String const &)*arg1,arg2,arg3);
+  result = (Mezzanine::AreaEffect *)new Mezzanine::AreaEffect((Mezzanine::EntityID const &)*arg1,arg2,arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__AreaEffect,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -30939,7 +31472,12 @@ static int _wrap_new_AreaEffect(lua_State* L) {
   if (argc == 2) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
     }
     if (_v) {
       {
@@ -30958,7 +31496,12 @@ static int _wrap_new_AreaEffect(lua_State* L) {
   if (argc == 3) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
     }
     if (_v) {
       {
@@ -30988,8 +31531,8 @@ static int _wrap_new_AreaEffect(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_AreaEffect'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::World *)\n"
-    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::String const &,Mezzanine::World *)\n"
-    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::String const &,Mezzanine::Physics::CollisionShape *,Mezzanine::World *)\n");
+    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::EntityID const &,Mezzanine::World *)\n"
+    "    Mezzanine::AreaEffect::AreaEffect(Mezzanine::EntityID const &,Mezzanine::Physics::CollisionShape *,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
 
@@ -35834,6 +36377,419 @@ static swig_lua_class *swig_Ray_bases[] = {0};
 static const char *swig_Ray_base_names[] = {0};
 static swig_lua_class _wrap_class_Ray = { "Ray", "Ray", &SWIGTYPE_p_Mezzanine__Ray,_proxy__wrap_new_Ray, swig_delete_Ray, swig_Ray_methods, swig_Ray_attributes, &swig_Ray_Sf_SwigStatic, swig_Ray_meta, swig_Ray_bases, swig_Ray_base_names };
 
+static int _wrap_EntityComponentID_ID_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::EntityComponentID::IDType arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::ID",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::ID",1,"Mezzanine::EntityComponentID *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityComponentID::ID",2,"Mezzanine::EntityComponentID::IDType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID_ID_set",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  arg2 = (Mezzanine::EntityComponentID::IDType)lua_tonumber(L, 2);
+  if (arg1) (arg1)->ID = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID_ID_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::EntityComponentID::IDType result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::ID",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::ID",1,"Mezzanine::EntityComponentID *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID_ID_get",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::EntityComponentID::IDType) ((arg1)->ID);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityComponentID__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::EntityComponentID",0,0)
+  result = (Mezzanine::EntityComponentID *)new Mezzanine::EntityComponentID();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityComponentID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityComponentID__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID::IDType arg1 ;
+  Mezzanine::EntityComponentID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::EntityComponentID",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::EntityComponentID",1,"Mezzanine::EntityComponentID::IDType const");
+  arg1 = (Mezzanine::EntityComponentID::IDType const)lua_tonumber(L, 1);
+  result = (Mezzanine::EntityComponentID *)new Mezzanine::EntityComponentID(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityComponentID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityComponentID__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = 0 ;
+  Mezzanine::EntityComponentID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::EntityComponentID",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::EntityComponentID",1,"Mezzanine::EntityComponentID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("new_EntityComponentID",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::EntityComponentID *)new Mezzanine::EntityComponentID((Mezzanine::EntityComponentID const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityComponentID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityComponentID__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = 0 ;
+  Mezzanine::EntityComponentID *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::EntityComponentID",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::EntityComponentID",1,"Mezzanine::EntityComponentID &&");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("new_EntityComponentID",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::EntityComponentID *)new Mezzanine::EntityComponentID((Mezzanine::EntityComponentID &&)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EntityComponentID,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_EntityComponentID(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_EntityComponentID__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityComponentID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_EntityComponentID__SWIG_2(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityComponentID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_EntityComponentID__SWIG_3(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_EntityComponentID__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_EntityComponentID'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::EntityComponentID::EntityComponentID()\n"
+    "    Mezzanine::EntityComponentID::EntityComponentID(Mezzanine::EntityComponentID::IDType const)\n"
+    "    Mezzanine::EntityComponentID::EntityComponentID(Mezzanine::EntityComponentID const &)\n"
+    "    Mezzanine::EntityComponentID::EntityComponentID(Mezzanine::EntityComponentID &&)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_EntityComponentID_IsInvalid(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::IsInvalid",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::IsInvalid",1,"Mezzanine::EntityComponentID const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID_IsInvalid",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityComponentID const *)arg1)->IsInvalid();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::EntityComponentID *arg2 = 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::operator ==",1,"Mezzanine::EntityComponentID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityComponentID::operator ==",2,"Mezzanine::EntityComponentID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID___eq",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID___eq",2,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityComponentID const *)arg1)->operator ==((Mezzanine::EntityComponentID const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::EntityComponentID *arg2 = 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::operator <",1,"Mezzanine::EntityComponentID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityComponentID::operator <",2,"Mezzanine::EntityComponentID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID___lt",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID___lt",2,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityComponentID const *)arg1)->operator <((Mezzanine::EntityComponentID const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID_ProtoSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::ProtoSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::ProtoSerialize",1,"Mezzanine::EntityComponentID const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityComponentID::ProtoSerialize",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID_ProtoSerialize",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("EntityComponentID_ProtoSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  ((Mezzanine::EntityComponentID const *)arg1)->ProtoSerialize(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID_ProtoDeSerialize(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::ProtoDeSerialize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponentID::ProtoDeSerialize",1,"Mezzanine::EntityComponentID *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityComponentID::ProtoDeSerialize",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponentID,0))){
+    SWIG_fail_ptr("EntityComponentID_ProtoDeSerialize",1,SWIGTYPE_p_Mezzanine__EntityComponentID);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("EntityComponentID_ProtoDeSerialize",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  (arg1)->ProtoDeSerialize((Mezzanine::XML::Node const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponentID_GetSerializableName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponentID::GetSerializableName",0,0)
+  result = Mezzanine::EntityComponentID::GetSerializableName();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_EntityComponentID(void *obj) {
+Mezzanine::EntityComponentID *arg1 = (Mezzanine::EntityComponentID *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_EntityComponentID(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_EntityComponentID);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_EntityComponentID_attributes[] = {
+    { "ID", _wrap_EntityComponentID_ID_get, _wrap_EntityComponentID_ID_set },
+    {0,0,0}
+};
+static swig_lua_method swig_EntityComponentID_methods[]= {
+    { "IsInvalid", _wrap_EntityComponentID_IsInvalid},
+    { "__eq", _wrap_EntityComponentID___eq},
+    { "__lt", _wrap_EntityComponentID___lt},
+    { "ProtoSerialize", _wrap_EntityComponentID_ProtoSerialize},
+    { "ProtoDeSerialize", _wrap_EntityComponentID_ProtoDeSerialize},
+    {0,0}
+};
+static swig_lua_method swig_EntityComponentID_meta[] = {
+    { "__eq", _wrap_EntityComponentID___eq},
+    { "__lt", _wrap_EntityComponentID___lt},
+    {0,0}
+};
+
+static swig_lua_attribute swig_EntityComponentID_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_EntityComponentID_Sf_SwigStatic_constants[]= {
+    {SWIG_LUA_CONSTTAB_STRING("InvalidID", "Mezzanine::EntityComponentID::InvalidID")},
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_EntityComponentID_Sf_SwigStatic_methods[]= {
+    { "GetSerializableName", _wrap_EntityComponentID_GetSerializableName},
+    {0,0}
+};
+static swig_lua_class* swig_EntityComponentID_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_EntityComponentID_Sf_SwigStatic = {
+    "EntityComponentID",
+    swig_EntityComponentID_Sf_SwigStatic_methods,
+    swig_EntityComponentID_Sf_SwigStatic_attributes,
+    swig_EntityComponentID_Sf_SwigStatic_constants,
+    swig_EntityComponentID_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_EntityComponentID_bases[] = {0};
+static const char *swig_EntityComponentID_base_names[] = {0};
+static swig_lua_class _wrap_class_EntityComponentID = { "EntityComponentID", "EntityComponentID", &SWIGTYPE_p_Mezzanine__EntityComponentID,_proxy__wrap_new_EntityComponentID, swig_delete_EntityComponentID, swig_EntityComponentID_methods, swig_EntityComponentID_attributes, &swig_EntityComponentID_Sf_SwigStatic, swig_EntityComponentID_meta, swig_EntityComponentID_bases, swig_EntityComponentID_base_names };
+
 static int _wrap_EntityComponent_GetComponentType(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
@@ -35885,7 +36841,7 @@ fail:
 static int _wrap_EntityComponent_GetComponentID(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
-  Mezzanine::UInt32 result;
+  Mezzanine::EntityComponentID result;
   
   SWIG_check_num_args("Mezzanine::EntityComponent::GetComponentID",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponent::GetComponentID",1,"Mezzanine::EntityComponent const *");
@@ -35894,8 +36850,11 @@ static int _wrap_EntityComponent_GetComponentID(lua_State* L) {
     SWIG_fail_ptr("EntityComponent_GetComponentID",1,SWIGTYPE_p_Mezzanine__EntityComponent);
   }
   
-  result = (Mezzanine::UInt32)((Mezzanine::EntityComponent const *)arg1)->GetComponentID();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  result = ((Mezzanine::EntityComponent const *)arg1)->GetComponentID();
+  {
+    Mezzanine::EntityComponentID * resultptr = new Mezzanine::EntityComponentID((const Mezzanine::EntityComponentID &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__EntityComponentID,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -43584,21 +44543,24 @@ fail:
 
 static int _wrap_new_Debris__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::EntityID *arg1 = 0 ;
   Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
-  Mezzanine::String temp1 ;
   Mezzanine::Debris *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Debris::Debris",2,2)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Debris::Debris",1,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Debris::Debris",1,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Debris::Debris",2,"Mezzanine::World *");
-  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_Debris",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("new_Debris",2,SWIGTYPE_p_Mezzanine__World);
   }
   
-  result = (Mezzanine::Debris *)new Mezzanine::Debris((Mezzanine::String const &)*arg1,arg2);
+  result = (Mezzanine::Debris *)new Mezzanine::Debris((Mezzanine::EntityID const &)*arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Debris,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -43634,7 +44596,12 @@ static int _wrap_new_Debris(lua_State* L) {
   if (argc == 2) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
     }
     if (_v) {
       {
@@ -43654,7 +44621,7 @@ static int _wrap_new_Debris(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Debris'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Debris::Debris(Mezzanine::World *)\n"
-    "    Mezzanine::Debris::Debris(Mezzanine::String const &,Mezzanine::World *)\n");
+    "    Mezzanine::Debris::Debris(Mezzanine::EntityID const &,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
 
@@ -44169,6 +45136,19171 @@ static swig_lua_namespace swig_WorldManagerFactory_Sf_SwigStatic = {
 static swig_lua_class *swig_WorldManagerFactory_bases[] = {0,0};
 static const char *swig_WorldManagerFactory_base_names[] = {"Mezzanine::ManagerFactory *",0};
 static swig_lua_class _wrap_class_WorldManagerFactory = { "WorldManagerFactory", "WorldManagerFactory", &SWIGTYPE_p_Mezzanine__WorldManagerFactory,0, swig_delete_WorldManagerFactory, swig_WorldManagerFactory_methods, swig_WorldManagerFactory_attributes, &swig_WorldManagerFactory_Sf_SwigStatic, swig_WorldManagerFactory_meta, swig_WorldManagerFactory_bases, swig_WorldManagerFactory_base_names };
+
+static int _wrap_new_Attribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Attribute",0,0)
+  result = (Mezzanine::XML::Attribute *)new Mezzanine::XML::Attribute();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Attribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeStruct *arg1 = (Mezzanine::XML::AttributeStruct *) 0 ;
+  Mezzanine::XML::Attribute *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Attribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Attribute",1,"Mezzanine::XML::AttributeStruct *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeStruct,0))){
+    SWIG_fail_ptr("new_Attribute",1,SWIGTYPE_p_Mezzanine__XML__AttributeStruct);
+  }
+  
+  result = (Mezzanine::XML::Attribute *)new Mezzanine::XML::Attribute(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Attribute(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_Attribute__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeStruct, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_Attribute__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Attribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::Attribute()\n"
+    "    Mezzanine::XML::Attribute::Attribute(Mezzanine::XML::AttributeStruct *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute___lt",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute___lt",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)((Mezzanine::XML::Attribute const *)arg1)->operator <((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <=",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <=",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute___le",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute___le",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)((Mezzanine::XML::Attribute const *)arg1)->operator <=((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Empty",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_Empty",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)((Mezzanine::XML::Attribute const *)arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Name",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_Name",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Attribute const *)arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_Value(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Value",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Value",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_Value",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Attribute const *)arg1)->Value();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsString__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsString",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",1,"Mezzanine::XML::Attribute const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsString",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Attribute const *)arg1)->AsString((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsString__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsString",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Attribute const *)arg1)->AsString();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsString(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsString__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsString__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsString'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsString(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Attribute::AsString() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsInt__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInt",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsInt",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)((Mezzanine::XML::Attribute const *)arg1)->AsInt(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsInt__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInt",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsInt",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (int)((Mezzanine::XML::Attribute const *)arg1)->AsInt();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsInt(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsInt__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsInt__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsInt'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsInt(int) const\n"
+    "    Mezzanine::XML::Attribute::AsInt() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsUint__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  unsigned int arg2 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsUint",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",2,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsUint",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  result = (unsigned int)((Mezzanine::XML::Attribute const *)arg1)->AsUint(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsUint__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsUint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsUint",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (unsigned int)((Mezzanine::XML::Attribute const *)arg1)->AsUint();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsUint(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsUint__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsUint__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsUint'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsUint(unsigned int) const\n"
+    "    Mezzanine::XML::Attribute::AsUint() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsDouble__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  double arg2 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsDouble",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",2,"double");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  result = (double)((Mezzanine::XML::Attribute const *)arg1)->AsDouble(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsDouble__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsDouble",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (double)((Mezzanine::XML::Attribute const *)arg1)->AsDouble();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsDouble(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsDouble__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsDouble__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsDouble'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsDouble(double) const\n"
+    "    Mezzanine::XML::Attribute::AsDouble() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsFloat__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  float arg2 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsFloat",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  result = (float)((Mezzanine::XML::Attribute const *)arg1)->AsFloat(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsFloat__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsFloat",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (float)((Mezzanine::XML::Attribute const *)arg1)->AsFloat();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsFloat(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsFloat__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsFloat__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsFloat'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsFloat(float) const\n"
+    "    Mezzanine::XML::Attribute::AsFloat() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsReal__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsReal",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",2,"Mezzanine::Real");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsReal",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)((Mezzanine::XML::Attribute const *)arg1)->AsReal(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsReal__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsReal",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsReal",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Real)((Mezzanine::XML::Attribute const *)arg1)->AsReal();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsReal(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsReal__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsReal__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsReal'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsReal(Mezzanine::Real) const\n"
+    "    Mezzanine::XML::Attribute::AsReal() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsWhole__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsWhole",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  result = (Mezzanine::Whole)((Mezzanine::XML::Attribute const *)arg1)->AsWhole(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsWhole__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsWhole",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::XML::Attribute const *)arg1)->AsWhole();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsWhole(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsWhole__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsWhole__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsWhole'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsWhole(Mezzanine::Whole) const\n"
+    "    Mezzanine::XML::Attribute::AsWhole() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsInteger__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Integer arg2 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInteger",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",2,"Mezzanine::Integer");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (Mezzanine::Integer)lua_tonumber(L, 2);
+  result = (Mezzanine::Integer)((Mezzanine::XML::Attribute const *)arg1)->AsInteger(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsInteger__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInteger",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::Integer)((Mezzanine::XML::Attribute const *)arg1)->AsInteger();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsInteger(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsInteger__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsInteger__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsInteger'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsInteger(Mezzanine::Integer) const\n"
+    "    Mezzanine::XML::Attribute::AsInteger() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_AsBool__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsBool",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",1,"Mezzanine::XML::Attribute const *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsBool",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  result = (bool)((Mezzanine::XML::Attribute const *)arg1)->AsBool(arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsBool__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsBool",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_AsBool",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)((Mezzanine::XML::Attribute const *)arg1)->AsBool();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_AsBool(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Attribute_AsBool__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isboolean(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Attribute_AsBool__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Attribute_AsBool'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsBool(bool) const\n"
+    "    Mezzanine::XML::Attribute::AsBool() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Attribute_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetName",1,"Mezzanine::XML::Attribute *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_SetName",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(arg1)->SetName((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_SetValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::SetValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetValue",1,"Mezzanine::XML::Attribute *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetValue",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_SetValue",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(arg1)->SetValue((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_GetNextAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::GetNextAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::GetNextAttribute",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_GetNextAttribute",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = ((Mezzanine::XML::Attribute const *)arg1)->GetNextAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_GetPreviousAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::GetPreviousAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::GetPreviousAttribute",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_GetPreviousAttribute",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = ((Mezzanine::XML::Attribute const *)arg1)->GetPreviousAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_HashValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::HashValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::HashValue",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_HashValue",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = ((Mezzanine::XML::Attribute const *)arg1)->HashValue();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Attribute_InternalObject(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) 0 ;
+  Mezzanine::XML::AttributeStruct *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::InternalObject",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::InternalObject",1,"Mezzanine::XML::Attribute const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Attribute_InternalObject",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (Mezzanine::XML::AttributeStruct *)((Mezzanine::XML::Attribute const *)arg1)->InternalObject();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__AttributeStruct,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Attribute(void *obj) {
+Mezzanine::XML::Attribute *arg1 = (Mezzanine::XML::Attribute *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_Attribute(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Attribute);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Attribute_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Attribute_methods[]= {
+    { "__lt", _wrap_Attribute___lt},
+    { "__le", _wrap_Attribute___le},
+    { "Empty", _wrap_Attribute_Empty},
+    { "Name", _wrap_Attribute_Name},
+    { "Value", _wrap_Attribute_Value},
+    { "AsString", _wrap_Attribute_AsString},
+    { "AsInt", _wrap_Attribute_AsInt},
+    { "AsUint", _wrap_Attribute_AsUint},
+    { "AsDouble", _wrap_Attribute_AsDouble},
+    { "AsFloat", _wrap_Attribute_AsFloat},
+    { "AsReal", _wrap_Attribute_AsReal},
+    { "AsWhole", _wrap_Attribute_AsWhole},
+    { "AsInteger", _wrap_Attribute_AsInteger},
+    { "AsBool", _wrap_Attribute_AsBool},
+    { "SetName", _wrap_Attribute_SetName},
+    { "SetValue", _wrap_Attribute_SetValue},
+    { "GetNextAttribute", _wrap_Attribute_GetNextAttribute},
+    { "GetPreviousAttribute", _wrap_Attribute_GetPreviousAttribute},
+    { "HashValue", _wrap_Attribute_HashValue},
+    { "InternalObject", _wrap_Attribute_InternalObject},
+    {0,0}
+};
+static swig_lua_method swig_Attribute_meta[] = {
+    { "__lt", _wrap_Attribute___lt},
+    { "__le", _wrap_Attribute___le},
+    {0,0}
+};
+
+static swig_lua_attribute swig_Attribute_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Attribute_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Attribute_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Attribute_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Attribute_Sf_SwigStatic = {
+    "Attribute",
+    swig_Attribute_Sf_SwigStatic_methods,
+    swig_Attribute_Sf_SwigStatic_attributes,
+    swig_Attribute_Sf_SwigStatic_constants,
+    swig_Attribute_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Attribute_bases[] = {0};
+static const char *swig_Attribute_base_names[] = {0};
+static swig_lua_class _wrap_class_Attribute = { "Attribute", "Attribute", &SWIGTYPE_p_Mezzanine__XML__Attribute,_proxy__wrap_new_Attribute, swig_delete_Attribute, swig_Attribute_methods, swig_Attribute_attributes, &swig_Attribute_Sf_SwigStatic, swig_Attribute_meta, swig_Attribute_bases, swig_Attribute_base_names };
+
+static int _wrap_ParseMinimal_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseMinimal",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseMinimal;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParsePi_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParsePi",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParsePi;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseComments_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseComments",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseComments;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseCdata_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseCdata",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseCdata;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseWsPcdata_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseWsPcdata",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseWsPcdata;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseEscapes_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseEscapes",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseEscapes;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseEol_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseEol",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseEol;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseWconvAttribute_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseWconvAttribute",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseWconvAttribute;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseWnormAttribute_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseWnormAttribute",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseWnormAttribute;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseDeclaration_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseDeclaration",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseDeclaration;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseDocType_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseDocType",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseDocType;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseWsPcdata_single_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseWsPcdata_single",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseWsPcdata_single;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseDefault_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseDefault",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseDefault;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseFull_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseFull",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::ParseFull;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatIndent_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatIndent",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatIndent;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatWriteBom_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatWriteBom",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatWriteBom;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatRaw_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatRaw",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatRaw;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatNoDeclaration_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatNoDeclaration",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatNoDeclaration;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatNoEscapes_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatNoEscapes",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatNoEscapes;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatSaveFileText_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatSaveFileText",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatSaveFileText;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_FormatDefault_get(lua_State* L) {
+  int SWIG_arg = 0;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::FormatDefault",0,0)
+  result = (unsigned int)(unsigned int)Mezzanine::XML::FormatDefault;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Node__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Node",0,0)
+  result = (Mezzanine::XML::Node *)new Mezzanine::XML::Node();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Node__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeStruct *arg1 = (Mezzanine::XML::NodeStruct *) 0 ;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Node",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Node",1,"Mezzanine::XML::NodeStruct *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeStruct,0))){
+    SWIG_fail_ptr("new_Node",1,SWIGTYPE_p_Mezzanine__XML__NodeStruct);
+  }
+  
+  result = (Mezzanine::XML::Node *)new Mezzanine::XML::Node(arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Node(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_Node__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeStruct, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_Node__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Node'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::Node()\n"
+    "    Mezzanine::XML::Node::Node(Mezzanine::XML::NodeStruct *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",1,"Mezzanine::XML::Node const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node___lt",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node___lt",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)((Mezzanine::XML::Node const *)arg1)->operator <((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",1,"Mezzanine::XML::Node const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node___le",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node___le",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)((Mezzanine::XML::Node const *)arg1)->operator <=((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Empty",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Empty",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)((Mezzanine::XML::Node const *)arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Type(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Type",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Type",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Type",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::NodeType)((Mezzanine::XML::Node const *)arg1)->Type();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Name",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Name",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Node const *)arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Value(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Value",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Value",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Value",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Node const *)arg1)->Value();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetFirstAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstAttribute",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetFirstAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetFirstAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetLastAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastAttribute",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetLastAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetLastAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetFirstChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstChild",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetFirstChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetFirstChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetLastChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastChild",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetLastChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetLastChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetNextSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetNextSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetPreviousSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetPreviousSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetParent(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetParent",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetParent",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetParent",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetParent();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetRoot(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetRoot",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetRoot",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetRoot",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetRoot();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeText result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetText",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetText",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetText",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetText();
+  {
+    Mezzanine::XML::NodeText * resultptr = new Mezzanine::XML::NodeText((const Mezzanine::XML::NodeText &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeText,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",1,"Mezzanine::XML::Node const *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = ((Mezzanine::XML::Node const *)arg1)->GetChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->GetAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetNextSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->GetNextSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetNextSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_GetNextSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_GetNextSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_GetNextSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetNextSibling() const\n"
+    "    Mezzanine::XML::Node::GetNextSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_GetPreviousSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->GetPreviousSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetPreviousSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_GetPreviousSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_GetPreviousSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_GetPreviousSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling() const\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_GetChildValue__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Node const *)arg1)->GetChildValue();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChildValue__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::Node const *)arg1)->GetChildValue((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChildValue(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_GetChildValue__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_GetChildValue__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_GetChildValue'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildValue() const\n"
+    "    Mezzanine::XML::Node::GetChildValue(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",1,"Mezzanine::XML::Node *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_SetName",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(arg1)->SetName((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_SetValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_SetValue",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(arg1)->SetValue((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",1,"Mezzanine::XML::Node *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (arg1)->AppendAttribute((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (arg1)->PrependAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertAttributeAfter(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertAttributeAfter",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertAttributeAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->InsertAttributeAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertAttributeBefore(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertAttributeBefore",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertAttributeBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->InsertAttributeBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->AppendCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->PrependCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertCopyAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->InsertCopyAfter((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertCopyBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (arg1)->InsertCopyBefore((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::Node *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (arg1)->AppendChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::Node *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->AppendChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::Node *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (arg1)->PrependChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::Node *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->PrependChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertChildAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::Node *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertChildAfter(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertChildBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::Node *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertChildBefore(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::Node *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (arg1)->AppendChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_AppendChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_AppendChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_AppendChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_AppendChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::AppendChild()\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_PrependChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::Node *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (arg1)->PrependChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_PrependChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_PrependChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_PrependChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_PrependChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::PrependChild()\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_InsertChildAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertChildAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertChildAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertChildAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertChildAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_InsertChildAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_InsertChildBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertChildBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertChildBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertChildBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertChildBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_InsertChildBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_AppendCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->AppendCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_AppendCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_AppendCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_AppendCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_AppendCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_PrependCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->PrependCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_PrependCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_PrependCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_PrependCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_PrependCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_InsertCopyAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertCopyAfter((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertCopyAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertCopyAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertCopyAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_InsertCopyAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_InsertCopyBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (arg1)->InsertCopyBefore((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InsertCopyBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertCopyBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_InsertCopyBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_InsertCopyBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_RemoveAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("Node_RemoveAttribute",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)(arg1)->RemoveAttribute((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_RemoveAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(arg1)->RemoveAttribute((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_RemoveAttribute(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_RemoveAttribute__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_RemoveAttribute__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_RemoveAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_RemoveChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_RemoveChild",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->RemoveChild((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_RemoveChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::Node *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(arg1)->RemoveChild((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_RemoveChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_RemoveChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_RemoveChild__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_RemoveChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_FindChildbyAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg4 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",4,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  arg4 = (Mezzanine::Char8 *)lua_tostring(L, 4);
+  result = ((Mezzanine::XML::Node const *)arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3,(Mezzanine::Char8 const *)arg4);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindChildbyAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  result = ((Mezzanine::XML::Node const *)arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindChildbyAttribute(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Node_FindChildbyAttribute__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = SWIG_lua_isnilstring(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Node_FindChildbyAttribute__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_FindChildbyAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_Path__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 arg2 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Path",2,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Path",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (lua_tostring(L, 2))[0];
+  result = ((Mezzanine::XML::Node const *)arg1)->Path(arg2);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Path__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Path",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->Path();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_Path(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_Path__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]) && (lua_rawlen(L,argv[1])==1);
+      }
+      if (_v) {
+        return _wrap_Node_Path__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_Path'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::Path(Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::Path() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_FirstElementByPath__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 arg3 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",3,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (lua_tostring(L, 3))[0];
+  result = ((Mezzanine::XML::Node const *)arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FirstElementByPath__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FirstElementByPath(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_FirstElementByPath__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]) && (lua_rawlen(L,argv[2])==1);
+        }
+        if (_v) {
+          return _wrap_Node_FirstElementByPath__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_FirstElementByPath'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *,Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_Traverse(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::TreeWalker *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Traverse",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",1,"Mezzanine::XML::Node *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",2,"Mezzanine::XML::TreeWalker &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_Traverse",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("Node_Traverse",2,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  result = (bool)(arg1)->Traverse(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindSingleNode__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("Node_FindSingleNode",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindSingleNode__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindSingleNode__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::Node const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("Node_FindSingleNode",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->FindSingleNode((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindSingleNode(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_FindSingleNode__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_FindSingleNode__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_FindSingleNode__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_FindSingleNode'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_FindNodes__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("Node_FindNodes",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->FindNodes((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindNodes__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->FindNodes((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindNodes__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::Node const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("Node_FindNodes",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->FindNodes((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_FindNodes(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Node_FindNodes__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_FindNodes__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Node_FindNodes__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_FindNodes'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::begin",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_begin",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->begin();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_c_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::end",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_c_end",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->end();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_attributes_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_begin",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_attributes_begin",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->attributes_begin();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_attributes_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_end",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_attributes_end",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->attributes_end();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChildren__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->GetChildren();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChildren__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::Node const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = ((Mezzanine::XML::Node const *)arg1)->GetChildren((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_GetChildren(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Node_GetChildren__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Node_GetChildren__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Node_GetChildren'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildren() const\n"
+    "    Mezzanine::XML::Node::GetChildren(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Node_attributes(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_attributes",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->attributes();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_OffSetDebug(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::OffSetDebug",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::OffSetDebug",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_OffSetDebug",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->OffSetDebug();
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_HashValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::HashValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::HashValue",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_HashValue",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = ((Mezzanine::XML::Node const *)arg1)->HashValue();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Node_InternalObject(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) 0 ;
+  Mezzanine::XML::NodeStruct *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InternalObject",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InternalObject",1,"Mezzanine::XML::Node const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("Node_InternalObject",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::NodeStruct *)((Mezzanine::XML::Node const *)arg1)->InternalObject();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeStruct,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Node(void *obj) {
+Mezzanine::XML::Node *arg1 = (Mezzanine::XML::Node *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_Node(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Node);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Node_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Node_methods[]= {
+    { "__lt", _wrap_Node___lt},
+    { "__le", _wrap_Node___le},
+    { "Empty", _wrap_Node_Empty},
+    { "Type", _wrap_Node_Type},
+    { "Name", _wrap_Node_Name},
+    { "Value", _wrap_Node_Value},
+    { "GetFirstAttribute", _wrap_Node_GetFirstAttribute},
+    { "GetLastAttribute", _wrap_Node_GetLastAttribute},
+    { "GetFirstChild", _wrap_Node_GetFirstChild},
+    { "GetLastChild", _wrap_Node_GetLastChild},
+    { "GetParent", _wrap_Node_GetParent},
+    { "GetRoot", _wrap_Node_GetRoot},
+    { "GetText", _wrap_Node_GetText},
+    { "GetChild", _wrap_Node_GetChild},
+    { "GetAttribute", _wrap_Node_GetAttribute},
+    { "GetNextSibling", _wrap_Node_GetNextSibling},
+    { "GetPreviousSibling", _wrap_Node_GetPreviousSibling},
+    { "GetChildValue", _wrap_Node_GetChildValue},
+    { "SetName", _wrap_Node_SetName},
+    { "SetValue", _wrap_Node_SetValue},
+    { "AppendAttribute", _wrap_Node_AppendAttribute},
+    { "PrependAttribute", _wrap_Node_PrependAttribute},
+    { "InsertAttributeAfter", _wrap_Node_InsertAttributeAfter},
+    { "InsertAttributeBefore", _wrap_Node_InsertAttributeBefore},
+    { "AppendChild", _wrap_Node_AppendChild},
+    { "PrependChild", _wrap_Node_PrependChild},
+    { "InsertChildAfter", _wrap_Node_InsertChildAfter},
+    { "InsertChildBefore", _wrap_Node_InsertChildBefore},
+    { "AppendCopy", _wrap_Node_AppendCopy},
+    { "PrependCopy", _wrap_Node_PrependCopy},
+    { "InsertCopyAfter", _wrap_Node_InsertCopyAfter},
+    { "InsertCopyBefore", _wrap_Node_InsertCopyBefore},
+    { "RemoveAttribute", _wrap_Node_RemoveAttribute},
+    { "RemoveChild", _wrap_Node_RemoveChild},
+    { "FindChildbyAttribute", _wrap_Node_FindChildbyAttribute},
+    { "Path", _wrap_Node_Path},
+    { "FirstElementByPath", _wrap_Node_FirstElementByPath},
+    { "Traverse", _wrap_Node_Traverse},
+    { "FindSingleNode", _wrap_Node_FindSingleNode},
+    { "FindNodes", _wrap_Node_FindNodes},
+    { "begin", _wrap_Node_begin},
+    { "c_end", _wrap_Node_c_end},
+    { "attributes_begin", _wrap_Node_attributes_begin},
+    { "attributes_end", _wrap_Node_attributes_end},
+    { "GetChildren", _wrap_Node_GetChildren},
+    { "attributes", _wrap_Node_attributes},
+    { "OffSetDebug", _wrap_Node_OffSetDebug},
+    { "HashValue", _wrap_Node_HashValue},
+    { "InternalObject", _wrap_Node_InternalObject},
+    {0,0}
+};
+static swig_lua_method swig_Node_meta[] = {
+    { "__lt", _wrap_Node___lt},
+    { "__le", _wrap_Node___le},
+    {0,0}
+};
+
+static swig_lua_attribute swig_Node_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Node_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Node_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Node_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Node_Sf_SwigStatic = {
+    "Node",
+    swig_Node_Sf_SwigStatic_methods,
+    swig_Node_Sf_SwigStatic_attributes,
+    swig_Node_Sf_SwigStatic_constants,
+    swig_Node_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Node_bases[] = {0};
+static const char *swig_Node_base_names[] = {0};
+static swig_lua_class _wrap_class_Node = { "Node", "Node", &SWIGTYPE_p_Mezzanine__XML__Node,_proxy__wrap_new_Node, swig_delete_Node, swig_Node_methods, swig_Node_attributes, &swig_Node_Sf_SwigStatic, swig_Node_meta, swig_Node_bases, swig_Node_base_names };
+
+static int _wrap_new_AttributeIterator__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::AttributeIterator::AttributeIterator",0,0)
+  result = (Mezzanine::XML::AttributeIterator *)new Mezzanine::XML::AttributeIterator();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AttributeIterator__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::AttributeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::AttributeIterator::AttributeIterator",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::AttributeIterator",1,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::AttributeIterator",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("new_AttributeIterator",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("new_AttributeIterator",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::AttributeIterator *)new Mezzanine::XML::AttributeIterator((Mezzanine::XML::Attribute const &)*arg1,(Mezzanine::XML::Node const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_AttributeIterator(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_AttributeIterator__SWIG_0(L);
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_AttributeIterator__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_AttributeIterator'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::AttributeIterator::AttributeIterator()\n"
+    "    Mezzanine::XML::AttributeIterator::AttributeIterator(Mezzanine::XML::Attribute const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::AttributeIterator *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::AttributeIterator::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::operator ==",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::operator ==",2,"Mezzanine::XML::AttributeIterator const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___eq",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___eq",2,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (bool)((Mezzanine::XML::AttributeIterator const *)arg1)->operator ==((Mezzanine::XML::AttributeIterator const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator___ref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::AttributeIterator::operator *",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::operator *",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___ref__",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::XML::Attribute *) &((Mezzanine::XML::AttributeIterator const *)arg1)->operator *();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Attribute,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator___deref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::AttributeIterator::operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::AttributeIterator::operator ->",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___deref__",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::XML::Attribute *)((Mezzanine::XML::AttributeIterator const *)arg1)->operator ->();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Attribute,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___lt",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("AttributeIterator___lt",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)(*arg1)->operator <((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <=",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::operator <=",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator___le",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("AttributeIterator___le",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)(*arg1)->operator <=((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Empty",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_Empty",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (bool)(*arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Name",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_Name",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_Value(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::Value",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::Value",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_Value",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Value();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsString__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsString",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsString",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)(*arg1)->AsString((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsString__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsString",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsString",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->AsString();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsString(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsString__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsString__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsString'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsString(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Attribute::AsString() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsInt__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInt",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsInt",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)(*arg1)->AsInt(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsInt__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInt",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInt",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsInt",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (int)(*arg1)->AsInt();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsInt(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsInt__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsInt__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsInt'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsInt(int) const\n"
+    "    Mezzanine::XML::Attribute::AsInt() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsUint__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  unsigned int arg2 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsUint",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",2,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsUint",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  result = (unsigned int)(*arg1)->AsUint(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsUint__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsUint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsUint",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsUint",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (unsigned int)(*arg1)->AsUint();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsUint(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsUint__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsUint__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsUint'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsUint(unsigned int) const\n"
+    "    Mezzanine::XML::Attribute::AsUint() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsDouble__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  double arg2 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsDouble",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",2,"double");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  result = (double)(*arg1)->AsDouble(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsDouble__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsDouble",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsDouble",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (double)(*arg1)->AsDouble();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsDouble(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsDouble__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsDouble__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsDouble'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsDouble(double) const\n"
+    "    Mezzanine::XML::Attribute::AsDouble() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsFloat__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  float arg2 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsFloat",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  result = (float)(*arg1)->AsFloat(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsFloat__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsFloat",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsFloat",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (float)(*arg1)->AsFloat();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsFloat(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsFloat__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsFloat__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsFloat'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsFloat(float) const\n"
+    "    Mezzanine::XML::Attribute::AsFloat() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsReal__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsReal",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",2,"Mezzanine::Real");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsReal",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)(*arg1)->AsReal(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsReal__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsReal",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsReal",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsReal",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Real)(*arg1)->AsReal();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsReal(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsReal__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsReal__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsReal'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsReal(Mezzanine::Real) const\n"
+    "    Mezzanine::XML::Attribute::AsReal() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsWhole__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsWhole",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  result = (Mezzanine::Whole)(*arg1)->AsWhole(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsWhole__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsWhole",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsWhole",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Whole)(*arg1)->AsWhole();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsWhole(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsWhole__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsWhole__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsWhole'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsWhole(Mezzanine::Whole) const\n"
+    "    Mezzanine::XML::Attribute::AsWhole() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsInteger__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Integer arg2 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInteger",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",2,"Mezzanine::Integer");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (Mezzanine::Integer)lua_tonumber(L, 2);
+  result = (Mezzanine::Integer)(*arg1)->AsInteger(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsInteger__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsInteger",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsInteger",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::Integer)(*arg1)->AsInteger();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsInteger(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsInteger__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsInteger__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsInteger'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsInteger(Mezzanine::Integer) const\n"
+    "    Mezzanine::XML::Attribute::AsInteger() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_AsBool__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsBool",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",1,"Mezzanine::XML::AttributeIterator const *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsBool",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  result = (bool)(*arg1)->AsBool(arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsBool__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::AsBool",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::AsBool",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_AsBool",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (bool)(*arg1)->AsBool();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_AsBool(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AttributeIterator_AsBool__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__AttributeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isboolean(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AttributeIterator_AsBool__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AttributeIterator_AsBool'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Attribute::AsBool(bool) const\n"
+    "    Mezzanine::XML::Attribute::AsBool() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AttributeIterator_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetName",1,"Mezzanine::XML::AttributeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_SetName",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(*arg1)->SetName((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_SetValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::SetValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetValue",1,"Mezzanine::XML::AttributeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Attribute::SetValue",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_SetValue",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(*arg1)->SetValue((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_GetNextAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::GetNextAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::GetNextAttribute",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_GetNextAttribute",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (*arg1)->GetNextAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_GetPreviousAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::GetPreviousAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::GetPreviousAttribute",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_GetPreviousAttribute",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (*arg1)->GetPreviousAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_HashValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::HashValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::HashValue",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_HashValue",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (*arg1)->HashValue();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AttributeIterator_InternalObject(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) 0 ;
+  Mezzanine::XML::AttributeStruct *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Attribute::InternalObject",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Attribute::InternalObject",1,"Mezzanine::XML::AttributeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,0))){
+    SWIG_fail_ptr("AttributeIterator_InternalObject",1,SWIGTYPE_p_Mezzanine__XML__AttributeIterator);
+  }
+  
+  result = (Mezzanine::XML::AttributeStruct *)(*arg1)->InternalObject();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__AttributeStruct,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_AttributeIterator(void *obj) {
+Mezzanine::XML::AttributeIterator *arg1 = (Mezzanine::XML::AttributeIterator *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_AttributeIterator(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_AttributeIterator);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_AttributeIterator_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_AttributeIterator_methods[]= {
+    { "__eq", _wrap_AttributeIterator___eq},
+    { "__ref__", _wrap_AttributeIterator___ref__},
+    { "__deref__", _wrap_AttributeIterator___deref__},
+    { "__lt", _wrap_AttributeIterator___lt},
+    { "__le", _wrap_AttributeIterator___le},
+    { "Empty", _wrap_AttributeIterator_Empty},
+    { "Name", _wrap_AttributeIterator_Name},
+    { "Value", _wrap_AttributeIterator_Value},
+    { "AsString", _wrap_AttributeIterator_AsString},
+    { "AsInt", _wrap_AttributeIterator_AsInt},
+    { "AsUint", _wrap_AttributeIterator_AsUint},
+    { "AsDouble", _wrap_AttributeIterator_AsDouble},
+    { "AsFloat", _wrap_AttributeIterator_AsFloat},
+    { "AsReal", _wrap_AttributeIterator_AsReal},
+    { "AsWhole", _wrap_AttributeIterator_AsWhole},
+    { "AsInteger", _wrap_AttributeIterator_AsInteger},
+    { "AsBool", _wrap_AttributeIterator_AsBool},
+    { "SetName", _wrap_AttributeIterator_SetName},
+    { "SetValue", _wrap_AttributeIterator_SetValue},
+    { "GetNextAttribute", _wrap_AttributeIterator_GetNextAttribute},
+    { "GetPreviousAttribute", _wrap_AttributeIterator_GetPreviousAttribute},
+    { "HashValue", _wrap_AttributeIterator_HashValue},
+    { "InternalObject", _wrap_AttributeIterator_InternalObject},
+    {0,0}
+};
+static swig_lua_method swig_AttributeIterator_meta[] = {
+    { "__eq", _wrap_AttributeIterator___eq},
+    { "__ref__", _wrap_AttributeIterator___ref__},
+    { "__deref__", _wrap_AttributeIterator___deref__},
+    { "__lt", _wrap_AttributeIterator___lt},
+    { "__le", _wrap_AttributeIterator___le},
+    {0,0}
+};
+
+static swig_lua_attribute swig_AttributeIterator_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_AttributeIterator_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_AttributeIterator_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_AttributeIterator_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_AttributeIterator_Sf_SwigStatic = {
+    "AttributeIterator",
+    swig_AttributeIterator_Sf_SwigStatic_methods,
+    swig_AttributeIterator_Sf_SwigStatic_attributes,
+    swig_AttributeIterator_Sf_SwigStatic_constants,
+    swig_AttributeIterator_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_AttributeIterator_bases[] = {0};
+static const char *swig_AttributeIterator_base_names[] = {0};
+static swig_lua_class _wrap_class_AttributeIterator = { "AttributeIterator", "AttributeIterator", &SWIGTYPE_p_Mezzanine__XML__AttributeIterator,_proxy__wrap_new_AttributeIterator, swig_delete_AttributeIterator, swig_AttributeIterator_methods, swig_AttributeIterator_attributes, &swig_AttributeIterator_Sf_SwigStatic, swig_AttributeIterator_meta, swig_AttributeIterator_bases, swig_AttributeIterator_base_names };
+
+static int _wrap_ParseResult_Status_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  Mezzanine::XML::ParseStatus arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::Status",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Status",1,"Mezzanine::XML::ParseResult *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Status",2,"Mezzanine::XML::ParseStatus");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_Status_set",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  arg2 = (Mezzanine::XML::ParseStatus)(int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->Status = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_Status_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  Mezzanine::XML::ParseStatus result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::Status",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Status",1,"Mezzanine::XML::ParseResult *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_Status_get",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  result = (Mezzanine::XML::ParseStatus) ((arg1)->Status);
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_Offset_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  ptrdiff_t arg2 ;
+  ptrdiff_t *argp2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::Offset",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Offset",1,"Mezzanine::XML::ParseResult *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Offset",2,"ptrdiff_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_Offset_set",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_ptrdiff_t,0))){
+    SWIG_fail_ptr("ParseResult_Offset_set",2,SWIGTYPE_p_ptrdiff_t);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->Offset = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_Offset_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::Offset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Offset",1,"Mezzanine::XML::ParseResult *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_Offset_get",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  result =  ((arg1)->Offset);
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_DocumentEncoding_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  Mezzanine::XML::Encoding arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::DocumentEncoding",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::DocumentEncoding",1,"Mezzanine::XML::ParseResult *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::ParseResult::DocumentEncoding",2,"Mezzanine::XML::Encoding");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_DocumentEncoding_set",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  arg2 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->DocumentEncoding = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_DocumentEncoding_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  Mezzanine::XML::Encoding result;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::DocumentEncoding",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::DocumentEncoding",1,"Mezzanine::XML::ParseResult *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_DocumentEncoding_get",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  result = (Mezzanine::XML::Encoding) ((arg1)->DocumentEncoding);
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParseResult(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::ParseResult",0,0)
+  result = (Mezzanine::XML::ParseResult *)new Mezzanine::XML::ParseResult();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParseResult_Description(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) 0 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::ParseResult::Description",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::ParseResult::Description",1,"Mezzanine::XML::ParseResult const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__ParseResult,0))){
+    SWIG_fail_ptr("ParseResult_Description",1,SWIGTYPE_p_Mezzanine__XML__ParseResult);
+  }
+  
+  result = (char *)((Mezzanine::XML::ParseResult const *)arg1)->Description();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ParseResult(void *obj) {
+Mezzanine::XML::ParseResult *arg1 = (Mezzanine::XML::ParseResult *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_ParseResult(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_ParseResult);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_ParseResult_attributes[] = {
+    { "Status", _wrap_ParseResult_Status_get, _wrap_ParseResult_Status_set },
+    { "Offset", _wrap_ParseResult_Offset_get, _wrap_ParseResult_Offset_set },
+    { "DocumentEncoding", _wrap_ParseResult_DocumentEncoding_get, _wrap_ParseResult_DocumentEncoding_set },
+    {0,0,0}
+};
+static swig_lua_method swig_ParseResult_methods[]= {
+    { "Description", _wrap_ParseResult_Description},
+    {0,0}
+};
+static swig_lua_method swig_ParseResult_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_ParseResult_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_ParseResult_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_ParseResult_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_ParseResult_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_ParseResult_Sf_SwigStatic = {
+    "ParseResult",
+    swig_ParseResult_Sf_SwigStatic_methods,
+    swig_ParseResult_Sf_SwigStatic_attributes,
+    swig_ParseResult_Sf_SwigStatic_constants,
+    swig_ParseResult_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_ParseResult_bases[] = {0};
+static const char *swig_ParseResult_base_names[] = {0};
+static swig_lua_class _wrap_class_ParseResult = { "ParseResult", "ParseResult", &SWIGTYPE_p_Mezzanine__XML__ParseResult,_proxy__wrap_new_ParseResult, swig_delete_ParseResult, swig_ParseResult_methods, swig_ParseResult_attributes, &swig_ParseResult_Sf_SwigStatic, swig_ParseResult_meta, swig_ParseResult_bases, swig_ParseResult_base_names };
+
+static int _wrap_new_Document(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::Document",0,0)
+  result = (Mezzanine::XML::Document *)new Mezzanine::XML::Document();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Document,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_Reset__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::Reset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Reset",1,"Mezzanine::XML::Document *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_Reset",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  (arg1)->Reset();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_Reset__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  Mezzanine::XML::Document *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::Reset",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Reset",1,"Mezzanine::XML::Document *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Reset",2,"Mezzanine::XML::Document const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_Reset",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_Reset",2,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  (arg1)->Reset((Mezzanine::XML::Document const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_Reset(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_Document_Reset__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_Document_Reset__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_Reset'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Document::Reset()\n"
+    "    Mezzanine::XML::Document::Reset(Mezzanine::XML::Document const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Document_Load__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  unsigned int arg3 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::Load",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"Mezzanine::Char8 const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::Load",3,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (unsigned int)lua_tonumber(L, 3);
+  result = (arg1)->Load((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_Load__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::Load",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::Load",1,"Mezzanine::XML::Document *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::Load",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_Load",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (arg1)->Load((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_Load(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Document_Load__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Document_Load__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_Load'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Document::Load(Mezzanine::Char8 const *,unsigned int)\n"
+    "    Mezzanine::XML::Document::Load(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Document_LoadBuffer__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::Encoding arg5 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBuffer",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",4,"unsigned int");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",5,"Mezzanine::XML::Encoding");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBuffer",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBuffer");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  arg5 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 5);
+  result = (arg1)->LoadBuffer((void const *)arg2,arg3,arg4,arg5);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBuffer__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBuffer",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",4,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBuffer",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBuffer");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  result = (arg1)->LoadBuffer((void const *)arg2,arg3,arg4);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBuffer__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBuffer",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBuffer",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBuffer",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBuffer");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  result = (arg1)->LoadBuffer((void const *)arg2,arg3);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBuffer(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Document_LoadBuffer__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Document_LoadBuffer__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Document_LoadBuffer__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_LoadBuffer'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Document::LoadBuffer(void const *,size_t,unsigned int,Mezzanine::XML::Encoding)\n"
+    "    Mezzanine::XML::Document::LoadBuffer(void const *,size_t,unsigned int)\n"
+    "    Mezzanine::XML::Document::LoadBuffer(void const *,size_t)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Document_LoadBufferInplace__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::Encoding arg5 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplace",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",4,"unsigned int");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",5,"Mezzanine::XML::Encoding");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplace",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplace");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  arg5 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 5);
+  result = (arg1)->LoadBufferInplace(arg2,arg3,arg4,arg5);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplace__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplace",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",4,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplace",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplace");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  result = (arg1)->LoadBufferInplace(arg2,arg3,arg4);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplace__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplace",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplace",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplace",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplace");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  result = (arg1)->LoadBufferInplace(arg2,arg3);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplace(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Document_LoadBufferInplace__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Document_LoadBufferInplace__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Document_LoadBufferInplace__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_LoadBufferInplace'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Document::LoadBufferInplace(void *,size_t,unsigned int,Mezzanine::XML::Encoding)\n"
+    "    Mezzanine::XML::Document::LoadBufferInplace(void *,size_t,unsigned int)\n"
+    "    Mezzanine::XML::Document::LoadBufferInplace(void *,size_t)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Document_LoadBufferInplaceOwn__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::Encoding arg5 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplaceOwn",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",4,"unsigned int");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",5,"Mezzanine::XML::Encoding");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplaceOwn",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplaceOwn");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  arg5 = (Mezzanine::XML::Encoding)(int)lua_tonumber(L, 5);
+  result = (arg1)->LoadBufferInplaceOwn(arg2,arg3,arg4,arg5);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplaceOwn__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  unsigned int arg4 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplaceOwn",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",3,"size_t");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",4,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplaceOwn",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplaceOwn");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  arg4 = (unsigned int)lua_tonumber(L, 4);
+  result = (arg1)->LoadBufferInplaceOwn(arg2,arg3,arg4);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplaceOwn__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  Mezzanine::XML::ParseResult result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::LoadBufferInplaceOwn",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",1,"Mezzanine::XML::Document *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",2,"void *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::Document::LoadBufferInplaceOwn",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_LoadBufferInplaceOwn",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"Document_LoadBufferInplaceOwn");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  result = (arg1)->LoadBufferInplaceOwn(arg2,arg3);
+  {
+    Mezzanine::XML::ParseResult * resultptr = new Mezzanine::XML::ParseResult((const Mezzanine::XML::ParseResult &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ParseResult,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Document_LoadBufferInplaceOwn(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Document_LoadBufferInplaceOwn__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Document_LoadBufferInplaceOwn__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Document, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Document_LoadBufferInplaceOwn__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Document_LoadBufferInplaceOwn'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Document::LoadBufferInplaceOwn(void *,size_t,unsigned int,Mezzanine::XML::Encoding)\n"
+    "    Mezzanine::XML::Document::LoadBufferInplaceOwn(void *,size_t,unsigned int)\n"
+    "    Mezzanine::XML::Document::LoadBufferInplaceOwn(void *,size_t)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Document_DocumentElement(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Document::DocumentElement",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Document::DocumentElement",1,"Mezzanine::XML::Document const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Document,0))){
+    SWIG_fail_ptr("Document_DocumentElement",1,SWIGTYPE_p_Mezzanine__XML__Document);
+  }
+  
+  result = ((Mezzanine::XML::Document const *)arg1)->DocumentElement();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Document(void *obj) {
+Mezzanine::XML::Document *arg1 = (Mezzanine::XML::Document *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_Document(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Document);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Document_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Document_methods[]= {
+    { "Reset", _wrap_Document_Reset},
+    { "Load", _wrap_Document_Load},
+    { "LoadBuffer", _wrap_Document_LoadBuffer},
+    { "LoadBufferInplace", _wrap_Document_LoadBufferInplace},
+    { "LoadBufferInplaceOwn", _wrap_Document_LoadBufferInplaceOwn},
+    { "DocumentElement", _wrap_Document_DocumentElement},
+    {0,0}
+};
+static swig_lua_method swig_Document_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_Document_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Document_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Document_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Document_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Document_Sf_SwigStatic = {
+    "Document",
+    swig_Document_Sf_SwigStatic_methods,
+    swig_Document_Sf_SwigStatic_attributes,
+    swig_Document_Sf_SwigStatic_constants,
+    swig_Document_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Document_bases[] = {0,0};
+static const char *swig_Document_base_names[] = {"Mezzanine::XML::Node *",0};
+static swig_lua_class _wrap_class_Document = { "Document", "Document", &SWIGTYPE_p_Mezzanine__XML__Document,_proxy__wrap_new_Document, swig_delete_Document, swig_Document_methods, swig_Document_attributes, &swig_Document_Sf_SwigStatic, swig_Document_meta, swig_Document_bases, swig_Document_base_names };
+
+static int _wrap_SetMemoryManagementFunctions(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AllocationFunction arg1 = (Mezzanine::XML::AllocationFunction) 0 ;
+  Mezzanine::XML::DeAllocationFunction arg2 = (Mezzanine::XML::DeAllocationFunction) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::SetMemoryManagementFunctions",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::SetMemoryManagementFunctions",1,"Mezzanine::XML::AllocationFunction");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::SetMemoryManagementFunctions",2,"Mezzanine::XML::DeAllocationFunction");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_f_size_t__p_void,0))){
+    SWIG_fail_ptr("SetMemoryManagementFunctions",1,SWIGTYPE_p_f_size_t__p_void);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_f_p_void__void,0))){
+    SWIG_fail_ptr("SetMemoryManagementFunctions",2,SWIGTYPE_p_f_p_void__void);
+  }
+  
+  Mezzanine::XML::SetMemoryManagementFunctions(arg1,arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetMemoryAllocationFunction(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::AllocationFunction result;
+  
+  SWIG_check_num_args("Mezzanine::XML::GetMemoryAllocationFunction",0,0)
+  result = (Mezzanine::XML::AllocationFunction)Mezzanine::XML::GetMemoryAllocationFunction();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_f_size_t__p_void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GetMemoryDeallocationFunction(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::DeAllocationFunction result;
+  
+  SWIG_check_num_args("Mezzanine::XML::GetMemoryDeallocationFunction",0,0)
+  result = (Mezzanine::XML::DeAllocationFunction)Mezzanine::XML::GetMemoryDeallocationFunction();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_f_p_void__void,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NodeIterator__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeIterator::NodeIterator",0,0)
+  result = (Mezzanine::XML::NodeIterator *)new Mezzanine::XML::NodeIterator();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NodeIterator__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = 0 ;
+  Mezzanine::XML::NodeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeIterator::NodeIterator",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeIterator::NodeIterator",1,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("new_NodeIterator",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::NodeIterator *)new Mezzanine::XML::NodeIterator((Mezzanine::XML::Node const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NodeIterator(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_NodeIterator__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_NodeIterator__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NodeIterator'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeIterator::NodeIterator()\n"
+    "    Mezzanine::XML::NodeIterator::NodeIterator(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeIterator *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeIterator::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeIterator::operator ==",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeIterator::operator ==",2,"Mezzanine::XML::NodeIterator const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___eq",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___eq",2,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (bool)((Mezzanine::XML::NodeIterator const *)arg1)->operator ==((Mezzanine::XML::NodeIterator const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator___ref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeIterator::operator *",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeIterator::operator *",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___ref__",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::XML::Node *) &((Mezzanine::XML::NodeIterator const *)arg1)->operator *();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator___deref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeIterator::operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeIterator::operator ->",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___deref__",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::XML::Node *)((Mezzanine::XML::NodeIterator const *)arg1)->operator ->();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___lt",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator___lt",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->operator <((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator___le",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator___le",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->operator <=((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Empty",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Empty",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (bool)(*arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Type(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Type",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Type",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Type",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::XML::NodeType)(*arg1)->Type();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Name",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Name",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Value(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Value",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Value",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Value",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Value();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetFirstAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstAttribute",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetFirstAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetFirstAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetLastAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastAttribute",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetLastAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetLastAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetFirstChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstChild",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetFirstChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetFirstChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetLastChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastChild",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetLastChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetLastChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetNextSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetNextSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetNextSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetNextSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetNextSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_GetNextSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_GetNextSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_GetNextSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetNextSibling() const\n"
+    "    Mezzanine::XML::Node::GetNextSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_GetPreviousSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetPreviousSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetPreviousSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetPreviousSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetPreviousSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_GetPreviousSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_GetPreviousSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_GetPreviousSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling() const\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_GetParent(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetParent",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetParent",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetParent",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetParent();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetRoot(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetRoot",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetRoot",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetRoot",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetRoot();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeText result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetText",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetText",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetText",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetText();
+  {
+    Mezzanine::XML::NodeText * resultptr = new Mezzanine::XML::NodeText((const Mezzanine::XML::NodeText &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeText,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->GetChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildValue__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->GetChildValue();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildValue__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)(*arg1)->GetChildValue((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildValue(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_GetChildValue__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_GetChildValue__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_GetChildValue'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildValue() const\n"
+    "    Mezzanine::XML::Node::GetChildValue(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_SetName",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(*arg1)->SetName((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_SetValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_SetValue",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->SetValue((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->AppendAttribute((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->PrependAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertAttributeAfter(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertAttributeAfter",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertAttributeAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertAttributeAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertAttributeBefore(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertAttributeBefore",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertAttributeBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertAttributeBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->AppendCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->AppendCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_AppendCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_AppendCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_AppendCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_PrependCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->PrependCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->PrependCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_PrependCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_PrependCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_PrependCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertCopyAfter((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertCopyAfter((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertCopyAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertCopyAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_InsertCopyAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertCopyBefore((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertCopyBefore((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertCopyBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertCopyBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertCopyBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_InsertCopyBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_AppendChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (*arg1)->AppendChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NodeIterator *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->AppendChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->AppendChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_AppendChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_AppendChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_AppendChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_AppendChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_AppendChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::AppendChild()\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_PrependChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (*arg1)->PrependChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NodeIterator *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->PrependChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->PrependChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_PrependChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_PrependChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_PrependChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_PrependChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_PrependChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::PrependChild()\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_InsertChildAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildAfter(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertChildAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertChildAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertChildAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertChildAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_InsertChildAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_InsertChildBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildBefore(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertChildBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InsertChildBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertChildBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_InsertChildBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_InsertChildBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_RemoveAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveAttribute",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)(*arg1)->RemoveAttribute((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_RemoveAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->RemoveAttribute((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_RemoveAttribute(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_RemoveAttribute__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_RemoveAttribute__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_RemoveAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_RemoveChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveChild",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->RemoveChild((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_RemoveChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::NodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->RemoveChild((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_RemoveChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_RemoveChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_RemoveChild__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_RemoveChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_FindChildbyAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg4 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",4,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  arg4 = (Mezzanine::Char8 *)lua_tostring(L, 4);
+  result = (*arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3,(Mezzanine::Char8 const *)arg4);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindChildbyAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  result = (*arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindChildbyAttribute(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_NodeIterator_FindChildbyAttribute__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = SWIG_lua_isnilstring(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_NodeIterator_FindChildbyAttribute__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_FindChildbyAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_Path__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 arg2 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Path",2,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Path",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (lua_tostring(L, 2))[0];
+  result = (*arg1)->Path(arg2);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Path__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Path",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->Path();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_Path(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_Path__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]) && (lua_rawlen(L,argv[1])==1);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_Path__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_Path'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::Path(Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::Path() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_FirstElementByPath__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 arg3 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",3,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (lua_tostring(L, 3))[0];
+  result = (*arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FirstElementByPath__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FirstElementByPath(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_FirstElementByPath__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]) && (lua_rawlen(L,argv[2])==1);
+        }
+        if (_v) {
+          return _wrap_NodeIterator_FirstElementByPath__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_FirstElementByPath'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *,Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_Traverse(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::TreeWalker *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Traverse",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",1,"Mezzanine::XML::NodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",2,"Mezzanine::XML::TreeWalker &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_Traverse",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("NodeIterator_Traverse",2,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  result = (bool)(*arg1)->Traverse(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindSingleNode__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("NodeIterator_FindSingleNode",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = (*arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindSingleNode__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindSingleNode__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("NodeIterator_FindSingleNode",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (*arg1)->FindSingleNode((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindSingleNode(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_FindSingleNode__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_FindSingleNode__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_FindSingleNode__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_FindSingleNode'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_FindNodes__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("NodeIterator_FindNodes",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = (*arg1)->FindNodes((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindNodes__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FindNodes((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindNodes__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("NodeIterator_FindNodes",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (*arg1)->FindNodes((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_FindNodes(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NodeIterator_FindNodes__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_FindNodes__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NodeIterator_FindNodes__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_FindNodes'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::begin",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_begin",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->begin();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_c_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::end",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_c_end",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->end();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_attributes_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_begin",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_attributes_begin",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->attributes_begin();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_attributes_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_end",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_attributes_end",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->attributes_end();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildren__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->GetChildren();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildren__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::NodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetChildren((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_GetChildren(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeIterator_GetChildren__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeIterator_GetChildren__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeIterator_GetChildren'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildren() const\n"
+    "    Mezzanine::XML::Node::GetChildren(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeIterator_attributes(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_attributes",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->attributes();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_OffSetDebug(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::OffSetDebug",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::OffSetDebug",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_OffSetDebug",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->OffSetDebug();
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_HashValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::HashValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::HashValue",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_HashValue",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (*arg1)->HashValue();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeIterator_InternalObject(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) 0 ;
+  Mezzanine::XML::NodeStruct *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InternalObject",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InternalObject",1,"Mezzanine::XML::NodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeIterator,0))){
+    SWIG_fail_ptr("NodeIterator_InternalObject",1,SWIGTYPE_p_Mezzanine__XML__NodeIterator);
+  }
+  
+  result = (Mezzanine::XML::NodeStruct *)(*arg1)->InternalObject();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeStruct,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NodeIterator(void *obj) {
+Mezzanine::XML::NodeIterator *arg1 = (Mezzanine::XML::NodeIterator *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_NodeIterator(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_NodeIterator);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_NodeIterator_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_NodeIterator_methods[]= {
+    { "__eq", _wrap_NodeIterator___eq},
+    { "__ref__", _wrap_NodeIterator___ref__},
+    { "__deref__", _wrap_NodeIterator___deref__},
+    { "__lt", _wrap_NodeIterator___lt},
+    { "__le", _wrap_NodeIterator___le},
+    { "Empty", _wrap_NodeIterator_Empty},
+    { "Type", _wrap_NodeIterator_Type},
+    { "Name", _wrap_NodeIterator_Name},
+    { "Value", _wrap_NodeIterator_Value},
+    { "GetFirstAttribute", _wrap_NodeIterator_GetFirstAttribute},
+    { "GetLastAttribute", _wrap_NodeIterator_GetLastAttribute},
+    { "GetFirstChild", _wrap_NodeIterator_GetFirstChild},
+    { "GetLastChild", _wrap_NodeIterator_GetLastChild},
+    { "GetNextSibling", _wrap_NodeIterator_GetNextSibling},
+    { "GetPreviousSibling", _wrap_NodeIterator_GetPreviousSibling},
+    { "GetParent", _wrap_NodeIterator_GetParent},
+    { "GetRoot", _wrap_NodeIterator_GetRoot},
+    { "GetText", _wrap_NodeIterator_GetText},
+    { "GetChild", _wrap_NodeIterator_GetChild},
+    { "GetAttribute", _wrap_NodeIterator_GetAttribute},
+    { "GetChildValue", _wrap_NodeIterator_GetChildValue},
+    { "SetName", _wrap_NodeIterator_SetName},
+    { "SetValue", _wrap_NodeIterator_SetValue},
+    { "AppendAttribute", _wrap_NodeIterator_AppendAttribute},
+    { "PrependAttribute", _wrap_NodeIterator_PrependAttribute},
+    { "InsertAttributeAfter", _wrap_NodeIterator_InsertAttributeAfter},
+    { "InsertAttributeBefore", _wrap_NodeIterator_InsertAttributeBefore},
+    { "AppendCopy", _wrap_NodeIterator_AppendCopy},
+    { "PrependCopy", _wrap_NodeIterator_PrependCopy},
+    { "InsertCopyAfter", _wrap_NodeIterator_InsertCopyAfter},
+    { "InsertCopyBefore", _wrap_NodeIterator_InsertCopyBefore},
+    { "AppendChild", _wrap_NodeIterator_AppendChild},
+    { "PrependChild", _wrap_NodeIterator_PrependChild},
+    { "InsertChildAfter", _wrap_NodeIterator_InsertChildAfter},
+    { "InsertChildBefore", _wrap_NodeIterator_InsertChildBefore},
+    { "RemoveAttribute", _wrap_NodeIterator_RemoveAttribute},
+    { "RemoveChild", _wrap_NodeIterator_RemoveChild},
+    { "FindChildbyAttribute", _wrap_NodeIterator_FindChildbyAttribute},
+    { "Path", _wrap_NodeIterator_Path},
+    { "FirstElementByPath", _wrap_NodeIterator_FirstElementByPath},
+    { "Traverse", _wrap_NodeIterator_Traverse},
+    { "FindSingleNode", _wrap_NodeIterator_FindSingleNode},
+    { "FindNodes", _wrap_NodeIterator_FindNodes},
+    { "begin", _wrap_NodeIterator_begin},
+    { "c_end", _wrap_NodeIterator_c_end},
+    { "attributes_begin", _wrap_NodeIterator_attributes_begin},
+    { "attributes_end", _wrap_NodeIterator_attributes_end},
+    { "GetChildren", _wrap_NodeIterator_GetChildren},
+    { "attributes", _wrap_NodeIterator_attributes},
+    { "OffSetDebug", _wrap_NodeIterator_OffSetDebug},
+    { "HashValue", _wrap_NodeIterator_HashValue},
+    { "InternalObject", _wrap_NodeIterator_InternalObject},
+    {0,0}
+};
+static swig_lua_method swig_NodeIterator_meta[] = {
+    { "__eq", _wrap_NodeIterator___eq},
+    { "__ref__", _wrap_NodeIterator___ref__},
+    { "__deref__", _wrap_NodeIterator___deref__},
+    { "__lt", _wrap_NodeIterator___lt},
+    { "__le", _wrap_NodeIterator___le},
+    {0,0}
+};
+
+static swig_lua_attribute swig_NodeIterator_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_NodeIterator_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_NodeIterator_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_NodeIterator_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_NodeIterator_Sf_SwigStatic = {
+    "NodeIterator",
+    swig_NodeIterator_Sf_SwigStatic_methods,
+    swig_NodeIterator_Sf_SwigStatic_attributes,
+    swig_NodeIterator_Sf_SwigStatic_constants,
+    swig_NodeIterator_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_NodeIterator_bases[] = {0};
+static const char *swig_NodeIterator_base_names[] = {0};
+static swig_lua_class _wrap_class_NodeIterator = { "NodeIterator", "NodeIterator", &SWIGTYPE_p_Mezzanine__XML__NodeIterator,_proxy__wrap_new_NodeIterator, swig_delete_NodeIterator, swig_NodeIterator_methods, swig_NodeIterator_attributes, &swig_NodeIterator_Sf_SwigStatic, swig_NodeIterator_meta, swig_NodeIterator_bases, swig_NodeIterator_base_names };
+
+static int _wrap_new_NamedNodeIterator__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NamedNodeIterator::NamedNodeIterator",0,0)
+  result = (Mezzanine::XML::NamedNodeIterator *)new Mezzanine::XML::NamedNodeIterator();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NamedNodeIterator__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::NamedNodeIterator *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NamedNodeIterator::NamedNodeIterator",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::NamedNodeIterator",1,"Mezzanine::XML::Node const &");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::NamedNodeIterator",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("new_NamedNodeIterator",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::XML::NamedNodeIterator *)new Mezzanine::XML::NamedNodeIterator((Mezzanine::XML::Node const &)*arg1,(Mezzanine::Char8 const *)arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NamedNodeIterator(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_NamedNodeIterator__SWIG_0(L);
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_new_NamedNodeIterator__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NamedNodeIterator'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NamedNodeIterator::NamedNodeIterator()\n"
+    "    Mezzanine::XML::NamedNodeIterator::NamedNodeIterator(Mezzanine::XML::Node const &,Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NamedNodeIterator *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NamedNodeIterator::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::operator ==",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::operator ==",2,"Mezzanine::XML::NamedNodeIterator const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___eq",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___eq",2,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (bool)((Mezzanine::XML::NamedNodeIterator const *)arg1)->operator ==((Mezzanine::XML::NamedNodeIterator const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator___ref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NamedNodeIterator::operator *",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::operator *",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___ref__",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::XML::Node *) &((Mezzanine::XML::NamedNodeIterator const *)arg1)->operator *();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator___deref__(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NamedNodeIterator::operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NamedNodeIterator::operator ->",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___deref__",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::XML::Node *)((Mezzanine::XML::NamedNodeIterator const *)arg1)->operator ->();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Node,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator___lt(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___lt",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator___lt",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->operator <((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::operator <=",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator___le",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator___le",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->operator <=((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Empty",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Empty",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (bool)(*arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Type(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Type",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Type",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Type",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::XML::NodeType)(*arg1)->Type();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Name",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Name",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Value(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Value",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Value",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Value",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->Value();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetFirstAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstAttribute",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetFirstAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetFirstAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetLastAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastAttribute",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetLastAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetLastAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetFirstChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetFirstChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetFirstChild",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetFirstChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetFirstChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetLastChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetLastChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetLastChild",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetLastChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetLastChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetNextSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetNextSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetNextSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetNextSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetNextSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetNextSibling",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetNextSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetNextSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_GetNextSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_GetNextSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_GetNextSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetNextSibling() const\n"
+    "    Mezzanine::XML::Node::GetNextSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetPreviousSibling();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetPreviousSibling",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetPreviousSibling",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetPreviousSibling",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetPreviousSibling((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetPreviousSibling(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_GetPreviousSibling__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_GetPreviousSibling'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling() const\n"
+    "    Mezzanine::XML::Node::GetPreviousSibling(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_GetParent(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetParent",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetParent",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetParent",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetParent();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetRoot(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetRoot",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetRoot",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetRoot",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetRoot();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeText result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetText",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetText",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetText",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetText();
+  {
+    Mezzanine::XML::NodeText * resultptr = new Mezzanine::XML::NodeText((const Mezzanine::XML::NodeText &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeText,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChild(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->GetChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildValue__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::Char8 *)(*arg1)->GetChildValue();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildValue__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetChildValue",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)(*arg1)->GetChildValue((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildValue(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_GetChildValue__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_GetChildValue__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_GetChildValue'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildValue() const\n"
+    "    Mezzanine::XML::Node::GetChildValue(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_SetName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetName",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_SetName",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (bool)(*arg1)->SetName((Mezzanine::String const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_SetValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::SetValue",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::SetValue",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_SetValue",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->SetValue((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendAttribute",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->AppendAttribute((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->PrependAttribute((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertAttributeAfter(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertAttributeAfter",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertAttributeAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertAttributeAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertAttributeBefore(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertAttributeBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertAttributeBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertAttributeBefore",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertAttributeBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertAttributeBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->AppendCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendCopy",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->AppendCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_AppendCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_AppendCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_AppendCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::AppendCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependCopy__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->PrependCopy((Mezzanine::XML::Attribute const &)*arg2);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependCopy__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependCopy",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependCopy",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependCopy",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependCopy",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->PrependCopy((Mezzanine::XML::Node const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependCopy(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_PrependCopy__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_PrependCopy__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_PrependCopy'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::PrependCopy(Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertCopyAfter((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertCopyAfter((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertCopyAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_InsertCopyAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyAfter(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  Mezzanine::XML::Attribute *arg3 = 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (*arg1)->InsertCopyBefore((Mezzanine::XML::Attribute const &)*arg2,(Mezzanine::XML::Attribute const &)*arg3);
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertCopyBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",2,"Mezzanine::XML::Node const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertCopyBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertCopyBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertCopyBefore((Mezzanine::XML::Node const &)*arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertCopyBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertCopyBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_InsertCopyBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Attribute const &,Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::InsertCopyBefore(Mezzanine::XML::Node const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (*arg1)->AppendChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->AppendChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::AppendChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::AppendChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_AppendChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->AppendChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_AppendChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_AppendChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_AppendChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_AppendChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_AppendChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::AppendChild()\n"
+    "    Mezzanine::XML::Node::AppendChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::XML::NodeType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  result = (*arg1)->PrependChild(arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->PrependChild();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependChild__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::PrependChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::PrependChild",2,"Mezzanine::String const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_PrependChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (*arg1)->PrependChild((Mezzanine::String const &)*arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_PrependChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_PrependChild__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_PrependChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_PrependChild__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_PrependChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::XML::NodeType)\n"
+    "    Mezzanine::XML::Node::PrependChild()\n"
+    "    Mezzanine::XML::Node::PrependChild(Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildAfter__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildAfter(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildAfter__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildAfter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildAfter",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildAfter",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildAfter",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildAfter((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildAfter(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertChildAfter__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertChildAfter__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_InsertChildAfter'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildAfter(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildBefore__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeType arg2 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::XML::NodeType");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::XML::NodeType)(int)lua_tonumber(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildBefore(arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildBefore__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node *arg3 = 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InsertChildBefore",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::InsertChildBefore",3,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildBefore",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InsertChildBefore",3,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (*arg1)->InsertChildBefore((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::Node const &)*arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InsertChildBefore(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertChildBefore__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_InsertChildBefore__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_InsertChildBefore'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::XML::NodeType,Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::InsertChildBefore(Mezzanine::Char8 const *,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Attribute *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::XML::Attribute const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveAttribute",2,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  result = (bool)(*arg1)->RemoveAttribute((Mezzanine::XML::Attribute const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveAttribute",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveAttribute",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->RemoveAttribute((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveAttribute(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_RemoveAttribute__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_RemoveAttribute__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_RemoveAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::XML::Attribute const &)\n"
+    "    Mezzanine::XML::Node::RemoveAttribute(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveChild__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveChild",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(*arg1)->RemoveChild((Mezzanine::XML::Node const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveChild__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::RemoveChild",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::RemoveChild",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_RemoveChild",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(*arg1)->RemoveChild((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_RemoveChild(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_RemoveChild__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_RemoveChild__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_RemoveChild'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::Node::RemoveChild(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg4 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,4)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",4,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  arg4 = (Mezzanine::Char8 *)lua_tostring(L, 4);
+  result = (*arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3,(Mezzanine::Char8 const *)arg4);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindChildbyAttribute",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindChildbyAttribute",3,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindChildbyAttribute",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  result = (*arg1)->FindChildbyAttribute((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindChildbyAttribute(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = SWIG_lua_isnilstring(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_NamedNodeIterator_FindChildbyAttribute__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_FindChildbyAttribute'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindChildbyAttribute(Mezzanine::Char8 const *,Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_Path__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 arg2 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Path",2,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Path",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (lua_tostring(L, 2))[0];
+  result = (*arg1)->Path(arg2);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Path__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Path",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Path",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Path",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->Path();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_Path(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_Path__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]) && (lua_rawlen(L,argv[1])==1);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_Path__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_Path'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::Path(Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::Path() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_FirstElementByPath__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 arg3 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",3,"Mezzanine::Char8");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (lua_tostring(L, 3))[0];
+  result = (*arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FirstElementByPath__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FirstElementByPath",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FirstElementByPath",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FirstElementByPath",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FirstElementByPath((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FirstElementByPath(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_FirstElementByPath__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]) && (lua_rawlen(L,argv[2])==1);
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_FirstElementByPath__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_FirstElementByPath'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *,Mezzanine::Char8) const\n"
+    "    Mezzanine::XML::Node::FirstElementByPath(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_Traverse(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::TreeWalker *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::Traverse",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",1,"Mezzanine::XML::NamedNodeIterator *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::Traverse",2,"Mezzanine::XML::TreeWalker &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Traverse",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("NamedNodeIterator_Traverse",2,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  result = (bool)(*arg1)->Traverse(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindSingleNode__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindSingleNode",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = (*arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindSingleNode__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FindSingleNode((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindSingleNode__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindSingleNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindSingleNode",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindSingleNode",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindSingleNode",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (*arg1)->FindSingleNode((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindSingleNode(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_FindSingleNode__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_FindSingleNode__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_FindSingleNode__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_FindSingleNode'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindSingleNode(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_FindNodes__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg3 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",3,"Mezzanine::XML::XPathVariableSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindNodes",3,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = (*arg1)->FindNodes((Mezzanine::Char8 const *)arg2,arg3);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindNodes__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->FindNodes((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindNodes__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::XPathQuery *arg2 = 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::FindNodes",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::FindNodes",2,"Mezzanine::XML::XPathQuery const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindNodes",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("NamedNodeIterator_FindNodes",2,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (*arg1)->FindNodes((Mezzanine::XML::XPathQuery const &)*arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_FindNodes(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_FindNodes__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_FindNodes__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_NamedNodeIterator_FindNodes__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_FindNodes'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::Node::FindNodes(Mezzanine::XML::XPathQuery const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::begin",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_begin",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->begin();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_c_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node::iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::end",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_c_end",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->end();
+  {
+    Mezzanine::XML::Node::iterator * resultptr = new Mezzanine::XML::Node::iterator((const Mezzanine::XML::Node::iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__NodeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_attributes_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_begin",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_attributes_begin",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->attributes_begin();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_attributes_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::Node::attribute_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes_end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes_end",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_attributes_end",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->attributes_end();
+  {
+    Mezzanine::XML::Node::attribute_iterator * resultptr = new Mezzanine::XML::Node::attribute_iterator((const Mezzanine::XML::Node::attribute_iterator &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__AttributeIterator,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildren__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->GetChildren();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildren__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::GetChildren",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",1,"Mezzanine::XML::NamedNodeIterator const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::Node::GetChildren",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_GetChildren",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (*arg1)->GetChildren((Mezzanine::Char8 const *)arg2);
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_GetChildren(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NamedNodeIterator_GetChildren__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NamedNodeIterator_GetChildren__SWIG_1(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NamedNodeIterator_GetChildren'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::Node::GetChildren() const\n"
+    "    Mezzanine::XML::Node::GetChildren(Mezzanine::Char8 const *) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NamedNodeIterator_attributes(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  SwigValueWrapper< Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::attributes",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::attributes",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_attributes",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->attributes();
+  {
+    Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > * resultptr = new Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator >((const Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_OffSetDebug(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::OffSetDebug",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::OffSetDebug",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_OffSetDebug",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->OffSetDebug();
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_HashValue(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::HashValue",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::HashValue",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_HashValue",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (*arg1)->HashValue();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NamedNodeIterator_InternalObject(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) 0 ;
+  Mezzanine::XML::NodeStruct *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::Node::InternalObject",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::Node::InternalObject",1,"Mezzanine::XML::NamedNodeIterator const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,0))){
+    SWIG_fail_ptr("NamedNodeIterator_InternalObject",1,SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator);
+  }
+  
+  result = (Mezzanine::XML::NodeStruct *)(*arg1)->InternalObject();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeStruct,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NamedNodeIterator(void *obj) {
+Mezzanine::XML::NamedNodeIterator *arg1 = (Mezzanine::XML::NamedNodeIterator *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_NamedNodeIterator(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_NamedNodeIterator);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_NamedNodeIterator_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_NamedNodeIterator_methods[]= {
+    { "__eq", _wrap_NamedNodeIterator___eq},
+    { "__ref__", _wrap_NamedNodeIterator___ref__},
+    { "__deref__", _wrap_NamedNodeIterator___deref__},
+    { "__lt", _wrap_NamedNodeIterator___lt},
+    { "__le", _wrap_NamedNodeIterator___le},
+    { "Empty", _wrap_NamedNodeIterator_Empty},
+    { "Type", _wrap_NamedNodeIterator_Type},
+    { "Name", _wrap_NamedNodeIterator_Name},
+    { "Value", _wrap_NamedNodeIterator_Value},
+    { "GetFirstAttribute", _wrap_NamedNodeIterator_GetFirstAttribute},
+    { "GetLastAttribute", _wrap_NamedNodeIterator_GetLastAttribute},
+    { "GetFirstChild", _wrap_NamedNodeIterator_GetFirstChild},
+    { "GetLastChild", _wrap_NamedNodeIterator_GetLastChild},
+    { "GetNextSibling", _wrap_NamedNodeIterator_GetNextSibling},
+    { "GetPreviousSibling", _wrap_NamedNodeIterator_GetPreviousSibling},
+    { "GetParent", _wrap_NamedNodeIterator_GetParent},
+    { "GetRoot", _wrap_NamedNodeIterator_GetRoot},
+    { "GetText", _wrap_NamedNodeIterator_GetText},
+    { "GetChild", _wrap_NamedNodeIterator_GetChild},
+    { "GetAttribute", _wrap_NamedNodeIterator_GetAttribute},
+    { "GetChildValue", _wrap_NamedNodeIterator_GetChildValue},
+    { "SetName", _wrap_NamedNodeIterator_SetName},
+    { "SetValue", _wrap_NamedNodeIterator_SetValue},
+    { "AppendAttribute", _wrap_NamedNodeIterator_AppendAttribute},
+    { "PrependAttribute", _wrap_NamedNodeIterator_PrependAttribute},
+    { "InsertAttributeAfter", _wrap_NamedNodeIterator_InsertAttributeAfter},
+    { "InsertAttributeBefore", _wrap_NamedNodeIterator_InsertAttributeBefore},
+    { "AppendCopy", _wrap_NamedNodeIterator_AppendCopy},
+    { "PrependCopy", _wrap_NamedNodeIterator_PrependCopy},
+    { "InsertCopyAfter", _wrap_NamedNodeIterator_InsertCopyAfter},
+    { "InsertCopyBefore", _wrap_NamedNodeIterator_InsertCopyBefore},
+    { "AppendChild", _wrap_NamedNodeIterator_AppendChild},
+    { "PrependChild", _wrap_NamedNodeIterator_PrependChild},
+    { "InsertChildAfter", _wrap_NamedNodeIterator_InsertChildAfter},
+    { "InsertChildBefore", _wrap_NamedNodeIterator_InsertChildBefore},
+    { "RemoveAttribute", _wrap_NamedNodeIterator_RemoveAttribute},
+    { "RemoveChild", _wrap_NamedNodeIterator_RemoveChild},
+    { "FindChildbyAttribute", _wrap_NamedNodeIterator_FindChildbyAttribute},
+    { "Path", _wrap_NamedNodeIterator_Path},
+    { "FirstElementByPath", _wrap_NamedNodeIterator_FirstElementByPath},
+    { "Traverse", _wrap_NamedNodeIterator_Traverse},
+    { "FindSingleNode", _wrap_NamedNodeIterator_FindSingleNode},
+    { "FindNodes", _wrap_NamedNodeIterator_FindNodes},
+    { "begin", _wrap_NamedNodeIterator_begin},
+    { "c_end", _wrap_NamedNodeIterator_c_end},
+    { "attributes_begin", _wrap_NamedNodeIterator_attributes_begin},
+    { "attributes_end", _wrap_NamedNodeIterator_attributes_end},
+    { "GetChildren", _wrap_NamedNodeIterator_GetChildren},
+    { "attributes", _wrap_NamedNodeIterator_attributes},
+    { "OffSetDebug", _wrap_NamedNodeIterator_OffSetDebug},
+    { "HashValue", _wrap_NamedNodeIterator_HashValue},
+    { "InternalObject", _wrap_NamedNodeIterator_InternalObject},
+    {0,0}
+};
+static swig_lua_method swig_NamedNodeIterator_meta[] = {
+    { "__eq", _wrap_NamedNodeIterator___eq},
+    { "__ref__", _wrap_NamedNodeIterator___ref__},
+    { "__deref__", _wrap_NamedNodeIterator___deref__},
+    { "__lt", _wrap_NamedNodeIterator___lt},
+    { "__le", _wrap_NamedNodeIterator___le},
+    {0,0}
+};
+
+static swig_lua_attribute swig_NamedNodeIterator_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_NamedNodeIterator_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_NamedNodeIterator_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_NamedNodeIterator_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_NamedNodeIterator_Sf_SwigStatic = {
+    "NamedNodeIterator",
+    swig_NamedNodeIterator_Sf_SwigStatic_methods,
+    swig_NamedNodeIterator_Sf_SwigStatic_attributes,
+    swig_NamedNodeIterator_Sf_SwigStatic_constants,
+    swig_NamedNodeIterator_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_NamedNodeIterator_bases[] = {0};
+static const char *swig_NamedNodeIterator_base_names[] = {0};
+static swig_lua_class _wrap_class_NamedNodeIterator = { "NamedNodeIterator", "NamedNodeIterator", &SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator,_proxy__wrap_new_NamedNodeIterator, swig_delete_NamedNodeIterator, swig_NamedNodeIterator_methods, swig_NamedNodeIterator_attributes, &swig_NamedNodeIterator_Sf_SwigStatic, swig_NamedNodeIterator_meta, swig_NamedNodeIterator_bases, swig_NamedNodeIterator_base_names };
+
+static int _wrap_new_NodeText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::NodeText",0,0)
+  result = (Mezzanine::XML::NodeText *)new Mezzanine::XML::NodeText();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeText,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Empty",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_Empty",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (bool)((Mezzanine::XML::NodeText const *)arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_GetString(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::GetString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::GetString",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_GetString",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::NodeText const *)arg1)->GetString();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsString__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsString",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsString",1,"Mezzanine::XML::NodeText const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsString",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsString",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::NodeText const *)arg1)->AsString((Mezzanine::Char8 const *)arg2);
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsString__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsString",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsString",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::NodeText const *)arg1)->AsString();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsString(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsString__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsString__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsString'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsString(Mezzanine::Char8 const *) const\n"
+    "    Mezzanine::XML::NodeText::AsString() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsInt__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsInt",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInt",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInt",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsInt",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)((Mezzanine::XML::NodeText const *)arg1)->AsInt(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsInt__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsInt",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInt",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsInt",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (int)((Mezzanine::XML::NodeText const *)arg1)->AsInt();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsInt(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsInt__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsInt__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsInt'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsInt(int) const\n"
+    "    Mezzanine::XML::NodeText::AsInt() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsUint__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  unsigned int arg2 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsUint",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsUint",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsUint",2,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsUint",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  result = (unsigned int)((Mezzanine::XML::NodeText const *)arg1)->AsUint(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsUint__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsUint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsUint",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsUint",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (unsigned int)((Mezzanine::XML::NodeText const *)arg1)->AsUint();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsUint(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsUint__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsUint__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsUint'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsUint(unsigned int) const\n"
+    "    Mezzanine::XML::NodeText::AsUint() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsDouble__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  double arg2 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsDouble",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsDouble",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsDouble",2,"double");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  result = (double)((Mezzanine::XML::NodeText const *)arg1)->AsDouble(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsDouble__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsDouble",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsDouble",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsDouble",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (double)((Mezzanine::XML::NodeText const *)arg1)->AsDouble();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsDouble(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsDouble__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsDouble__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsDouble'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsDouble(double) const\n"
+    "    Mezzanine::XML::NodeText::AsDouble() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsFloat__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  float arg2 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsFloat",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsFloat",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsFloat",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  result = (float)((Mezzanine::XML::NodeText const *)arg1)->AsFloat(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsFloat__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsFloat",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsFloat",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsFloat",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (float)((Mezzanine::XML::NodeText const *)arg1)->AsFloat();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsFloat(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsFloat__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsFloat__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsFloat'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsFloat(float) const\n"
+    "    Mezzanine::XML::NodeText::AsFloat() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsReal__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsReal",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsReal",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsReal",2,"Mezzanine::Real");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsReal",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
+  result = (Mezzanine::Real)((Mezzanine::XML::NodeText const *)arg1)->AsReal(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsReal__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsReal",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsReal",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsReal",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (Mezzanine::Real)((Mezzanine::XML::NodeText const *)arg1)->AsReal();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsReal(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsReal__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsReal__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsReal'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsReal(Mezzanine::Real) const\n"
+    "    Mezzanine::XML::NodeText::AsReal() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsWhole__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Whole arg2 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsWhole",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsWhole",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsWhole",2,"Mezzanine::Whole");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
+  arg2 = (Mezzanine::Whole)lua_tonumber(L, 2);
+  result = (Mezzanine::Whole)((Mezzanine::XML::NodeText const *)arg1)->AsWhole(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsWhole__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsWhole",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsWhole",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsWhole",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::XML::NodeText const *)arg1)->AsWhole();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsWhole(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsWhole__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsWhole__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsWhole'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsWhole(Mezzanine::Whole) const\n"
+    "    Mezzanine::XML::NodeText::AsWhole() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsInteger__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Integer arg2 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsInteger",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInteger",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInteger",2,"Mezzanine::Integer");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (Mezzanine::Integer)lua_tonumber(L, 2);
+  result = (Mezzanine::Integer)((Mezzanine::XML::NodeText const *)arg1)->AsInteger(arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsInteger__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Integer result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsInteger",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsInteger",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsInteger",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (Mezzanine::Integer)((Mezzanine::XML::NodeText const *)arg1)->AsInteger();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsInteger(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsInteger__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsInteger__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsInteger'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsInteger(Mezzanine::Integer) const\n"
+    "    Mezzanine::XML::NodeText::AsInteger() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_AsBool__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsBool",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsBool",1,"Mezzanine::XML::NodeText const *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsBool",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsBool",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  result = (bool)((Mezzanine::XML::NodeText const *)arg1)->AsBool(arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsBool__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::AsBool",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::AsBool",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_AsBool",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = (bool)((Mezzanine::XML::NodeText const *)arg1)->AsBool();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_AsBool(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_NodeText_AsBool__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isboolean(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_NodeText_AsBool__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'NodeText_AsBool'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::NodeText::AsBool(bool) const\n"
+    "    Mezzanine::XML::NodeText::AsBool() const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NodeText_Set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::Set",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",1,"Mezzanine::XML::NodeText *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_Set",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_NodeText_data(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::data",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::data",1,"Mezzanine::XML::NodeText const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
+    SWIG_fail_ptr("NodeText_data",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+  }
+  
+  result = ((Mezzanine::XML::NodeText const *)arg1)->data();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NodeText(void *obj) {
+Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_NodeText(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_NodeText);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_NodeText_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_NodeText_methods[]= {
+    { "Empty", _wrap_NodeText_Empty},
+    { "GetString", _wrap_NodeText_GetString},
+    { "AsString", _wrap_NodeText_AsString},
+    { "AsInt", _wrap_NodeText_AsInt},
+    { "AsUint", _wrap_NodeText_AsUint},
+    { "AsDouble", _wrap_NodeText_AsDouble},
+    { "AsFloat", _wrap_NodeText_AsFloat},
+    { "AsReal", _wrap_NodeText_AsReal},
+    { "AsWhole", _wrap_NodeText_AsWhole},
+    { "AsInteger", _wrap_NodeText_AsInteger},
+    { "AsBool", _wrap_NodeText_AsBool},
+    { "Set", _wrap_NodeText_Set},
+    { "data", _wrap_NodeText_data},
+    {0,0}
+};
+static swig_lua_method swig_NodeText_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_NodeText_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_NodeText_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_NodeText_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_NodeText_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_NodeText_Sf_SwigStatic = {
+    "NodeText",
+    swig_NodeText_Sf_SwigStatic_methods,
+    swig_NodeText_Sf_SwigStatic_attributes,
+    swig_NodeText_Sf_SwigStatic_constants,
+    swig_NodeText_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_NodeText_bases[] = {0};
+static const char *swig_NodeText_base_names[] = {0};
+static swig_lua_class _wrap_class_NodeText = { "NodeText", "NodeText", &SWIGTYPE_p_Mezzanine__XML__NodeText,_proxy__wrap_new_NodeText, swig_delete_NodeText, swig_NodeText_methods, swig_NodeText_attributes, &swig_NodeText_Sf_SwigStatic, swig_NodeText_meta, swig_NodeText_bases, swig_NodeText_base_names };
+
+static int _wrap_TreeWalker_OnTraversalBegin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnTraversalBegin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalBegin",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalBegin",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalBegin",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalBegin",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnTraversalBegin(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TreeWalker_OnEachNode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnEachNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnEachNode",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnEachNode",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnEachNode",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnEachNode",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnEachNode(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TreeWalker_OnTraversalEnd(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnTraversalEnd",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalEnd",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalEnd",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalEnd",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalEnd",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnTraversalEnd(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TreeWalker(void *obj) {
+Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) obj;
+delete arg1;
+}
+static swig_lua_attribute swig_TreeWalker_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_TreeWalker_methods[]= {
+    { "OnTraversalBegin", _wrap_TreeWalker_OnTraversalBegin},
+    { "OnEachNode", _wrap_TreeWalker_OnEachNode},
+    { "OnTraversalEnd", _wrap_TreeWalker_OnTraversalEnd},
+    {0,0}
+};
+static swig_lua_method swig_TreeWalker_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_TreeWalker_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_TreeWalker_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_TreeWalker_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_TreeWalker_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_TreeWalker_Sf_SwigStatic = {
+    "TreeWalker",
+    swig_TreeWalker_Sf_SwigStatic_methods,
+    swig_TreeWalker_Sf_SwigStatic_attributes,
+    swig_TreeWalker_Sf_SwigStatic_constants,
+    swig_TreeWalker_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_TreeWalker_bases[] = {0};
+static const char *swig_TreeWalker_base_names[] = {0};
+static swig_lua_class _wrap_class_TreeWalker = { "TreeWalker", "TreeWalker", &SWIGTYPE_p_Mezzanine__XML__TreeWalker,0, swig_delete_TreeWalker, swig_TreeWalker_methods, swig_TreeWalker_attributes, &swig_TreeWalker_Sf_SwigStatic, swig_TreeWalker_meta, swig_TreeWalker_bases, swig_TreeWalker_base_names };
+
+static int _wrap_AsUtf8__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  wchar_t *arg1 = (wchar_t *) 0 ;
+  std::basic_string< char,std::char_traits< char >,std::allocator< char > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::AsUtf8",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::AsUtf8",1,"wchar_t const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_wchar_t,0))){
+    SWIG_fail_ptr("AsUtf8",1,SWIGTYPE_p_wchar_t);
+  }
+  
+  result = Mezzanine::XML::AsUtf8((wchar_t const *)arg1);
+  {
+    std::basic_string< char,std::char_traits< char >,std::allocator< char > > * resultptr = new std::basic_string< char,std::char_traits< char >,std::allocator< char > >((const std::basic_string< char,std::char_traits< char >,std::allocator< char > > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsUtf8__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > *arg1 = 0 ;
+  std::basic_string< char,std::char_traits< char >,std::allocator< char > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::AsUtf8",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::AsUtf8",1,"std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t,0))){
+    SWIG_fail_ptr("AsUtf8",1,SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t);
+  }
+  
+  result = Mezzanine::XML::AsUtf8((std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > const &)*arg1);
+  {
+    std::basic_string< char,std::char_traits< char >,std::allocator< char > > * resultptr = new std::basic_string< char,std::char_traits< char >,std::allocator< char > >((const std::basic_string< char,std::char_traits< char >,std::allocator< char > > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsUtf8(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_wchar_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AsUtf8__SWIG_0(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AsUtf8__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AsUtf8'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::AsUtf8(wchar_t const *)\n"
+    "    Mezzanine::XML::AsUtf8(std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_AsWide__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  char *arg1 = (char *) 0 ;
+  std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::AsWide",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::XML::AsWide",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  result = Mezzanine::XML::AsWide((char const *)arg1);
+  {
+    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > * resultptr = new std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > >((const std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsWide__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::basic_string< char,std::char_traits< char >,std::allocator< char > > *arg1 = 0 ;
+  std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > result;
+  
+  SWIG_check_num_args("Mezzanine::XML::AsWide",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::AsWide",1,"std::basic_string< char,std::char_traits< char >,std::allocator< char > > const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t,0))){
+    SWIG_fail_ptr("AsWide",1,SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t);
+  }
+  
+  result = Mezzanine::XML::AsWide((std::basic_string< char,std::char_traits< char >,std::allocator< char > > const &)*arg1);
+  {
+    std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > * resultptr = new std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > >((const std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AsWide(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_AsWide__SWIG_1(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = SWIG_lua_isnilstring(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_AsWide__SWIG_0(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AsWide'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::AsWide(char const *)\n"
+    "    Mezzanine::XML::AsWide(std::basic_string< char,std::char_traits< char >,std::allocator< char > > const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_GetOneTag(lua_State* L) {
+  int SWIG_arg = 0;
+  std::istream *arg1 = 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::GetOneTag",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::GetOneTag",1,"std::istream &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__istream,0))){
+    SWIG_fail_ptr("GetOneTag",1,SWIGTYPE_p_std__istream);
+  }
+  
+  result = Mezzanine::XML::GetOneTag(*arg1);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PreParseClassFromSingleTag__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::XML::Document *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::PreParseClassFromSingleTag",3,3)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::XML::PreParseClassFromSingleTag",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::PreParseClassFromSingleTag",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::XML::PreParseClassFromSingleTag",3,"Mezzanine::String const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  result = (Mezzanine::XML::Document *)Mezzanine::XML::PreParseClassFromSingleTag((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Document,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PreParseClassFromSingleTag__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::XML::Document *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::PreParseClassFromSingleTag",2,2)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::XML::PreParseClassFromSingleTag",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::XML::PreParseClassFromSingleTag",2,"Mezzanine::String const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  result = (Mezzanine::XML::Document *)Mezzanine::XML::PreParseClassFromSingleTag((std::string const &)*arg1,(std::string const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__Document,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PreParseClassFromSingleTag(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_PreParseClassFromSingleTag__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_PreParseClassFromSingleTag__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'PreParseClassFromSingleTag'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::PreParseClassFromSingleTag(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &)\n"
+    "    Mezzanine::XML::PreParseClassFromSingleTag(Mezzanine::String const &,Mezzanine::String const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_EscapeXML(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::EscapeXML",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::XML::EscapeXML",1,"Mezzanine::String const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  result = Mezzanine::XML::EscapeXML((std::string const &)*arg1);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNode__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNode *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::XPathNode",0,0)
+  result = (Mezzanine::XML::XPathNode *)new Mezzanine::XML::XPathNode();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNode__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Node *arg1 = 0 ;
+  Mezzanine::XML::XPathNode *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::XPathNode",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::XPathNode",1,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("new_XPathNode",1,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::XPathNode *)new Mezzanine::XML::XPathNode((Mezzanine::XML::Node const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNode__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::Attribute *arg1 = 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  Mezzanine::XML::XPathNode *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::XPathNode",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::XPathNode",1,"Mezzanine::XML::Attribute const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathNode::XPathNode",2,"Mezzanine::XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__Attribute,0))){
+    SWIG_fail_ptr("new_XPathNode",1,SWIGTYPE_p_Mezzanine__XML__Attribute);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("new_XPathNode",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (Mezzanine::XML::XPathNode *)new Mezzanine::XML::XPathNode((Mezzanine::XML::Attribute const &)*arg1,(Mezzanine::XML::Node const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNode(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_XPathNode__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_XPathNode__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Attribute, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__Node, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_XPathNode__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_XPathNode'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathNode::XPathNode()\n"
+    "    Mezzanine::XML::XPathNode::XPathNode(Mezzanine::XML::Node const &)\n"
+    "    Mezzanine::XML::XPathNode::XPathNode(Mezzanine::XML::Attribute const &,Mezzanine::XML::Node const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathNode_GetNode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::GetNode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::GetNode",1,"Mezzanine::XML::XPathNode const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathNode_GetNode",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathNode const *)arg1)->GetNode();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNode_GetAttribute(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
+  Mezzanine::XML::Attribute result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::GetAttribute",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::GetAttribute",1,"Mezzanine::XML::XPathNode const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathNode_GetAttribute",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathNode const *)arg1)->GetAttribute();
+  {
+    Mezzanine::XML::Attribute * resultptr = new Mezzanine::XML::Attribute((const Mezzanine::XML::Attribute &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Attribute,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNode_GetParent(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
+  Mezzanine::XML::Node result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::GetParent",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::GetParent",1,"Mezzanine::XML::XPathNode const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathNode_GetParent",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathNode const *)arg1)->GetParent();
+  {
+    Mezzanine::XML::Node * resultptr = new Mezzanine::XML::Node((const Mezzanine::XML::Node &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__Node,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNode___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) 0 ;
+  Mezzanine::XML::XPathNode *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNode::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNode::operator ==",1,"Mezzanine::XML::XPathNode const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathNode::operator ==",2,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathNode___eq",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathNode___eq",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = (bool)((Mezzanine::XML::XPathNode const *)arg1)->operator ==((Mezzanine::XML::XPathNode const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathNode(void *obj) {
+Mezzanine::XML::XPathNode *arg1 = (Mezzanine::XML::XPathNode *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_XPathNode(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_XPathNode);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_XPathNode_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_XPathNode_methods[]= {
+    { "GetNode", _wrap_XPathNode_GetNode},
+    { "GetAttribute", _wrap_XPathNode_GetAttribute},
+    { "GetParent", _wrap_XPathNode_GetParent},
+    { "__eq", _wrap_XPathNode___eq},
+    {0,0}
+};
+static swig_lua_method swig_XPathNode_meta[] = {
+    { "__eq", _wrap_XPathNode___eq},
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathNode_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathNode_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathNode_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathNode_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathNode_Sf_SwigStatic = {
+    "XPathNode",
+    swig_XPathNode_Sf_SwigStatic_methods,
+    swig_XPathNode_Sf_SwigStatic_attributes,
+    swig_XPathNode_Sf_SwigStatic_constants,
+    swig_XPathNode_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathNode_bases[] = {0};
+static const char *swig_XPathNode_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathNode = { "XPathNode", "XPathNode", &SWIGTYPE_p_Mezzanine__XML__XPathNode,_proxy__wrap_new_XPathNode, swig_delete_XPathNode, swig_XPathNode_methods, swig_XPathNode_attributes, &swig_XPathNode_Sf_SwigStatic, swig_XPathNode_meta, swig_XPathNode_bases, swig_XPathNode_base_names };
+
+static int _wrap_new_XPathNodeSet__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::XPathNodeSet",0,0)
+  result = (Mezzanine::XML::XPathNodeSet *)new Mezzanine::XML::XPathNodeSet();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNodeSet__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet::const_iterator arg1 = (Mezzanine::XML::XPathNodeSet::const_iterator) 0 ;
+  Mezzanine::XML::XPathNodeSet::const_iterator arg2 = (Mezzanine::XML::XPathNodeSet::const_iterator) 0 ;
+  Mezzanine::XML::XPathNodeSet::CollectionType arg3 ;
+  Mezzanine::XML::XPathNodeSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::XPathNodeSet",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",1,"Mezzanine::XML::XPathNodeSet::const_iterator");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",2,"Mezzanine::XML::XPathNodeSet::const_iterator");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",3,"Mezzanine::XML::XPathNodeSet::CollectionType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("new_XPathNodeSet",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("new_XPathNodeSet",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  arg3 = (Mezzanine::XML::XPathNodeSet::CollectionType)(int)lua_tonumber(L, 3);
+  result = (Mezzanine::XML::XPathNodeSet *)new Mezzanine::XML::XPathNodeSet(arg1,arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNodeSet__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet::const_iterator arg1 = (Mezzanine::XML::XPathNodeSet::const_iterator) 0 ;
+  Mezzanine::XML::XPathNodeSet::const_iterator arg2 = (Mezzanine::XML::XPathNodeSet::const_iterator) 0 ;
+  Mezzanine::XML::XPathNodeSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::XPathNodeSet",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",1,"Mezzanine::XML::XPathNodeSet::const_iterator");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",2,"Mezzanine::XML::XPathNodeSet::const_iterator");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("new_XPathNodeSet",1,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("new_XPathNodeSet",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet *)new Mezzanine::XML::XPathNodeSet(arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNodeSet__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = 0 ;
+  Mezzanine::XML::XPathNodeSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::XPathNodeSet",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::XPathNodeSet",1,"Mezzanine::XML::XPathNodeSet const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("new_XPathNodeSet",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet *)new Mezzanine::XML::XPathNodeSet((Mezzanine::XML::XPathNodeSet const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathNodeSet(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_XPathNodeSet__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_XPathNodeSet__SWIG_3(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_XPathNodeSet__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_new_XPathNodeSet__SWIG_1(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_XPathNodeSet'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathNodeSet::XPathNodeSet()\n"
+    "    Mezzanine::XML::XPathNodeSet::XPathNodeSet(Mezzanine::XML::XPathNodeSet::const_iterator,Mezzanine::XML::XPathNodeSet::const_iterator,Mezzanine::XML::XPathNodeSet::CollectionType)\n"
+    "    Mezzanine::XML::XPathNodeSet::XPathNodeSet(Mezzanine::XML::XPathNodeSet::const_iterator,Mezzanine::XML::XPathNodeSet::const_iterator)\n"
+    "    Mezzanine::XML::XPathNodeSet::XPathNodeSet(Mezzanine::XML::XPathNodeSet const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathNodeSet_Type(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet::CollectionType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::Type",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::Type",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_Type",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet::CollectionType)((Mezzanine::XML::XPathNodeSet const *)arg1)->Type();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_size(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::size",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::size",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_size",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = ((Mezzanine::XML::XPathNodeSet const *)arg1)->size();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_begin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet::const_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::begin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::begin",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_begin",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet::const_iterator)((Mezzanine::XML::XPathNodeSet const *)arg1)->begin();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNode,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_c_end(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  Mezzanine::XML::XPathNodeSet::const_iterator result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::end",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::end",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_c_end",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet::const_iterator)((Mezzanine::XML::XPathNodeSet const *)arg1)->end();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNode,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_sort__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::sort",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::sort",1,"Mezzanine::XML::XPathNodeSet *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::sort",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_sort",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->sort(arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_sort__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::sort",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::sort",1,"Mezzanine::XML::XPathNodeSet *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_sort",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  (arg1)->sort();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_sort(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_XPathNodeSet_sort__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isboolean(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_XPathNodeSet_sort__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'XPathNodeSet_sort'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathNodeSet::sort(bool)\n"
+    "    Mezzanine::XML::XPathNodeSet::sort()\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathNodeSet_first(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  Mezzanine::XML::XPathNode result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::first",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::first",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_first",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = ((Mezzanine::XML::XPathNodeSet const *)arg1)->first();
+  {
+    Mezzanine::XML::XPathNode * resultptr = new Mezzanine::XML::XPathNode((const Mezzanine::XML::XPathNode &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNode,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathNodeSet_Empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathNodeSet::Empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathNodeSet::Empty",1,"Mezzanine::XML::XPathNodeSet const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathNodeSet_Empty",1,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (bool)((Mezzanine::XML::XPathNodeSet const *)arg1)->Empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathNodeSet(void *obj) {
+Mezzanine::XML::XPathNodeSet *arg1 = (Mezzanine::XML::XPathNodeSet *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_XPathNodeSet(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_XPathNodeSet);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_XPathNodeSet_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_XPathNodeSet_methods[]= {
+    { "Type", _wrap_XPathNodeSet_Type},
+    { "size", _wrap_XPathNodeSet_size},
+    { "begin", _wrap_XPathNodeSet_begin},
+    { "c_end", _wrap_XPathNodeSet_c_end},
+    { "sort", _wrap_XPathNodeSet_sort},
+    { "first", _wrap_XPathNodeSet_first},
+    { "Empty", _wrap_XPathNodeSet_Empty},
+    {0,0}
+};
+static swig_lua_method swig_XPathNodeSet_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathNodeSet_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathNodeSet_Sf_SwigStatic_constants[]= {
+    {SWIG_LUA_CONSTTAB_INT("TypeUnsorted", Mezzanine::XML::XPathNodeSet::TypeUnsorted)},
+    {SWIG_LUA_CONSTTAB_INT("TypeSorted", Mezzanine::XML::XPathNodeSet::TypeSorted)},
+    {SWIG_LUA_CONSTTAB_INT("TypeSortedReverse", Mezzanine::XML::XPathNodeSet::TypeSortedReverse)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathNodeSet_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathNodeSet_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathNodeSet_Sf_SwigStatic = {
+    "XPathNodeSet",
+    swig_XPathNodeSet_Sf_SwigStatic_methods,
+    swig_XPathNodeSet_Sf_SwigStatic_attributes,
+    swig_XPathNodeSet_Sf_SwigStatic_constants,
+    swig_XPathNodeSet_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathNodeSet_bases[] = {0};
+static const char *swig_XPathNodeSet_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathNodeSet = { "XPathNodeSet", "XPathNodeSet", &SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,_proxy__wrap_new_XPathNodeSet, swig_delete_XPathNodeSet, swig_XPathNodeSet_methods, swig_XPathNodeSet_attributes, &swig_XPathNodeSet_Sf_SwigStatic, swig_XPathNodeSet_meta, swig_XPathNodeSet_bases, swig_XPathNodeSet_base_names };
+
+static int _wrap_XPathParseResult_Offset_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  ptrdiff_t arg2 ;
+  ptrdiff_t *argp2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",2,"ptrdiff_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_set",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_ptrdiff_t,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_set",2,SWIGTYPE_p_ptrdiff_t);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->Offset = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathParseResult_Offset_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_get",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  result =  ((arg1)->Offset);
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathParseResult(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::XPathParseResult",0,0)
+  result = (Mezzanine::XML::XPathParseResult *)new Mezzanine::XML::XPathParseResult();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathParseResult_Description(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Description",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Description",1,"Mezzanine::XML::XPathParseResult const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Description",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  result = (char *)((Mezzanine::XML::XPathParseResult const *)arg1)->Description();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathParseResult(void *obj) {
+Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_XPathParseResult(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_XPathParseResult);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_XPathParseResult_attributes[] = {
+    { "Offset", _wrap_XPathParseResult_Offset_get, _wrap_XPathParseResult_Offset_set },
+    {0,0,0}
+};
+static swig_lua_method swig_XPathParseResult_methods[]= {
+    { "Description", _wrap_XPathParseResult_Description},
+    {0,0}
+};
+static swig_lua_method swig_XPathParseResult_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathParseResult_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathParseResult_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathParseResult_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathParseResult_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathParseResult_Sf_SwigStatic = {
+    "XPathParseResult",
+    swig_XPathParseResult_Sf_SwigStatic_methods,
+    swig_XPathParseResult_Sf_SwigStatic_attributes,
+    swig_XPathParseResult_Sf_SwigStatic_constants,
+    swig_XPathParseResult_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathParseResult_bases[] = {0};
+static const char *swig_XPathParseResult_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathParseResult = { "XPathParseResult", "XPathParseResult", &SWIGTYPE_p_Mezzanine__XML__XPathParseResult,_proxy__wrap_new_XPathParseResult, swig_delete_XPathParseResult, swig_XPathParseResult_methods, swig_XPathParseResult_attributes, &swig_XPathParseResult_Sf_SwigStatic, swig_XPathParseResult_meta, swig_XPathParseResult_bases, swig_XPathParseResult_base_names };
+
+static int _wrap_XPathVariable_Name(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Name",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Name",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Name",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::XPathVariable const *)arg1)->Name();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Type(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::XML::XPathValueType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Type",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Type",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Type",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (Mezzanine::XML::XPathValueType)((Mezzanine::XML::XPathVariable const *)arg1)->Type();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_GetBoole(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::GetBoole",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::GetBoole",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_GetBoole",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (bool)((Mezzanine::XML::XPathVariable const *)arg1)->GetBoole();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_GetNumber(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::GetNumber",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::GetNumber",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_GetNumber",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (double)((Mezzanine::XML::XPathVariable const *)arg1)->GetNumber();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_GetString(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::Char8 *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::GetString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::GetString",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_GetString",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::XPathVariable const *)arg1)->GetString();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_GetNodeSet(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::XML::XPathNodeSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::GetNodeSet",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::GetNodeSet",1,"Mezzanine::XML::XPathVariable const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_GetNodeSet",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  result = (Mezzanine::XML::XPathNodeSet *) &((Mezzanine::XML::XPathVariable const *)arg1)->GetNodeSet();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Set__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Set",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",1,"Mezzanine::XML::XPathVariable *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  result = (bool)(arg1)->Set(arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Set__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  double arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Set",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",1,"Mezzanine::XML::XPathVariable *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",2,"double");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  arg2 = (double)lua_tonumber(L, 2);
+  result = (bool)(arg1)->Set(arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Set__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Set",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",1,"Mezzanine::XML::XPathVariable *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Set__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
+  Mezzanine::XML::XPathNodeSet *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariable::Set",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",1,"Mezzanine::XML::XPathVariable *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariable::Set",2,"Mezzanine::XML::XPathNodeSet const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0))){
+    SWIG_fail_ptr("XPathVariable_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariable);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathVariable_Set",2,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (bool)(arg1)->Set((Mezzanine::XML::XPathNodeSet const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariable_Set(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_XPathVariable_Set__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isboolean(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_XPathVariable_Set__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_XPathVariable_Set__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_XPathVariable_Set__SWIG_2(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'XPathVariable_Set'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathVariable::Set(bool)\n"
+    "    Mezzanine::XML::XPathVariable::Set(double)\n"
+    "    Mezzanine::XML::XPathVariable::Set(Mezzanine::Char8 const *)\n"
+    "    Mezzanine::XML::XPathVariable::Set(Mezzanine::XML::XPathNodeSet const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_XPathVariable(void *obj) {
+Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) obj;
+delete arg1;
+}
+static swig_lua_attribute swig_XPathVariable_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_XPathVariable_methods[]= {
+    { "Name", _wrap_XPathVariable_Name},
+    { "Type", _wrap_XPathVariable_Type},
+    { "GetBoole", _wrap_XPathVariable_GetBoole},
+    { "GetNumber", _wrap_XPathVariable_GetNumber},
+    { "GetString", _wrap_XPathVariable_GetString},
+    { "GetNodeSet", _wrap_XPathVariable_GetNodeSet},
+    { "Set", _wrap_XPathVariable_Set},
+    {0,0}
+};
+static swig_lua_method swig_XPathVariable_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathVariable_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathVariable_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathVariable_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathVariable_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathVariable_Sf_SwigStatic = {
+    "XPathVariable",
+    swig_XPathVariable_Sf_SwigStatic_methods,
+    swig_XPathVariable_Sf_SwigStatic_attributes,
+    swig_XPathVariable_Sf_SwigStatic_constants,
+    swig_XPathVariable_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathVariable_bases[] = {0};
+static const char *swig_XPathVariable_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathVariable = { "XPathVariable", "XPathVariable", &SWIGTYPE_p_Mezzanine__XML__XPathVariable,0, swig_delete_XPathVariable, swig_XPathVariable_methods, swig_XPathVariable_attributes, &swig_XPathVariable_Sf_SwigStatic, swig_XPathVariable_meta, swig_XPathVariable_bases, swig_XPathVariable_base_names };
+
+static int _wrap_new_XPathVariableSet(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::XPathVariableSet",0,0)
+  result = (Mezzanine::XML::XPathVariableSet *)new Mezzanine::XML::XPathVariableSet();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Add(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathValueType arg3 ;
+  Mezzanine::XML::XPathVariable *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Add",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Add",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Add",2,"Mezzanine::Char8 const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Add",3,"Mezzanine::XML::XPathValueType");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Add",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::XML::XPathValueType)(int)lua_tonumber(L, 3);
+  result = (Mezzanine::XML::XPathVariable *)(arg1)->Add((Mezzanine::Char8 const *)arg2,arg3);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Set__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  bool arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Set",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",2,"Mezzanine::Char8 const *");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",3,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (lua_toboolean(L, 3)!=0);
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2,arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Set__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  double arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Set",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",2,"Mezzanine::Char8 const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",3,"double");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (double)lua_tonumber(L, 3);
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2,arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Set__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::Char8 *arg3 = (Mezzanine::Char8 *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Set",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",2,"Mezzanine::Char8 const *");
+  if(!SWIG_lua_isnilstring(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",3,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  arg3 = (Mezzanine::Char8 *)lua_tostring(L, 3);
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2,(Mezzanine::Char8 const *)arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Set__SWIG_3(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathNodeSet *arg3 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Set",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",2,"Mezzanine::Char8 const *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Set",3,"Mezzanine::XML::XPathNodeSet const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Set",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Set",3,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet);
+  }
+  
+  result = (bool)(arg1)->Set((Mezzanine::Char8 const *)arg2,(Mezzanine::XML::XPathNodeSet const &)*arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathVariableSet_Set(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNodeSet, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_XPathVariableSet_Set__SWIG_3(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isboolean(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_XPathVariableSet_Set__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_XPathVariableSet_Set__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = SWIG_lua_isnilstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_XPathVariableSet_Set__SWIG_2(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'XPathVariableSet_Set'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathVariableSet::Set(Mezzanine::Char8 const *,bool)\n"
+    "    Mezzanine::XML::XPathVariableSet::Set(Mezzanine::Char8 const *,double)\n"
+    "    Mezzanine::XML::XPathVariableSet::Set(Mezzanine::Char8 const *,Mezzanine::Char8 const *)\n"
+    "    Mezzanine::XML::XPathVariableSet::Set(Mezzanine::Char8 const *,Mezzanine::XML::XPathNodeSet const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathVariableSet_Get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariable *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathVariableSet::Get",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Get",1,"Mezzanine::XML::XPathVariableSet *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathVariableSet::Get",2,"Mezzanine::Char8 const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("XPathVariableSet_Get",1,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  result = (Mezzanine::XML::XPathVariable *)(arg1)->Get((Mezzanine::Char8 const *)arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathVariable,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathVariableSet(void *obj) {
+Mezzanine::XML::XPathVariableSet *arg1 = (Mezzanine::XML::XPathVariableSet *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_XPathVariableSet(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_XPathVariableSet);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_XPathVariableSet_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_XPathVariableSet_methods[]= {
+    { "Add", _wrap_XPathVariableSet_Add},
+    { "Set", _wrap_XPathVariableSet_Set},
+    { "Get", _wrap_XPathVariableSet_Get},
+    {0,0}
+};
+static swig_lua_method swig_XPathVariableSet_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathVariableSet_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathVariableSet_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathVariableSet_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathVariableSet_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathVariableSet_Sf_SwigStatic = {
+    "XPathVariableSet",
+    swig_XPathVariableSet_Sf_SwigStatic_methods,
+    swig_XPathVariableSet_Sf_SwigStatic_attributes,
+    swig_XPathVariableSet_Sf_SwigStatic_constants,
+    swig_XPathVariableSet_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathVariableSet_bases[] = {0};
+static const char *swig_XPathVariableSet_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathVariableSet = { "XPathVariableSet", "XPathVariableSet", &SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,_proxy__wrap_new_XPathVariableSet, swig_delete_XPathVariableSet, swig_XPathVariableSet_methods, swig_XPathVariableSet_attributes, &swig_XPathVariableSet_Sf_SwigStatic, swig_XPathVariableSet_meta, swig_XPathVariableSet_bases, swig_XPathVariableSet_base_names };
+
+static int _wrap_new_XPathQuery__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 *arg1 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathVariableSet *arg2 = (Mezzanine::XML::XPathVariableSet *) 0 ;
+  Mezzanine::XML::XPathQuery *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::XPathQuery",2,2)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::XPathQuery",1,"Mezzanine::Char8 const *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::XPathQuery",2,"Mezzanine::XML::XPathVariableSet *");
+  arg1 = (Mezzanine::Char8 *)lua_tostring(L, 1);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet,0))){
+    SWIG_fail_ptr("new_XPathQuery",2,SWIGTYPE_p_Mezzanine__XML__XPathVariableSet);
+  }
+  
+  result = (Mezzanine::XML::XPathQuery *)new Mezzanine::XML::XPathQuery((Mezzanine::Char8 const *)arg1,arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathQuery,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathQuery__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 *arg1 = (Mezzanine::Char8 *) 0 ;
+  Mezzanine::XML::XPathQuery *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::XPathQuery",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::XPathQuery",1,"Mezzanine::Char8 const *");
+  arg1 = (Mezzanine::Char8 *)lua_tostring(L, 1);
+  result = (Mezzanine::XML::XPathQuery *)new Mezzanine::XML::XPathQuery((Mezzanine::Char8 const *)arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathQuery,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathQuery(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      _v = SWIG_lua_isnilstring(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_XPathQuery__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = SWIG_lua_isnilstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathVariableSet, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_XPathQuery__SWIG_0(L);
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_XPathQuery'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathQuery::XPathQuery(Mezzanine::Char8 const *,Mezzanine::XML::XPathVariableSet *)\n"
+    "    Mezzanine::XML::XPathQuery::XPathQuery(Mezzanine::Char8 const *)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathQuery_ReturnType(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathValueType result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::ReturnType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::ReturnType",1,"Mezzanine::XML::XPathQuery const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_ReturnType",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (Mezzanine::XML::XPathValueType)((Mezzanine::XML::XPathQuery const *)arg1)->ReturnType();
+  lua_pushnumber(L, (lua_Number)(int)(result)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_EvaluateBoole(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathNode *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::EvaluateBoole",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateBoole",1,"Mezzanine::XML::XPathQuery const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateBoole",2,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateBoole",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateBoole",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = (bool)((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateBoole((Mezzanine::XML::XPathNode const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_EvaluateNumber(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathNode *arg2 = 0 ;
+  double result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::EvaluateNumber",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateNumber",1,"Mezzanine::XML::XPathQuery const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateNumber",2,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateNumber",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateNumber",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = (double)((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateNumber((Mezzanine::XML::XPathNode const &)*arg2);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_EvaluateString__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathNode *arg2 = 0 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::EvaluateString",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",1,"Mezzanine::XML::XPathQuery const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",2,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateString",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateString",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateString((Mezzanine::XML::XPathNode const &)*arg2);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_EvaluateString__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
+  size_t arg3 ;
+  Mezzanine::XML::XPathNode *arg4 = 0 ;
+  size_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::EvaluateString",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",1,"Mezzanine::XML::XPathQuery const *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",2,"Mezzanine::Char8 *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",3,"size_t");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateString",4,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateString",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  arg2 = (Mezzanine::Char8 *)lua_tostring(L, 2);
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateString",4,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateString(arg2,arg3,(Mezzanine::XML::XPathNode const &)*arg4);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_EvaluateString(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_XPathQuery_EvaluateString__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = SWIG_lua_isnilstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            void *ptr;
+            if (lua_isuserdata(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__XPathNode, 0)) {
+              _v = 0;
+            } else {
+              _v = 1;
+            }
+          }
+          if (_v) {
+            return _wrap_XPathQuery_EvaluateString__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'XPathQuery_EvaluateString'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::XML::XPathQuery::EvaluateString(Mezzanine::XML::XPathNode const &) const\n"
+    "    Mezzanine::XML::XPathQuery::EvaluateString(Mezzanine::Char8 *,size_t,Mezzanine::XML::XPathNode const &) const\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_XPathQuery_EvaluateNodeSet(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathNode *arg2 = 0 ;
+  Mezzanine::XML::XPathNodeSet result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::EvaluateNodeSet",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateNodeSet",1,"Mezzanine::XML::XPathQuery const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::EvaluateNodeSet",2,"Mezzanine::XML::XPathNode const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateNodeSet",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__XPathNode,0))){
+    SWIG_fail_ptr("XPathQuery_EvaluateNodeSet",2,SWIGTYPE_p_Mezzanine__XML__XPathNode);
+  }
+  
+  result = ((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateNodeSet((Mezzanine::XML::XPathNode const &)*arg2);
+  {
+    Mezzanine::XML::XPathNodeSet * resultptr = new Mezzanine::XML::XPathNodeSet((const Mezzanine::XML::XPathNodeSet &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__XML__XPathNodeSet,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathQuery_Result(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) 0 ;
+  Mezzanine::XML::XPathParseResult *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathQuery::Result",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathQuery::Result",1,"Mezzanine::XML::XPathQuery const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathQuery,0))){
+    SWIG_fail_ptr("XPathQuery_Result",1,SWIGTYPE_p_Mezzanine__XML__XPathQuery);
+  }
+  
+  result = (Mezzanine::XML::XPathParseResult *) &((Mezzanine::XML::XPathQuery const *)arg1)->Result();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathQuery(void *obj) {
+Mezzanine::XML::XPathQuery *arg1 = (Mezzanine::XML::XPathQuery *) obj;
+delete arg1;
+}
+static int _proxy__wrap_new_XPathQuery(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_XPathQuery);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_XPathQuery_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_XPathQuery_methods[]= {
+    { "ReturnType", _wrap_XPathQuery_ReturnType},
+    { "EvaluateBoole", _wrap_XPathQuery_EvaluateBoole},
+    { "EvaluateNumber", _wrap_XPathQuery_EvaluateNumber},
+    { "EvaluateString", _wrap_XPathQuery_EvaluateString},
+    { "EvaluateNodeSet", _wrap_XPathQuery_EvaluateNodeSet},
+    { "Result", _wrap_XPathQuery_Result},
+    {0,0}
+};
+static swig_lua_method swig_XPathQuery_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_XPathQuery_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_XPathQuery_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_XPathQuery_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_XPathQuery_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_XPathQuery_Sf_SwigStatic = {
+    "XPathQuery",
+    swig_XPathQuery_Sf_SwigStatic_methods,
+    swig_XPathQuery_Sf_SwigStatic_attributes,
+    swig_XPathQuery_Sf_SwigStatic_constants,
+    swig_XPathQuery_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_XPathQuery_bases[] = {0};
+static const char *swig_XPathQuery_base_names[] = {0};
+static swig_lua_class _wrap_class_XPathQuery = { "XPathQuery", "XPathQuery", &SWIGTYPE_p_Mezzanine__XML__XPathQuery,_proxy__wrap_new_XPathQuery, swig_delete_XPathQuery, swig_XPathQuery_methods, swig_XPathQuery_attributes, &swig_XPathQuery_Sf_SwigStatic, swig_XPathQuery_meta, swig_XPathQuery_bases, swig_XPathQuery_base_names };
 
 static int _wrap_new_ActorUpdateWorkUnit(lua_State* L) {
   int SWIG_arg = 0;
@@ -44966,20 +65098,16 @@ static int _wrap_new_EntityManager(lua_State* L) {
 static int _wrap_EntityManager_CreateFieldOfForce__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::String temp2 ;
   Mezzanine::FieldOfForce *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateFieldOfForce",2,2)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateFieldOfForce",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",2,"Mezzanine::String const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateFieldOfForce",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  result = (Mezzanine::FieldOfForce *)(arg1)->CreateFieldOfForce((Mezzanine::String const &)*arg2);
+  result = (Mezzanine::FieldOfForce *)(arg1)->CreateFieldOfForce();
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FieldOfForce,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -44994,27 +65122,23 @@ fail:
 static int _wrap_EntityManager_CreateFieldOfForce__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Physics::CollisionShape *arg3 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
   Mezzanine::FieldOfForce *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateFieldOfForce",3,3)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateFieldOfForce",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",2,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",3,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateFieldOfForce",2,"Mezzanine::Physics::CollisionShape *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateFieldOfForce",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("EntityManager_CreateFieldOfForce",3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("EntityManager_CreateFieldOfForce",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
-  result = (Mezzanine::FieldOfForce *)(arg1)->CreateFieldOfForce((Mezzanine::String const &)*arg2,arg3);
+  result = (Mezzanine::FieldOfForce *)(arg1)->CreateFieldOfForce(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FieldOfForce,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45059,11 +65183,49 @@ fail:
 
 static int _wrap_EntityManager_CreateFieldOfForce(lua_State* L) {
   int argc;
-  int argv[4]={
-    1,2,3,4
+  int argv[3]={
+    1,2,3
   };
   
   argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_EntityManager_CreateFieldOfForce__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_EntityManager_CreateFieldOfForce__SWIG_1(L);
+      }
+    }
+  }
   if (argc == 2) {
     int _v;
     {
@@ -45088,59 +65250,11 @@ static int _wrap_EntityManager_CreateFieldOfForce(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_EntityManager_CreateFieldOfForce__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          return _wrap_EntityManager_CreateFieldOfForce__SWIG_1(L);
-        }
-      }
-    }
-  }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateFieldOfForce'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateFieldOfForce(Mezzanine::String const &)\n"
-    "    Mezzanine::EntityManager::CreateFieldOfForce(Mezzanine::String const &,Mezzanine::Physics::CollisionShape *)\n"
+    "    Mezzanine::EntityManager::CreateFieldOfForce()\n"
+    "    Mezzanine::EntityManager::CreateFieldOfForce(Mezzanine::Physics::CollisionShape *)\n"
     "    Mezzanine::EntityManager::CreateFieldOfForce(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
@@ -45149,20 +65263,16 @@ static int _wrap_EntityManager_CreateFieldOfForce(lua_State* L) {
 static int _wrap_EntityManager_CreateGravityField__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::String temp2 ;
   Mezzanine::GravityField *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityField",2,2)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityField",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",2,"Mezzanine::String const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateGravityField",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  result = (Mezzanine::GravityField *)(arg1)->CreateGravityField((Mezzanine::String const &)*arg2);
+  result = (Mezzanine::GravityField *)(arg1)->CreateGravityField();
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__GravityField,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45177,27 +65287,23 @@ fail:
 static int _wrap_EntityManager_CreateGravityField__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Physics::CollisionShape *arg3 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
   Mezzanine::GravityField *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityField",3,3)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityField",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",2,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",3,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityField",2,"Mezzanine::Physics::CollisionShape *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateGravityField",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("EntityManager_CreateGravityField",3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("EntityManager_CreateGravityField",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
-  result = (Mezzanine::GravityField *)(arg1)->CreateGravityField((Mezzanine::String const &)*arg2,arg3);
+  result = (Mezzanine::GravityField *)(arg1)->CreateGravityField(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__GravityField,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45242,11 +65348,49 @@ fail:
 
 static int _wrap_EntityManager_CreateGravityField(lua_State* L) {
   int argc;
-  int argv[4]={
-    1,2,3,4
+  int argv[3]={
+    1,2,3
   };
   
   argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_EntityManager_CreateGravityField__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_EntityManager_CreateGravityField__SWIG_1(L);
+      }
+    }
+  }
   if (argc == 2) {
     int _v;
     {
@@ -45271,59 +65415,11 @@ static int _wrap_EntityManager_CreateGravityField(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_EntityManager_CreateGravityField__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          return _wrap_EntityManager_CreateGravityField__SWIG_1(L);
-        }
-      }
-    }
-  }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateGravityField'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateGravityField(Mezzanine::String const &)\n"
-    "    Mezzanine::EntityManager::CreateGravityField(Mezzanine::String const &,Mezzanine::Physics::CollisionShape *)\n"
+    "    Mezzanine::EntityManager::CreateGravityField()\n"
+    "    Mezzanine::EntityManager::CreateGravityField(Mezzanine::Physics::CollisionShape *)\n"
     "    Mezzanine::EntityManager::CreateGravityField(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
@@ -45332,20 +65428,16 @@ static int _wrap_EntityManager_CreateGravityField(lua_State* L) {
 static int _wrap_EntityManager_CreateGravityWell__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::String temp2 ;
   Mezzanine::GravityWell *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityWell",2,2)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityWell",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",2,"Mezzanine::String const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateGravityWell",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  result = (Mezzanine::GravityWell *)(arg1)->CreateGravityWell((Mezzanine::String const &)*arg2);
+  result = (Mezzanine::GravityWell *)(arg1)->CreateGravityWell();
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__GravityWell,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45360,27 +65452,23 @@ fail:
 static int _wrap_EntityManager_CreateGravityWell__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Physics::CollisionShape *arg3 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
   Mezzanine::GravityWell *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityWell",3,3)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateGravityWell",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",2,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",3,"Mezzanine::Physics::CollisionShape *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateGravityWell",2,"Mezzanine::Physics::CollisionShape *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateGravityWell",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("EntityManager_CreateGravityWell",3,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("EntityManager_CreateGravityWell",2,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
-  result = (Mezzanine::GravityWell *)(arg1)->CreateGravityWell((Mezzanine::String const &)*arg2,arg3);
+  result = (Mezzanine::GravityWell *)(arg1)->CreateGravityWell(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__GravityWell,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45425,11 +65513,49 @@ fail:
 
 static int _wrap_EntityManager_CreateGravityWell(lua_State* L) {
   int argc;
-  int argv[4]={
-    1,2,3,4
+  int argv[3]={
+    1,2,3
   };
   
   argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_EntityManager_CreateGravityWell__SWIG_0(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_EntityManager_CreateGravityWell__SWIG_1(L);
+      }
+    }
+  }
   if (argc == 2) {
     int _v;
     {
@@ -45454,59 +65580,11 @@ static int _wrap_EntityManager_CreateGravityWell(lua_State* L) {
       }
     }
   }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_EntityManager_CreateGravityWell__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-            _v = 0;
-          } else {
-            _v = 1;
-          }
-        }
-        if (_v) {
-          return _wrap_EntityManager_CreateGravityWell__SWIG_1(L);
-        }
-      }
-    }
-  }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateGravityWell'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateGravityWell(Mezzanine::String const &)\n"
-    "    Mezzanine::EntityManager::CreateGravityWell(Mezzanine::String const &,Mezzanine::Physics::CollisionShape *)\n"
+    "    Mezzanine::EntityManager::CreateGravityWell()\n"
+    "    Mezzanine::EntityManager::CreateGravityWell(Mezzanine::Physics::CollisionShape *)\n"
     "    Mezzanine::EntityManager::CreateGravityWell(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
@@ -45515,23 +65593,19 @@ static int _wrap_EntityManager_CreateGravityWell(lua_State* L) {
 static int _wrap_EntityManager_CreateRigidDebris__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Real arg3 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Real arg2 ;
   Mezzanine::RigidDebris *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateRigidDebris",3,3)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateRigidDebris",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",2,"Mezzanine::String const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",3,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateRigidDebris",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
-  result = (Mezzanine::RigidDebris *)(arg1)->CreateRigidDebris((Mezzanine::String const &)*arg2,arg3);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::RigidDebris *)(arg1)->CreateRigidDebris(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RigidDebris,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45546,37 +65620,33 @@ fail:
 static int _wrap_EntityManager_CreateRigidDebris__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Real arg3 ;
-  Mezzanine::Graphics::Mesh *arg4 = (Mezzanine::Graphics::Mesh *) 0 ;
-  Mezzanine::Physics::CollisionShape *arg5 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Graphics::Mesh *arg3 = (Mezzanine::Graphics::Mesh *) 0 ;
+  Mezzanine::Physics::CollisionShape *arg4 = (Mezzanine::Physics::CollisionShape *) 0 ;
   Mezzanine::RigidDebris *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateRigidDebris",5,5)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateRigidDebris",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",2,"Mezzanine::String const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",3,"Mezzanine::Real const");
-  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",4,"Mezzanine::Graphics::Mesh *");
-  if(!SWIG_isptrtype(L,5)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",5,"Mezzanine::Physics::CollisionShape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",2,"Mezzanine::Real const");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",3,"Mezzanine::Graphics::Mesh *");
+  if(!SWIG_isptrtype(L,4)) SWIG_fail_arg("Mezzanine::EntityManager::CreateRigidDebris",4,"Mezzanine::Physics::CollisionShape *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateRigidDebris",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Graphics__Mesh,0))){
-    SWIG_fail_ptr("EntityManager_CreateRigidDebris",4,SWIGTYPE_p_Mezzanine__Graphics__Mesh);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Graphics__Mesh,0))){
+    SWIG_fail_ptr("EntityManager_CreateRigidDebris",3,SWIGTYPE_p_Mezzanine__Graphics__Mesh);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&arg5,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
-    SWIG_fail_ptr("EntityManager_CreateRigidDebris",5,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
+    SWIG_fail_ptr("EntityManager_CreateRigidDebris",4,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
-  result = (Mezzanine::RigidDebris *)(arg1)->CreateRigidDebris((Mezzanine::String const &)*arg2,arg3,arg4,arg5);
+  result = (Mezzanine::RigidDebris *)(arg1)->CreateRigidDebris(arg2,arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RigidDebris,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45621,8 +65691,8 @@ fail:
 
 static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
   int argc;
-  int argv[6]={
-    1,2,3,4,5,6
+  int argv[5]={
+    1,2,3,4,5
   };
   
   argc = lua_gettop(L);
@@ -45650,7 +65720,7 @@ static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
       }
     }
   }
-  if (argc == 3) {
+  if (argc == 2) {
     int _v;
     {
       void *ptr;
@@ -45662,19 +65732,14 @@ static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_EntityManager_CreateRigidDebris__SWIG_0(L);
-        }
+        return _wrap_EntityManager_CreateRigidDebris__SWIG_0(L);
       }
     }
   }
-  if (argc == 5) {
+  if (argc == 4) {
     int _v;
     {
       void *ptr;
@@ -45686,33 +65751,28 @@ static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
         {
-          _v = lua_isnumber(L,argv[2]);
+          void *ptr;
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Graphics__Mesh, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
         }
         if (_v) {
           {
             void *ptr;
-            if (SWIG_isptrtype(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__Graphics__Mesh, 0)) {
+            if (SWIG_isptrtype(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
               _v = 0;
             } else {
               _v = 1;
             }
           }
           if (_v) {
-            {
-              void *ptr;
-              if (SWIG_isptrtype(L,argv[4])==0 || SWIG_ConvertPtr(L,argv[4], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__CollisionShape, 0)) {
-                _v = 0;
-              } else {
-                _v = 1;
-              }
-            }
-            if (_v) {
-              return _wrap_EntityManager_CreateRigidDebris__SWIG_1(L);
-            }
+            return _wrap_EntityManager_CreateRigidDebris__SWIG_1(L);
           }
         }
       }
@@ -45721,8 +65781,8 @@ static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateRigidDebris'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateRigidDebris(Mezzanine::String const &,Mezzanine::Real const)\n"
-    "    Mezzanine::EntityManager::CreateRigidDebris(Mezzanine::String const &,Mezzanine::Real const,Mezzanine::Graphics::Mesh *,Mezzanine::Physics::CollisionShape *)\n"
+    "    Mezzanine::EntityManager::CreateRigidDebris(Mezzanine::Real const)\n"
+    "    Mezzanine::EntityManager::CreateRigidDebris(Mezzanine::Real const,Mezzanine::Graphics::Mesh *,Mezzanine::Physics::CollisionShape *)\n"
     "    Mezzanine::EntityManager::CreateRigidDebris(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
@@ -45731,23 +65791,19 @@ static int _wrap_EntityManager_CreateRigidDebris(lua_State* L) {
 static int _wrap_EntityManager_CreateSoftDebris__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
-  Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Real arg3 ;
-  Mezzanine::String temp2 ;
+  Mezzanine::Real arg2 ;
   Mezzanine::SoftDebris *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateSoftDebris",3,3)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateSoftDebris",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateSoftDebris",1,"Mezzanine::EntityManager *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateSoftDebris",2,"Mezzanine::String const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateSoftDebris",3,"Mezzanine::Real const");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateSoftDebris",2,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateSoftDebris",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
-  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
-  result = (Mezzanine::SoftDebris *)(arg1)->CreateSoftDebris((Mezzanine::String const &)*arg2,arg3);
+  arg2 = (Mezzanine::Real const)lua_tonumber(L, 2);
+  result = (Mezzanine::SoftDebris *)(arg1)->CreateSoftDebris(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SoftDebris,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45792,8 +65848,8 @@ fail:
 
 static int _wrap_EntityManager_CreateSoftDebris(lua_State* L) {
   int argc;
-  int argv[4]={
-    1,2,3,4
+  int argv[3]={
+    1,2,3
   };
   
   argc = lua_gettop(L);
@@ -45821,7 +65877,7 @@ static int _wrap_EntityManager_CreateSoftDebris(lua_State* L) {
       }
     }
   }
-  if (argc == 3) {
+  if (argc == 2) {
     int _v;
     {
       void *ptr;
@@ -45833,22 +65889,17 @@ static int _wrap_EntityManager_CreateSoftDebris(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_EntityManager_CreateSoftDebris__SWIG_0(L);
-        }
+        return _wrap_EntityManager_CreateSoftDebris__SWIG_0(L);
       }
     }
   }
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateSoftDebris'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateSoftDebris(Mezzanine::String const &,Mezzanine::Real const)\n"
+    "    Mezzanine::EntityManager::CreateSoftDebris(Mezzanine::Real const)\n"
     "    Mezzanine::EntityManager::CreateSoftDebris(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
@@ -45858,30 +65909,26 @@ static int _wrap_EntityManager_CreateEntity__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
   Mezzanine::String *arg2 = 0 ;
-  Mezzanine::String *arg3 = 0 ;
-  Mezzanine::NameValuePairMap *arg4 = 0 ;
+  Mezzanine::NameValuePairMap *arg3 = 0 ;
   Mezzanine::String temp2 ;
-  Mezzanine::String temp3 ;
   Mezzanine::Entity *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::CreateEntity",4,4)
+  SWIG_check_num_args("Mezzanine::EntityManager::CreateEntity",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::CreateEntity",1,"Mezzanine::EntityManager *");
   if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::CreateEntity",2,"Mezzanine::String const &");
-  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateEntity",3,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::EntityManager::CreateEntity",4,"Mezzanine::NameValuePairMap const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::EntityManager::CreateEntity",3,"Mezzanine::NameValuePairMap const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
     SWIG_fail_ptr("EntityManager_CreateEntity",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
   temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_std__mapT_std__string_std__string_t,0))){
-    SWIG_fail_ptr("EntityManager_CreateEntity",4,SWIGTYPE_p_std__mapT_std__string_std__string_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_std__mapT_std__string_std__string_t,0))){
+    SWIG_fail_ptr("EntityManager_CreateEntity",3,SWIGTYPE_p_std__mapT_std__string_std__string_t);
   }
   
-  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::NameValuePairMap const &)*arg4);
+  result = (Mezzanine::Entity *)(arg1)->CreateEntity((Mezzanine::String const &)*arg2,(Mezzanine::NameValuePairMap const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45926,8 +65973,8 @@ fail:
 
 static int _wrap_EntityManager_CreateEntity(lua_State* L) {
   int argc;
-  int argv[5]={
-    1,2,3,4,5
+  int argv[4]={
+    1,2,3,4
   };
   
   argc = lua_gettop(L);
@@ -45955,7 +66002,7 @@ static int _wrap_EntityManager_CreateEntity(lua_State* L) {
       }
     }
   }
-  if (argc == 4) {
+  if (argc == 3) {
     int _v;
     {
       void *ptr;
@@ -45971,20 +66018,15 @@ static int _wrap_EntityManager_CreateEntity(lua_State* L) {
       }
       if (_v) {
         {
-          _v = lua_isstring(L,argv[2]);
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
         }
         if (_v) {
-          {
-            void *ptr;
-            if (lua_isuserdata(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0)) {
-              _v = 0;
-            } else {
-              _v = 1;
-            }
-          }
-          if (_v) {
-            return _wrap_EntityManager_CreateEntity__SWIG_0(L);
-          }
+          return _wrap_EntityManager_CreateEntity__SWIG_0(L);
         }
       }
     }
@@ -45992,29 +66034,29 @@ static int _wrap_EntityManager_CreateEntity(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_CreateEntity'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::CreateEntity(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::NameValuePairMap const &)\n"
+    "    Mezzanine::EntityManager::CreateEntity(Mezzanine::String const &,Mezzanine::NameValuePairMap const &)\n"
     "    Mezzanine::EntityManager::CreateEntity(Mezzanine::XML::Node const &)\n");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_EntityManager_GetEntity__SWIG_0(lua_State* L) {
+static int _wrap_EntityManager_GetEntityByIndex(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
   Mezzanine::Whole arg2 ;
   Mezzanine::Entity *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::GetEntity",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntity",1,"Mezzanine::EntityManager const *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntity",2,"Mezzanine::Whole const");
+  SWIG_check_num_args("Mezzanine::EntityManager::GetEntityByIndex",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByIndex",1,"Mezzanine::EntityManager const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByIndex",2,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
-    SWIG_fail_ptr("EntityManager_GetEntity",1,SWIGTYPE_p_Mezzanine__EntityManager);
+    SWIG_fail_ptr("EntityManager_GetEntityByIndex",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
   SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
   arg2 = (Mezzanine::Whole const)lua_tonumber(L, 2);
-  result = (Mezzanine::Entity *)((Mezzanine::EntityManager const *)arg1)->GetEntity(arg2);
+  result = (Mezzanine::Entity *)((Mezzanine::EntityManager const *)arg1)->GetEntityByIndex(arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -46026,23 +66068,54 @@ fail:
 }
 
 
-static int _wrap_EntityManager_GetEntity__SWIG_1(lua_State* L) {
+static int _wrap_EntityManager_GetEntityByID(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
+  Mezzanine::EntityID *arg2 = 0 ;
+  Mezzanine::Entity *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityManager::GetEntityByID",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByID",1,"Mezzanine::EntityManager const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByID",2,"Mezzanine::EntityID const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
+    SWIG_fail_ptr("EntityManager_GetEntityByID",1,SWIGTYPE_p_Mezzanine__EntityManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("EntityManager_GetEntityByID",2,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
+  result = (Mezzanine::Entity *)((Mezzanine::EntityManager const *)arg1)->GetEntityByID((Mezzanine::EntityID const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityManager_GetEntityByName(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityManager *arg1 = (Mezzanine::EntityManager *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::String temp2 ;
   Mezzanine::Entity *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityManager::GetEntity",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntity",1,"Mezzanine::EntityManager const *");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntity",2,"Mezzanine::String const &");
+  SWIG_check_num_args("Mezzanine::EntityManager::GetEntityByName",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByName",1,"Mezzanine::EntityManager const *");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EntityManager::GetEntityByName",2,"Mezzanine::String const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityManager,0))){
-    SWIG_fail_ptr("EntityManager_GetEntity",1,SWIGTYPE_p_Mezzanine__EntityManager);
+    SWIG_fail_ptr("EntityManager_GetEntityByName",1,SWIGTYPE_p_Mezzanine__EntityManager);
   }
   
   temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  result = (Mezzanine::Entity *)((Mezzanine::EntityManager const *)arg1)->GetEntity((Mezzanine::String const &)*arg2);
+  result = (Mezzanine::Entity *)((Mezzanine::EntityManager const *)arg1)->GetEntityByName((Mezzanine::String const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Entity,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -46051,60 +66124,6 @@ static int _wrap_EntityManager_GetEntity__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_EntityManager_GetEntity(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_EntityManager_GetEntity__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_EntityManager_GetEntity__SWIG_1(L);
-      }
-    }
-  }
-  
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EntityManager_GetEntity'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::EntityManager::GetEntity(Mezzanine::Whole const) const\n"
-    "    Mezzanine::EntityManager::GetEntity(Mezzanine::String const &) const\n");
-  lua_error(L);return 0;
 }
 
 
@@ -46868,7 +66887,9 @@ static swig_lua_method swig_EntityManager_methods[]= {
     { "CreateRigidDebris", _wrap_EntityManager_CreateRigidDebris},
     { "CreateSoftDebris", _wrap_EntityManager_CreateSoftDebris},
     { "CreateEntity", _wrap_EntityManager_CreateEntity},
-    { "GetEntity", _wrap_EntityManager_GetEntity},
+    { "GetEntityByIndex", _wrap_EntityManager_GetEntityByIndex},
+    { "GetEntityByID", _wrap_EntityManager_GetEntityByID},
+    { "GetEntityByName", _wrap_EntityManager_GetEntityByName},
     { "GetNumEntities", _wrap_EntityManager_GetNumEntities},
     { "DestroyEntity", _wrap_EntityManager_DestroyEntity},
     { "DestroyAllEntities", _wrap_EntityManager_DestroyAllEntities},
@@ -49861,21 +69882,24 @@ fail:
 
 static int _wrap_new_Vehicle__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::EntityID *arg1 = 0 ;
   Mezzanine::World *arg2 = (Mezzanine::World *) 0 ;
-  Mezzanine::String temp1 ;
   Mezzanine::Vehicle *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Vehicle::Vehicle",2,2)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Vehicle::Vehicle",1,"Mezzanine::String const &");
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Vehicle::Vehicle",1,"Mezzanine::EntityID const &");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Vehicle::Vehicle",2,"Mezzanine::World *");
-  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityID,0))){
+    SWIG_fail_ptr("new_Vehicle",1,SWIGTYPE_p_Mezzanine__EntityID);
+  }
+  
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__World,0))){
     SWIG_fail_ptr("new_Vehicle",2,SWIGTYPE_p_Mezzanine__World);
   }
   
-  result = (Mezzanine::Vehicle *)new Mezzanine::Vehicle((Mezzanine::String const &)*arg1,arg2);
+  result = (Mezzanine::Vehicle *)new Mezzanine::Vehicle((Mezzanine::EntityID const &)*arg1,arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vehicle,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -49911,7 +69935,12 @@ static int _wrap_new_Vehicle(lua_State* L) {
   if (argc == 2) {
     int _v;
     {
-      _v = lua_isstring(L,argv[0]);
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__EntityID, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
     }
     if (_v) {
       {
@@ -49931,7 +69960,7 @@ static int _wrap_new_Vehicle(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Vehicle'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Vehicle::Vehicle(Mezzanine::World *)\n"
-    "    Mezzanine::Vehicle::Vehicle(Mezzanine::String const &,Mezzanine::World *)\n");
+    "    Mezzanine::Vehicle::Vehicle(Mezzanine::EntityID const &,Mezzanine::World *)\n");
   lua_error(L);return 0;
 }
 
@@ -51503,6 +71532,27 @@ static const char *swig_World_base_names[] = {0};
 static swig_lua_class _wrap_class_World = { "World", "World", &SWIGTYPE_p_Mezzanine__World,_proxy__wrap_new_World, swig_delete_World, swig_World_methods, swig_World_attributes, &swig_World_Sf_SwigStatic, swig_World_meta, swig_World_bases, swig_World_base_names };
 
 static swig_lua_attribute swig_SwigModule_attributes[] = {
+    { "ParseMinimal", _wrap_ParseMinimal_get, SWIG_Lua_set_immutable },
+    { "ParsePi", _wrap_ParsePi_get, SWIG_Lua_set_immutable },
+    { "ParseComments", _wrap_ParseComments_get, SWIG_Lua_set_immutable },
+    { "ParseCdata", _wrap_ParseCdata_get, SWIG_Lua_set_immutable },
+    { "ParseWsPcdata", _wrap_ParseWsPcdata_get, SWIG_Lua_set_immutable },
+    { "ParseEscapes", _wrap_ParseEscapes_get, SWIG_Lua_set_immutable },
+    { "ParseEol", _wrap_ParseEol_get, SWIG_Lua_set_immutable },
+    { "ParseWconvAttribute", _wrap_ParseWconvAttribute_get, SWIG_Lua_set_immutable },
+    { "ParseWnormAttribute", _wrap_ParseWnormAttribute_get, SWIG_Lua_set_immutable },
+    { "ParseDeclaration", _wrap_ParseDeclaration_get, SWIG_Lua_set_immutable },
+    { "ParseDocType", _wrap_ParseDocType_get, SWIG_Lua_set_immutable },
+    { "ParseWsPcdata_single", _wrap_ParseWsPcdata_single_get, SWIG_Lua_set_immutable },
+    { "ParseDefault", _wrap_ParseDefault_get, SWIG_Lua_set_immutable },
+    { "ParseFull", _wrap_ParseFull_get, SWIG_Lua_set_immutable },
+    { "FormatIndent", _wrap_FormatIndent_get, SWIG_Lua_set_immutable },
+    { "FormatWriteBom", _wrap_FormatWriteBom_get, SWIG_Lua_set_immutable },
+    { "FormatRaw", _wrap_FormatRaw_get, SWIG_Lua_set_immutable },
+    { "FormatNoDeclaration", _wrap_FormatNoDeclaration_get, SWIG_Lua_set_immutable },
+    { "FormatNoEscapes", _wrap_FormatNoEscapes_get, SWIG_Lua_set_immutable },
+    { "FormatSaveFileText", _wrap_FormatSaveFileText_get, SWIG_Lua_set_immutable },
+    { "FormatDefault", _wrap_FormatDefault_get, SWIG_Lua_set_immutable },
     { "EntityManager_ImplementationName", _wrap_EntityManager_ImplementationName_get, SWIG_Lua_set_immutable },
     { "EntityManager_InterfaceType", _wrap_EntityManager_InterfaceType_get, SWIG_Lua_set_immutable },
     { "EntityManager_EventEntityCreated", _wrap_EntityManager_EventEntityCreated_get, SWIG_Lua_set_immutable },
@@ -51698,6 +71748,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("CastImplicit", Mezzanine::CastImplicit)},
     {SWIG_LUA_CONSTTAB_INT("CastStatic", Mezzanine::CastStatic)},
     {SWIG_LUA_CONSTTAB_INT("CastDynamic", Mezzanine::CastDynamic)},
+    {SWIG_LUA_CONSTTAB_STRING("EntityID_InvalidID", "Mezzanine::EntityID::InvalidID")},
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_AE_Min", Mezzanine::AxisAlignedBox::AE_Min)},
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_AE_Max", Mezzanine::AxisAlignedBox::AE_Max)},
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_SideMinX", Mezzanine::AxisAlignedBox::SideMinX)},
@@ -51706,6 +71757,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_SideMaxX", Mezzanine::AxisAlignedBox::SideMaxX)},
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_SideMaxY", Mezzanine::AxisAlignedBox::SideMaxY)},
     {SWIG_LUA_CONSTTAB_INT("AxisAlignedBox_SideMaxZ", Mezzanine::AxisAlignedBox::SideMaxZ)},
+    {SWIG_LUA_CONSTTAB_STRING("EntityComponentID_InvalidID", "Mezzanine::EntityComponentID::InvalidID")},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_Undefined", Mezzanine::ManagerBase::MT_Undefined)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_AudioManager", Mezzanine::ManagerBase::MT_AudioManager)},
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_AnimationManager", Mezzanine::ManagerBase::MT_AnimationManager)},
@@ -51732,6 +71784,49 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {SWIG_LUA_CONSTTAB_INT("ManagerBase_MT_UserCreated", Mezzanine::ManagerBase::MT_UserCreated)},
     {SWIG_LUA_CONSTTAB_INT("CameraController_CCM_Fly", Mezzanine::CameraController::CCM_Fly)},
     {SWIG_LUA_CONSTTAB_INT("CameraController_CCM_Walk", Mezzanine::CameraController::CCM_Walk)},
+    {SWIG_LUA_CONSTTAB_INT("XML_VERSION", 100)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingAuto", Mezzanine::XML::EncodingAuto)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF8", Mezzanine::XML::EncodingUTF8)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF16LE", Mezzanine::XML::EncodingUTF16LE)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF16BE", Mezzanine::XML::EncodingUTF16BE)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF16", Mezzanine::XML::EncodingUTF16)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF32LE", Mezzanine::XML::EncodingUTF32LE)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF32BE", Mezzanine::XML::EncodingUTF32BE)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingUTF32", Mezzanine::XML::EncodingUTF32)},
+    {SWIG_LUA_CONSTTAB_INT("Encodingwchar_t", Mezzanine::XML::Encodingwchar_t)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingLatin1", Mezzanine::XML::EncodingLatin1)},
+    {SWIG_LUA_CONSTTAB_INT("NodeNull", Mezzanine::XML::NodeNull)},
+    {SWIG_LUA_CONSTTAB_INT("NodeDocument", Mezzanine::XML::NodeDocument)},
+    {SWIG_LUA_CONSTTAB_INT("NodeElement", Mezzanine::XML::NodeElement)},
+    {SWIG_LUA_CONSTTAB_INT("NodePcdata", Mezzanine::XML::NodePcdata)},
+    {SWIG_LUA_CONSTTAB_INT("NodeCdata", Mezzanine::XML::NodeCdata)},
+    {SWIG_LUA_CONSTTAB_INT("NodeComment", Mezzanine::XML::NodeComment)},
+    {SWIG_LUA_CONSTTAB_INT("NodePi", Mezzanine::XML::NodePi)},
+    {SWIG_LUA_CONSTTAB_INT("NodeDeclaration", Mezzanine::XML::NodeDeclaration)},
+    {SWIG_LUA_CONSTTAB_INT("NodeDocType", Mezzanine::XML::NodeDocType)},
+    {SWIG_LUA_CONSTTAB_INT("StatusOk", Mezzanine::XML::StatusOk)},
+    {SWIG_LUA_CONSTTAB_INT("StatusFileNotFound", Mezzanine::XML::StatusFileNotFound)},
+    {SWIG_LUA_CONSTTAB_INT("StatusIOError", Mezzanine::XML::StatusIOError)},
+    {SWIG_LUA_CONSTTAB_INT("StatusOutOfMemory", Mezzanine::XML::StatusOutOfMemory)},
+    {SWIG_LUA_CONSTTAB_INT("StatusInternalError", Mezzanine::XML::StatusInternalError)},
+    {SWIG_LUA_CONSTTAB_INT("StatusUnrecognizedTag", Mezzanine::XML::StatusUnrecognizedTag)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadProcessingInstruction", Mezzanine::XML::StatusBadProcessingInstruction)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadComment", Mezzanine::XML::StatusBadComment)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadCdata", Mezzanine::XML::StatusBadCdata)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadDocType", Mezzanine::XML::StatusBadDocType)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadPcdata", Mezzanine::XML::StatusBadPcdata)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadStartElement", Mezzanine::XML::StatusBadStartElement)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadAttribute", Mezzanine::XML::StatusBadAttribute)},
+    {SWIG_LUA_CONSTTAB_INT("StatusBadEndElement", Mezzanine::XML::StatusBadEndElement)},
+    {SWIG_LUA_CONSTTAB_INT("StatusEndElementMismatch", Mezzanine::XML::StatusEndElementMismatch)},
+    {SWIG_LUA_CONSTTAB_INT("XPathTypeNone", Mezzanine::XML::XPathTypeNone)},
+    {SWIG_LUA_CONSTTAB_INT("XPathTypeNodeSet", Mezzanine::XML::XPathTypeNodeSet)},
+    {SWIG_LUA_CONSTTAB_INT("XPathTypeNumber", Mezzanine::XML::XPathTypeNumber)},
+    {SWIG_LUA_CONSTTAB_INT("XPathTypeString", Mezzanine::XML::XPathTypeString)},
+    {SWIG_LUA_CONSTTAB_INT("XPathTypeBoole", Mezzanine::XML::XPathTypeBoole)},
+    {SWIG_LUA_CONSTTAB_INT("XPathNodeSet_TypeUnsorted", Mezzanine::XML::XPathNodeSet::TypeUnsorted)},
+    {SWIG_LUA_CONSTTAB_INT("XPathNodeSet_TypeSorted", Mezzanine::XML::XPathNodeSet::TypeSorted)},
+    {SWIG_LUA_CONSTTAB_INT("XPathNodeSet_TypeSortedReverse", Mezzanine::XML::XPathNodeSet::TypeSortedReverse)},
     {SWIG_LUA_CONSTTAB_INT("TF_RawMicro", Mezzanine::TF_RawMicro)},
     {SWIG_LUA_CONSTTAB_INT("TF_RawMilli", Mezzanine::TF_RawMilli)},
     {SWIG_LUA_CONSTTAB_INT("TF_Seconds", Mezzanine::TF_Seconds)},
@@ -51759,6 +71854,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "__div", _wrap___div},
     { "Quaternion_GetSerializableName", _wrap_Quaternion_GetSerializableName},
     { "Transform_GetSerializableName", _wrap_Transform_GetSerializableName},
+    { "EntityID_GetSerializableName", _wrap_EntityID_GetSerializableName},
     { "ComponentCompare", _wrap_ComponentCompare},
     { "Entity_GetSerializableName", _wrap_Entity_GetSerializableName},
     { "ColourValue_Transparent", _wrap_ColourValue_Transparent},
@@ -51912,6 +72008,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "PredictBinarySizeFromBase64String", _wrap_PredictBinarySizeFromBase64String},
     { "PredictBase64StringSizeFromBinarySize", _wrap_PredictBase64StringSizeFromBinarySize},
     { "Ray_GetSerializableName", _wrap_Ray_GetSerializableName},
+    { "EntityComponentID_GetSerializableName", _wrap_EntityComponentID_GetSerializableName},
     { "EntityComponent_GetSerializableName", _wrap_EntityComponent_GetSerializableName},
     { "EntityProxy_GetSerializableName", _wrap_EntityProxy_GetSerializableName},
     { "ManagerBase_GetTypeAsString", _wrap_ManagerBase_GetTypeAsString},
@@ -51927,6 +72024,14 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "GetPlatform", _wrap_GetPlatform},
     { "GetTimeStamp", _wrap_GetTimeStamp},
     { "Debris_GetSerializableName", _wrap_Debris_GetSerializableName},
+    { "SetMemoryManagementFunctions", _wrap_SetMemoryManagementFunctions},
+    { "GetMemoryAllocationFunction", _wrap_GetMemoryAllocationFunction},
+    { "GetMemoryDeallocationFunction", _wrap_GetMemoryDeallocationFunction},
+    { "AsUtf8", _wrap_AsUtf8},
+    { "AsWide", _wrap_AsWide},
+    { "GetOneTag", _wrap_GetOneTag},
+    { "PreParseClassFromSingleTag", _wrap_PreParseClassFromSingleTag},
+    { "EscapeXML", _wrap_EscapeXML},
     { "EntityManager_AddEntityFactory", _wrap_EntityManager_AddEntityFactory},
     { "EntityManager_RemoveEntityFactory", _wrap_EntityManager_RemoveEntityFactory},
     { "EntityManager_DestroyEntityFactory", _wrap_EntityManager_DestroyEntityFactory},
@@ -52034,6 +72139,7 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_TransformableObject,
 &_wrap_class_TransformableChildObject,
 &_wrap_class_EntityFactory,
+&_wrap_class_EntityID,
 &_wrap_class_Entity,
 &_wrap_class_GenericEntityFactory,
 &_wrap_class_Actor,
@@ -52045,6 +72151,7 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_AxisAlignedBox,
 &_wrap_class_BinaryBuffer,
 &_wrap_class_Ray,
+&_wrap_class_EntityComponentID,
 &_wrap_class_EntityComponent,
 &_wrap_class_EntityProxy,
 &_wrap_class_ManagerBase,
@@ -52062,6 +72169,21 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_DebrisFactory,
 &_wrap_class_ManagerFactory,
 &_wrap_class_WorldManagerFactory,
+&_wrap_class_Attribute,
+&_wrap_class_Node,
+&_wrap_class_AttributeIterator,
+&_wrap_class_ParseResult,
+&_wrap_class_Document,
+&_wrap_class_NodeIterator,
+&_wrap_class_NamedNodeIterator,
+&_wrap_class_NodeText,
+&_wrap_class_TreeWalker,
+&_wrap_class_XPathNode,
+&_wrap_class_XPathNodeSet,
+&_wrap_class_XPathParseResult,
+&_wrap_class_XPathVariable,
+&_wrap_class_XPathVariableSet,
+&_wrap_class_XPathQuery,
 &_wrap_class_ActorUpdateWorkUnit,
 &_wrap_class_AreaEffectUpdateWorkUnit,
 &_wrap_class_DebrisUpdateWorkUnit,
@@ -52563,6 +72685,9 @@ static void *_p_Mezzanine__InternalExceptionTo_p_Mezzanine__ExceptionBase(void *
 static void *_p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__ExceptionBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::ExceptionBase *)  ((Mezzanine::NotImplementedException *) x));
 }
+static void *_p_Mezzanine__XML__DocumentTo_p_Mezzanine__XML__Node(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::XML::Node *)  ((Mezzanine::XML::Document *) x));
+}
 static void *_p_Mezzanine__DefaultEntityManagerFactoryTo_p_Mezzanine__WorldManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::WorldManagerFactory *)  ((Mezzanine::DefaultEntityManagerFactory *) x));
 }
@@ -52617,6 +72742,7 @@ static swig_type_info _swigt__p_FactoryContainer = {"_p_FactoryContainer", "Fact
 static swig_type_info _swigt__p_FactoryIterator = {"_p_FactoryIterator", "FactoryIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_FilterFunction = {"_p_FilterFunction", "FilterFunction *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryRayTestResult = {"_p_GeometryRayTestResult", "GeometryRayTestResult *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IDType = {"_p_IDType", "IDType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ManagerFactoryIterator = {"_p_ManagerFactoryIterator", "ManagerFactoryIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ManagerFactoryMap = {"_p_ManagerFactoryMap", "ManagerFactoryMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MathTools__GeometryRayTestResult = {"_p_MathTools__GeometryRayTestResult", "MathTools::GeometryRayTestResult *|Mezzanine::AxisAlignedBox::RayTestResult *|Mezzanine::Ray::GeometryRayTestResult *|Mezzanine::Sphere::RayTestResult *", 0, 0, (void*)0, 0};
@@ -52647,8 +72773,10 @@ static swig_type_info _swigt__p_Mezzanine__DirectoryReadException = {"_p_Mezzani
 static swig_type_info _swigt__p_Mezzanine__DirectoryWriteException = {"_p_Mezzanine__DirectoryWriteException", "Mezzanine::DirectoryWriteException *", 0, 0, (void*)&_wrap_class_DirectoryWriteException, 0};
 static swig_type_info _swigt__p_Mezzanine__Entity = {"_p_Mezzanine__Entity", "Mezzanine::Entity *", 0, 0, (void*)&_wrap_class_Entity, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityComponent = {"_p_Mezzanine__EntityComponent", "Mezzanine::EntityComponent *", 0, 0, (void*)&_wrap_class_EntityComponent, 0};
+static swig_type_info _swigt__p_Mezzanine__EntityComponentID = {"_p_Mezzanine__EntityComponentID", "Mezzanine::EntityComponentID *", 0, 0, (void*)&_wrap_class_EntityComponentID, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityComponentManager = {"_p_Mezzanine__EntityComponentManager", "Mezzanine::EntityComponentManager *", 0, 0, (void*)&_wrap_class_EntityComponentManager, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityFactory = {"_p_Mezzanine__EntityFactory", "Mezzanine::EntityFactory *", 0, 0, (void*)&_wrap_class_EntityFactory, 0};
+static swig_type_info _swigt__p_Mezzanine__EntityID = {"_p_Mezzanine__EntityID", "Mezzanine::EntityID *", 0, 0, (void*)&_wrap_class_EntityID, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityManagementEvent = {"_p_Mezzanine__EntityManagementEvent", "Mezzanine::EntityManagementEvent *", 0, 0, (void*)&_wrap_class_EntityManagementEvent, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityManager = {"_p_Mezzanine__EntityManager", "Mezzanine::EntityManager *", 0, 0, (void*)&_wrap_class_EntityManager, 0};
 static swig_type_info _swigt__p_Mezzanine__EntityProxy = {"_p_Mezzanine__EntityProxy", "Mezzanine::EntityProxy *", 0, 0, (void*)&_wrap_class_EntityProxy, 0};
@@ -52735,7 +72863,26 @@ static swig_type_info _swigt__p_Mezzanine__VehicleUpdateWorkUnit = {"_p_Mezzanin
 static swig_type_info _swigt__p_Mezzanine__World = {"_p_Mezzanine__World", "Mezzanine::World *", 0, 0, (void*)&_wrap_class_World, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)&_wrap_class_WorldManager, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManagerFactory = {"_p_Mezzanine__WorldManagerFactory", "Mezzanine::WorldManagerFactory *", 0, 0, (void*)&_wrap_class_WorldManagerFactory, 0};
-static swig_type_info _swigt__p_Mezzanine__XML__Node = {"_p_Mezzanine__XML__Node", "Mezzanine::XML::Node *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__Attribute = {"_p_Mezzanine__XML__Attribute", "Mezzanine::XML::Attribute *", 0, 0, (void*)&_wrap_class_Attribute, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__AttributeIterator = {"_p_Mezzanine__XML__AttributeIterator", "Mezzanine::XML::AttributeIterator *|Mezzanine::XML::Node::attribute_iterator *", 0, 0, (void*)&_wrap_class_AttributeIterator, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__AttributeStruct = {"_p_Mezzanine__XML__AttributeStruct", "Mezzanine::XML::AttributeStruct *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__Document = {"_p_Mezzanine__XML__Document", "Mezzanine::XML::Document *", 0, 0, (void*)&_wrap_class_Document, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__NamedNodeIterator = {"_p_Mezzanine__XML__NamedNodeIterator", "Mezzanine::XML::NamedNodeIterator *", 0, 0, (void*)&_wrap_class_NamedNodeIterator, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__Node = {"_p_Mezzanine__XML__Node", "Mezzanine::XML::Node *", 0, 0, (void*)&_wrap_class_Node, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__NodeIterator = {"_p_Mezzanine__XML__NodeIterator", "Mezzanine::XML::NodeIterator *|Mezzanine::XML::Node::iterator *", 0, 0, (void*)&_wrap_class_NodeIterator, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__NodeStruct = {"_p_Mezzanine__XML__NodeStruct", "Mezzanine::XML::NodeStruct *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__NodeText = {"_p_Mezzanine__XML__NodeText", "Mezzanine::XML::NodeText *", 0, 0, (void*)&_wrap_class_NodeText, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t = {"_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t", "Mezzanine::XML::ObjectRange< Mezzanine::XML::AttributeIterator > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t = {"_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t", "Mezzanine::XML::ObjectRange< Mezzanine::XML::NamedNodeIterator > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t = {"_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t", "Mezzanine::XML::ObjectRange< Mezzanine::XML::NodeIterator > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__ParseResult = {"_p_Mezzanine__XML__ParseResult", "Mezzanine::XML::ParseResult *", 0, 0, (void*)&_wrap_class_ParseResult, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__TreeWalker = {"_p_Mezzanine__XML__TreeWalker", "Mezzanine::XML::TreeWalker *", 0, 0, (void*)&_wrap_class_TreeWalker, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathNode = {"_p_Mezzanine__XML__XPathNode", "Mezzanine::XML::XPathNodeSet::const_iterator|Mezzanine::XML::XPathNode *", 0, 0, (void*)&_wrap_class_XPathNode, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathNodeSet = {"_p_Mezzanine__XML__XPathNodeSet", "Mezzanine::XML::XPathNodeSet *", 0, 0, (void*)&_wrap_class_XPathNodeSet, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathParseResult = {"_p_Mezzanine__XML__XPathParseResult", "Mezzanine::XML::XPathParseResult *", 0, 0, (void*)&_wrap_class_XPathParseResult, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathQuery = {"_p_Mezzanine__XML__XPathQuery", "Mezzanine::XML::XPathQuery *", 0, 0, (void*)&_wrap_class_XPathQuery, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathVariable = {"_p_Mezzanine__XML__XPathVariable", "Mezzanine::XML::XPathVariable *", 0, 0, (void*)&_wrap_class_XPathVariable, 0};
+static swig_type_info _swigt__p_Mezzanine__XML__XPathVariableSet = {"_p_Mezzanine__XML__XPathVariableSet", "Mezzanine::XML::XPathVariableSet *", 0, 0, (void*)&_wrap_class_XPathVariableSet, 0};
 static swig_type_info _swigt__p_ObjectContainer = {"_p_ObjectContainer", "ObjectContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ObjectIterator = {"_p_ObjectIterator", "ObjectIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__AxisAlignedBox = {"_p_Ogre__AxisAlignedBox", "Ogre::AxisAlignedBox *", 0, 0, (void*)0, 0};
@@ -52754,19 +72901,29 @@ static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzan
 static swig_type_info _swigt__p_WorldManagerContainer = {"_p_WorldManagerContainer", "WorldManagerContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_WorldManagerIterator = {"_p_WorldManagerIterator", "WorldManagerIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_attribute_iterator = {"_p_attribute_iterator", "attribute_iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boole *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btQuaternion = {"_p_btQuaternion", "btQuaternion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btTransform = {"_p_btTransform", "btTransform *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "Mezzanine::PreciseReal *|double *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "Mezzanine::XML::DeAllocationFunction|void (*)(void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_size_t__p_void = {"_p_f_size_t__p_void", "void *(*)(size_t)|Mezzanine::XML::AllocationFunction", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "float *|Mezzanine::Real *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|Mezzanine::Int32 *|int32_t *|Mezzanine::ConvertiblePointer *|Mezzanine::Integer *|int_fast16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_iterator = {"_p_iterator", "iterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_iterator_category = {"_p_iterator_category", "iterator_category *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "int_least64_t *|int_fast64_t *|Mezzanine::Int64 *|int64_t *|long long *|Mezzanine::MaxInt *|intmax_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_ptrdiff_t = {"_p_ptrdiff_t", "ptrdiff_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_short = {"_p_short", "Mezzanine::Int16 *|short *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|Mezzanine::Int8 *|Mezzanine::BinaryTools::BinaryBuffer::Byte *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t = {"_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t", "std::basic_string< char,std::char_traits< char >,std::allocator< char > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t = {"_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t", "std::basic_string< wchar_t,std::char_traits< wchar_t >,std::allocator< wchar_t > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__exception = {"_p_std__exception", "std::exception *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__functionT_bool_fMezzanine__EntityProxy_pF_t = {"_p_std__functionT_bool_fMezzanine__EntityProxy_pF_t", "std::function< bool (Mezzanine::EntityProxy *) > *|Mezzanine::RayQuery::FilterFunction *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__listT_std__pairT_std__string_std__string_t_t = {"_p_std__listT_std__pairT_std__string_std__string_t_t", "Mezzanine::NameValuePairList *|std::list< std::pair< std::string,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "Mezzanine::NameValuePairMap *|std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std__pairT_std__string_std__string_t", "Mezzanine::NameValuePair *|std::pair< std::string,std::string > *", 0, 0, (void*)0, 0};
@@ -52785,6 +72942,8 @@ static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|
 static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "Mezzanine::Whole *|unsigned long *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "uint_least64_t *|uint_fast64_t *|uint64_t *|Mezzanine::UInt64 *|unsigned long long *|uintmax_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "Mezzanine::UInt16 *|unsigned short *|uint_least16_t *|uint16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Byte,
@@ -52811,6 +72970,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_FactoryIterator,
   &_swigt__p_FilterFunction,
   &_swigt__p_GeometryRayTestResult,
+  &_swigt__p_IDType,
   &_swigt__p_ManagerFactoryIterator,
   &_swigt__p_ManagerFactoryMap,
   &_swigt__p_MathTools__GeometryRayTestResult,
@@ -52841,8 +73001,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__DirectoryWriteException,
   &_swigt__p_Mezzanine__Entity,
   &_swigt__p_Mezzanine__EntityComponent,
+  &_swigt__p_Mezzanine__EntityComponentID,
   &_swigt__p_Mezzanine__EntityComponentManager,
   &_swigt__p_Mezzanine__EntityFactory,
+  &_swigt__p_Mezzanine__EntityID,
   &_swigt__p_Mezzanine__EntityManagementEvent,
   &_swigt__p_Mezzanine__EntityManager,
   &_swigt__p_Mezzanine__EntityProxy,
@@ -52929,7 +73091,26 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__World,
   &_swigt__p_Mezzanine__WorldManager,
   &_swigt__p_Mezzanine__WorldManagerFactory,
+  &_swigt__p_Mezzanine__XML__Attribute,
+  &_swigt__p_Mezzanine__XML__AttributeIterator,
+  &_swigt__p_Mezzanine__XML__AttributeStruct,
+  &_swigt__p_Mezzanine__XML__Document,
+  &_swigt__p_Mezzanine__XML__NamedNodeIterator,
   &_swigt__p_Mezzanine__XML__Node,
+  &_swigt__p_Mezzanine__XML__NodeIterator,
+  &_swigt__p_Mezzanine__XML__NodeStruct,
+  &_swigt__p_Mezzanine__XML__NodeText,
+  &_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t,
+  &_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t,
+  &_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t,
+  &_swigt__p_Mezzanine__XML__ParseResult,
+  &_swigt__p_Mezzanine__XML__TreeWalker,
+  &_swigt__p_Mezzanine__XML__XPathNode,
+  &_swigt__p_Mezzanine__XML__XPathNodeSet,
+  &_swigt__p_Mezzanine__XML__XPathParseResult,
+  &_swigt__p_Mezzanine__XML__XPathQuery,
+  &_swigt__p_Mezzanine__XML__XPathVariable,
+  &_swigt__p_Mezzanine__XML__XPathVariableSet,
   &_swigt__p_ObjectContainer,
   &_swigt__p_ObjectIterator,
   &_swigt__p_Ogre__AxisAlignedBox,
@@ -52948,19 +73129,29 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_WorldManagerContainer,
   &_swigt__p_WorldManagerIterator,
   &_swigt__p_XML__Node,
+  &_swigt__p_attribute_iterator,
   &_swigt__p_bool,
   &_swigt__p_btQuaternion,
   &_swigt__p_btTransform,
   &_swigt__p_btVector3,
   &_swigt__p_char,
+  &_swigt__p_difference_type,
   &_swigt__p_double,
+  &_swigt__p_f_p_void__void,
+  &_swigt__p_f_size_t__p_void,
   &_swigt__p_float,
   &_swigt__p_int,
+  &_swigt__p_iterator,
+  &_swigt__p_iterator_category,
   &_swigt__p_long_long,
+  &_swigt__p_ptrdiff_t,
   &_swigt__p_short,
   &_swigt__p_signed_char,
+  &_swigt__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t,
+  &_swigt__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t,
   &_swigt__p_std__exception,
   &_swigt__p_std__functionT_bool_fMezzanine__EntityProxy_pF_t,
+  &_swigt__p_std__istream,
   &_swigt__p_std__listT_std__pairT_std__string_std__string_t_t,
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__pairT_std__string_std__string_t,
@@ -52979,6 +73170,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_unsigned_long,
   &_swigt__p_unsigned_long_long,
   &_swigt__p_unsigned_short,
+  &_swigt__p_value_type,
+  &_swigt__p_wchar_t,
 };
 
 static swig_cast_info _swigc__p_Byte[] = {  {&_swigt__p_Byte, 0, 0, 0},{0, 0, 0, 0}};
@@ -53005,6 +73198,7 @@ static swig_cast_info _swigc__p_FactoryContainer[] = {  {&_swigt__p_FactoryConta
 static swig_cast_info _swigc__p_FactoryIterator[] = {  {&_swigt__p_FactoryIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_FilterFunction[] = {  {&_swigt__p_FilterFunction, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryRayTestResult[] = {  {&_swigt__p_GeometryRayTestResult, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IDType[] = {  {&_swigt__p_IDType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ManagerFactoryIterator[] = {  {&_swigt__p_ManagerFactoryIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ManagerFactoryMap[] = {  {&_swigt__p_ManagerFactoryMap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MathTools__GeometryRayTestResult[] = {  {&_swigt__p_MathTools__GeometryRayTestResult, 0, 0, 0},{0, 0, 0, 0}};
@@ -53035,8 +73229,10 @@ static swig_cast_info _swigc__p_Mezzanine__DirectoryReadException[] = {  {&_swig
 static swig_cast_info _swigc__p_Mezzanine__DirectoryWriteException[] = {  {&_swigt__p_Mezzanine__DirectoryWriteException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Entity[] = {  {&_swigt__p_Mezzanine__Debris, _p_Mezzanine__DebrisTo_p_Mezzanine__Entity, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__Entity, 0, 0},  {&_swigt__p_Mezzanine__Vehicle, _p_Mezzanine__VehicleTo_p_Mezzanine__Entity, 0, 0},  {&_swigt__p_Mezzanine__Entity, 0, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__Entity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityComponent[] = {  {&_swigt__p_Mezzanine__EntityComponent, 0, 0, 0},  {&_swigt__p_Mezzanine__EntityProxy, _p_Mezzanine__EntityProxyTo_p_Mezzanine__EntityComponent, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__EntityComponentID[] = {  {&_swigt__p_Mezzanine__EntityComponentID, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityComponentManager[] = {  {&_swigt__p_Mezzanine__EntityComponentManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityFactory[] = {  {&_swigt__p_Mezzanine__EntityFactory, 0, 0, 0},  {&_swigt__p_Mezzanine__GenericEntityFactory, _p_Mezzanine__GenericEntityFactoryTo_p_Mezzanine__EntityFactory, 0, 0},  {&_swigt__p_Mezzanine__ActorFactory, _p_Mezzanine__ActorFactoryTo_p_Mezzanine__EntityFactory, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectFactory, _p_Mezzanine__AreaEffectFactoryTo_p_Mezzanine__EntityFactory, 0, 0},  {&_swigt__p_Mezzanine__DebrisFactory, _p_Mezzanine__DebrisFactoryTo_p_Mezzanine__EntityFactory, 0, 0},  {&_swigt__p_Mezzanine__VehicleFactory, _p_Mezzanine__VehicleFactoryTo_p_Mezzanine__EntityFactory, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__EntityID[] = {  {&_swigt__p_Mezzanine__EntityID, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityManagementEvent[] = {  {&_swigt__p_Mezzanine__EntityManagementEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityManager[] = {  {&_swigt__p_Mezzanine__EntityManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EntityProxy[] = {  {&_swigt__p_Mezzanine__EntityProxy, 0, 0, 0},{0, 0, 0, 0}};
@@ -53123,7 +73319,26 @@ static swig_cast_info _swigc__p_Mezzanine__VehicleUpdateWorkUnit[] = {  {&_swigt
 static swig_cast_info _swigc__p_Mezzanine__World[] = {  {&_swigt__p_Mezzanine__World, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldManager[] = {  {&_swigt__p_Mezzanine__WorldManager, 0, 0, 0},  {&_swigt__p_Mezzanine__EntityComponentManager, _p_Mezzanine__EntityComponentManagerTo_p_Mezzanine__WorldManager, 0, 0},  {&_swigt__p_Mezzanine__EntityManager, _p_Mezzanine__EntityManagerTo_p_Mezzanine__WorldManager, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldManagerFactory[] = {  {&_swigt__p_Mezzanine__WorldManagerFactory, 0, 0, 0},  {&_swigt__p_Mezzanine__DefaultEntityManagerFactory, _p_Mezzanine__DefaultEntityManagerFactoryTo_p_Mezzanine__WorldManagerFactory, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__XML__Node[] = {  {&_swigt__p_Mezzanine__XML__Node, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__Attribute[] = {  {&_swigt__p_Mezzanine__XML__Attribute, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__AttributeIterator[] = {  {&_swigt__p_Mezzanine__XML__AttributeIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__AttributeStruct[] = {  {&_swigt__p_Mezzanine__XML__AttributeStruct, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__Document[] = {  {&_swigt__p_Mezzanine__XML__Document, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__NamedNodeIterator[] = {  {&_swigt__p_Mezzanine__XML__NamedNodeIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__Node[] = {  {&_swigt__p_Mezzanine__XML__Node, 0, 0, 0},  {&_swigt__p_Mezzanine__XML__Document, _p_Mezzanine__XML__DocumentTo_p_Mezzanine__XML__Node, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__NodeIterator[] = {  {&_swigt__p_Mezzanine__XML__NodeIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__NodeStruct[] = {  {&_swigt__p_Mezzanine__XML__NodeStruct, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__NodeText[] = {  {&_swigt__p_Mezzanine__XML__NodeText, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t[] = {  {&_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t[] = {  {&_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t[] = {  {&_swigt__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__ParseResult[] = {  {&_swigt__p_Mezzanine__XML__ParseResult, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__TreeWalker[] = {  {&_swigt__p_Mezzanine__XML__TreeWalker, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathNode[] = {  {&_swigt__p_Mezzanine__XML__XPathNode, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathNodeSet[] = {  {&_swigt__p_Mezzanine__XML__XPathNodeSet, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathParseResult[] = {  {&_swigt__p_Mezzanine__XML__XPathParseResult, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathQuery[] = {  {&_swigt__p_Mezzanine__XML__XPathQuery, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathVariable[] = {  {&_swigt__p_Mezzanine__XML__XPathVariable, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__XML__XPathVariableSet[] = {  {&_swigt__p_Mezzanine__XML__XPathVariableSet, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ObjectContainer[] = {  {&_swigt__p_ObjectContainer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ObjectIterator[] = {  {&_swigt__p_ObjectIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__AxisAlignedBox[] = {  {&_swigt__p_Ogre__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
@@ -53142,19 +73357,29 @@ static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0}
 static swig_cast_info _swigc__p_WorldManagerContainer[] = {  {&_swigt__p_WorldManagerContainer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_WorldManagerIterator[] = {  {&_swigt__p_WorldManagerIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_XML__Node[] = {  {&_swigt__p_XML__Node, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_attribute_iterator[] = {  {&_swigt__p_attribute_iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btQuaternion[] = {  {&_swigt__p_btQuaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btTransform[] = {  {&_swigt__p_btTransform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btVector3[] = {  {&_swigt__p_btVector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_size_t__p_void[] = {  {&_swigt__p_f_size_t__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_iterator[] = {  {&_swigt__p_iterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_iterator_category[] = {  {&_swigt__p_iterator_category, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ptrdiff_t[] = {  {&_swigt__p_ptrdiff_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t[] = {  {&_swigt__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t[] = {  {&_swigt__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_Mezzanine__InvalidAssignment, _p_Mezzanine__InvalidAssignmentTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersException, _p_Mezzanine__ParametersExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersCastException, _p_Mezzanine__ParametersCastExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersRangeException, _p_Mezzanine__ParametersRangeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ExceptionBase, _p_Mezzanine__ExceptionBaseTo_p_std__exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__functionT_bool_fMezzanine__EntityProxy_pF_t[] = {  {&_swigt__p_std__functionT_bool_fMezzanine__EntityProxy_pF_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__listT_std__pairT_std__string_std__string_t_t[] = {  {&_swigt__p_std__listT_std__pairT_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_std__string_std__string_t[] = {  {&_swigt__p_std__pairT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -53173,6 +73398,8 @@ static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0,
 static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Byte,
@@ -53199,6 +73426,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_FactoryIterator,
   _swigc__p_FilterFunction,
   _swigc__p_GeometryRayTestResult,
+  _swigc__p_IDType,
   _swigc__p_ManagerFactoryIterator,
   _swigc__p_ManagerFactoryMap,
   _swigc__p_MathTools__GeometryRayTestResult,
@@ -53229,8 +73457,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__DirectoryWriteException,
   _swigc__p_Mezzanine__Entity,
   _swigc__p_Mezzanine__EntityComponent,
+  _swigc__p_Mezzanine__EntityComponentID,
   _swigc__p_Mezzanine__EntityComponentManager,
   _swigc__p_Mezzanine__EntityFactory,
+  _swigc__p_Mezzanine__EntityID,
   _swigc__p_Mezzanine__EntityManagementEvent,
   _swigc__p_Mezzanine__EntityManager,
   _swigc__p_Mezzanine__EntityProxy,
@@ -53317,7 +73547,26 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__World,
   _swigc__p_Mezzanine__WorldManager,
   _swigc__p_Mezzanine__WorldManagerFactory,
+  _swigc__p_Mezzanine__XML__Attribute,
+  _swigc__p_Mezzanine__XML__AttributeIterator,
+  _swigc__p_Mezzanine__XML__AttributeStruct,
+  _swigc__p_Mezzanine__XML__Document,
+  _swigc__p_Mezzanine__XML__NamedNodeIterator,
   _swigc__p_Mezzanine__XML__Node,
+  _swigc__p_Mezzanine__XML__NodeIterator,
+  _swigc__p_Mezzanine__XML__NodeStruct,
+  _swigc__p_Mezzanine__XML__NodeText,
+  _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t,
+  _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t,
+  _swigc__p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t,
+  _swigc__p_Mezzanine__XML__ParseResult,
+  _swigc__p_Mezzanine__XML__TreeWalker,
+  _swigc__p_Mezzanine__XML__XPathNode,
+  _swigc__p_Mezzanine__XML__XPathNodeSet,
+  _swigc__p_Mezzanine__XML__XPathParseResult,
+  _swigc__p_Mezzanine__XML__XPathQuery,
+  _swigc__p_Mezzanine__XML__XPathVariable,
+  _swigc__p_Mezzanine__XML__XPathVariableSet,
   _swigc__p_ObjectContainer,
   _swigc__p_ObjectIterator,
   _swigc__p_Ogre__AxisAlignedBox,
@@ -53336,19 +73585,29 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_WorldManagerContainer,
   _swigc__p_WorldManagerIterator,
   _swigc__p_XML__Node,
+  _swigc__p_attribute_iterator,
   _swigc__p_bool,
   _swigc__p_btQuaternion,
   _swigc__p_btTransform,
   _swigc__p_btVector3,
   _swigc__p_char,
+  _swigc__p_difference_type,
   _swigc__p_double,
+  _swigc__p_f_p_void__void,
+  _swigc__p_f_size_t__p_void,
   _swigc__p_float,
   _swigc__p_int,
+  _swigc__p_iterator,
+  _swigc__p_iterator_category,
   _swigc__p_long_long,
+  _swigc__p_ptrdiff_t,
   _swigc__p_short,
   _swigc__p_signed_char,
+  _swigc__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t,
+  _swigc__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t,
   _swigc__p_std__exception,
   _swigc__p_std__functionT_bool_fMezzanine__EntityProxy_pF_t,
+  _swigc__p_std__istream,
   _swigc__p_std__listT_std__pairT_std__string_std__string_t_t,
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__pairT_std__string_std__string_t,
@@ -53367,6 +73626,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_unsigned_long,
   _swigc__p_unsigned_long_long,
   _swigc__p_unsigned_short,
+  _swigc__p_value_type,
+  _swigc__p_wchar_t,
 };
 
 

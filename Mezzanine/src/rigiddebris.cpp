@@ -66,12 +66,12 @@ namespace Mezzanine
         Debris(TheWorld)
         {  }
 
-    RigidDebris::RigidDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld)
+    RigidDebris::RigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateRigidDebris(Mass); }
 
-    RigidDebris::RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
-        Debris(Name,TheWorld)
+    RigidDebris::RigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateRigidDebris(Mass,DebMesh,DebShape); }
 
     RigidDebris::RigidDebris(const XML::Node& SelfRoot, World* TheWorld) :
@@ -182,23 +182,24 @@ namespace Mezzanine
     String RigidDebrisFactory::GetTypeName() const
         { return RigidDebris::GetSerializableName(); }
 
-    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld)
-        { return new RigidDebris(Name,Mass,TheWorld); }
+    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld)
+        { return new RigidDebris(EntID,Mass,TheWorld); }
 
-    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld)
-        { return new RigidDebris(Name,Mass,DebMesh,DebShape,TheWorld); }
+    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld)
+        { return new RigidDebris(EntID,Mass,DebMesh,DebShape,TheWorld); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<RigidDebris*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Entity* RigidDebrisFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* RigidDebrisFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
         NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
-        if( ParamIt != Params.end() )
+        if( ParamIt != Params.end() ) {
             Mass = StringTools::ConvertToReal( (*ParamIt).second );
+        }
 
-        return new RigidDebris(Name,Mass,TheWorld);
+        return new RigidDebris(EntID,Mass,TheWorld);
     }
 
     Entity* RigidDebrisFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)

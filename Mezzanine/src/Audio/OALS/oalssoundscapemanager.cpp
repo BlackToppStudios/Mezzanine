@@ -230,7 +230,7 @@ namespace Mezzanine
             {
                 ALCcontext* ListenerContext = this->CreateContext();
                 OALS::Listener* NewListener = new OALS::Listener(SelfRoot,ListenerContext,this);
-                this->ProxyIDGen.ReserveID(NewListener->GetComponentID());
+                this->ProxyIDGen.ReserveID(NewListener->GetComponentID().ID);
                 this->Listeners.push_back(NewListener);
                 return NewListener;
             }
@@ -434,7 +434,7 @@ namespace Mezzanine
                         if( Parent )
                             Parent->RemoveComponent( (*ListIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                         delete ToBeDestroyed;
                         this->Listeners.erase(ListIt);
                     }
@@ -452,7 +452,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->RemoveComponent( (*ListIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetComponentID() );
+                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetComponentID().ID );
                     delete (*ListIt);
                 }
                 this->Listeners.clear();
@@ -474,7 +474,7 @@ namespace Mezzanine
                         if( Parent )
                             Parent->RemoveComponent( (*ProxIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                         delete ToBeDestroyed;
                         this->Proxies.erase(ProxIt);
                     }
@@ -489,7 +489,7 @@ namespace Mezzanine
                     if( Parent )
                         Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                     delete (*ProxIt);
                 }
                 this->Proxies.clear();

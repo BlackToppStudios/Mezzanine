@@ -73,20 +73,15 @@ namespace Mezzanine
         /// @brief Const Iterator type for Object instances stored by this class.
         typedef ObjectContainer::const_iterator     ConstObjectIterator;
     protected:
-        /// @internal
         /// @brief Container for actors within the field area.
         ObjectContainer OverlappingObjects;
-        /// @internal
         /// @brief Container of actors that have been added since last frame.
         ObjectContainer AddedObjects;
-        /// @internal
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
-        /// @internal
         /// @brief An optional pointer to an object this AreaEffect will follow.
         Entity* SyncTarget;
 
-        /// @internal
         /// @brief Common constructor method for AreaEffect base class.
         /// @param Shape A pointer to the collision shape that will be applied to this object.
         virtual void CreateAreaEffect(Physics::CollisionShape* Shape);
@@ -95,17 +90,17 @@ namespace Mezzanine
         virtual void DestroyAreaEffect();
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
         AreaEffect(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        AreaEffect(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the AreaEffect.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
+        AreaEffect(const EntityID& EntID, World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Shape A pointer to the collision shape that will be applied to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
+        /// @param EntID The unique ID of the AreaEffect.
+        /// @param Shape A pointer to the collision shape that will be applied to this AreaEffect.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
+        AreaEffect(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief Class destructor.
         virtual ~AreaEffect();
 

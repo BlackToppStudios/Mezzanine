@@ -54,7 +54,7 @@
 namespace Mezzanine
 {
     Actor::Actor() :
-        Entity("",NULL)
+        Entity(nullptr)
         {  }
 
     Actor::~Actor()

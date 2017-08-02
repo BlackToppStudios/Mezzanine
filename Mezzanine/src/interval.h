@@ -48,7 +48,6 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Interval
     /// @brief This class will generate keep track of a pool of unique 32-bit ID's that can be used for distinct object instances.
     ///////////////////////////////////////
     template<class NumType>
@@ -61,9 +60,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
-        /// @brief The lower numeric boundry of the interval.
+        /// @brief The lower numeric boundary of the interval.
         NumType LowerBound;
-        /// @brief The upper numeric boundry of the interval.
+        /// @brief The upper numeric boundary of the interval.
         NumType UpperBound;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -81,22 +80,21 @@ namespace Mezzanine
             UpperBound(Other.UpperBound)
             {  }
         /// @brief Descriptive constructor.
-        /// @param Lower The lower numeric boundry of the interval.
-        /// @param Upper The upper numeric boundry of the interval.
+        /// @param Lower The lower numeric boundary of the interval.
+        /// @param Upper The upper numeric boundary of the interval.
         Interval(const NumType& Lower, const NumType& Upper) :
             LowerBound(Lower),
             UpperBound(Upper)
             {  }
         /// @brief Class destructor.
-        ~Interval()
-            {  }
+        ~Interval() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         /// @brief Sets both values of this Interval.
-        /// @param Lower The lower numeric boundry of the interval.
-        /// @param Upper The upper numeric boundry of the interval.
+        /// @param Lower The lower numeric boundary of the interval.
+        /// @param Upper The upper numeric boundary of the interval.
         void SetBounds(const NumType& Lower, const NumType& Upper)
         {
             this->LowerBound = Lower;
@@ -109,26 +107,26 @@ namespace Mezzanine
         Boole IsWithinBounds(const NumType& Num) const
             { return this->LowerBound <= Num && this->UpperBound >= Num; }
 
-        /// @brief Gets the lower boundry of this Interval.
-        /// @return Returns a reference to the lower boundry of this Interval.
+        /// @brief Gets the lower boundary of this Interval.
+        /// @return Returns a reference to the lower boundary of this Interval.
         NumType& GetLowerBound()
             { return this->LowerBound; }
-        /// @brief Gets the lower boundry of this Interval.
-        /// @return Returns a const reference to the lower boundry of this Interval.
+        /// @brief Gets the lower boundary of this Interval.
+        /// @return Returns a const reference to the lower boundary of this Interval.
         const NumType& GetLowerBound() const
             { return this->LowerBound; }
-        /// @brief Gets the upper boundry of this Interval.
-        /// @return Returns a reference to the upper boundry of this Interval.
+        /// @brief Gets the upper boundary of this Interval.
+        /// @return Returns a reference to the upper boundary of this Interval.
         NumType& GetUpperBound()
             { return this->UpperBound; }
-        /// @brief Gets the upper boundry of this Interval.
-        /// @return Returns a const reference to the upper boundry of this Interval.
+        /// @brief Gets the upper boundary of this Interval.
+        /// @return Returns a const reference to the upper boundary of this Interval.
         const NumType& GetUpperBound() const
             { return this->UpperBound; }
 
         /// @brief Gets the numeric distance between the lower and upper bounds of this interval.
         /// @return Returns a NumType representing the difference between both bounds of this interval.
-        NumType GetIntervalSize() const
+        NumType GetSize() const
             { return this->UpperBound - this->LowerBound; }
 
         ///////////////////////////////////////////////////////////////////////////////

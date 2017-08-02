@@ -13,8 +13,8 @@ StartArea::StartArea(World* TheWorld) :
     LevelZone(TheWorld)
     { CatchApp::GetCatchAppPointer()->RegisterStartArea(this); }
 
-StartArea::StartArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize) :
-    LevelZone(Name,TheWorld,HalfAreaSize)
+StartArea::StartArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize) :
+    LevelZone(EntID,TheWorld,HalfAreaSize)
     { this->CreateStartArea(HalfAreaSize); }
 
 StartArea::StartArea(const XML::Node& SelfRoot, World* TheWorld) :
@@ -167,13 +167,13 @@ StartAreaFactory::~StartAreaFactory()
 String StartAreaFactory::GetTypeName() const
     { return StartArea::GetSerializableName(); }
 
-StartArea* StartAreaFactory::CreateStartArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize)
-    { return new StartArea(Name,TheWorld,HalfAreaSize); }
+StartArea* StartAreaFactory::CreateStartArea(const EntityID& EntID, World* TheWorld, const Vector3& HalfAreaSize)
+    { return new StartArea(EntID,TheWorld,HalfAreaSize); }
 
 StartArea* StartAreaFactory::CreateStartArea(const XML::Node& XMLNode, World* TheWorld)
     { return static_cast<StartArea*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-Entity* StartAreaFactory::CreateEntity(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+Entity* StartAreaFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
 {
     Vector3 HalfSize;
     NameValuePairMap::const_iterator ParamIt;
@@ -189,7 +189,7 @@ Entity* StartAreaFactory::CreateEntity(const String& Name, World* TheWorld, cons
     if( ParamIt != Params.end() )
         HalfSize.Z = StringTools::ConvertToReal( (*ParamIt).second );
 
-    return new StartArea(Name,TheWorld,HalfSize);
+    return new StartArea(EntID,TheWorld,HalfSize);
 }
 
 Entity* StartAreaFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
