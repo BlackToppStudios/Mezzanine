@@ -57,8 +57,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a common class to represent all possible arguments for a given event that is fired.
     ///////////////////////////////////////
-	class MEZZ_LIB Event
-	{
+    class MEZZ_LIB Event
+    {
     public:
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -76,10 +76,10 @@ namespace Mezzanine
             {  }
         /// @brief Class destructor.
         virtual ~Event() = default;
-	};//Event
+    };//Event
 
-	/// @brief Convenience type for passing around Events.
-	using EventPtr = std::shared_ptr<Event>;
+    /// @brief Convenience type for passing around Events.
+    using EventPtr = std::shared_ptr<Event>;
 
     /// @}
 }//Mezzanine

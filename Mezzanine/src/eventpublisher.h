@@ -145,11 +145,11 @@ namespace Mezzanine
     ///       and process the Events later, instead of trying to process them immediately.  It's far to easy to create
     ///       stalls and/or race conditions otherwise.
 
-	///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     ///////////////////////////////////////
-	class MEZZ_LIB EventPublisher
-	{
+    class MEZZ_LIB EventPublisher
+    {
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = EventSubscriptionTable::CallbackType;
@@ -317,7 +317,7 @@ namespace Mezzanine
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
-	};//EventPublisher
+    };//EventPublisher
 
     /// @}
 }//Mezzanine

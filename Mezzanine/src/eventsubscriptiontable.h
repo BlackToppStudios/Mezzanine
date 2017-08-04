@@ -51,8 +51,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
-	class MEZZ_LIB EventSubscriptionTable
-	{
+    class MEZZ_LIB EventSubscriptionTable
+    {
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = EventSubscriberBinding::CallbackType;
@@ -134,7 +134,7 @@ namespace Mezzanine
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
         void DispatchEvent(EventPtr Args) const;
-	};//EventSubscriptionTable
+    };//EventSubscriptionTable
 
     /// @}
 }//Mezzanine

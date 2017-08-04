@@ -130,8 +130,8 @@ namespace Mezzanine
         void DispatchEvent(EventPtr Args) const;
     };//EventSubscriberBinding
 
-	/// @brief Convenience type for passing around EventSubscriberBindings.
-	using EventSubscriberBindingPtr = std::shared_ptr<EventSubscriberBinding>;
+    /// @brief Convenience type for passing around EventSubscriberBindings.
+    using EventSubscriberBindingPtr = std::shared_ptr<EventSubscriberBinding>;
 
     /// @}
 }//Mezzanine
