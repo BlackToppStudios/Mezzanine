@@ -206,10 +206,10 @@ namespace Mezzanine
         void DispatchEvent(EventPtr Args) const;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Table Management
+        // Subscription Table Management - Via Name
 
         /// @brief Creates a new event table representing an event that can be subscribed to.
-        /// @exception If a subscription table with that name already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @exception If a subscription table with the names hash already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventName The name to be given to the new event subscription table.
         /// @return Returns an iterator to the created event table.
         SubscriptionTableIterator AddSubscriptionTable(const EventNameType& EventName);
@@ -217,43 +217,57 @@ namespace Mezzanine
         /// @param EventName The name of the table to check for.
         /// @return Returns true of the named event table is present in this publisher.
         Boole HasSubscriptionTable(const EventNameType& EventName) const;
-        /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
-        /// @remarks The EventNameType overload of this method should be used instead where possible.
-        /// @param EventHash The generated hash for the table name to check for.
-        /// @return Returns true of the named event table is present in this publisher.
-        Boole HasSubscriptionTable(const Int32 EventHash) const;
-
         /// @brief Gets an event table in this publisher.
         /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the table to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
         SubscriptionTableIterator GetSubscriptionTable(const EventNameType& EventName);
         /// @brief Gets an event table in this publisher.
-        /// @remarks The EventNameType overload of this method should be used instead where possible.
-        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
-        /// @param EventHash The generated hash for the event name to retrieve.
-        /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
-        SubscriptionTableIterator GetSubscriptionTable(const Int32 EventHash);
-        /// @brief Gets an event table in this publisher.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
         ConstSubscriptionTableIterator GetSubscriptionTable(const EventNameType& EventName) const;
+        /// @brief Removes an existing event in this Publisher.
+        /// @param EventName The name of the event to be removed.
+        void RemoveSubscriptionTable(const EventNameType& EventName);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Table Management - Via Hash
+
+        /// @brief Creates a new event table representing an event that can be subscribed to.
+        /// @exception If a subscription table with the names hash already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @param EventName The generated hash to use to identify the new event subscription table.
+        /// @return Returns an iterator to the created event table.
+        SubscriptionTableIterator AddSubscriptionTable(const EventHashType EventHash);
+        /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
+        /// @remarks The EventNameType overload of this method should be used instead where possible.
+        /// @param EventHash The generated hash for the table name to check for.
+        /// @return Returns true of the named event table is present in this publisher.
+        Boole HasSubscriptionTable(const EventHashType EventHash) const;
+        /// @brief Gets an event table in this publisher.
+        /// @remarks The EventNameType overload of this method should be used instead where possible.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash for the event name to retrieve.
+        /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
+        SubscriptionTableIterator GetSubscriptionTable(const EventHashType EventHash);
         /// @brief Gets an event table in this publisher.
         /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash for the event name to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
-        ConstSubscriptionTableIterator GetSubscriptionTable(const Int32 EventHash) const;
-
+        ConstSubscriptionTableIterator GetSubscriptionTable(const EventHashType EventHash) const;
         /// @brief Removes an existing event in this Publisher.
-        /// @param EventName The name of the event to be removed.
-        void RemoveSubscriptionTable(const EventNameType& EventName);
+        /// @param EventHash The generated hash for the event name to remove.
+        void RemoveSubscriptionTable(const EventHashType EventHash);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Table Management
+
         /// @brief Removes all events in this Publisher.
         void RemoveAllSubscriptionTables();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
+        // Subscription Management - Via Name
 
         /// @brief Adds a subscriber to this event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
@@ -261,22 +275,45 @@ namespace Mezzanine
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(const EventNameType& EventName, EventSubscriberID ID, const CallbackType& Delegate);
-
+        EventSubscriberBindingPtr Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const CallbackType& Delegate);
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const EventNameType& EventName, EventSubscriberID ID);
+        void Unsubscribe(const EventNameType& EventName, const EventSubscriberID ID);
         /// @brief Removes all subscribers from the named Event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll(const EventNameType& EventName);
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management - Via Hash
+
+        /// @brief Adds a subscriber to this event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash identifying the event to subscribe to.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        /// @param Delegate The callback to be called when the interested event is fired.
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberBindingPtr Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const CallbackType& Delegate);
+        /// @brief Removes a single subscriber from the named event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash identifying the event to unsubscribe from.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        void Unsubscribe(const EventHashType EventHash, const EventSubscriberID ID);
+        /// @brief Removes all subscribers from the named Event.
+        /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventHash The generated hash identifying the event to unsubscribe from.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll(const EventHashType EventHash);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
         /// @brief Removes a single subscriber from all events in this publisher.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(EventSubscriberID ID);
+        void Unsubscribe(const EventSubscriberID ID);
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();

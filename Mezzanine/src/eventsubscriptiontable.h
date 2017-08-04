@@ -65,8 +65,8 @@ namespace Mezzanine
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
         BindingContainer Bindings;
-        /// @brief The name of the Event the subscribers in this table are subscribed to.
-        EventNameType EventName;
+        /// @brief The hash of the Event the subscribers in this table are subscribed to.
+        EventHashType EventHash;
     public:
         /// @brief Blank constructor.
         EventSubscriptionTable() = delete;
@@ -77,8 +77,8 @@ namespace Mezzanine
         /// @param Other The other table to be moved.
         EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
         /// @brief Class constructor.
-        /// @param Name The name to be given to this event.
-        EventSubscriptionTable(const EventNameType& Name);
+        /// @param Hash The generated hash to use to identify this event.
+        EventSubscriptionTable(const EventHashType Hash);
         /// @brief Class destructor.
         ~EventSubscriptionTable();
 
@@ -102,9 +102,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the name of the event associated with this table.
-        /// @return Returns a const reference of a hashed string containing the name of this event.
-        const EventNameType& GetName() const;
+        /// @brief Gets the hash of the event associated with this table.
+        /// @return Returns the hash identifying this event.
+        EventHashType GetHash() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscription Management
