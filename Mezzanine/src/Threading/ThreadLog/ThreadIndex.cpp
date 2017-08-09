@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -38,25 +38,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#include "AggregatedLogEntry.h"
+#include "ThreadIndex.h"
 
-AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
-                                       const char* StartingWhat,
-                                       Clock::time_point&& StartingWhen)
-    : Where{StartingWhere}, When{StartingWhen}, What{StartingWhat}
-{}
+namespace Mezzanine { namespace Threading {
 
-AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
-                                       const SingleThreadLogEntry& OtherLog)
-    : Where{StartingWhere}, When{OtherLog.When}, What{OtherLog.What}
-{}
+    ThreadIndex& ThreadIndex::operator++()
+    {
+        Index++;
+        return *this;
+    }
 
-bool operator<(const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand)
-{
-    return LeftHand.When < RightHand.When;
-}
+    ThreadIndex ThreadIndex::operator+(const ThreadIndex::InternalType& Increment) const
+    {
+        /// @todo Add bounds checking to ThreadIndex::operator+. This is not used internally and not part of any planned
+        /// workflow so it shouldn't need strong optimization.
+        return ThreadIndex{Index + Increment};
+    }
 
-std::ostream& operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream)
-{
-    return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.Where << ' ' << ToStream.What;
-}
+    ThreadIndex::InternalType ThreadIndex::AsRaw() const
+    {
+        return Index;
+    }
+
+    bool operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
+    {
+        return LeftHand.Index == RightHand.Index;
+    }
+
+    std::ostream& operator<< (std::ostream& OutputStream, const ThreadIndex& OneThreadIndex)
+    {
+        return OutputStream << "Thread Index: " << OneThreadIndex.Index;
+    }
+
+    bool operator <(const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
+    {
+        return LeftHand.Index < RightHand.Index;
+    }
+} }

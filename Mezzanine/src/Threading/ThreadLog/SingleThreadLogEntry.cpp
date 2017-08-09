@@ -39,6 +39,7 @@
    John Blackwood - makoenergy02@gmail.com
 */
 #include "SingleThreadLogEntry.h"
+namespace Mezzanine { namespace Threading {
 
 SingleThreadLogEntry::SingleThreadLogEntry(const char* StartingWhat, Clock::time_point&& StartingWhen)
     : When{StartingWhen}, What{StartingWhat}
@@ -53,3 +54,5 @@ std::ostream& operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStr
 {
     return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.What;
 }
+
+} }
