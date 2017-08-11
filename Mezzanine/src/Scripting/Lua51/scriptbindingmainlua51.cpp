@@ -36814,6 +36814,76 @@ fail:
 }
 
 
+static int _wrap_EntityComponent_Activate(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponent::Activate",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponent::Activate",1,"Mezzanine::EntityComponent *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponent,0))){
+    SWIG_fail_ptr("EntityComponent_Activate",1,SWIGTYPE_p_Mezzanine__EntityComponent);
+  }
+  
+  (arg1)->Activate();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponent_Deactivate(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponent::Deactivate",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponent::Deactivate",1,"Mezzanine::EntityComponent *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponent,0))){
+    SWIG_fail_ptr("EntityComponent_Deactivate",1,SWIGTYPE_p_Mezzanine__EntityComponent);
+  }
+  
+  (arg1)->Deactivate();
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_EntityComponent_IsActivated(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::EntityComponent::IsActivated",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityComponent::IsActivated",1,"Mezzanine::EntityComponent const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityComponent,0))){
+    SWIG_fail_ptr("EntityComponent_IsActivated",1,SWIGTYPE_p_Mezzanine__EntityComponent);
+  }
+  
+  result = (Mezzanine::Boole)((Mezzanine::EntityComponent const *)arg1)->IsActivated();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_EntityComponent_GetParentEntity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityComponent *arg1 = (Mezzanine::EntityComponent *) 0 ;
@@ -37089,6 +37159,9 @@ static swig_lua_attribute swig_EntityComponent_attributes[] = {
 };
 static swig_lua_method swig_EntityComponent_methods[]= {
     { "GetComponentType", _wrap_EntityComponent_GetComponentType},
+    { "Activate", _wrap_EntityComponent_Activate},
+    { "Deactivate", _wrap_EntityComponent_Deactivate},
+    { "IsActivated", _wrap_EntityComponent_IsActivated},
     { "GetParentEntity", _wrap_EntityComponent_GetParentEntity},
     { "GetComponentID", _wrap_EntityComponent_GetComponentID},
     { "GetCreator", _wrap_EntityComponent_GetCreator},
@@ -37129,76 +37202,6 @@ static swig_lua_namespace swig_EntityComponent_Sf_SwigStatic = {
 static swig_lua_class *swig_EntityComponent_bases[] = {0};
 static const char *swig_EntityComponent_base_names[] = {0};
 static swig_lua_class _wrap_class_EntityComponent = { "EntityComponent", "EntityComponent", &SWIGTYPE_p_Mezzanine__EntityComponent,0, swig_delete_EntityComponent, swig_EntityComponent_methods, swig_EntityComponent_attributes, &swig_EntityComponent_Sf_SwigStatic, swig_EntityComponent_meta, swig_EntityComponent_bases, swig_EntityComponent_base_names };
-
-static int _wrap_EntityProxy_AddToWorld(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::EntityProxy *arg1 = (Mezzanine::EntityProxy *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::EntityProxy::AddToWorld",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::AddToWorld",1,"Mezzanine::EntityProxy *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityProxy,0))){
-    SWIG_fail_ptr("EntityProxy_AddToWorld",1,SWIGTYPE_p_Mezzanine__EntityProxy);
-  }
-  
-  (arg1)->AddToWorld();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_EntityProxy_RemoveFromWorld(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::EntityProxy *arg1 = (Mezzanine::EntityProxy *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::EntityProxy::RemoveFromWorld",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::RemoveFromWorld",1,"Mezzanine::EntityProxy *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityProxy,0))){
-    SWIG_fail_ptr("EntityProxy_RemoveFromWorld",1,SWIGTYPE_p_Mezzanine__EntityProxy);
-  }
-  
-  (arg1)->RemoveFromWorld();
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_EntityProxy_IsInWorld(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::EntityProxy *arg1 = (Mezzanine::EntityProxy *) 0 ;
-  Mezzanine::Boole result;
-  
-  SWIG_check_num_args("Mezzanine::EntityProxy::IsInWorld",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::IsInWorld",1,"Mezzanine::EntityProxy const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityProxy,0))){
-    SWIG_fail_ptr("EntityProxy_IsInWorld",1,SWIGTYPE_p_Mezzanine__EntityProxy);
-  }
-  
-  result = (Mezzanine::Boole)((Mezzanine::EntityProxy const *)arg1)->IsInWorld();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
 
 static int _wrap_EntityProxy_IsStatic(lua_State* L) {
   int SWIG_arg = 0;
@@ -38376,25 +38379,25 @@ fail:
 }
 
 
-static int _wrap_EntityProxy_ProtoSerializeInWorld(lua_State* L) {
+static int _wrap_EntityProxy_ProtoSerializeIsActivated(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityProxy *arg1 = (Mezzanine::EntityProxy *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityProxy::ProtoSerializeInWorld",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoSerializeInWorld",1,"Mezzanine::EntityProxy const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoSerializeInWorld",2,"Mezzanine::XML::Node &");
+  SWIG_check_num_args("Mezzanine::EntityProxy::ProtoSerializeIsActivated",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoSerializeIsActivated",1,"Mezzanine::EntityProxy const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoSerializeIsActivated",2,"Mezzanine::XML::Node &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityProxy,0))){
-    SWIG_fail_ptr("EntityProxy_ProtoSerializeInWorld",1,SWIGTYPE_p_Mezzanine__EntityProxy);
+    SWIG_fail_ptr("EntityProxy_ProtoSerializeIsActivated",1,SWIGTYPE_p_Mezzanine__EntityProxy);
   }
   
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
-    SWIG_fail_ptr("EntityProxy_ProtoSerializeInWorld",2,SWIGTYPE_p_Mezzanine__XML__Node);
+    SWIG_fail_ptr("EntityProxy_ProtoSerializeIsActivated",2,SWIGTYPE_p_Mezzanine__XML__Node);
   }
   
-  ((Mezzanine::EntityProxy const *)arg1)->ProtoSerializeInWorld(*arg2);
+  ((Mezzanine::EntityProxy const *)arg1)->ProtoSerializeIsActivated(*arg2);
   
   return SWIG_arg;
   
@@ -38466,25 +38469,25 @@ fail:
 }
 
 
-static int _wrap_EntityProxy_ProtoDeSerializeInWorld(lua_State* L) {
+static int _wrap_EntityProxy_ProtoDeSerializeIsActivated(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EntityProxy *arg1 = (Mezzanine::EntityProxy *) 0 ;
   Mezzanine::XML::Node *arg2 = 0 ;
   
-  SWIG_check_num_args("Mezzanine::EntityProxy::ProtoDeSerializeInWorld",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoDeSerializeInWorld",1,"Mezzanine::EntityProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoDeSerializeInWorld",2,"Mezzanine::XML::Node const &");
+  SWIG_check_num_args("Mezzanine::EntityProxy::ProtoDeSerializeIsActivated",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoDeSerializeIsActivated",1,"Mezzanine::EntityProxy *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EntityProxy::ProtoDeSerializeIsActivated",2,"Mezzanine::XML::Node const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EntityProxy,0))){
-    SWIG_fail_ptr("EntityProxy_ProtoDeSerializeInWorld",1,SWIGTYPE_p_Mezzanine__EntityProxy);
+    SWIG_fail_ptr("EntityProxy_ProtoDeSerializeIsActivated",1,SWIGTYPE_p_Mezzanine__EntityProxy);
   }
   
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
-    SWIG_fail_ptr("EntityProxy_ProtoDeSerializeInWorld",2,SWIGTYPE_p_Mezzanine__XML__Node);
+    SWIG_fail_ptr("EntityProxy_ProtoDeSerializeIsActivated",2,SWIGTYPE_p_Mezzanine__XML__Node);
   }
   
-  (arg1)->ProtoDeSerializeInWorld((Mezzanine::XML::Node const &)*arg2);
+  (arg1)->ProtoDeSerializeIsActivated((Mezzanine::XML::Node const &)*arg2);
   
   return SWIG_arg;
   
@@ -38575,9 +38578,6 @@ static swig_lua_attribute swig_EntityProxy_attributes[] = {
     {0,0,0}
 };
 static swig_lua_method swig_EntityProxy_methods[]= {
-    { "AddToWorld", _wrap_EntityProxy_AddToWorld},
-    { "RemoveFromWorld", _wrap_EntityProxy_RemoveFromWorld},
-    { "IsInWorld", _wrap_EntityProxy_IsInWorld},
     { "IsStatic", _wrap_EntityProxy_IsStatic},
     { "SetTransform", _wrap_EntityProxy_SetTransform},
     { "GetTransform", _wrap_EntityProxy_GetTransform},
@@ -38594,10 +38594,10 @@ static swig_lua_method swig_EntityProxy_methods[]= {
     { "Rotate", _wrap_EntityProxy_Rotate},
     { "Scale", _wrap_EntityProxy_Scale},
     { "ProtoSerialize", _wrap_EntityProxy_ProtoSerialize},
-    { "ProtoSerializeInWorld", _wrap_EntityProxy_ProtoSerializeInWorld},
+    { "ProtoSerializeIsActivated", _wrap_EntityProxy_ProtoSerializeIsActivated},
     { "ProtoSerializeProperties", _wrap_EntityProxy_ProtoSerializeProperties},
     { "ProtoDeSerialize", _wrap_EntityProxy_ProtoDeSerialize},
-    { "ProtoDeSerializeInWorld", _wrap_EntityProxy_ProtoDeSerializeInWorld},
+    { "ProtoDeSerializeIsActivated", _wrap_EntityProxy_ProtoDeSerializeIsActivated},
     { "ProtoDeSerializeProperties", _wrap_EntityProxy_ProtoDeSerializeProperties},
     { "GetDerivedSerializableName", _wrap_EntityProxy_GetDerivedSerializableName},
     {0,0}
