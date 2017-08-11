@@ -24,7 +24,7 @@ bool BNS_Fan::ConditionsAreMet()
         return true;
     }else{
         this->TrigMotor->EnableMotor(false,0.0,0.0);
-        this->TrigWindClutter->RemoveFromWorld();
+        this->TrigWindClutter->Deactivate();
         this->TrigWind->SetFieldStrength(0);
         return false;
     }
@@ -37,7 +37,7 @@ void BNS_Fan::ApplyTrigger()
     // So we have to multiply the rotation by ~12 to get the proper force we want to apply for the motor.
     Real FieldStrength = (-RotationSpeed) * 12.0;
     this->TrigWind->SetFieldStrength(FieldStrength);
-    if(FieldStrength > 60.0) this->TrigWindClutter->AddToWorld();
+    if(FieldStrength > 60.0) this->TrigWindClutter->Activate();
 }
 
 Roll_Roll::Roll_Roll(const String& name, std::vector<Physics::HingeConstraint*>& TheRollers) :

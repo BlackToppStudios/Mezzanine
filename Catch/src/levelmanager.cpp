@@ -557,7 +557,7 @@ void LoadBlowsNotSucks()
     WindParticle->GetEmitter(0)->SetCustomParam("position","0 -60.0 0");
     WindParticle->SetLocation(5,40,7.5);
     WindParticle->SetOrientation(FanWindOrientation);
-    WindParticle->AddToWorld();// */
+    WindParticle->Activate();// */
 
     // Create the trigger for the fan
     BNS_Fan* FanTrigger = new BNS_Fan("FanTigger",FanToBody,ButtonToBody,Fan,FanWind,WindParticle);
