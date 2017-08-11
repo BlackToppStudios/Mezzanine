@@ -171,206 +171,206 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc EntityProxy::GetComponentType() const
-                virtual Mezzanine::ComponentType GetComponentType() const;
+                virtual Mezzanine::ComponentType GetComponentType() const override;
 
                 /// @copydoc iSound::IsValid() const
-                virtual Boole IsValid() const;
+                virtual Boole IsValid() const override;
                 /// @copydoc iSound::GetType() const
-                virtual UInt16 GetType() const;
+                virtual UInt16 GetType() const override;
                 /// @copydoc iSound::GetDecoder() const
-                virtual iDecoder* GetDecoder() const;
+                virtual iDecoder* GetDecoder() const override;
 
                 /// @copydoc iSound::SetPitch(const Real)
-                virtual void SetPitch(const Real Pitch);
+                virtual void SetPitch(const Real Pitch) override;
                 /// @copydoc iSound::GetPitch() const
-                virtual Real GetPitch() const;
+                virtual Real GetPitch() const override;
                 /// @copydoc iSound::SetStream(DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode);
+                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode) override;
                 /// @copydoc iSound::SetStream(const UInt16, DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
+                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) override;
                 /// @copydoc iSound::SetStream(iDecoder*)
-                virtual void SetStream(iDecoder* Decode);
+                virtual void SetStream(iDecoder* Decode) override;
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)
-                virtual void SetStream(const UInt16 Type, iDecoder* Decode);
+                virtual void SetStream(const UInt16 Type, iDecoder* Decode) override;
 
                 /// @copydoc Audio::SoundProxy::SetDirectSound(Boole)
-                virtual void SetDirectSound(Boole Enable);
+                virtual void SetDirectSound(Boole Enable) override;
                 /// @copydoc Audio::SoundProxy::IsDirectingSound() const
-                virtual Boole IsDirectingSound() const;
+                virtual Boole IsDirectingSound() const override;
 
-                /// @copydoc Audio::SoundProxy::AddToWorld()
-                virtual void AddToWorld();
-                /// @copydoc Audio::SoundProxy::RemoveFromWorld()
-                virtual void RemoveFromWorld();
+                /// @copydoc Audio::SoundProxy::Activate()
+                virtual void Activate() override;
+                /// @copydoc Audio::SoundProxy::Deactivate()
+                virtual void Deactivate() override;
 
-                /// @copydoc EntityProxy::IsInWorld()
-                virtual Boole IsInWorld() const;
+                /// @copydoc EntityProxy::IsActivated()
+                virtual Boole IsActivated() const override;
                 /// @copydoc EntityProxy::IsStatic() const
-                virtual Boole IsStatic() const;
+                virtual Boole IsStatic() const override;
 
                 /// @copydoc EntityComponent::GetCreator() const
-                virtual EntityComponentManager* GetCreator() const;
+                virtual EntityComponentManager* GetCreator() const override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback
 
                 /// @copydoc iSound::Play()
-                virtual Boole Play();
+                virtual Boole Play() override;
                 /// @copydoc iSound::IsPlaying() const
-                virtual Boole IsPlaying() const;
+                virtual Boole IsPlaying() const override;
                 /// @copydoc iSound::Pause()
-                virtual void Pause();
+                virtual void Pause() override;
                 /// @copydoc iSound::IsPaused() const
-                virtual Boole IsPaused() const;
+                virtual Boole IsPaused() const override;
                 /// @copydoc iSound::Stop()
-                virtual void Stop();
+                virtual void Stop() override;
                 /// @copydoc iSound::IsStopped() const
-                virtual Boole IsStopped() const;
+                virtual Boole IsStopped() const override;
                 /// @copydoc iSound::Loop(Boole ToLoop)
-                virtual void Loop(Boole ToLoop);
+                virtual void Loop(Boole ToLoop) override;
                 /// @copydoc iSound::IsLooping() const
-                virtual Boole IsLooping() const;
+                virtual Boole IsLooping() const override;
 
                 /// @copydoc iSound::Seek(const Real, Boole)
-                virtual Boole Seek(const Real Seconds, Boole Relative = false);
+                virtual Boole Seek(const Real Seconds, Boole Relative = false) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Control
 
                 /// @copydoc iSound::GetVolume() const
-                virtual Real GetVolume() const;
+                virtual Real GetVolume() const override;
                 /// @copydoc iSound::SetBaseVolume(const Real)
-                virtual void SetBaseVolume(const Real Base);
+                virtual void SetBaseVolume(const Real Base) override;
                 /// @copydoc iSound::GetBaseVolume() const
-                virtual Real GetBaseVolume() const;
+                virtual Real GetBaseVolume() const override;
                 /// @copydoc iSound::SetMinVolume(const Real)
-                virtual void SetMinVolume(const Real MinVol);
+                virtual void SetMinVolume(const Real MinVol) override;
                 /// @copydoc iSound::GetMinVolume() const
-                virtual Real GetMinVolume() const;
+                virtual Real GetMinVolume() const override;
                 /// @copydoc iSound::SetMaxVolume(const Real)
-                virtual void SetMaxVolume(const Real MaxVol);
+                virtual void SetMaxVolume(const Real MaxVol) override;
                 /// @copydoc iSound::GetMaxVolume() const
-                virtual Real GetMaxVolume() const;
+                virtual Real GetMaxVolume() const override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // 3 Dimensional Configuration
 
                 /// @copydoc Audio::SoundProxy::SetRolloffFactor(const Real&)
-                virtual void SetRolloffFactor(const Real& Rolloff);
+                virtual void SetRolloffFactor(const Real& Rolloff) override;
                 /// @copydoc Audio::SoundProxy::GetRolloffFactor() const
-                virtual Real GetRolloffFactor() const;
+                virtual Real GetRolloffFactor() const override;
                 /// @copydoc Audio::SoundProxy::SetMinDistance(const Real&)
-                virtual void SetMinDistance(const Real& MinDistance);
+                virtual void SetMinDistance(const Real& MinDistance) override;
                 /// @copydoc Audio::SoundProxy::GetMinDistance() const
-                virtual Real GetMinDistance() const;
+                virtual Real GetMinDistance() const override;
                 /// @copydoc Audio::SoundProxy::SetMaxDistance(const Real&)
-                virtual void SetMaxDistance(const Real& MaxDistance);
+                virtual void SetMaxDistance(const Real& MaxDistance) override;
                 /// @copydoc Audio::SoundProxy::GetMaxDistance() const
-                virtual Real GetMaxDistance() const;
+                virtual Real GetMaxDistance() const override;
                 /// @copydoc Audio::SoundProxy::SetInnerConeAngle(const Real&)
-                virtual void SetInnerConeAngle(const Real& InnerAngle);
+                virtual void SetInnerConeAngle(const Real& InnerAngle) override;
                 /// @copydoc Audio::SoundProxy::GetInnerConeAngle() const
-                virtual Real GetInnerConeAngle() const;
+                virtual Real GetInnerConeAngle() const override;
                 /// @copydoc Audio::SoundProxy::SetOuterConeAngle(const Real&)
-                virtual void SetOuterConeAngle(const Real& OuterAngle);
+                virtual void SetOuterConeAngle(const Real& OuterAngle) override;
                 /// @copydoc Audio::SoundProxy::GetOuterConeAngle() const
-                virtual Real GetOuterConeAngle() const;
+                virtual Real GetOuterConeAngle() const override;
                 /// @copydoc Audio::SoundProxy::SetOuterConeVolume(const Real&)
-                virtual void SetOuterConeVolume(const Real& OuterVolume);
+                virtual void SetOuterConeVolume(const Real& OuterVolume) override;
                 /// @copydoc Audio::SoundProxy::GetOuterConeVolume() const
-                virtual Real GetOuterConeVolume() const;
+                virtual Real GetOuterConeVolume() const override;
                 /// @copydoc Audio::SoundProxy::SetDopplerStrength(const Real&)
-                virtual void SetDopplerStrength(const Real& DopStr);
+                virtual void SetDopplerStrength(const Real& DopStr) override;
                 /// @copydoc Audio::SoundProxy::GetDopplerStrength() const
-                virtual Real GetDopplerStrength() const;
+                virtual Real GetDopplerStrength() const override;
                 /// @copydoc Audio::SoundProxy::SetDopplerVelocity(const Vector3&)
-                virtual void SetDopplerVelocity(const Vector3& DopVel);
+                virtual void SetDopplerVelocity(const Vector3& DopVel) override;
                 /// @copydoc Audio::SoundProxy::GetDopplerVelocity() const
-                virtual Vector3 GetDopplerVelocity() const;
+                virtual Vector3 GetDopplerVelocity() const override;
                 /// @copydoc Audio::SoundProxy::SetVelocity(const Vector3&)
-                virtual void SetVelocity(const Vector3& Vel);
+                virtual void SetVelocity(const Vector3& Vel) override;
                 /// @copydoc Audio::SoundProxy::GetVelocity() const
-                virtual Vector3 GetVelocity() const;
+                virtual Vector3 GetVelocity() const override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
                 /// @copydoc EntityProxy::SetTransform(const Transform&)
-                virtual void SetTransform(const Transform& Trans);
+                virtual void SetTransform(const Transform& Trans) override;
                 /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
-                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) override;
                 /// @copydoc EntityProxy::GetTransform() const
-                virtual Transform GetTransform() const;
+                virtual Transform GetTransform() const override;
 
                 /// @copydoc EntityProxy::SetLocation(const Vector3&)
-                virtual void SetLocation(const Vector3& Loc);
+                virtual void SetLocation(const Vector3& Loc) override;
                 /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
-                virtual void SetLocation(const Real X, const Real Y, const Real Z);
+                virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
                 /// @copydoc EntityProxy::GetLocation() const
-                virtual Vector3 GetLocation() const;
+                virtual Vector3 GetLocation() const override;
                 /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
-                virtual void SetOrientation(const Quaternion& Ori);
+                virtual void SetOrientation(const Quaternion& Ori) override;
                 /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
-                virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+                virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
                 /// @copydoc EntityProxy::GetOrientation() const
-                virtual Quaternion GetOrientation() const;
+                virtual Quaternion GetOrientation() const override;
                 /// @copydoc EntityProxy::SetScale(const Vector3&)
-                virtual void SetScale(const Vector3& Sc);
+                virtual void SetScale(const Vector3& Sc) override;
                 /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
-                virtual void SetScale(const Real X, const Real Y, const Real Z);
+                virtual void SetScale(const Real X, const Real Y, const Real Z) override;
                 /// @copydoc EntityProxy::GetScale() const
-                virtual Vector3 GetScale() const;
+                virtual Vector3 GetScale() const override;
 
                 /// @copydoc EntityProxy::Translate(const Vector3&)
-                virtual void Translate(const Vector3& Trans);
+                virtual void Translate(const Vector3& Trans) override;
                 /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
-                virtual void Translate(const Real X, const Real Y, const Real Z);
+                virtual void Translate(const Real X, const Real Y, const Real Z) override;
                 /// @copydoc EntityProxy::Yaw(const Real)
-                virtual void Yaw(const Real Angle);
+                virtual void Yaw(const Real Angle) override;
                 /// @copydoc EntityProxy::Pitch(const Real)
-                virtual void Pitch(const Real Angle);
+                virtual void Pitch(const Real Angle) override;
                 /// @copydoc EntityProxy::Roll(const Real)
-                virtual void Roll(const Real Angle);
+                virtual void Roll(const Real Angle) override;
                 /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
-                virtual void Rotate(const Vector3& Axis, const Real Angle);
+                virtual void Rotate(const Vector3& Axis, const Real Angle) override;
                 /// @copydoc EntityProxy::Rotate(const Quaternion&)
-                virtual void Rotate(const Quaternion& Rotation);
+                virtual void Rotate(const Quaternion& Rotation) override;
                 /// @copydoc EntityProxy::Scale(const Vector3&)
-                virtual void Scale(const Vector3& Scale);
+                virtual void Scale(const Vector3& Scale) override;
                 /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
-                virtual void Scale(const Real X, const Real Y, const Real Z);
+                virtual void Scale(const Real X, const Real Y, const Real Z) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Effects Methods
 
                 /// @copydoc iSound::AttachEffect(const UInt32, iEffect*)
-                virtual Boole AttachEffect(const UInt32 Slot, iEffect* Eff);
+                virtual Boole AttachEffect(const UInt32 Slot, iEffect* Eff) override;
                 /// @copydoc iSound::GetEffect(const UInt32 Slot) const
-                virtual iEffect* GetEffect(const UInt32 Slot) const;
+                virtual iEffect* GetEffect(const UInt32 Slot) const override;
                 /// @copydoc iSound::GetMaxEffectSlots() const
-                virtual UInt32 GetMaxEffectSlots() const;
+                virtual UInt32 GetMaxEffectSlots() const override;
                 /// @copydoc iSound::GetNumEffectSlotsAvailable() const
-                virtual UInt32 GetNumEffectSlotsAvailable() const;
+                virtual UInt32 GetNumEffectSlotsAvailable() const override;
                 /// @copydoc iSound::RemoveEffect(const UInt32)
-                virtual void RemoveEffect(const UInt32 Slot);
+                virtual void RemoveEffect(const UInt32 Slot) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Filter Methods
 
                 /// @copydoc iSound::AttachFilter(iFilter*)
-                virtual Boole AttachFilter(iFilter* Fil);
+                virtual Boole AttachFilter(iFilter* Fil) override;
                 /// @copydoc iSound::GetFilter() const
-                virtual iFilter* GetFilter() const;
+                virtual iFilter* GetFilter() const override;
                 /// @copydoc iSound::RemoveFilter()
-                virtual void RemoveFilter();
+                virtual void RemoveFilter() override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
                 /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
-                virtual void ProtoSerialize(XML::Node& ParentNode) const;
+                virtual void ProtoSerialize(XML::Node& ParentNode) const override;
                 /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
                 /// @brief Convert the Decoder used by this class to an XML::Node ready for serialization.
                 /// @param SelfRoot The root node containing all the serialized data for this instance.
                 virtual void ProtoSerializeDecoder(XML::Node& SelfRoot) const;
@@ -382,9 +382,9 @@ namespace Mezzanine
                 virtual void ProtoSerializeEffects(XML::Node& SelfRoot) const;
 
                 /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
-                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+                virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
                 /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
                 /// @brief Take the data stored in an XML Node and overwrite the Decoder used by this object with it.
                 /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
                 virtual void ProtoDeSerializeDecoder(const XML::Node& SelfRoot);
@@ -396,7 +396,7 @@ namespace Mezzanine
                 virtual void ProtoDeSerializeEffects(const XML::Node& SelfRoot);
 
                 /// @copydoc EntityProxy::GetDerivedSerializableName() const
-                virtual String GetDerivedSerializableName() const;
+                virtual String GetDerivedSerializableName() const override;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.
                 static String GetSerializableName();

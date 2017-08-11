@@ -82,8 +82,9 @@ namespace Mezzanine
 
         RigidProxy::~RigidProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsRigidBody->getMotionState();
             delete this->PhysicsRigidBody;
@@ -112,16 +113,16 @@ namespace Mezzanine
             return Mezzanine::CT_Physics_RigidProxy;
         }
 
-        void RigidProxy::AddToWorld()
+        void RigidProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void RigidProxy::RemoveFromWorld()
+        void RigidProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->removeRigidBody( this->PhysicsRigidBody );
             }
         }

@@ -244,7 +244,7 @@ namespace Mezzanine
         void ParticleSystemProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeIsActivated(SelfRoot);
             this->ProtoSerializeTemplate(SelfRoot);
             this->ProtoSerializeCustomParameters(SelfRoot);
             this->ProtoSerializeProperties(SelfRoot);
@@ -357,7 +357,7 @@ namespace Mezzanine
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeEmitters(SelfRoot);
             this->ProtoDeSerializeAffectors(SelfRoot);
-            this->ProtoDeSerializeInWorld(SelfRoot);
+            this->ProtoDeSerializeIsActivated(SelfRoot);
         }
 
         void ParticleSystemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

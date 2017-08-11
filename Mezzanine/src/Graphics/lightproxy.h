@@ -91,9 +91,9 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
             /// @copydoc EntityProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            virtual Boole IsStatic() const override;
 
             /// @brief Sets the direction the light will be emitted from this source.
             /// @note The direction is not used if this is a point light.
@@ -195,12 +195,12 @@ namespace Mezzanine
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -212,7 +212,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal light this proxy is based on.
             virtual Ogre::Light* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//LightProxy
     }//Graphics
 }//Mezzanine

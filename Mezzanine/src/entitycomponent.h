@@ -49,8 +49,12 @@
 
 namespace Mezzanine
 {
+    /// @addtogroup ECS
+    /// @{
+
     class Entity;
     class EntityComponentManager;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for components comprising the functionality of an Entity.
     ///////////////////////////////////////
@@ -76,6 +80,20 @@ namespace Mezzanine
         /// @brief Gets the type of component this is.
         /// @return Returns an enum value for the type of component this is.
         virtual Mezzanine::ComponentType GetComponentType() const = 0;
+
+        /// @brief Activates this components functionality.
+        /// @remarks Not all components are alike.  Some components may not have functionality that can be enabled or disabled.  Other
+        /// components may enable or disable only a part of their functionality.  Generally though, most will have behaviors that can
+        /// be enabled or disabled.
+        virtual void Activate() = 0;
+        /// @brief Deactivates this components functionality.
+        /// @remarks Not all components are alike.  Some components may not have functionality that can be enabled or disabled.  Other
+        /// components may enable or disable only a part of their functionality.  Generally though, most will have behaviors that can
+        /// be enabled or disabled.
+        virtual void Deactivate() = 0;
+        /// @brief Gets whether or not this component is activated.
+        /// @return Returns true if this components functionality is enabled, false otherwise.
+        virtual Boole IsActivated() const = 0;
 
         /// @brief Gets a pointer to the parent Entity controlling this component.
         /// @return Returns a pointer to the Entity controlling this component, or nullptr if this component isn't bound to a Entity.
@@ -121,6 +139,8 @@ namespace Mezzanine
         /// @param NewParent A pointer to the Entity taking possession of this component.
         virtual void _Bind(Entity* NewParent);
     };//EntityComponent
+
+    /// @}
 }//Mezzanine
 
 #endif

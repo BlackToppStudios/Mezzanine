@@ -211,7 +211,7 @@ namespace Mezzanine
             if( this->WireFrame == NULL ) {
                 this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan);
             }
-            this->WireFrame->AddToWorld();
+            this->WireFrame->Activate();
             this->WireFrame->ClearPoints();
         }
 
@@ -234,9 +234,9 @@ namespace Mezzanine
             this->DebugDrawing = debugMode;
             if( this->WireFrame != NULL ) {
                 if( this->DebugDrawing != Physics::DDM_NoDebug ) {
-                    this->WireFrame->AddToWorld();
+                    this->WireFrame->Activate();
                 }else{
-                    this->WireFrame->RemoveFromWorld();
+                    this->WireFrame->Deactivate();
                 }
             }
         }
@@ -495,7 +495,7 @@ namespace Mezzanine
             for( Integer X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
             {
                 CollidableProxy* Prox = static_cast<CollidableProxy*>( ObjectArray[X]->getUserPointer() );
-                Prox->RemoveFromWorld();
+                Prox->Deactivate();
             }
 
             this->DestroyAllConstraints();
@@ -1289,7 +1289,7 @@ namespace Mezzanine
         void PhysicsManager::RemoveCollisionsContainingProxy(CollidableProxy* Proxy)
         {
             // A proxy not in the world can't have collisions
-            if( Proxy->IsInWorld() ) {
+            if( Proxy->IsActivated() ) {
                 this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
 
                 CollisionMapIterator ColIt = this->Collisions.begin();

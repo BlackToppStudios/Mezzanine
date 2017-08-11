@@ -114,7 +114,7 @@ namespace Mezzanine
     Boole Entity::IsInWorld() const
     {
         assert(this->PrimaryProxy != nullptr && "Valid proxy is needed to query if Entity is in world.");
-        return this->PrimaryProxy->IsInWorld();
+        return this->PrimaryProxy->IsActivated();
     }
 
     Boole Entity::IsStatic() const
@@ -301,14 +301,14 @@ namespace Mezzanine
     {
         ComponentRange Range = this->GetProxyRange();
         for( EntityComponent* Prox : Range )
-            { static_cast<EntityProxy*>(Prox)->AddToWorld(); }
+            { static_cast<EntityProxy*>(Prox)->Activate(); }
     }
 
     void Entity::RemoveFromWorld()
     {
         ComponentRange Range = this->GetProxyRange();
         for( EntityComponent* Prox : Range )
-            { static_cast<EntityProxy*>(Prox)->RemoveFromWorld(); }
+            { static_cast<EntityProxy*>(Prox)->Deactivate(); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

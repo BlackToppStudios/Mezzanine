@@ -79,8 +79,9 @@ namespace Mezzanine
 
         GhostProxy::~GhostProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsGhostBody;
         }
@@ -101,16 +102,16 @@ namespace Mezzanine
             return Mezzanine::CT_Physics_GhostProxy;
         }
 
-        void GhostProxy::AddToWorld()
+        void GhostProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->addCollisionObject( this->PhysicsGhostBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void GhostProxy::RemoveFromWorld()
+        void GhostProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->removeCollisionObject( this->PhysicsGhostBody );
             }
         }

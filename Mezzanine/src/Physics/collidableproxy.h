@@ -98,15 +98,11 @@ namespace Mezzanine
             /// @return Returns an AxisAlignedBox containing the AABB of this physics proxy.
             virtual AxisAlignedBox GetAABB() const;
 
-            /// @copydoc EntityProxy::AddToWorld()
-            virtual void AddToWorld() = 0;
-            /// @copydoc EntityProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld() = 0;
-            /// @copydoc EntityProxy::IsInWorld() const
-            virtual Boole IsInWorld() const;
+            /// @copydoc EntityProxy::IsActivated() const
+            virtual Boole IsActivated() const override;
 
             /// @copydoc EntityComponent::GetCreator() const
-            virtual EntityComponentManager* GetCreator() const;
+            virtual EntityComponentManager* GetCreator() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
@@ -259,79 +255,79 @@ namespace Mezzanine
             // Transform Methods
 
             /// @copydoc EntityProxy::SetTransform(const Transform&)
-            virtual void SetTransform(const Transform& Trans);
+            virtual void SetTransform(const Transform& Trans) override;
             /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
-            virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+            virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) override;
             /// @copydoc EntityProxy::GetTransform() const
-            virtual Transform GetTransform() const;
+            virtual Transform GetTransform() const override;
 
             /// @copydoc EntityProxy::SetLocation(const Vector3&)
-            virtual void SetLocation(const Vector3& Loc);
+            virtual void SetLocation(const Vector3& Loc) override;
             /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
-            virtual void SetLocation(const Real X, const Real Y, const Real Z);
+            virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetLocation() const
-            virtual Vector3 GetLocation() const;
+            virtual Vector3 GetLocation() const override;
             /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
-            virtual void SetOrientation(const Quaternion& Ori);
+            virtual void SetOrientation(const Quaternion& Ori) override;
             /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
-            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
             /// @copydoc EntityProxy::GetOrientation() const
-            virtual Quaternion GetOrientation() const;
+            virtual Quaternion GetOrientation() const override;
             /// @copydoc EntityProxy::SetScale(const Vector3&)
             /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
             /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
-            virtual void SetScale(const Vector3& Sc);
+            virtual void SetScale(const Vector3& Sc) override;
             /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
             /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
             /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
-            virtual void SetScale(const Real X, const Real Y, const Real Z);
+            virtual void SetScale(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetScale() const
-            virtual Vector3 GetScale() const;
+            virtual Vector3 GetScale() const override;
 
             /// @copydoc EntityProxy::Translate(const Vector3&)
-            virtual void Translate(const Vector3& Trans);
+            virtual void Translate(const Vector3& Trans) override;
             /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
-            virtual void Translate(const Real X, const Real Y, const Real Z);
+            virtual void Translate(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::Yaw(const Real)
-            virtual void Yaw(const Real Angle);
+            virtual void Yaw(const Real Angle) override;
             /// @copydoc EntityProxy::Pitch(const Real)
-            virtual void Pitch(const Real Angle);
+            virtual void Pitch(const Real Angle) override;
             /// @copydoc EntityProxy::Roll(const Real)
-            virtual void Roll(const Real Angle);
+            virtual void Roll(const Real Angle) override;
             /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
-            virtual void Rotate(const Vector3& Axis, const Real Angle);
+            virtual void Rotate(const Vector3& Axis, const Real Angle) override;
             /// @copydoc EntityProxy::Rotate(const Quaternion&)
-            virtual void Rotate(const Quaternion& Rotation);
+            virtual void Rotate(const Quaternion& Rotation) override;
             /// @copydoc EntityProxy::Scale(const Vector3&)
             /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
             /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
-            virtual void Scale(const Vector3& Scale);
+            virtual void Scale(const Vector3& Scale) override;
             /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
             /// @note In order to preserve consistent functionality between physics proxies and proxies of other subsystems, in the
             /// event this proxy can't be locally scaled, it will globally scale the collision shape it is currently using.
-            virtual void Scale(const Real X, const Real Y, const Real Z);
+            virtual void Scale(const Real X, const Real Y, const Real Z) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            virtual void ProtoSerialize(XML::Node& ParentNode) const override;
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @brief Convert the shape of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeShape(XML::Node& SelfRoot) const;
 
             /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
             /// @brief Take the data stored in an XML Node and overwrite the shape of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeShape(const XML::Node& SelfRoot);
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 

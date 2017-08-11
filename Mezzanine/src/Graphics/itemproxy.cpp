@@ -144,7 +144,7 @@ namespace Mezzanine
             return false;
         }
 
-        void ItemProxy::AddToWorld()
+        void ItemProxy::Activate()
         {
             if( this->GraphicsEntity && !this->InWorld ) {
                 this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
@@ -153,7 +153,7 @@ namespace Mezzanine
             }
         }
 
-        void ItemProxy::RemoveFromWorld()
+        void ItemProxy::Deactivate()
         {
             if( this->GraphicsEntity && this->InWorld ) {
                 this->GraphicsEntity->setVisibilityFlags(0);
@@ -295,7 +295,7 @@ namespace Mezzanine
         void ItemProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeIsActivated(SelfRoot);
             this->ProtoSerializeProperties(SelfRoot);
             this->ProtoSerializeMesh(SelfRoot);
         }
@@ -323,7 +323,7 @@ namespace Mezzanine
         {
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeMesh(SelfRoot);
-            this->ProtoDeSerializeInWorld(SelfRoot);
+            this->ProtoDeSerializeIsActivated(SelfRoot);
         }
 
         void ItemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

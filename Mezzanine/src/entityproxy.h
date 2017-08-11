@@ -45,8 +45,12 @@
 
 namespace Mezzanine
 {
+    /// @addtogroup ECS
+    /// @{
+
     class Entity;
     class EntityComponentManager;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for proxy objects belonging to the various 3D subsystems.
     ///////////////////////////////////////
@@ -64,13 +68,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Performs all the necessary task to ensure this object is connected to it's respective world and ready for use.
-        virtual void AddToWorld() = 0;
-        /// @brief Unhooks this proxy from it's respective world.
-        virtual void RemoveFromWorld() = 0;
-        /// @brief Gets whether or not this object is inside of it's world.
-        /// @return Returns true if this proxy is inserted in it's respective subsystems world.
-        virtual Boole IsInWorld() const = 0;
         /// @brief Checks of the object is meant to have it's geometry/transform updated frequently.
         /// @return Returns true if the object is meant to be stationary, false otherwise.
         virtual Boole IsStatic() const = 0;
@@ -152,7 +149,7 @@ namespace Mezzanine
         virtual void ProtoSerialize(XML::Node& ParentNode) const;
         /// @brief Convert the in world status of this class to an XML::Attribute ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
-        virtual void ProtoSerializeInWorld(XML::Node& SelfRoot) const;
+        virtual void ProtoSerializeIsActivated(XML::Node& SelfRoot) const;
         /// @brief Convert the properties of this class to an XML::Node ready for serialization.
         /// @param SelfRoot The root node containing all the serialized data for this instance.
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
@@ -162,7 +159,7 @@ namespace Mezzanine
         virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the in world status of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        virtual void ProtoDeSerializeInWorld(const XML::Node& SelfRoot);
+        virtual void ProtoDeSerializeIsActivated(const XML::Node& SelfRoot);
         /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
@@ -175,6 +172,8 @@ namespace Mezzanine
         /// @return A string containing the name of this class.
         static String GetSerializableName();
     };//EntityProxy
+
+    /// @}
 }//Mezzanine
 
 #endif

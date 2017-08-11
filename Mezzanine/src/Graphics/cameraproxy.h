@@ -102,9 +102,9 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
             /// @copydoc EntityProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            virtual Boole IsStatic() const override;
 
             /// @brief Gets the Viewport this camera is attached to, if any.
             /// @return Returns a pointer to the Viewport this camera is rendering to, or NULL if not attached.
@@ -225,12 +225,12 @@ namespace Mezzanine
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -242,7 +242,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal camera this proxy is based on.
             virtual Ogre::Camera* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };// CameraProxy
     }//Graphics
 }//Mezzanine

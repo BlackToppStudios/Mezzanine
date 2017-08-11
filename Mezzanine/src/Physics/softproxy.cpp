@@ -101,8 +101,9 @@ namespace Mezzanine
 
         SoftProxy::~SoftProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsSoftBody;
         }
@@ -165,16 +166,16 @@ namespace Mezzanine
             return Mezzanine::CT_Physics_SoftProxy;
         }
 
-        void SoftProxy::AddToWorld()
+        void SoftProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->addSoftBody( this->PhysicsSoftBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void SoftProxy::RemoveFromWorld()
+        void SoftProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->removeSoftBody( this->PhysicsSoftBody );
             }
         }
@@ -243,7 +244,7 @@ namespace Mezzanine
         void SoftProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
+            if( !SelfRoot.AppendAttribute("IsActivated").SetValue( this->IsActivated() ? "true" : "false" ) ) {
                 SerializeError("Create XML Attribute Values",SoftProxy::GetSerializableName(),true);
             }
 
@@ -263,17 +264,17 @@ namespace Mezzanine
 
         void SoftProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
+            Boole WasActivated = false;
+            XML::Attribute IsActivatedAttrib = SelfRoot.GetAttribute("IsActivated");
+            if( !IsActivatedAttrib.Empty() ) {
+                WasActivated = StringTools::ConvertToBool( IsActivatedAttrib.AsString() );
             }
 
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeShape(SelfRoot);
 
-            if( WasInWorld ) {
-                this->AddToWorld();
+            if( WasActivated ) {
+                this->Activate();
             }
         }
 

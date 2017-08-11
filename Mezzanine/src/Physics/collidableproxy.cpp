@@ -300,9 +300,9 @@ namespace Mezzanine
         // Utility
 
         AxisAlignedBox CollidableProxy::GetAABB() const
-            { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
+            { return ( this->IsActivated() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
 
-        Boole CollidableProxy::IsInWorld() const
+        Boole CollidableProxy::IsActivated() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
         EntityComponentManager* CollidableProxy::GetCreator() const
@@ -398,9 +398,9 @@ namespace Mezzanine
                 this->_GetBasePhysicsObject()->setCollisionShape( this->ProxyShape->_GetInternalShape() );
 
                 // Gotta flicker to update the AABB appropriately
-                if( this->IsInWorld() ) {
-                    this->RemoveFromWorld();
-                    this->AddToWorld();
+                if( this->IsActivated() ) {
+                    this->Deactivate();
+                    this->Activate();
                 }
             }
         }
@@ -656,7 +656,7 @@ namespace Mezzanine
         void CollidableProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeIsActivated(SelfRoot);
             this->ProtoSerializeProperties(SelfRoot);
             this->ProtoSerializeShape(SelfRoot);
         }
@@ -705,7 +705,7 @@ namespace Mezzanine
         {
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeShape(SelfRoot);
-            this->ProtoDeSerializeInWorld(SelfRoot);
+            this->ProtoDeSerializeIsActivated(SelfRoot);
         }
 
         void CollidableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -799,7 +799,7 @@ namespace Mezzanine
         // Internal Methods
 
         Integer CollidableProxy::_GetBroadphaseUniqueID() const
-            { return ( this->IsInWorld() ? this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_uniqueId : 0 ); }
+            { return ( this->IsActivated() ? this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_uniqueId : 0 ); }
 
         CollidableProxy* CollidableProxy::_Upcast(const btCollisionObject* ToCast)
             { return static_cast<CollidableProxy*>( ToCast->getUserPointer() ); }
