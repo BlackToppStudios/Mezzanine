@@ -43,13 +43,11 @@
 
 #include "SingleThreadLogEntry.h"
 
-#include <chrono>
-#include <ostream>
+namespace Mezzanine {
+namespace Threading {
 
-namespace Mezzanine { namespace Threading {
-
-    /// @brief A log entry intended to preserve abolute location of events and allow for
-    class AggregatedLogEntry
+    /// @brief A log entry intended to preserve absolute location of events and allow for
+    class MEZZ_LIB AggregatedLogEntry
     {
     public:
         ////////////////////////////////////////
@@ -95,19 +93,20 @@ namespace Mezzanine { namespace Threading {
 
         // @brief Default destructor
         ~AggregatedLogEntry() = default;
-    };
+    };//AggregatedLogEntry
 
     /// @brief Compare two Entries chronologically to see if the one on the left happened before the one on the right.
     /// @param LeftHand A AggregatedLogEntry to check if it is before than RightHand.
     /// @param RightHand Compared to LeftHand to see if this is after than it.
     /// @return True if the Entry on the Left hand index came before the Right Entry.
-    bool operator< (const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand);
+    Boole MEZZ_LIB operator< (const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand);
 
     /// @brief Serialize this log entry.
     /// @param OutputStream The stream to insert this into.
     /// @param ToStream The AggregatedLogEntry to insert into the stream.
     /// @return A reference to the stream passed as OutputStream.
-    std::ostream& operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream);
+    std::ostream& MEZZ_LIB operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream);
 
-} }
+}//Threading
+}//Mezzanine
 #endif

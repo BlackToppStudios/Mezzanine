@@ -38,17 +38,16 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef SingleThreadLogEntry_H
-#define SingleThreadLogEntry_H
+#ifndef ThreadLog_SingleThreadLogEntry_H
+#define ThreadLog_SingleThreadLogEntry_H
 
 #include "ThreadIndex.h"
 
-#include <chrono>
-
-namespace Mezzanine { namespace Threading {
+namespace Mezzanine {
+namespace Threading {
 
     /// @brief A simple fixed sized log entry that is created when log entries are made.
-    class SingleThreadLogEntry
+    class MEZZ_LIB SingleThreadLogEntry
     {
     public:
         ////////////////////////////////////////
@@ -67,37 +66,38 @@ namespace Mezzanine { namespace Threading {
         ////////////////////////////////////////
         // Constructors and semantics
 
-        /// @brief Prefferred constructor
+        /// @brief Preferred constructor
         /// @param StartingWhat A pointer to the message describing what is logged, this is never dereferenced buy this.
         /// @param StartingWhen Default to capturing the current time, but can accept other times if needed.
         SingleThreadLogEntry(const char* StartingWhat,
                              Clock::time_point&& StartingWhen = Clock::now());
 
-        // @brief Default move constructor
+        /// @brief Default move constructor
         SingleThreadLogEntry(SingleThreadLogEntry&& ) = default;
 
-        // @brief Default copy constructor
+        /// @brief Default copy constructor
         SingleThreadLogEntry(const SingleThreadLogEntry& ) = default;
 
-        // @brief Default destructor
+        /// @brief Default destructor
         ~SingleThreadLogEntry() = default;
 
-        // @brief Default assignment operator
+        /// @brief Default assignment operator
         SingleThreadLogEntry& operator=(const SingleThreadLogEntry&) = default;
-    };
+    };//SingleThreadLogEntry
 
     /// @brief Compare two Entries chronologically to see if the one on the left happened before the one on the right.
     /// @param LeftHand A SingleThreadLogEntry to check if it is before than RightHand.
     /// @param RightHand Compared to LeftHand to see if this is after than it.
     /// @return True if the Entry on the Left hand index came before the Right Entry.
-    bool operator< (const SingleThreadLogEntry& LeftHand, const SingleThreadLogEntry& RightHand);
+    Boole MEZZ_LIB operator< (const SingleThreadLogEntry& LeftHand, const SingleThreadLogEntry& RightHand);
 
     /// @brief Serialize this log entry.
     /// @param OutputStream The stream to insert this into.
     /// @param ToStream The SingleThreadLogEntry to insert into the stream.
     /// @return A reference to the stream passed as OutputStream.
-    std::ostream& operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream);
+    std::ostream& MEZZ_LIB operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream);
 
-} }
+}//Threading
+}//Mezzanine
 
 #endif

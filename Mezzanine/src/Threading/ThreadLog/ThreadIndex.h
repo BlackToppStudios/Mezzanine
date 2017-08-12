@@ -38,18 +38,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef RaceLog_ThreadIndex_H
-#define RaceLog_ThreadIndex_H
+#ifndef ThreadLog_ThreadIndex_H
+#define ThreadLog_ThreadIndex_H
 
-#include <ostream>
-#include <vector>
+#include "datatypes.h"
 
-namespace Mezzanine { namespace Threading {
+namespace Mezzanine {
+namespace Threading {
 
     /// @brief A unique Id for threads suitable for use as the index into simple containers for quick lookups.
-    /// @details A thread index is a sequentially coounted number from 0 to N where N is the number of threads. This
+    /// @details A thread index is a sequentially counted number from 0 to N where N is the number of threads. This
     /// supports only the most minimal set of operations that can be
-    class ThreadIndex
+    class MEZZ_LIB ThreadIndex
     {
     public:
         /// @brief This is not really public but should be accessible to all RaceLog internals.
@@ -64,7 +64,7 @@ namespace Mezzanine { namespace Threading {
         InternalType Index;
 
     public:
-        /// @brief Initializing Coinstructor.
+        /// @brief Initializing Constructor.
         /// @param StartingIndex The starting value, defaults to -1
         constexpr ThreadIndex(const InternalType& StartingIndex = -1) : Index{StartingIndex} {}
 
@@ -81,27 +81,28 @@ namespace Mezzanine { namespace Threading {
 
         /// @brief Used by other RaceLog internal to get at however this is represented.
         InternalType AsRaw() const;
-    };
+    };//ThreadIndex
 
     /// @brief Compare two thread Index for equality.
     /// @param RightHand The item on the Right hand side of the equality comparison operator.
     /// @param LeftHand The item on the Left hand side of the equality comparison operator.
     /// @return True if they represent the same value (same index for the thread), and false otherwise.
-    bool operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand);
+    Boole MEZZ_LIB operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand);
 
-    /// @brief Serialize thispassed thread index for presentation in the output stream.
+    /// @brief Serialize the passed thread index for presentation in the output stream.
     /// @param OutputStream The stream to insert the Thread index into.
     /// @param OneThreadIndex The Thread Index to insert into the stream.
     /// @return A reference to the stream passed as OutputStream.
-    std::ostream& operator<< (std::ostream& OutputStream, const ThreadIndex& OneThreadIndex);
+    std::ostream& MEZZ_LIB operator<< (std::ostream& OutputStream, const ThreadIndex& OneThreadIndex);
 
     /// @brief Compare two thread indexes numerically to see if the one on the left is less than the one on the right.
     /// @param LeftHand A ThreadIndex to check if it is less than RightHand.
-    /// @param RightHand Compareed to LeftHand to see if this is greater than it.
-    /// @return True if the numberical value in the Left hand index is less that the numerical index inside the Right
+    /// @param RightHand Compared to LeftHand to see if this is greater than it.
+    /// @return True if the numerical value in the Left hand index is less that the numerical index inside the Right
     /// index.
-    bool operator< (const ThreadIndex& LeftHand, const ThreadIndex& RightHand);
+    Boole MEZZ_LIB operator< (const ThreadIndex& LeftHand, const ThreadIndex& RightHand);
 
-} }
+}//Threading
+}//Mezzanine
 
 #endif

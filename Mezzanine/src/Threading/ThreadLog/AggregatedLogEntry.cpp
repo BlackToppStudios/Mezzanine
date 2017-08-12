@@ -40,27 +40,29 @@
 */
 #include "AggregatedLogEntry.h"
 
-namespace Mezzanine { namespace Threading {
+namespace Mezzanine {
+namespace Threading {
 
-AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
-                                       const char* StartingWhat,
-                                       Clock::time_point&& StartingWhen)
-    : Where{StartingWhere}, When{StartingWhen}, What{StartingWhat}
-{}
+    AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
+                                           const char* StartingWhat,
+                                           Clock::time_point&& StartingWhen)
+        : Where{StartingWhere}, When{StartingWhen}, What{StartingWhat}
+    {  }
 
-AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
-                                       const SingleThreadLogEntry& OtherLog)
-    : Where{StartingWhere}, When{OtherLog.When}, What{OtherLog.What}
-{}
+    AggregatedLogEntry::AggregatedLogEntry(const ThreadIndex& StartingWhere,
+                                           const SingleThreadLogEntry& OtherLog)
+        : Where{StartingWhere}, When{OtherLog.When}, What{OtherLog.What}
+    {  }
 
-bool operator<(const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand)
-{
-    return LeftHand.When < RightHand.When;
-}
+    Boole operator<(const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand)
+    {
+        return LeftHand.When < RightHand.When;
+    }
 
-std::ostream& operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream)
-{
-    return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.Where << ' ' << ToStream.What;
-}
+    std::ostream& operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream)
+    {
+        return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.Where << ' ' << ToStream.What;
+    }
 
-} }
+}//Threading
+}//Mezzanine

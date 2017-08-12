@@ -43,7 +43,8 @@
 #include <numeric>
 #include <algorithm>
 
-namespace Mezzanine { namespace Threading {
+namespace Mezzanine {
+namespace Threading {
 
     std::atomic<ThreadLog::ThreadIndexType::InternalType> ThreadLog::ThreadCount{-1};
     thread_local ThreadLog::ThreadIndexType ThreadLog::CurrentThreadIndex;
@@ -134,5 +135,6 @@ namespace Mezzanine { namespace Threading {
         return Results;
     }
 
-} }
+}//Threading
+}//Mezzanine
 

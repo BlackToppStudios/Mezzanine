@@ -39,20 +39,23 @@
    John Blackwood - makoenergy02@gmail.com
 */
 #include "SingleThreadLogEntry.h"
-namespace Mezzanine { namespace Threading {
 
-SingleThreadLogEntry::SingleThreadLogEntry(const char* StartingWhat, Clock::time_point&& StartingWhen)
-    : When{StartingWhen}, What{StartingWhat}
-{}
+namespace Mezzanine {
+namespace Threading {
 
-bool operator<(const SingleThreadLogEntry& LeftHand, const SingleThreadLogEntry& RightHand)
-{
-    return LeftHand.When < RightHand.When;
-}
+    SingleThreadLogEntry::SingleThreadLogEntry(const char* StartingWhat, Clock::time_point&& StartingWhen)
+        : When{StartingWhen}, What{StartingWhat}
+    {  }
 
-std::ostream& operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream)
-{
-    return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.What;
-}
+    Boole operator<(const SingleThreadLogEntry& LeftHand, const SingleThreadLogEntry& RightHand)
+    {
+        return LeftHand.When < RightHand.When;
+    }
 
-} }
+    std::ostream& operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream)
+    {
+        return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.What;
+    }
+
+}//Threading
+}//Mezzanine

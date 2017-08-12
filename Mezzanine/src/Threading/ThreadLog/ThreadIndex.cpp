@@ -40,7 +40,8 @@
 */
 #include "ThreadIndex.h"
 
-namespace Mezzanine { namespace Threading {
+namespace Mezzanine {
+namespace Threading {
 
     ThreadIndex& ThreadIndex::operator++()
     {
@@ -60,7 +61,7 @@ namespace Mezzanine { namespace Threading {
         return Index;
     }
 
-    bool operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
+    Boole operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
     {
         return LeftHand.Index == RightHand.Index;
     }
@@ -70,8 +71,10 @@ namespace Mezzanine { namespace Threading {
         return OutputStream << "Thread Index: " << OneThreadIndex.Index;
     }
 
-    bool operator <(const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
+    Boole operator <(const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
     {
         return LeftHand.Index < RightHand.Index;
     }
-} }
+
+}//Threading
+}//Mezzanine
