@@ -52,6 +52,9 @@
 
 namespace Mezzanine
 {
+    /// @addtogroup ECS
+    /// @{
+
     namespace Graphics
     {
         class Mesh;
@@ -68,6 +71,7 @@ namespace Mezzanine
     class GravityWell;
     class RigidDebris;
     class SoftDebris;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of Actors.
     ///////////////////////////////////////
@@ -509,14 +513,14 @@ namespace Mezzanine
         // Utility
 
         /// @copydoc WorldManager::Pause(const UInt32)
-        virtual void Pause(const UInt32 PL);
+        virtual void Pause(const UInt32 PL) override;
 
         /// @brief Does all of the necessary configuration to prepare for the start of the main loop.
         virtual void MainLoopInitialize();
         /// @copydoc WorldManager::Initialize()
-        virtual void Initialize();
+        virtual void Initialize() override;
         /// @copydoc ManagerBase::Deinitialize()
-        virtual void Deinitialize();
+        virtual void Deinitialize() override;
 
         /// @brief Gets the EventPublisher responsible for dispatching global Entity events.
         /// @return Returns a reference to the EventPublisher that will dispatch Entity events performed by this manager.
@@ -562,17 +566,19 @@ namespace Mezzanine
         virtual ~DefaultEntityManagerFactory() = default;
 
         /// @copydoc ManagerFactory::GetManagerImplName()
-        String GetManagerImplName() const;
+        String GetManagerImplName() const override;
         /// @copydoc ManagerFactory::GetManagerType() const
-        ManagerBase::ManagerType GetManagerType() const;
+        ManagerBase::ManagerType GetManagerType() const override;
 
         /// @copydoc WorldManagerFactory::CreateManager(World*, const NameValuePairList&)
-        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params);
+        WorldManager* CreateManager(World* Creator, const NameValuePairList& Params) override;
         /// @copydoc WorldManagerFactory::CreateManager(World*, const XML::Node&)
-        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode);
+        WorldManager* CreateManager(World* Creator, const XML::Node& XMLNode) override;
         /// @copydoc WorldManagerFactory::DestroyManager(WorldManager*)
-        void DestroyManager(WorldManager* ToBeDestroyed);
+        void DestroyManager(WorldManager* ToBeDestroyed) override;
     };//DefaultEntityManagerFactory
+
+    /// @}
 }//Mezzanine
 
 #endif

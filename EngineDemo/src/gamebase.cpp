@@ -393,7 +393,7 @@ void CreateDemoWorld()
     Headlight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetLocation(Vector3(0,150,0));
-    Headlight->AddToWorld();
+    Headlight->Activate();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     // CameraNode->AttachObject(Headlight);
 

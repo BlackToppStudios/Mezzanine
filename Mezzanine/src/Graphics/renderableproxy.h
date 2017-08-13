@@ -92,15 +92,15 @@ namespace Mezzanine
             /// @return Returns an AxisAlignedBox containing the AABB of this graphics proxy.
             virtual AxisAlignedBox GetAABB() const;
 
-            /// @copydoc EntityProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc EntityProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
-            /// @copydoc EntityProxy::IsInWorld() const
-            virtual Boole IsInWorld() const;
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
+            /// @copydoc EntityProxy::IsActivated() const
+            virtual Boole IsActivated() const override;
 
             /// @copydoc EntityComponent::GetCreator() const
-            virtual EntityComponentManager* GetCreator() const;
+            virtual EntityComponentManager* GetCreator() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties
@@ -156,60 +156,60 @@ namespace Mezzanine
             // Transform Methods
 
             /// @copydoc EntityProxy::SetTransform(const Transform&)
-            virtual void SetTransform(const Transform& Trans);
+            virtual void SetTransform(const Transform& Trans) override;
             /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
-            virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+            virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) override;
             /// @copydoc EntityProxy::GetTransform() const
-            virtual Transform GetTransform() const;
+            virtual Transform GetTransform() const override;
 
             /// @copydoc EntityProxy::SetLocation(const Vector3&)
-            virtual void SetLocation(const Vector3& Loc);
+            virtual void SetLocation(const Vector3& Loc) override;
             /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
-            virtual void SetLocation(const Real X, const Real Y, const Real Z);
+            virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetLocation() const
-            virtual Vector3 GetLocation() const;
+            virtual Vector3 GetLocation() const override;
             /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
-            virtual void SetOrientation(const Quaternion& Ori);
+            virtual void SetOrientation(const Quaternion& Ori) override;
             /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
-            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
             /// @copydoc EntityProxy::GetOrientation() const
-            virtual Quaternion GetOrientation() const;
+            virtual Quaternion GetOrientation() const override;
             /// @copydoc EntityProxy::SetScale(const Vector3&)
-            virtual void SetScale(const Vector3& Sc);
+            virtual void SetScale(const Vector3& Sc) override;
             /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
-            virtual void SetScale(const Real X, const Real Y, const Real Z);
+            virtual void SetScale(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetScale() const
-            virtual Vector3 GetScale() const;
+            virtual Vector3 GetScale() const override;
 
             /// @copydoc EntityProxy::Translate(const Vector3&)
-            virtual void Translate(const Vector3& Trans);
+            virtual void Translate(const Vector3& Trans) override;
             /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
-            virtual void Translate(const Real X, const Real Y, const Real Z);
+            virtual void Translate(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::Yaw(const Real)
-            virtual void Yaw(const Real Angle);
+            virtual void Yaw(const Real Angle) override;
             /// @copydoc EntityProxy::Pitch(const Real)
-            virtual void Pitch(const Real Angle);
+            virtual void Pitch(const Real Angle) override;
             /// @copydoc EntityProxy::Roll(const Real)
-            virtual void Roll(const Real Angle);
+            virtual void Roll(const Real Angle) override;
             /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
-            virtual void Rotate(const Vector3& Axis, const Real Angle);
+            virtual void Rotate(const Vector3& Axis, const Real Angle) override;
             /// @copydoc EntityProxy::Rotate(const Quaternion&)
-            virtual void Rotate(const Quaternion& Rotation);
+            virtual void Rotate(const Quaternion& Rotation) override;
             /// @copydoc EntityProxy::Scale(const Vector3&)
-            virtual void Scale(const Vector3& Scale);
+            virtual void Scale(const Vector3& Scale) override;
             /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
-            virtual void Scale(const Real X, const Real Y, const Real Z);
+            virtual void Scale(const Real X, const Real Y, const Real Z) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 

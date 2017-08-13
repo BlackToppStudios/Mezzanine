@@ -336,7 +336,7 @@ namespace Mezzanine
         void BillboardSetProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            this->ProtoSerializeInWorld(SelfRoot);
+            this->ProtoSerializeIsActivated(SelfRoot);
             this->ProtoSerializeProperties(SelfRoot);
             this->ProtoSerializeBillboards(SelfRoot);
         }
@@ -387,7 +387,7 @@ namespace Mezzanine
         {
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeBillboards(SelfRoot);
-            this->ProtoDeSerializeInWorld(SelfRoot);
+            this->ProtoDeSerializeIsActivated(SelfRoot);
         }
 
         void BillboardSetProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

@@ -66,13 +66,13 @@ namespace Mezzanine
     void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
     {
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-        this->ProtoSerializeInWorld(SelfRoot);
+        this->ProtoSerializeIsActivated(SelfRoot);
         this->ProtoSerializeProperties(SelfRoot);
     }
 
-    void EntityProxy::ProtoSerializeInWorld(XML::Node& SelfRoot) const
+    void EntityProxy::ProtoSerializeIsActivated(XML::Node& SelfRoot) const
     {
-        if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
+        if( !SelfRoot.AppendAttribute("IsActivated").SetValue( this->IsActivated() ? "true" : "false" ) ) {
             SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName(),true);
         }
     }
@@ -99,14 +99,14 @@ namespace Mezzanine
     void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
         this->ProtoDeSerializeProperties(SelfRoot);
-        this->ProtoDeSerializeInWorld(SelfRoot);
+        this->ProtoDeSerializeIsActivated(SelfRoot);
     }
 
-    void EntityProxy::ProtoDeSerializeInWorld(const XML::Node& SelfRoot)
+    void EntityProxy::ProtoDeSerializeIsActivated(const XML::Node& SelfRoot)
     {
-        XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
+        XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("IsActivated");
         if( !InWorldAttrib.Empty() && StringTools::ConvertToBool( InWorldAttrib.AsString() ) ) {
-            this->AddToWorld();
+            this->Activate();
         }
     }
 

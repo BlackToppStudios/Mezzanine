@@ -135,7 +135,7 @@ namespace Mezzanine
             {
                 if( this->VolumeModifier != Vol )
                 {
-                    if( this->IsInWorld() ) {
+                    if( this->IsActivated() ) {
                         this->MakeCurrent();
                         alListenerf(AL_GAIN,Vol);
                     }
@@ -162,25 +162,25 @@ namespace Mezzanine
                 return this->MPU;
             }
 
-            void Listener::AddToWorld()
+            void Listener::Activate()
             {
-                if( !this->IsInWorld() ) {
+                if( !this->IsActivated() ) {
                     this->MakeCurrent();
                     alListenerf(AL_GAIN,this->VolumeModifier);
                     this->InWorld = true;
                 }
             }
 
-            void Listener::RemoveFromWorld()
+            void Listener::Deactivate()
             {
-                if( this->IsInWorld() ) {
+                if( this->IsActivated() ) {
                     this->MakeCurrent();
                     alListenerf(AL_GAIN,0.0);
                     this->InWorld = false;
                 }
             }
 
-            Boole Listener::IsInWorld() const
+            Boole Listener::IsActivated() const
             {
                 return this->InWorld;
             }

@@ -100,49 +100,49 @@ public:
         // Create entities.  Descriptions are relative to default camera perspective.
         Graphics::ItemProxy* Item01 = SceneMan->CreateItemProxy(TestBox);
         Item01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
-        Item01->AddToWorld();
+        Item01->Activate();
         Graphics::ItemProxy* Item02 = SceneMan->CreateItemProxy(TestBox);
         Item02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
-        Item02->AddToWorld();
+        Item02->Activate();
         Graphics::ItemProxy* Item03 = SceneMan->CreateItemProxy(TestBox);
         Item03->SetLocation(0.0,25.0,0.0);// 25 units above.
-        Item03->AddToWorld();
+        Item03->Activate();
         Graphics::ItemProxy* Item04 = SceneMan->CreateItemProxy(TestBox);
         Item04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
-        Item04->AddToWorld();
+        Item04->Activate();
         Graphics::ItemProxy* Item05 = SceneMan->CreateItemProxy(TestBox);
         Item05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
         Item05->SetScale(2.0,2.0,2.0);
-        Item05->AddToWorld();
+        Item05->Activate();
         Graphics::ItemProxy* Item06 = SceneMan->CreateItemProxy(TestBox);
         Item06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
         Item06->SetScale(0.5,0.5,0.5);
-        Item06->AddToWorld();
+        Item06->Activate();
         Graphics::ItemProxy* Item07 = SceneMan->CreateItemProxy(TestBox);
         Item07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
-        Item07->AddToWorld();
+        Item07->Activate();
         Graphics::ItemProxy* Item08 = SceneMan->CreateItemProxy(TestSphere);
         Item08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
-        Item08->AddToWorld();
+        Item08->Activate();
         Graphics::ItemProxy* Item09 = SceneMan->CreateItemProxy(TestSphere);
         Item09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
-        Item09->AddToWorld();
+        Item09->Activate();
         Graphics::ItemProxy* Item10 = SceneMan->CreateItemProxy(TestSphere);
         Item10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
-        Item10->AddToWorld();
+        Item10->Activate();
         Graphics::ItemProxy* Item11 = SceneMan->CreateItemProxy(TestSphere);
         Item11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
-        Item11->AddToWorld();
+        Item11->Activate();
         Graphics::ItemProxy* Item12 = SceneMan->CreateItemProxy(TestSphere);
         Item12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
         Item12->SetScale(2.0,2.0,2.0);
-        Item12->AddToWorld();
+        Item12->Activate();
 
         Graphics::BillboardSetProxy* BBSet = SceneMan->CreateBillboardSetProxy(1);
         BBSet->SetLocation(75.0,0.0,0.0);
         BBSet->SetDefaultDimensions(5.0,5.0);
         BBSet->CreateBillboard(Vector3(0.0,0.0,0.0));
-        BBSet->AddToWorld();
+        BBSet->Activate();
 
         GraphicsMan->RenderOneFrame();
         Graphics::RenderableRayQuery TestRayQuery(SceneMan);

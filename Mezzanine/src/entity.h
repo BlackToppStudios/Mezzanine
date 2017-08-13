@@ -52,6 +52,9 @@
 
 namespace Mezzanine
 {
+    /// @addtogroup ECS
+    /// @{
+
     class World;
     class EntityComponent;
     class EntityProxy;
@@ -248,49 +251,49 @@ namespace Mezzanine
         // Transform Methods
 
         /// @copydoc TransformableObject::SetTransform(const Transform&)
-        virtual void SetTransform(const Transform& Trans);
+        virtual void SetTransform(const Transform& Trans) override;
         /// @copydoc TransformableObject::SetTransform(const Vector3&,const Quaternion&)
-        virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
+        virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) override;
         /// @copydoc TransformableObject::GetTransform() const
-        virtual Transform GetTransform() const;
+        virtual Transform GetTransform() const override;
 
         /// @copydoc TransformableObject::SetLocation(const Vector3&)
-        virtual void SetLocation(const Vector3& Loc);
+        virtual void SetLocation(const Vector3& Loc) override;
         /// @copydoc TransformableObject::SetLocation(const Real, const Real, const Real)
-        virtual void SetLocation(const Real X, const Real Y, const Real Z);
+        virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
         /// @copydoc TransformableObject::GetLocation() const
-        virtual Vector3 GetLocation() const;
+        virtual Vector3 GetLocation() const override;
         /// @copydoc TransformableObject::SetOrientation(const Quaternion&)
-        virtual void SetOrientation(const Quaternion& Ori);
+        virtual void SetOrientation(const Quaternion& Ori) override;
         /// @copydoc TransformableObject::SetOrientation(const Real, const Real, const Real, const Real)
-        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+        virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
         /// @copydoc TransformableObject::GetOrientation() const
-        virtual Quaternion GetOrientation() const;
+        virtual Quaternion GetOrientation() const override;
         /// @copydoc TransformableObject::SetScale(const Vector3&)
-        virtual void SetScale(const Vector3& Sc);
+        virtual void SetScale(const Vector3& Sc) override;
         /// @copydoc TransformableObject::SetScale(const Real, const Real, const Real)
-        virtual void SetScale(const Real X, const Real Y, const Real Z);
+        virtual void SetScale(const Real X, const Real Y, const Real Z) override;
         /// @copydoc TransformableObject::GetScale() const
-        virtual Vector3 GetScale() const;
+        virtual Vector3 GetScale() const override;
 
         /// @copydoc TransformableObject::Translate(const Vector3&)
-        virtual void Translate(const Vector3& Trans);
+        virtual void Translate(const Vector3& Trans) override;
         /// @copydoc TransformableObject::Translate(const Real, const Real, const Real)
-        virtual void Translate(const Real X, const Real Y, const Real Z);
+        virtual void Translate(const Real X, const Real Y, const Real Z) override;
         /// @copydoc TransformableObject::Yaw(const Real)
-        virtual void Yaw(const Real Angle);
+        virtual void Yaw(const Real Angle) override;
         /// @copydoc TransformableObject::Pitch(const Real)
-        virtual void Pitch(const Real Angle);
+        virtual void Pitch(const Real Angle) override;
         /// @copydoc TransformableObject::Roll(const Real)
-        virtual void Roll(const Real Angle);
+        virtual void Roll(const Real Angle) override;
         /// @copydoc TransformableObject::Rotate(const Vector3&, const Real)
-        virtual void Rotate(const Vector3& Axis, const Real Angle);
+        virtual void Rotate(const Vector3& Axis, const Real Angle) override;
         /// @copydoc TransformableObject::Rotate(const Quaternion&)
-        virtual void Rotate(const Quaternion& Rotation);
+        virtual void Rotate(const Quaternion& Rotation) override;
         /// @copydoc TransformableObject::Scale(const Vector3&)
-        virtual void Scale(const Vector3& Sc);
+        virtual void Scale(const Vector3& Sc) override;
         /// @copydoc TransformableObject::Scale(const Real, const Real, const Real)
-        virtual void Scale(const Real X, const Real Y, const Real Z);
+        virtual void Scale(const Real X, const Real Y, const Real Z) override;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -359,6 +362,8 @@ namespace Mezzanine
         /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
         virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//GenericEntityFactory
+
+    /// @}
 }//Mezzanine
 
 #endif

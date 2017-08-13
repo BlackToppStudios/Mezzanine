@@ -92,7 +92,7 @@ namespace Mezzanine
         AxisAlignedBox RenderableProxy::GetAABB() const
             { return AxisAlignedBox( this->_GetBaseGraphicsObject()->getBoundingBox() ); }
 
-        void RenderableProxy::AddToWorld()
+        void RenderableProxy::Activate()
         {
             if( !this->InWorld ) {
                 this->_GetBaseGraphicsObject()->setVisibilityFlags( this->VisibilityMask );
@@ -101,7 +101,7 @@ namespace Mezzanine
             }
         }
 
-        void RenderableProxy::RemoveFromWorld()
+        void RenderableProxy::Deactivate()
         {
             if( this->InWorld ) {
                 this->_GetBaseGraphicsObject()->setVisibilityFlags(0);
@@ -110,7 +110,7 @@ namespace Mezzanine
             }
         }
 
-        Boole RenderableProxy::IsInWorld() const
+        Boole RenderableProxy::IsActivated() const
             { return this->InWorld; }
 
         EntityComponentManager* RenderableProxy::GetCreator() const

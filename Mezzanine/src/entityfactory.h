@@ -44,6 +44,9 @@
 
 namespace Mezzanine
 {
+    /// @addtogroup ECS
+    /// @{
+
     class World;
     class Entity;
     class EntityID;
@@ -51,6 +54,7 @@ namespace Mezzanine
     {
         class Node;
     }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Entity objects.
     ///////////////////////////////////////
@@ -81,6 +85,8 @@ namespace Mezzanine
         /// @param ToBeDestroyed A pointer to the Entity to be destroyed.
         virtual void DestroyEntity(Entity* ToBeDestroyed) = 0;
     };//EntityFactory
+
+    /// @}
 }//Mezzanine
 
 #endif

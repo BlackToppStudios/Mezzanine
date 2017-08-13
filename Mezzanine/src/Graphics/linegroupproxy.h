@@ -127,9 +127,9 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
             /// @copydoc EntityProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            virtual Boole IsStatic() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Point Management
@@ -182,12 +182,12 @@ namespace Mezzanine
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -199,7 +199,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal line group this proxy is based on.
             virtual Line3D* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//LineGroupProxy
     }//Graphics
 }//Mezzanine

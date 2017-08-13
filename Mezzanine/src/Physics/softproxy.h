@@ -55,11 +55,9 @@ namespace Mezzanine
         class MEZZ_LIB SoftProxy : public CollidableProxy
         {
         protected:
-            /// @internal
             /// @brief SoftBody proxy used by the internal physics.
             btSoftBody* PhysicsSoftBody;
 
-            /// @internal
             /// @brief Used to create the physics representation of the soft body.
             /// @param Mass The mass of the soft body to be created.
             virtual void CreateSoftObject(const Real Mass);
@@ -80,62 +78,62 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
 
-            /// @copydoc EntityProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc EntityProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
             /// @copydoc CollidableProxy::SetCollisionShape(CollisionShape*)
-            virtual void SetCollisionShape(CollisionShape* Shape);
+            virtual void SetCollisionShape(CollisionShape* Shape) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Methods
 
             /// @copydoc EntityProxy::SetLocation(const Vector3&)
-            virtual void SetLocation(const Vector3& Loc);
+            virtual void SetLocation(const Vector3& Loc) override;
             /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
-            virtual void SetLocation(const Real X, const Real Y, const Real Z);
+            virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetLocation() const
-            virtual Vector3 GetLocation() const;
+            virtual Vector3 GetLocation() const override;
             /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
-            virtual void SetOrientation(const Quaternion& Ori);
+            virtual void SetOrientation(const Quaternion& Ori) override;
             /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
-            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
             /// @copydoc EntityProxy::GetOrientation() const
-            virtual Quaternion GetOrientation() const;
+            virtual Quaternion GetOrientation() const override;
             /// @copydoc CollidableProxy::SetScale(const Vector3&)
-            virtual void SetScale(const Vector3& Sc);
+            virtual void SetScale(const Vector3& Sc) override;
             /// @copydoc CollidableProxy::SetScale(const Real, const Real, const Real)
-            virtual void SetScale(const Real X, const Real Y, const Real Z);
+            virtual void SetScale(const Real X, const Real Y, const Real Z) override;
             /// @copydoc EntityProxy::GetScale() const
-            virtual Vector3 GetScale() const;
+            virtual Vector3 GetScale() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            virtual void ProtoSerialize(XML::Node& ParentNode) const override;
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @brief Convert the nodes (and their specific properties) of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSeriailzeNodes(XML::Node& SelfRoot) const;
 
             /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
             /// @brief Take the data stored in an XML Node and overwrite the nodes (and their specific properties) of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSeriailzeNodes(XML::Node& SelfRoot) const;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -147,7 +145,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btSoftBody* _GetPhysicsObject() const;
             /// @copydoc CollidableProxy::_GetBasePhysicsObject()
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const override;
         };//SoftProxy
     }//Physics
 }//Mezzanine

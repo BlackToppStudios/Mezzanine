@@ -110,7 +110,7 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~ItemProxy();
 
-            /// @todo Create sub-entity access methods on this class.
+            /// @todo Create sub-item access methods on this class.
             /// @todo Create minor material manipulation methods on this class.
             /// @todo Create Animation state and Skeleton access methods on this class.
 
@@ -118,14 +118,14 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
             /// @copydoc EntityProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            virtual Boole IsStatic() const override;
 
-            /// @copydoc EntityProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc EntityProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
@@ -145,33 +145,33 @@ namespace Mezzanine
             // RenderableProxy Properties
 
             /// @copydoc RenderableProxy::SetVisible(const Boole)
-            virtual void SetVisible(const Boole Visible);
+            virtual void SetVisible(const Boole Visible) override;
             /// @copydoc RenderableProxy::GetVisible() const
-            virtual Boole GetVisible() const;
+            virtual Boole GetVisible() const override;
             /// @copydoc RenderableProxy::SetCastShadows(const Boole)
-            virtual void SetCastShadows(const Boole CastShadows);
+            virtual void SetCastShadows(const Boole CastShadows) override;
             /// @copydoc RenderableProxy::GetCastShadows() const
-            virtual Boole GetCastShadows() const;
+            virtual Boole GetCastShadows() const override;
             /// @copydoc RenderableProxy::GetReceiveShadows() const
-            virtual Boole GetReceiveShadows() const;
+            virtual Boole GetReceiveShadows() const override;
 
             /// @copydoc RenderableProxy::SetLightMask(const UInt32)
-            virtual void SetLightMask(const UInt32 Mask);
+            virtual void SetLightMask(const UInt32 Mask) override;
             /// @copydoc RenderableProxy::GetLightMask() const
-            virtual UInt32 GetLightMask() const;
+            virtual UInt32 GetLightMask() const override;
             /// @copydoc RenderableProxy::SetVisibilityMask(const UInt32)
-            virtual void SetVisibilityMask(const UInt32 Mask);
+            virtual void SetVisibilityMask(const UInt32 Mask) override;
             /// @copydoc RenderableProxy::GetVisibilityMask() const
-            virtual UInt32 GetVisibilityMask() const;
+            virtual UInt32 GetVisibilityMask() const override;
             /// @copydoc RenderableProxy::SetQueryMask(const UInt32)
-            virtual void SetQueryMask(const UInt32 Mask);
+            virtual void SetQueryMask(const UInt32 Mask) override;
             /// @copydoc RenderableProxy::GetQueryMask() const
-            virtual UInt32 GetQueryMask() const;
+            virtual UInt32 GetQueryMask() const override;
 
             /// @copydoc RenderableProxy::SetRenderDistance(const Real)
-            virtual void SetRenderDistance(const Real Distance);
+            virtual void SetRenderDistance(const Real Distance) override;
             /// @copydoc RenderableProxy::GetRenderDistance() const
-            virtual Real GetRenderDistance() const;
+            virtual Real GetRenderDistance() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Entity Properties
@@ -180,23 +180,23 @@ namespace Mezzanine
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            virtual void ProtoSerialize(XML::Node& ParentNode) const override;
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeMesh(XML::Node& SelfRoot) const;
 
             /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeMesh(const XML::Node& SelfRoot);
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -208,7 +208,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal entity this proxy is based on.
             virtual Ogre::Entity* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//ItemProxy
     }//Graphics
 }//Mezzanine

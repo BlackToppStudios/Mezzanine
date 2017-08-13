@@ -74,7 +74,7 @@ class physicstests : public UnitTestGroup
                 Physics::SphereCollisionShape Ball("Ball",5.0);
                 RigidA->SetCollisionShape(&Ball);
                 RigidA->SetLocation(Vector3(1.0, 1.0, 1.0));
-                RigidA->AddToWorld();
+                RigidA->Activate();
                 // 9
                 FrameScheduler FS;
                 FS.AddWorkUnitMain(Simulation.GetSimulationWork(),"Physics");
@@ -100,7 +100,7 @@ class physicstests : public UnitTestGroup
                     Physics::SphereCollisionShape Ball("Ball",5.0);
                     RigidA->SetCollisionShape(&Ball);
                     RigidA->SetLocation(Vector3(1.0, 1.0, 1.0));
-                    RigidA->AddToWorld();
+                    RigidA->Activate();
                     // 9
                     FrameScheduler FS;
                     FS.SetFrameLength(0);

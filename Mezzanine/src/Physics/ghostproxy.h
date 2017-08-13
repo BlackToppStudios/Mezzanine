@@ -84,12 +84,12 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc EntityProxy::GetComponentType() const
-            virtual Mezzanine::ComponentType GetComponentType() const;
+            virtual Mezzanine::ComponentType GetComponentType() const override;
 
-            /// @copydoc EntityProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc EntityProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Overlapping Proxy Access
@@ -118,12 +118,12 @@ namespace Mezzanine
             // Serialization
 
             /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
             /// @copydoc EntityProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
+            virtual String GetDerivedSerializableName() const override;
             /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
@@ -135,7 +135,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btPairCachingGhostObject* _GetPhysicsObject() const;
             /// @copydoc CollidableProxy::_GetBasePhysicsObject()
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const override;
 
         };//GhostProxy
     }//Physics

@@ -327,9 +327,9 @@ namespace Mezzanine
                 return this->DirectSound;
             }
 
-            void OALS::SoundProxy::AddToWorld()
+            void OALS::SoundProxy::Activate()
             {
-                if( !this->IsInWorld() ) {
+                if( !this->IsActivated() ) {
                     this->State = ( this->State | OALS::PS_InWorld );
                     if( this->IsPaused() ) {
                         this->Play();
@@ -337,9 +337,9 @@ namespace Mezzanine
                 }
             }
 
-            void OALS::SoundProxy::RemoveFromWorld()
+            void OALS::SoundProxy::Deactivate()
             {
-                if( this->IsInWorld() ) {
+                if( this->IsActivated() ) {
                     this->State = ( this->State & ~OALS::PS_InWorld );
                     if( this->IsPlaying() ) {
                         this->Pause();
@@ -347,7 +347,7 @@ namespace Mezzanine
                 }
             }
 
-            Boole OALS::SoundProxy::IsInWorld() const
+            Boole OALS::SoundProxy::IsActivated() const
             {
                 return (this->State & OALS::PS_InWorld);
             }
@@ -367,8 +367,9 @@ namespace Mezzanine
 
             Boole OALS::SoundProxy::Play()
             {
-                if( !this->IsInWorld() )
+                if( !this->IsActivated() ) {
                     return false;
+                }
 
                 // Setup the buffers for playback
                 if( !this->IsPlaying() ) {
