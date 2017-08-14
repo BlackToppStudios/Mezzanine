@@ -55,14 +55,10 @@ namespace Threading {
     {  }
 
     Boole operator<(const AggregatedLogEntry& LeftHand, const AggregatedLogEntry& RightHand)
-    {
-        return LeftHand.When < RightHand.When;
-    }
+        { return LeftHand.When < RightHand.When; }
 
     std::ostream& operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream)
-    {
-        return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.Where << ' ' << ToStream.What;
-    }
+        { return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.Where << ' ' << ToStream.What; }
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine

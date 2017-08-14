@@ -57,24 +57,16 @@ namespace Threading {
     }
 
     ThreadIndex::InternalType ThreadIndex::AsRaw() const
-    {
-        return Index;
-    }
+        { return Index; }
 
     Boole operator== (const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
-    {
-        return LeftHand.Index == RightHand.Index;
-    }
+        { return LeftHand.Index == RightHand.Index; }
 
     std::ostream& operator<< (std::ostream& OutputStream, const ThreadIndex& OneThreadIndex)
-    {
-        return OutputStream << "Thread Index: " << OneThreadIndex.Index;
-    }
+        { return OutputStream << "Thread Index: " << OneThreadIndex.Index; }
 
     Boole operator <(const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
-    {
-        return LeftHand.Index < RightHand.Index;
-    }
+        { return LeftHand.Index < RightHand.Index; }
 
 }//Threading
 }//Mezzanine

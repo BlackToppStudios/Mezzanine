@@ -50,9 +50,9 @@ namespace Threading {
 
     /// @brief This class is intended to assist in troublshooting threading issues with low overhead.
     /// @details Race conditions can be difficult to troublshoot. If you have found this then you likely know what a
-    /// race condition is and can skip past this to the Usage section a few paragraphs below.
+    /// race condition is and can skip past this to the Overview section a few paragraphs below.
     /// @n @n
-    /// Race conditions are subtle bugs that occur when two thread try to access the same resource without correctly
+    /// Race conditions are subtle bugs that occur when two threads try to access the same resource without correctly
     /// ensuring that changes to the resource happen while no other thread is accessing that resource. The most common
     /// kind of race is when two or more threads that might reference the same variable and only occasionally change it.
     /// If that variable isn't properly synchronized between threads then a huge variety of failures can happen. The
@@ -62,33 +62,92 @@ namespace Threading {
     /// to re-order many kinds of instructions such that events during the actual execution of threads doesn't happen in
     /// the order of the source code.
     /// @n @n
-    /// If a programmer is carefully following the C++ memory model or sticking to simple multithreading patterns these
+    /// If a programmer is carefully following the C++ memory model or follows simple multithreading patterns these
     /// classes of bugs can often be avoided. This is not always as simple as it appears. When someone tries to get
     /// "clever" without understanding the memory model or when someone tries to create their own synchronization tools
-    /// with knowing best practices used in the industry this can lead to subtle bugs that occur only occasionally.
+    /// without knowing best practices used in the industry this can lead to subtle bugs that occur only occasionally.
     /// @n @n
     /// The real change can be something as simple a new optimization added to the compiler. If this optimization
-    /// presumed your program didn't rely on undefined behavior but unknowing did then there could be a change in thread
-    /// behavior. The change could be as simply as running the program on a machine with more or fewer cores (or more or
-    /// less load from other processes). This could change the timing of when resources are accessed, and an the accesses
-    /// to an improperly synchronized resource might be move all to time in a batch of work.
+    /// presumed your program didn't rely on undefined behavior but unknowingly did then there could be a change in
+    /// thread behavior. The change could be as simply as running the program on a machine with more or fewer cores (or
+    /// more or less load from other processes). This could change the timing of when resources are accessed, and an the
+    /// accesses to an improperly synchronized resource might be move all to time in a batch of work making an error
+    /// happen more frequently.
     /// @n @n
     /// Whatever the details, the code might have worked 10,000 times and seemed flawless until one day something subtle
     /// changed and you are left holding a program that was bug free yesterday but crashes today and there were no code
     /// changes.
     /// @n @n
-    /// @b Usage
-    /// @n This is a replacement for another common tool when fixing bugs, cout. Many threading issues can be isolated
-    /// by inserting some kind of output statement into the code and capturing that output from a failure. Often a bug
-    /// will be expressed 1 in a 1,000 runs so the debugging developer will make simple script to run the program 10,000
-    /// times and go through the logs attempting to recreate the failure. This often works but can just as often mask
-    /// the bug. output to the console, file or other OS level construct will invoke some kind of synchronization
-    /// mechanism. thread mutex that is in many cout implementations is sometimes enough to hide a race condition is
-    /// reasonably fast code. Even tools that do no synchronization intentionally may do some by accident as they log
-    /// across threads or simply take too much time marshalling log messages.
+    /// @b Overview
+    /// @n This is a replacement for another common set of tools when fixing thread bugs, cout and printf. Many
+    /// threading issues can be isolated by inserting some kind of output statement into the code and capturing that
+    /// output from a failure. Often a bug will be expressed 1 in a 1,000 runs so the debugging developer will make
+    /// simple script to run the program thousands of times and go through the logs attempting to recreate the failure.
+    /// This often works but can just as often mask the bug. Output to the console, file or other OS level construct
+    /// will invoke some kind of synchronization mechanism. Inside the OS there is only the one buffer to the console or
+    /// contents of the file, so the OS must have mutexes, memory fences or some other kind of synchronization to
+    /// prevent race conditions in calling code. Sometimes this is enough to hide a race conditions. Even tools that do
+    /// no synchronization intentionally may do some by accident as they log to these simplistic resources across
+    /// threads or simply take too much time marshalling log messages.
     /// @n
     /// This works in a similar way to those but with the lowest overhead possible. Each thread gets its own binary log,
-    /// and into that it writes one pointer at a time.
+    /// and into that it writes one pointer at a time. There is never any synchronization called just a call to get the
+    /// time and copy a pointer into the log (If your system synchronizes on the time that is really rough, this won't
+    /// help you much).
+    /// @n
+    /// For you to get the full use out of the ThreadLog you will need to insert calls to it in your code and follow the
+    /// 4 stages to its use. First, you must initialize it. Second each thread must be registered. Third, Each thread
+    /// logs its messages. Fourth and Finally, the contents of the log are aggregated and sorted into chronological
+    /// order. This will give you a step by step log of what your application did regardless of however many threads
+    /// it is doing that work on.
+    /// @n @n
+    /// @b Preparation
+    /// @n
+    /// @todo Flesh this out
+    /// Use @ref ThreadLog::PrepareLogGroup to create a log for each thread and optionally to preallocate space for each
+    /// threads log. After setting this more threads cannot be added, the amount passed for the thread count must be
+    /// equaly or larger than the actual number of threads. This is because it is impossible to change the layout of the
+    /// logging structures without including some kind of synchronization primitive that could alter the behavior of
+    /// your code and multiple threads are using this structure to get access to their logs.
+    /// @n
+    /// The starting space for each thread is much more forgiving. It defaults to 2,000 log entries. Each thread gets
+    /// its own std::vector that will store the log. This will expand as more log entries are added. This is possible
+    /// because each thread is the only thread that will access its own log. The memory allocations could still cause
+    /// accidental synchronizations, to minimize this try to set the log size larger than the amount any single thread
+    /// will log.
+    ///
+    /// @code{.cpp}
+    /// ThreadLog::PrepareLogGroup(1); // Reserve space for 1 thread (with memory reserved for 2000 entries in each)
+    /// ThreadLog::PrepareLogGroup(1200); // Reserve space 1200 threads (with memory reserved for 2000 entries in each)
+    /// ThreadLog::PrepareLogGroup(10, 1000); // Reserve space for 10 logs with 1000 entries in each
+    /// @endcode
+    ///
+    /// @n @n
+    /// @b Registration
+    /// @n
+    ///
+    /// Each thread needs to get its own unique thread number that starts at 0 and counts up. If each thread had this
+    /// number it could perform a constant time lookup into an array or similar construct and retrieve its log and do
+    /// anything with that log with fear of threading issues. This is exactly the purpose of the @ref ThreadIndex class.
+    ///
+    /// A thread can register at any time to get its own ThreadIndex with the @ref ThreadLog::RegisterThread function.
+    /// It must do this before calling any of the loggingfunctions. It doesn't matter if any other thread has started
+    /// logging or not, as long as each thread registers before it starts logging.
+    ///
+    /// The ThreadIndex is stored in thread_local storage and will not need to be handled directly by call code.
+    ///
+    /// @code{.cpp}
+    /// ThreadLog::RegisterThread(); // Do this in each thread before that thread logs.
+    /// @endcode
+    ///
+    /// @n @n
+    /// @b Logging
+    /// @n
+    /// To insure this is a constant time operation as often as possible the loggin
+    ///
+    /// @n @n
+    /// @b Aggregation
+    /// @n
     class MEZZ_LIB ThreadLog
     {
     public:
@@ -107,9 +166,6 @@ namespace Threading {
 
         /// @brief The type of the log used in each thread.
         using ThreadLogGroupType = std::vector<ThreadLogType>;
-
-        /// @brief Look into using an allocator to carefully align memory to mitigate false sharing.
-        //using ThreadLogGroupType = std::vector<ThreadLogType, AlignedAllocator<ThreadLogType, 64>>;
 
         /// @brief A log that stores logs from multiple threads
         using AggregatedLogType = std::vector<AggregatedLogEntry>;
@@ -174,9 +230,13 @@ namespace Threading {
         /// @details This clears old logs and creates space for new logs. This must be called with an amount larger than
         /// the possible amount of threads or it could fail because there is no log for a given thread.
         /// @param MaxThreadCount The largest amount of threads that logs will be captured for.
+        /// @param StartingLogReservation How many log entries should be stored before allocations are required?
+        /// Defaults to 2000 log entries, Set this higher or lower based on how many log entries you think a single
+        /// thread might make at maximum. This will expand automatically, but could mask some threading errors.
         /// @warning This must be called before any thread logs.
         /// @warning When called MaxThreadCount must be larger than the amount of threads logging.
-        static void PrepareLogGroup(const ThreadLogGroupType::size_type& MaxThreadCount);
+        static void PrepareLogGroup(const ThreadIndex::InternalType& MaxThreadCount,
+                                    const ThreadLogGroupType::size_type& StartingLogReservation = 2000);
 
         /// @brief Record a timestamped message in this thread's log.
         /// @param A pointer to a C-String, preferably a string literal that isn't going anywhere.
@@ -189,7 +249,7 @@ namespace Threading {
         /// @brief Convenience method to retrieve log with ints
         /// @param An integer which indicates the thread index that is compatible with the size_type of vector.
         /// @return An immutable reference to the threads logs.
-        static const ThreadLogType& GetLog(const ThreadLogGroupType::size_type& Index);
+        static const ThreadLogType& GetLog(const ThreadIndex::InternalType& Index);
 
         /// @brief Convenience method to retrieve log with ints
         /// @param An integer which indicates the thread index that is compatible with the size_type of vector.
@@ -202,9 +262,20 @@ namespace Threading {
         /// @return A chronologically sorted group of log entries with the ThreadIndex, Log Message and Time stamps.
         static AggregatedLogType AggregateLogs();
 
-        // print single thread log
+        /// @brief Print the Log from One Thread to any std::ostream
+        /// @param Stream the std::ostream to print to.
+        /// @param Index the thread index for the log to print
+        static void PrintOneThreadsLog(std::ostream& Stream,
+                                       const ThreadIndex& Index = ThreadLog::GetThreadIndex());
 
-        // print multi thread log
+        /// @brief Print the log from all the threads to a given std::ostream
+        /// @warning By default this calls @ref AggregateLogs and has all the same restrictions
+        /// @param Stream the std::ostream to print to.
+        /// @param Logs Defaults to calling @ref AggregateLogs and using its results but can work with any instance of
+        /// an AggregatedLogType,
+        static void PrintAggregatedLog(std::ostream& Stream,
+                                       const AggregatedLogType& Logs = AggregateLogs());
+
 
         // Add macros.
     };//ThreadLog

@@ -533,7 +533,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/AggregatedLogEntry.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/SingleThreadLogEntry.h"
-        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/RaceLog.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadLog.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadIndex.h"
         # UI (User Interface) Items
         "${${PROJECT_NAME}_SRC_DIR}UI/ui.h"
@@ -997,7 +997,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/AggregatedLogEntry.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/SingleThreadLogEntry.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/RaceLog.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadLog.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadIndex.cpp"
         # UI (User Interface) Items
         "${${PROJECT_NAME}_SRC_DIR}UI/uimanager.cpp"

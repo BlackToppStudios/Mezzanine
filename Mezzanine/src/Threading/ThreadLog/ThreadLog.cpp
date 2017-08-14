@@ -38,7 +38,7 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#include "RaceLog.h"
+#include "ThreadLog.h"
 
 #include <numeric>
 #include <algorithm>
@@ -60,9 +60,7 @@ namespace Threading {
     }
 
     ThreadLog::ThreadIndexType ThreadLog::GetThreadIndex()
-    {
-        return CurrentThreadIndex;
-    }
+        { return CurrentThreadIndex; }
 
     void ThreadLog::ResetRegistry()
     {
@@ -70,32 +68,28 @@ namespace Threading {
         CurrentThreadIndex = ThreadIndexType{-1};
     }
 
-    void ThreadLog::PrepareLogGroup(const ThreadLogGroupType::size_type& MaxThreadCount)
+    void ThreadLog::PrepareLogGroup(const ThreadIndex::InternalType& MaxThreadCount,
+                                    const ThreadLogGroupType::size_type& StartingLogReservation)
     {
         ThreadLogGroup.clear();
         ThreadLogGroup.reserve(MaxThreadCount);
         for(ThreadLogGroupType::size_type logCreationCounter = 0;
             logCreationCounter < MaxThreadCount;
             logCreationCounter++)
-        {
-            ThreadLogGroup.push_back(ThreadLogType{});
-        }
+            { ThreadLogGroup.push_back(ThreadLogType{}); }
+
+        for(ThreadLogType OneLog : ThreadLogGroup)
+            { OneLog.reserve(StartingLogReservation); }
     }
 
     void ThreadLog::Log(const char* Message)
-    {
-        ThreadLogGroup[CurrentThreadIndex.AsRaw()].push_back(ThreadLogEntryType(Message));
-    }
+        { ThreadLogGroup[CurrentThreadIndex.AsRaw()].push_back(ThreadLogEntryType(Message)); }
 
-    const ThreadLog::ThreadLogType& ThreadLog::GetLog(const ThreadLog::ThreadLogGroupType::size_type& Index)
-    {
-        return GetLog(ThreadIndexType{Index}); // @todo Do something about this narrowing.
-    }
+    const ThreadLog::ThreadLogType& ThreadLog::GetLog(const ThreadIndex::InternalType& Index)
+        { return GetLog(ThreadIndexType{Index}); }
 
     const ThreadLog::ThreadLogType& ThreadLog::GetLog(const ThreadLog::ThreadIndexType& Index)
-    {
-        return ThreadLogGroup[Index.AsRaw()];
-    }
+        { return ThreadLogGroup[Index.AsRaw()]; }
 
     ThreadLog::AggregatedLogType ThreadLog::AggregateLogs()
     {
@@ -131,8 +125,21 @@ namespace Threading {
             }
         }
         std::sort(Results.begin(), Results.end());
-
         return Results;
+    }
+
+    void ThreadLog::PrintOneThreadsLog(std::ostream& Stream, const ThreadIndex& Index)
+    {
+        for(const SingleThreadLogEntry& OneEntry : GetLog(Index))
+            { Stream << OneEntry << '\n'; }
+        Stream << std::endl;
+    }
+
+    void ThreadLog::PrintAggregatedLog(std::ostream& Stream, const AggregatedLogType& Logs)
+    {
+        for(const AggregatedLogEntry& OneEntry : Logs)
+            { Stream << OneEntry << '\n'; }
+        Stream << std::endl;
     }
 
 }//Threading

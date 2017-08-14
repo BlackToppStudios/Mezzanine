@@ -46,7 +46,7 @@
 namespace Mezzanine {
 namespace Threading {
 
-    /// @brief A simple fixed sized log entry that is created when log entries are made.
+    /// @brief A simple fixed sized log entry that is created when log entries are made for a single thread's log.
     class MEZZ_LIB SingleThreadLogEntry
     {
     public:

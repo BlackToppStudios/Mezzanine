@@ -111,8 +111,10 @@
 #include "threadingenumerations.h"
 #include "workunit.h"
 #include "workunitkey.h"
+#endif
 
-#include "ThreadLog/RaceLog.h"
+#ifndef SWIG
+#include "ThreadLog/ThreadLog.h"
 #endif
 
 

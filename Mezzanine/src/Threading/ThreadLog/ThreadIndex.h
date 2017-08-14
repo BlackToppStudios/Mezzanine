@@ -48,7 +48,8 @@ namespace Threading {
 
     /// @brief A unique Id for threads suitable for use as the index into simple containers for quick lookups.
     /// @details A thread index is a sequentially counted number from 0 to N where N is the number of threads. This
-    /// supports only the most minimal set of operations that can be
+    /// supports only the most minimal set of operations that can be done on a thread index, perhaps not even the full
+    /// set of what is useful.
     class MEZZ_LIB ThreadIndex
     {
     public:

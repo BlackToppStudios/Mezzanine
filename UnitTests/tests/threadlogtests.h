@@ -318,7 +318,6 @@ class threadlogtests : public UnitTestGroup
                 ThreadLog::RegisterThread();
                 for(int Counter{0}; Counter < TestLogIterations; Counter++)
                     { ThreadLog::Log("First"); }
-
             };
 
             using Clock = std::chrono::high_resolution_clock;
@@ -332,7 +331,6 @@ class threadlogtests : public UnitTestGroup
 
             auto BaseLineDuration = StopBaseline - StartBaseline;
             std::cout << "Baseline time to execute: " << BaseLineDuration.count() << "ns" << std::endl;
-
 
             ThreadLog::ResetRegistry();
 
@@ -382,6 +380,57 @@ class threadlogtests : public UnitTestGroup
             }
         }
 
+        /// @brief Test that the streaming function work
+        void TestStreaming()
+        {
+
+            // Let's do some simple logging
+            ThreadLog::PrepareLogGroup(2);
+            ThreadLog::RegisterThread();
+
+            ThreadLog::Log("Frist Post");
+
+            std::thread FirstThread([]{
+                ThreadLog::RegisterThread();
+                ThreadLog::Log("Second Post");
+            });
+            FirstThread.join();
+
+            {
+                // let's try printing those logs to a string stream
+                std::stringstream TestStream;
+
+                ThreadLog::PrintOneThreadsLog(TestStream, ThreadIndex{0});
+                TEST(TestStream.str().find(String("Frist Post")) != std::string::npos, "LogPrinting");
+                TestStream.str("");
+
+                ThreadLog::PrintOneThreadsLog(TestStream);
+                TEST(TestStream.str().find(String("Frist Post")) != std::string::npos, "LogPrintingDefaultsCorrectly");
+                TestStream.str("");
+
+                ThreadLog::PrintOneThreadsLog(TestStream, ThreadIndex{1});
+                TEST(TestStream.str().find(String("Second Post")) != std::string::npos, "LogPrintingOtherThreads");
+                TestStream.str("");
+            }
+
+            {
+                // Try Printing the aggregated logs
+                std::stringstream TestStream;
+
+                ThreadLog::PrintAggregatedLog(TestStream);
+
+                String::size_type Frist = TestStream.str().find(String("Frist Post"));
+                String::size_type Second = TestStream.str().find(String("Second Post"));
+
+                TEST( Frist != std::string::npos, "LogPrintingAggregatedFirst");
+                TEST( Second != std::string::npos, "LogPrintingAggregatedSecond");
+                TEST( Frist < Second, "LogPrintingAggregatedOrderingPreserved");
+            }
+
+            ThreadLog::ResetRegistry();
+
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Stuff the test suite needs
         ////////////////////////////////////////
@@ -400,6 +449,7 @@ class threadlogtests : public UnitTestGroup
             TestLoggingWithoutMacros();
             TestLoggingAggregation();
             StressTest();
+            TestStreaming();
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
