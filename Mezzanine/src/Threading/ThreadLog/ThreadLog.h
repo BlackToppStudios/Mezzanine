@@ -275,11 +275,31 @@ namespace Threading {
         /// an AggregatedLogType,
         static void PrintAggregatedLog(std::ostream& Stream,
                                        const AggregatedLogType& Logs = AggregateLogs());
+    }; //ThreadLog
 
+    /// @macro PREPARE_THREAD_LOG
+    /// @brief When the CMake option Mezz_Profile is enabled this calls @ref Mezzanine::ThreadLog::PrepareLogGroup
+    /// @param ThreadCount The highest possible amount of threads.
+    /// @param StartingEntries The starting entry count.
 
-        // Add macros.
-    };//ThreadLog
+    /// @macro REGISTER_THREAD
+    /// @brief When the CMake option Mezz_Profile is enabled this calls @ref Mezzanine::ThreadLog::RegisterThread
 
-}//Threading
-}//Mezzanine
+    /// @macro THREAD_LOG
+    /// @brief When the CMake option Mezz_Profile is enabled this calls @ref Mezzanine::ThreadLog::ThreadLog passing
+    /// the file and line number.
+
+    #ifdef MEZZTHREADLOG
+        #define PREPARE_THREAD_LOG(ThreadCount, StartingEntries) \
+            Mezzanine::Threading::ThreadLog::PrepareLogGroup(ThreadCount, StartingEntries);
+        #define REGISTER_THREAD Mezzanine::Threading::ThreadLog::RegisterThread();
+        #define THREAD_LOG Mezzanine::Threading::ThreadLog::Log(__FILE__ ":" Stringify(__LINE__));
+    #else
+        #define PREPARE_THREAD_LOG(ThreadCount, StartingEntries)
+        #define REGISTER_THREAD
+        #define THREAD_LOG
+    #endif
+
+} //Threading
+} //Mezzanine
 #endif

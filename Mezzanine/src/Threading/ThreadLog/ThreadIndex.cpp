@@ -68,5 +68,5 @@ namespace Threading {
     Boole operator <(const ThreadIndex& LeftHand, const ThreadIndex& RightHand)
         { return LeftHand.Index < RightHand.Index; }
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine

@@ -65,6 +65,7 @@
 #
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
+#        Mezz_ThreadLog                     - Enables threadlogging, If disabled macros will insert no code at all.
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
@@ -275,11 +276,24 @@ option(Mezz_Profile "Executables will gather runtime statistics." OFF)
 if(${Mezz_Profile})
     message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
     set(Mezz_Profile_Arguments "-pg ${D}MEZZPROFILE") # The pg makes this only work with gcc, clang and imitators
-    set(Mezz_Profile_Defined "MEZZPROFILE = 1")
+    set(Mezz_Profile_Defined "MEZZPROFILE = 1") # Is this required
 else(${Mezz_Profile})
     message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
-    set(Mezz_Profile_Arguments "${D}MEZZPROFILE_undefined")
+    set( "${D}MEZZPROFILE_undefined")
     set(Mezz_Profile_Defined "MEZZPROFILE_undefined")
+endif(${Mezz_Profile})
+
+###############################################################################
+# Check For the Mezz_Profile option and set values accordingly
+option(Mezz_ThreadLog "Enables Macros for Thread issue logging." OFF)
+if(${Mezz_ThreadLog})
+    message ( STATUS "${PROJECT_NAME} - Enabling thread log instrumenting and setting MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Defined "MEZZTHREADLOG = 1") # Is this required
+else(${Mezz_ThreadLog})
+    message ( STATUS "${PROJECT_NAME} - Disabling thread log instrumenting and unsetting MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG_undefined")
+    set(Mezz_ThreadLog_Defined "MEZZTHREADLOG_undefined")
 endif(${Mezz_Profile})
 
 ###############################################################################
@@ -338,8 +352,6 @@ if(${Mezz_Tools_EntreLua})
 else(${Mezz_Tools_EntreLua})
     message ( STATUS "${PROJECT_NAME} - Disabling EntreLua build.")
 endif(${Mezz_Tools_EntreLua})
-
-
 
 
 ###############################################################################
@@ -634,7 +646,7 @@ if(NOT MSVC AND NOT ANDROID)
     endif(Mezz_Platform_Big_Endian)
 endif(NOT MSVC AND NOT ANDROID)
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_ThreadLog_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
 separate_arguments(CommonBuildFlags UNIX_COMMAND "${CommonBuildFlags}")
 
 ###############################################################################

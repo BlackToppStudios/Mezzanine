@@ -53,5 +53,5 @@ namespace Threading {
     std::ostream& operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream)
         { return Output << ToStream.When.time_since_epoch().count() << ' ' << ToStream.What; }
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine

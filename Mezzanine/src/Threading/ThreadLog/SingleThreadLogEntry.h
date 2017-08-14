@@ -83,7 +83,7 @@ namespace Threading {
 
         /// @brief Default assignment operator
         SingleThreadLogEntry& operator=(const SingleThreadLogEntry&) = default;
-    };//SingleThreadLogEntry
+    }; //SingleThreadLogEntry
 
     /// @brief Compare two Entries chronologically to see if the one on the left happened before the one on the right.
     /// @param LeftHand A SingleThreadLogEntry to check if it is before than RightHand.
@@ -97,7 +97,7 @@ namespace Threading {
     /// @return A reference to the stream passed as OutputStream.
     std::ostream& MEZZ_LIB operator<<(std::ostream& Output, const SingleThreadLogEntry& ToStream);
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine
 
 #endif

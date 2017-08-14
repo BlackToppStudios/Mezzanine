@@ -93,7 +93,7 @@ namespace Threading {
 
         // @brief Default destructor
         ~AggregatedLogEntry() = default;
-    };//AggregatedLogEntry
+    }; //AggregatedLogEntry
 
     /// @brief Compare two Entries chronologically to see if the one on the left happened before the one on the right.
     /// @param LeftHand A AggregatedLogEntry to check if it is before than RightHand.
@@ -107,6 +107,6 @@ namespace Threading {
     /// @return A reference to the stream passed as OutputStream.
     std::ostream& MEZZ_LIB operator<<(std::ostream& Output, const AggregatedLogEntry& ToStream);
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine
 #endif

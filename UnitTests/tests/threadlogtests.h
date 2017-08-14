@@ -428,7 +428,25 @@ class threadlogtests : public UnitTestGroup
             }
 
             ThreadLog::ResetRegistry();
+        }
 
+        void TestMacros()
+        {
+            ThreadLog::PrepareLogGroup(1,1); // Forcibly erase logs
+
+            // Let's do some the same simple logging other tests do, but with MACROS
+            PREPARE_THREAD_LOG(2,10);
+            REGISTER_THREAD;
+            THREAD_LOG;
+
+            // Log Aggregation and size check
+            const ThreadLog::AggregatedLogType Results{ThreadLog::AggregateLogs()};
+
+            #ifdef MEZZTHREADLOG
+                TEST(Results.size() > 0, "LogsWhenEnabled");
+            #else
+                TEST(Results.size() == 0, "SkipsWhenDisabled");
+            #endif
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -450,6 +468,7 @@ class threadlogtests : public UnitTestGroup
             TestLoggingAggregation();
             StressTest();
             TestStreaming();
+            TestMacros();
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

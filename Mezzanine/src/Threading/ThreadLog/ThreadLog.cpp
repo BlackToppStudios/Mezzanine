@@ -142,6 +142,6 @@ namespace Threading {
         Stream << std::endl;
     }
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine
 

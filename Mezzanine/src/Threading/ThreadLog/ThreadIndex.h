@@ -82,7 +82,7 @@ namespace Threading {
 
         /// @brief Used by other RaceLog internal to get at however this is represented.
         InternalType AsRaw() const;
-    };//ThreadIndex
+    }; //ThreadIndex
 
     /// @brief Compare two thread Index for equality.
     /// @param RightHand The item on the Right hand side of the equality comparison operator.
@@ -103,7 +103,7 @@ namespace Threading {
     /// index.
     Boole MEZZ_LIB operator< (const ThreadIndex& LeftHand, const ThreadIndex& RightHand);
 
-}//Threading
-}//Mezzanine
+} //Threading
+} //Mezzanine
 
 #endif
