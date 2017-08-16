@@ -42,13 +42,49 @@
 
 #include <numeric>
 #include <algorithm>
+#include <iostream>
+#include <csignal>
+
+namespace {
+
+    /// @brief This is supposed to be called from a signal handler to take one last chance at emitting logs.
+    /// @param Signal The signal we are "handling"... More like ignoring and logging in response to.
+    extern "C" void PrintOnSignalHandler(int Signal)
+    {
+        std::ostream& Output = std::cerr;
+        Output << "Signal caught: ";
+        switch(Signal)
+        {
+            case SIGABRT:   Output << "SIGABRT";                        break;
+            case SIGFPE:    Output << "SIGFPE";                         break;
+            case SIGILL:    Output << "SIGILL";                         break;
+            case SIGINT:    Output << "SIGINT";                         break;
+            case SIGSEGV:   Output << "SIGSEGV";                        break;
+            case SIGTERM:   Output << "SIGTERM";                        break;
+            default:        Output << "Unkown(" << Signal << ')';       break;
+        }
+        Output << std::endl;
+
+        Mezzanine::Threading::ThreadLog::PrintAggregatedLog(Output);
+
+        std::quick_exit(EXIT_FAILURE);
+    }
+}
 
 namespace Mezzanine {
 namespace Threading {
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Data Members
+    ////////////////////////////////////////
+
     std::atomic<ThreadLog::ThreadIndexType::InternalType> ThreadLog::ThreadCount{-1};
     thread_local ThreadLog::ThreadIndexType ThreadLog::CurrentThreadIndex;
     ThreadLog::ThreadLogGroupType ThreadLog::ThreadLogGroup;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Register Threads
+    ////////////////////////////////////////
 
     ThreadLog::ThreadIndexType ThreadLog::RegisterThread()
     {
@@ -68,6 +104,10 @@ namespace Threading {
         CurrentThreadIndex = ThreadIndexType{-1};
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Basic Logging
+    ////////////////////////////////////////
+
     void ThreadLog::PrepareLogGroup(const ThreadIndex::InternalType& MaxThreadCount,
                                     const ThreadLogGroupType::size_type& StartingLogReservation)
     {
@@ -84,6 +124,10 @@ namespace Threading {
 
     void ThreadLog::Log(const char* Message)
         { ThreadLogGroup[CurrentThreadIndex.AsRaw()].push_back(ThreadLogEntryType(Message)); }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Log Viewing
+    ////////////////////////////////////////
 
     const ThreadLog::ThreadLogType& ThreadLog::GetLog(const ThreadIndex::InternalType& Index)
         { return GetLog(ThreadIndexType{Index}); }
@@ -128,6 +172,10 @@ namespace Threading {
         return Results;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Log Viewing
+    ////////////////////////////////////////
+
     void ThreadLog::PrintOneThreadsLog(std::ostream& Stream, const ThreadIndex& Index)
     {
         for(const SingleThreadLogEntry& OneEntry : GetLog(Index))
@@ -141,6 +189,23 @@ namespace Threading {
             { Stream << OneEntry << '\n'; }
         Stream << std::endl;
     }
+
+    void ThreadLog::PrintLogOnSignal(int Signal)
+    {
+        std::signal(Signal, PrintOnSignalHandler);
+    }
+
+    void ThreadLog::PrintLogOnAllSignals()
+    {
+        PrintLogOnSignal(SIGABRT);
+        PrintLogOnSignal(SIGFPE);
+        PrintLogOnSignal(SIGILL);
+        PrintLogOnSignal(SIGINT);
+        PrintLogOnSignal(SIGSEGV);
+        PrintLogOnSignal(SIGTERM);
+    }
+
+
 
 } //Threading
 } //Mezzanine

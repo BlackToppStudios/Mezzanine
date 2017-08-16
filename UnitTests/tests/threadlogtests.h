@@ -476,6 +476,8 @@ class threadlogtests : public UnitTestGroup
         virtual bool HasAutomaticTests() const
             { return true; }
 
+        /// @todo Figure out to test printing of log on signal handlers on signal handlers.
+
 };
 
 #endif

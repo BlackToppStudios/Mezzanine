@@ -206,7 +206,7 @@ namespace Threading {
 
     public:
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Register Threads for fast lookup
+    // Register Threads
     ////////////////////////////////////////
 
         /// @brief This prepares a thread for low impact logging and must be called in each thread that will be logging.
@@ -262,6 +262,11 @@ namespace Threading {
         /// @return A chronologically sorted group of log entries with the ThreadIndex, Log Message and Time stamps.
         static AggregatedLogType AggregateLogs();
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Log Viewing Helpers
+    ////////////////////////////////////////
+
         /// @brief Print the Log from One Thread to any std::ostream
         /// @param Stream the std::ostream to print to.
         /// @param Index the thread index for the log to print
@@ -275,6 +280,20 @@ namespace Threading {
         /// an AggregatedLogType,
         static void PrintAggregatedLog(std::ostream& Stream,
                                        const AggregatedLogType& Logs = AggregateLogs());
+
+        /// @brief Attempt to have the ThreadLog Emit logs to std::cerr when an OS signal occurs.
+        /// @param Signal The signal to attempt to handle from the csignal header.
+        /// @details This will configure a function that prints the aggregated logs as the signal handler for the passed
+        /// signal.
+        /// @warning This invokes several kinds of undefined behavior and exposes race conditions. This relies on the
+        /// notion that most segfaults stop other execution and undefined behavior often works as expected. Try to log
+        /// normally before using this.
+        static void PrintLogOnSignal(int Signal);
+
+        /// @brief Call PrintLogOnSignal for SIGABRT, SIGFPE, SIGILL, SIGINT, SIGSEGV and SIGTERM.
+        static void PrintLogOnAllSignals();
+
+
     }; //ThreadLog
 
     /// @macro PREPARE_THREAD_LOG
