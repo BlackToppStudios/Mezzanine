@@ -79,6 +79,7 @@
     #include <ostream>
     #include <chrono>
     #include <array>
+    #include <atomic>
 #endif
 
 #include "swig.h"

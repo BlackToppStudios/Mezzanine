@@ -242,4 +242,12 @@
     #endif
 
 
+    /// @brief Convert something in a macro to a string literal for later concatenation
+    /// @param ToCovertToString A string to make it a string literal
+    #define StringPrep(ToCovertToString) #ToCovertToString
+
+    /// @brief Accepts a non string to be parsed by the preprocessor
+    /// @param ToCovertToString A string to make it a string literal macro
+    #define Stringify(ToCovertToString) StringPrep(ToCovertToString)
+
 #endif

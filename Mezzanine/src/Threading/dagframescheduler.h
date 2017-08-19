@@ -113,6 +113,10 @@
 #include "workunitkey.h"
 #endif
 
+#ifndef SWIG
+#include "ThreadLog/ThreadLog.h"
+#endif
+
 
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION
