@@ -490,6 +490,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/softproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/taskscheduler.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/universalconstraint.h"
         # Resource Items
         "${${PROJECT_NAME}_SRC_DIR}Resource/resource.h"
@@ -961,6 +962,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/softproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/taskscheduler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/universalconstraint.cpp"
         # Resource Items
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourcemanager.cpp"

@@ -77,6 +77,7 @@
     #include <utility>
     #include <memory>
     #include <ostream>
+    #include <atomic>
 #endif
 
 #include "swig.h"

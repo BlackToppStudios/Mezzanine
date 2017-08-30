@@ -79,6 +79,7 @@
 #include "Graphics/scenemanager.h"
 
 #include "Physics/collisiondispatcher.h.cpp"
+#include "Physics/taskscheduler.h.cpp"
 
 #include <queue>
 #include <algorithm>
@@ -526,26 +527,45 @@ namespace Mezzanine
                     { SolverPool[CurrSolver] = new btSequentialImpulseConstraintSolver(); }
 
                 this->BulletSolver = new btConstraintSolverPoolMt(SolverPool.data(),SolverPool.size());
-                btSetTaskScheduler( btGetSequentialTaskScheduler() );
+                btSetTaskScheduler( new ParallelForScheduler(ThreadCount) );
             }else{
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
                 btSetTaskScheduler( btGetSequentialTaskScheduler() );
             }
 
             // Create the world
-            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
-                this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld( this->BulletDispatcher,
-                                                                          this->BulletBroadphase,
-                                                                          this->BulletSolver,
-                                                                          this->BulletCollisionConfig);
+            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
+                if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                    this->BulletDynamicsWorld = new btSoftRigidDynamicsWorldMt( this->BulletDispatcher,
+                                                                                this->BulletBroadphase,
+                                                                                this->BulletSolver,
+                                                                                this->BulletCollisionConfig);
+                }else{
+                    this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
+                                                                               this->BulletBroadphase,
+                                                                               this->BulletSolver,
+                                                                               this->BulletCollisionConfig);
+                }
                 this->IsSoftWorld = true;
             }else{
-                this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
-                                                                         this->BulletBroadphase,
-                                                                         this->BulletSolver,
-                                                                         this->BulletCollisionConfig);
+                if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                    this->BulletDynamicsWorld = new btDiscreteDynamicsWorldMt( this->BulletDispatcher,
+                                                                               this->BulletBroadphase,
+                                                                               static_cast<btConstraintSolverPoolMt*>( this->BulletSolver ),
+                                                                               this->BulletCollisionConfig);
+                }else{
+                    this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
+                                                                             this->BulletBroadphase,
+                                                                             this->BulletSolver,
+                                                                             this->BulletCollisionConfig);
+                }
                 this->IsSoftWorld = false;
-            }
+            }//*/
+            this->BulletDynamicsWorld = new btDiscreteDynamicsWorldMt( this->BulletDispatcher,
+                                                                       this->BulletBroadphase,
+                                                                       static_cast<btConstraintSolverPoolMt*>( this->BulletSolver ),
+                                                                       this->BulletCollisionConfig);
+            this->IsSoftWorld = false;
 
             // Set up the work units
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -585,6 +605,13 @@ namespace Mezzanine
 
         void PhysicsManager::Destroy()
         {
+            btITaskScheduler* Scheduler = btGetTaskScheduler();
+            btSetTaskScheduler(nullptr);
+            if( Scheduler ) {
+                delete Scheduler;
+                Scheduler = nullptr;
+            }
+
             delete this->BulletDynamicsWorld;
             this->BulletDynamicsWorld = nullptr;
             delete this->BulletDispatcher;
@@ -647,13 +674,6 @@ namespace Mezzanine
             AlgoContainer::iterator EndAlgo = AlgoQueue.end();
             while( CurrAlgo != EndAlgo )
             {
-                /*for( PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin() ; ColIt != this->Collisions.end() ; ++ColIt )
-                {
-                    if( (*CurrAlgo) == (*ColIt).second->InternalAlgo ) {
-
-                        break;
-                    }
-                }// */
                 // Old method involving detecting the actual WorldObject pair
                 CollidableProxy* ProxA = nullptr;
                 CollidableProxy* ProxB = nullptr;
@@ -674,13 +694,6 @@ namespace Mezzanine
                 if( ( ProxA != nullptr && ProxA->GetCollisionResponse() ) && ( ProxB != nullptr && ProxB->GetCollisionResponse() ) ) {
                     // Create the collision
                     CollidablePair NewPair(ProxA,ProxB);
-                    /*PhysicsManager::CollisionMapIterator ColIt = Collisions.find(NewPair);
-                    if(ColIt == Collisions.end()) {
-                        Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,(*CurrAlgo));
-                        //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                        //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                        Collisions.insert( CollisionSortPair(NewPair,NewCol) );
-                    }// */
                     PhysicsManager::CollisionMapIterator ColIt = this->Collisions.begin();
                     while( ColIt != this->Collisions.end() )
                     {
@@ -691,8 +704,6 @@ namespace Mezzanine
 
                     if( ColIt == this->Collisions.end() ) {
                         Physics::Collision* NewCol = new Physics::Collision(ProxA,ProxB,(*CurrAlgo));
-                        //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
-                        //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
                         Collisions.insert( CollisionSortPair(NewPair,NewCol) );
                     }
                 }// */

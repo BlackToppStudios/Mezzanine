@@ -40,7 +40,8 @@
 #ifndef _physicscollisiondispatcher_h_cpp
 #define _physicscollisiondispatcher_h_cpp
 
-#include <btBulletDynamicsCommon.h>
+#define BT_THREADSAFE 1
+
 #include <BulletCollision/CollisionDispatch/btCollisionDispatcherMt.h>
 
 #include <vector>
@@ -99,6 +100,8 @@ namespace Mezzanine
         protected:
             /// @brief A container of all the algorithms that have been created and need processing.
             AlgoContainer AlgoCreationQueue;
+            /// @brief A mutex to protect access to the creation queue in multi-threaded environments.
+            btSpinMutex QueueMutex;
             /// @brief A pointer to the physics manager to report the collisions to.
             PhysicsManager* PhysMan;
         public:

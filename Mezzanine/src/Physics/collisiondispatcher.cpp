@@ -43,8 +43,6 @@
 #include "Physics/collisiondispatcher.h.cpp"
 #include "Physics/physicsmanager.h"
 #include "Physics/collision.h"
-#include "entresol.h"
-#include "world.h"
 
 namespace Mezzanine
 {
@@ -119,7 +117,9 @@ namespace Mezzanine
         {
             void* ToReturn = btCollisionDispatcher::allocateCollisionAlgorithm(size);
             btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ToReturn;
-            AlgoCreationQueue.push_back(Casted);
+            btMutexLock(&QueueMutex);
+            this->AlgoCreationQueue.push_back(Casted);
+            btMutexUnlock(&QueueMutex);
             return ToReturn;
         }
         void ParallelCollisionDispatcher::freeCollisionAlgorithm(void* ptr)
@@ -127,10 +127,12 @@ namespace Mezzanine
             btCollisionAlgorithm* Casted = (btCollisionAlgorithm*)ptr;
             // first check the queue
             if( !AlgoCreationQueue.empty() ) {
-                for( AlgoContainer::iterator QueIt = AlgoCreationQueue.begin() ; QueIt != AlgoCreationQueue.end() ; QueIt++ )
+                for( AlgoContainer::iterator QueIt = this->AlgoCreationQueue.begin() ; QueIt != this->AlgoCreationQueue.end() ; QueIt++ )
                 {
                     if( Casted == (*QueIt) ) {
-                        AlgoCreationQueue.erase(QueIt);
+                        btMutexLock(&QueueMutex);
+                        this->AlgoCreationQueue.erase(QueIt);
+                        btMutexUnlock(&QueueMutex);
                         btCollisionDispatcher::freeCollisionAlgorithm(ptr);
                         return;
                     }
@@ -141,7 +143,9 @@ namespace Mezzanine
             {
                 if( Casted == (*ColIt).second->InternalAlgo ) {
                     delete (*ColIt).second;
+                    btMutexLock(&QueueMutex);
                     this->PhysMan->Collisions.erase(ColIt);
+                    btMutexUnlock(&QueueMutex);
                     break;
                 }
             }
