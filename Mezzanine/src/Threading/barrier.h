@@ -57,25 +57,38 @@ namespace Mezzanine
         /// @brief A synchronization primitive that causes a predefined number of threads to all wait before continuing.
         class MEZZ_LIB Barrier
         {
+            public:
+                typedef std::atomic<Int32> AtomicInt;
+                typedef Int32 NonAtomicInt;
+
             protected:
                 /// @brief The number of threads to have wait.
-                Int32 ThreadGoal;
+                AtomicInt ThreadGoal;
 
                 /// @brief Does calling wait on this barrier block at presemt
                 /// @details 1 waits, and 0 does not any other value indicates a bug
-                Int32 IsBlocking;
+                AtomicInt BlockingState;
 
                 /// @brief The number of threads currently waiting.
-                Int32 ThreadCurrent;
+                AtomicInt ThreadCurrent;
+
+                /// @brief A value used to indicate That barrier is loading up on threads
+                static const NonAtomicInt Entering;
+
+                /// @brief A value used to indicate that the barrier is getting rid of threads.
+                static const NonAtomicInt Exiting;
 
             public:
                 /// @brief Constructor
-                /// @param SynchThreadCount The amount of threads that this should wait for. If 0 is passed all threads waiting advance.
-                Barrier (const Int32& SynchThreadCount);
+                /// @param SynchThreadCount The amount of threads that this should wait for. If 0 is passed all threads
+                /// waiting advance.
+                /// @brief Use a barrier to synchronize exactly the amount of threads you indicate here, too many and
+                /// you get deadlock and too few and you get deadlock.
+                Barrier(const Int32& SynchThreadCount);
 
                 /// @brief Wait until the specified number of threads reach this point.
                 /// @return The last thread to reach this point gets true, the others are returned false.
-                bool Wait();
+                Boole Wait();
 
                 /// @brief Set the Thread count Atomically.
                 /// @param NewCount The new amounf threads to sync.

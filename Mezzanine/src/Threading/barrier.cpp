@@ -52,37 +52,43 @@ namespace Mezzanine
 {
     namespace Threading
     {
+
+        const Barrier::NonAtomicInt Barrier::Entering = 0;
+        const Barrier::NonAtomicInt Barrier::Exiting = 1;
+
         Barrier::Barrier (const Int32& SynchThreadCount)
                         : ThreadGoal (SynchThreadCount),
-                          IsBlocking(1),
+                          BlockingState(Entering),
                           ThreadCurrent (0)
         {}
 
-        bool Barrier::Wait()
+        Boole Barrier::Wait()
         {
-            if(0==AtomicAdd(&IsBlocking,0)) // is a barrier breaking right now
-                { return false; }
+            // If a thread is so fast it hits the barrier while others are exiting wait for the barrier to reset.
+            while(BlockingState.load() == Exiting);
 
-            if (AtomicAdd(&ThreadCurrent,1) >= ThreadGoal-1) //
+            const Int32 PriorAmountOfThreads = ThreadCurrent.fetch_add(1);
+            const Int32 AmountNeedToBreak = ThreadGoal - 1;
+            if(PriorAmountOfThreads == AmountNeedToBreak)
             {
-                while(0!=AtomicCompareAndSwap32(&ThreadGoal,ThreadGoal,0));
-                AtomicAdd(&IsBlocking,-1);
-                assert(IsBlocking==0);
+                // This thread is breaking the barrier
+                BlockingState.store(Exiting);       // Tell the other threads
+                while(ThreadCurrent.load() != 1);   // Wait for other threads to leave wait function
+                ThreadCurrent.fetch_sub(1);         // We are the last thread to leave so this sets it to 0
+                BlockingState.store(Entering);      // Let threads start the next use of this barrier
                 return true;
             }
             else
             {
-                while(AtomicAdd(&IsBlocking,0)); // intentionally spinning
-
-                if(1==AtomicAdd(&ThreadCurrent,-1))
-                    { AtomicAdd(&IsBlocking,1); }
-
+                // This thread is just piling on
+                while(BlockingState.load() != Exiting); // Wait for all the other threads
+                ThreadCurrent.fetch_sub(1);             // Decrement to let breaking thread know
                 return false;
             }
         }
 
         void Barrier::SetThreadSyncCount(Int32 NewCount)
-            { while(ThreadGoal!=AtomicCompareAndSwap32(&ThreadGoal,ThreadGoal,NewCount)); }
+            { ThreadGoal.store(NewCount); }
 
     } // \Threading namespace
 } // \Mezzanine namespace

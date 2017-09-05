@@ -47,28 +47,11 @@
 /// @file
 /// @brief Basic tests of the barrier synchronization primitive
 
-using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
-/// @brief The Barrier instance to be used in the test 'barrier'
-Barrier TestBarrier(4);
-
-/// @brief Stores data for a set of barrier tests
-vector<Whole> BarrierData1;
-/// @brief Stores data for another set of barrier tests
-vector<Whole> BarrierData2;
-
-
-/// @brief A simple function to synchronize in the 'barrier' test
-void BarrierTestHelper(void* ThreadID)
-{
-    Int32 Position = (*((Int32*)ThreadID)); // The place to get data from
-    BarrierData1[Position] *= 2;
-    TestBarrier.Wait();
-    BarrierData2[Position]=BarrierData1[0]+BarrierData1[1]+BarrierData1[2]+BarrierData1[3];
-}
+#include <thread>
 
 /// @brief Tests for the WorkUnit class
 class barriertests : public UnitTestGroup
@@ -82,42 +65,106 @@ class barriertests : public UnitTestGroup
         /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            TestOutput << "Testing Basic Thread Barrier functionality." << endl
-                 << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-                 << "A group of data has been populated with 5,10,15 and 20, this should be doubled and then the total of this place into a new field of data and will be done by 4 threads." << endl;
+            {
+                TestOutput << "Testing Basic Thread Barrier functionality." << endl
+                     << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
+                     << "A group of data has been populated with 5,10,15 and 20, this should be doubled and then the "
+                     << "total of this place into a new field of data and will be done by 4 threads." << endl;
 
-            Int32 One = 0;
-            Int32 Two = 1;
-            Int32 Three = 2;
-            Int32 Four = 3;
-            BarrierData1.push_back(5);
-            BarrierData1.push_back(10);
-            BarrierData1.push_back(15);
-            BarrierData1.push_back(20);
-            BarrierData2.push_back(0);
-            BarrierData2.push_back(0);
-            BarrierData2.push_back(0);
-            BarrierData2.push_back(0);
+                Barrier TestBarrier(4);
+                vector<Whole> BarrierData1 = {5, 10, 15, 20};
+                vector<Whole> BarrierData2 = {0, 0, 0, 0};
 
-            Mezzanine::Threading::Thread T1(BarrierTestHelper, &One);
-            Mezzanine::Threading::Thread T2(BarrierTestHelper, &Two);
-            Mezzanine::Threading::Thread T3(BarrierTestHelper, &Three);
-            Mezzanine::Threading::Thread T4(BarrierTestHelper, &Four);
-            T1.join();
-            T2.join();
-            T3.join();
-            T4.join();
+                auto BarrierTestHelper = [&](Int32 Position)
+                {
+                    BarrierData1[Position] *= 2;
+                    TestBarrier.Wait();
+                    BarrierData2[Position] = BarrierData1[0] + BarrierData1[1] + BarrierData1[2] + BarrierData1[3];
+                };
 
-            TestOutput << "Each thread should have 100, here is what they have:" << endl
-                       << "1 - " << BarrierData2[0] << endl
-                       << "2 - " << BarrierData2[1] << endl
-                       << "3 - " << BarrierData2[2] << endl
-                       << "4 - " << BarrierData2[3] << endl;
+                std::thread T1(BarrierTestHelper, 0);
+                std::thread T2(BarrierTestHelper, 1);
+                std::thread T3(BarrierTestHelper, 2);
+                std::thread T4(BarrierTestHelper, 3);
+                T1.join();
+                T2.join();
+                T3.join();
+                T4.join();
 
-            TEST(100==BarrierData2[0], "BarrierThread1")
-            TEST(100==BarrierData2[1], "BarrierThread2")
-            TEST(100==BarrierData2[2], "BarrierThread3")
-            TEST(100==BarrierData2[3], "BarrierThread4")
+                TestOutput << "Each thread should have 100, here is what they have:" << endl
+                           << "1 - " << BarrierData2[0] << std::endl
+                           << "2 - " << BarrierData2[1] << std::endl
+                           << "3 - " << BarrierData2[2] << std::endl
+                           << "4 - " << BarrierData2[3] << std::endl;
+
+                TEST(100==BarrierData2[0], "BarrierThread1")
+                TEST(100==BarrierData2[1], "BarrierThread2")
+                TEST(100==BarrierData2[2], "BarrierThread3")
+                TEST(100==BarrierData2[3], "BarrierThread4")
+            }
+
+            {
+
+                const Int32 TestCount = 1000;
+                Barrier StartStressBarrier(5); // One more than threads launch because the main thread is synchronizing
+                Barrier EndStressBarrier(5);
+                Int32 DataToCopy = 0;
+                auto BarrierStressor = [&StartStressBarrier, &EndStressBarrier, &DataToCopy, TestCount]
+                                       (std::vector<Int32>& Storage)
+                {
+                    for(Int32 Counter=0; Counter < TestCount; Counter++)
+                    {
+                        StartStressBarrier.Wait();
+                        // Main Thread Changes data here
+                        EndStressBarrier.Wait();
+                        Storage.push_back(DataToCopy);
+                    }
+                };
+
+                std::vector<Int32> StorageForZero;
+                std::vector<Int32> StorageForOne;
+                std::vector<Int32> StorageForTwo;
+                std::vector<Int32> StorageForThree;
+
+                std::thread T1(BarrierStressor, std::ref(StorageForZero));
+                std::thread T2(BarrierStressor, std::ref(StorageForOne));
+                std::thread T3(BarrierStressor, std::ref(StorageForTwo));
+                std::thread T4(BarrierStressor, std::ref(StorageForThree));
+
+                for(Int32 Counter=0; Counter < TestCount; Counter++)
+                {
+                    StartStressBarrier.Wait();
+                    DataToCopy = 2 * Counter;
+                    EndStressBarrier.Wait();
+                    // Worker threads copy data after end barrier and before next start barrier
+                }
+
+                T1.join();
+                T2.join();
+                T3.join();
+                T4.join();
+
+                auto CheckResults = [TestCount] (std::vector<Int32>& StorageToCheck)
+                {
+                    Boole Passing = true;
+                    Int32 ExpectedCountByTwo = 0;
+                    for(Int32 Index=0; Index < TestCount; Index++)
+                    {
+                        Passing = Passing && (ExpectedCountByTwo == StorageToCheck[Index]);
+                        //TestOutput << ExpectedCountByTwo << " == " << StorageForZero[Index] << std::endl;
+                        ExpectedCountByTwo += 2;
+                    }
+                    return Passing;
+                };
+
+                TEST(CheckResults(StorageForZero), "ThreadCounterOffInThread0");
+                TEST(CheckResults(StorageForOne), "ThreadCounterOffInThread1");
+                TEST(CheckResults(StorageForTwo), "ThreadCounterOffInThread2");
+                TEST(CheckResults(StorageForThree), "ThreadCounterOffInThread3");
+            }
+
+        /// @todo Add test for changing thread count and possible another for a feature for checking the amoutn of
+        /// waiting threads.
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

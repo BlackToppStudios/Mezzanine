@@ -52,7 +52,6 @@
 /// @file
 /// @brief Test the core Framescheduler
 
-using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
@@ -184,9 +183,9 @@ class LoggerCheckWorkUnit : public DefaultWorkUnit
             LogFromGet = &CurrentThreadStorage.GetFrameScheduler()->GetThreadResource()->GetUsableLogger();
             LogFromArgs = &CurrentThreadStorage.GetUsableLogger();
 
-            InThread = this_thread::get_id();
+            InThread = Mezzanine::Threading::this_thread::get_id();
 
-            this_thread::sleep_for(100000); // wait 1/10th of a second.
+            Mezzanine::Threading::this_thread::sleep_for(100000); // wait 1/10th of a second.
         }
 };
 
