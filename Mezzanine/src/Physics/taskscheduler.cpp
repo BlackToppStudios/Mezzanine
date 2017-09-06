@@ -42,18 +42,20 @@
 
 #include "Physics/taskscheduler.h.cpp"
 
+#include <cassert>
+
 namespace Mezzanine
 {
     namespace Physics
     {
         ParallelForScheduler::ParallelForScheduler(int numThreads) :
-            btITaskScheduler( "Mzzanine" ),
-            StartingLine( numThreads + 1 ),
-            FinishLine( numThreads + 1 ),
-            Body( nullptr ),
-            IndexStart( 0 ),
-            IndexEnd( 0 ),
-            StillRunning( true )
+            btITaskScheduler("Mezzanine"),
+            StartingLine(numThreads + 1),
+            FinishLine(numThreads + 1),
+            Body(nullptr),
+            IndexStart(0),
+            IndexEnd(0),
+            StillRunning(true)
             { this->CreatePool(numThreads); }
 
         ParallelForScheduler::~ParallelForScheduler()
@@ -65,18 +67,22 @@ namespace Mezzanine
             for( int CurrThread = 0 ; CurrThread < NumThreads ; ++CurrThread )
             {
                 auto ThreadFunct = [this]() {
+                    assert( !btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 1" );
                     const unsigned int MyThreadIndex{ btGetCurrentThreadIndex() - 1 };
-                    while(11)
+                    while(true)
                     {
-                        StartingLine.Wait(); // Add error checking, this should be false
+                        this->StartingLine.Wait(); // Add error checking, this should be false
+                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 2" );
                         if(!StillRunning)
                             { break; }
-                        const int RangeCount = IndexEnd - IndexStart;
+                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 3" );
+                        const int RangeCount = this->IndexEnd - this->IndexStart;
                         const int PerThread = ( RangeCount / this->getNumThreads() ) + 1;
                         const int MyStart = std::min(PerThread * MyThreadIndex, static_cast<unsigned int>(IndexEnd));
                         const int MyEnd = std::min(MyStart + PerThread, IndexEnd);
-                        Body->forLoop(MyStart, MyEnd);
-                        FinishLine.Wait();
+                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 4" );
+                        this->Body->forLoop(MyStart, MyEnd);
+                        this->FinishLine.Wait();
                     }
                 };
                 this->Threads.emplace_back(ThreadFunct);
@@ -85,8 +91,8 @@ namespace Mezzanine
 
         void ParallelForScheduler::JoinAllThreads()
         {
-            StillRunning = false;
-            StartingLine.Wait(); // Should be true here
+            this->StillRunning = false;
+            this->StartingLine.Wait(); // Should be true here
             for( std::thread& CurrThread : this->Threads )
             {
                 if( CurrThread.joinable() ) {
@@ -122,6 +128,9 @@ namespace Mezzanine
             this->StartingLine.Wait(); // Check that this is true.
             // all the threads are working, we promise!
             this->FinishLine.Wait(); // Don't care about return value
+            this->Body = nullptr;
+            this->IndexStart = 0;
+            this->IndexEnd = 0;
             btPopThreadsAreRunning();
         }
     } //Physics
