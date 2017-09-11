@@ -294,7 +294,7 @@ else(${Mezz_ThreadLog})
     message ( STATUS "${PROJECT_NAME} - Disabling thread log instrumenting and unsetting MEZZTHREADLOG")
     set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG_undefined")
     set(Mezz_ThreadLog_Defined "MEZZTHREADLOG_undefined")
-endif(${Mezz_Profile})
+endif(${Mezz_ThreadLog})
 
 ###############################################################################
 # Check For the Mezz_Network option and set values accordingly
