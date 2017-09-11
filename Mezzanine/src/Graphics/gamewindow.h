@@ -121,7 +121,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is for creating and managing game windows.
         ///////////////////////////////////////
-        class MEZZ_LIB GameWindow : public EventPublisher
+        class MEZZ_LIB GameWindow : public DefaultEventPublisher
         {
         public:
             /// @brief Basic container type for Viewport storage by this class.

@@ -51,10 +51,10 @@ namespace Mezzanine
     /// @addtogroup Events
     /// @{
 
-    class EventPublisher;
-	///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
+    template<typename InterfaceType>
     class MEZZ_LIB EventSubscriberBinding
     {
     public:
@@ -62,20 +62,21 @@ namespace Mezzanine
         using CallbackType = std::function< void(EventPtr) >;
     protected:
         /// @brief The delegate that will be called (if valid) when a desired event is fired.
-        CallbackType Callback;
+        InterfaceType Callable;
         /// @brief The unique identifier for the subscriber/delegate.
         EventSubscriberID SubID;
-        /// @brief A pointer to the publisher dispatching the interested event.
-        EventPublisher* Publisher;
         /// @brief The hash of the event name this binding is subscribed to.
         EventHashType NameHash;
     public:
         /// @brief Descriptive constructor.
         /// @param ID The unique identifier for the subscriber/delegate.
         /// @param Delegate The callback to dispatch the event to.
-        /// @param Pub A pointer to the publisher dispatching the interested event.
         /// @param Hash The hash of the event name this binding is subscribed to.
-        EventSubscriberBinding(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const EventHashType Hash);
+        EventSubscriberBinding(EventSubscriberID ID, const InterfaceType Delegate, const EventHashType Hash) :
+            Callable(Delegate),
+            SubID(ID),
+            NameHash(Hash)
+            {  }
         /// @brief Copy constructor.
         /// @param Other The other binding to not be copied.
         EventSubscriberBinding(const EventSubscriberBinding& Other) = delete;
@@ -83,7 +84,7 @@ namespace Mezzanine
         /// @param Other The other binding to be moved.
         EventSubscriberBinding(EventSubscriberBinding&& Other) = default;
         /// @brief Class destructor.
-        ~EventSubscriberBinding() = default;
+        virtual ~EventSubscriberBinding() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -102,36 +103,37 @@ namespace Mezzanine
 
         /// @brief Gets the delegate that is called when the subscribed event is dispatched.
         /// @return Returns a const reference to the delegate bound to the subscribed event.
-        const CallbackType& GetCallback() const;
+        const InterfaceType GetCallable() const
+            { return this->Callable; }
         /// @brief Gets the unique identifier of the subscriber.
         /// @return Returns a SubscriberID that uniquely identifies the subscription in the publisher.
-        EventSubscriberID GetSubID() const;
-        /// @brief Gets the publisher that has been subscribed to.
-        /// @return Returns a pointer to the EventPublisher that the subscriber will receive events from.
-        EventPublisher* GetPublisher() const;
+        EventSubscriberID GetSubID() const
+            { return this->SubID; }
         /// @brief Gets the hash of the event this binding is bound to.
         /// @return Returns the hash for the event name this binding is subscribed to.
-        EventHashType GetEventHash() const;
+        EventHashType GetEventHash() const
+            { return this->NameHash; }
 
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
-        Boole IsSubscribed() const;
-
+        virtual Boole IsSubscribed() const = 0;
         /// @brief Removes the subscriber from the list of interested recipients on the publisher.
-        void Unsubscribe();
+        virtual void Unsubscribe() = 0;
         /// @brief Removes all references to an Event and/or Publisher from this binding.
         /// @remarks This method is called by Unsubscribe, and should never need to be called manually.
         /// This method also makes zero attempt to notify the publisher of it's changed state.  For that
         /// you should call Unsubscribe.
-        void Unbind();
+        virtual void Unbind() = 0;
 
         /// @brief Dispatches an event to the appropriate subscriber in this binding.
         /// @param Args The arguments and extra data related to this event.
-        void DispatchEvent(EventPtr Args) const;
+        void DispatchEvent(EventPtr Args) const
+            { this->Callable(Args); }
     };//EventSubscriberBinding
 
     /// @brief Convenience type for passing around EventSubscriberBindings.
-    using EventSubscriberBindingPtr = std::shared_ptr<EventSubscriberBinding>;
+    template<typename Interface>
+    using EventSubscriberBindingPtr = std::shared_ptr< EventSubscriberBinding<Interface> >;
 
     /// @}
 }//Mezzanine

@@ -51,20 +51,29 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
+    template<class Interface, Boole UseBinding>
     class MEZZ_LIB EventSubscriptionTable
     {
     public:
-        /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = EventSubscriberBinding::CallbackType;
+        /// @brief Convenience type for describing the type of this.
+        using SelfType = EventSubscriptionTable<Interface,UseBinding>;
+        /// @brief Retrievable type for querying the type of callable interface this table works with.
+        using InterfaceType = Interface;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename std::conditional<std::is_pointer<Interface>::value,Interface,Interface&>::type;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename std::conditional<UseBinding,EventSubscriberBindingPtr<Interface>,void>::type;
+        /// @brief Convenience type and check for what exactly will be stored by this subscription table.
+        using StoredType = typename std::conditional<UseBinding,EventSubscriberBindingPtr<Interface>,Interface>::type;
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
-        using BindingContainer = std::vector<EventSubscriberBindingPtr>;
+        using StorageContainer = std::vector<StoredType>;
         /// @brief Iterator type for subscriber bindings stored by this table.
-        using BindingIterator = BindingContainer::iterator;
+        using StorageIterator = typename StorageContainer::iterator;
         /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstBindingIterator = BindingContainer::const_iterator;
+        using ConstStorageIterator = typename StorageContainer::const_iterator;
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
-        BindingContainer Bindings;
+        StorageContainer Subscribers;
         /// @brief The hash of the Event the subscribers in this table are subscribed to.
         EventHashType EventHash;
     public:
@@ -72,15 +81,18 @@ namespace Mezzanine
         EventSubscriptionTable() = delete;
         /// @brief Copy constructor.
         /// @param Other The other table to be copied.
-        EventSubscriptionTable(const EventSubscriptionTable& Other) = default;
+        EventSubscriptionTable(const SelfType& Other) = default;
         /// @brief Move constructor.
         /// @param Other The other table to be moved.
-        EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
+        EventSubscriptionTable(SelfType&& Other) = default;
         /// @brief Class constructor.
         /// @param Hash The generated hash to use to identify this event.
-        EventSubscriptionTable(const EventHashType Hash);
+        EventSubscriptionTable(const EventHashType Hash) :
+            EventHash(Hash)
+            {  }
         /// @brief Class destructor.
-        ~EventSubscriptionTable();
+        ~EventSubscriptionTable()
+            { this->UnsubscribeAll(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
@@ -88,23 +100,25 @@ namespace Mezzanine
         /// @brief Assignment operator.
         /// @param Other The other table to be copied.
         /// @return Returns a reference to this.
-        EventSubscriptionTable& operator=(const EventSubscriptionTable& Other) = default;
+        SelfType& operator=(const SelfType& Other) = default;
         /// @brief Move assignment operator.
         /// @param Other The other table to be moved.
         /// @return Returns a reference to this.
-        EventSubscriptionTable& operator=(EventSubscriptionTable&& Other) = default;
+        SelfType& operator=(SelfType&& Other) = default;
 
         /// @brief Less-than operator.
         /// @param Other The other table to be compared to.
         /// @return Returns true if this table is considered less than the other, or should be sorted before the other table.
-        Boole operator<(const EventSubscriptionTable& Other) const;
+        Boole operator<(const SelfType& Other) const
+            { return this->EventHash < Other.EventHash; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         /// @brief Gets the hash of the event associated with this table.
         /// @return Returns the hash identifying this event.
-        EventHashType GetHash() const;
+        EventHashType GetHash() const
+            { return this->EventHash; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscription Management
@@ -112,20 +126,69 @@ namespace Mezzanine
         /// @brief Adds a subscriber to this event table.
         /// @exception If ID provided is already being used by a binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @param Delegate The callback to be called when the interested event is fired.
+        /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub);
+        template<class PublisherType>
+        SubscribeRet Subscribe(EventSubscriberID ID, const SubscribeArg Sub, PublisherType* Pub)
+        {
+            if( UseBinding ) {
+                EventSubscriberBindingPtr<Interface> NewSubscriber = this->GetBinding(ID);
+                if( NewSubscriber.use_count() > 0 ) {
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                }
+                NewSubscriber = std::make_shared< PublisherType::BindingImplType >( ID,Sub,Pub,this->EventHash );
+                this->Subscribers.push_back(NewSubscriber);
+                return NewSubscriber;
+            }else{
+                for( StorageIterator StorIt : this->Subscribers )
+                {
+                    if( (*StorIt)->GetSubId() == ID ) {
+                        MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                    }
+                }
+                this->Subscribers.push_back(Sub);
+                return;
+            }
+        }
         /// @brief Gets a binding by the subscriber ID.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @return Returns the binding with the specified ID, or NULL of none exists.
-        EventSubscriberBindingPtr GetBinding(EventSubscriberID ID);
+        /// @return Returns the binding with the specified ID, or nullptr of none exists.
+        EventSubscriberBindingPtr<Interface> GetBinding(EventSubscriberID ID) const
+        {
+            if( UseBinding ) {
+                for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+                {
+                    if( (*SubIt)->GetSubID() == ID ) {
+                        return (*SubIt);
+                    }
+                }
+            }
+            return nullptr;
+        }
 
         /// @brief Removes a single subscriber from this event table.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(EventSubscriberID ID);
+        void Unsubscribe(EventSubscriberID ID)
+        {
+            for( StorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            {
+                if( (*SubIt)->GetSubID() == ID ) {
+                    (*SubIt)->Unbind();
+                    this->Subscribers.erase(SubIt);
+                    return;
+                }
+            }
+        }
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll();
+        Whole UnsubscribeAll()
+        {
+            Whole RemoveCount = this->Subscribers.size();
+            for( StorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+                { (*SubIt)->Unbind(); }
+            this->Subscribers.clear();
+            return RemoveCount;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
@@ -133,7 +196,11 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
-        void DispatchEvent(EventPtr Args) const;
+        void DispatchEvent(EventPtr Args) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+                { (*SubIt)->DispatchEvent(Args); }
+        }
     };//EventSubscriptionTable
 
     /// @}

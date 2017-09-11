@@ -323,7 +323,7 @@ namespace Mezzanine
         /// @brief A map containing all registered Entity type factories.
         static FactoryContainer EntityFactories;
         /// @brief An event publisher for global entity related events.
-        EventPublisher Publisher;
+        DefaultEventPublisher Publisher;
         /// @brief Container storing all Entities belonging to this manager.
         EntityContainer Entities;
         /// @brief Generator for unique IDs belonging to Entities.
@@ -524,10 +524,10 @@ namespace Mezzanine
 
         /// @brief Gets the EventPublisher responsible for dispatching global Entity events.
         /// @return Returns a reference to the EventPublisher that will dispatch Entity events performed by this manager.
-        EventPublisher& GetPublisher();
+        DefaultEventPublisher& GetPublisher();
         /// @brief Gets the EventPublisher responsible for dispatching global Entity events.
         /// @return Returns a const reference to the EventPublisher that will dispatch Entity events performed by this manager.
-        const EventPublisher& GetPublisher() const;
+        const DefaultEventPublisher& GetPublisher() const;
 
         /// @brief Gets the work unit responsible for updating Actors stored by this manager.
         /// @return Returns a pointer to the ActorUpdateWorkUnit used by this manager.

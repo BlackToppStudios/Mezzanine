@@ -75,7 +75,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents an action to be taken.  Can have multiple inputs bound to it.
         ///////////////////////////////////////
-        class MEZZ_LIB Action : public EventPublisher
+        class MEZZ_LIB Action : public DefaultEventPublisher
         {
         public:
             /// @brief Event name for when this Action is activated.

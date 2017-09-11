@@ -192,7 +192,7 @@ namespace Mezzanine
         protected:
             friend class DeviceUpdateWorkUnit;
             /// @brief A publisher for notifying when the system input configuration changes.
-            EventPublisher InputPublisher;
+            DefaultEventPublisher InputPublisher;
 
             /// @brief Container storing all the detected Joysticks on this system.
             JoystickContainer Joysticks;
@@ -331,10 +331,10 @@ namespace Mezzanine
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a reference to the publisher that will dispatch Input events.
-            EventPublisher& GetInputPublisher();
+            DefaultEventPublisher& GetInputPublisher();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a const reference to the publisher that will dispatch Input events.
-            const EventPublisher& GetInputPublisher() const;
+            const DefaultEventPublisher& GetInputPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

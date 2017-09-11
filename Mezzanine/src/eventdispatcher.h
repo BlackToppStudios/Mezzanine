@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,65 +37,72 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _event_h
-#define _event_h
+#ifndef _eventdispatcher_h
+#define _eventdispatcher_h
 
-#include <memory>
-
-#include "hashedstring.h"
+#include "event.h"
 
 namespace Mezzanine
 {
-    /// @addtogroup Events
-    /// @{
-
-    /// @brief The type to use for the names of events.
-    using EventNameType = HashedString32;
-    /// @brief The type to use for the hashed generated from the names of events.
-    using EventHashType = EventNameType::HashType;
-
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a common class to represent all possible arguments for a given event that is fired.
+    /// @brief This is a basic event dispatcher that does simple mindless forwarding.
     ///////////////////////////////////////
-    class MEZZ_LIB Event
+    template<class TableType>
+    class MEZZ_LIB EmptyEventDispatcher
     {
     public:
-        ///////////////////////////////////////////////////////////////////////////////
-        // Public Types
-
-        /// @brief Type used to describe how Events should be identified.
-        using EventIDType = EventHashType;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Public Data Members
-
-        /// @brief The name of the event being fired.
-        const EventNameType EventName;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Construction and Destruction
-
         /// @brief Class constructor.
-        /// @param Name The name of the event being fired.
-        Event(const EventNameType& Name) :
-            EventName(Name)
-            {  }
+        EmptyEventDispatcher() = default;
         /// @brief Class destructor.
-        virtual ~Event() = default;
+        ~EmptyEventDispatcher() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the ID of this Event.
-        /// @return Returns the unique identifier of this Event.
-        EventIDType GetEventID() const
-            { return this->EventName.GetHash(); }
-    };//Event
+        /// @brief Fires an event.
+        /// @param Args The arguments/event specific data related to this event.
+        void DispatchEvent(const TableType& DispatchTable, EventPtr Args) const
+            { DispatchTable.DispatchEvent(Args); }
+    };//EmptyEventDispatcher
 
-    /// @brief Convenience type for passing around Events.
-    using EventPtr = std::shared_ptr<Event>;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is an event dispatcher capable of blocking the dispatch of events.
+    ///////////////////////////////////////
+    template<class TableType>
+    class MEZZ_LIB DefaultEventDispatcher
+    {
+    protected:
+        /// @brief Controls whether or not the firing of events should be suppressed.
+        Boole MuteEvents;
+    public:
+        /// @brief Class constructor.
+        DefaultEventDispatcher() :
+            MuteEvents(false)
+            {  }
+        /// @brief Class destructor.
+        ~DefaultEventDispatcher() = default;
 
-    /// @}
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Sets whether or not event firings by this publisher will be suppressed.
+        /// @param Mute True to prevent events from firing, false for normal operation.
+        void SetMuteEvents(const Boole Mute)
+            { this->MuteEvents = Mute; }
+        /// @brief Gets whether or not event firings by this publisher will be suppressed.
+        /// @return Returns true if events are being suppressed, false if this publisher is operating normally.
+        Boole GetMuteEvents() const
+            { return this->MuteEvents; }
+
+        /// @brief Fires an event.
+        /// @param Args The arguments/event specific data related to this event.
+        void DispatchEvent(const TableType& DispatchTable, EventPtr Args) const
+        {
+            if( !this->MuteEvents ) {
+                DispatchTable.DispatchEvent(Args);
+            }
+        }
+    };//DefaultEventDispatcher
 }//Mezzanine
 
 #endif

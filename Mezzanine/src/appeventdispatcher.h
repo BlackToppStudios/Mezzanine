@@ -84,12 +84,12 @@ namespace Mezzanine
     /// @brief This class will check for high level application events from internal sources and dispatch them to subscribers.
     /// @details Drop events are when either text or a file is hovered over the application window and released.  There
     /// are two main types of drop events to reflect which one is which.  In some cases multiple drop events can be triggered
-    /// from the same action.  There is no event to represent a bundle of drops, so instead EventAppDropBegin and 
-    /// EventAppDropComplete exist to help indicate the limits.  They do not, however, get used only when multiple drop 
-    /// events occur.  EventAppDropBegin and EventAppDropComplete can and will fire even if there is just one drop 
+    /// from the same action.  There is no event to represent a bundle of drops, so instead EventAppDropBegin and
+    /// EventAppDropComplete exist to help indicate the limits.  They do not, however, get used only when multiple drop
+    /// events occur.  EventAppDropBegin and EventAppDropComplete can and will fire even if there is just one drop
     /// occurring.  So it is best to ignore them if you aren't trying to track multiple drops from a single action.
     ///////////////////////////////////////
-    class MEZZ_LIB AppEventDispatcher : public EventPublisher
+    class MEZZ_LIB AppEventDispatcher : public DefaultEventPublisher
     {
     public:
         /// @brief Event name for when a file is dragged over the application from an external source.

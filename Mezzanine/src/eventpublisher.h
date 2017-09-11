@@ -43,6 +43,7 @@
 #include "hashedstring.h"
 #include "exception.h"
 #include "sortedvector.h"
+#include "eventdispatcher.h"
 #include "eventsubscriptiontable.h"
 
 namespace Mezzanine
@@ -146,36 +147,126 @@ namespace Mezzanine
     ///       stalls and/or race conditions otherwise.
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class for any class that generates and publishes events to subscribers.
+    /// @brief This is responsible for taking a dispatch request and forwarding it to the appropriate subscription table.
     ///////////////////////////////////////
+    class MEZZ_LIB DefaultEventPublisherTraits
+    {
+    public:
+        /// @brief The subscriber type that will be invoked when an Event is fired.
+        using InterfaceType = std::function<Boole(EventPtr)>;
+        /// @brief The Event type that will contain Event information.
+        using EventIDType = EventHashType;
+        /// @brief The type that will be used to provide more verbose identification of the Event.
+        using EventDescriptorType = EventNameType;
+        /// @brief The type that will be used to uniquely identify each subscriber.
+        using SubscriberIDType = EventSubscriberID;
+        /// @brief The type of binding that will be used (if at all) to help track subscription lifetime.
+        using BindingType = EventSubscriberBinding<InterfaceType>;
+        /// @brief The type of table storing that will be used to store all of the subscribers for a single event.
+        using TableType = EventSubscriptionTable<InterfaceType,true>;
+        /// @brief The type of dispatcher that will be used to forward events being fired to the subscription tables.
+        using DispatcherType = DefaultEventDispatcher<TableType>;
+    };//DefaultPublisherTraits
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the base class for any class that generates and publishes events to subscribers.
+    /// @tparam PublisherType The type of publisher this binding will be bound to.
+    /// @tparam InterfaceType The type of interface/subscriber this binding will be bound to.
+    ///////////////////////////////////////
+    template<class PublisherType, class InterfaceType>
+    class MEZZ_LIB EventSubscriberBindingImpl : public EventSubscriberBinding<InterfaceType>
+    {
+    public:
+        /// @brief Convenience type for describing the type of "this".
+        using SelfType = EventSubscriberBindingImpl<PublisherType,InterfaceType>;
+    protected:
+        /// @brief A pointer to the EventPublisher we are subscribed to.
+        PublisherType* EventPub;
+    public:
+        /// @brief Class constructor.
+        /// @param ID The unique identifier for the subscriber/delegate.
+        /// @param Delegate The callback to dispatch the event to.
+        /// @param Pub A pointer to the publisher dispatching the interested event.
+        /// @param Hash The hash of the event name this binding is subscribed to.
+        EventSubscriberBindingImpl(EventSubscriberID ID, const InterfaceType Delegate, PublisherType* Pub, const EventHashType Hash);
+        /// @brief Copy constructor.
+        /// @param Other The other binding to not be copied.
+        EventSubscriberBindingImpl(const SelfType& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other binding to be moved.
+        EventSubscriberBindingImpl(SelfType&& Other) = default;
+        /// @brief Class destructor.
+        virtual ~EventSubscriberBindingImpl() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy constructor.
+        /// @param Other The other binding to not be copied.
+        /// @return Returns a reference to this.
+        SelfType& operator=(const SelfType& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other binding to be moved.
+        /// @return Returns a reference to this.
+        SelfType& operator=(SelfType&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Check if this binding is still valid.
+        /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
+        virtual Boole IsSubscribed() const;
+        /// @brief Removes the subscriber from the list of interested recipients on the publisher.
+        virtual void Unsubscribe();
+        /// @brief Removes all references to an Event and/or Publisher from this binding.
+        /// @remarks This method is called by Unsubscribe, and should never need to be called manually.
+        /// This method also makes zero attempt to notify the publisher of it's changed state.  For that
+        /// you should call Unsubscribe.
+        virtual void Unbind();
+    };//EventSubscriberBindingImpl
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the base class for any class that generates and publishes events to subscribers.
+    /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
+    /// @tparam DispatchType The type to be used to dispatch the event to the Subscription table.
+    ///////////////////////////////////////
+    template<class TableType, class DispatcherType>
     class MEZZ_LIB EventPublisher
     {
     public:
-        /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = EventSubscriptionTable::CallbackType;
-        /// @brief Basic container type for @ref EventSubscriptionTable storage by this class.
-        using SubscriptionTableContainer = SortedVector<EventSubscriptionTable>;
-        /// @brief Iterator type for @ref EventSubscriptionTable instances stored by this class.
-        using SubscriptionTableIterator = SubscriptionTableContainer::iterator;
-        /// @brief Const Iterator type for @ref EventSubscriptionTable instances stored by this class.
-        using ConstSubscriptionTableIterator = SubscriptionTableContainer::const_iterator;
+        /// @brief Convenience type for describing the type of "this".
+        using SelfType = EventPublisher<TableType,DispatcherType>;
+        /// @brief Retrievable type for querying the type of callable interface the table works with.
+        using InterfaceType = typename TableType::InterfaceType;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
+        /// @brief Convenience type for the actual binding implementation used by this publisher.
+        using BindingImplType = EventSubscriberBindingImpl<SelfType,InterfaceType>;
+        /// @brief Basic container type for TableType storage by this class.
+        using TableContainer = SortedVector<TableType>;
+        /// @brief Iterator type for TableType instances stored by this class.
+        using TableIterator = typename TableContainer::iterator;
+        /// @brief Const Iterator type for TableType instances stored by this class.
+        using ConstTableIterator = typename TableContainer::const_iterator;
     protected:
         /// @brief A container storing all the Events published by this class by name.
-        SubscriptionTableContainer SubscriptionTables;
-        /// @brief Stores whether or not events will actually be fired when requested.
-        Boole MuteEvents;
+        TableContainer SubscriptionTables;
+        /// @brief The dispatcher that will determine how/if the event should be routed to the subscription table.
+        DispatcherType Dispatcher;
     public:
         /// @brief Class constructor.
-        EventPublisher();
+        EventPublisher() = default;
         /// @brief Reserving constructor.
         /// @param EventCapacity The number of events to expect this publisher is expected to be populated with.
         EventPublisher(const Whole EventCapacity);
         /// @brief Copy constructor.
         /// @param Other The other publisher to be copied.
-        EventPublisher(const EventPublisher& Other) = default;
+        EventPublisher(const SelfType& Other) = default;
         /// @brief Move constructor.
         /// @param Other The other publisher to be moved.
-        EventPublisher(EventPublisher&& Other) = default;
+        EventPublisher(SelfType&& Other) = default;
         /// @brief Class destructor.
         ~EventPublisher() = default;
 
@@ -185,21 +276,21 @@ namespace Mezzanine
         /// @brief Assignment operator.
         /// @param Other The other publisher to be copied.
         /// @return Returns a reference to this.
-        EventPublisher& operator=(const EventPublisher& Other) = default;
+        SelfType& operator=(const SelfType& Other) = default;
         /// @brief Move assignment operator.
         /// @param Other The other publisher to be moved.
         /// @return Returns a reference to this.
-        EventPublisher& operator=(EventPublisher&& Other) = default;
+        SelfType& operator=(SelfType&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Sets whether or not event firings by this publisher will be suppressed.
-        /// @param Mute True to prevent events from firing, false for normal operation.
-        void SetMuteEvents(const Boole Mute);
-        /// @brief Gets whether or not event firings by this publisher will be suppressed.
-        /// @return Returns true if events are being suppressed, false if this publisher is operating normally.
-        Boole GetMuteEvents() const;
+        /// @brief Gets the event dispatcher.
+        /// @return Returns a reference to the event dispatcher being used by this EventPublisher.
+        DispatcherType& GetDispatcher();
+        /// @brief Gets the event dispatcher.
+        /// @return Returns a const reference to the event dispatcher being used by this EventPublisher.
+        const DispatcherType& GetDispatcher() const;
 
         /// @brief Fires an event.
         /// @param Args The arguments/event specific data related to this event.
@@ -212,7 +303,7 @@ namespace Mezzanine
         /// @exception If a subscription table with the names hash already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventName The name to be given to the new event subscription table.
         /// @return Returns an iterator to the created event table.
-        SubscriptionTableIterator AddSubscriptionTable(const EventNameType& EventName);
+        TableIterator AddSubscriptionTable(const EventNameType& EventName);
         /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
         /// @param EventName The name of the table to check for.
         /// @return Returns true of the named event table is present in this publisher.
@@ -221,12 +312,12 @@ namespace Mezzanine
         /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the table to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
-        SubscriptionTableIterator GetSubscriptionTable(const EventNameType& EventName);
+        TableIterator GetSubscriptionTable(const EventNameType& EventName);
         /// @brief Gets an event table in this publisher.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
-        ConstSubscriptionTableIterator GetSubscriptionTable(const EventNameType& EventName) const;
+        ConstTableIterator GetSubscriptionTable(const EventNameType& EventName) const;
         /// @brief Removes an existing event in this Publisher.
         /// @param EventName The name of the event to be removed.
         void RemoveSubscriptionTable(const EventNameType& EventName);
@@ -238,7 +329,7 @@ namespace Mezzanine
         /// @exception If a subscription table with the names hash already exists it will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventName The generated hash to use to identify the new event subscription table.
         /// @return Returns an iterator to the created event table.
-        SubscriptionTableIterator AddSubscriptionTable(const EventHashType EventHash);
+        TableIterator AddSubscriptionTable(const EventHashType EventHash);
         /// @brief Checks to see if an event table is registered with and has a subscriber table in this publisher.
         /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @param EventHash The generated hash for the table name to check for.
@@ -249,13 +340,13 @@ namespace Mezzanine
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash for the event name to retrieve.
         /// @return Returns an iterator to the requested event table or throws an exception if it was not found.
-        SubscriptionTableIterator GetSubscriptionTable(const EventHashType EventHash);
+        TableIterator GetSubscriptionTable(const EventHashType EventHash);
         /// @brief Gets an event table in this publisher.
         /// @remarks The EventNameType overload of this method should be used instead where possible.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash for the event name to retrieve.
         /// @return Returns a const iterator to the requested event table or throws an exception if it was not found.
-        ConstSubscriptionTableIterator GetSubscriptionTable(const EventHashType EventHash) const;
+        ConstTableIterator GetSubscriptionTable(const EventHashType EventHash) const;
         /// @brief Removes an existing event in this Publisher.
         /// @param EventHash The generated hash for the event name to remove.
         void RemoveSubscriptionTable(const EventHashType EventHash);
@@ -275,7 +366,7 @@ namespace Mezzanine
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const CallbackType& Delegate);
+        SubscribeRet Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const SubscribeArg Delegate);
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
@@ -296,7 +387,7 @@ namespace Mezzanine
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @param Delegate The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const CallbackType& Delegate);
+        SubscribeRet Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const SubscribeArg Delegate);
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash identifying the event to unsubscribe from.
@@ -318,6 +409,230 @@ namespace Mezzanine
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
     };//EventPublisher
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // EventSubscriberBindingImpl Method Implementations
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Construction and Destruction
+
+    template<class PublisherType, class InterfaceType>
+    EventSubscriberBindingImpl<PublisherType,InterfaceType>::EventSubscriberBindingImpl(EventSubscriberID ID, const InterfaceType Delegate, PublisherType* Pub, const EventHashType Hash) :
+        EventSubscriberBinding<InterfaceType>(ID,Delegate,Hash),
+        EventPub(Pub)
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    template<class PublisherType, class InterfaceType>
+    Boole EventSubscriberBindingImpl<PublisherType,InterfaceType>::IsSubscribed() const
+        { return ( this->EventPub != nullptr ); }
+
+    template<class PublisherType, class InterfaceType>
+    void EventSubscriberBindingImpl<PublisherType,InterfaceType>::Unsubscribe()
+    {
+        this->EventPub->GetSubscriptionTable(this->NameHash)->Unsubscribe(this->SubID);
+        this->Unbind();
+    }
+
+    template<class PublisherType, class InterfaceType>
+    void EventSubscriberBindingImpl<PublisherType,InterfaceType>::Unbind()
+    {
+        this->EventPub = nullptr;
+        this->NameHash = EventNameType::EmptyHash;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // EventPublisher Method Implementations
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Construction and Destruction
+
+    template<class TableType, class DispatcherType>
+    EventPublisher<TableType,DispatcherType>::EventPublisher(const Whole EventCapacity)
+        { this->SubscriptionTables.reserve(EventCapacity); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    template<class TableType, class DispatcherType>
+    DispatcherType& EventPublisher<TableType,DispatcherType>::GetDispatcher()
+        { return this->Dispatcher; }
+
+    template<class TableType, class DispatcherType>
+    const DispatcherType& EventPublisher<TableType,DispatcherType>::GetDispatcher() const
+        { return this->Dispatcher; }
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::DispatchEvent(EventPtr Args) const
+    {
+        ConstTableIterator TableIt = this->GetSubscriptionTable(Args->EventName);
+        this->Dispatcher.DispatchEvent((*TableIt),Args);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Table Management - Via Name
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::TableIterator
+    EventPublisher<TableType,DispatcherType>::AddSubscriptionTable(const EventNameType& EventName)
+        { return this->AddSubscriptionTable(EventName.GetHash()); }
+
+    template<class TableType, class DispatcherType>
+    Boole EventPublisher<TableType,DispatcherType>::HasSubscriptionTable(const EventNameType& EventName) const
+        { return this->HasSubscriptionTable(EventName.GetHash()); }
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::TableIterator
+    EventPublisher<TableType,DispatcherType>::GetSubscriptionTable(const EventNameType& EventName)
+        { return this->GetSubscriptionTable(EventName.GetHash()); }
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::ConstTableIterator
+    EventPublisher<TableType,DispatcherType>::GetSubscriptionTable(const EventNameType& EventName) const
+        { return this->GetSubscriptionTable(EventName.GetHash()); }
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::RemoveSubscriptionTable(const EventNameType& EventName)
+        { this->RemoveSubscriptionTable(EventName.GetHash()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Table Management - Via Hash
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::TableIterator
+    EventPublisher<TableType,DispatcherType>::AddSubscriptionTable(const EventHashType EventHash)
+    {
+        TableIterator TableIt = this->SubscriptionTables.find(EventHash);
+        if( TableIt == this->SubscriptionTables.end() ) {
+            return this->SubscriptionTables.add_emplace([](const TableType& EvTable, EventHashType EventHash) {
+                return EvTable.GetHash() < EventHash;
+            }, EventHash);
+        }else{
+            StringStream ExceptionStream;
+            ExceptionStream << "An EventSubscriptionTable with the hash \"" <<  EventHash << "\" already exists!" << std::endl;
+            MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
+        }
+    }
+
+    template<class TableType, class DispatcherType>
+    Boole EventPublisher<TableType,DispatcherType>::HasSubscriptionTable(const EventHashType EventHash) const
+    {
+        ConstTableIterator TableIt = this->SubscriptionTables.find(EventHash);
+        return TableIt != this->SubscriptionTables.end();
+    }
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::TableIterator
+    EventPublisher<TableType,DispatcherType>::GetSubscriptionTable(const EventHashType EventHash)
+    {
+        TableIterator TableIt = this->SubscriptionTables.find(EventHash);
+        if( TableIt != this->SubscriptionTables.end() ) {
+            return TableIt;
+        }else{
+            StringStream ExceptionStream;
+            ExceptionStream << "Event hash \"" << EventHash << "\" not found in publisher." << std::endl;
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+        }
+        return this->SubscriptionTables.end();
+    }
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::ConstTableIterator
+    EventPublisher<TableType,DispatcherType>::GetSubscriptionTable(const EventHashType EventHash) const
+    {
+        ConstTableIterator TableIt = this->SubscriptionTables.find(EventHash);
+        if( TableIt != this->SubscriptionTables.end() ) {
+            return TableIt;
+        }else{
+            StringStream ExceptionStream;
+            ExceptionStream << "Event hash \"" << EventHash << "\" not found in publisher." << std::endl;
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+        }
+        return this->SubscriptionTables.end();
+    }
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::RemoveSubscriptionTable(const EventHashType EventHash)
+    {
+        TableIterator TableIt = this->SubscriptionTables.find(EventHash);
+        if( TableIt != this->SubscriptionTables.end() ) {
+            this->SubscriptionTables.erase(TableIt);
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Table Management
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::RemoveAllSubscriptionTables()
+        { this->SubscriptionTables.clear(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Management - Via Name
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::SubscribeRet
+    EventPublisher<TableType,DispatcherType>::Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const SubscribeArg Delegate)
+        { return this->Subscribe(EventName.GetHash(),ID,Delegate); }
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventNameType& EventName, const EventSubscriberID ID)
+        { this->Unsubscribe(EventName.GetHash(),ID); }
+
+    template<class TableType, class DispatcherType>
+    Whole EventPublisher<TableType,DispatcherType>::UnsubscribeAll(const EventNameType& EventName)
+        { return this->UnsubscribeAll(EventName.GetHash()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Management - Via Hash
+
+    template<class TableType, class DispatcherType>
+    typename EventPublisher<TableType,DispatcherType>::SubscribeRet
+    EventPublisher<TableType,DispatcherType>::Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const SubscribeArg Delegate)
+        { return this->GetSubscriptionTable(EventHash)->Subscribe(ID,Delegate,this); }
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventHashType EventHash, const EventSubscriberID ID)
+        { this->GetSubscriptionTable(EventHash)->Unsubscribe(ID); }
+
+    template<class TableType, class DispatcherType>
+    Whole EventPublisher<TableType,DispatcherType>::UnsubscribeAll(const EventHashType EventHash)
+        { return this->GetSubscriptionTable(EventHash)->UnsubscribeAll(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Subscription Management
+
+    template<class TableType, class DispatcherType>
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventSubscriberID ID)
+    {
+        for( TableType& CurrTable : this->SubscriptionTables )
+            { CurrTable.Unsubscribe(ID); }
+    }
+
+    template<class TableType, class DispatcherType>
+    Whole EventPublisher<TableType,DispatcherType>::UnsubscribeAll()
+    {
+        Whole Ret = 0;
+        for( TableType& CurrTable : this->SubscriptionTables )
+            { Ret += CurrTable.UnsubscribeAll(); }
+        return Ret;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Default Implementation Types
+
+    /// @brief Convenience Type that will repeat the TableType so you don't have to!
+    /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
+    /// @tparam DispatchType The type to be used to dispatch the event to the Subscription table.
+    template< class TableType,template <typename...> class DispatcherType >
+    using EventPublisherAlias = EventPublisher< TableType,DispatcherType<TableType> >;
+    /// @brief Default/Convenience implementation of an EventSubscriptionTable.
+    using DefaultEventSubscriptionTable = EventSubscriptionTable<std::function<void(EventPtr)>,true>;
+    /// @brief Default/Convenience implementation of an EventPublisher.
+    //using DefaultEventPublisher = EventPublisher<DefaultEventSubscriptionTable,DefaultEventDispatcher<DefaultEventSubscriptionTable>>;
+    using DefaultEventPublisher = EventPublisherAlias<DefaultEventSubscriptionTable,DefaultEventDispatcher>;
 
     /// @}
 }//Mezzanine

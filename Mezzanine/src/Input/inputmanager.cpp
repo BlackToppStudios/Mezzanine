@@ -517,10 +517,10 @@ namespace Mezzanine
         DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
             { return this->DeviceUpdateWork; }
 
-        EventPublisher& InputManager::GetInputPublisher()
+        DefaultEventPublisher& InputManager::GetInputPublisher()
             { return this->InputPublisher; }
 
-        const EventPublisher& InputManager::GetInputPublisher() const
+        const DefaultEventPublisher& InputManager::GetInputPublisher() const
             { return this->InputPublisher; }
 
         ///////////////////////////////////////////////////////////////////////////////

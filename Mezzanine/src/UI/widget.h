@@ -89,7 +89,7 @@ namespace Mezzanine
         /// cases. @n @n
         /// Instances of the Widget base class use the base LayoutStrategy.
         ///////////////////////////////////////
-        class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher
+        class MEZZ_LIB Widget : public QuadRenderable, public DefaultEventPublisher
         {
         public:
             /// @brief Enum describing the current state of the widget.

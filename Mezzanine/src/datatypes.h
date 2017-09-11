@@ -72,6 +72,7 @@
     #include <string>
     #include <sstream>
     #include <fstream>
+    #include <type_traits>
     #include <set>
     #include <vector>
     #include <utility>

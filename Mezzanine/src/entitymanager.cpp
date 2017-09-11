@@ -700,10 +700,10 @@ namespace Mezzanine
         }
     }
 
-    EventPublisher& EntityManager::GetPublisher()
+    DefaultEventPublisher& EntityManager::GetPublisher()
         { return this->Publisher; }
 
-    const EventPublisher& EntityManager::GetPublisher() const
+    const DefaultEventPublisher& EntityManager::GetPublisher() const
         { return this->Publisher; }
 
     ActorUpdateWorkUnit* EntityManager::GetActorUpdateWork()

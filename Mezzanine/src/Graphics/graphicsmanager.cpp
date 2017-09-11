@@ -804,10 +804,10 @@ namespace Mezzanine
         const WindowSettings& GraphicsManager::GetDesktopSettings() const
             { return this->DesktopSettings; }
 
-        EventPublisher& GraphicsManager::GetGraphicsPublisher()
+        DefaultEventPublisher& GraphicsManager::GetGraphicsPublisher()
             { return this->GraphicsPublisher; }
 
-        const EventPublisher& GraphicsManager::GetGraphicsPublisher() const
+        const DefaultEventPublisher& GraphicsManager::GetGraphicsPublisher() const
             { return this->GraphicsPublisher; }
 
         ///////////////////////////////////////////////////////////////////////////////
