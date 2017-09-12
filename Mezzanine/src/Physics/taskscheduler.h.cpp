@@ -41,7 +41,7 @@
 #define _physicstaskscheduler_h_cpp
 
 #include "crossplatformexport.h"
-#include "Threading/barrier.h"
+#include "Threading/spinbarrier.h"
 
 #include <LinearMath/btThreads.h>
 
@@ -62,9 +62,9 @@ namespace Mezzanine
             using ThreadContainer = std::vector< std::thread >;
         private:
             /// @brief This is where all threads begin each iteration.
-            Threading::Barrier StartingLine;
+            Threading::SpinBarrier StartingLine;
             /// @brief This is where all threads end each iteration.
-            Threading::Barrier FinishLine;
+            Threading::SpinBarrier FinishLine;
             /// @brief Container storing all of the threads to be used by this scheduler.
             ThreadContainer Threads;
             /// @brief The work of the loop to be done.

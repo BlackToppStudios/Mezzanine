@@ -204,7 +204,8 @@ class dagsizestests : public UnitTestGroup
                  << "WorkSorter: " << sizeof(WorkSorter) << endl
                  << "Thread: " << sizeof(Thread) << endl
                  << "Mutex: " << sizeof(Mutex) << endl
-                 << "Barrier: " << sizeof(Barrier) << endl
+                 << "SpinBarrier: " << sizeof(SpinBarrier) << endl
+                 << "BackgroundBarrier: " << sizeof(BackgroundBarrier) << endl
                  << "vector<Whole>: " << sizeof(vector<Whole>) << endl
                  << "vector<WorkUnit*>: " << sizeof(vector<Whole*>) << endl
                  << "set<WorkUnit*>: " << sizeof(set<iWorkUnit*>) << endl

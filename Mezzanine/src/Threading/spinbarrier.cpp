@@ -38,10 +38,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _barrier_cpp
-#define _barrier_cpp
+#ifndef _spin_barrier_cpp
+#define _spin_barrier_cpp
 
-#include "barrier.h"
+#include "spinbarrier.h"
 
 #include <cassert>
 
@@ -53,16 +53,16 @@ namespace Mezzanine
     namespace Threading
     {
 
-        const Barrier::NonAtomicInt Barrier::Entering = 0;
-        const Barrier::NonAtomicInt Barrier::Exiting = 1;
+        const SpinBarrier::NonAtomicInt SpinBarrier::Entering = 0;
+        const SpinBarrier::NonAtomicInt SpinBarrier::Exiting = 1;
 
-        Barrier::Barrier (const Int32& SynchThreadCount)
-                        : ThreadGoal (SynchThreadCount),
-                          BlockingState(Entering),
-                          ThreadCurrent (0)
+        SpinBarrier::SpinBarrier (const Int32& SynchThreadCount)
+            : ThreadGoal (SynchThreadCount),
+              BlockingState(Entering),
+              ThreadCurrent (0)
         {}
 
-        Boole Barrier::Wait()
+        Boole SpinBarrier::Wait()
         {
             // If a thread is so fast it hits the barrier while others are exiting wait for the barrier to reset.
             while(BlockingState.load() == Exiting);
@@ -87,7 +87,7 @@ namespace Mezzanine
             }
         }
 
-        void Barrier::SetThreadSyncCount(Int32 NewCount)
+        void SpinBarrier::SetThreadSyncCount(Int32 NewCount)
             { ThreadGoal.store(NewCount); }
 
     } // \Threading namespace

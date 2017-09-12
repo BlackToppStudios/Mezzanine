@@ -9579,12 +9579,12 @@ static int _wrap_new_Barrier(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Int32 *arg1 = 0 ;
   Mezzanine::Int32 temp1 ;
-  Mezzanine::Threading::Barrier *result = 0 ;
+  Mezzanine::Threading::SpinBarrier *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Threading::Barrier::Barrier",1,1)
   if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Threading::Barrier::Barrier",1,"Mezzanine::Int32 const &");
   temp1=(Mezzanine::Int32)lua_tonumber(L,1); arg1=&temp1;
-  result = (Mezzanine::Threading::Barrier *)new Mezzanine::Threading::Barrier((Mezzanine::Int32 const &)*arg1);
+  result = (Mezzanine::Threading::SpinBarrier *)new Mezzanine::Threading::SpinBarrier((Mezzanine::Int32 const &)*arg1);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__Barrier,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -9598,7 +9598,7 @@ fail:
 
 static int _wrap_Barrier_Wait(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  Mezzanine::Threading::SpinBarrier *arg1 = (Mezzanine::Threading::SpinBarrier *) 0 ;
   Mezzanine::Boole result;
   
   SWIG_check_num_args("Mezzanine::Threading::Barrier::Wait",1,1)
@@ -9622,7 +9622,7 @@ fail:
 
 static int _wrap_Barrier_SetThreadSyncCount(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) 0 ;
+  Mezzanine::Threading::SpinBarrier *arg1 = (Mezzanine::Threading::SpinBarrier *) 0 ;
   Mezzanine::Int32 arg2 ;
   
   SWIG_check_num_args("Mezzanine::Threading::Barrier::SetThreadSyncCount",2,2)
@@ -9647,7 +9647,7 @@ fail:
 
 
 static void swig_delete_Barrier(void *obj) {
-Mezzanine::Threading::Barrier *arg1 = (Mezzanine::Threading::Barrier *) obj;
+Mezzanine::Threading::SpinBarrier *arg1 = (Mezzanine::Threading::SpinBarrier *) obj;
 delete arg1;
 }
 static int _proxy__wrap_new_Barrier(lua_State *L) {

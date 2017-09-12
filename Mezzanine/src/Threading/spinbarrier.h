@@ -38,24 +38,21 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _barrier_h
-#define _barrier_h
+#ifndef _spin_barrier_h
+#define _spin_barrier_h
 
 #include "datatypes.h"
 
-#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
-#include "atomicoperations.h"
-#endif
 
 /// @file
-/// @brief The declaration of the @ref Mezzanine::Threading::Barrier Barrier synchronization primitive
+/// @brief The declaration of the @ref Mezzanine::Threading::SpinBarrier Barrier synchronization primitive
 
 namespace Mezzanine
 {
     namespace Threading
     {
-        /// @brief A synchronization primitive that causes a predefined number of threads to all wait before continuing.
-        class MEZZ_LIB Barrier
+        /// @brief A synchronization primitive that causes a number of threads into a low latency wait before continuing
+        class MEZZ_LIB SpinBarrier
         {
             public:
                 typedef std::atomic<Int32> AtomicInt;
@@ -84,7 +81,7 @@ namespace Mezzanine
                 /// waiting advance.
                 /// @brief Use a barrier to synchronize exactly the amount of threads you indicate here, too many and
                 /// you get deadlock and too few and you get deadlock.
-                Barrier(const Int32& SynchThreadCount);
+                SpinBarrier(const Int32& SynchThreadCount);
 
                 /// @brief Wait until the specified number of threads reach this point.
                 /// @return The last thread to reach this point gets true, the others are returned false.
