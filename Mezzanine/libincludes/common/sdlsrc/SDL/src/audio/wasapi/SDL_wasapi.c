@@ -182,7 +182,6 @@ SDLMMNotificationClient_OnDeviceRemoved(IMMNotificationClient *ithis, LPCWSTR pw
 static HRESULT STDMETHODCALLTYPE
 SDLMMNotificationClient_OnDeviceStateChanged(IMMNotificationClient *ithis, LPCWSTR pwstrDeviceId, DWORD dwNewState)
 {
-    SDLMMNotificationClient *this = (SDLMMNotificationClient *) ithis;
     IMMDevice *device = NULL;
 
     if (SUCCEEDED(IMMDeviceEnumerator_GetDevice(enumerator, pwstrDeviceId, &device))) {
@@ -222,7 +221,7 @@ static const IMMNotificationClientVtbl notification_client_vtbl = {
     SDLMMNotificationClient_OnPropertyValueChanged
 };
 
-static SDLMMNotificationClient notification_client = { &notification_client_vtbl, 1 };
+static SDLMMNotificationClient notification_client = { &notification_client_vtbl, { 1 } };
 
 static SDL_bool
 WStrEqual(const WCHAR *a, const WCHAR *b)
@@ -372,7 +371,8 @@ WASAPI_GetPendingBytes(_THIS)
     UINT32 frames = 0;
 
     /* it's okay to fail here; we'll deal with failures in the audio thread. */
-    if (FAILED(IAudioClient_GetCurrentPadding(this->hidden->client, &frames))) {
+    /* FIXME: need a lock around checking this->hidden->client */
+    if (!this->hidden->client || FAILED(IAudioClient_GetCurrentPadding(this->hidden->client, &frames))) {
         return 0;  /* oh well. */
     }
 
@@ -605,24 +605,22 @@ WASAPI_CaptureFromDevice(_THIS, void *buffer, int buflen)
 static void
 WASAPI_FlushCapture(_THIS)
 {
-    if (RecoverWasapiIfLost(this)) {
-        BYTE *ptr = NULL;
-        UINT32 frames = 0;
-        DWORD flags = 0;
+    BYTE *ptr = NULL;
+    UINT32 frames = 0;
+    DWORD flags = 0;
 
-        /* just read until we stop getting packets, throwing them away. */
-        while (SDL_TRUE) {
-            const HRESULT ret = IAudioCaptureClient_GetBuffer(this->hidden->capture, &ptr, &frames, &flags, NULL, NULL);
-            if (ret == AUDCLNT_S_BUFFER_EMPTY) {
-                break;  /* no more buffered data; we're done. */
-            } else if (WasapiFailed(this, ret)) {
-                break;  /* failed for some other reason, abort. */
-            } else if (WasapiFailed(this, IAudioCaptureClient_ReleaseBuffer(this->hidden->capture, frames))) {
-                break;  /* something broke. */
-            }
+    /* just read until we stop getting packets, throwing them away. */
+    while (SDL_TRUE) {
+        const HRESULT ret = IAudioCaptureClient_GetBuffer(this->hidden->capture, &ptr, &frames, &flags, NULL, NULL);
+        if (ret == AUDCLNT_S_BUFFER_EMPTY) {
+            break;  /* no more buffered data; we're done. */
+        } else if (WasapiFailed(this, ret)) {
+            break;  /* failed for some other reason, abort. */
+        } else if (WasapiFailed(this, IAudioCaptureClient_ReleaseBuffer(this->hidden->capture, frames))) {
+            break;  /* something broke. */
         }
-        SDL_AudioStreamClear(this->hidden->capturestream);
     }
+    SDL_AudioStreamClear(this->hidden->capturestream);
 }
 
 static void
@@ -640,7 +638,7 @@ ReleaseWasapiDevice(_THIS)
 
     if (this->hidden->capture) {
         IAudioCaptureClient_Release(this->hidden->capture);
-        this->hidden->client = NULL;
+        this->hidden->capture = NULL;
     }
 
     if (this->hidden->waveformat) {
@@ -909,7 +907,8 @@ WASAPI_Init(SDL_AudioDriverImpl * impl)
 
     /* just skip the discussion with COM here. */
     if (!WIN_IsWindowsVistaOrGreater()) {
-        return SDL_SetError("WASAPI support requires Windows Vista or later");
+        SDL_SetError("WASAPI support requires Windows Vista or later");
+        return 0;
     }
 
     SDL_AtomicSet(&default_playback_generation, 1);

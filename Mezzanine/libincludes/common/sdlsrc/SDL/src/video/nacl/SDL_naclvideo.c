@@ -81,7 +81,7 @@ static int NACL_Available(void) {
 static void NACL_DeleteDevice(SDL_VideoDevice *device) {
     SDL_VideoData *driverdata = (SDL_VideoData*) device->driverdata;
     driverdata->ppb_core->ReleaseResource((PP_Resource) driverdata->ppb_message_loop);
-    SDL_free(device->driverdata);
+    /* device->driverdata is not freed because it points to static memory */
     SDL_free(device);
 }
 
@@ -107,7 +107,7 @@ static SDL_VideoDevice *NACL_CreateDevice(int devindex) {
     device->VideoQuit = NACL_VideoQuit;
     device->PumpEvents = NACL_PumpEvents;
     
-    device->CreateWindow = NACL_CreateWindow;
+    device->CreateSDLWindow = NACL_CreateWindow;
     device->SetWindowTitle = NACL_SetWindowTitle;
     device->DestroyWindow = NACL_DestroyWindow;
     

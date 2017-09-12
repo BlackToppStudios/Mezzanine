@@ -20,8 +20,8 @@
 */
 #include "../../SDL_internal.h"
 
-#ifndef _SDL_bsdaudio_h
-#define _SDL_bsdaudio_h
+#ifndef SDL_netbsdaudio_h_
+#define SDL_netbsdaudio_h_
 
 #include "../SDL_sysaudio.h"
 
@@ -32,20 +32,17 @@ struct SDL_PrivateAudioData
     /* The file descriptor for the audio device */
     int audio_fd;
 
-    /* The parent process id, to detect when application quits */
-    pid_t parent;
-
     /* Raw mixing buffer */
     Uint8 *mixbuf;
     int mixlen;
 
-    /* Support for audio timing using a timer, in addition to select() */
+    /* Support for audio timing using a timer, in addition to SDL_IOReady() */
     float frame_ticks;
     float next_frame;
 };
 
 #define FUDGE_TICKS 10      /* The scheduler overhead ticks per frame */
 
-#endif /* _SDL_bsdaudio_h */
+#endif /* SDL_netbsdaudio_h_ */
 
 /* vi: set ts=4 sw=4 expandtab: */

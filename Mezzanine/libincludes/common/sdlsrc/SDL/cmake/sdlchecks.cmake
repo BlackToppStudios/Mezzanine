@@ -68,7 +68,7 @@ endmacro()
 # Requires:
 # - n/a
 macro(CheckOSS)
-  if(SDL_OSS)
+  if(OSS)
     set(OSS_HEADER_FILE "sys/soundcard.h")
     check_c_source_compiles("
         #include <sys/soundcard.h>
@@ -102,7 +102,7 @@ endmacro()
 # - ALSA_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckALSA)
-  if(SDL_ALSA)
+  if(ALSA)
     CHECK_INCLUDE_FILE(alsa/asoundlib.h HAVE_ASOUNDLIB_H)
     if(HAVE_ASOUNDLIB_H)
       CHECK_LIBRARY_EXISTS(asound snd_pcm_recover "" HAVE_LIBASOUND)
@@ -134,7 +134,7 @@ endmacro()
 # - PULSEAUDIO_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckPulseAudio)
-  if(SDL_PULSEAUDIO)
+  if(PULSEAUDIO)
     pkg_check_modules(PKG_PULSEAUDIO libpulse-simple)
     if(PKG_PULSEAUDIO_FOUND)
       set(HAVE_PULSEAUDIO TRUE)
@@ -142,7 +142,7 @@ macro(CheckPulseAudio)
       set(SOURCE_FILES ${SOURCE_FILES} ${PULSEAUDIO_SOURCES})
       set(SDL_AUDIO_DRIVER_PULSEAUDIO 1)
       list(APPEND EXTRA_CFLAGS ${PKG_PULSEAUDIO_CFLAGS})
-      if(SDL_PULSEAUDIO_SHARED)
+      if(PULSEAUDIO_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic PulseAudio loading")
         else()
@@ -161,10 +161,40 @@ endmacro()
 # Requires:
 # - PkgCheckModules
 # Optional:
+# - JACK_SHARED opt
+# - HAVE_DLOPEN opt
+macro(CheckJACK)
+  if(JACK)
+    pkg_check_modules(PKG_JACK jack)
+    if(PKG_JACK_FOUND)
+      set(HAVE_JACK TRUE)
+      file(GLOB JACK_SOURCES ${SDL2_SOURCE_DIR}/src/audio/jack/*.c)
+      set(SOURCE_FILES ${SOURCE_FILES} ${JACK_SOURCES})
+      set(SDL_AUDIO_DRIVER_JACK 1)
+      list(APPEND EXTRA_CFLAGS ${PKG_JACK_CFLAGS})
+      if(JACK_SHARED)
+        if(NOT HAVE_DLOPEN)
+          message_warn("You must have SDL_LoadObject() support for dynamic JACK audio loading")
+        else()
+          FindLibraryAndSONAME("jack")
+          set(SDL_AUDIO_DRIVER_JACK_DYNAMIC "\"${JACK_LIB_SONAME}\"")
+          set(HAVE_JACK_SHARED TRUE)
+        endif()
+      else()
+        list(APPEND EXTRA_LDFLAGS ${PKG_JACK_LDFLAGS})
+      endif()
+      set(HAVE_SDL_AUDIO TRUE)
+    endif()
+  endif()
+endmacro()
+
+# Requires:
+# - PkgCheckModules
+# Optional:
 # - ESD_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckESD)
-  if(SDL_ESD)
+  if(ESD)
     pkg_check_modules(PKG_ESD esound)
     if(PKG_ESD_FOUND)
       set(HAVE_ESD TRUE)
@@ -172,7 +202,7 @@ macro(CheckESD)
       set(SOURCE_FILES ${SOURCE_FILES} ${ESD_SOURCES})
       set(SDL_AUDIO_DRIVER_ESD 1)
       list(APPEND EXTRA_CFLAGS ${PKG_ESD_CFLAGS})
-      if(SDL_ESD_SHARED)
+      if(ESD_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic ESD loading")
         else()
@@ -194,7 +224,7 @@ endmacro()
 # - ARTS_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckARTS)
-  if(SDL_ARTS)
+  if(ARTS)
     find_program(ARTS_CONFIG arts-config)
     if(ARTS_CONFIG)
       execute_process(CMD_ARTSCFLAGS ${ARTS_CONFIG} --cflags
@@ -206,7 +236,7 @@ macro(CheckARTS)
       set(SOURCE_FILES ${SOURCE_FILES} ${ARTS_SOURCES})
       set(SDL_AUDIO_DRIVER_ARTS 1)
       set(HAVE_ARTS TRUE)
-      if(SDL_ARTS_SHARED)
+      if(ARTS_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic ARTS loading")
         else()
@@ -229,7 +259,7 @@ endmacro()
 # - NAS_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckNAS)
-  if(SDL_NAS)
+  if(NAS)
     # TODO: set include paths properly, so the NAS headers are found
     check_include_file(audio/audiolib.h HAVE_NAS_H)
     find_library(D_NAS_LIB audio)
@@ -238,7 +268,7 @@ macro(CheckNAS)
       file(GLOB NAS_SOURCES ${SDL2_SOURCE_DIR}/src/audio/nas/*.c)
       set(SOURCE_FILES ${SOURCE_FILES} ${NAS_SOURCES})
       set(SDL_AUDIO_DRIVER_NAS 1)
-      if(SDL_NAS_SHARED)
+      if(NAS_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic NAS loading")
         else()
@@ -260,7 +290,7 @@ endmacro()
 # - SNDIO_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckSNDIO)
-  if(SDL_SNDIO)
+  if(SNDIO)
     # TODO: set include paths properly, so the sndio headers are found
     check_include_file(sndio.h HAVE_SNDIO_H)
     find_library(D_SNDIO_LIB sndio)
@@ -291,7 +321,7 @@ endmacro()
 # - FUSIONSOUND_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckFusionSound)
-  if(SDL_FUSIONSOUND)
+  if(FUSIONSOUND)
     pkg_check_modules(PKG_FUSIONSOUND fusionsound>=1.0.0)
     if(PKG_FUSIONSOUND_FOUND)
       set(HAVE_FUSIONSOUND TRUE)
@@ -299,7 +329,7 @@ macro(CheckFusionSound)
       set(SOURCE_FILES ${SOURCE_FILES} ${FUSIONSOUND_SOURCES})
       set(SDL_AUDIO_DRIVER_FUSIONSOUND 1)
       list(APPEND EXTRA_CFLAGS ${PKG_FUSIONSOUND_CFLAGS})
-      if(SDL_FUSIONSOUND_SHARED)
+      if(FUSIONSOUND_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic FusionSound loading")
         else()
@@ -321,7 +351,7 @@ endmacro()
 # - LIBSAMPLERATE_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckLibSampleRate)
-  if(SDL_LIBSAMPLERATE)
+  if(LIBSAMPLERATE)
     check_include_file(samplerate.h HAVE_LIBSAMPLERATE_H)
     if(HAVE_LIBSAMPLERATE_H)
       if(LIBSAMPLERATE_SHARED)
@@ -344,7 +374,7 @@ endmacro()
 # - X11_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckX11)
-  if(SDL_VIDEO_X11)
+  if(VIDEO_X11)
     foreach(_LIB X11 Xext Xcursor Xinerama Xi Xrandr Xrender Xss Xxf86vm)
         FindLibraryAndSONAME("${_LIB}")
     endforeach()
@@ -377,7 +407,7 @@ macro(CheckX11)
       set(SDL_VIDEO_DRIVER_X11 1)
 
       if(APPLE)
-        set(SDL_X11_SHARED OFF)
+        set(X11_SHARED OFF)
       endif()
 
       check_function_exists("shmat" HAVE_SHMAT)
@@ -392,7 +422,7 @@ macro(CheckX11)
         endif()
       endif()
 
-      if(SDL_X11_SHARED)
+      if(X11_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic X11 loading")
           set(HAVE_X11_SHARED FALSE)
@@ -436,7 +466,7 @@ macro(CheckX11)
 
       check_function_exists(XkbKeycodeToKeysym SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM)
 
-      if(SDL_VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
+      if(VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
         set(HAVE_VIDEO_X11_XCURSOR TRUE)
         if(HAVE_X11_SHARED AND XCURSOR_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XCURSOR "\"${XCURSOR_LIB_SONAME}\"")
@@ -446,7 +476,7 @@ macro(CheckX11)
         set(SDL_VIDEO_DRIVER_X11_XCURSOR 1)
       endif()
 
-      if(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
+      if(VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
         set(HAVE_VIDEO_X11_XINERAMA TRUE)
         if(HAVE_X11_SHARED AND XINERAMA_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XINERAMA "\"${XINERAMA_LIB_SONAME}\"")
@@ -456,7 +486,7 @@ macro(CheckX11)
         set(SDL_VIDEO_DRIVER_X11_XINERAMA 1)
       endif()
 
-      if(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
+      if(VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
         set(HAVE_VIDEO_X11_XINPUT TRUE)
         if(HAVE_X11_SHARED AND XI_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XINPUT2 "\"${XI_LIB_SONAME}\"")
@@ -482,7 +512,7 @@ macro(CheckX11)
         endif()
       endif()
 
-      if(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
+      if(VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
         if(HAVE_X11_SHARED AND XRANDR_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR "\"${XRANDR_LIB_SONAME}\"")
         else()
@@ -492,7 +522,7 @@ macro(CheckX11)
         set(HAVE_VIDEO_X11_XRANDR TRUE)
       endif()
 
-      if(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
+      if(VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
         if(HAVE_X11_SHARED AND XSS_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XSS "\"${XSS_LIB_SONAME}\"")
         else()
@@ -502,12 +532,12 @@ macro(CheckX11)
         set(HAVE_VIDEO_X11_XSCRNSAVER TRUE)
       endif()
 
-      if(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
+      if(VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
         set(SDL_VIDEO_DRIVER_X11_XSHAPE 1)
         set(HAVE_VIDEO_X11_XSHAPE TRUE)
       endif()
 
-      if(SDL_VIDEO_X11_XVM AND HAVE_XF86VM_H)
+      if(VIDEO_X11_XVM AND HAVE_XF86VM_H)
         if(HAVE_X11_SHARED AND XXF86VM_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE "\"${XXF86VM_LIB_SONAME}\"")
         else()
@@ -529,9 +559,9 @@ endmacro()
 # - MIR_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckMir)
-    if(SDL_VIDEO_MIR)
+    if(VIDEO_MIR)
         find_library(MIR_LIB mirclient mircommon egl)
-        pkg_check_modules(MIR_TOOLKIT mirclient mircommon)
+        pkg_check_modules(MIR_TOOLKIT mirclient>=0.26 mircommon)
         pkg_check_modules(EGL egl)
         pkg_check_modules(XKB xkbcommon)
 
@@ -543,7 +573,7 @@ macro(CheckMir)
             set(SOURCE_FILES ${SOURCE_FILES} ${MIR_SOURCES})
             set(SDL_VIDEO_DRIVER_MIR 1)
 
-            list(APPEND EXTRA_CFLAGS ${MIR_TOOLKIT_CFLAGS} ${EGL_CLFAGS} ${XKB_CLFLAGS})
+            list(APPEND EXTRA_CFLAGS ${MIR_TOOLKIT_CFLAGS} ${EGL_CFLAGS} ${XKB_CFLAGS})
 
             if(MIR_SHARED)
                 if(NOT HAVE_DLOPEN)
@@ -590,7 +620,7 @@ endmacro()
 # - WAYLAND_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckWayland)
-  if(SDL_VIDEO_WAYLAND)
+  if(VIDEO_WAYLAND)
     pkg_check_modules(WAYLAND wayland-client wayland-scanner wayland-protocols wayland-egl wayland-cursor egl xkbcommon)
 
     # We have to generate some protocol interface code for some various Wayland features.
@@ -691,7 +721,7 @@ endmacro()
 # - n/a
 #
 macro(CheckCOCOA)
-  if(SDL_VIDEO_COCOA)
+  if(VIDEO_COCOA)
     if(APPLE) # Apple always has Cocoa.
       set(HAVE_VIDEO_COCOA TRUE)
     endif()
@@ -711,7 +741,7 @@ endmacro()
 # - DIRECTFB_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckDirectFB)
-  if(SDL_VIDEO_DIRECTFB)
+  if(VIDEO_DIRECTFB)
     pkg_check_modules(PKG_DIRECTFB directfb>=1.0.0)
     if(PKG_DIRECTFB_FOUND)
       set(HAVE_VIDEO_DIRECTFB TRUE)
@@ -739,7 +769,7 @@ endmacro()
 # Requires:
 # - n/a
 macro(CheckVivante)
-  if(SDL_VIDEO_VIVANTE)
+  if(VIDEO_VIVANTE)
     check_c_source_compiles("
         #include <gc_vdk.h>
         int main(int argc, char** argv) {}" HAVE_VIDEO_VIVANTE_VDK)
@@ -769,7 +799,7 @@ endmacro(CheckVivante)
 # Requires:
 # - nada
 macro(CheckOpenGLX11)
-  if(SDL_VIDEO_OPENGL)
+  if(VIDEO_OPENGL)
     check_c_source_compiles("
         #include <GL/gl.h>
         #include <GL/glx.h>
@@ -787,7 +817,7 @@ endmacro()
 # Requires:
 # - nada
 macro(CheckOpenGLESX11)
-  if(SDL_VIDEO_OPENGLES)
+  if(VIDEO_OPENGLES)
     check_c_source_compiles("
         #define EGL_API_FB
         #include <EGL/egl.h>
@@ -825,8 +855,11 @@ endmacro()
 # PTHREAD_CFLAGS
 # PTHREAD_LIBS
 macro(CheckPTHREAD)
-  if(SDL_PTHREADS)
-    if(LINUX)
+  if(PTHREADS)
+    if(ANDROID)
+      # the android libc provides built-in support for pthreads, so no
+      # additional linking or compile flags are necessary
+    elseif(LINUX)
       set(PTHREAD_CFLAGS "-D_REENTRANT")
       set(PTHREAD_LDFLAGS "-pthread")
     elseif(BSDI)
@@ -901,7 +934,7 @@ macro(CheckPTHREAD)
             #include <pthread.h>
             int main(int argc, char **argv) {
               pthread_mutexattr_t attr;
-              pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+              pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
               return 0;
             }" HAVE_RECURSIVE_MUTEXES_NP)
         if(HAVE_RECURSIVE_MUTEXES_NP)
@@ -930,7 +963,6 @@ macro(CheckPTHREAD)
           int main(int argc, char** argv) { return 0; }" HAVE_PTHREAD_NP_H)
       check_function_exists(pthread_setname_np HAVE_PTHREAD_SETNAME_NP)
       check_function_exists(pthread_set_name_np HAVE_PTHREAD_SET_NAME_NP)
-      set(CMAKE_REQUIRED_FLAGS "${ORIG_CMAKE_REQUIRED_FLAGS}")
 
       set(SOURCE_FILES ${SOURCE_FILES}
           ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_systhread.c
@@ -947,6 +979,7 @@ macro(CheckPTHREAD)
       endif()
       set(HAVE_SDL_THREADS TRUE)
     endif()
+    set(CMAKE_REQUIRED_FLAGS "${ORIG_CMAKE_REQUIRED_FLAGS}")
   endif()
 endmacro()
 
@@ -1093,7 +1126,7 @@ endmacro()
 # Requires:
 # - n/a
 macro(CheckRPI)
-  if(SDL_VIDEO_RPI)
+  if(VIDEO_RPI)
     set(VIDEO_RPI_INCLUDE_DIRS "/opt/vc/include" "/opt/vc/include/interface/vcos/pthreads" "/opt/vc/include/interface/vmcs_host/linux/" )
     set(VIDEO_RPI_LIBRARY_DIRS "/opt/vc/lib" )
     set(VIDEO_RPI_LIBS bcm_host )
@@ -1117,5 +1150,48 @@ macro(CheckRPI)
       list(APPEND EXTRA_LIBS ${VIDEO_RPI_LIBS})
       set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${VIDEO_RPI_INCLUDE_FLAGS} ${VIDEO_RPI_LIBRARY_FLAGS}")
     endif(SDL_VIDEO AND HAVE_VIDEO_RPI)
-  endif(SDL_VIDEO_RPI)
+  endif(VIDEO_RPI)
 endmacro(CheckRPI)
+
+# Requires:
+# - EGL
+# - PkgCheckModules
+# Optional:
+# - KMSDRM_SHARED opt
+# - HAVE_DLOPEN opt
+macro(CheckKMSDRM)
+  if(VIDEO_KMSDRM)
+    pkg_check_modules(KMSDRM libdrm gbm egl)
+    if(KMSDRM_FOUND)
+      link_directories(
+        ${KMSDRM_LIBRARY_DIRS}
+      )
+      include_directories(
+        ${KMSDRM_INCLUDE_DIRS}
+      )
+      set(HAVE_VIDEO_KMSDRM TRUE)
+      set(HAVE_SDL_VIDEO TRUE)
+
+      file(GLOB KMSDRM_SOURCES ${SDL2_SOURCE_DIR}/src/video/kmsdrm/*.c)
+      set(SOURCE_FILES ${SOURCE_FILES} ${KMSDRM_SOURCES})
+
+      list(APPEND EXTRA_CFLAGS ${KMSDRM_CFLAGS})
+
+      set(SDL_VIDEO_DRIVER_KMSDRM 1)
+
+      if(KMSDRM_SHARED)
+        if(NOT HAVE_DLOPEN)
+          message_warn("You must have SDL_LoadObject() support for dynamic KMS/DRM loading")
+        else()
+          FindLibraryAndSONAME(drm)
+          FindLibraryAndSONAME(gbm)
+          set(SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC "\"${DRM_LIB_SONAME}\"")
+          set(SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC_GBM "\"${GBM_LIB_SONAME}\"")
+          set(HAVE_KMSDRM_SHARED TRUE)
+        endif()
+      else()
+        set(EXTRA_LIBS ${KMSDRM_LIBRARIES} ${EXTRA_LIBS})
+      endif()
+    endif()
+  endif()
+endmacro()

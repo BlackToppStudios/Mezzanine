@@ -273,6 +273,10 @@ static const SDL_Keycode SDL_default_keymap[SDL_NUM_SCANCODES] = {
     SDLK_KBDILLUMUP,
     SDLK_EJECT,
     SDLK_SLEEP,
+    SDLK_APP1,
+    SDLK_APP2,
+    SDLK_AUDIOREWIND,
+    SDLK_AUDIOFASTFORWARD,
 };
 
 static const char *SDL_scancode_names[SDL_NUM_SCANCODES] = {
@@ -505,6 +509,10 @@ static const char *SDL_scancode_names[SDL_NUM_SCANCODES] = {
     "KBDIllumUp",
     "Eject",
     "Sleep",
+    "App1",
+    "App2",
+    "AudioRewind",
+    "AudioFastForward",
 };
 
 /* Taken from SDL_iconv() */
@@ -586,12 +594,22 @@ void
 SDL_SetKeymap(int start, SDL_Keycode * keys, int length)
 {
     SDL_Keyboard *keyboard = &SDL_keyboard;
+    SDL_Scancode scancode;
 
     if (start < 0 || start + length > SDL_NUM_SCANCODES) {
         return;
     }
 
     SDL_memcpy(&keyboard->keymap[start], keys, sizeof(*keys) * length);
+
+    /* The number key scancodes always map to the number key keycodes.
+     * On AZERTY layouts these technically are symbols, but users (and games)
+     * always think of them and view them in UI as number keys.
+     */
+    keyboard->keymap[SDL_SCANCODE_0] = SDLK_0;
+    for (scancode = SDL_SCANCODE_1; scancode <= SDL_SCANCODE_9; ++scancode) {
+        keyboard->keymap[scancode] = SDLK_1 + (scancode - SDL_SCANCODE_1);
+    }
 }
 
 void
@@ -664,7 +682,6 @@ SDL_SendKeyboardKey(Uint8 state, SDL_Scancode scancode)
     int posted;
     SDL_Keymod modifier;
     SDL_Keycode keycode;
-    Uint16 modstate;
     Uint32 type;
     Uint8 repeat;
 
@@ -737,7 +754,6 @@ SDL_SendKeyboardKey(Uint8 state, SDL_Scancode scancode)
         break;
     }
     if (SDL_KEYDOWN == type) {
-        modstate = keyboard->modstate;
         switch (keycode) {
         case SDLK_NUMLOCKCLEAR:
             keyboard->modstate ^= KMOD_NUM;
@@ -751,7 +767,6 @@ SDL_SendKeyboardKey(Uint8 state, SDL_Scancode scancode)
         }
     } else {
         keyboard->modstate &= ~modifier;
-        modstate = keyboard->modstate;
     }
 
     /* Post the event, if desired */
@@ -763,7 +778,7 @@ SDL_SendKeyboardKey(Uint8 state, SDL_Scancode scancode)
         event.key.repeat = repeat;
         event.key.keysym.scancode = scancode;
         event.key.keysym.sym = keycode;
-        event.key.keysym.mod = modstate;
+        event.key.keysym.mod = keyboard->modstate;
         event.key.windowID = keyboard->focus ? keyboard->focus->id : 0;
         posted = (SDL_PushEvent(&event) > 0);
     }
