@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -54,12 +54,7 @@
 #include "world.h"
 
 // Manager Includes
-#include "actormanager.h"
-#include "areaeffectmanager.h"
-#include "debrismanager.h"
-#include "eventmanager.h"
-#include "terrainmanager.h"
-#include "vehiclemanager.h"
+#include "entitymanager.h"
 #include "Graphics/graphicsmanager.h"
 #include "Graphics/meshmanager.h"
 #include "Graphics/scenemanager.h"
@@ -156,11 +151,7 @@ namespace Mezzanine
         // Unregister types
         World::DestroyAllManagerFactories();
         Entresol::DestroyAllManagerFactories();
-        ActorManager::DestroyAllActorFactories();
-        AreaEffectManager::DestroyAllAreaEffectFactories();
-        DebrisManager::DestroyAllDebrisFactories();
-        TerrainManager::DestroyAllTerrainFactories();
-        VehicleManager::DestroyAllVehicleFactories();
+        EntityManager::DestroyAllEntityFactories();
 
         // Shutdown internals
         this->DestroyOgre();
@@ -175,12 +166,7 @@ namespace Mezzanine
         //Add default manager factories
         Entresol::AddAllEngineDefaultManagerFactories();
         World::AddAllEngineDefaultManagerFactories();
-        //Add default object factories
-        ActorManager::AddAllDefaultActorFactories();
-        AreaEffectManager::AddAllDefaultAreaEffectFactories();
-        DebrisManager::AddAllDefaultDebrisFactories();
-        TerrainManager::AddAllDefaultTerrainFactories();
-        VehicleManager::AddAllDefaultVehicleFactories();
+        EntityManager::AddAllDefaultEntityFactories();
         //Set some sane Defaults for some values
         this->ManualLoopBreak = 0;
 
@@ -205,9 +191,6 @@ namespace Mezzanine
         }
         if( this->GetManager(ManagerBase::MT_GraphicsManager) == 0 ) {
             this->CreateManager( "DefaultGraphicsManager", Params );
-        }
-        if( this->GetManager(ManagerBase::MT_EventManager) == 0 ) {
-            this->CreateManager( "DefaultEventManager", Params );
         }
         if( this->GetManager(ManagerBase::MT_InputManager) == 0 ) {
             this->CreateManager( "DefaultInputManager", Params );
@@ -240,12 +223,7 @@ namespace Mezzanine
         //Add default manager factories
         Entresol::AddAllEngineDefaultManagerFactories();
         World::AddAllEngineDefaultManagerFactories();
-        //Add default object factories
-        ActorManager::AddAllDefaultActorFactories();
-        AreaEffectManager::AddAllDefaultAreaEffectFactories();
-        DebrisManager::AddAllDefaultDebrisFactories();
-        TerrainManager::AddAllDefaultTerrainFactories();
-        VehicleManager::AddAllDefaultVehicleFactories();
+        EntityManager::AddAllDefaultEntityFactories();
         //Set some sane Defaults for some values.
         this->ManualLoopBreak = false;
 
@@ -683,9 +661,6 @@ namespace Mezzanine
         //DefaultCollisionShapeManager
         ManIt = Entresol::ManagerFactories.find("DefaultCollisionShapeManager");
         if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Physics::DefaultCollisionShapeManagerFactory());
-        //DefaultEventManager
-        ManIt = Entresol::ManagerFactories.find("DefaultEventManager");
-        if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new DefaultEventManagerFactory());
         //DefaultGraphicsManager
         ManIt = Entresol::ManagerFactories.find("DefaultGraphicsManager");
         if( ManIt == Entresol::ManagerFactories.end() ) Entresol::AddManagerFactory(new Graphics::DefaultGraphicsManagerFactory());

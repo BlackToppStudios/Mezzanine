@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -62,14 +62,11 @@ namespace Mezzanine
         class MEZZ_LIB LightProxy : public RenderableProxy
         {
         protected:
-            /// @internal
             /// @brief A pointer to the internal Light this proxy is based on.
             Ogre::Light* GraphicsLight;
 
-            /// @internal
             /// @brief Creates an internal light to be used by the calling instance.
             virtual void CreateLight();
-            /// @internal
             /// @brief Destroys the internal light in use by this proxy.
             virtual void DestroyLight();
         public:
@@ -93,10 +90,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
-            /// @copydoc WorldProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            /// @copydoc EntityProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const override;
+            /// @copydoc EntityProxy::IsStatic() const
+            virtual Boole IsStatic() const override;
 
             /// @brief Sets the direction the light will be emitted from this source.
             /// @note The direction is not used if this is a point light.
@@ -197,14 +194,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const override;
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -215,7 +212,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal light this proxy is based on.
             virtual Ogre::Light* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//LightProxy
     }//Graphics
 }//Mezzanine

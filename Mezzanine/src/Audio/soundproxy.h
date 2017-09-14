@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -76,20 +76,20 @@ namespace Mezzanine
             /// @return Returns true if this sound proxy is emitting in a specific direction, false if it's emitting in all directions.
             virtual Boole IsDirectingSound() const = 0;
 
-            /// @copydoc Mezzanine::WorldProxy::AddToWorld()
+            /// @copydoc Mezzanine::EntityProxy::Activate()
             /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the
             /// world and resume it's playback when added back in.  You also cannot start playback while outside of the world.  If you
             /// want to prevent the resuming of playback when added back into the world be sure to manually call "Stop()" before adding
             /// the proxy back into the world.
-            virtual void AddToWorld() = 0;
-            /// @copydoc Mezzanine::WorldProxy::RemoveFromWorld()
+            virtual void Activate() = 0;
+            /// @copydoc Mezzanine::EntityProxy::Deactivate()
             /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the
             /// world and resume it's playback when added back in.  You also cannot start playback while outside of the world.  If you
             /// want to prevent the resuming of playback when added back into the world be sure to manually call "Stop()" before adding
             /// the proxy back into the world.
-            virtual void RemoveFromWorld() = 0;
-            /// @copydoc Mezzanine::WorldProxy::IsInWorld()
-            virtual Boole IsInWorld() const = 0;
+            virtual void Deactivate() = 0;
+            /// @copydoc Mezzanine::EntityProxy::IsActivated()
+            virtual Boole IsActivated() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // 3 Dimensional Configuration

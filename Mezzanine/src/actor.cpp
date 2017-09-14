@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,8 +46,6 @@
     #include "XML/xml.h"
 #endif
 
-#include "entresol.h"
-
 #include "serialization.h"
 
 /// @file
@@ -56,7 +54,7 @@
 namespace Mezzanine
 {
     Actor::Actor() :
-        WorldObject("",NULL)
+        Entity(nullptr)
         {  }
 
     Actor::~Actor()

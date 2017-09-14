@@ -16,7 +16,6 @@ CatchApp* CatchApp::TheRealCatchApp = 0;
 CatchApp::CatchApp() :
     AudioSettingsWork(NULL),
     VideoSettingsWork(NULL),
-    PreInputWork(NULL),
     PostInputWork(NULL),
     PostUIWork(NULL),
     PauseWork(NULL),
@@ -43,6 +42,8 @@ CatchApp::CatchApp() :
 
     // Initialize the engine
     this->TheEntresol = new Entresol( "Data/", Resource::AT_FileSystem );
+    // Set up our quit lamda
+    this->AppEvents.Subscribe(AppEventDispatcher::EventAppQuit,this,[=](EventPtr Args){ this->TheEntresol->BreakMainLoop(); });
     //this->TheWorld = this->TheEntresol->CreateWorld("Catching");
     this->CreateWorld();
 
@@ -58,15 +59,14 @@ CatchApp::CatchApp() :
     this->Picker.Initialize( static_cast<Input::InputManager*>( this->TheEntresol->GetManager(ManagerBase::MT_InputManager) )->GetSystemMouse(),
                              new Graphics::RenderableRayQuery( static_cast<Graphics::SceneManager*>( this->TheWorld->GetManager(ManagerBase::MT_SceneManager) ) ),
                              new PlaneDragger(PlaneOfPlay) );
-    this->PickerFilter = [this](const RayQueryHit& ToFilter) {
-        if( ToFilter.IsValid() ) {
-            WorldObject* ParentObject = ToFilter.Object->GetParentObject();
-            if( ParentObject->GetType() & Mezzanine::WO_AllDebris ) {
-                return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
-            }
+    RayQuery::FilterFunction QueryFilter = [this](EntityProxy* ToFilter) {
+        Entity* ParentObject = ToFilter->GetParentEntity();
+        if( ParentObject->GetEntityType() & Mezzanine::ET_AllDebris ) {
+            return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
         }
         return false;
     };
+    this->Picker.GetQuery()->SetFilterFunction(QueryFilter);
 
     if( this->Profiles == NULL ) {
         this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
@@ -88,9 +88,6 @@ CatchApp::~CatchApp()
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitAffinity( this->VideoSettingsWork );
     delete this->VideoSettingsWork;
-
-    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PreInputWork );
-    delete this->PreInputWork;
 
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostInputWork );
     delete this->PostInputWork;
@@ -1645,8 +1642,8 @@ void CatchApp::VerifySettings()
 
 void CatchApp::RegisterTypes()
 {
-    AreaEffectManager::AddAreaEffectFactory( new ScoreAreaFactory() );
-    AreaEffectManager::AddAreaEffectFactory( new StartAreaFactory() );
+    EntityManager::AddEntityFactory( new ScoreAreaFactory() );
+    EntityManager::AddEntityFactory( new StartAreaFactory() );
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
@@ -1657,7 +1654,7 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     this->SetVisibleScreens(StateToSet);
     if( StateToSet == CatchApp::Catch_MenuScreen ) {
         // This code block was created due to cameras being destroyed on every level unload.
-        this->ThePlayer->InitWorldObjects(this->TheWorld);
+        this->ThePlayer->InitWorldEntities(this->TheWorld);
     }
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
@@ -1747,8 +1744,7 @@ int CatchApp::GetCatchin()
     this->VerifySettings();
 
     // Get our manager pointers we'll use.
-    EventManager* EventMan = static_cast<EventManager*>( this->TheEntresol->GetManager(ManagerBase::MT_EventManager) );
-    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( this->TheWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( this->TheWorld->GetManager(ManagerBase::MT_EntityManager) );
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->TheEntresol->GetManager(ManagerBase::MT_AudioManager) );
     Audio::SoundScapeManager* SoundScapeMan = static_cast<Audio::SoundScapeManager*>( this->TheWorld->GetManager(ManagerBase::MT_SoundScapeManager) );
     Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
@@ -1772,10 +1768,6 @@ int CatchApp::GetCatchin()
     // Add a line here setting the graphics monopoly as a dependency?
     this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->VideoSettingsWork, "VideoSettingsWork" );
 
-    this->PreInputWork = new CatchPreInputWorkUnit(this);
-    EventMan->GetEventPumpWork()->AddDependency( this->PreInputWork );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PreInputWork, "PreInputWork" );
-
     this->PostInputWork = new CatchPostInputWorkUnit(this);
     this->PostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostInputWork, "PostInputWork" );
@@ -1787,16 +1779,16 @@ int CatchApp::GetCatchin()
 
     this->PauseWork = new CatchPauseWorkUnit(this,UIMan);
     this->PauseWork->AddDependency( UIMan->GetWidgetUpdateWork() );
-    this->PauseWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->PauseWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PauseWork, "PauseWork" );
 
     this->HUDUpdateWork = new CatchHUDUpdateWorkUnit(this);
     this->HUDUpdateWork->AddDependency( UIMan->GetWidgetUpdateWork() );
-    this->HUDUpdateWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->HUDUpdateWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->HUDUpdateWork, "HUDUpdateWork" );
 
     this->EndLevelWork = new CatchEndLevelWorkUnit(this);
-    this->EndLevelWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->EndLevelWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EndLevelWork, "EndLevelWork" );
 
     this->RegisterTypes();
@@ -1806,11 +1798,11 @@ int CatchApp::GetCatchin()
     this->TheWorld->Initialize();
 
     this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( ScriptingMan );
-    this->LuaScriptWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    this->LuaScriptWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "LuaWork" );
 
     this->Profiles->Initialize();
-    this->ThePlayer->InitWorldObjects(this->TheWorld); /* Why the hell is this line important? */
+    this->ThePlayer->InitWorldEntities(this->TheWorld); /* Why the hell is this line important? */
     this->ThePlayer->SetIdentity(this->Profiles->GetLastLoadedProfile());
 
     this->CreateLoadingScreen();
@@ -1943,7 +1935,7 @@ void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
     }
 }
 
-Boole CatchApp::IsAThrowable(WorldObject* Throwable) const
+Boole CatchApp::IsAThrowable(Entity* Throwable) const
 {
     for( ThrowableContainer::const_iterator ObjIt = this->ThrownItems.begin() ; ObjIt != this->ThrownItems.end() ; ObjIt++ )
     {
@@ -1977,9 +1969,6 @@ AudioSettingsWorkUnit* CatchApp::GetAudioSettingsWork() const
 VideoSettingsWorkUnit* CatchApp::GetVideoSettingsWork() const
     { return this->VideoSettingsWork; }
 
-CatchPreInputWorkUnit* CatchApp::GetPreInputWork() const
-    { return this->PreInputWork; }
-
 CatchPostInputWorkUnit* CatchApp::GetPostInputWork() const
     { return this->PostInputWork; }
 
@@ -2006,9 +1995,6 @@ World* CatchApp::GetTheWorld() const
 
 MousePicker& CatchApp::GetPicker()
     { return this->Picker; }
-
-const MousePicker::FilterDelegate& CatchApp::GetPickerFilter() const
-    { return this->PickerFilter; }
 
 CatchApp::ThrowableContainer& CatchApp::GetThrowables()
     { return this->ThrownItems; }

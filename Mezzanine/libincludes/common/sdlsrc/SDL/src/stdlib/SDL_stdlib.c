@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,29 +18,264 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+
+#if defined(__clang_analyzer__) && !defined(SDL_DISABLE_ANALYZE_MACROS)
+#define SDL_DISABLE_ANALYZE_MACROS 1
+#endif
+
+#include "../SDL_internal.h"
 
 /* This file contains portable stdlib functions for SDL */
 
 #include "SDL_stdinc.h"
+#include "../libm/math_libm.h"
 
-/* these are always #defined, make them real symbol in the library, too... */
-#undef SDL_ceil
-#undef SDL_abs
-#undef SDL_sinf
-#undef SDL_cosf
-#undef SDL_isdigit
-#undef SDL_isspace
-#undef SDL_toupper
-#undef SDL_tolower
-double SDL_ceil(double x) { return SDL_ceil_inline(x); }
-float SDL_cosf(float x) { return SDL_cosf_inline(x); }
-float SDL_sinf(float x) { return SDL_sinf_inline(x); }
-int SDL_abs(int x) { return SDL_abs_inline(x); }
-int SDL_isdigit(int x) { return SDL_isdigit_inline(x); }
-int SDL_isspace(int x) { return SDL_isspace_inline(x); }
-int SDL_toupper(int x) { return SDL_toupper_inline(x); }
-int SDL_tolower(int x) { return SDL_tolower_inline(x); }
+
+double
+SDL_atan(double x)
+{
+#if defined(HAVE_ATAN)
+    return atan(x);
+#else
+    return SDL_uclibc_atan(x);
+#endif /* HAVE_ATAN */
+}
+
+double
+SDL_atan2(double x, double y)
+{
+#if defined(HAVE_ATAN2)
+    return atan2(x, y);
+#else
+    return SDL_uclibc_atan2(x, y);
+#endif /* HAVE_ATAN2 */
+}
+
+double
+SDL_acos(double val)
+{
+#if defined(HAVE_ACOS)
+    return acos(val);
+#else
+    double result;
+    if (val == -1.0) {
+        result = M_PI;
+    } else {
+        result = SDL_atan(SDL_sqrt(1.0 - val * val) / val);
+        if (result < 0.0)
+        {
+            result += M_PI;
+        }
+    }
+    return result;
+#endif
+}
+
+double
+SDL_asin(double val)
+{
+#if defined(HAVE_ASIN)
+    return asin(val);
+#else
+    double result;
+    if (val == -1.0) {
+        result = -(M_PI / 2.0);
+    } else {
+        result = (M_PI / 2.0) - SDL_acos(val);
+    }
+    return result;
+#endif
+}
+
+double
+SDL_ceil(double x)
+{
+#if defined(HAVE_CEIL)
+    return ceil(x);
+#else
+    double integer = SDL_floor(x);
+    double fraction = x - integer;
+    if (fraction > 0.0) {
+        integer += 1.0;
+    }
+    return integer;
+#endif /* HAVE_CEIL */
+}
+
+double
+SDL_copysign(double x, double y)
+{
+#if defined(HAVE_COPYSIGN)
+    return copysign(x, y);
+#elif defined(HAVE__COPYSIGN)
+    return _copysign(x, y);
+#elif defined(__WATCOMC__) && defined(__386__)
+    /* this is nasty as hell, but it works.. */
+    unsigned int *xi = (unsigned int *) &x,
+                 *yi = (unsigned int *) &y;
+    xi[1] = (yi[1] & 0x80000000) | (xi[1] & 0x7fffffff);
+    return x;
+#else
+    return SDL_uclibc_copysign(x, y);
+#endif /* HAVE_COPYSIGN */
+}
+
+double
+SDL_cos(double x)
+{
+#if defined(HAVE_COS)
+    return cos(x);
+#else
+    return SDL_uclibc_cos(x);
+#endif /* HAVE_COS */
+}
+
+float
+SDL_cosf(float x)
+{
+#if defined(HAVE_COSF)
+    return cosf(x);
+#else
+    return (float)SDL_cos((double)x);
+#endif
+}
+
+double
+SDL_fabs(double x)
+{
+#if defined(HAVE_FABS)
+    return fabs(x); 
+#else
+    return SDL_uclibc_fabs(x);
+#endif /* HAVE_FABS */
+}
+
+double
+SDL_floor(double x)
+{
+#if defined(HAVE_FLOOR)
+    return floor(x);
+#else
+    return SDL_uclibc_floor(x);
+#endif /* HAVE_FLOOR */
+}
+
+double
+SDL_log(double x)
+{
+#if defined(HAVE_LOG)
+    return log(x);
+#else
+    return SDL_uclibc_log(x);
+#endif /* HAVE_LOG */
+}
+
+double
+SDL_pow(double x, double y)
+{
+#if defined(HAVE_POW)
+    return pow(x, y);
+#else
+    return SDL_uclibc_pow(x, y);
+#endif /* HAVE_POW */
+}
+
+double
+SDL_scalbn(double x, int n)
+{
+#if defined(HAVE_SCALBN)
+    return scalbn(x, n);
+#elif defined(HAVE__SCALB)
+    return _scalb(x, n);
+#elif defined(HAVE_LIBC) && defined(HAVE_FLOAT_H) && (FLT_RADIX == 2)
+/* from scalbn(3): If FLT_RADIX equals 2 (which is
+ * usual), then scalbn() is equivalent to ldexp(3). */
+    return ldexp(x, n);
+#else
+    return SDL_uclibc_scalbn(x, n);
+#endif /* HAVE_SCALBN */
+}
+
+double
+SDL_sin(double x)
+{
+#if defined(HAVE_SIN)
+    return sin(x);
+#else
+    return SDL_uclibc_sin(x);
+#endif /* HAVE_SIN */
+}
+
+float 
+SDL_sinf(float x)
+{
+#if defined(HAVE_SINF)
+    return sinf(x);
+#else
+    return (float)SDL_sin((double)x);
+#endif /* HAVE_SINF */
+}
+
+double
+SDL_sqrt(double x)
+{
+#if defined(HAVE_SQRT)
+    return sqrt(x);
+#else
+    return SDL_uclibc_sqrt(x);
+#endif
+}
+
+float
+SDL_sqrtf(float x)
+{
+#if defined(HAVE_SQRTF)
+    return sqrtf(x);
+#else
+    return (float)SDL_sqrt((double)x);
+#endif
+}
+
+double
+SDL_tan(double x)
+{
+#if defined(HAVE_TAN)
+    return tan(x);
+#else
+    return SDL_uclibc_tan(x);
+#endif
+}
+
+float
+SDL_tanf(float x)
+{
+#if defined(HAVE_TANF)
+    return tanf(x);
+#else
+    return (float)SDL_tan((double)x);
+#endif
+}
+
+int SDL_abs(int x)
+{
+#if defined(HAVE_ABS)
+    return abs(x);
+#else
+    return ((x) < 0 ? -(x) : (x));
+#endif
+}
+
+#if defined(HAVE_CTYPE_H)
+int SDL_isdigit(int x) { return isdigit(x); }
+int SDL_isspace(int x) { return isspace(x); }
+int SDL_toupper(int x) { return toupper(x); }
+int SDL_tolower(int x) { return tolower(x); }
+#else
+int SDL_isdigit(int x) { return ((x) >= '0') && ((x) <= '9'); }
+int SDL_isspace(int x) { return ((x) == ' ') || ((x) == '\t') || ((x) == '\r') || ((x) == '\n') || ((x) == '\f') || ((x) == '\v'); }
+int SDL_toupper(int x) { return ((x) >= 'a') && ((x) <= 'z') ? ('A'+((x)-'a')) : (x); }
+int SDL_tolower(int x) { return ((x) >= 'A') && ((x) <= 'Z') ? ('a'+((x)-'A')) : (x); }
+#endif
 
 
 #ifndef HAVE_LIBC
@@ -53,8 +288,8 @@ int SDL_tolower(int x) { return SDL_tolower_inline(x); }
 __declspec(selectany) int _fltused = 1;
 #endif
 
-/* The optimizer on Visual Studio 2010/2012 generates memcpy() calls */
-#if _MSC_VER >= 1600 && defined(_WIN64) && !defined(_DEBUG)
+/* The optimizer on Visual Studio 2005 and later generates memcpy() calls */
+#if (_MSC_VER >= 1400) && defined(_WIN64) && !defined(_DEBUG) && !(_MSC_VER >= 1900 && defined(_MT))
 #include <intrin.h>
 
 #pragma function(memcpy)
@@ -91,12 +326,6 @@ void * memcpy ( void * destination, const void * source, size_t num )
 #endif /* _MSC_VER == 1600 && defined(_WIN64) && !defined(_DEBUG) */
 
 #ifdef _M_IX86
-
-void
-__declspec(naked)
-_chkstk()
-{
-}
 
 /* Float to long */
 void
@@ -163,34 +392,25 @@ _allmul()
 {
     /* *INDENT-OFF* */
     __asm {
-        push        ebp
-        mov         ebp,esp
-        push        edi
-        push        esi
+        mov         eax, dword ptr[esp+8]
+        mov         ecx, dword ptr[esp+10h]
+        or          ecx, eax
+        mov         ecx, dword ptr[esp+0Ch]
+        jne         hard
+        mov         eax, dword ptr[esp+4]
+        mul         ecx
+        ret         10h
+hard:
         push        ebx
-        sub         esp,0Ch
-        mov         eax,dword ptr [ebp+10h]
-        mov         edi,dword ptr [ebp+8]
-        mov         ebx,eax
-        mov         esi,eax
-        sar         esi,1Fh
-        mov         eax,dword ptr [ebp+8]
-        mul         ebx
-        imul        edi,esi
-        mov         ecx,edx
-        mov         dword ptr [ebp-18h],eax
-        mov         edx,dword ptr [ebp+0Ch]
-        add         ecx,edi
-        imul        ebx,edx
-        mov         eax,dword ptr [ebp-18h]
-        lea         ebx,[ebx+ecx]
-        mov         dword ptr [ebp-14h],ebx
-        mov         edx,dword ptr [ebp-14h]
-        add         esp,0Ch
+        mul         ecx
+        mov         ebx, eax
+        mov         eax, dword ptr[esp+8]
+        mul         dword ptr[esp+14h]
+        add         ebx, eax
+        mov         eax, dword ptr[esp+8]
+        mul         ecx
+        add         edx, ebx
         pop         ebx
-        pop         esi
-        pop         edi
-        pop         ebp
         ret         10h
     }
     /* *INDENT-ON* */
@@ -704,8 +924,8 @@ _allshr()
 {
     /* *INDENT-OFF* */
     __asm {
-        cmp         cl,40h
-        jae         RETZERO
+        cmp         cl,3Fh
+        jae         RETSIGN
         cmp         cl,20h
         jae         MORE32
         shrd        eax,edx,cl
@@ -713,13 +933,13 @@ _allshr()
         ret
 MORE32:
         mov         eax,edx
-        xor         edx,edx
+        sar         edx,1Fh
         and         cl,1Fh
         sar         eax,cl
         ret
-RETZERO:
-        xor         eax,eax
-        xor         edx,edx
+RETSIGN:
+        sar         edx,1Fh
+        mov         eax,edx
         ret
     }
     /* *INDENT-ON* */

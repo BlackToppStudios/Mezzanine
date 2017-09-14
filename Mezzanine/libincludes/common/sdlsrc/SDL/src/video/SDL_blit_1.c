@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../SDL_internal.h"
 
 #include "SDL_video.h"
 #include "SDL_blit.h"
@@ -70,12 +70,14 @@ Blit1to1(SDL_BlitInfo * info)
 }
 
 /* This is now endian dependent */
-#if ( SDL_BYTEORDER == SDL_LIL_ENDIAN )
-#define HI	1
-#define LO	0
-#else /* ( SDL_BYTEORDER == SDL_BIG_ENDIAN ) */
-#define HI	0
-#define LO	1
+#ifndef USE_DUFFS_LOOP
+# if ( SDL_BYTEORDER == SDL_LIL_ENDIAN )
+#  define HI	1
+#  define LO	0
+# else /* ( SDL_BYTEORDER == SDL_BIG_ENDIAN ) */
+#  define HI	0
+#  define LO	1
+# endif
 #endif
 static void
 Blit1to2(SDL_BlitInfo * info)
@@ -437,30 +439,29 @@ Blit1toNAlpha(SDL_BlitInfo * info)
     SDL_PixelFormat *dstfmt = info->dst_fmt;
     const SDL_Color *srcpal = info->src_fmt->palette->colors;
     int dstbpp;
-    const int A = info->a;
+    Uint32 pixel;
+    unsigned sR, sG, sB;
+    unsigned dR, dG, dB, dA;
+    const unsigned A = info->a;
 
     /* Set up some basic variables */
     dstbpp = dstfmt->BytesPerPixel;
 
     while (height--) {
-        int sR, sG, sB;
-        int dR, dG, dB;
-	    	/* *INDENT-OFF* */
-	    	DUFFS_LOOP4(
-			{
-			        Uint32 pixel;
-				sR = srcpal[*src].r;
-				sG = srcpal[*src].g;
-				sB = srcpal[*src].b;
-				DISEMBLE_RGB(dst, dstbpp, dstfmt,
-					     pixel, dR, dG, dB);
-				ALPHA_BLEND(sR, sG, sB, A, dR, dG, dB);
-			  	ASSEMBLE_RGB(dst, dstbpp, dstfmt, dR, dG, dB);
-				src++;
-				dst += dstbpp;
-			},
-			width);
-	    	/* *INDENT-ON* */
+        /* *INDENT-OFF* */
+        DUFFS_LOOP4(
+        {
+            sR = srcpal[*src].r;
+            sG = srcpal[*src].g;
+            sB = srcpal[*src].b;
+            DISEMBLE_RGBA(dst, dstbpp, dstfmt, pixel, dR, dG, dB, dA);
+            ALPHA_BLEND_RGBA(sR, sG, sB, A, dR, dG, dB, dA);
+            ASSEMBLE_RGBA(dst, dstbpp, dstfmt, dR, dG, dB, dA);
+            src++;
+            dst += dstbpp;
+        },
+        width);
+        /* *INDENT-ON* */
         src += srcskip;
         dst += dstskip;
     }
@@ -479,26 +480,25 @@ Blit1toNAlphaKey(SDL_BlitInfo * info)
     const SDL_Color *srcpal = info->src_fmt->palette->colors;
     Uint32 ckey = info->colorkey;
     int dstbpp;
-    const int A = info->a;
+    Uint32 pixel;
+    unsigned sR, sG, sB;
+    unsigned dR, dG, dB, dA;
+    const unsigned A = info->a;
 
     /* Set up some basic variables */
     dstbpp = dstfmt->BytesPerPixel;
 
     while (height--) {
-        int sR, sG, sB;
-        int dR, dG, dB;
 		/* *INDENT-OFF* */
 		DUFFS_LOOP(
 		{
 			if ( *src != ckey ) {
-			        Uint32 pixel;
 				sR = srcpal[*src].r;
 				sG = srcpal[*src].g;
 				sB = srcpal[*src].b;
-				DISEMBLE_RGB(dst, dstbpp, dstfmt,
-							pixel, dR, dG, dB);
-				ALPHA_BLEND(sR, sG, sB, A, dR, dG, dB);
-			  	ASSEMBLE_RGB(dst, dstbpp, dstfmt, dR, dG, dB);
+				DISEMBLE_RGBA(dst, dstbpp, dstfmt, pixel, dR, dG, dB, dA);
+				ALPHA_BLEND_RGBA(sR, sG, sB, A, dR, dG, dB, dA);
+			  	ASSEMBLE_RGBA(dst, dstbpp, dstfmt, dR, dG, dB, dA);
 			}
 			src++;
 			dst += dstbpp;

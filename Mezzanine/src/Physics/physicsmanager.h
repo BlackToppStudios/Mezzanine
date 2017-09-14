@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ class btCollisionShape;
 #include "datatypes.h"
 #ifndef SWIG
     #include "uidgenerator.h"
-    #include "worldproxymanager.h"
+    #include "entitycomponentmanager.h"
     #include "worldmanagerfactory.h"
 
     #include "Physics/collidablepair.h"
@@ -226,7 +226,7 @@ namespace Mezzanine
         /// drawing, Adding constraints, screwing with gravity and doing other physics
         /// related features.
         ///////////////////////////////////////
-        class MEZZ_LIB PhysicsManager : public WorldProxyManager
+        class MEZZ_LIB PhysicsManager : public EntityComponentManager
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
@@ -278,9 +278,9 @@ namespace Mezzanine
             ManagerConstructionInfo WorldConstructionInfo;
 
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
-            UIDGenerator ProxyIDGen;
+            UIDGenerator<UInt32> ProxyIDGen;
             /// @brief Generator responsible for creating unique IDs for Constraint instances.
-            UIDGenerator ConstraintIDGen;
+            UIDGenerator<UInt32> ConstraintIDGen;
 
             /// @brief A container storing all of the proxies owned by this manager.
             ProxyContainer Proxies;
@@ -437,8 +437,8 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             SoftProxy* CreateSoftProxy(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
-            WorldProxy* CreateProxy(const XML::Node& SelfRoot);
+            /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
+            EntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -448,22 +448,22 @@ namespace Mezzanine
             /// @return Returns a pointer to the CollidableProxy at the specified index.
             CollidableProxy* GetProxy(const UInt32 Index) const;
 
-            /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
-            WorldProxy* GetProxyByID(const UInt32 ID) const;
+            /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
+            EntityComponent* GetComponentByID(const UInt32 ID) const;
 
-            /// @copydoc WorldProxyManager::GetNumProxies() const
-            UInt32 GetNumProxies() const;
-            /// @copydoc WorldProxyManager::GetNumProxies(const UInt32) const
-            UInt32 GetNumProxies(const UInt32 Types) const;
-            /// @copydoc WorldProxyManager::GetProxies() const
-            WorldProxyManager::WorldProxyVec GetProxies() const;
+            /// @copydoc EntityComponentManager::GetNumComponents() const
+            UInt32 GetNumComponents() const;
+            /// @copydoc EntityComponentManager::GetNumComponents(const UInt32) const
+            UInt32 GetNumComponents(const UInt32 Types) const;
+            /// @copydoc EntityComponentManager::GetComponents() const
+            EntityComponentManager::ComponentVec GetComponents() const;
 
-            /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
-            void DestroyProxy(WorldProxy* ToBeDestroyed);
-            /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
-            void DestroyAllProxies(const UInt32 Types);
-            /// @copydoc WorldProxyManager::DestroyAllProxies()
-            void DestroyAllProxies();
+            /// @copydoc EntityComponentManager::DestroyComponent(EntityComponent*)
+            void DestroyComponent(EntityComponent* ToBeDestroyed);
+            /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
+            void DestroyAllComponents(const UInt32 Types);
+            /// @copydoc EntityComponentManager::DestroyAllComponents()
+            void DestroyAllComponents();
 
             #ifndef SWIG
             /// @brief Gets an iterator to the first Collidable Proxy in this manager.

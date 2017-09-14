@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,9 +40,6 @@
 #ifndef _stringtool_h
 #define _stringtool_h
 
-#ifndef SWIG
-    #include "Input/metacode.h"
-#endif
 #include "vector2.h"
 #include "vector3.h"
 #include "quaternion.h"
@@ -252,7 +249,7 @@ namespace Mezzanine
 
         /// @brief Converts any into a string.
         /// @param ToConvert Stream class instance to be converted.
-        /// @return Returns a string containing the lexicagraphically converted data.
+        /// @return Returns a string containing the lexicographically converted data.
         template<typename T>
         String ConvertToString(const T& ToConvert)
         {
@@ -270,22 +267,7 @@ namespace Mezzanine
         //    if(ToConvert) return "true";
         //    else return "false";
         //}
-
-        /// @brief Converts a Input::InputCode into a string.
-        /// @param Code The input code to be converted.
-        /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
-        /// @return Returns a string(usually with only one character) containing the converted input code.
-        String ConvertToString(const Input::InputCode& Code, Boole ShiftPressed);
-
-        /// @brief Converts a Input::InputCode into a string, assuming shift was not pressed.
-        /// @details this is good for figuring out what key was pressed
-        /// @param Code The input code to be converted.
-        /// @return Returns a string(usually with only one character) containing the converted input code.
-        //template<>
-        //String MEZZ_LIB ConvertToString<Input::InputCode>(const Input::InputCode& Code)
-        //    { return ConvertToString(Code, false); }
-
-    } //stringtool
+    }//StringTools
 }//Mezzanine
 
 #endif

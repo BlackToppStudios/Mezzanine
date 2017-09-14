@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,28 +42,15 @@
 #define _world_h
 
 #include "enumerations.h"
-#include "worldobjectmanager.h"
-#include "worldproxymanager.h"
+#include "entitymanager.h"
+#include "entitycomponentmanager.h"
 
 namespace Mezzanine
 {
-    class ActorManager;
-    class AreaEffectManager;
-    class DebrisManager;
-    class TerrainManager;
     class WorldManager;
     class WorldManagerFactory;
-    namespace Audio
-    {
-        class SoundScapeManager;
-    }
-    namespace Graphics
-    {
-        class SceneManager;
-    }
     namespace Physics
     {
-        class PhysicsManager;
         class ManagerConstructionInfo;
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -75,33 +62,28 @@ namespace Mezzanine
     {
     public:
         /// @brief Basic container type for factories that construct known manager types.
-        typedef std::map<String,WorldManagerFactory*>      ManagerFactoryMap;
+        using ManagerFactoryMap = std::map<String,WorldManagerFactory*>;
         /// @brief Iterator type for manager factories stored by this class.
-        typedef ManagerFactoryMap::iterator                ManagerFactoryIterator;
+        using ManagerFactoryIterator = ManagerFactoryMap::iterator;
         /// @brief Const Iterator type for manager factories stored by this class.
-        typedef ManagerFactoryMap::const_iterator          ConstManagerFactoryIterator;
+        using ConstManagerFactoryIterator = ManagerFactoryMap::const_iterator;
         /// @brief Basic container type for @ref WorldManager storage by this class.
-        typedef std::vector< WorldManager* >               WorldManagerContainer;
+        using WorldManagerContainer = std::vector< WorldManager* >;
         /// @brief Iterator type for @ref WorldManager instances stored by this class.
-        typedef WorldManagerContainer::iterator            WorldManagerIterator;
+        using WorldManagerIterator = WorldManagerContainer::iterator;
         /// @brief Const Iterator type for @ref WorldManager instances stored by this class.
-        typedef WorldManagerContainer::const_iterator      ConstWorldManagerIterator;
+        using ConstWorldManagerIterator = WorldManagerContainer::const_iterator;
     protected:
-        /// @internal
         /// @brief A global container for registered factories for WorldManagers.
         static ManagerFactoryMap ManagerFactories;
-        /// @internal
         /// @brief A container storing all the managers belonging to this world.
         WorldManagerContainer WorldManagers;
-        /// @internal
         /// @brief Unique string identifier for world.
         String Name;
 
-        /// @internal
         /// @brief Helper function used to assist construction.
         void Construct(const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType, const WorldManagerContainer& ManagerToBeAdded);
 
-        /// @internal
         /// @brief Checks if all managers currently stored in this World have been initialized.
         /// @return Returns true if all stored managers have been initialized, false otherwise.
         Boole VerifyManagerInitializations();
@@ -112,7 +94,7 @@ namespace Mezzanine
         /// @brief Pre-made manager constructor.
         /// @param WorldName String name of the world.
         /// @param Managers A container of pre-made managers to be used by this world.
-        World(const String& WorldName, const WorldManagerContainer& Managers);
+        World(const String& WorldName, const World::WorldManagerContainer& Managers);
         /// @brief Descriptive constructor.
         /// @param WorldName String name of the world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
@@ -123,7 +105,7 @@ namespace Mezzanine
         /// @param Managers A container of pre-made managers to be used by this world.
         /// @param PhysicsInfo A ManagerConstructionInfo struct with data on how to configure the physics for this world.
         /// @param SceneType A string containing the name of the underlying scene type for this world.
-        World(const String& WorldName, const WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
+        World(const String& WorldName, const World::WorldManagerContainer& Managers, const Physics::ManagerConstructionInfo& PhysicsInfo, const String& SceneType);
         /// @brief XML constructor.
         /// @param SelfNode The node that represents the data to populate this world with.
         World(const XML::Node& SelfNode);
@@ -188,14 +170,14 @@ namespace Mezzanine
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
         /// @return This returns a pointer to a WorldManager, or a NULL pointer if no matching manager exists.
         WorldManager* GetManager(const Whole ManagerToGet) const;
-        /// @brief This is will find the WorldObject manager of a given type.
+        /// @brief This is will find the Entity manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
-        /// @return This returns a pointer to a WorldObjectManager, or a NULL pointer if no matching manager exists.
-        WorldObjectManager* GetObjectManager(const Whole ManagerToGet) const;
-        /// @brief This is will find the WorldProxy manager of a given type.
+        /// @return This returns a pointer to a EntityManager, or a NULL pointer if no matching manager exists.
+        EntityManager* GetEntityManager(const Whole ManagerToGet) const;
+        /// @brief This is will find the EntityProxy manager of a given type.
         /// @param ManagerToGet The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
-        /// @return This returns a pointer to a WorldProxyManager, or a NULL pointer if no matching manager exists.
-        WorldProxyManager* GetProxyManager(const Whole ManagerToGet) const;
+        /// @return This returns a pointer to a EntityComponentManager, or a NULL pointer if no matching manager exists.
+        EntityComponentManager* GetComponentManager(const Whole ManagerToGet) const;
         /// @brief This removes a manager by finding the matching pointer.
         /// @param ToBeRemoved A pointer to the manager to be removed.
         void RemoveManager(WorldManager* ToBeRemoved);
@@ -207,7 +189,7 @@ namespace Mezzanine
 
         /// @brief This gets the list of managers in the world.
         /// @return This returns a reference to a vector containing the managers in this world.
-        WorldManagerContainer& GetWorldManagers();
+        World::WorldManagerContainer& GetWorldManagers();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Factories Management

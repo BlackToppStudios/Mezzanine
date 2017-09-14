@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,7 +42,8 @@
 #define _actor_h
 
 #include "datatypes.h"
-#include "worldobject.h"
+#include "entity.h"
+#include "entityfactory.h"
 
 /// @file
 /// @brief The base class for all Actors is defined here.
@@ -54,7 +55,7 @@ namespace Mezzanine
     /// @details The actor classes are responsible for character and character-like objects in the
     /// 3D world.
     ///////////////////////////////////////
-    class MEZZ_LIB Actor : public WorldObject
+    class MEZZ_LIB Actor : public Entity
     {
     protected:
     public:
@@ -67,32 +68,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Actor objects.
     ///////////////////////////////////////
-    class MEZZ_LIB ActorFactory
+    class MEZZ_LIB ActorFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        ActorFactory() {  }
+        ActorFactory() = default;
         /// @brief Class destructor.
-        virtual ~ActorFactory() {  }
-
-        /// @brief Gets the name of the Actor that is created by this factory.
-        /// @return Returns the typename of the Actor created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a Actor of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the Actor created.
-        virtual Actor* CreateActor(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a Actor from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the Actor created.
-        virtual Actor* CreateActor(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a Actor created by this factory.
-        /// @param ToBeDestroyed A pointer to the Actor to be destroyed.
-        virtual void DestroyActor(Actor* ToBeDestroyed) = 0;
+        virtual ~ActorFactory() = default;
     };//ActorFactory
 }//Mezzanine
 

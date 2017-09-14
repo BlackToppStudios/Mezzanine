@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,24 +43,25 @@
 /// @file
 /// @brief This file contains the declaration for the debris class used to represent a small loose object in the world.
 
-#include "worldobject.h"
+#include "entity.h"
+#include "entityfactory.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple world object without a large structure ideal for representing loose small objects.
     ///////////////////////////////////////
-    class MEZZ_LIB Debris : public WorldObject
+    class MEZZ_LIB Debris : public Entity
     {
     protected:
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this Debris belongs to.
         Debris(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        Debris(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the Debris.
+        /// @param TheWorld A pointer to the world this Debris belongs to.
+        Debris(const EntityID& EntID, World* TheWorld);
         /// @brief Class destructor.
         virtual ~Debris();
 
@@ -73,14 +74,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+        /// @copydoc Mezzanine::Entity::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+        /// @copydoc Mezzanine::Entity::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::Entity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        /// @copydoc Mezzanine::Entity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -90,32 +91,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Debris objects.
     ///////////////////////////////////////
-    class MEZZ_LIB DebrisFactory
+    class MEZZ_LIB DebrisFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        DebrisFactory() {  }
+        DebrisFactory() = default;
         /// @brief Class destructor.
-        virtual ~DebrisFactory() {  }
-
-        /// @brief Gets the name of the Debris that is created by this factory.
-        /// @return Returns the typename of the Debris created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a Debris of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the Debris created.
-        virtual Debris* CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a Debris from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the Debris created.
-        virtual Debris* CreateDebris(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a Debris created by this factory.
-        /// @param ToBeDestroyed A pointer to the Debris to be destroyed.
-        virtual void DestroyDebris(Debris* ToBeDestroyed) = 0;
+        virtual ~DebrisFactory() = default;
     };//DebrisFactory
 }//Mezzanine
 

@@ -1953,7 +1953,7 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_Mezzanine__Vector3 swig_types[145]
 #define SWIGTYPE_p_Mezzanine__World swig_types[146]
 #define SWIGTYPE_p_Mezzanine__WorldManager swig_types[147]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[148]
+#define SWIGTYPE_p_Mezzanine__WorldEntity swig_types[148]
 #define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[149]
 #define SWIGTYPE_p_Mezzanine__XML__Node swig_types[150]
 #define SWIGTYPE_p_ObjectContainer swig_types[151]
@@ -2000,7 +2000,7 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_std__setT_std__string_t swig_types[192]
 #define SWIGTYPE_p_std__string swig_types[193]
 #define SWIGTYPE_p_std__stringstream swig_types[194]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t swig_types[195]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t swig_types[195]
 #define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[196]
 #define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[197]
 #define SWIGTYPE_p_std__wstring swig_types[198]
@@ -25977,7 +25977,7 @@ _wrap_AttachableBase_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AttachableBase *arg1 = (Mezzanine::AttachableBase *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::WorldObjectType result;
+  Mezzanine::WorldEntityType result;
   VALUE vresult = Qnil;
 
   if ((argc < 0) || (argc > 0)) {
@@ -25988,7 +25988,7 @@ _wrap_AttachableBase_get_type(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AttachableBase const *","GetType", 1, self ));
   }
   arg1 = reinterpret_cast< Mezzanine::AttachableBase * >(argp1);
-  result = (Mezzanine::WorldObjectType)((Mezzanine::AttachableBase const *)arg1)->GetType();
+  result = (Mezzanine::WorldEntityType)((Mezzanine::AttachableBase const *)arg1)->GetType();
   vresult = SWIG_From_int(static_cast< int >(result));
   return vresult;
 fail:
@@ -26636,30 +26636,30 @@ fail:
 }
 
 
-static swig_class SwigClassWorldObject;
+static swig_class SwigClassWorldEntity;
 
 SWIGINTERN void
-free_Mezzanine_WorldObject(Mezzanine::WorldObject *arg1) {
+free_Mezzanine_WorldEntity(Mezzanine::WorldEntity *arg1) {
     delete arg1;
 }
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_type(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_get_type(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::WorldObjectType result;
+  Mezzanine::WorldEntityType result;
   VALUE vresult = Qnil;
 
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","GetType", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","GetType", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::WorldObjectType)((Mezzanine::WorldObject const *)arg1)->GetType();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::WorldEntityType)((Mezzanine::WorldEntity const *)arg1)->GetType();
   vresult = SWIG_From_int(static_cast< int >(result));
   return vresult;
 fail:
@@ -26668,8 +26668,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_name(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_get_name(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::String *result = 0 ;
@@ -26678,12 +26678,12 @@ _wrap_WorldObject_get_name(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","GetName", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","GetName", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::String *) &((Mezzanine::WorldObject const *)arg1)->GetName();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::String *) &((Mezzanine::WorldEntity const *)arg1)->GetName();
   vresult = SWIG_From_std_string(static_cast< std::string >(*result));
   return vresult;
 fail:
@@ -26692,8 +26692,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_world(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_get_world(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::World *result = 0 ;
@@ -26702,12 +26702,12 @@ _wrap_WorldObject_get_world(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","GetWorld", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","GetWorld", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::World *)((Mezzanine::WorldObject const *)arg1)->GetWorld();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::World *)((Mezzanine::WorldEntity const *)arg1)->GetWorld();
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__World, 0 |  0 );
   return vresult;
 fail:
@@ -26716,8 +26716,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_is_in_world(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_is_in_world(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::Boole result;
@@ -26726,12 +26726,12 @@ _wrap_WorldObject_is_in_world(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsInWorld", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","IsInWorld", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsInWorld();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::Boole)((Mezzanine::WorldEntity const *)arg1)->IsInWorld();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -26740,8 +26740,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_is_static(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_is_static(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::Boole result;
@@ -26750,12 +26750,12 @@ _wrap_WorldObject_is_static(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsStatic", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","IsStatic", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsStatic();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::Boole)((Mezzanine::WorldEntity const *)arg1)->IsStatic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -26764,8 +26764,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_is_kinematic(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_is_kinematic(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::Boole result;
@@ -26774,12 +26774,12 @@ _wrap_WorldObject_is_kinematic(int argc, VALUE *argv, VALUE self) {
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsKinematic", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","IsKinematic", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsKinematic();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = (Mezzanine::Boole)((Mezzanine::WorldEntity const *)arg1)->IsKinematic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -26788,9 +26788,9 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_proxies__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::WorldObject::ProxyContainer *arg2 = 0 ;
+_wrap_WorldEntity_get_proxies__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
+  Mezzanine::WorldEntity::ProxyContainer *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -26799,19 +26799,19 @@ _wrap_WorldObject_get_proxies__SWIG_0(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","GetProxies", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","GetProxies", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 2, argv[0] ));
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 2, argv[0]));
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 2, argv[0]));
   }
-  arg2 = reinterpret_cast< Mezzanine::WorldObject::ProxyContainer * >(argp2);
+  arg2 = reinterpret_cast< Mezzanine::WorldEntity::ProxyContainer * >(argp2);
   (arg1)->GetProxies(*arg2);
   return Qnil;
 fail:
@@ -26820,10 +26820,10 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   Mezzanine::UInt32 arg2 ;
-  Mezzanine::WorldObject::ProxyContainer *arg3 = 0 ;
+  Mezzanine::WorldEntity::ProxyContainer *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -26834,11 +26834,11 @@ _wrap_WorldObject_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","GetProxies", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","GetProxies", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::UInt32","GetProxies", 2, argv[0] ));
@@ -26846,12 +26846,12 @@ _wrap_WorldObject_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< Mezzanine::UInt32 >(val2);
   res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,  0 );
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 3, argv[1] ));
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 3, argv[1]));
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 3, argv[1]));
   }
-  arg3 = reinterpret_cast< Mezzanine::WorldObject::ProxyContainer * >(argp3);
+  arg3 = reinterpret_cast< Mezzanine::WorldEntity::ProxyContainer * >(argp3);
   (arg1)->GetProxies(arg2,*arg3);
   return Qnil;
 fail:
@@ -26859,7 +26859,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_WorldObject_get_proxies(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_WorldEntity_get_proxies(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -26873,21 +26873,21 @@ SWIGINTERN VALUE _wrap_WorldObject_get_proxies(int nargs, VALUE *args, VALUE sel
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObject, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldEntity, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_WorldObject_get_proxies__SWIG_0(nargs, args, self);
+        return _wrap_WorldEntity_get_proxies__SWIG_0(nargs, args, self);
       }
     }
   }
   if (argc == 3) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldObject, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__WorldEntity, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -26899,35 +26899,35 @@ SWIGINTERN VALUE _wrap_WorldObject_get_proxies(int nargs, VALUE *args, VALUE sel
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_WorldObject_get_proxies__SWIG_1(nargs, args, self);
+          return _wrap_WorldEntity_get_proxies__SWIG_1(nargs, args, self);
         }
       }
     }
   }
 
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "WorldObject.get_proxies",
-    "    void WorldObject.get_proxies(Mezzanine::WorldObject::ProxyContainer &Proxies)\n"
-    "    void WorldObject.get_proxies(Mezzanine::UInt32 const Types, Mezzanine::WorldObject::ProxyContainer &Proxies)\n");
+  Ruby_Format_OverloadedError( argc, 4, "WorldEntity.get_proxies",
+    "    void WorldEntity.get_proxies(Mezzanine::WorldEntity::ProxyContainer &Proxies)\n"
+    "    void WorldEntity.get_proxies(Mezzanine::UInt32 const Types, Mezzanine::WorldEntity::ProxyContainer &Proxies)\n");
 
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_add_to_world(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_add_to_world(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
 
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","AddToWorld", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","AddToWorld", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   (arg1)->AddToWorld();
   return Qnil;
 fail:
@@ -26936,19 +26936,19 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_remove_from_world(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_remove_from_world(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
 
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","RemoveFromWorld", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","RemoveFromWorld", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   (arg1)->RemoveFromWorld();
   return Qnil;
 fail:
@@ -26957,8 +26957,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_serialize(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_serialize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -26968,11 +26968,11 @@ _wrap_WorldObject_proto_serialize(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","ProtoSerialize", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","ProtoSerialize", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node &","ProtoSerialize", 2, argv[0] ));
@@ -26981,7 +26981,7 @@ _wrap_WorldObject_proto_serialize(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "XML::Node &","ProtoSerialize", 2, argv[0]));
   }
   arg2 = reinterpret_cast< XML::Node * >(argp2);
-  ((Mezzanine::WorldObject const *)arg1)->ProtoSerialize(*arg2);
+  ((Mezzanine::WorldEntity const *)arg1)->ProtoSerialize(*arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -26989,8 +26989,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_serialize_properties(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_serialize_properties(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27000,11 +27000,11 @@ _wrap_WorldObject_proto_serialize_properties(int argc, VALUE *argv, VALUE self) 
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","ProtoSerializeProperties", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","ProtoSerializeProperties", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node &","ProtoSerializeProperties", 2, argv[0] ));
@@ -27013,7 +27013,7 @@ _wrap_WorldObject_proto_serialize_properties(int argc, VALUE *argv, VALUE self) 
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "XML::Node &","ProtoSerializeProperties", 2, argv[0]));
   }
   arg2 = reinterpret_cast< XML::Node * >(argp2);
-  ((Mezzanine::WorldObject const *)arg1)->ProtoSerializeProperties(*arg2);
+  ((Mezzanine::WorldEntity const *)arg1)->ProtoSerializeProperties(*arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -27021,8 +27021,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_serialize_proxies(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_serialize_proxies(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27032,11 +27032,11 @@ _wrap_WorldObject_proto_serialize_proxies(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","ProtoSerializeProxies", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","ProtoSerializeProxies", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node &","ProtoSerializeProxies", 2, argv[0] ));
@@ -27045,7 +27045,7 @@ _wrap_WorldObject_proto_serialize_proxies(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "XML::Node &","ProtoSerializeProxies", 2, argv[0]));
   }
   arg2 = reinterpret_cast< XML::Node * >(argp2);
-  ((Mezzanine::WorldObject const *)arg1)->ProtoSerializeProxies(*arg2);
+  ((Mezzanine::WorldEntity const *)arg1)->ProtoSerializeProxies(*arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -27053,8 +27053,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27064,11 +27064,11 @@ _wrap_WorldObject_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","ProtoDeSerialize", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","ProtoDeSerialize", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node const &","ProtoDeSerialize", 2, argv[0] ));
@@ -27085,8 +27085,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_de_serialize_properties(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_de_serialize_properties(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27096,11 +27096,11 @@ _wrap_WorldObject_proto_de_serialize_properties(int argc, VALUE *argv, VALUE sel
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","ProtoDeSerializeProperties", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","ProtoDeSerializeProperties", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node const &","ProtoDeSerializeProperties", 2, argv[0] ));
@@ -27117,8 +27117,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_proto_de_serialize_proxies(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_proto_de_serialize_proxies(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   XML::Node *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27128,11 +27128,11 @@ _wrap_WorldObject_proto_de_serialize_proxies(int argc, VALUE *argv, VALUE self) 
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","ProtoDeSerializeProxies", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","ProtoDeSerializeProxies", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node const &","ProtoDeSerializeProxies", 2, argv[0] ));
@@ -27149,8 +27149,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_derived_serializable_name(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity_get_derived_serializable_name(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   Mezzanine::String result;
@@ -27159,12 +27159,12 @@ _wrap_WorldObject_get_derived_serializable_name(int argc, VALUE *argv, VALUE sel
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","GetDerivedSerializableName", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity const *","GetDerivedSerializableName", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = ((Mezzanine::WorldObject const *)arg1)->GetDerivedSerializableName();
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
+  result = ((Mezzanine::WorldEntity const *)arg1)->GetDerivedSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -27173,14 +27173,14 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject_get_serializable_name(int argc, VALUE *argv, VALUE self) {
+_wrap_WorldEntity_get_serializable_name(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String result;
   VALUE vresult = Qnil;
 
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  result = Mezzanine::WorldObject::GetSerializableName();
+  result = Mezzanine::WorldEntity::GetSerializableName();
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
@@ -27189,19 +27189,19 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__update(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity__update(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
 
   if ((argc < 0) || (argc > 0)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","_Update", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","_Update", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   (arg1)->_Update();
   return Qnil;
 fail:
@@ -27210,8 +27210,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__notify_proxy_destroyed(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity__notify_proxy_destroyed(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   Mezzanine::WorldProxy *arg2 = (Mezzanine::WorldProxy *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -27221,11 +27221,11 @@ _wrap_WorldObject__notify_proxy_destroyed(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","_NotifyProxyDestroyed", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","_NotifyProxyDestroyed", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__WorldProxy, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::WorldProxy *","_NotifyProxyDestroyed", 2, argv[0] ));
@@ -27239,8 +27239,8 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_WorldObject__notify_collision_state(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+_wrap_WorldEntity__notify_collision_state(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::WorldEntity *arg1 = (Mezzanine::WorldEntity *) 0 ;
   Mezzanine::Physics::Collision *arg2 = (Mezzanine::Physics::Collision *) 0 ;
   Mezzanine::Physics::CollisionState arg3 ;
   void *argp1 = 0 ;
@@ -27253,11 +27253,11 @@ _wrap_WorldObject__notify_collision_state(int argc, VALUE *argv, VALUE self) {
   if ((argc < 2) || (argc > 2)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject *","_NotifyCollisionState", 1, self ));
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity *","_NotifyCollisionState", 1, self ));
   }
-  arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
+  arg1 = reinterpret_cast< Mezzanine::WorldEntity * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Physics__Collision, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Physics::Collision *","_NotifyCollisionState", 2, argv[0] ));
@@ -32310,7 +32310,7 @@ _wrap_AreaEffect_get_type(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::WorldObjectType result;
+  Mezzanine::WorldEntityType result;
   VALUE vresult = Qnil;
 
   if ((argc < 0) || (argc > 0)) {
@@ -32321,7 +32321,7 @@ _wrap_AreaEffect_get_type(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AreaEffect const *","GetType", 1, self ));
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
-  result = (Mezzanine::WorldObjectType)((Mezzanine::AreaEffect const *)arg1)->GetType();
+  result = (Mezzanine::WorldEntityType)((Mezzanine::AreaEffect const *)arg1)->GetType();
   vresult = SWIG_From_int(static_cast< int >(result));
   return vresult;
 fail:
@@ -32449,7 +32449,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_AreaEffect_get_proxies__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
-  Mezzanine::WorldObject::ProxyContainer *arg2 = 0 ;
+  Mezzanine::WorldEntity::ProxyContainer *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -32465,12 +32465,12 @@ _wrap_AreaEffect_get_proxies__SWIG_0(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 2, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 2, argv[0] ));
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 2, argv[0]));
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 2, argv[0]));
   }
-  arg2 = reinterpret_cast< Mezzanine::WorldObject::ProxyContainer * >(argp2);
+  arg2 = reinterpret_cast< Mezzanine::WorldEntity::ProxyContainer * >(argp2);
   (arg1)->GetProxies(*arg2);
   return Qnil;
 fail:
@@ -32482,7 +32482,7 @@ SWIGINTERN VALUE
 _wrap_AreaEffect_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
   Mezzanine::UInt32 arg2 ;
-  Mezzanine::WorldObject::ProxyContainer *arg3 = 0 ;
+  Mezzanine::WorldEntity::ProxyContainer *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int val2 ;
@@ -32505,12 +32505,12 @@ _wrap_AreaEffect_get_proxies__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg2 = static_cast< Mezzanine::UInt32 >(val2);
   res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,  0 );
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 3, argv[1] ));
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldObject::ProxyContainer &","GetProxies", 3, argv[1]));
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::WorldEntity::ProxyContainer &","GetProxies", 3, argv[1]));
   }
-  arg3 = reinterpret_cast< Mezzanine::WorldObject::ProxyContainer * >(argp3);
+  arg3 = reinterpret_cast< Mezzanine::WorldEntity::ProxyContainer * >(argp3);
   (arg1)->GetProxies(arg2,*arg3);
   return Qnil;
 fail:
@@ -32566,8 +32566,8 @@ SWIGINTERN VALUE _wrap_AreaEffect_get_proxies(int nargs, VALUE *args, VALUE self
 
 fail:
   Ruby_Format_OverloadedError( argc, 4, "AreaEffect.get_proxies",
-    "    void AreaEffect.get_proxies(Mezzanine::WorldObject::ProxyContainer &Proxies)\n"
-    "    void AreaEffect.get_proxies(Mezzanine::UInt32 const Types, Mezzanine::WorldObject::ProxyContainer &Proxies)\n");
+    "    void AreaEffect.get_proxies(Mezzanine::WorldEntity::ProxyContainer &Proxies)\n"
+    "    void AreaEffect.get_proxies(Mezzanine::UInt32 const Types, Mezzanine::WorldEntity::ProxyContainer &Proxies)\n");
 
   return Qnil;
 }
@@ -32704,7 +32704,7 @@ _wrap_AreaEffect_get_overlapping_objects(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
   result = (Mezzanine::AreaEffect::ObjectContainer *) &(arg1)->GetOverlappingObjects();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t, 0 |  0 );
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t, 0 |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -32728,7 +32728,7 @@ _wrap_AreaEffect_get_added_objects(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
   result = (Mezzanine::AreaEffect::ObjectContainer *) &(arg1)->GetAddedObjects();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t, 0 |  0 );
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t, 0 |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -32752,7 +32752,7 @@ _wrap_AreaEffect_get_removed_objects(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
   result = (Mezzanine::AreaEffect::ObjectContainer *) &(arg1)->GetRemovedObjects();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t, 0 |  0 );
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t, 0 |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -38077,7 +38077,7 @@ _wrap_RayQueryTool_last_query_results_object_ptr(int argc, VALUE *argv, VALUE se
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::WorldObject *result = 0 ;
+  Mezzanine::WorldEntity *result = 0 ;
   VALUE vresult = Qnil;
 
   if ((argc < 0) || (argc > 0)) {
@@ -38088,8 +38088,8 @@ _wrap_RayQueryTool_last_query_results_object_ptr(int argc, VALUE *argv, VALUE se
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::RayQueryTool const *","LastQueryResultsObjectPtr", 1, self ));
   }
   arg1 = reinterpret_cast< Mezzanine::RayQueryTool * >(argp1);
-  result = (Mezzanine::WorldObject *)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsObjectPtr();
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__WorldObject, 0 |  0 );
+  result = (Mezzanine::WorldEntity *)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsObjectPtr();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__WorldEntity, 0 |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -52500,14 +52500,14 @@ static void *_p_Mezzanine__EventGameWindowTo_p_Mezzanine__EventBase(void *x, int
 static void *_p_Mezzanine__EventQuitTo_p_Mezzanine__EventBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::EventBase *)  ((Mezzanine::EventQuit *) x));
 }
-static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::AreaEffect *) x));
+static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldEntity(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldEntity *)  ((Mezzanine::AreaEffect *) x));
 }
-static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Actor *) x));
+static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldEntity(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldEntity *)  ((Mezzanine::Actor *) x));
 }
-static void *_p_Mezzanine__DebrisTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Debris *) x));
+static void *_p_Mezzanine__DebrisTo_p_Mezzanine__WorldEntity(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldEntity *)  ((Mezzanine::Debris *) x));
 }
 static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
@@ -52515,17 +52515,17 @@ static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDP
 static void *_p_Mezzanine__EventManagerTo_p_Mezzanine__SingletonT_Mezzanine__EventManager_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Singleton< Mezzanine::EventManager > *)  ((Mezzanine::EventManager *) x));
 }
-static void *_p_Mezzanine__WorldObjectTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::TransformableObject *)  ((Mezzanine::WorldObject *) x));
+static void *_p_Mezzanine__WorldEntityTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::TransformableObject *)  ((Mezzanine::WorldEntity *) x));
 }
 static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldObject *) ((Mezzanine::AreaEffect *) x));
+    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldEntity *) ((Mezzanine::AreaEffect *) x));
 }
 static void *_p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldObject *) ((Mezzanine::Actor *) x));
+    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldEntity *) ((Mezzanine::Actor *) x));
 }
 static void *_p_Mezzanine__DebrisTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldObject *) ((Mezzanine::Debris *) x));
+    return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldEntity *) ((Mezzanine::Debris *) x));
 }
 static void *_p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::ManagerBase *)  ((Mezzanine::WorldManager *) x));
@@ -53164,7 +53164,7 @@ static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__World = {"_p_Mezzanine__World", "Mezzanine::World *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldObject", "Mezzanine::WorldObject *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__WorldEntity = {"_p_Mezzanine__WorldEntity", "Mezzanine::WorldEntity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldProxy = {"_p_Mezzanine__WorldProxy", "Mezzanine::WorldProxy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__Node = {"_p_Mezzanine__XML__Node", "Mezzanine::XML::Node *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ObjectContainer = {"_p_ObjectContainer", "ObjectContainer *", 0, 0, (void*)0, 0};
@@ -53211,8 +53211,8 @@ static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std_
 static swig_type_info _swigt__p_std__setT_std__string_t = {"_p_std__setT_std__string_t", "std::set< std::string > *|Mezzanine::StringSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *|Mezzanine::String *|Mezzanine::ConstString *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__stringstream = {"_p_std__stringstream", "Mezzanine::Logger *|std::stringstream *|Mezzanine::StringStream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t = {"_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t", "std::vector< Mezzanine::WorldObject *,std::allocator< Mezzanine::WorldObject * > > *|Mezzanine::AreaEffect::ObjectContainer *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t = {"_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t", "std::vector< Mezzanine::WorldProxy *,std::allocator< Mezzanine::WorldProxy * > > *|Mezzanine::WorldObject::ProxyContainer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t = {"_p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t", "std::vector< Mezzanine::WorldEntity *,std::allocator< Mezzanine::WorldEntity * > > *|Mezzanine::AreaEffect::ObjectContainer *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t = {"_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t", "std::vector< Mezzanine::WorldProxy *,std::allocator< Mezzanine::WorldProxy * > > *|Mezzanine::WorldEntity::ProxyContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_std__string_std__allocatorT_std__string_t_t = {"_p_std__vectorT_std__string_std__allocatorT_std__string_t_t", "std::vector< std::string,std::allocator< std::string > > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__wstring = {"_p_std__wstring", "std::wstring *|Mezzanine::WideString *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__ConstIterator = {"_p_swig__ConstIterator", "swig::ConstIterator *", 0, 0, (void*)0, 0};
@@ -53374,7 +53374,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Vector3,
   &_swigt__p_Mezzanine__World,
   &_swigt__p_Mezzanine__WorldManager,
-  &_swigt__p_Mezzanine__WorldObject,
+  &_swigt__p_Mezzanine__WorldEntity,
   &_swigt__p_Mezzanine__WorldProxy,
   &_swigt__p_Mezzanine__XML__Node,
   &_swigt__p_ObjectContainer,
@@ -53421,7 +53421,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__setT_std__string_t,
   &_swigt__p_std__string,
   &_swigt__p_std__stringstream,
-  &_swigt__p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t,
+  &_swigt__p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t,
   &_swigt__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,
   &_swigt__p_std__vectorT_std__string_std__allocatorT_std__string_t_t,
   &_swigt__p_std__wstring,
@@ -53579,12 +53579,12 @@ static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXPathException[] = {  {&_s
 static swig_cast_info _swigc__p_Mezzanine__Timer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, _p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Transform[] = {  {&_swigt__p_Mezzanine__Transform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__TransformableChildObject[] = {  {&_swigt__p_Mezzanine__TransformableChildObject, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__TransformableObject[] = {  {&_swigt__p_Mezzanine__Debris, _p_Mezzanine__DebrisTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__WorldObject, _p_Mezzanine__WorldObjectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__TransformableObject, 0, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__TransformableObject[] = {  {&_swigt__p_Mezzanine__Debris, _p_Mezzanine__DebrisTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__WorldEntity, _p_Mezzanine__WorldEntityTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__TransformableObject, 0, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector2[] = {  {&_swigt__p_Mezzanine__Vector2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__World[] = {  {&_swigt__p_Mezzanine__World, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldManager[] = {  {&_swigt__p_Mezzanine__WorldManager, 0, 0, 0},  {&_swigt__p_Mezzanine__ActorManager, _p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectManager, _p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__WorldManager, 0, 0},  {&_swigt__p_Mezzanine__DebrisManager, _p_Mezzanine__DebrisManagerTo_p_Mezzanine__WorldManager, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__WorldObject[] = {  {&_swigt__p_Mezzanine__Debris, _p_Mezzanine__DebrisTo_p_Mezzanine__WorldObject, 0, 0},  {&_swigt__p_Mezzanine__WorldObject, 0, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__WorldObject, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__WorldEntity[] = {  {&_swigt__p_Mezzanine__Debris, _p_Mezzanine__DebrisTo_p_Mezzanine__WorldEntity, 0, 0},  {&_swigt__p_Mezzanine__WorldEntity, 0, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldEntity, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__WorldEntity, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldProxy[] = {  {&_swigt__p_Mezzanine__WorldProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__Node[] = {  {&_swigt__p_Mezzanine__XML__Node, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ObjectContainer[] = {  {&_swigt__p_ObjectContainer, 0, 0, 0},{0, 0, 0, 0}};
@@ -53631,7 +53631,7 @@ static swig_cast_info _swigc__p_std__pairT_std__string_std__string_t[] = {  {&_s
 static swig_cast_info _swigc__p_std__setT_std__string_t[] = {  {&_swigt__p_std__setT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__stringstream[] = {  {&_swigt__p_std__stringstream, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t[] = {  {&_swigt__p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t[] = {  {&_swigt__p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t[] = {  {&_swigt__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_std__string_std__allocatorT_std__string_t_t[] = {  {&_swigt__p_std__vectorT_std__string_std__allocatorT_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__wstring[] = {  {&_swigt__p_std__wstring, 0, 0, 0},{0, 0, 0, 0}};
@@ -53794,7 +53794,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Vector3,
   _swigc__p_Mezzanine__World,
   _swigc__p_Mezzanine__WorldManager,
-  _swigc__p_Mezzanine__WorldObject,
+  _swigc__p_Mezzanine__WorldEntity,
   _swigc__p_Mezzanine__WorldProxy,
   _swigc__p_Mezzanine__XML__Node,
   _swigc__p_ObjectContainer,
@@ -53841,7 +53841,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__setT_std__string_t,
   _swigc__p_std__string,
   _swigc__p_std__stringstream,
-  _swigc__p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t,
+  _swigc__p_std__vectorT_Mezzanine__WorldEntity_p_std__allocatorT_Mezzanine__WorldEntity_p_t_t,
   _swigc__p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t,
   _swigc__p_std__vectorT_std__string_std__allocatorT_std__string_t_t,
   _swigc__p_std__wstring,
@@ -55029,34 +55029,34 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_const(mMezzanine, "PT_Soft", SWIG_From_int(static_cast< int >(Mezzanine::Physics::PT_Soft)));
   rb_define_const(mMezzanine, "PT_Ghost", SWIG_From_int(static_cast< int >(Mezzanine::Physics::PT_Ghost)));
 
-  SwigClassWorldObject.klass = rb_define_class_under(mMezzanine, "WorldObject", ((swig_class *) SWIGTYPE_p_Mezzanine__TransformableObject->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldObject, (void *) &SwigClassWorldObject);
-  rb_undef_alloc_func(SwigClassWorldObject.klass);
-  rb_define_method(SwigClassWorldObject.klass, "get_type", VALUEFUNC(_wrap_WorldObject_get_type), -1);
-  rb_define_method(SwigClassWorldObject.klass, "get_name", VALUEFUNC(_wrap_WorldObject_get_name), -1);
-  rb_define_method(SwigClassWorldObject.klass, "get_world", VALUEFUNC(_wrap_WorldObject_get_world), -1);
-  rb_define_method(SwigClassWorldObject.klass, "is_in_world", VALUEFUNC(_wrap_WorldObject_is_in_world), -1);
-  rb_define_method(SwigClassWorldObject.klass, "is_static", VALUEFUNC(_wrap_WorldObject_is_static), -1);
-  rb_define_method(SwigClassWorldObject.klass, "is_kinematic", VALUEFUNC(_wrap_WorldObject_is_kinematic), -1);
-  rb_define_method(SwigClassWorldObject.klass, "get_proxies", VALUEFUNC(_wrap_WorldObject_get_proxies), -1);
-  rb_define_method(SwigClassWorldObject.klass, "add_to_world", VALUEFUNC(_wrap_WorldObject_add_to_world), -1);
-  rb_define_method(SwigClassWorldObject.klass, "remove_from_world", VALUEFUNC(_wrap_WorldObject_remove_from_world), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_serialize", VALUEFUNC(_wrap_WorldObject_proto_serialize), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_serialize_properties", VALUEFUNC(_wrap_WorldObject_proto_serialize_properties), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_serialize_proxies", VALUEFUNC(_wrap_WorldObject_proto_serialize_proxies), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_de_serialize", VALUEFUNC(_wrap_WorldObject_proto_de_serialize), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_de_serialize_properties", VALUEFUNC(_wrap_WorldObject_proto_de_serialize_properties), -1);
-  rb_define_method(SwigClassWorldObject.klass, "proto_de_serialize_proxies", VALUEFUNC(_wrap_WorldObject_proto_de_serialize_proxies), -1);
-  rb_define_method(SwigClassWorldObject.klass, "get_derived_serializable_name", VALUEFUNC(_wrap_WorldObject_get_derived_serializable_name), -1);
-  rb_define_singleton_method(SwigClassWorldObject.klass, "get_serializable_name", VALUEFUNC(_wrap_WorldObject_get_serializable_name), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_update", VALUEFUNC(_wrap_WorldObject__update), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_notify_proxy_destroyed", VALUEFUNC(_wrap_WorldObject__notify_proxy_destroyed), -1);
-  rb_define_method(SwigClassWorldObject.klass, "_notify_collision_state", VALUEFUNC(_wrap_WorldObject__notify_collision_state), -1);
-  SwigClassWorldObject.mark = 0;
-  SwigClassWorldObject.destroy = (void (*)(void *)) free_Mezzanine_WorldObject;
-  SwigClassWorldObject.trackObjects = 0;
+  SwigClassWorldEntity.klass = rb_define_class_under(mMezzanine, "WorldEntity", ((swig_class *) SWIGTYPE_p_Mezzanine__TransformableObject->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__WorldEntity, (void *) &SwigClassWorldEntity);
+  rb_undef_alloc_func(SwigClassWorldEntity.klass);
+  rb_define_method(SwigClassWorldEntity.klass, "get_type", VALUEFUNC(_wrap_WorldEntity_get_type), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "get_name", VALUEFUNC(_wrap_WorldEntity_get_name), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "get_world", VALUEFUNC(_wrap_WorldEntity_get_world), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "is_in_world", VALUEFUNC(_wrap_WorldEntity_is_in_world), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "is_static", VALUEFUNC(_wrap_WorldEntity_is_static), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "is_kinematic", VALUEFUNC(_wrap_WorldEntity_is_kinematic), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "get_proxies", VALUEFUNC(_wrap_WorldEntity_get_proxies), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "add_to_world", VALUEFUNC(_wrap_WorldEntity_add_to_world), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "remove_from_world", VALUEFUNC(_wrap_WorldEntity_remove_from_world), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_serialize", VALUEFUNC(_wrap_WorldEntity_proto_serialize), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_serialize_properties", VALUEFUNC(_wrap_WorldEntity_proto_serialize_properties), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_serialize_proxies", VALUEFUNC(_wrap_WorldEntity_proto_serialize_proxies), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_de_serialize", VALUEFUNC(_wrap_WorldEntity_proto_de_serialize), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_de_serialize_properties", VALUEFUNC(_wrap_WorldEntity_proto_de_serialize_properties), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "proto_de_serialize_proxies", VALUEFUNC(_wrap_WorldEntity_proto_de_serialize_proxies), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "get_derived_serializable_name", VALUEFUNC(_wrap_WorldEntity_get_derived_serializable_name), -1);
+  rb_define_singleton_method(SwigClassWorldEntity.klass, "get_serializable_name", VALUEFUNC(_wrap_WorldEntity_get_serializable_name), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "_update", VALUEFUNC(_wrap_WorldEntity__update), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "_notify_proxy_destroyed", VALUEFUNC(_wrap_WorldEntity__notify_proxy_destroyed), -1);
+  rb_define_method(SwigClassWorldEntity.klass, "_notify_collision_state", VALUEFUNC(_wrap_WorldEntity__notify_collision_state), -1);
+  SwigClassWorldEntity.mark = 0;
+  SwigClassWorldEntity.destroy = (void (*)(void *)) free_Mezzanine_WorldEntity;
+  SwigClassWorldEntity.trackObjects = 0;
 
-  SwigClassActor.klass = rb_define_class_under(mMezzanine, "Actor", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldObject->clientdata)->klass);
+  SwigClassActor.klass = rb_define_class_under(mMezzanine, "Actor", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldEntity->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Actor, (void *) &SwigClassActor);
   rb_undef_alloc_func(SwigClassActor.klass);
   SwigClassActor.mark = 0;
@@ -55341,7 +55341,7 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassColourValue.destroy = (void (*)(void *)) free_Mezzanine_ColourValue;
   SwigClassColourValue.trackObjects = 0;
 
-  SwigClassAreaEffect.klass = rb_define_class_under(mMezzanine, "AreaEffect", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldObject->clientdata)->klass);
+  SwigClassAreaEffect.klass = rb_define_class_under(mMezzanine, "AreaEffect", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldEntity->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__AreaEffect, (void *) &SwigClassAreaEffect);
   rb_undef_alloc_func(SwigClassAreaEffect.klass);
   rb_define_method(SwigClassAreaEffect.klass, "get_type", VALUEFUNC(_wrap_AreaEffect_get_type), -1);
@@ -55557,7 +55557,7 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_module_function(mMezzanine, "sanitize_windowed_res", VALUEFUNC(_wrap_sanitize_windowed_res), -1);
   rb_define_module_function(mMezzanine, "get_time_stamp", VALUEFUNC(_wrap_get_time_stamp), -1);
 
-  SwigClassDebris.klass = rb_define_class_under(mMezzanine, "Debris", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldObject->clientdata)->klass);
+  SwigClassDebris.klass = rb_define_class_under(mMezzanine, "Debris", ((swig_class *) SWIGTYPE_p_Mezzanine__WorldEntity->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Debris, (void *) &SwigClassDebris);
   rb_undef_alloc_func(SwigClassDebris.klass);
   rb_define_method(SwigClassDebris.klass, "proto_serialize_properties", VALUEFUNC(_wrap_Debris_proto_serialize_properties), -1);

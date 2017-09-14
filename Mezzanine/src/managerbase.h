@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,7 +50,6 @@ namespace Mezzanine
 {
     class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @headerfile managerbase.h
     /// @brief This is the base class from which all the Entresol and World Managers inherit.
     /// @details This creates a base set of functions that Managers are all
     /// expected to implement.
@@ -70,7 +69,7 @@ namespace Mezzanine
         {
             // Utility Types
 
-            MT_Undefined              = 0,
+            MT_Undefined               = 0,
 
             // Entresol Managers              // Namespaces
 
@@ -79,7 +78,6 @@ namespace Mezzanine
             MT_CollisionShapeManager   = 3,   // Physics
             MT_CompositorManager       = 4,   // Graphics
             MT_GraphicsManager         = 5,   // Graphics
-            MT_EventManager            = 6,   // Mezzanine
             MT_InputManager            = 7,   // Input
             MT_LogManager              = 8,   // Mezzanine
             MT_MaterialManager         = 9,   // Graphics
@@ -93,28 +91,20 @@ namespace Mezzanine
 
             // World Managers                 // Namespaces
 
-            MT_WorldProxyManagerFirst  = 100,
+            MT_EntityComponentManagerFirst = 100,
 
-            MT_PhysicsManager          = 105, // Physics
-            MT_SceneManager            = 106, // Graphics
-            MT_SoundScapeManager       = 107, // Audio
+            MT_PhysicsManager              = 105, // Physics
+            MT_SceneManager                = 106, // Graphics
+            MT_SoundScapeManager           = 107, // Audio
 
-            MT_WorldProxyManagerLast   = 199,
-            MT_WorldObjectManagerFirst = 200,
-
-            MT_ActorManager            = 201, // Mezzanine
-            MT_AreaEffectManager       = 202, // Mezzanine
-            MT_DebrisManager           = 203, // Mezzanine
-            MT_TerrainManager          = 208, // Mezzanine
-            MT_VehicleManager          = 209, // Mezzanine
-
-            MT_WorldObjectManagerLast  = 299,
+            MT_EntityComponentManagerLast  = 199,
+            MT_EntityManager           = 200,
 
             // Other Managers                 // Namespaces
 
             MT_UserManagerFirst        = 1000,
 
-            MT_UserCreated             = 1001  ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+            MT_UserCreated             = 1001
         };
     protected:
         /// @internal

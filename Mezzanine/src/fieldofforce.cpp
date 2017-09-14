@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -62,8 +62,8 @@ namespace Mezzanine
         AttenStyle(Mezzanine::Att_None)
         {  }
 
-    FieldOfForce::FieldOfForce(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld),
+    FieldOfForce::FieldOfForce(const EntityID& EntID, World* TheWorld) :
+        AreaEffect(EntID,TheWorld),
         AttenSource(Vector3(0,0,0)),
         Direction(Vector3(0,1,0)),
         AttenAmount(0),
@@ -71,8 +71,8 @@ namespace Mezzanine
         AttenStyle(Mezzanine::Att_None)
         {  }
 
-    FieldOfForce::FieldOfForce(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        AreaEffect(Name,Shape,TheWorld),
+    FieldOfForce::FieldOfForce(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(EntID,Shape,TheWorld),
         AttenSource(Vector3(0,0,0)),
         Direction(Vector3(0,1,0)),
         AttenAmount(0),
@@ -95,14 +95,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType FieldOfForce::GetType() const
-        { return Mezzanine::WO_AreaEffectFieldOfForce; }
+    Mezzanine::EntityType FieldOfForce::GetEntityType() const
+        { return Mezzanine::ET_AreaEffectFieldOfForce; }
 
     void FieldOfForce::ApplyEffect()
     {
-        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a WorldObject.
+        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a Entity.
         /// Instead this should perhaps apply only to the ones in the field, or perhaps apply force based on the proxy position
-        /// rather than the WorldObject position to get more interesting results.
+        /// rather than the Entity position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
         AreaEffect::ApplyEffect();
         if(0 == this->Strength)
@@ -145,11 +145,11 @@ namespace Mezzanine
                     AppliedStrength = 0;
 
                 //Apply the Force
-                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*ObjIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                         RigProx->ApplyForce( Direction * AppliedStrength );
                     }
                 }
@@ -280,22 +280,22 @@ namespace Mezzanine
     String FieldOfForceFactory::GetTypeName() const
         { return FieldOfForce::GetSerializableName(); }
 
-    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, World* TheWorld)
-        { return new FieldOfForce(Name,TheWorld); }
+    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const EntityID& EntID, World* TheWorld)
+        { return new FieldOfForce(EntID,TheWorld); }
 
-    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
-        { return new FieldOfForce(Name,AEShape,TheWorld); }
+    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new FieldOfForce(EntID,AEShape,TheWorld); }
 
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<FieldOfForce*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<FieldOfForce*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new FieldOfForce(Name,TheWorld); }
+    Entity* FieldOfForceFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new FieldOfForce(EntID,TheWorld); }
 
-    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* FieldOfForceFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new FieldOfForce(XMLNode,TheWorld); }
 
-    void FieldOfForceFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void FieldOfForceFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

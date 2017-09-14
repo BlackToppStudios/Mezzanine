@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -29,8 +29,8 @@
 
 /* Ported from original test\common.h file. */
 
-#ifndef _SDL_test_common_h
-#define _SDL_test_common_h
+#ifndef SDL_test_common_h_
+#define SDL_test_common_h_
 
 #include "SDL.h"
 
@@ -69,6 +69,9 @@ typedef struct
     int window_minH;
     int window_maxW;
     int window_maxH;
+    int logical_w;
+    int logical_h;
+    float scale;
     int depth;
     int refresh_rate;
     int num_windows;
@@ -79,6 +82,7 @@ typedef struct
     Uint32 render_flags;
     SDL_bool skip_renderer;
     SDL_Renderer **renderers;
+    SDL_Texture **targets;
 
     /* Audio info */
     const char *audiodriver;
@@ -105,6 +109,7 @@ typedef struct
     int gl_major_version;
     int gl_minor_version;
     int gl_debug;
+    int gl_profile_mask;
 } SDLTest_CommonState;
 
 #include "begin_code.h"
@@ -178,6 +183,6 @@ void SDLTest_CommonQuit(SDLTest_CommonState * state);
 #endif
 #include "close_code.h"
 
-#endif /* _SDL_test_common_h */
+#endif /* SDL_test_common_h_ */
 
 /* vi: set ts=4 sw=4 expandtab: */

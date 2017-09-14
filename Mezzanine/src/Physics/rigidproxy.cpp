@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -82,8 +82,9 @@ namespace Mezzanine
 
         RigidProxy::~RigidProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsRigidBody->getMotionState();
             delete this->PhysicsRigidBody;
@@ -92,7 +93,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::WorldObjectMotionState( this ) );
+            this->PhysicsRigidBody->setMotionState( new Internal::EntityMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if( Mass == 0.0 ) {
                 this->CollisionGroup = Physics::CF_StaticFilter;
@@ -107,21 +108,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType RigidProxy::GetProxyType() const
+        Mezzanine::ComponentType RigidProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_RigidProxy;
+            return Mezzanine::CT_Physics_RigidProxy;
         }
 
-        void RigidProxy::AddToWorld()
+        void RigidProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->addRigidBody( this->PhysicsRigidBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void RigidProxy::RemoveFromWorld()
+        void RigidProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->removeRigidBody( this->PhysicsRigidBody );
             }
         }
@@ -415,10 +416,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void RigidProxy::_Bind(WorldObject* NewParent)
+        void RigidProxy::_Bind(Entity* NewParent)
         {
-            WorldProxy::_Bind(NewParent);
-            Internal::WorldObjectMotionState* MS = static_cast<Internal::WorldObjectMotionState*>( this->PhysicsRigidBody->getMotionState() );
+            EntityProxy::_Bind(NewParent);
+            Internal::EntityMotionState* MS = static_cast<Internal::EntityMotionState*>( this->PhysicsRigidBody->getMotionState() );
             MS->SetSyncObject(NewParent);
         }
 

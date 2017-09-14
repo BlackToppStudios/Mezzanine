@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,11 +53,15 @@ namespace Mezzanine
 
 #include "Input/inputenumerations.h"
 #include "Input/inputmanager.h"
+#include "Input/inpututilities.h"
 
 #include "Input/controller.h"
 #include "Input/device.h"
+#include "Input/joystick.h"
 #include "Input/keyboard.h"
 #include "Input/metacode.h"
+#include "Input/metacodekey.h"
 #include "Input/mouse.h"
+#include "Input/sequencecontainer.h"
 
 #endif

@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../SDL_internal.h"
 
 /* This a stretch blit implementation based on ideas given to me by
    Tomasz Cejner - thanks! :)
@@ -33,12 +33,12 @@
    into the general blitting mechanism.
 */
 
-#if ((defined(_MFC_VER) && defined(_M_IX86)) || \
-     defined(__WATCOMC__) || \
+#if ((defined(_MSC_VER) && defined(_M_IX86))    || \
+     (defined(__WATCOMC__) && defined(__386__)) || \
      (defined(__GNUC__) && defined(__i386__))) && SDL_ASSEMBLY_ROUTINES
 /* There's a bug with gcc 4.4.1 and -O2 where srcp doesn't get the correct
  * value after the first scanline.  FIXME? */
-/*#define USE_ASM_STRETCH*/
+/* #define USE_ASM_STRETCH */
 #endif
 
 #ifdef USE_ASM_STRETCH
@@ -53,13 +53,13 @@
 #define PAGE_ALIGNED
 #endif
 
-#if defined(_M_IX86) || defined(i386)
-#define PREFIX16	0x66
-#define STORE_BYTE	0xAA
-#define STORE_WORD	0xAB
-#define LOAD_BYTE	0xAC
-#define LOAD_WORD	0xAD
-#define RETURN		0xC3
+#if defined(_M_IX86) || defined(__i386__) || defined(__386__)
+#define PREFIX16    0x66
+#define STORE_BYTE  0xAA
+#define STORE_WORD  0xAB
+#define LOAD_BYTE   0xAC
+#define LOAD_WORD   0xAD
+#define RETURN      0xC3
 #else
 #error Need assembly opcodes for this architecture
 #endif
@@ -102,7 +102,7 @@ generate_rowbytes(int src_w, int dst_w, int bpp)
         store = STORE_WORD;
         break;
     default:
-        return SDL_SetError("ASM stretch of %d bytes isn't supported\n", bpp);
+        return SDL_SetError("ASM stretch of %d bytes isn't supported", bpp);
     }
 #ifdef HAVE_MPROTECT
     /* Make the code writeable */
@@ -148,23 +148,23 @@ generate_rowbytes(int src_w, int dst_w, int bpp)
 
 #endif /* USE_ASM_STRETCH */
 
-#define DEFINE_COPY_ROW(name, type)			\
-static void name(type *src, int src_w, type *dst, int dst_w)	\
-{							\
-	int i;						\
-	int pos, inc;					\
-	type pixel = 0;					\
-							\
-	pos = 0x10000;					\
-	inc = (src_w << 16) / dst_w;			\
-	for ( i=dst_w; i>0; --i ) {			\
-		while ( pos >= 0x10000L ) {		\
-			pixel = *src++;			\
-			pos -= 0x10000L;		\
-		}					\
-		*dst++ = pixel;				\
-		pos += inc;				\
-	}						\
+#define DEFINE_COPY_ROW(name, type)         \
+static void name(type *src, int src_w, type *dst, int dst_w)    \
+{                                           \
+    int i;                                  \
+    int pos, inc;                           \
+    type pixel = 0;                         \
+                                            \
+    pos = 0x10000;                          \
+    inc = (src_w << 16) / dst_w;            \
+    for ( i=dst_w; i>0; --i ) {             \
+        while ( pos >= 0x10000L ) {         \
+            pixel = *src++;                 \
+            pos -= 0x10000L;                \
+        }                                   \
+        *dst++ = pixel;                     \
+        pos += inc;                         \
+    }                                       \
 }
 /* *INDENT-OFF* */
 DEFINE_COPY_ROW(copy_row1, Uint8)
@@ -220,7 +220,7 @@ SDL_SoftStretch(SDL_Surface * src, const SDL_Rect * srcrect,
 #endif /* USE_ASM_STRETCH */
     const int bpp = dst->format->BytesPerPixel;
 
-    if (src->format->BitsPerPixel != dst->format->BitsPerPixel) {
+    if (src->format->format != dst->format->format) {
         return SDL_SetError("Only works with same format surfaces");
     }
 

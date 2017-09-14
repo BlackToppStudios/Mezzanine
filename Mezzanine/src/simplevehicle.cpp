@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,8 +50,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // SimpleVehicle Methods
 
-    SimpleVehicle::SimpleVehicle(const String& Name, World* TheWorld) :
-        Vehicle(Name,TheWorld)
+    SimpleVehicle::SimpleVehicle(const EntityID& EntID, World* TheWorld) :
+        Vehicle(EntID,TheWorld)
     {
 
     }
@@ -70,8 +70,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType SimpleVehicle::GetType() const
-        { return Mezzanine::WO_SimpleVehicle; }
+    EntityType SimpleVehicle::GetEntityType() const
+        { return Mezzanine::ET_SimpleVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -112,18 +112,18 @@ namespace Mezzanine
     String SimpleVehicleFactory::GetTypeName() const
         { return SimpleVehicle::GetSerializableName(); }
 
-    SimpleVehicle* SimpleVehicleFactory::CreateSimpleVehicle(const String& Name, World* TheWorld)
-        { return new SimpleVehicle(Name,TheWorld); }
+    SimpleVehicle* SimpleVehicleFactory::CreateSimpleVehicle(const EntityID& EntID, World* TheWorld)
+        { return new SimpleVehicle(EntID,TheWorld); }
 
-    Vehicle* SimpleVehicleFactory::CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* SimpleVehicleFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
-        return this->CreateSimpleVehicle(Name,TheWorld);
+        return this->CreateSimpleVehicle(EntID,TheWorld);
     }
 
-    Vehicle* SimpleVehicleFactory::CreateVehicle(const XML::Node& XMLNode, World* TheWorld)
+    Entity* SimpleVehicleFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new SimpleVehicle(XMLNode,TheWorld); }
 
-    void SimpleVehicleFactory::DestroyVehicle(Vehicle* ToBeDestroyed)
+    void SimpleVehicleFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

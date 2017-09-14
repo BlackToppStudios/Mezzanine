@@ -136,7 +136,7 @@ ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
 
 Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
 {
-    DebrisManager* DebMan = static_cast<DebrisManager*>( Entresol::GetSingletonPtr()->GetWorld(0)->GetManager(ManagerBase::MT_DebrisManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( Entresol::GetSingletonPtr()->GetWorld(0)->GetManager(ManagerBase::MT_EntityManager) );
     ThrowableData* ToBeCreated = GetThrowableData(Throwable);
     if(!ToBeCreated)
         return NULL;
@@ -144,12 +144,13 @@ Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
     (ToBeCreated->ThrowableCount)++;
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
 
-    RigidDebris* Created = DebMan->CreateRigidDebris(NameGen.str(),ToBeCreated->Mass);
+    RigidDebris* Created = EntMan->CreateRigidDebris(ToBeCreated->Mass);
+    Created->SetName(NameGen.str());
     Created->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
     Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);
     // ©reated->GetRigidProxy()->SetActivationState(Physics::WOAS_DisableDeactivation);
-    Created->GetEntityProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
+    Created->GetItemProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
     Created->SetOrientation(Quaternion(MathTools::GetPi(),Vector3(0,1,0)));
 
     /*if("Rubber"==Throwable)

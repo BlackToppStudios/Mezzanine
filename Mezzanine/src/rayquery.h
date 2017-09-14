@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// ï¿½ Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,8 +41,8 @@
 #define _rayquery_h
 
 #include "ray.h"
-#include "worldproxy.h"
-#include "worldproxymanager.h"
+#include "entityproxy.h"
+#include "entitycomponentmanager.h"
 
 namespace Mezzanine
 {
@@ -61,7 +61,7 @@ namespace Mezzanine
         /// @brief The index of the child item of the hit Object.
         Integer SubObject;
         /// @brief A pointer to the object hit.
-        WorldProxy* Object;
+        EntityProxy* Object;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
@@ -92,9 +92,9 @@ namespace Mezzanine
             { return this->IsValid() && !this->Object->IsStatic(); }
 
         /// @brief Gets the parent world object of the proxy hit by this ray query.
-        /// @return Returns a WorldObject pointer to the parent of the it proxy.
-        WorldObject* GetObjectParent() const
-            { return this->Object->GetParentObject(); }
+        /// @return Returns a Entity pointer to the parent of the it proxy.
+        Entity* GetObjectParent() const
+            { return this->Object->GetParentEntity(); }
         /// @brief Gets the hit location in world space.
         /// @return Returns a Vector3 containing the world location of the ray hit.
         Vector3 GetLocalHitLocation() const
@@ -121,7 +121,7 @@ namespace Mezzanine
         /// @brief Less-than Operator.
         /// @param Other The other RayQueryHit to be compared to.
         /// @return Returns true if this RayQueryHit should be sorted before the other RayQueryHit.
-        Boole operator<(const RayQueryHit& Other)
+        Boole operator<(const RayQueryHit& Other) const
             { return this->Distance < Other.Distance; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ namespace Mezzanine
 
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("Distance").SetValue( this->Distance ) &&
-                SelfRoot.AppendAttribute("ObjectID").SetValue( this->Object->GetProxyID() ) &&
+                SelfRoot.AppendAttribute("ObjectID").SetValue( this->Object->GetComponentID().ID ) &&
                 SelfRoot.AppendAttribute("ObjectCreatorType").SetValue( this->Object->GetCreator()->GetInterfaceType() ) &&
                 SelfRoot.AppendAttribute("SubObjectIndex").SetValue( this->SubObject ) )
             {
@@ -210,12 +210,20 @@ namespace Mezzanine
     class MEZZ_LIB RayQuery
     {
     public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Member Types
+
+        /// @brief Function type for the optional custom filter.
+        using FilterFunction = std::function<Boole(EntityProxy*)>;
         /// @brief Convenience type for the container of results produced by this class.
-        typedef std::vector<RayQueryHit>         ResultContainer;
+        using ResultContainer = std::vector<RayQueryHit>;
         /// @brief Iterator type for results returned by this class.
-        typedef ResultContainer::iterator        ResultIterator;
+        using ResultIterator = ResultContainer::iterator;
         /// @brief Const Iterator type for results returned by this class.
-        typedef ResultContainer::const_iterator  ConstResultIterator;
+        using ConstResultIterator = ResultContainer::const_iterator;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
 
         /// @brief Class constructor.
         RayQuery() = default;
@@ -231,15 +239,18 @@ namespace Mezzanine
         /// @brief Gets the World being queried.
         /// @return Returns a pointer to the World the Ray cast is being performed in.
         virtual World* GetWorld() const = 0;
-        /// @brief Sets the optional filter to only return hits on specific types of proxies.
-        /// @remarks Overrides of this method will only care for specific proxy types that exist in it's own
-        /// subsystem.  Using the wrong proxy types for a given subsystem will cause your ray query to return nothing
-        /// on every cast.  You can use Mezzanine::PT_All_Proxies to cleanly reset it to find all results in any subsystem.
-        /// @param Filter A bitmask containing the proxy types to treat as valid returns.
-        virtual void SetProxyTypes(const UInt32 Filter) = 0;
-        /// @brief Gets the optional filter used to only return hits on specific types of proxies.
-        /// @return Returns a bitmask representing the valid types of proxies to be returned from a Ray cast.
-        virtual UInt32 GetProxyTypes() const = 0;
+        /// @brief Sets the custom function that can filter ray query results.
+        /// @remarks The function is optional and doesn't need to be set.  Keep in mind that RayQuery instances will
+        /// generally be subsystem specific.  Setting a filter that checks for Graphics types on a RayQuery in the Physics
+        /// subsystem will likely lead to a bad time. @n
+        /// This filter will run right after the object hit is initially flagged as a candidate.  It may still fail to
+        /// hit after passing through this filter.  As such, hit data isn't generated yet by the time this filter is
+        /// invoked.
+        /// @param Filter The function that will filter hit results.
+        virtual void SetFilterFunction(const RayQuery::FilterFunction Filter) = 0;
+        /// @brief Gets the custom function that will filter ray query results.
+        /// @return Returns the function object currently filtering results from this RayQuery.
+        virtual RayQuery::FilterFunction GetFilterFunction() const = 0;
         /// @brief Sets the optional filter to only return hits on specific types of internal objects.
         /// @remarks Overrides of this method will only care for specific flags, depending on the subsystem the Ray cast
         /// is being performed in.  Be sure to verify you are using the correct flags for the subsystem or you may find
@@ -267,7 +278,7 @@ namespace Mezzanine
         /// @param Cast The Ray being cast in the World.
         /// @param Limit The number of results to limit the return to.  0 means unlimited.
         /// @return Returns a container of results from the Ray cast.  All results in the container are valid.
-        virtual ResultContainer GetAllAABBResults(const Ray& Cast, const Whole Limit = 0) const = 0;
+        virtual RayQuery::ResultContainer GetAllAABBResults(const Ray& Cast, const Whole Limit = 0) const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Precise Query
@@ -280,7 +291,7 @@ namespace Mezzanine
         /// @param Cast The Ray being cast in the World.
         /// @param Limit The number of results to limit the return to.  0 means unlimited.
         /// @return Returns a container of results from the Ray cast.  All results in the container are valid.
-        virtual ResultContainer GetAllShapeResults(const Ray& Cast, const Whole Limit = 0) const = 0;
+        virtual RayQuery::ResultContainer GetAllShapeResults(const Ray& Cast, const Whole Limit = 0) const = 0;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

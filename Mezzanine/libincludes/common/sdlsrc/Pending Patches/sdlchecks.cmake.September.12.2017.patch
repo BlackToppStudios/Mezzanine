@@ -1,0 +1,140 @@
+71c71
+<   if(OSS)
+---
+>   if(SDL_OSS)
+105c105
+<   if(ALSA)
+---
+>   if(SDL_ALSA)
+137c137
+<   if(PULSEAUDIO)
+---
+>   if(SDL_PULSEAUDIO)
+145c145
+<       if(PULSEAUDIO_SHARED)
+---
+>       if(SDL_PULSEAUDIO_SHARED)
+167c167
+<   if(JACK)
+---
+>   if(SDL_JACK)
+175c175
+<       if(JACK_SHARED)
+---
+>       if(SDL_JACK_SHARED)
+197c197
+<   if(ESD)
+---
+>   if(SDL_ESD)
+205c205
+<       if(ESD_SHARED)
+---
+>       if(SDL_ESD_SHARED)
+227c227
+<   if(ARTS)
+---
+>   if(SDL_ARTS)
+239c239
+<       if(ARTS_SHARED)
+---
+>       if(SDL_ARTS_SHARED)
+262c262
+<   if(NAS)
+---
+>   if(SDL_NAS)
+271c271
+<       if(NAS_SHARED)
+---
+>       if(SDL_NAS_SHARED)
+293c293
+<   if(SNDIO)
+---
+>   if(SDL_SNDIO)
+302c302
+<       if(SNDIO_SHARED)
+---
+>       if(SDL_SNDIO_SHARED)
+324c324
+<   if(FUSIONSOUND)
+---
+>   if(SDL_FUSIONSOUND)
+332c332
+<       if(FUSIONSOUND_SHARED)
+---
+>       if(SDL_FUSIONSOUND_SHARED)
+354c354
+<   if(LIBSAMPLERATE)
+---
+>   if(SDL_LIBSAMPLERATE)
+357c357
+<       if(LIBSAMPLERATE_SHARED)
+---
+>       if(SDL_LIBSAMPLERATE_SHARED)
+377c377
+<   if(VIDEO_X11)
+---
+>   if(SDL_VIDEO_X11)
+425c425
+<       if(X11_SHARED)
+---
+>       if(SDL_X11_SHARED)
+515c515
+<       if(VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
+---
+>       if(SDL_VIDEO_X11_XRANDR AND HAVE_XRANDR_H)
+525c525
+<       if(VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
+---
+>       if(SDL_VIDEO_X11_XSCRNSAVER AND HAVE_XSS_H)
+535c535
+<       if(VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
+---
+>       if(SDL_VIDEO_X11_XSHAPE AND HAVE_XSHAPE_H)
+540c540
+<       if(VIDEO_X11_XVM AND HAVE_XF86VM_H)
+---
+>       if(SDL_VIDEO_X11_XVM AND HAVE_XF86VM_H)
+562c562
+<     if(VIDEO_MIR)
+---
+>     if(SDL_VIDEO_MIR)
+623c623
+<   if(VIDEO_WAYLAND)
+---
+>   if(SDL_VIDEO_WAYLAND)
+724c724
+<   if(VIDEO_COCOA)
+---
+>   if(SDL_VIDEO_COCOA)
+744c744
+<   if(VIDEO_DIRECTFB)
+---
+>   if(SDL_VIDEO_DIRECTFB)
+772c772
+<   if(VIDEO_VIVANTE)
+---
+>   if(SDL_VIDEO_VIVANTE)
+802c802
+<   if(VIDEO_OPENGL)
+---
+>   if(SDL_VIDEO_OPENGL)
+820c820
+<   if(VIDEO_OPENGLES)
+---
+>   if(SDL_VIDEO_OPENGLES)
+858c858
+<   if(PTHREADS)
+---
+>   if(SDL_PTHREADS)
+1129c1129
+<   if(VIDEO_RPI)
+---
+>   if(SDL_VIDEO_RPI)
+1153c1153
+<   endif(VIDEO_RPI)
+---
+>   endif(SDL_VIDEO_RPI)
+1163c1163
+<   if(VIDEO_KMSDRM)
+---
+>   if(SDL_VIDEO_KMSDRM)

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -51,8 +51,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
-	class MEZZ_LIB EventSubscriptionTable
-	{
+    class MEZZ_LIB EventSubscriptionTable
+    {
     public:
         /// @brief Convenience type for the callbacks that will be called when events are fired.
         using CallbackType = EventSubscriberBinding::CallbackType;
@@ -65,8 +65,8 @@ namespace Mezzanine
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
         BindingContainer Bindings;
-        /// @brief The name of the Event the subscribers in this table are subscribed to.
-        EventNameType EventName;
+        /// @brief The hash of the Event the subscribers in this table are subscribed to.
+        EventHashType EventHash;
     public:
         /// @brief Blank constructor.
         EventSubscriptionTable() = delete;
@@ -77,8 +77,8 @@ namespace Mezzanine
         /// @param Other The other table to be moved.
         EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
         /// @brief Class constructor.
-        /// @param Name The name to be given to this event.
-        EventSubscriptionTable(const EventNameType& Name);
+        /// @param Hash The generated hash to use to identify this event.
+        EventSubscriptionTable(const EventHashType Hash);
         /// @brief Class destructor.
         ~EventSubscriptionTable();
 
@@ -102,9 +102,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the name of the event associated with this table.
-        /// @return Returns a const reference of a hashed string containing the name of this event.
-        const EventNameType& GetName() const;
+        /// @brief Gets the hash of the event associated with this table.
+        /// @return Returns the hash identifying this event.
+        EventHashType GetHash() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscription Management
@@ -134,7 +134,7 @@ namespace Mezzanine
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
         void DispatchEvent(EventPtr Args) const;
-	};//EventSubscriptionTable
+    };//EventSubscriptionTable
 
     /// @}
 }//Mezzanine

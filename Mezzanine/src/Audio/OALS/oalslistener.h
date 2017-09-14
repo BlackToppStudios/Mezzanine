@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -63,35 +63,25 @@ namespace Mezzanine
             class MEZZ_LIB Listener : public iListener
             {
             protected:
-                /// @internal
                 /// @brief This stores the current orientation of this listener.
                 Quaternion Orientation;
-                /// @internal
                 /// @brief This stores the current velocity of this listener.
                 Vector3 Velocity;
-                /// @internal
                 /// @brief This stores the current location of this listener in 3D space.
                 Vector3 Location;
-                /// @internal
                 /// @brief This stores the amount of meters to be assumed in one unit of world space.
                 Real MPU;
-                /// @internal
                 /// @brief This stores the modifier to be applied to the volume of all sounds heard by this listener.
                 Real VolumeModifier;
-                /// @internal
-                /// @brief This is a pointer to the managert that created this listener.
+                /// @brief This is a pointer to the manager that created this listener.
                 OALS::SoundScapeManager* Manager;
-                /// @internal
                 /// @brief This is a pointer to the OALS context this listener belongs to.
                 ALCcontext* Context;
-                /// @internal
                 /// @brief This tracks whether this listener is in the world and active or not.
                 Boole InWorld;
 
-                /// @internal
-                /// @brief Converts our orientation into something OpanAL can read/use.
+                /// @brief Converts our orientation into something OpenAL can read/use.
                 void ConvertBuffer(Real* OrientationArray);
-                /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
                 void MakeCurrent();
             public:
@@ -111,94 +101,94 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility
 
-                /// @copydoc WorldProxy::GetProxyType() const
-                virtual Mezzanine::ProxyType GetProxyType() const;
+                /// @copydoc EntityProxy::GetComponentType() const
+                virtual Mezzanine::ComponentType GetComponentType() const override;
 
                 /// @copydoc iListener::SetVelocity(const Vector3& Vel)
-                virtual void SetVelocity(const Vector3& Vel);
+                virtual void SetVelocity(const Vector3& Vel) override;
                 /// @copydoc iListener::GetVelocity() const
-                virtual Vector3 GetVelocity() const;
+                virtual Vector3 GetVelocity() const override;
 
                 /// @copydoc iListener::SetVolumeModifier(const Real Vol)
-                virtual void SetVolumeModifier(const Real Vol);
+                virtual void SetVolumeModifier(const Real Vol) override;
                 /// @copydoc iListener::GetVolumeModifier() const
-                virtual Real GetVolumeModifier() const;
+                virtual Real GetVolumeModifier() const override;
                 /// @copydoc iListener::SetMetersPerUnit(const Real Meters)
-                virtual void SetMetersPerUnit(const Real Meters);
+                virtual void SetMetersPerUnit(const Real Meters) override;
                 /// @copydoc iListener::GetMetersPerUnit() const
-                virtual Real GetMetersPerUnit() const;
+                virtual Real GetMetersPerUnit() const override;
 
-                /// @copydoc WorldProxy::AddToWorld()
-                virtual void AddToWorld();
-                /// @copydoc WorldProxy::RemoveFromWorld()
-                virtual void RemoveFromWorld();
+                /// @copydoc EntityProxy::Activate()
+                virtual void Activate() override;
+                /// @copydoc EntityProxy::Deactivate()
+                virtual void Deactivate() override;
 
-                /// @copydoc WorldProxy::IsInWorld() const
-                virtual Boole IsInWorld() const;
-                /// @copydoc WorldProxy::IsStatic() const
-                virtual Boole IsStatic() const;
+                /// @copydoc EntityProxy::IsActivated() const
+                virtual Boole IsActivated() const override;
+                /// @copydoc EntityProxy::IsStatic() const
+                virtual Boole IsStatic() const override;
 
-                /// @copydoc WorldProxy::GetCreator() const
-                virtual WorldProxyManager* GetCreator() const;
+                /// @copydoc EntityComponent::GetCreator() const
+                virtual EntityComponentManager* GetCreator() const override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Transform Methods
 
-                /// @copydoc WorldProxy::SetTransform(const Transform&)
-                virtual void SetTransform(const Transform& Trans);
-                /// @copydoc WorldProxy::SetTransform(const Vector3&,const Quaternion&)
-                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori);
-                /// @copydoc WorldProxy::GetTransform() const
-                virtual Transform GetTransform() const;
+                /// @copydoc EntityProxy::SetTransform(const Transform&)
+                virtual void SetTransform(const Transform& Trans) override;
+                /// @copydoc EntityProxy::SetTransform(const Vector3&,const Quaternion&)
+                virtual void SetTransform(const Vector3& Loc, const Quaternion& Ori) override;
+                /// @copydoc EntityProxy::GetTransform() const
+                virtual Transform GetTransform() const override;
 
-                /// @copydoc WorldProxy::SetLocation(const Vector3&)
-                virtual void SetLocation(const Vector3& Loc);
-                /// @copydoc WorldProxy::SetLocation(const Real, const Real, const Real)
-                virtual void SetLocation(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::GetLocation() const
-                virtual Vector3 GetLocation() const;
-                /// @copydoc WorldProxy::SetOrientation(const Quaternion&)
-                virtual void SetOrientation(const Quaternion& Ori);
-                /// @copydoc WorldProxy::SetOrientation(const Real, const Real, const Real, const Real)
-                virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W);
-                /// @copydoc WorldProxy::GetOrientation() const
-                virtual Quaternion GetOrientation() const;
-                /// @copydoc WorldProxy::SetScale(const Vector3&)
-                virtual void SetScale(const Vector3& Sc);
-                /// @copydoc WorldProxy::SetScale(const Real, const Real, const Real)
-                virtual void SetScale(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::GetScale() const
-                virtual Vector3 GetScale() const;
+                /// @copydoc EntityProxy::SetLocation(const Vector3&)
+                virtual void SetLocation(const Vector3& Loc) override;
+                /// @copydoc EntityProxy::SetLocation(const Real, const Real, const Real)
+                virtual void SetLocation(const Real X, const Real Y, const Real Z) override;
+                /// @copydoc EntityProxy::GetLocation() const
+                virtual Vector3 GetLocation() const override;
+                /// @copydoc EntityProxy::SetOrientation(const Quaternion&)
+                virtual void SetOrientation(const Quaternion& Ori) override;
+                /// @copydoc EntityProxy::SetOrientation(const Real, const Real, const Real, const Real)
+                virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) override;
+                /// @copydoc EntityProxy::GetOrientation() const
+                virtual Quaternion GetOrientation() const override;
+                /// @copydoc EntityProxy::SetScale(const Vector3&)
+                virtual void SetScale(const Vector3& Sc) override;
+                /// @copydoc EntityProxy::SetScale(const Real, const Real, const Real)
+                virtual void SetScale(const Real X, const Real Y, const Real Z) override;
+                /// @copydoc EntityProxy::GetScale() const
+                virtual Vector3 GetScale() const override;
 
-                /// @copydoc WorldProxy::Translate(const Vector3&)
-                virtual void Translate(const Vector3& Trans);
-                /// @copydoc WorldProxy::Translate(const Real, const Real, const Real)
-                virtual void Translate(const Real X, const Real Y, const Real Z);
-                /// @copydoc WorldProxy::Yaw(const Real)
-                virtual void Yaw(const Real Angle);
-                /// @copydoc WorldProxy::Pitch(const Real)
-                virtual void Pitch(const Real Angle);
-                /// @copydoc WorldProxy::Roll(const Real)
-                virtual void Roll(const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Vector3&, const Real)
-                virtual void Rotate(const Vector3& Axis, const Real Angle);
-                /// @copydoc WorldProxy::Rotate(const Quaternion&)
-                virtual void Rotate(const Quaternion& Rotation);
-                /// @copydoc WorldProxy::Scale(const Vector3&)
-                virtual void Scale(const Vector3& Scale);
-                /// @copydoc WorldProxy::Scale(const Real, const Real, const Real)
-                virtual void Scale(const Real X, const Real Y, const Real Z);
+                /// @copydoc EntityProxy::Translate(const Vector3&)
+                virtual void Translate(const Vector3& Trans) override;
+                /// @copydoc EntityProxy::Translate(const Real, const Real, const Real)
+                virtual void Translate(const Real X, const Real Y, const Real Z) override;
+                /// @copydoc EntityProxy::Yaw(const Real)
+                virtual void Yaw(const Real Angle) override;
+                /// @copydoc EntityProxy::Pitch(const Real)
+                virtual void Pitch(const Real Angle) override;
+                /// @copydoc EntityProxy::Roll(const Real)
+                virtual void Roll(const Real Angle) override;
+                /// @copydoc EntityProxy::Rotate(const Vector3&, const Real)
+                virtual void Rotate(const Vector3& Axis, const Real Angle) override;
+                /// @copydoc EntityProxy::Rotate(const Quaternion&)
+                virtual void Rotate(const Quaternion& Rotation) override;
+                /// @copydoc EntityProxy::Scale(const Vector3&)
+                virtual void Scale(const Vector3& Scale) override;
+                /// @copydoc EntityProxy::Scale(const Real, const Real, const Real)
+                virtual void Scale(const Real X, const Real Y, const Real Z) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
-                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-                /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
-                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+                /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
+                /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
-                /// @copydoc WorldProxy::GetDerivedSerializableName() const
-                virtual String GetDerivedSerializableName() const;
+                /// @copydoc EntityProxy::GetDerivedSerializableName() const
+                virtual String GetDerivedSerializableName() const override;
                 /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
                 /// @return A string containing the name of this class.
                 static String GetSerializableName();

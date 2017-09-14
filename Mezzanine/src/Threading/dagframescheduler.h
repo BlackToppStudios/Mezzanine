@@ -1,5 +1,5 @@
 // The DAGFrameScheduler is a Multi-Threaded lock free and wait free scheduling library.
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The DAGFrameScheduler.
 
     The DAGFrameScheduler is free software: you can redistribute it and/or modify
@@ -111,6 +111,10 @@
 #include "threadingenumerations.h"
 #include "workunit.h"
 #include "workunitkey.h"
+#endif
+
+#ifndef SWIG
+#include "ThreadLog/ThreadLog.h"
 #endif
 
 

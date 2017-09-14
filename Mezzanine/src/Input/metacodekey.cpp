@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,59 +49,52 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Compare Methods
 
-        /// @brief Function used for sorting keyboard metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boole KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        return First.GetCode() < Second.GetCode();
-	    }
+        Boole KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            return First.GetCode() < Second.GetCode();
+        }
 
-	    /// @brief Function used for sorting mouse metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boole MouseCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        return First.GetCode() < Second.GetCode();
-	    }
+        Boole MouseCodeCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            return First.GetCode() < Second.GetCode();
+        }
 
-	    /// @brief Function used for sorting multitouch metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boole MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        /// @todo When our support for Multitouch devices expands this may need to be expanded as well.
-	        return First.GetCode() < Second.GetCode();
-	    }
+        Boole MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            /// @todo When our support for Multitouch devices expands this may need to be expanded as well.
+            return First.GetCode() < Second.GetCode();
+        }
 
-	    /// @brief Function used for sorting controller metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boole ControllerCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
-	            return First.GetCode() < Second.GetCode();
-	        }else{
-                return First.GetDeviceIndex() < Second.GetDeviceIndex();
-	        }
-	    }
+        Boole ControllerCodeCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            if( First.GetDeviceID() == Second.GetDeviceID() ) {
+                return First.GetCode() < Second.GetCode();
+            }else{
+                return First.GetDeviceID() < Second.GetDeviceID();
+            }
+        }
 
-	    /// @brief Function used for sorting controller metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boole SequenceCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
-	            return First.GetMetaValue() < Second.GetMetaValue();
-	        }else{
-                return First.GetDeviceIndex() < Second.GetDeviceIndex();
-	        }
-	    }
+        Boole SequenceCodeCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            if( First.GetDeviceID() == Second.GetDeviceID() ) {
+                return First.GetMetaValue() < Second.GetMetaValue();
+            }else{
+                return First.GetDeviceID() < Second.GetDeviceID();
+            }
+        }
+
+        Boole MultiDeviceCompare(const MetaCode& First, const MetaCode& Second)
+        {
+            if( First.GetDeviceType() == Second.GetDeviceType() ) {
+                if( First.GetDeviceID() == Second.GetDeviceID() ) {
+                    return First.GetCode() < Second.GetCode();
+                }else{
+                    return First.GetDeviceID() < Second.GetDeviceID();
+                }
+            }else{
+                return First.GetDeviceType() < Second.GetDeviceType();
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // MetaCodeKey Methods
@@ -109,33 +102,25 @@ namespace Mezzanine
         MetaCodeKey::MetaCodeKey(const MetaCode& Code) :
             MCode(Code)
         {
-            switch( MCode.GetDeviceType() )
+            switch( this->MCode.GetDeviceType() )
             {
-                case Input::DEVICE_KEYBOARD:   Compare = &KeyboardCodeCompare;   break;
-                case Input::DEVICE_MOUSE:      Compare = &MouseCodeCompare;      break;
-                case Input::DEVICE_MULTITOUCH: Compare = &MultitouchCodeCompare; break;
-                case Input::DEVICE_CONTROLLER: Compare = &ControllerCodeCompare; break;
+                case Input::DEVICE_KEYBOARD:   this->Compare = &KeyboardCodeCompare;   break;
+                case Input::DEVICE_MOUSE:      this->Compare = &MouseCodeCompare;      break;
+                case Input::DEVICE_MULTITOUCH: this->Compare = &MultitouchCodeCompare; break;
+                case Input::DEVICE_CONTROLLER: this->Compare = &ControllerCodeCompare; break;
                 default:
                 {
-                    if( Input::COMPOUNDINPUT_CUSTOMSEQUENCE == MCode.GetCode() ) { Compare = &SequenceCodeCompare; }
-                    else { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to construct a MetaCodeKey representing an unknown type."); }
+                    if( Input::COMPOUNDINPUT_CUSTOMSEQUENCE == this->MCode.GetCode() ) {
+                        this->Compare = &SequenceCodeCompare;
+                    }else{
+                        MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to construct a MetaCodeKey representing an unknown type.");
+                    }
                 }
             }
         }
 
-        MetaCodeKey::MetaCodeKey(const MetaCodeKey& Other) :
-            MCode(Other.MCode),
-            Compare(Other.Compare)
-            {  }
-
-        MetaCodeKey::~MetaCodeKey()
-            {  }
-
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        const MetaCode& MetaCodeKey::GetKeyData() const
-            { return MCode; }
+        // Operators
 
         Boole MetaCodeKey::operator<(const MetaCodeKey& Other) const
         {
@@ -145,6 +130,12 @@ namespace Mezzanine
                 return this->MCode.GetDeviceType() < Other.MCode.GetDeviceType();
             }
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        const MetaCode& MetaCodeKey::GetKeyData() const
+            { return this->MCode; }
     }
 }
 

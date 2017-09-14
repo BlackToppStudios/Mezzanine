@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,14 +40,15 @@
 #ifndef _areaeffect_h
 #define _areaeffect_h
 
-#include "worldobject.h"
+#include "entity.h"
+#include "entityfactory.h"
 #include "colourvalue.h"
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        class EntityProxy;
+        class ItemProxy;
         class ParticleSystemProxy;
     }
     namespace Physics
@@ -62,30 +63,25 @@ namespace Mezzanine
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffect : public WorldObject
+    class MEZZ_LIB AreaEffect : public Entity
     {
     public:
         /// @brief Basic container type for Object storage by this class.
-        typedef std::vector< WorldObject* >         ObjectContainer;
+        typedef std::vector< Entity* >              ObjectContainer;
         /// @brief Iterator type for Object instances stored by this class.
         typedef ObjectContainer::iterator           ObjectIterator;
         /// @brief Const Iterator type for Object instances stored by this class.
         typedef ObjectContainer::const_iterator     ConstObjectIterator;
     protected:
-        /// @internal
         /// @brief Container for actors within the field area.
         ObjectContainer OverlappingObjects;
-        /// @internal
         /// @brief Container of actors that have been added since last frame.
         ObjectContainer AddedObjects;
-        /// @internal
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
-        /// @internal
         /// @brief An optional pointer to an object this AreaEffect will follow.
-        WorldObject* SyncTarget;
+        Entity* SyncTarget;
 
-        /// @internal
         /// @brief Common constructor method for AreaEffect base class.
         /// @param Shape A pointer to the collision shape that will be applied to this object.
         virtual void CreateAreaEffect(Physics::CollisionShape* Shape);
@@ -94,25 +90,25 @@ namespace Mezzanine
         virtual void DestroyAreaEffect();
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
         AreaEffect(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        AreaEffect(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the AreaEffect.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
+        AreaEffect(const EntityID& EntID, World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Shape A pointer to the collision shape that will be applied to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
+        /// @param EntID The unique ID of the AreaEffect.
+        /// @param Shape A pointer to the collision shape that will be applied to this AreaEffect.
+        /// @param TheWorld A pointer to the world this AreaEffect belongs to.
+        AreaEffect(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief Class destructor.
         virtual ~AreaEffect();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @copydoc Mezzanine::WorldObject::GetType() const
-        virtual WorldObjectType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetType() const
+        virtual EntityType GetType() const;
         /// @brief Gets a pointer to the physics portion of this AreaEffect.
         /// @return Returns a pointer to the Ghost proxy representing the physics portion of this AreaEffect.
         virtual Physics::GhostProxy* GetGhostProxy() const;
@@ -122,12 +118,12 @@ namespace Mezzanine
         /// This function will be called on by the physics manager and shouldn't be called manually.
         virtual void ApplyEffect();
 
-        /// @brief Gets the WorldObject this AreaEffect will sync it's transform with.
-        /// @param ToSync A pointer to the WorldObject to sync transforms with.
-        virtual void SetSyncTarget(WorldObject* ToSync);
-        /// @brief Gets the WorldObject this AreaEffect is syncing it's transform with.
-        /// @return Returns a pointer to the WorldObject that will be sync'd with.
-        virtual WorldObject* GetSyncTarget() const;
+        /// @brief Gets the Entity this AreaEffect will sync it's transform with.
+        /// @param ToSync A pointer to the Entity to sync transforms with.
+        virtual void SetSyncTarget(Entity* ToSync);
+        /// @brief Gets the Entity this AreaEffect is syncing it's transform with.
+        /// @return Returns a pointer to the Entity that will be sync'd with.
+        virtual Entity* GetSyncTarget() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Overlapping Object Management
@@ -159,52 +155,33 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        /// @copydoc Mezzanine::Entity::ProtoSerializeProperties(XML::Node& SelfRoot) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        /// @copydoc Mezzanine::Entity::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::Entity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        /// @copydoc Mezzanine::Entity::GetSerializableName()
         static String GetSerializableName();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc Mezzanine::WorldObject::_Update(const Whole)
+        /// @copydoc Mezzanine::Entity::_Update(const Whole)
         virtual void _Update(const Whole Delta);
     };//AreaEffect
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of AreaEffect objects.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffectFactory
+    class MEZZ_LIB AreaEffectFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        AreaEffectFactory() {  }
+        AreaEffectFactory() = default;
         /// @brief Class destructor.
-        virtual ~AreaEffectFactory() {  }
-
-        /// @brief Gets the name of the AreaEffect that is created by this factory.
-        /// @return Returns the typename of the AreaEffect created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a AreaEffect of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a AreaEffect from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a AreaEffect created by this factory.
-        /// @param ToBeDestroyed A pointer to the AreaEffect to be destroyed.
-        virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed) = 0;
+        virtual ~AreaEffectFactory() = default;
     };//AreaEffectFactory
 }//Mezzanine
 

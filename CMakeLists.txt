@@ -65,6 +65,7 @@
 #
 # Advanced Mezzanine build options
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
+#        Mezz_ThreadLog                     - Enables threadlogging, If disabled macros will insert no code at all.
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
@@ -275,11 +276,24 @@ option(Mezz_Profile "Executables will gather runtime statistics." OFF)
 if(${Mezz_Profile})
     message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
     set(Mezz_Profile_Arguments "-pg ${D}MEZZPROFILE") # The pg makes this only work with gcc, clang and imitators
-    set(Mezz_Profile_Defined "MEZZPROFILE = 1")
+    set(Mezz_Profile_Defined "MEZZPROFILE = 1") # Is this required
 else(${Mezz_Profile})
     message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
-    set(Mezz_Profile_Arguments "${D}MEZZPROFILE_undefined")
+    set( "${D}MEZZPROFILE_undefined")
     set(Mezz_Profile_Defined "MEZZPROFILE_undefined")
+endif(${Mezz_Profile})
+
+###############################################################################
+# Check For the Mezz_Profile option and set values accordingly
+option(Mezz_ThreadLog "Enables Macros for Thread issue logging." OFF)
+if(${Mezz_ThreadLog})
+    message ( STATUS "${PROJECT_NAME} - Enabling thread log instrumenting and setting MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Defined "MEZZTHREADLOG = 1") # Is this required
+else(${Mezz_ThreadLog})
+    message ( STATUS "${PROJECT_NAME} - Disabling thread log instrumenting and unsetting MEZZTHREADLOG")
+    set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG_undefined")
+    set(Mezz_ThreadLog_Defined "MEZZTHREADLOG_undefined")
 endif(${Mezz_Profile})
 
 ###############################################################################
@@ -338,8 +352,6 @@ if(${Mezz_Tools_EntreLua})
 else(${Mezz_Tools_EntreLua})
     message ( STATUS "${PROJECT_NAME} - Disabling EntreLua build.")
 endif(${Mezz_Tools_EntreLua})
-
-
 
 
 ###############################################################################
@@ -640,7 +652,7 @@ if(NOT MSVC AND NOT ANDROID)
     endif(Mezz_Platform_Big_Endian)
 endif(NOT MSVC AND NOT ANDROID)
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_ThreadLog_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
 separate_arguments(CommonBuildFlags UNIX_COMMAND "${CommonBuildFlags}")
 
 ###############################################################################
@@ -697,24 +709,6 @@ mark_as_advanced( FORCE
     CMAKE_OSX_ARCHITECTURES
     CMAKE_OSX_DEPLOYMENT_TARGET
     CMAKE_OSX_SYSROOT
-
-    # SDL Sub-systems
-    SDL_ATOMIC SDL_AUDIO SDL_CPUINFO SDL_EVENTS SDL_FILE SDL_HAPTIC SDL_JOYSTICK SDL_LOADSO
-    SDL_POWER SDL_RENDER SDL_SHARED SDL_STATIC SDL_THREADS SDL_TIMERS SDL_VIDEO
-
-    # SDL options
-    SDL_ASSEMBLY SDL_SSEMATH
-    SDL_ASSERTIONS SDL_LIBC SDL_GCC_ATOMICS SDL_GCC_ATOMICS SDL_MMX SDL_3DNOW SDL_SSE SDL_SSE2
-    SDL_ALTIVEC SDL_DISKAUDIO SDL_DUMMYAUDIO SDL_VIDEO_DIRECTFB SDL_DIRECTFB_SHARED SDL_FUSIONSOUND
-    SDL_FUSIONSOUND_SHARED SDL_VIDEO_DUMMY SDL_VIDEO_OPENGL SDL_VIDEO_OPENGLES SDL_PTHREADS SDL_PTHREADS_SEM
-    SDL_DLOPEN SDL_OSS SDL_ALSA SDL_ALSA_SHARED SDL_ESD SDL_ESD_SHARED SDL_PULSEAUDIO SDL_PULSEAUDIO_SHARED
-    SDL_ARTS SDL_ARTS_SHARED SDL_NAS SDL_RPATH SDL_CLOCK_GETTIME INPUT_TSLIB SDL_VIDEO_X11
-    SDL_X11_SHARED SDL_VIDEO_X11_XCURSOR SDL_VIDEO_X11_XINERAMA SDL_VIDEO_X11_XINPUT SDL_VIDEO_X11_XRANDR
-    SDL_VIDEO_X11_XSCRNSAVER SDL_VIDEO_X11_XSHAPE SDL_VIDEO_X11_XVM SDL_VIDEO_COCOA SDL_DIRECTX
-    SDL_RENDER_D3D
-
-    # SDL Indirect Options
-    ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
 
     # Bullet options
     USE_DOUBLE_PRECISION

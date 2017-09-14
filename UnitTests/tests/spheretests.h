@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -143,8 +143,8 @@ public:
         }
 
         {
-            Ray PassRay(Vector3(-20.0,10.0,10.0),Vector3(40.0,10.0,10.0));
-            Ray FailRay(Vector3(100.0,40.0,50.0),Vector3(80.0,60.0,50.0));
+            Ray PassRay(Vector3(-20.0,10.0,10.0),Vector3(1.0,0.0,0.0));
+            Ray FailRay(Vector3(100.0,40.0,50.0),Vector3(-20.0,10.0,0.0).GetNormal());
             Sphere Ball(Vector3(10.0,10.0,10.0),10.0);
             Sphere::RayTestResult PassResult = Ball.Intersects(PassRay);
             Sphere::RayTestResult FailResult = Ball.Intersects(FailRay);

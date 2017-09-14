@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ class btRigidBody;
 
 namespace Mezzanine
 {
-    class WorldObject;
+    class Entity;
     class CollisionShape;
 
     namespace Physics
@@ -133,19 +133,19 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc EntityProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const override;
 
-            /// @copydoc WorldProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Settings
 
             /// @copydoc CollidableProxy::SetCollisionShape(CollisionShape*)
-            virtual void SetCollisionShape(CollisionShape* Shape);
+            virtual void SetCollisionShape(CollisionShape* Shape) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Movement Factors
@@ -250,7 +250,7 @@ namespace Mezzanine
             // Transform Synchronization
 
             /*/// @brief Adds a TransformableObject that will force it's transform to sync with this RigidProxy.
-            /// @param ToBeAdded A pointer to the WorldObject being added.
+            /// @param ToBeAdded A pointer to the Entity being added.
             virtual void AddSyncObject(TransformableObject* ToBeAdded);
             /// @brief Gets a TransformableObject being sync'd to this RigidProxy by it's index.
             /// @param Index The index of the sync object to retrieve.
@@ -268,28 +268,28 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const override;
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc WorldProxy::_Bind(WorldObject*)
-            virtual void _Bind(WorldObject* NewParent);
+            /// @copydoc EntityProxy::_Bind(Entity*)
+            virtual void _Bind(Entity* NewParent);
 
             /// @internal
             /// @brief Accessor for the internal rigid body physics proxy.
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btRigidBody* _GetPhysicsObject() const;
             /// @copydoc CollidableProxy::_GetBasePhysicsObject()
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const override;
         };//RigidProxy
     }//Physics
 }//Mezzanine

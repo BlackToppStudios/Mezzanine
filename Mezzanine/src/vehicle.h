@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,8 @@
 /// @file
 /// @brief This file contains the declaration for the vehicle base class used to represent a solid self-propelling object.
 
-#include "worldobject.h"
+#include "entity.h"
+#include "entityfactory.h"
 
 namespace Mezzanine
 {
@@ -52,17 +53,17 @@ namespace Mezzanine
     /// @details The vehicle classes are responsible for solid objects capable of self propulsion and may have unique rules
     /// for their locomotion.
     ///////////////////////////////////////
-    class MEZZ_LIB Vehicle : public WorldObject
+    class MEZZ_LIB Vehicle : public Entity
     {
     protected:
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this Vehicle belongs to.
         Vehicle(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        Vehicle(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the Vehicle.
+        /// @param TheWorld A pointer to the world this Vehicle belongs to.
+        Vehicle(const EntityID& EntID, World* TheWorld);
         /// @brief Class destructor.
         virtual ~Vehicle();
     };//Vehicle
@@ -70,32 +71,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A base factory type for the creation of Vehicle objects.
     ///////////////////////////////////////
-    class MEZZ_LIB VehicleFactory
+    class MEZZ_LIB VehicleFactory : public EntityFactory
     {
     public:
         /// @brief Class constructor.
-        VehicleFactory() {  }
+        VehicleFactory() = default;
         /// @brief Class destructor.
-        virtual ~VehicleFactory() {  }
-
-        /// @brief Gets the name of the Vehicle that is created by this factory.
-        /// @return Returns the typename of the Vehicle created by this factory.
-        virtual String GetTypeName() const = 0;
-
-        /// @brief Creates a Vehicle of the type represented by this factory.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @param Params A NameValuePairList containing the params to be applied during construction.
-        /// @return Returns a pointer to the Vehicle created.
-        virtual Vehicle* CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
-        /// @brief Creates a Vehicle from XML.
-        /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        /// @return Returns a pointer to the Vehicle created.
-        virtual Vehicle* CreateVehicle(const XML::Node& XMLNode, World* TheWorld) = 0;
-        /// @brief Destroys a Vehicle created by this factory.
-        /// @param ToBeDestroyed A pointer to the Vehicle to be destroyed.
-        virtual void DestroyVehicle(Vehicle* ToBeDestroyed) = 0;
+        virtual ~VehicleFactory() = default;
     };//VehicleFactory
 }//Mezzanine
 

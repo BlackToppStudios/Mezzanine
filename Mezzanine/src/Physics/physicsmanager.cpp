@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,15 +60,13 @@
 
 #include "Graphics/graphicsmanager.h"
 
-// WorldObject Manager includes are here for the debug draw work unit dependency setting
-#include "actormanager.h"
-#include "areaeffectmanager.h"
-#include "debrismanager.h"
+// Entity Manager includes are here for the debug draw work unit dependency setting
+#include "entitymanager.h"
 
 #include "stringtool.h"
 #include "vector3.h"
 #include "worldtrigger.h"
-#include "worldobject.h"
+#include "entity.h"
 #include "crossplatform.h"
 #include "entresol.h"
 #include "world.h"
@@ -179,7 +177,7 @@ namespace Mezzanine
             {  }//this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan); }//SceneMan->CreateLineGroupProxy(); }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-            { if( this->WireFrame != nullptr ) delete this->WireFrame; }//SceneMan->DestroyProxy( this->WireFrame ); }
+            { if( this->WireFrame != nullptr ) delete this->WireFrame; }//SceneMan->DestroyComponent( this->WireFrame ); }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
@@ -192,7 +190,7 @@ namespace Mezzanine
             if( this->WireFrame == nullptr ) {
                 this->WireFrame = new Graphics::LineGroupProxy(0,this->SceneMan);
             }
-            this->WireFrame->AddToWorld();
+            this->WireFrame->Activate();
             this->WireFrame->ClearPoints();
         }
 
@@ -213,9 +211,9 @@ namespace Mezzanine
             this->DebugDrawing = debugMode;
             if( this->WireFrame != nullptr ) {
                 if( this->DebugDrawing != Physics::DDM_NoDebug ) {
-                    this->WireFrame->AddToWorld();
+                    this->WireFrame->Activate();
                 }else{
-                    this->WireFrame->RemoveFromWorld();
+                    this->WireFrame->Deactivate();
                 }
             }
         }
@@ -340,7 +338,7 @@ namespace Mezzanine
         const ManagerBase::ManagerType PhysicsManager::InterfaceType = ManagerBase::MT_PhysicsManager;
 
         PhysicsManager::PhysicsManager(World* Creator) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -367,7 +365,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const ManagerConstructionInfo& Info) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -392,7 +390,7 @@ namespace Mezzanine
         }
 
         PhysicsManager::PhysicsManager(World* Creator, const XML::Node& XMLNode) :
-            WorldProxyManager(Creator),
+            EntityComponentManager(Creator),
             StepSize(1.0/60.0),
             TimeMultiplier(1.0),
             DebugRenderMode(0),
@@ -471,11 +469,11 @@ namespace Mezzanine
             for( Integer X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
             {
                 CollidableProxy* Prox = static_cast<CollidableProxy*>( ObjectArray[X]->getUserPointer() );
-                Prox->RemoveFromWorld();
+                Prox->Deactivate();
             }
 
             this->DestroyAllConstraints();
-            this->DestroyAllProxies();
+            this->DestroyAllComponents();
             this->DestroyAllWorldTriggers();
 
             this->Deinitialize();
@@ -674,7 +672,7 @@ namespace Mezzanine
             AlgoContainer::iterator EndAlgo = AlgoQueue.end();
             while( CurrAlgo != EndAlgo )
             {
-                // Old method involving detecting the actual WorldObject pair
+                // Old method involving detecting the actual Entity pair
                 CollidableProxy* ProxA = nullptr;
                 CollidableProxy* ProxB = nullptr;
                 /// @todo This is an absurd round-about way to get the data we need,
@@ -787,7 +785,7 @@ namespace Mezzanine
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -809,7 +807,7 @@ namespace Mezzanine
         RigidProxy* PhysicsManager::CreateRigidProxy(const XML::Node& SelfRoot)
         {
             RigidProxy* NewProxy = new RigidProxy(SelfRoot,this);
-            this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+            this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
             this->Proxies.push_back(NewProxy);
             return NewProxy;
         }
@@ -830,7 +828,7 @@ namespace Mezzanine
         {
             if( this->IsSoftWorld ) {
                 SoftProxy* NewProxy = new SoftProxy(SelfRoot,this);
-                this->ProxyIDGen.ReserveID(NewProxy->GetProxyID());
+                this->ProxyIDGen.ReserveID(NewProxy->GetComponentID().ID);
                 this->Proxies.push_back(NewProxy);
                 return NewProxy;
             }else{
@@ -839,7 +837,7 @@ namespace Mezzanine
             return nullptr;
         }
 
-        WorldProxy* PhysicsManager::CreateProxy(const XML::Node& SelfRoot)
+        EntityComponent* PhysicsManager::CreateComponent(const XML::Node& SelfRoot)
         {
             if( SelfRoot.Name() == RigidProxy::GetSerializableName() ) return this->CreateRigidProxy(SelfRoot);
             else if( SelfRoot.Name() == GhostProxy::GetSerializableName() ) return this->CreateGhostProxy(SelfRoot);
@@ -853,52 +851,49 @@ namespace Mezzanine
         CollidableProxy* PhysicsManager::GetProxy(const UInt32 Index) const
             { return this->Proxies.at(Index); }
 
-        WorldProxy* PhysicsManager::GetProxyByID(const UInt32 ID) const
+        EntityComponent* PhysicsManager::GetComponentByID(const UInt32 ID) const
         {
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyID() == ID ) {
+                if( (*ProxIt)->GetComponentID() == ID ) {
                     return (*ProxIt);
                 }
             }
             return nullptr;
         }
 
-        UInt32 PhysicsManager::GetNumProxies() const
+        UInt32 PhysicsManager::GetNumComponents() const
         {
             return this->Proxies.size();
         }
 
-        UInt32 PhysicsManager::GetNumProxies(const UInt32 Types) const
+        UInt32 PhysicsManager::GetNumComponents(const UInt32 Types) const
         {
-            if( ( Types & Mezzanine::PT_Physics_All_Proxies ) == Mezzanine::PT_Physics_All_Proxies )
-                return this->GetNumProxies();
-
             UInt32 Count = 0;
             for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
+                if( (*ProxIt)->GetComponentType() == Types ) {
                     ++Count;
                 }
             }
             return Count;
         }
 
-        WorldProxyManager::WorldProxyVec PhysicsManager::GetProxies() const
+        EntityComponentManager::ComponentVec PhysicsManager::GetComponents() const
         {
-            return WorldProxyVec(this->Proxies.begin(),this->Proxies.end());
+            return ComponentVec(this->Proxies.begin(),this->Proxies.end());
         }
 
-        void PhysicsManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+        void PhysicsManager::DestroyComponent(EntityComponent* ToBeDestroyed)
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                     delete (*ProxIt);
                     this->Proxies.erase(ProxIt);
                     return;
@@ -906,17 +901,17 @@ namespace Mezzanine
             }
         }
 
-        void PhysicsManager::DestroyAllProxies(const UInt32 Types)
+        void PhysicsManager::DestroyAllComponents(const UInt32 Types)
         {
             ProxyContainer ToKeep;
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                if( (*ProxIt)->GetProxyType() & Types ) {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                if( (*ProxIt)->GetComponentType() & Types ) {
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                     delete (*ProxIt);
                 }else{
                     ToKeep.push_back( *ProxIt );
@@ -926,15 +921,15 @@ namespace Mezzanine
             this->Proxies.swap(ToKeep);
         }
 
-        void PhysicsManager::DestroyAllProxies()
+        void PhysicsManager::DestroyAllComponents()
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
-                WorldObject* Parent = (*ProxIt)->GetParentObject();
+                Entity* Parent = (*ProxIt)->GetParentEntity();
                 if( Parent )
-                    Parent->RemoveProxy( (*ProxIt) );
+                    Parent->RemoveComponent( (*ProxIt) );
 
-                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                 delete (*ProxIt);
             }
             this->Proxies.clear();
@@ -1286,7 +1281,7 @@ namespace Mezzanine
         void PhysicsManager::RemoveCollisionsContainingProxy(CollidableProxy* Proxy)
         {
             // A proxy not in the world can't have collisions
-            if( Proxy->IsInWorld() ) {
+            if( Proxy->IsActivated() ) {
                 this->BulletBroadphase->getOverlappingPairCache()->cleanProxyFromPairs( Proxy->_GetBasePhysicsObject()->getBroadphaseHandle(), this->BulletDispatcher );
 
                 CollisionMapIterator ColIt = this->Collisions.begin();
@@ -1426,25 +1421,23 @@ namespace Mezzanine
                 if( GraphicsMan )
                     this->SimulationWork->AddDependency( GraphicsMan->GetRenderWork() );
 
-                ActorManager* ActorMan = static_cast<ActorManager*>( this->ParentWorld->GetManager(ManagerBase::MT_ActorManager) );
-                AreaEffectManager* AEMan = static_cast<AreaEffectManager*>( this->ParentWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-                DebrisManager* DebrisMan = static_cast<DebrisManager*>( this->ParentWorld->GetManager(ManagerBase::MT_DebrisManager) );
+                EntityManager* EntMan = static_cast<EntityManager*>( this->ParentWorld->GetManager(ManagerBase::MT_EntityManager) );
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
                 this->TheEntresol->GetScheduler().AddWorkUnitAffinity( this->DebugDrawWork, "DebugDrawWork" );
                 this->DebugDrawWork->AddDependency( this->SimulationWork );
-                if( ActorMan )
-                    this->DebugDrawWork->AddDependency( ActorMan->GetActorUpdateWork() );
-                if( AEMan )
-                    this->DebugDrawWork->AddDependency( AEMan->GetAreaEffectUpdateWork() );
-                if( DebrisMan )
-                    this->DebugDrawWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
+                if( EntMan ) {
+                    this->DebugDrawWork->AddDependency( EntMan->GetActorUpdateWork() );
+                    this->DebugDrawWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
+                    this->DebugDrawWork->AddDependency( EntMan->GetDebrisUpdateWork() );
+                }
 
                 // World Trigger Update work configuration
                 this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WorldTriggerUpdateWork, "WorldTriggerUpdateWork" );
                 this->WorldTriggerUpdateWork->AddDependency( this->SimulationWork );
-                if( DebrisMan )
-                    this->WorldTriggerUpdateWork->AddDependency( DebrisMan->GetDebrisUpdateWork() );
+                if( EntMan ) {
+                    this->WorldTriggerUpdateWork->AddDependency( EntMan->GetDebrisUpdateWork() );
+                }
 
                 this->Initialized = true;
             }

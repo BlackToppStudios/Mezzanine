@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@
 #include "softdebris.h"
 
 #include "Graphics/scenemanager.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 
 #include "Physics/physicsmanager.h"
 #include "Physics/softproxy.h"
@@ -66,8 +66,8 @@ namespace Mezzanine
         Debris(TheWorld)
         {  }
 
-    SoftDebris::SoftDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld)
+    SoftDebris::SoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateSoftDebris(Mass); }
 
     SoftDebris::SoftDebris(const XML::Node& SelfRoot, World* TheWorld) :
@@ -83,35 +83,35 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             SofProx = PhysMan->CreateSoftProxy(Mass);
-            this->AddProxy( SofProx );
+            this->AddComponent( SofProx );
             this->SetPrimaryProxy( SofProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy();
-            this->AddProxy( EntProx );
+            ItemProx = SceneMan->CreateItemProxy();
+            this->AddComponent( ItemProx );
         }
     }
 
     void SoftDebris::DestroySoftDebris()
     {
         this->RemoveFromWorld();
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType SoftDebris::GetType() const
-        { return Mezzanine::WO_SoftDebris; }
+    EntityType SoftDebris::GetEntityType() const
+        { return Mezzanine::ET_SoftDebris; }
 
-    Graphics::EntityProxy* SoftDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
+    Graphics::ItemProxy* SoftDebris::GetItemProxy() const
+        { return static_cast<Graphics::ItemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ItemProxy,0) ); }
 
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
-        { return static_cast<Physics::SoftProxy*>( this->GetProxy(Mezzanine::PT_Physics_SoftProxy,0) ); }
+        { return static_cast<Physics::SoftProxy*>( this->GetComponent(Mezzanine::CT_Physics_SoftProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -152,26 +152,27 @@ namespace Mezzanine
     String SoftDebrisFactory::GetTypeName() const
         { return SoftDebris::GetSerializableName(); }
 
-    SoftDebris* SoftDebrisFactory::CreateSoftDebris(const String& Name, const Real Mass, World* TheWorld)
-        { return new SoftDebris(Name,Mass,TheWorld); }
+    SoftDebris* SoftDebrisFactory::CreateSoftDebris(const EntityID& EntID, const Real Mass, World* TheWorld)
+        { return new SoftDebris(EntID,Mass,TheWorld); }
 
     SoftDebris* SoftDebrisFactory::CreateSoftDebris(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<SoftDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
+        { return static_cast<SoftDebris*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Debris* SoftDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* SoftDebrisFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
         NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
-        if( ParamIt != Params.end() )
+        if( ParamIt != Params.end() ) {
             Mass = StringTools::ConvertToReal( (*ParamIt).second );
+        }
 
-        return new SoftDebris(Name,Mass,TheWorld);
+        return new SoftDebris(EntID,Mass,TheWorld);
     }
 
-    Debris* SoftDebrisFactory::CreateDebris(const XML::Node& XMLNode, World* TheWorld)
+    Entity* SoftDebrisFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new SoftDebris(XMLNode,TheWorld); }
 
-    void SoftDebrisFactory::DestroyDebris(Debris* ToBeDestroyed)
+    void SoftDebrisFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

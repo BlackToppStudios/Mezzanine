@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -159,8 +159,8 @@ public:
             EventPublisher TestPublisher;
             TestPublisher.AddSubscriptionTable(TestName);
 
-            EventSubscriptionTable TestTable(TestName);
-            TEST(TestTable.GetName() == TestName,
+            EventSubscriptionTable TestTable(TestName.GetHash());
+            TEST(TestTable.GetHash() == TestName.GetHash(),
                  "EventSubscriptionTable::ConstructionAndGetters");
 
             EventSubscriberBindingPtr FirstBinding = TestTable.Subscribe(16,TestCallback,&TestPublisher);
@@ -211,11 +211,11 @@ public:
             EventPublisher TestPublisher(2);
 
             EventPublisher::SubscriptionTableIterator TableIt = TestPublisher.AddSubscriptionTable(FirstTestName);
-            Boole FirstTestAdd = (*TableIt).GetName() == FirstTestName;
+            Boole FirstTestAdd = (*TableIt).GetHash() == FirstTestName.GetHash();
             TableIt = TestPublisher.AddSubscriptionTable(SecondTestName);
-            Boole SecondTestAdd = (*TableIt).GetName() == SecondTestName;
+            Boole SecondTestAdd = (*TableIt).GetHash() == SecondTestName.GetHash();
             TableIt = TestPublisher.AddSubscriptionTable(ThirdTestName);
-            Boole ThirdTestAdd = (*TableIt).GetName() == ThirdTestName;
+            Boole ThirdTestAdd = (*TableIt).GetHash() == ThirdTestName.GetHash();
             TEST(FirstTestAdd && SecondTestAdd && ThirdTestAdd,
                  "EventPublisher::ConstructionAndAddSubscriptionTable");
             TEST_THROW(ExceptionFactory<ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION>::Type,
@@ -229,12 +229,12 @@ public:
                  "EventPublisher::HasSubscriptionTable");
 
             const EventPublisher& ConstTestPublisher = TestPublisher;
-            TEST(TestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetName() == FirstTestName &&
-                 TestPublisher.GetSubscriptionTable(SecondTestName)->GetName() == SecondTestName &&
-                 TestPublisher.GetSubscriptionTable(ThirdTestName)->GetName() == ThirdTestName &&
-                 ConstTestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetName() == FirstTestName &&
-                 ConstTestPublisher.GetSubscriptionTable(SecondTestName)->GetName() == SecondTestName &&
-                 ConstTestPublisher.GetSubscriptionTable(ThirdTestName)->GetName() == ThirdTestName,
+            TEST(TestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetHash() == FirstTestName.GetHash() &&
+                 TestPublisher.GetSubscriptionTable(SecondTestName.GetHash())->GetHash() == SecondTestName.GetHash() &&
+                 TestPublisher.GetSubscriptionTable(ThirdTestName.GetHash())->GetHash() == ThirdTestName.GetHash() &&
+                 ConstTestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetHash() == FirstTestName.GetHash() &&
+                 ConstTestPublisher.GetSubscriptionTable(SecondTestName.GetHash())->GetHash() == SecondTestName.GetHash() &&
+                 ConstTestPublisher.GetSubscriptionTable(ThirdTestName.GetHash())->GetHash() == ThirdTestName.GetHash(),
                  "EventPublisher::GetSubscriptionTable");
             TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                        TestPublisher.GetSubscriptionTable("FailFetch"),

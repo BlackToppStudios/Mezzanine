@@ -39,6 +39,7 @@ DemoPostInputWorkUnit*      DemoPostInputWork    = NULL;
 DemoPostRenderWorkUnit*     DemoPostRenderWork   = NULL;
 DemoPostPhysicsWorkUnit*    DemoPostPhysicsWork  = NULL;
 
+AppEventDispatcher* DemoAppEvents = NULL;
 World* DemoWorld = NULL;
 
 Graphics::GameWindow* FirstWindow = NULL;
@@ -50,54 +51,6 @@ TrackLooped< LinearInterpolator< Transform > > CameraTrackTest;
 
 void CreateDemoWorld();
 void DestroyDemoWorld();
-
-class DemoPreEventWorkUnit : public Threading::DefaultWorkUnit
-{
-public:
-    DemoPreEventWorkUnit() {  }
-    virtual ~DemoPreEventWorkUnit() {  }
-
-    void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-    {
-        //this will either set the pointer to 0 or return a valid pointer to work with.
-        EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
-        EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
-
-        //We check each Event
-        while( 0 != OneInput )
-        {
-            if( OneInput->GetType() != EventBase::UserInput )
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-            //we check each MetaCode in each Event
-            for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-            {
-                //Is the key we just pushed ESCAPE
-                if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                    { TheEntresol->BreakMainLoop(); }
-            }
-
-            delete OneInput;
-            OneInput = EventMan->PopNextUserInputEvent();
-        }
-
-        EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        while(0 != OneWindowEvent)
-        {
-            if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-                { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-            if( !OneWindowEvent->IsEventIDValid() ) {
-                StringStream ExceptionStream;
-                ExceptionStream << "Invalid EventID on GameWindow Event: " << OneWindowEvent->GetEventID() << std::endl;
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
-            }
-
-            delete OneWindowEvent;
-            OneWindowEvent = EventMan->PopNextGameWindowEvent();
-        }
-    }
-};//DemoPreEventWorkUnit
 
 class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -131,20 +84,20 @@ public:
         //User Input through a WorldQueryTool
         Input::Mouse* SysMouse = InputMan->GetSystemMouse();
         Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-        Input::Controller* Controller1 = NULL;
-        if( InputMan->GetNumControllers() > 0 )
-            Controller1 = InputMan->GetController(0);
+        Input::Joystick* Joystick1 = NULL;
+        if( InputMan->GetNumJoysticks() > 0 )
+            Joystick1 = InputMan->GetJoystick(0);
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_LEFT) : false) )
             { CamControl->StrafeLeft( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_RIGHT) : false) )
             { CamControl->StrafeRight( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_UP) : false) )
             { CamControl->MoveForward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
-        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
+        if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || (Joystick1 ? Joystick1->IsHatPushedInDirection(1,Input::JOYSTICKHAT_DOWN) : false) )
             { CamControl->MoveBackward( 300 * ( TheEntresol->GetLastFrameTimeMilliseconds() * 0.001 ) ); }
 
         static Real TrackPos = 0.0;
@@ -196,14 +149,14 @@ public:
         if( MouseCam && Vector2(0,0) != Offset )
             CamControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_M) || (Joystick1 ? Joystick1->IsButtonPressed(1) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( !Theme->IsPlaying() ) {
                 Theme->Play();
             }
         }
 
-        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) ) {
+        if( SysKeyboard->IsButtonPressing(Input::KEY_N) || (Joystick1 ? Joystick1->IsButtonPressed(2) : false) ) {
             Audio::iSound* Theme = Soundtrack.at(1);
             if( Theme->IsPlaying() ) {
                 Theme->Stop();
@@ -318,6 +271,8 @@ int main(int argc, char **argv)
     {
         TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
+        DemoAppEvents = new AppEventDispatcher();
+        DemoAppEvents->Subscribe(AppEventDispatcher::EventAppQuit,1,[=](EventPtr Args){ TheEntresol->BreakMainLoop(); });
 
         TheEntresol->Initialize(false);
 
@@ -341,6 +296,7 @@ int main(int argc, char **argv)
         TheEntresol->MainLoop();
 
         DestroyDemoWorld();
+        delete DemoAppEvents;
         delete TheEntresol;
     }catch(std::exception& excep){
         std::cerr << "Exception: " << excep.what() << std::endl;
@@ -361,8 +317,6 @@ void CreateDemoWorld()
     // Create World and all it's lovely Managers
     DemoWorld = TheEntresol->CreateWorld( "DemoWorld", Info, "DefaultSceneManager" );
 
-    TheEntresol->_Log("DemoWorld Allocated\n");
-
     if( DemoWorld == NULL ) {
         throw RuntimeAssertionException(
             "Failed to Create New Demo World",
@@ -374,8 +328,7 @@ void CreateDemoWorld()
 
     DemoWorld->Initialize();
 
-    AreaEffectManager* AreaEffectMan = static_cast<AreaEffectManager*>( DemoWorld->GetManager(ManagerBase::MT_AreaEffectManager) );
-    EventManager* EventMan = static_cast<EventManager*>( TheEntresol->GetManager(ManagerBase::MT_EventManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( DemoWorld->GetManager(ManagerBase::MT_EntityManager) );
     Graphics::GraphicsManager* GraphMan = static_cast<Graphics::GraphicsManager*>( TheEntresol->GetManager(ManagerBase::MT_GraphicsManager) );
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
     Input::InputManager* InputMan = static_cast<Input::InputManager*>( TheEntresol->GetManager(ManagerBase::MT_InputManager) );
@@ -406,17 +359,13 @@ void CreateDemoWorld()
     FirstWindow->CreateViewport(MainCam,0);
 
     // Setup our workunits
-    DemoPreEventWork = new DemoPreEventWorkUnit();
-    EventMan->GetEventPumpWork()->AddDependency( DemoPreEventWork );
-    TheEntresol->GetScheduler().AddWorkUnitMain( DemoPreEventWork, "DemoPreEventWork" );
-
     DemoPostInputWork = new DemoPostInputWorkUnit(DemoWorld,InputMan);
     DemoPostInputWork->AddDependency( InputMan->GetDeviceUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostInputWork, "DemoPostInputWork" );
 
     DemoPostRenderWork = new DemoPostRenderWorkUnit();
     DemoPostRenderWork->AddDependency( GraphMan->GetRenderWork() );
-    DemoPostRenderWork->AddDependency( AreaEffectMan->GetAreaEffectUpdateWork() );
+    DemoPostRenderWork->AddDependency( EntMan->GetAreaEffectUpdateWork() );
     TheEntresol->GetScheduler().AddWorkUnitMain( DemoPostRenderWork, "DemoPostRenderWork" );
 
     DemoPostPhysicsWork = new DemoPostPhysicsWorkUnit();
@@ -426,9 +375,6 @@ void CreateDemoWorld()
     // Configure Shadows
     SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Stencil_Additive);
     SceneMan->SetShadowFarDistance(3000);
-
-    //Set up polling for the letter Q
-    EventMan->AddPollingCheck( Input::MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -447,11 +393,11 @@ void CreateDemoWorld()
     Headlight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1.0));
     Headlight->SetLocation(Vector3(0,150,0));
-    Headlight->AddToWorld();
+    Headlight->Activate();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     // CameraNode->AttachObject(Headlight);
 
-    TheEntresol->_Log( "Finished Creating World\n" );
+    std::cerr << "Finished Creating World\n";
 }
 
 void DestroyDemoWorld()
@@ -460,10 +406,6 @@ void DestroyDemoWorld()
 
     // Check if Threaded Workunits are still alive
     // RemoveWorkUnitMain
-    if( DemoPreEventWork ) {
-        TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPreEventWork );
-        DemoPreEventWork = NULL;
-    }
     if( DemoPostInputWork ) {
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostInputWork );
         DemoPostInputWork = NULL;
@@ -476,7 +418,6 @@ void DestroyDemoWorld()
         TheEntresol->GetScheduler().RemoveWorkUnitMain( DemoPostPhysicsWork );
         DemoPostPhysicsWork = NULL;
     }
-    TheEntresol->_Log("Demo WorkUnits removed\n");
 
     MainCam = NULL;
 
@@ -485,7 +426,6 @@ void DestroyDemoWorld()
         TheEntresol->DestroyWorld( DemoWorld );
         DemoWorld = NULL;
     }
-    TheEntresol->_Log("DemoWorld Destroyed\n");
 
     static_cast<Physics::CollisionShapeManager*>( TheEntresol->GetManager(ManagerBase::MT_CollisionShapeManager) )->DestroyAllShapes();
 
@@ -497,7 +437,7 @@ void DestroyDemoWorld()
 
 void LoadContent()
 {
-    DebrisManager* DebrisMan = static_cast<DebrisManager*>( DemoWorld->GetManager(ManagerBase::MT_DebrisManager) );
+    EntityManager* EntMan = static_cast<EntityManager*>( DemoWorld->GetManager(ManagerBase::MT_EntityManager) );
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( DemoWorld->GetManager(ManagerBase::MT_SceneManager) );
     Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( DemoWorld->GetManager(ManagerBase::MT_PhysicsManager) );
     Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( TheEntresol->GetManager(ManagerBase::MT_ResourceManager) );
@@ -547,9 +487,10 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
         RigDeb->AddToWorld();
@@ -559,9 +500,10 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
         RigDeb->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
         RigDeb->AddToWorld();
@@ -572,9 +514,10 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
+        RigDeb = EntMan->CreateRigidDebris(mass);
+        RigDeb->SetName(namestream.str());
         RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
         RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
         if (c+7==7)
             {Robot7=RigDeb;}
@@ -585,69 +528,79 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    RigDeb = DebrisMan->CreateRigidDebris(namestream.str(),mass);
+    RigDeb = EntMan->CreateRigidDebris(mass);
+    RigDeb->SetName(namestream.str());
     RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
-    RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+    RigDeb->GetItemProxy()->SetMesh(filerobot,groupname);
     RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
     RigDeb->AddToWorld();
 
-    object5 = DebrisMan->CreateRigidDebris("Plane",0);
+    object5 = EntMan->CreateRigidDebris(0);
+    object5->SetName("Plane");
     object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
-    object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
+    object5->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
     object5->AddToWorld();
 
-    object6 = DebrisMan->CreateRigidDebris("Ramp",0);
+    object6 = EntMan->CreateRigidDebris(0);
+    object6->SetName("Ramp");
     object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
-    object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
+    object6->GetItemProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
     object6->AddToWorld();
 
-    object1 = DebrisMan->CreateRigidDebris("RobotWayUpFrontRight",mass);
+    object1 = EntMan->CreateRigidDebris(mass);
+    object1->SetName("RobotWayUpFrontRight");
     object1->GetRigidProxy()->SetCollisionShape(RobitCH);
-    object1->GetEntityProxy()->SetMesh(filerobot,groupname);
+    object1->GetItemProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->AddToWorld();
 
-    object2 = DebrisMan->CreateRigidDebris("WoodSphere",150.0);
+    object2 = EntMan->CreateRigidDebris(150.0);
+    object2->SetName("WoodSphere");
     object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
-    object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
+    object2->GetItemProxy()->SetMesh("Sphere_Wood.mesh",groupname);
     object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
     object2->AddToWorld();
 
-    object3 = DebrisMan->CreateRigidDebris("MetalSphere",200.0);
+    object3 = EntMan->CreateRigidDebris(200.0);
+    object3->SetName("MetalSphere");
     object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
-    object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object3->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
     object3->AddToWorld();
 
-    object4 = DebrisMan->CreateRigidDebris("RobotWayUpFrontLeft",mass);
+    object4 = EntMan->CreateRigidDebris(mass);
+    object4->SetName("RobotWayUpFrontLeft");
     object4->GetRigidProxy()->SetCollisionShape(RobitCH);
-    object4->GetEntityProxy()->SetMesh(filerobot,groupname);
+    object4->GetItemProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->AddToWorld();
 
-    object7 = DebrisMan->CreateRigidDebris("MetalSphere2",800.0);
+    object7 = EntMan->CreateRigidDebris(800.0);
+    object7->SetName("MetalSphere2");
     object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
-    object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object7->GetItemProxy()->SetMesh("Sphere_Metal.mesh",groupname);
     object7->SetScale(Vector3(0.3,0.3,0.3));
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
     object7->GetRigidProxy()->SetDamping(0.3,0.0);
     object7->AddToWorld();
 
     //GravityField
-    /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
+    /*GravityField* Reverse = EntMan->CreateGravityField(Vector3(0.0,-100.0,0.0));
+    Reverse->SetName("UpField");
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     PhysMan->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     //GravityWell
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    /*GravityWell* BlackHole = EntMan->CreateGravityWell(Vector3(0.0,200.0,-300.0));
+    BlackHole->SetName("BlackHole");
     BlackHole->GetPhysicsSettings()->SetCollisionShape(new Physics::SphereCollisionShape("GravWellShape",750.0));
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(1000.0);
@@ -672,9 +625,8 @@ void LoadContent()
     Sound = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
     Soundtrack.push_back(Sound);
 
-    TheEntresol->_Log("Debris Count ");
-    TheEntresol->_Log( DebrisMan->GetNumDebris() );
-    TheEntresol->_Log("\n");
+    TheEntresol->_Log("Entity Count ");
+    TheEntresol->_Log( EntMan->GetNumEntities() );
 }
 
 void MakeGUI()

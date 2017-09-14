@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -19,8 +19,9 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef _SDL_config_macosx_h
-#define _SDL_config_macosx_h
+#ifndef SDL_config_macosx_h_
+#define SDL_config_macosx_h_
+#define SDL_config_h_
 
 #include "SDL_platform.h"
 
@@ -36,19 +37,18 @@
 #endif
 
 /* Useful headers */
-/* If we specified an SDK or have a post-PowerPC chip, then alloca.h exists. */
-#if ( (MAC_OS_X_VERSION_MIN_REQUIRED >= 1030) || (!defined(__POWERPC__)) )
-#define HAVE_ALLOCA_H       1
-#endif
-#define HAVE_SYS_TYPES_H    1
-#define HAVE_STDIO_H    1
 #define STDC_HEADERS    1
-#define HAVE_STRING_H   1
-#define HAVE_INTTYPES_H 1
-#define HAVE_STDINT_H   1
+#define HAVE_ALLOCA_H       1
 #define HAVE_CTYPE_H    1
+#define HAVE_FLOAT_H    1
+#define HAVE_INTTYPES_H 1
+#define HAVE_LIMITS_H   1
 #define HAVE_MATH_H 1
 #define HAVE_SIGNAL_H   1
+#define HAVE_STDINT_H   1
+#define HAVE_STDIO_H    1
+#define HAVE_STRING_H   1
+#define HAVE_SYS_TYPES_H    1
 
 /* C library functions */
 #define HAVE_MALLOC 1
@@ -85,8 +85,7 @@
 #define HAVE_STRNCMP    1
 #define HAVE_STRCASECMP 1
 #define HAVE_STRNCASECMP 1
-#define HAVE_SSCANF 1
-#define HAVE_SNPRINTF   1
+#define HAVE_VSSCANF 1
 #define HAVE_VSNPRINTF  1
 #define HAVE_CEIL   1
 #define HAVE_COPYSIGN   1
@@ -100,6 +99,9 @@
 #define HAVE_SIN    1
 #define HAVE_SINF   1
 #define HAVE_SQRT   1
+#define HAVE_SQRTF  1
+#define HAVE_TAN    1
+#define HAVE_TANF   1
 #define HAVE_SIGACTION  1
 #define HAVE_SETJMP 1
 #define HAVE_NANOSLEEP  1
@@ -107,6 +109,8 @@
 #define HAVE_SYSCTLBYNAME 1
 #define HAVE_ATAN 1
 #define HAVE_ATAN2 1
+#define HAVE_ACOS 1
+#define HAVE_ASIN 1
 
 /* Enable various audio drivers */
 #define SDL_AUDIO_DRIVER_COREAUDIO  1
@@ -138,6 +142,7 @@
 #define SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR "/usr/X11R6/lib/libXrandr.2.dylib"
 #define SDL_VIDEO_DRIVER_X11_DYNAMIC_XSS "/usr/X11R6/lib/libXss.1.dylib"
 #define SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE "/usr/X11R6/lib/libXxf86vm.1.dylib"
+#define SDL_VIDEO_DRIVER_X11_XDBE 1
 #define SDL_VIDEO_DRIVER_X11_XINERAMA 1
 #define SDL_VIDEO_DRIVER_X11_XRANDR 1
 #define SDL_VIDEO_DRIVER_X11_XSCRNSAVER 1
@@ -171,8 +176,19 @@
 #define SDL_VIDEO_OPENGL_GLX    1
 #endif
 
+/* Enable Vulkan support */
+/* Metal/MoltenVK/Vulkan only supported on 64-bit architectures with 10.11+ */
+#if TARGET_CPU_X86_64 && (MAC_OS_X_VERSION_MAX_ALLOWED >= 101100)
+#define SDL_VIDEO_VULKAN 1
+#else
+#define  SDL_VIDEO_VULKAN 0
+#endif
+
 /* Enable system power support */
 #define SDL_POWER_MACOSX 1
+
+/* enable filesystem support */
+#define SDL_FILESYSTEM_COCOA   1
 
 /* Enable assembly routines */
 #define SDL_ASSEMBLY_ROUTINES   1
@@ -180,4 +196,4 @@
 #define SDL_ALTIVEC_BLITTERS    1
 #endif
 
-#endif /* _SDL_config_macosx_h */
+#endif /* SDL_config_macosx_h_ */

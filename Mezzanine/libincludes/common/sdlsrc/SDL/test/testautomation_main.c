@@ -1,7 +1,7 @@
 /**
  * Automated SDL subsystems management test.
  *
- * Written by Jørgen Tjernø "jorgenpt"
+ * Written by Jï¿½rgen Tjernï¿½ "jorgenpt"
  *
  * Released under Public Domain.
  */
@@ -10,7 +10,7 @@
 #include "SDL_test.h"
 
 
-/*!
+/* !
  * \brief Tests SDL_Init() and SDL_Quit() of Joystick and Haptic subsystems
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_Init
@@ -38,7 +38,7 @@ static int main_testInitQuitJoystickHaptic (void *arg)
 #endif
 }
 
-/*!
+/* !
  * \brief Tests SDL_InitSubSystem() and SDL_QuitSubSystem()
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_Init
@@ -79,16 +79,16 @@ static int main_testImpliedJoystickInit (void *arg)
 #else
     int initialized_system;
 
-    // First initialize the controller
+    /* First initialize the controller */
     SDLTest_AssertCheck( (SDL_WasInit(joy_and_controller) & joy_and_controller) == 0, "SDL_WasInit() before init should be false for joystick & controller" );
     SDLTest_AssertCheck( SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) == 0, "SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER)" );
 
-    // Then make sure this implicitly initialized the joystick subsystem
+    /* Then make sure this implicitly initialized the joystick subsystem */
     initialized_system = SDL_WasInit(joy_and_controller);
     SDLTest_AssertCheck( (initialized_system & joy_and_controller) == joy_and_controller, "SDL_WasInit() should be true for joystick & controller (%x)", initialized_system );
 
-    // Then quit the controller, and make sure that implicitly also quits the
-    // joystick subsystem
+    /* Then quit the controller, and make sure that implicitly also quits the */
+    /* joystick subsystem */
     SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
     initialized_system = SDL_WasInit(joy_and_controller);
     SDLTest_AssertCheck( (initialized_system & joy_and_controller) == 0, "SDL_WasInit() should be false for joystick & controller (%x)", initialized_system );
@@ -104,17 +104,17 @@ static int main_testImpliedJoystickQuit (void *arg)
 #else
     int initialized_system;
 
-    // First initialize the controller and the joystick (explicitly)
+    /* First initialize the controller and the joystick (explicitly) */
     SDLTest_AssertCheck( (SDL_WasInit(joy_and_controller) & joy_and_controller) == 0, "SDL_WasInit() before init should be false for joystick & controller" );
     SDLTest_AssertCheck( SDL_InitSubSystem(SDL_INIT_JOYSTICK) == 0, "SDL_InitSubSystem(SDL_INIT_JOYSTICK)" );
     SDLTest_AssertCheck( SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) == 0, "SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER)" );
 
-    // Then make sure they're both initialized properly
+    /* Then make sure they're both initialized properly */
     initialized_system = SDL_WasInit(joy_and_controller);
     SDLTest_AssertCheck( (initialized_system & joy_and_controller) == joy_and_controller, "SDL_WasInit() should be true for joystick & controller (%x)", initialized_system );
 
-    // Then quit the controller, and make sure that it does NOT quit the
-    // explicitly initialized joystick subsystem.
+    /* Then quit the controller, and make sure that it does NOT quit the */
+    /* explicitly initialized joystick subsystem. */
     SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
     initialized_system = SDL_WasInit(joy_and_controller);
     SDLTest_AssertCheck( (initialized_system & joy_and_controller) == SDL_INIT_JOYSTICK, "SDL_WasInit() should be false for joystick & controller (%x)", initialized_system );
@@ -137,7 +137,7 @@ static const SDLTest_TestCaseReference mainTest3 =
 static const SDLTest_TestCaseReference mainTest4 =
         { (SDLTest_TestCaseFp)main_testImpliedJoystickQuit, "main_testImpliedJoystickQuit", "Tests that quit for gamecontroller doesn't quit joystick if you inited it explicitly", TEST_ENABLED};
 
-/* Sequence of Platform test cases */
+/* Sequence of Main test cases */
 static const SDLTest_TestCaseReference *mainTests[] =  {
     &mainTest1,
     &mainTest2,
@@ -146,7 +146,7 @@ static const SDLTest_TestCaseReference *mainTests[] =  {
     NULL
 };
 
-/* Platform test suite (global) */
+/* Main test suite (global) */
 SDLTest_TestSuiteReference mainTestSuite = {
     "Main",
     NULL,

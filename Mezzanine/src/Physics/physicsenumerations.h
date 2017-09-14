@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,6 +43,8 @@
 //Any global enumerations shared between multiple classes in the Physics namespace is to be declared here.
 ///////////////////////////////////////
 
+#include "enumerations.h"
+
 namespace Mezzanine
 {
     namespace Physics
@@ -75,31 +77,31 @@ namespace Mezzanine
         enum CollisionFilter
         {
             // Standard base filters
-            CF_GenericFilter    = 1,  ///< A catch-all filter used when other filters may not be appropriate.
-            CF_StaticFilter     = 2,  ///< Filter used by static objects, most commonly terrain.
-            CF_KinematicFilter  = 4,  ///< Filter used by objects with movement that is explicitly controlled by non-physics logic.
-            CF_DebrisFilter     = 8,  ///< Filter used by dynamic objects with no special movement behavior, simply have collision response.
-            CF_SensorFilter     = 16, ///< Filter used by non-solid objects.
-            CF_CharacterFilter  = 32, ///< Filter used to express objects explicitly controlled by a player.
-            CF_AllFilter        = -1, ///< All the filters!
+            CF_GenericFilter    = EnumBit(1), ///< A catch-all filter used when other filters may not be appropriate.
+            CF_StaticFilter     = EnumBit(2), ///< Filter used by static objects, most commonly terrain.
+            CF_KinematicFilter  = EnumBit(3), ///< Filter used by objects with movement that is explicitly controlled by non-physics logic.
+            CF_DebrisFilter     = EnumBit(4), ///< Filter used by dynamic objects with no special movement behavior, simply have collision response.
+            CF_SensorFilter     = EnumBit(5), ///< Filter used by non-solid objects.
+            CF_CharacterFilter  = EnumBit(6), ///< Filter used to express objects explicitly controlled by a player.
+            CF_AllFilter        = -1,         ///< All the filters!
 
             // Non-Standard Filters
-            CF_UserFilter1      = 64, ///< Custom User Filter.
-            CF_UserFilter2      = 128,///< Custom User Filter.
-            CF_UserFilter3      = 256,///< Custom User Filter.
-            CF_UserFilter4      = 512 ///< Custom User Filter.
+            CF_UserFilter1      = EnumBit(7), ///< Custom User Filter.
+            CF_UserFilter2      = EnumBit(8), ///< Custom User Filter.
+            CF_UserFilter3      = EnumBit(9), ///< Custom User Filter.
+            CF_UserFilter4      = EnumBit(10) ///< Custom User Filter.
         };
 
         /// @brief This is used by physics proxies to help determine collision response behavior of a proxy.
         enum CollisionFlags
         {
-            CF_StaticObject                   = 1,
-            CF_KinematicObject                = 2,
-            CF_NoContactResponse              = 4,
-            CF_CustomMaterialCallback         = 8,
-            CF_CharacterObject                = 16,
-            CF_DisableVisualizeObject         = 32,
-            CF_DisableSPUCollisionProcessing  = 64
+            CF_StaticObject                   = EnumBit(1),
+            CF_KinematicObject                = EnumBit(2),
+            CF_NoContactResponse              = EnumBit(3),
+            CF_CustomMaterialCallback         = EnumBit(4),
+            CF_CharacterObject                = EnumBit(5),
+            CF_DisableVisualizeObject         = EnumBit(6),
+            CF_DisableSPUCollisionProcessing  = EnumBit(7)
         };
 
         /// @brief Enum specifying the state change occuring in the collision.
@@ -129,31 +131,31 @@ namespace Mezzanine
         enum DebugDrawMode
         {
             DDM_NoDebug               = 0,
-            DDM_DrawWireframe         = 1,
-            DDM_DrawAABB              = 2,
-            DDM_DrawFeaturesText      = 4,
-            DDM_DrawContactPoints     = 8,
-            DDM_NoDeactivation        = 16,
-            DDM_NoHelpText            = 32,
-            DDM_DrawText              = 64,
-            DDM_ProfileTimings        = 128,
-            DDM_EnableSatComparison   = 256,
-            DDM_DisableBulletLCP      = 512,
-            DDM_EnableCCD             = 1024,
-            DDM_DrawConstraints       = 2048,
-            DDM_DrawConstraintLimits  = 4096,
-            DDM_FastWireframe         = 8192,
-            DDM_DrawNormals           = 16384,
+            DDM_DrawWireframe         = EnumBit(1),
+            DDM_DrawAABB              = EnumBit(2),
+            DDM_DrawFeaturesText      = EnumBit(3),
+            DDM_DrawContactPoints     = EnumBit(4),
+            DDM_NoDeactivation        = EnumBit(5),
+            DDM_NoHelpText            = EnumBit(6),
+            DDM_DrawText              = EnumBit(7),
+            DDM_ProfileTimings        = EnumBit(8),
+            DDM_EnableSatComparison   = EnumBit(9),
+            DDM_DisableBulletLCP      = EnumBit(10),
+            DDM_EnableCCD             = EnumBit(11),
+            DDM_DrawConstraints       = EnumBit(12),
+            DDM_DrawConstraintLimits  = EnumBit(13),
+            DDM_FastWireframe         = EnumBit(14),
+            DDM_DrawNormals           = EnumBit(15),
 
             DDM_All                   = -1
         };
 
-        /// @brief This is used by the PhysicsProxy child classes to describe which proxy type they are.
-        enum ProxyType
+        /// @brief This is a listing of only the Components that exist in the Physics subsystem.
+        enum PhysicsComponentType
         {
-            PT_Rigid  = 1,
-            PT_Soft   = 2,
-            PT_Ghost  = 3
+            PCT_Rigid  = 1,
+            PCT_Soft   = 2,
+            PCT_Ghost  = 3
         };
 
         /// @brief Identify the Axis a bit easier when iterating over them is less convenient than typing an Identifier.

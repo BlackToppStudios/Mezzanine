@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,8 +47,8 @@
 
 namespace Mezzanine
 {
-    EventSubscriptionTable::EventSubscriptionTable(const EventNameType& Name) :
-        EventName(Name)
+    EventSubscriptionTable::EventSubscriptionTable(const EventHashType Hash) :
+        EventHash(Hash)
         {  }
 
     EventSubscriptionTable::~EventSubscriptionTable()
@@ -58,13 +58,13 @@ namespace Mezzanine
     // Operators
 
     Boole EventSubscriptionTable::operator<(const EventSubscriptionTable& Other) const
-        { return this->EventName < Other.EventName; }
+        { return this->EventHash < Other.EventHash; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    const EventNameType& EventSubscriptionTable::GetName() const
-        { return this->EventName; }
+    EventHashType EventSubscriptionTable::GetHash() const
+        { return this->EventHash; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Management
@@ -75,7 +75,7 @@ namespace Mezzanine
         if( NewBinding.use_count() > 0 /* != NULL */ ) {
             MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
         }
-        NewBinding = std::make_shared<EventSubscriberBinding>( ID,Delegate,Pub,this->EventName.GetHash() );
+        NewBinding = std::make_shared<EventSubscriberBinding>( ID,Delegate,Pub,this->EventHash );
         this->Bindings.push_back(NewBinding);
         return NewBinding;
     }

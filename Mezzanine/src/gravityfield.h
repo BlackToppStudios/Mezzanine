@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,20 +57,20 @@ namespace Mezzanine
         Vector3 Grav;
     public:
         /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
         GravityField(World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        GravityField(const String& Name, World* TheWorld);
+        /// @param EntID The unique ID of the GravityField.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
+        GravityField(const EntityID& EntID, World* TheWorld);
         /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param Shape A pointer to the Collision shape that will be applied to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        GravityField(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
+        /// @param EntID The unique ID of the GravityField.
+        /// @param Shape A pointer to the Collision shape that will be applied to this GravityField.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
+        GravityField(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
         GravityField(const XML::Node& SelfRoot, World* TheWorld);
         /// @brief Class destructor.
         virtual ~GravityField();
@@ -78,10 +78,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @copydoc Mezzanine::WorldObject::GetType() const
-        virtual Mezzanine::WorldObjectType GetType() const;
+        /// @copydoc Mezzanine::Entity::GetEntityType() const
+        virtual Mezzanine::EntityType GetEntityType() const;
 
-        /// @copydoc Mezzanine::WorldObject::ApplyEffect()
+        /// @copydoc Mezzanine::Entity::ApplyEffect()
         virtual void ApplyEffect();
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -97,14 +97,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+        /// @copydoc Mezzanine::Entity::ProtoSerializeProperties(XML::Node&) const
         virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+        /// @copydoc Mezzanine::Entity::ProtoDeSerializeProperties(const XML::Node&)
         virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        /// @copydoc Mezzanine::Entity::GetDerivedSerializableName() const
         virtual String GetDerivedSerializableName() const;
-        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        /// @copydoc Mezzanine::Entity::GetSerializableName()
         static String GetSerializableName();
     };//GravityField
 
@@ -120,29 +120,29 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~GravityFieldFactory();
 
-        /// @copydoc Mezzanine::WorldObjectFactory::GetTypeName() const
+        /// @copydoc Mezzanine::EntityFactory::GetTypeName() const
         virtual String GetTypeName() const;
 
-        /// @brief Creates a GravityField object.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual GravityField* CreateGravityField(const String& Name, World* TheWorld);
-        /// @brief Creates a GravityField object.
-        /// @param Name The name to be given to this object.
-        /// @param AEShape A pointer to the Collision shape that will be applied to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        virtual GravityField* CreateGravityField(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld);
-        /// @brief Creates a GravityField object.
+        /// @brief Creates a GravityField.
+        /// @param EntID The unique ID of the GravityField.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
+        virtual GravityField* CreateGravityField(const EntityID& EntID, World* TheWorld);
+        /// @brief Creates a GravityField.
+        /// @param EntID The unique ID of the GravityField.
+        /// @param AEShape A pointer to the Collision shape that will be applied to this GravityField.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
+        virtual GravityField* CreateGravityField(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld);
+        /// @brief Creates a GravityField.
         /// @param XMLNode The node of the xml document to construct from.
-        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param TheWorld A pointer to the world this GravityField belongs to.
         virtual GravityField* CreateGravityField(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairMap&)
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params);
-        /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(XML::Node&)
-        virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld);
-        /// @copydoc Mezzanine::WorldObjectFactory::DestroyAreaEffect(AreaEffect*)
-        virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed);
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(const EntityID&, World*, const NameValuePairMap&)
+        virtual Entity* CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params) override;
+        /// @copydoc Mezzanine::EntityFactory::CreateEntity(XML::Node&)
+        virtual Entity* CreateEntity(const XML::Node& XMLNode, World* TheWorld) override;
+        /// @copydoc Mezzanine::EntityFactory::DestroyEntity(Entity*)
+        virtual void DestroyEntity(Entity* ToBeDestroyed) override;
     };//GravityFieldFactory
 }//Mezzanine
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -116,7 +116,6 @@
             MT_AnimationManager,       // Graphics
             MT_CollisionShapeManager,  // Physics
             MT_GraphicsManager,        // Graphics
-            MT_EventManager,           // Mezzanine
             MT_InputManager,           // Input-
             MT_LogManager,             // Mezzanine
             MT_MaterialManager,        // Graphics
@@ -198,7 +197,7 @@
 
  @section Sophisticated Sophisticated Systems
 
-  @ref Mezzanine::WorldObject "WorldObjects - Items in the world"
+  @ref Mezzanine::Entity "WorldEntities - Items in the world"
 
   @ref Mezzanine::EventBase
 

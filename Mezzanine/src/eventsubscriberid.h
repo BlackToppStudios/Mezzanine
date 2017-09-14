@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ namespace Mezzanine
         // Data Types
 
         /// @brief The underlying type for the ID to be used.
-        using IDType = uintptr_t;
+        typedef uintptr_t IDType;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Data Members
