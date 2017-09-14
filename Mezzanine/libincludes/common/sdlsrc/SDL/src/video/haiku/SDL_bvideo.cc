@@ -68,8 +68,8 @@ BE_CreateDevice(int devindex)
     device->SetDisplayMode = BE_SetDisplayMode;
     device->PumpEvents = BE_PumpEvents;
 
-    device->CreateWindow = BE_CreateWindow;
-    device->CreateWindowFrom = BE_CreateWindowFrom;
+    device->CreateSDLWindow = BE_CreateWindow;
+    device->CreateSDLWindowFrom = BE_CreateWindowFrom;
     device->SetWindowTitle = BE_SetWindowTitle;
     device->SetWindowIcon = BE_SetWindowIcon;
     device->SetWindowPosition = BE_SetWindowPosition;
@@ -96,7 +96,7 @@ BE_CreateDevice(int devindex)
     device->shape_driver.SetWindowShape = NULL;
     device->shape_driver.ResizeWindowShape = NULL;
 
-
+#if SDL_VIDEO_OPENGL
     device->GL_LoadLibrary = BE_GL_LoadLibrary;
     device->GL_GetProcAddress = BE_GL_GetProcAddress;
     device->GL_UnloadLibrary = BE_GL_UnloadLibrary;
@@ -106,6 +106,7 @@ BE_CreateDevice(int devindex)
     device->GL_GetSwapInterval = BE_GL_GetSwapInterval;
     device->GL_SwapWindow = BE_GL_SwapWindow;
     device->GL_DeleteContext = BE_GL_DeleteContext;
+#endif
 
     device->StartTextInput = BE_StartTextInput;
     device->StopTextInput = BE_StopTextInput;

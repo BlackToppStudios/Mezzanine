@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     return exit_status;
 }
 
-static void
+static void SDLCALL
 SDL_IdleTimerDisabledChanged(void *userdata, const char *name, const char *oldValue, const char *hint)
 {
     BOOL disable = (hint && *hint != '0');
@@ -513,23 +513,24 @@ SDL_LoadLaunchImageNamed(NSString *name, int screenh)
     SDL_SendDropComplete(NULL);
 }
 
-#if TARGET_OS_TV
-/* TODO: Use this on iOS 9+ as well? */
+#if TARGET_OS_TV || (defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_9_0)
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
     /* TODO: Handle options */
     [self sendDropFileForURL:url];
     return YES;
 }
-#endif /* TARGET_OS_TV */
 
-#if !TARGET_OS_TV
+#else
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     [self sendDropFileForURL:url];
     return YES;
 }
-#endif /* !TARGET_OS_TV */
+
+#endif
 
 @end
 

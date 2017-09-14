@@ -32,6 +32,18 @@
 #define AUDIO_USAGE \
 "[--rate N] [--format U8|S8|U16|U16LE|U16BE|S16|S16LE|S16BE] [--channels N] [--samples N]"
 
+static void SDL_snprintfcat(SDL_OUT_Z_CAP(maxlen) char *text, size_t maxlen, SDL_PRINTF_FORMAT_STRING const char *fmt, ... )
+{
+    size_t length = SDL_strlen(text);
+    va_list ap;
+
+    va_start(ap, fmt);
+    text += length;
+    maxlen -= length;
+    SDL_vsnprintf(text, maxlen, fmt, ap);
+    va_end(ap);
+}
+
 SDLTest_CommonState *
 SDLTest_CommonCreateState(char **argv, Uint32 flags)
 {
@@ -463,123 +475,129 @@ SDLTest_CommonUsage(SDLTest_CommonState * state)
 }
 
 static void
-SDLTest_PrintRendererFlag(Uint32 flag)
+SDLTest_PrintRendererFlag(char *text, size_t maxlen, Uint32 flag)
 {
     switch (flag) {
-    case SDL_RENDERER_PRESENTVSYNC:
-        SDL_Log("PresentVSync");
+    case SDL_RENDERER_SOFTWARE:
+        SDL_snprintfcat(text, maxlen, "Software");
         break;
     case SDL_RENDERER_ACCELERATED:
-        SDL_Log("Accelerated");
+        SDL_snprintfcat(text, maxlen, "Accelerated");
+        break;
+    case SDL_RENDERER_PRESENTVSYNC:
+        SDL_snprintfcat(text, maxlen, "PresentVSync");
+        break;
+    case SDL_RENDERER_TARGETTEXTURE:
+        SDL_snprintfcat(text, maxlen, "TargetTexturesSupported");
         break;
     default:
-        SDL_Log("0x%8.8x", flag);
+        SDL_snprintfcat(text, maxlen, "0x%8.8x", flag);
         break;
     }
 }
 
 static void
-SDLTest_PrintPixelFormat(Uint32 format)
+SDLTest_PrintPixelFormat(char *text, size_t maxlen, Uint32 format)
 {
     switch (format) {
     case SDL_PIXELFORMAT_UNKNOWN:
-        SDL_Log("Unknown");
+        SDL_snprintfcat(text, maxlen, "Unknown");
         break;
     case SDL_PIXELFORMAT_INDEX1LSB:
-        SDL_Log("Index1LSB");
+        SDL_snprintfcat(text, maxlen, "Index1LSB");
         break;
     case SDL_PIXELFORMAT_INDEX1MSB:
-        SDL_Log("Index1MSB");
+        SDL_snprintfcat(text, maxlen, "Index1MSB");
         break;
     case SDL_PIXELFORMAT_INDEX4LSB:
-        SDL_Log("Index4LSB");
+        SDL_snprintfcat(text, maxlen, "Index4LSB");
         break;
     case SDL_PIXELFORMAT_INDEX4MSB:
-        SDL_Log("Index4MSB");
+        SDL_snprintfcat(text, maxlen, "Index4MSB");
         break;
     case SDL_PIXELFORMAT_INDEX8:
-        SDL_Log("Index8");
+        SDL_snprintfcat(text, maxlen, "Index8");
         break;
     case SDL_PIXELFORMAT_RGB332:
-        SDL_Log("RGB332");
+        SDL_snprintfcat(text, maxlen, "RGB332");
         break;
     case SDL_PIXELFORMAT_RGB444:
-        SDL_Log("RGB444");
+        SDL_snprintfcat(text, maxlen, "RGB444");
         break;
     case SDL_PIXELFORMAT_RGB555:
-        SDL_Log("RGB555");
+        SDL_snprintfcat(text, maxlen, "RGB555");
         break;
     case SDL_PIXELFORMAT_BGR555:
-        SDL_Log("BGR555");
+        SDL_snprintfcat(text, maxlen, "BGR555");
         break;
     case SDL_PIXELFORMAT_ARGB4444:
-        SDL_Log("ARGB4444");
+        SDL_snprintfcat(text, maxlen, "ARGB4444");
         break;
     case SDL_PIXELFORMAT_ABGR4444:
-        SDL_Log("ABGR4444");
+        SDL_snprintfcat(text, maxlen, "ABGR4444");
         break;
     case SDL_PIXELFORMAT_ARGB1555:
-        SDL_Log("ARGB1555");
+        SDL_snprintfcat(text, maxlen, "ARGB1555");
         break;
     case SDL_PIXELFORMAT_ABGR1555:
-        SDL_Log("ABGR1555");
+        SDL_snprintfcat(text, maxlen, "ABGR1555");
         break;
     case SDL_PIXELFORMAT_RGB565:
-        SDL_Log("RGB565");
+        SDL_snprintfcat(text, maxlen, "RGB565");
         break;
     case SDL_PIXELFORMAT_BGR565:
-        SDL_Log("BGR565");
+        SDL_snprintfcat(text, maxlen, "BGR565");
         break;
     case SDL_PIXELFORMAT_RGB24:
-        SDL_Log("RGB24");
+        SDL_snprintfcat(text, maxlen, "RGB24");
         break;
     case SDL_PIXELFORMAT_BGR24:
-        SDL_Log("BGR24");
+        SDL_snprintfcat(text, maxlen, "BGR24");
         break;
     case SDL_PIXELFORMAT_RGB888:
-        SDL_Log("RGB888");
+        SDL_snprintfcat(text, maxlen, "RGB888");
         break;
     case SDL_PIXELFORMAT_BGR888:
-        SDL_Log("BGR888");
+        SDL_snprintfcat(text, maxlen, "BGR888");
         break;
     case SDL_PIXELFORMAT_ARGB8888:
-        SDL_Log("ARGB8888");
+        SDL_snprintfcat(text, maxlen, "ARGB8888");
         break;
     case SDL_PIXELFORMAT_RGBA8888:
-        SDL_Log("RGBA8888");
+        SDL_snprintfcat(text, maxlen, "RGBA8888");
         break;
     case SDL_PIXELFORMAT_ABGR8888:
-        SDL_Log("ABGR8888");
+        SDL_snprintfcat(text, maxlen, "ABGR8888");
         break;
     case SDL_PIXELFORMAT_BGRA8888:
-        SDL_Log("BGRA8888");
+        SDL_snprintfcat(text, maxlen, "BGRA8888");
         break;
     case SDL_PIXELFORMAT_ARGB2101010:
-        SDL_Log("ARGB2101010");
+        SDL_snprintfcat(text, maxlen, "ARGB2101010");
         break;
     case SDL_PIXELFORMAT_YV12:
-        SDL_Log("YV12");
+        SDL_snprintfcat(text, maxlen, "YV12");
         break;
     case SDL_PIXELFORMAT_IYUV:
-        SDL_Log("IYUV");
+        SDL_snprintfcat(text, maxlen, "IYUV");
         break;
     case SDL_PIXELFORMAT_YUY2:
-        SDL_Log("YUY2");
+        SDL_snprintfcat(text, maxlen, "YUY2");
         break;
     case SDL_PIXELFORMAT_UYVY:
-        SDL_Log("UYVY");
+        SDL_snprintfcat(text, maxlen, "UYVY");
         break;
     case SDL_PIXELFORMAT_YVYU:
-        SDL_Log("YVYU");
+        SDL_snprintfcat(text, maxlen, "YVYU");
         break;
     case SDL_PIXELFORMAT_NV12:
-        SDL_Log("NV12");
+        SDL_snprintfcat(text, maxlen, "NV12");
         break;
     case SDL_PIXELFORMAT_NV21:
-        SDL_Log("NV21");
+        SDL_snprintfcat(text, maxlen, "NV21");
         break;
     default:
-        SDL_Log("0x%8.8x", format);
+        SDL_snprintfcat(text, maxlen, "0x%8.8x", format);
         break;
     }
 }
@@ -588,32 +606,34 @@ static void
 SDLTest_PrintRenderer(SDL_RendererInfo * info)
 {
     int i, count;
+    char text[1024];
 
     SDL_Log("  Renderer %s:\n", info->name);
 
-    SDL_Log("    Flags: 0x%8.8X", info->flags);
-    SDL_Log(" (");
+    SDL_snprintf(text, sizeof(text), "    Flags: 0x%8.8X", info->flags);
+    SDL_snprintfcat(text, sizeof(text), " (");
     count = 0;
     for (i = 0; i < sizeof(info->flags) * 8; ++i) {
         Uint32 flag = (1 << i);
         if (info->flags & flag) {
             if (count > 0) {
-                SDL_Log(" | ");
+                SDL_snprintfcat(text, sizeof(text), " | ");
             }
-            SDLTest_PrintRendererFlag(flag);
+            SDLTest_PrintRendererFlag(text, sizeof(text), flag);
             ++count;
         }
     }
-    SDL_Log(")\n");
+    SDL_snprintfcat(text, sizeof(text), ")");
+    SDL_Log("%s\n", text);
 
-    SDL_Log("    Texture formats (%d): ", info->num_texture_formats);
+    SDL_snprintf(text, sizeof(text), "    Texture formats (%d): ", info->num_texture_formats);
     for (i = 0; i < (int) info->num_texture_formats; ++i) {
         if (i > 0) {
-            SDL_Log(", ");
+            SDL_snprintfcat(text, sizeof(text), ", ");
         }
-        SDLTest_PrintPixelFormat(info->texture_formats[i]);
+        SDLTest_PrintPixelFormat(text, sizeof(text), info->texture_formats[i]);
     }
-    SDL_Log("\n");
+    SDL_Log("%s\n", text);
 
     if (info->max_texture_width || info->max_texture_height) {
         SDL_Log("    Max Texture Size: %dx%d\n",
@@ -646,6 +666,7 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
 {
     int i, j, m, n, w, h;
     SDL_DisplayMode fullscreen_mode;
+    char text[1024];
 
     if (state->flags & SDL_INIT_VIDEO) {
         if (state->verbose & VERBOSE_VIDEO) {
@@ -653,14 +674,14 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
             if (n == 0) {
                 SDL_Log("No built-in video drivers\n");
             } else {
-                SDL_Log("Built-in video drivers:");
+                SDL_snprintf(text, sizeof(text), "Built-in video drivers:");
                 for (i = 0; i < n; ++i) {
                     if (i > 0) {
-                        SDL_Log(",");
+                        SDL_snprintfcat(text, sizeof(text), ",");
                     }
-                    SDL_Log(" %s", SDL_GetVideoDriver(i));
+                    SDL_snprintfcat(text, sizeof(text), " %s", SDL_GetVideoDriver(i));
                 }
-                SDL_Log("\n");
+                SDL_Log("%s\n", text);
             }
         }
         if (SDL_VideoInit(state->videodriver) < 0) {
@@ -822,13 +843,13 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
         fullscreen_mode.refresh_rate = state->refresh_rate;
 
         state->windows =
-            (SDL_Window **) SDL_malloc(state->num_windows *
+            (SDL_Window **) SDL_calloc(state->num_windows,
                                         sizeof(*state->windows));
         state->renderers =
-            (SDL_Renderer **) SDL_malloc(state->num_windows *
+            (SDL_Renderer **) SDL_calloc(state->num_windows,
                                         sizeof(*state->renderers));
         state->targets =
-            (SDL_Texture **) SDL_malloc(state->num_windows *
+            (SDL_Texture **) SDL_calloc(state->num_windows,
                                         sizeof(*state->targets));
         if (!state->windows || !state->renderers) {
             SDL_Log("Out of memory!\n");
@@ -881,12 +902,9 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
 
             SDL_ShowWindow(state->windows[i]);
 
-            state->renderers[i] = NULL;
-            state->targets[i] = NULL;
-
             if (!state->skip_renderer
                 && (state->renderdriver
-                    || !(state->window_flags & SDL_WINDOW_OPENGL))) {
+                    || !(state->window_flags & (SDL_WINDOW_OPENGL | SDL_WINDOW_VULKAN)))) {
                 m = -1;
                 if (state->renderdriver) {
                     SDL_RendererInfo info;
@@ -934,14 +952,14 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
             if (n == 0) {
                 SDL_Log("No built-in audio drivers\n");
             } else {
-                SDL_Log("Built-in audio drivers:");
+                SDL_snprintf(text, sizeof(text), "Built-in audio drivers:");
                 for (i = 0; i < n; ++i) {
                     if (i > 0) {
-                        SDL_Log(",");
+                        SDL_snprintfcat(text, sizeof(text), ",");
                     }
-                    SDL_Log(" %s", SDL_GetAudioDriver(i));
+                    SDL_snprintfcat(text, sizeof(text), " %s", SDL_GetAudioDriver(i));
                 }
-                SDL_Log("\n");
+                SDL_Log("%s\n", text);
             }
         }
         if (SDL_AudioInit(state->audiodriver) < 0) {
@@ -1077,7 +1095,7 @@ SDLTest_PrintEvent(SDL_Event * event)
             SDL_Log("SDL EVENT: Window %d hit test", event->window.windowID);
             break;
         default:
-            SDL_Log("SDL EVENT: Window %d got unknown event %d",
+            SDL_Log("SDL EVENT: Window %d got unknown event 0x%4.4x",
                     event->window.windowID, event->window.event);
             break;
         }
@@ -1096,9 +1114,16 @@ SDLTest_PrintEvent(SDL_Event * event)
                 SDL_GetScancodeName(event->key.keysym.scancode),
                 event->key.keysym.sym, SDL_GetKeyName(event->key.keysym.sym));
         break;
+    case SDL_TEXTEDITING:
+        SDL_Log("SDL EVENT: Keyboard: text editing \"%s\" in window %d",
+                event->edit.text, event->edit.windowID);
+        break;
     case SDL_TEXTINPUT:
         SDL_Log("SDL EVENT: Keyboard: text input \"%s\" in window %d",
                 event->text.text, event->text.windowID);
+        break;
+    case SDL_KEYMAPCHANGED:
+        SDL_Log("SDL EVENT: Keymap changed");
         break;
     case SDL_MOUSEMOTION:
         SDL_Log("SDL EVENT: Mouse: moved to %d,%d (%d,%d) in window %d",
@@ -1206,6 +1231,13 @@ SDLTest_PrintEvent(SDL_Event * event)
         SDL_Log("SDL EVENT: Clipboard updated");
         break;
 
+    case SDL_FINGERMOTION:
+        SDL_Log("SDL EVENT: Finger: motion touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
+                (long) event->tfinger.touchId,
+                (long) event->tfinger.fingerId,
+                event->tfinger.x, event->tfinger.y,
+                event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
+        break;
     case SDL_FINGERDOWN:
     case SDL_FINGERUP:
         SDL_Log("SDL EVENT: Finger: %s touch=%ld, finger=%ld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
@@ -1232,6 +1264,25 @@ SDLTest_PrintEvent(SDL_Event * event)
         SDL_Log("SDL EVENT: render targets reset");
         break;
 
+    case SDL_APP_TERMINATING:
+        SDL_Log("SDL EVENT: App terminating");
+        break;
+    case SDL_APP_LOWMEMORY:
+        SDL_Log("SDL EVENT: App running low on memory");
+        break;
+    case SDL_APP_WILLENTERBACKGROUND:
+        SDL_Log("SDL EVENT: App will enter the background");
+        break;
+    case SDL_APP_DIDENTERBACKGROUND:
+        SDL_Log("SDL EVENT: App entered the background");
+        break;
+    case SDL_APP_WILLENTERFOREGROUND:
+        SDL_Log("SDL EVENT: App will enter the foreground");
+        break;
+    case SDL_APP_DIDENTERFOREGROUND:
+        SDL_Log("SDL EVENT: App entered the foreground");
+        break;
+
     case SDL_QUIT:
         SDL_Log("SDL EVENT: Quit requested");
         break;
@@ -1239,7 +1290,7 @@ SDLTest_PrintEvent(SDL_Event * event)
         SDL_Log("SDL EVENT: User event %d", event->user.code);
         break;
     default:
-        SDL_Log("Unknown event %04x", event->type);
+        SDL_Log("Unknown event 0x%4.4x", event->type);
         break;
     }
 }
@@ -1377,6 +1428,49 @@ SDLTest_CommonEvent(SDLTest_CommonState * state, SDL_Event * event, int *done)
                     int w, h;
                     SDL_GetWindowSize(window, &w, &h);
                     SDL_SetWindowSize(window, w/2, h/2);
+                }
+            }
+            break;
+        case SDLK_UP:
+        case SDLK_DOWN:
+        case SDLK_LEFT:
+        case SDLK_RIGHT:
+            if (withAlt) {
+                /* Alt-Up/Down/Left/Right switches between displays */
+                SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
+                if (window) {
+                    int currentIndex = SDL_GetWindowDisplayIndex(window);
+                    int numDisplays = SDL_GetNumVideoDisplays();
+
+                    if (currentIndex >= 0 && numDisplays >= 1) {
+                        int dest;
+                        if (event->key.keysym.sym == SDLK_UP || event->key.keysym.sym == SDLK_LEFT) {
+                            dest = (currentIndex + numDisplays - 1) % numDisplays;
+                        } else {
+                            dest = (currentIndex + numDisplays + 1) % numDisplays;
+                        }
+                        SDL_Log("Centering on display %d\n", dest);
+                        SDL_SetWindowPosition(window,
+                            SDL_WINDOWPOS_CENTERED_DISPLAY(dest),
+                            SDL_WINDOWPOS_CENTERED_DISPLAY(dest));
+                    }
+                }
+            }
+            if (withShift) {
+                /* Shift-Up/Down/Left/Right shift the window by 100px */
+                SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
+                if (window) {
+                    const int delta = 100;
+                    int x, y;
+                    SDL_GetWindowPosition(window, &x, &y);
+                    
+                    if (event->key.keysym.sym == SDLK_UP)    y -= delta;
+                    if (event->key.keysym.sym == SDLK_DOWN)  y += delta;
+                    if (event->key.keysym.sym == SDLK_LEFT)  x -= delta;
+                    if (event->key.keysym.sym == SDLK_RIGHT) x += delta;
+
+                    SDL_Log("Setting position to (%d, %d)\n", x, y);
+                    SDL_SetWindowPosition(window, x, y);
                 }
             }
             break;

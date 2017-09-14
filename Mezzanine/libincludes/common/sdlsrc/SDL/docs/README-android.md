@@ -1,16 +1,23 @@
 Android
 ================================================================================
 
-Requirements:
+Matt Styles wrote a tutorial on building SDL for Android with Visual Studio:
+http://trederia.blogspot.de/2017/03/building-sdl2-for-android-with-visual.html
 
-Android SDK (version 12 or later)
+The rest of this README covers the old style build process.
+
+================================================================================
+ Requirements
+================================================================================
+
+Android SDK (version 16 or later)
 https://developer.android.com/sdk/index.html
 
 Android NDK r7 or later
 https://developer.android.com/tools/sdk/ndk/index.html
 
 Minimum API level supported by SDL: 10 (Android 2.3.3)
-Joystick support is available for API level >=12 devices.
+Joystick support is available for API level >= 12 devices.
 
 ================================================================================
  How the port works
