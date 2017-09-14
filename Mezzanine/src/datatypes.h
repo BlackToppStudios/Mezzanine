@@ -65,19 +65,21 @@
     #include <cstddef>
 
     #include <algorithm>
+    #include <atomic>
     #include <exception>
+    #include <fstream>
+    #include <functional>
     #include <istream>
     #include <list>
     #include <map>
-    #include <string>
-    #include <sstream>
-    #include <fstream>
-    #include <set>
-    #include <vector>
-    #include <utility>
     #include <memory>
     #include <ostream>
-    #include <atomic>
+    #include <set>
+    #include <string>
+    #include <sstream>
+    #include <utility>
+    #include <vector>
+    #include <ostream>
 #endif
 
 #include "swig.h"

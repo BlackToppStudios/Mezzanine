@@ -73,6 +73,8 @@ namespace Mezzanine
             int IndexStart;
             /// @brief Cache of the end of the work to be done on the "Body" member.
             int IndexEnd;
+            /// @brief Storage necessary for post construction activation, stores the number of threads to create.
+            unsigned int ThreadCount;
             /// @brief Whether or not the the Scheduler is still running.
             std::atomic_bool StillRunning;
         protected:
@@ -87,6 +89,11 @@ namespace Mezzanine
             ParallelForScheduler(int numThreads);
             /// @brief Class destructor.
             virtual ~ParallelForScheduler();
+
+            /// @brief Enables this scheduler and prepares it for use.
+            virtual void activate();
+            /// @brief Disables this scheduler and cleans up it's resources.
+            virtual void deactivate();
 
             /// @brief Gets the maximum number of threads this scheduler allows to run.
             /// @remarks The interface means for this to possibly change based on the underlying threading implementation.
