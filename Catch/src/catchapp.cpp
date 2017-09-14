@@ -153,8 +153,6 @@ void CatchApp::CreateWorld()
     Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_SoftRigidWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
 
     this->TheWorld = this->TheEntresol->CreateWorld("CatchWorld",Info,"DefaultSceneManager");
-
-    static_cast<Physics::PhysicsManager*>( this->TheWorld->GetManager(ManagerBase::MT_PhysicsManager) )->SetSimulationSubstepModifier(2);
 }
 
 void CatchApp::MakeGUI()
