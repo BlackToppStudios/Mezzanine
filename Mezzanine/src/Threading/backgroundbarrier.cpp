@@ -44,6 +44,7 @@
 #include "backgroundbarrier.h"
 
 #include <cassert>
+#include <thread>
 
 /// @file
 /// @brief Contains the implementation for the @ref Mezzanine::Threading::Barrier Barrier synchronization object.
@@ -56,8 +57,6 @@ namespace Mezzanine
         const BackgroundBarrier::NonAtomicInt BackgroundBarrier::Entering = 0;
         const BackgroundBarrier::NonAtomicInt BackgroundBarrier::Exiting = 1;
 
-
-
         BackgroundBarrier::BackgroundBarrier (const Int32& SynchThreadCount)
             : ThreadGoal (SynchThreadCount),
               BlockingState(Entering),
@@ -69,13 +68,19 @@ namespace Mezzanine
             // If a thread is so fast it hits the barrier while others are exiting wait for the barrier to reset.
             while(BlockingState.load() == Exiting);
 
+            // This math must be atomic so that exactly one thread break the barrier.
             const Int32 PriorAmountOfThreads = ThreadCurrent.fetch_add(1);
             const Int32 AmountNeedToBreak = ThreadGoal - 1;
             if(PriorAmountOfThreads == AmountNeedToBreak)
             {
                 // This thread is breaking the barrier
                 BlockingState.store(Exiting);       // Tell the other threads
-                while(ThreadCurrent.load() != 1);   // Wait for other threads to leave wait function
+
+                while(ThreadCurrent.load() != 1)
+                {
+                    std::this_thread::sleep_for(std::chrono::milliseconds{0});
+                    Signal.notify_all();
+                }
                 ThreadCurrent.fetch_sub(1);         // We are the last thread to leave so this sets it to 0
                 BlockingState.store(Entering);      // Let threads start the next use of this barrier
                 return true;
@@ -83,7 +88,8 @@ namespace Mezzanine
             else
             {
                 // This thread is just piling on
-                while(BlockingState.load() != Exiting); // Wait for all the other threads
+                std::unique_lock<MutexType> Locked(SignalLock);  // Acquire the Lock to satisfy the condition var
+                Signal.wait(Locked, [this]{ return BlockingState.load() == Exiting; }); // Wait for the signal
                 ThreadCurrent.fetch_sub(1);             // Decrement to let breaking thread know
                 return false;
             }

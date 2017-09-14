@@ -55,12 +55,17 @@ namespace Mezzanine
         class MEZZ_LIB BackgroundBarrier
         {
             public:
+                typedef std::mutex MutexType;
                 typedef std::atomic<Int32> AtomicInt;
                 typedef Int32 NonAtomicInt;
 
             protected:
+                /// @brief used to paused threads until they are awoken by the barrier breaking.
                 std::condition_variable Signal;
-                std::mutex Mutex;
+
+                /// @brief This is required by std::condition_variable and locks access to any variables changed
+                /// while signalling
+                std::mutex SignalLock;
 
                 /// @brief The number of threads to have wait.
                 AtomicInt ThreadGoal;
