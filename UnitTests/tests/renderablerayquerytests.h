@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2017 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,6 +45,7 @@
 #include "entresol.h"
 #include "world.h"
 #include "Graphics/graphics.h"
+#include "Graphics/Procedural/procedural.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 

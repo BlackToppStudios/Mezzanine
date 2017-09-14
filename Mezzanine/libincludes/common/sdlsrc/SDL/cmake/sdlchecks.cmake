@@ -161,6 +161,36 @@ endmacro()
 # Requires:
 # - PkgCheckModules
 # Optional:
+# - JACK_SHARED opt
+# - HAVE_DLOPEN opt
+macro(CheckJACK)
+  if(SDL_JACK)
+    pkg_check_modules(PKG_JACK jack)
+    if(PKG_JACK_FOUND)
+      set(HAVE_JACK TRUE)
+      file(GLOB JACK_SOURCES ${SDL2_SOURCE_DIR}/src/audio/jack/*.c)
+      set(SOURCE_FILES ${SOURCE_FILES} ${JACK_SOURCES})
+      set(SDL_AUDIO_DRIVER_JACK 1)
+      list(APPEND EXTRA_CFLAGS ${PKG_JACK_CFLAGS})
+      if(SDL_JACK_SHARED)
+        if(NOT HAVE_DLOPEN)
+          message_warn("You must have SDL_LoadObject() support for dynamic JACK audio loading")
+        else()
+          FindLibraryAndSONAME("jack")
+          set(SDL_AUDIO_DRIVER_JACK_DYNAMIC "\"${JACK_LIB_SONAME}\"")
+          set(HAVE_JACK_SHARED TRUE)
+        endif()
+      else()
+        list(APPEND EXTRA_LDFLAGS ${PKG_JACK_LDFLAGS})
+      endif()
+      set(HAVE_SDL_AUDIO TRUE)
+    endif()
+  endif()
+endmacro()
+
+# Requires:
+# - PkgCheckModules
+# Optional:
 # - ESD_SHARED opt
 # - HAVE_DLOPEN opt
 macro(CheckESD)
@@ -269,7 +299,7 @@ macro(CheckSNDIO)
       file(GLOB SNDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/sndio/*.c)
       set(SOURCE_FILES ${SOURCE_FILES} ${SNDIO_SOURCES})
       set(SDL_AUDIO_DRIVER_SNDIO 1)
-      if(SNDIO_SHARED)
+      if(SDL_SNDIO_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic sndio loading")
         else()
@@ -324,7 +354,7 @@ macro(CheckLibSampleRate)
   if(SDL_LIBSAMPLERATE)
     check_include_file(samplerate.h HAVE_LIBSAMPLERATE_H)
     if(HAVE_LIBSAMPLERATE_H)
-      if(LIBSAMPLERATE_SHARED)
+      if(SDL_LIBSAMPLERATE_SHARED)
         if(NOT HAVE_DLOPEN)
           message_warn("You must have SDL_LoadObject() support for dynamic libsamplerate loading")
         else()
@@ -377,7 +407,7 @@ macro(CheckX11)
       set(SDL_VIDEO_DRIVER_X11 1)
 
       if(APPLE)
-        set(SDL_X11_SHARED OFF)
+        set(X11_SHARED OFF)
       endif()
 
       check_function_exists("shmat" HAVE_SHMAT)
@@ -436,7 +466,7 @@ macro(CheckX11)
 
       check_function_exists(XkbKeycodeToKeysym SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM)
 
-      if(SDL_VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
+      if(VIDEO_X11_XCURSOR AND HAVE_XCURSOR_H)
         set(HAVE_VIDEO_X11_XCURSOR TRUE)
         if(HAVE_X11_SHARED AND XCURSOR_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XCURSOR "\"${XCURSOR_LIB_SONAME}\"")
@@ -446,7 +476,7 @@ macro(CheckX11)
         set(SDL_VIDEO_DRIVER_X11_XCURSOR 1)
       endif()
 
-      if(SDL_VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
+      if(VIDEO_X11_XINERAMA AND HAVE_XINERAMA_H)
         set(HAVE_VIDEO_X11_XINERAMA TRUE)
         if(HAVE_X11_SHARED AND XINERAMA_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XINERAMA "\"${XINERAMA_LIB_SONAME}\"")
@@ -456,7 +486,7 @@ macro(CheckX11)
         set(SDL_VIDEO_DRIVER_X11_XINERAMA 1)
       endif()
 
-      if(SDL_VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
+      if(VIDEO_X11_XINPUT AND HAVE_XINPUT_H)
         set(HAVE_VIDEO_X11_XINPUT TRUE)
         if(HAVE_X11_SHARED AND XI_LIB)
           set(SDL_VIDEO_DRIVER_X11_DYNAMIC_XINPUT2 "\"${XI_LIB_SONAME}\"")
@@ -531,7 +561,7 @@ endmacro()
 macro(CheckMir)
     if(SDL_VIDEO_MIR)
         find_library(MIR_LIB mirclient mircommon egl)
-        pkg_check_modules(MIR_TOOLKIT mirclient mircommon)
+        pkg_check_modules(MIR_TOOLKIT mirclient>=0.26 mircommon)
         pkg_check_modules(EGL egl)
         pkg_check_modules(XKB xkbcommon)
 
@@ -543,7 +573,7 @@ macro(CheckMir)
             set(SOURCE_FILES ${SOURCE_FILES} ${MIR_SOURCES})
             set(SDL_VIDEO_DRIVER_MIR 1)
 
-            list(APPEND EXTRA_CFLAGS ${MIR_TOOLKIT_CFLAGS} ${EGL_CLFAGS} ${XKB_CLFLAGS})
+            list(APPEND EXTRA_CFLAGS ${MIR_TOOLKIT_CFLAGS} ${EGL_CFLAGS} ${XKB_CFLAGS})
 
             if(MIR_SHARED)
                 if(NOT HAVE_DLOPEN)
@@ -826,7 +856,10 @@ endmacro()
 # PTHREAD_LIBS
 macro(CheckPTHREAD)
   if(SDL_PTHREADS)
-    if(LINUX)
+    if(ANDROID)
+      # the android libc provides built-in support for pthreads, so no
+      # additional linking or compile flags are necessary
+    elseif(LINUX)
       set(PTHREAD_CFLAGS "-D_REENTRANT")
       set(PTHREAD_LDFLAGS "-pthread")
     elseif(BSDI)
@@ -901,7 +934,7 @@ macro(CheckPTHREAD)
             #include <pthread.h>
             int main(int argc, char **argv) {
               pthread_mutexattr_t attr;
-              pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+              pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
               return 0;
             }" HAVE_RECURSIVE_MUTEXES_NP)
         if(HAVE_RECURSIVE_MUTEXES_NP)
@@ -930,7 +963,6 @@ macro(CheckPTHREAD)
           int main(int argc, char** argv) { return 0; }" HAVE_PTHREAD_NP_H)
       check_function_exists(pthread_setname_np HAVE_PTHREAD_SETNAME_NP)
       check_function_exists(pthread_set_name_np HAVE_PTHREAD_SET_NAME_NP)
-      set(CMAKE_REQUIRED_FLAGS "${ORIG_CMAKE_REQUIRED_FLAGS}")
 
       set(SOURCE_FILES ${SOURCE_FILES}
           ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_systhread.c
@@ -947,6 +979,7 @@ macro(CheckPTHREAD)
       endif()
       set(HAVE_SDL_THREADS TRUE)
     endif()
+    set(CMAKE_REQUIRED_FLAGS "${ORIG_CMAKE_REQUIRED_FLAGS}")
   endif()
 endmacro()
 
@@ -1119,3 +1152,46 @@ macro(CheckRPI)
     endif(SDL_VIDEO AND HAVE_VIDEO_RPI)
   endif(SDL_VIDEO_RPI)
 endmacro(CheckRPI)
+
+# Requires:
+# - EGL
+# - PkgCheckModules
+# Optional:
+# - KMSDRM_SHARED opt
+# - HAVE_DLOPEN opt
+macro(CheckKMSDRM)
+  if(SDL_VIDEO_KMSDRM)
+    pkg_check_modules(KMSDRM libdrm gbm egl)
+    if(KMSDRM_FOUND)
+      link_directories(
+        ${KMSDRM_LIBRARY_DIRS}
+      )
+      include_directories(
+        ${KMSDRM_INCLUDE_DIRS}
+      )
+      set(HAVE_VIDEO_KMSDRM TRUE)
+      set(HAVE_SDL_VIDEO TRUE)
+
+      file(GLOB KMSDRM_SOURCES ${SDL2_SOURCE_DIR}/src/video/kmsdrm/*.c)
+      set(SOURCE_FILES ${SOURCE_FILES} ${KMSDRM_SOURCES})
+
+      list(APPEND EXTRA_CFLAGS ${KMSDRM_CFLAGS})
+
+      set(SDL_VIDEO_DRIVER_KMSDRM 1)
+
+      if(KMSDRM_SHARED)
+        if(NOT HAVE_DLOPEN)
+          message_warn("You must have SDL_LoadObject() support for dynamic KMS/DRM loading")
+        else()
+          FindLibraryAndSONAME(drm)
+          FindLibraryAndSONAME(gbm)
+          set(SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC "\"${DRM_LIB_SONAME}\"")
+          set(SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC_GBM "\"${GBM_LIB_SONAME}\"")
+          set(HAVE_KMSDRM_SHARED TRUE)
+        endif()
+      else()
+        set(EXTRA_LIBS ${KMSDRM_LIBRARIES} ${EXTRA_LIBS})
+      endif()
+    endif()
+  endif()
+endmacro()

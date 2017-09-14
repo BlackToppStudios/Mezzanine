@@ -1,8 +1,8 @@
-255,303c255,303
+273,323c273,323
 < option_string(ASSERTIONS "Enable internal sanity checks (auto/disabled/release/enabled/paranoid)" "auto")
 < #set_option(DEPENDENCY_TRACKING "Use gcc -MMD -MT dependency tracking" ON)
 < set_option(LIBC                "Use the system C library" ${OPT_DEF_LIBC})
-< set_option(GCC_ATOMICS         "Use gcc builtin atomics" ${USE_GCC})
+< set_option(GCC_ATOMICS         "Use gcc builtin atomics" ${OPT_DEF_GCC_ATOMICS})
 < set_option(ASSEMBLY            "Enable assembly routines" ${OPT_DEF_ASM})
 < set_option(SSEMATH             "Allow GCC to use SSE floating point math" ${OPT_DEF_SSEMATH})
 < set_option(MMX                 "Use MMX assembly routines" ${OPT_DEF_ASM})
@@ -24,6 +24,8 @@
 < set_option(OSS                 "Support the OSS audio API" ${UNIX_SYS})
 < set_option(ALSA                "Support the ALSA audio API" ${UNIX_SYS})
 < dep_option(ALSA_SHARED         "Dynamically load ALSA audio support" ON "ALSA" OFF)
+< set_option(JACK                "Support the JACK audio API" ${UNIX_SYS})
+< dep_option(JACK_SHARED         "Dynamically load JACK audio support" ON "JACK" OFF)
 < set_option(ESD                 "Support the Enlightened Sound Daemon" ${UNIX_SYS})
 < dep_option(ESD_SHARED          "Dynamically load ESD audio support" ON "ESD" OFF)
 < set_option(PULSEAUDIO          "Use PulseAudio" ${UNIX_SYS})
@@ -74,6 +76,8 @@
 > set_option(SDL_OSS                 "Support the OSS audio API" ${UNIX_SYS})
 > set_option(SDL_ALSA                "Support the ALSA audio API" ${UNIX_SYS})
 > dep_option(SDL_ALSA_SHARED         "Dynamically load ALSA audio support" ON "SDL_ALSA" OFF)
+> set_option(SDL_JACK                "Support the JACK audio API" ${UNIX_SYS})
+> dep_option(SDL_JACK_SHARED         "Dynamically load JACK audio support" ON "JACK" OFF)
 > set_option(SDL_ESD                 "Support the Enlightened Sound Daemon" ${UNIX_SYS})
 > dep_option(SDL_ESD_SHARED          "Dynamically load ESD audio support" ON "SDL_ESD" OFF)
 > set_option(SDL_PULSEAUDIO          "Use PulseAudio" ${UNIX_SYS})
@@ -98,161 +102,177 @@
 > dep_option(SDL_MIR_SHARED          "Dynamically load Mir support" ON "SDL_VIDEO_MIR" OFF)
 > set_option(SDL_VIDEO_RPI           "Use Raspberry Pi video driver" ${UNIX_SYS})
 > dep_option(SDL_X11_SHARED          "Dynamically load X11 support" ON "SDL_VIDEO_X11" OFF)
-306,307c306,307
+326,327c326,327
 <   string(TOUPPER "VIDEO_X11_${_SUB}" _OPT)
 <   dep_option(${_OPT}           "Enable ${_SUB} support" ON "VIDEO_X11" OFF)
 ---
 >   string(TOUPPER "SDL_VIDEO_X11_${_SUB}" _OPT)
 >   dep_option(${_OPT}           "Enable ${_SUB} support" ON "SDL_VIDEO_X11" OFF)
-309,312c309,312
+329,335c329,335
 < set_option(VIDEO_COCOA         "Use Cocoa video driver" ${APPLE})
 < set_option(DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
 < set_option(RENDER_D3D          "Enable the Direct3D render driver" ${WINDOWS})
 < set_option(VIDEO_VIVANTE       "Use Vivante EGL video driver" ${UNIX_SYS})
+< dep_option(VIDEO_VULKAN        "Enable Vulkan support" ON "ANDROID OR APPLE OR LINUX OR WINDOWS" OFF)
+< set_option(VIDEO_KMSDRM        "Use KMS DRM video driver" ${UNIX_SYS})
+< dep_option(KMSDRM_SHARED       "Dynamically load KMS DRM support" ON "VIDEO_KMSDRM" OFF)
 ---
 > set_option(SDL_VIDEO_COCOA         "Use Cocoa video driver" ${APPLE})
 > set_option(SDL_DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
 > set_option(SDL_RENDER_D3D          "Enable the Direct3D render driver" ${WINDOWS})
 > set_option(SDL_VIDEO_VIVANTE       "Use Vivante EGL video driver" ${UNIX_SYS})
-339c339
+> dep_option(SDL_VIDEO_VULKAN        "Enable Vulkan support" ON "ANDROID OR APPLE OR LINUX OR WINDOWS" OFF)
+> set_option(SDL_VIDEO_KMSDRM        "Use KMS DRM video driver" ${UNIX_SYS})
+> dep_option(SDL_KMSDRM_SHARED       "Dynamically load KMS DRM support" ON "SDL_VIDEO_KMSDRM" OFF)
+362c362
 < if(ASSERTIONS STREQUAL "auto")
 ---
 > if(SDL_ASSERTIONS STREQUAL "auto")
-341c341
+364c364
 < elseif(ASSERTIONS STREQUAL "disabled")
 ---
 > elseif(SDL_ASSERTIONS STREQUAL "disabled")
-343c343
+366c366
 < elseif(ASSERTIONS STREQUAL "release")
 ---
 > elseif(SDL_ASSERTIONS STREQUAL "release")
-345c345
+368c368
 < elseif(ASSERTIONS STREQUAL "enabled")
 ---
 > elseif(SDL_ASSERTIONS STREQUAL "enabled")
-347c347
+370c370
 < elseif(ASSERTIONS STREQUAL "paranoid")
 ---
 > elseif(SDL_ASSERTIONS STREQUAL "paranoid")
-352c352
+375c375
 < set(HAVE_ASSERTIONS ${ASSERTIONS})
 ---
 > set(HAVE_ASSERTIONS ${SDL_ASSERTIONS})
-382c382
+405c405
 <   if(GCC_ATOMICS)
 ---
 >   if(SDL_GCC_ATOMICS)
-428c428
+455c455
 < if(ASSEMBLY)
 ---
 > if(SDL_ASSEMBLY)
-434c434
+461c461
 <     if(MMX)
 ---
 >     if(SDL_MMX)
-457c457
+484c484
 <     if(3DNOW)
 ---
 >     if(SDL_3DNOW)
-474c474
+501c501
 <     if(SSE)
 ---
 >     if(SDL_SSE)
-497c497
+524c524
 <     if(SSE2)
 ---
 >     if(SDL_SSE2)
-520c520
+547c547
 <     if(SSE3)
 ---
 >     if(SDL_SSE3)
-543,544c543,544
+570,571c570,571
 <     if(NOT SSEMATH)
 <       if(SSE OR SSE2 OR SSE3)
 ---
 >     if(NOT SDL_SSEMATH)
 >       if(SDL_SSE OR SDL_SSE2 OR SDL_SSE3)
-552c552
+582c582
 <     if(ALTIVEC)
 ---
 >     if(SDL_ALTIVEC)
-596c596
+626c626
 < if(LIBC)
 ---
 > if(SDL_LIBC)
-721c721
+752c752
 <   if(DUMMYAUDIO)
 ---
 >   if(SDL_DUMMYAUDIO)
-727c727
+758c758
 <   if(DISKAUDIO)
 ---
 >   if(SDL_DISKAUDIO)
-743c743
+774c774
 <   if(VIDEO_DUMMY)
 ---
 >   if(SDL_VIDEO_DUMMY)
-788c788
+855c855
 <     if(VIDEO_OPENGLES)
 ---
 >     if(SDL_VIDEO_OPENGLES)
-833c833
+876c876
+<       set(VIDEO_VULKAN OFF)
+---
+>       set(SDL_VIDEO_VULKAN OFF)
+920c920
 <     if(CLOCK_GETTIME)
 ---
 >     if(SDL_CLOCK_GETTIME)
-844c844
+931c931
 <     if(VIDEO_OPENGLES)
 ---
 >     if(SDL_VIDEO_OPENGLES)
-973c973
+1066c1066
 <   if(CLOCK_GETTIME)
 ---
 >   if(SDL_CLOCK_GETTIME)
-1014c1014
+1107c1107
 <   if(RPATH)
 ---
 >   if(SDL_RPATH)
-1051c1051
+1144c1144
 <   if(DIRECTX)
 ---
 >   if(SDL_DIRECTX)
-1125c1125
+1229c1229
 <     if(RENDER_D3D AND HAVE_D3D_H)
 ---
 >     if(SDL_RENDER_D3D AND HAVE_D3D_H)
-1129c1129
+1233c1233
 <     if(RENDER_D3D AND HAVE_D3D11_H)
 ---
 >     if(SDL_RENDER_D3D AND HAVE_D3D11_H)
-1183,1184c1183,1184
+1287,1288c1287,1288
 <     if(VIDEO_OPENGL)
 <       set(SDL_VIDEO_OPENGL 1)
 ---
 >     if(SDL_VIDEO_OPENGL)
 >       #set(SDL_VIDEO_OPENGL 1) Does this need to be set with the option rename?
-1190c1190
+1294c1294
 <     if(VIDEO_OPENGLES)
 ---
 >     if(SDL_VIDEO_OPENGLES)
-1364,1365c1364,1365
+1478,1479c1478,1479
 <       if(VIDEO_OPENGL)
 <         set(SDL_VIDEO_OPENGL 1)
 ---
 >       if(SDL_VIDEO_OPENGL)
 >         #set(SDL_VIDEO_OPENGL 1) Does this need to be set with the option rename?
-1393c1393
+1507c1507
 <     if(VIDEO_OPENGL)
 ---
->     if(Does this need to be set with the option rename?VIDEO_OPENGL)
-1395c1395
+>     if(SDL_VIDEO_OPENGL)
+1509c1509
 <       set(SDL_VIDEO_OPENGL 1)
 ---
 >       #set(SDL_VIDEO_OPENGL 1) Does this need to be set with the option rename?
-1541c1541
+1520,1521c1520,1521
+< if(VIDEO_VULKAN)
+<   set(SDL_VIDEO_VULKAN 1)
+---
+> if(SDL_VIDEO_VULKAN)
+>   #set(SDL_VIDEO_VULKAN 1) #Does this need to be set with the option rename?
+1659c1659
 <   # Longest option is VIDEO_X11_XSCREENSAVER = 22 characters
 ---
 >   # Longest option is SDL_VIDEO_X11_XSCREENSAVER = 26 characters
-1544c1544
+1662c1662
 <   math(EXPR _PADLEN "23 - ${_OPTLEN}")
 ---
 >   math(EXPR _PADLEN "27 - ${_OPTLEN}")

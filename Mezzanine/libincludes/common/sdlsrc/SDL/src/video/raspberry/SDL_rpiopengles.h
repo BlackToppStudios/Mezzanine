@@ -20,8 +20,8 @@
 */
 #include "../../SDL_internal.h"
 
-#ifndef _SDL_rpiopengles_h
-#define _SDL_rpiopengles_h
+#ifndef SDL_rpiopengles_h_
+#define SDL_rpiopengles_h_
 
 #if SDL_VIDEO_DRIVER_RPI && SDL_VIDEO_OPENGL_EGL
 
@@ -40,9 +40,10 @@ extern int RPI_GLES_LoadLibrary(_THIS, const char *path);
 extern SDL_GLContext RPI_GLES_CreateContext(_THIS, SDL_Window * window);
 extern int RPI_GLES_SwapWindow(_THIS, SDL_Window * window);
 extern int RPI_GLES_MakeCurrent(_THIS, SDL_Window * window, SDL_GLContext context);
+extern void RPI_GLES_DefaultProfileConfig(_THIS, int *mask, int *major, int *minor);
 
 #endif /* SDL_VIDEO_DRIVER_RPI && SDL_VIDEO_OPENGL_EGL */
 
-#endif /* _SDL_rpiopengles_h */
+#endif /* SDL_rpiopengles_h_ */
 
 /* vi: set ts=4 sw=4 expandtab: */

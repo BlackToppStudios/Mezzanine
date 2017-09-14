@@ -47,7 +47,6 @@ using namespace Windows::Phone::UI::Input;
 
 /* SDL includes */
 extern "C" {
-#include "../../SDL_internal.h"
 #include "SDL_assert.h"
 #include "SDL_events.h"
 #include "SDL_hints.h"
@@ -122,7 +121,8 @@ int SDL_WinRTInitNonXAMLApp(int (*mainFunction)(int, char **))
     return 0;
 }
 
-static void WINRT_SetDisplayOrientationsPreference(void *userdata, const char *name, const char *oldValue, const char *newValue)
+static void SDLCALL
+WINRT_SetDisplayOrientationsPreference(void *userdata, const char *name, const char *oldValue, const char *newValue)
 {
     SDL_assert(SDL_strcmp(name, SDL_HINT_ORIENTATIONS) == 0);
 

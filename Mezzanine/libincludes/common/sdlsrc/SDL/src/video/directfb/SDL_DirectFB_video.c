@@ -22,14 +22,10 @@
 
 #if SDL_VIDEO_DRIVER_DIRECTFB
 
-#include "SDL_DirectFB_video.h"
-
-#include "SDL_DirectFB_events.h"
 /*
  * #include "SDL_DirectFB_keyboard.h"
  */
 #include "SDL_DirectFB_modes.h"
-#include "SDL_DirectFB_mouse.h"
 #include "SDL_DirectFB_opengl.h"
 #include "SDL_DirectFB_window.h"
 #include "SDL_DirectFB_WM.h"
@@ -113,8 +109,8 @@ DirectFB_CreateDevice(int devindex)
     device->GetDisplayModes = DirectFB_GetDisplayModes;
     device->SetDisplayMode = DirectFB_SetDisplayMode;
     device->PumpEvents = DirectFB_PumpEventsWindow;
-    device->CreateWindow = DirectFB_CreateWindow;
-    device->CreateWindowFrom = DirectFB_CreateWindowFrom;
+    device->CreateSDLWindow = DirectFB_CreateWindow;
+    device->CreateSDLWindowFrom = DirectFB_CreateWindowFrom;
     device->SetWindowTitle = DirectFB_SetWindowTitle;
     device->SetWindowIcon = DirectFB_SetWindowIcon;
     device->SetWindowPosition = DirectFB_SetWindowPosition;
@@ -232,8 +228,7 @@ DirectFB_VideoInit(_THIS)
             DirectFBSetOption("disable-module", "x11input");
     }
 
-    /* FIXME: Reenable as default once multi kbd/mouse interface is sorted out */
-    devdata->use_linux_input = readBoolEnv(DFBENV_USE_LINUX_INPUT, 0);       /* default: on */
+    devdata->use_linux_input = readBoolEnv(DFBENV_USE_LINUX_INPUT, 1);       /* default: on */
 
     if (!devdata->use_linux_input)
     {

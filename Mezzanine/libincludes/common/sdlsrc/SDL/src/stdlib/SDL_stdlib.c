@@ -109,6 +109,12 @@ SDL_copysign(double x, double y)
     return copysign(x, y);
 #elif defined(HAVE__COPYSIGN)
     return _copysign(x, y);
+#elif defined(__WATCOMC__) && defined(__386__)
+    /* this is nasty as hell, but it works.. */
+    unsigned int *xi = (unsigned int *) &x,
+                 *yi = (unsigned int *) &y;
+    xi[1] = (yi[1] & 0x80000000) | (xi[1] & 0x7fffffff);
+    return x;
 #else
     return SDL_uclibc_copysign(x, y);
 #endif /* HAVE_COPYSIGN */
@@ -181,6 +187,10 @@ SDL_scalbn(double x, int n)
     return scalbn(x, n);
 #elif defined(HAVE__SCALB)
     return _scalb(x, n);
+#elif defined(HAVE_LIBC) && defined(HAVE_FLOAT_H) && (FLT_RADIX == 2)
+/* from scalbn(3): If FLT_RADIX equals 2 (which is
+ * usual), then scalbn() is equivalent to ldexp(3). */
+    return ldexp(x, n);
 #else
     return SDL_uclibc_scalbn(x, n);
 #endif /* HAVE_SCALBN */
