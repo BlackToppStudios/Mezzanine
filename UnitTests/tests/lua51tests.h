@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,6 @@
 #include "mezztest.h"
 
 #include "Scripting/scripting.h"
-#include "eventbase.h"
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -804,12 +803,6 @@ class lua51tests : public UnitTestGroup
                               "  return MezzanineSafe.Exception_IO_EXCEPTION\n"
                               "end",
                               "Exception", "TestException", 8, Mezzanine::ExceptionBase::IO_EXCEPTION, 0.0,
-                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
-
-                TestLuaScript("function TestOldEventSystem(x)\n"
-                              "  return MezzanineSafe.EventBase_GameWindow\n"
-                              "end",
-                              "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
             }

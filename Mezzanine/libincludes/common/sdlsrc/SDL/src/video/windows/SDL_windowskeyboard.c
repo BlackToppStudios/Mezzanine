@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 #if SDL_VIDEO_DRIVER_WINDOWS
 
@@ -102,6 +102,10 @@ WIN_InitKeyboard(_THIS)
     SDL_SetScancodeName(SDL_SCANCODE_APPLICATION, "Menu");
     SDL_SetScancodeName(SDL_SCANCODE_LGUI, "Left Windows");
     SDL_SetScancodeName(SDL_SCANCODE_RGUI, "Right Windows");
+
+    /* Are system caps/num/scroll lock active? Set our state to match. */
+    SDL_ToggleModState(KMOD_CAPS, (GetKeyState(VK_CAPITAL) & 0x0001) != 0);
+    SDL_ToggleModState(KMOD_NUM, (GetKeyState(VK_NUMLOCK) & 0x0001) != 0);
 }
 
 void
@@ -122,10 +126,9 @@ WIN_UpdateKeymap()
         }
 
         /* If this key is one of the non-mappable keys, ignore it */
-        /* Don't allow the number keys right above the qwerty row to translate or the top left key (grave/backquote) */
         /* Not mapping numbers fixes the French layout, giving numeric keycodes for the number keys, which is the expected behavior */
         if ((keymap[scancode] & SDLK_SCANCODE_MASK) ||
-            scancode == SDL_SCANCODE_GRAVE ||
+            /*  scancode == SDL_SCANCODE_GRAVE || */ /* Uncomment this line to re-enable the behavior of not mapping the "`"(grave) key to the users actual keyboard layout */
             (scancode >= SDL_SCANCODE_1 && scancode <= SDL_SCANCODE_0) ) {
             continue;
         }
@@ -155,10 +158,46 @@ WIN_QuitKeyboard(_THIS)
 }
 
 void
+WIN_ResetDeadKeys()
+{
+    /*
+    if a deadkey has been typed, but not the next character (which the deadkey might modify), 
+    this tries to undo the effect pressing the deadkey.
+    see: http://archives.miloush.net/michkap/archive/2006/09/10/748775.html
+    */
+    BYTE keyboardState[256];
+    WCHAR buffer[16];
+    int keycode, scancode, result, i;
+
+    GetKeyboardState(keyboardState);
+
+    keycode = VK_SPACE;
+    scancode = MapVirtualKey(keycode, MAPVK_VK_TO_VSC);
+    if (scancode == 0) {
+        /* the keyboard doesn't have this key */
+        return;
+    }
+
+    for (i = 0; i < 5; i++) {
+        result = ToUnicode(keycode, scancode, keyboardState, (LPWSTR)buffer, 16, 0);
+        if (result > 0) {
+            /* success */
+            return;
+        }
+    }
+}
+
+void
 WIN_StartTextInput(_THIS)
 {
 #ifndef SDL_DISABLE_WINDOWS_IME
-    SDL_Window *window = SDL_GetKeyboardFocus();
+    SDL_Window *window;
+#endif
+
+    WIN_ResetDeadKeys();
+
+#ifndef SDL_DISABLE_WINDOWS_IME
+    window = SDL_GetKeyboardFocus();
     if (window) {
         HWND hwnd = ((SDL_WindowData *) window->driverdata)->hwnd;
         SDL_VideoData *videodata = (SDL_VideoData *)_this->driverdata;
@@ -173,7 +212,13 @@ void
 WIN_StopTextInput(_THIS)
 {
 #ifndef SDL_DISABLE_WINDOWS_IME
-    SDL_Window *window = SDL_GetKeyboardFocus();
+    SDL_Window *window;
+#endif
+
+    WIN_ResetDeadKeys();
+
+#ifndef SDL_DISABLE_WINDOWS_IME
+    window = SDL_GetKeyboardFocus();
     if (window) {
         HWND hwnd = ((SDL_WindowData *) window->driverdata)->hwnd;
         SDL_VideoData *videodata = (SDL_VideoData *)_this->driverdata;
@@ -187,6 +232,7 @@ void
 WIN_SetTextInputRect(_THIS, SDL_Rect *rect)
 {
     SDL_VideoData *videodata = (SDL_VideoData *)_this->driverdata;
+    HIMC himc = 0;
 
     if (!rect) {
         SDL_InvalidParamError("rect");
@@ -194,6 +240,17 @@ WIN_SetTextInputRect(_THIS, SDL_Rect *rect)
     }
 
     videodata->ime_rect = *rect;
+
+    himc = ImmGetContext(videodata->ime_hwnd_current);
+    if (himc)
+    {
+        COMPOSITIONFORM cf;
+        cf.ptCurrentPos.x = videodata->ime_rect.x;
+        cf.ptCurrentPos.y = videodata->ime_rect.y;
+        cf.dwStyle = CFS_FORCE_POSITION;
+        ImmSetCompositionWindow(himc, &cf);
+        ImmReleaseContext(videodata->ime_hwnd_current, himc);
+    }
 }
 
 #ifdef SDL_DISABLE_WINDOWS_IME
@@ -211,7 +268,12 @@ void IME_Present(SDL_VideoData *videodata)
 
 #else
 
-#ifdef __GNUC__
+#ifdef SDL_msctf_h_
+#define USE_INIT_GUID
+#elif defined(__GNUC__)
+#define USE_INIT_GUID
+#endif
+#ifdef USE_INIT_GUID
 #undef DEFINE_GUID
 #define DEFINE_GUID(n,l,w1,w2,b1,b2,b3,b4,b5,b6,b7,b8) static const GUID n = {l,w1,w2,{b1,b2,b3,b4,b5,b6,b7,b8}}
 DEFINE_GUID(IID_ITfInputProcessorProfileActivationSink,        0x71C6E74E,0x0F28,0x11D8,0xA8,0x2A,0x00,0x06,0x5B,0x84,0x43,0x5C);
@@ -233,11 +295,11 @@ DEFINE_GUID(IID_ITfThreadMgrEx,                                0x3E90ADE3,0x7594
 #define IMEID_VER(id) ((id) & 0xffff0000)
 #define IMEID_LANG(id) ((id) & 0x0000ffff)
 
-#define CHT_HKL_DAYI            ((HKL)0xE0060404)
-#define CHT_HKL_NEW_PHONETIC    ((HKL)0xE0080404)
-#define CHT_HKL_NEW_CHANG_JIE   ((HKL)0xE0090404)
-#define CHT_HKL_NEW_QUICK       ((HKL)0xE00A0404)
-#define CHT_HKL_HK_CANTONESE    ((HKL)0xE00B0404)
+#define CHT_HKL_DAYI            ((HKL)(UINT_PTR)0xE0060404)
+#define CHT_HKL_NEW_PHONETIC    ((HKL)(UINT_PTR)0xE0080404)
+#define CHT_HKL_NEW_CHANG_JIE   ((HKL)(UINT_PTR)0xE0090404)
+#define CHT_HKL_NEW_QUICK       ((HKL)(UINT_PTR)0xE00A0404)
+#define CHT_HKL_HK_CANTONESE    ((HKL)(UINT_PTR)0xE00B0404)
 #define CHT_IMEFILENAME1        "TINTLGNT.IME"
 #define CHT_IMEFILENAME2        "CINTLGNT.IME"
 #define CHT_IMEFILENAME3        "MSTCIPHA.IME"
@@ -250,7 +312,7 @@ DEFINE_GUID(IID_ITfThreadMgrEx,                                0x3E90ADE3,0x7594
 #define IMEID_CHT_VER60         (LANG_CHT | MAKEIMEVERSION(6, 0))
 #define IMEID_CHT_VER_VISTA     (LANG_CHT | MAKEIMEVERSION(7, 0))
 
-#define CHS_HKL                 ((HKL)0xE00E0804)
+#define CHS_HKL                 ((HKL)(UINT_PTR)0xE00E0804)
 #define CHS_IMEFILENAME1        "PINTLGNT.IME"
 #define CHS_IMEFILENAME2        "MSSCIPYA.IME"
 #define IMEID_CHS_VER41         (LANG_CHS | MAKEIMEVERSION(4, 1))
@@ -268,9 +330,6 @@ static void IME_SetupAPI(SDL_VideoData *videodata);
 static DWORD IME_GetId(SDL_VideoData *videodata, UINT uIndex);
 static void IME_SendEditingEvent(SDL_VideoData *videodata);
 static void IME_DestroyTextures(SDL_VideoData *videodata);
-
-#define SDL_IsEqualIID(riid1, riid2) SDL_IsEqualGUID(riid1, riid2)
-#define SDL_IsEqualGUID(rguid1, rguid2) (!SDL_memcmp(rguid1, rguid2, sizeof(GUID)))
 
 static SDL_bool UILess_SetupSinks(SDL_VideoData *videodata);
 static void UILess_ReleaseSinks(SDL_VideoData *videodata);
@@ -292,6 +351,7 @@ IME_Init(SDL_VideoData *videodata, HWND hwnd)
     videodata->ime_himm32 = SDL_LoadObject("imm32.dll");
     if (!videodata->ime_himm32) {
         videodata->ime_available = SDL_FALSE;
+        SDL_ClearError();
         return;
     }
     videodata->ImmLockIMC = (LPINPUTCONTEXT2 (WINAPI *)(HIMC))SDL_LoadFunction(videodata->ime_himm32, "ImmLockIMC");
@@ -386,7 +446,8 @@ IME_GetReadingString(SDL_VideoData *videodata, HWND hwnd)
     INT err = 0;
     BOOL vertical = FALSE;
     UINT maxuilen = 0;
-    static OSVERSIONINFOA osversion = {0};
+    static OSVERSIONINFOA osversion;
+
     if (videodata->ime_uiless)
         return;
 
@@ -466,8 +527,10 @@ IME_GetReadingString(SDL_VideoData *videodata, HWND hwnd)
             s = (WCHAR *)(p + 1*4 + (16*2+2*4) + 5*4);
             break;
         }
-        if (s)
-            SDL_wcslcpy(videodata->ime_readingstring, s, len + 1);
+        if (s) {
+            size_t size = SDL_min((size_t)(len + 1), SDL_arraysize(videodata->ime_readingstring));
+            SDL_wcslcpy(videodata->ime_readingstring, s, size);
+        }
 
         videodata->ImmUnlockIMCC(lpimc->hPrivate);
         videodata->ImmUnlockIMC(himc);
@@ -673,13 +736,13 @@ IME_ClearComposition(SDL_VideoData *videodata)
 static void
 IME_GetCompositionString(SDL_VideoData *videodata, HIMC himc, DWORD string)
 {
-    LONG length = ImmGetCompositionStringW(himc, string, videodata->ime_composition, sizeof(videodata->ime_composition));
+    LONG length = ImmGetCompositionStringW(himc, string, videodata->ime_composition, sizeof(videodata->ime_composition) - sizeof(videodata->ime_composition[0]));
     if (length < 0)
         length = 0;
 
     length /= sizeof(videodata->ime_composition[0]);
     videodata->ime_cursor = LOWORD(ImmGetCompositionStringW(himc, GCS_CURSORPOS, 0, 0));
-    if (videodata->ime_composition[videodata->ime_cursor] == 0x3000) {
+    if (videodata->ime_cursor < SDL_arraysize(videodata->ime_composition) && videodata->ime_composition[videodata->ime_cursor] == 0x3000) {
         int i;
         for (i = videodata->ime_cursor + 1; i < length; ++i)
             videodata->ime_composition[i - 1] = videodata->ime_composition[i];
@@ -707,18 +770,19 @@ IME_SendEditingEvent(SDL_VideoData *videodata)
 {
     char *s = 0;
     WCHAR buffer[SDL_TEXTEDITINGEVENT_TEXT_SIZE];
+    const size_t size = SDL_arraysize(buffer);
     buffer[0] = 0;
     if (videodata->ime_readingstring[0]) {
         size_t len = SDL_min(SDL_wcslen(videodata->ime_composition), (size_t)videodata->ime_cursor);
         SDL_wcslcpy(buffer, videodata->ime_composition, len + 1);
-        SDL_wcslcat(buffer, videodata->ime_readingstring, sizeof(buffer));
-        SDL_wcslcat(buffer, &videodata->ime_composition[len], sizeof(buffer) - len);
+        SDL_wcslcat(buffer, videodata->ime_readingstring, size);
+        SDL_wcslcat(buffer, &videodata->ime_composition[len], size);
     }
     else {
-        SDL_wcslcpy(buffer, videodata->ime_composition, sizeof(videodata->ime_composition));
+        SDL_wcslcpy(buffer, videodata->ime_composition, size);
     }
     s = WIN_StringToUTF8(buffer);
-    SDL_SendEditingText(s, videodata->ime_cursor + SDL_wcslen(videodata->ime_readingstring), 0);
+    SDL_SendEditingText(s, videodata->ime_cursor + (int)SDL_wcslen(videodata->ime_readingstring), 0);
     SDL_free(s);
 }
 
@@ -746,19 +810,17 @@ IME_GetCandidateList(HIMC himc, SDL_VideoData *videodata)
         if (cand_list) {
             size = ImmGetCandidateListW(himc, 0, cand_list, size);
             if (size) {
-                int i = 0;
-                int j = 0;
-                int page_start = 0;
+                UINT i, j;
+                UINT page_start = 0;
                 videodata->ime_candsel = cand_list->dwSelection;
                 videodata->ime_candcount = cand_list->dwCount;
 
                 if (LANG() == LANG_CHS && IME_GetId(videodata, 0)) {
                     const UINT maxcandchar = 18;
-                    UINT i = 0;
-                    UINT cchars = 0;
+                    size_t cchars = 0;
 
-                    for (; i < videodata->ime_candcount; ++i) {
-                        UINT len = SDL_wcslen((LPWSTR)((DWORD_PTR)cand_list + cand_list->dwOffset[i])) + 1;
+                    for (i = 0; i < videodata->ime_candcount; ++i) {
+                        size_t len = SDL_wcslen((LPWSTR)((DWORD_PTR)cand_list + cand_list->dwOffset[i])) + 1;
                         if (len + cchars > maxcandchar) {
                             if (i > cand_list->dwSelection)
                                 break;
@@ -771,10 +833,13 @@ IME_GetCandidateList(HIMC himc, SDL_VideoData *videodata)
                         }
                     }
                     videodata->ime_candpgsize = i - page_start;
-                }
-                else {
+                } else {
                     videodata->ime_candpgsize = SDL_min(cand_list->dwPageSize, MAX_CANDLIST);
-                    page_start = (cand_list->dwSelection / videodata->ime_candpgsize) * videodata->ime_candpgsize;
+                    if (videodata->ime_candpgsize > 0) {
+                        page_start = (cand_list->dwSelection / videodata->ime_candpgsize) * videodata->ime_candpgsize;
+                    } else {
+                        page_start = 0;
+                    }
                 }
                 SDL_memset(&videodata->ime_candidates, 0, sizeof(videodata->ime_candidates));
                 for (i = page_start, j = 0; (DWORD)i < cand_list->dwCount && j < (int)videodata->ime_candpgsize; i++, j++) {
@@ -973,7 +1038,7 @@ STDMETHODIMP_(ULONG) TSFSink_AddRef(TSFSink *sink)
     return ++sink->refcount;
 }
 
-STDMETHODIMP_(ULONG)TSFSink_Release(TSFSink *sink)
+STDMETHODIMP_(ULONG) TSFSink_Release(TSFSink *sink)
 {
     --sink->refcount;
     if (sink->refcount == 0) {
@@ -989,9 +1054,9 @@ STDMETHODIMP UIElementSink_QueryInterface(TSFSink *sink, REFIID riid, PVOID *ppv
         return E_INVALIDARG;
 
     *ppv = 0;
-    if (SDL_IsEqualIID(riid, &IID_IUnknown))
+    if (WIN_IsEqualIID(riid, &IID_IUnknown))
         *ppv = (IUnknown *)sink;
-    else if (SDL_IsEqualIID(riid, &IID_ITfUIElementSink))
+    else if (WIN_IsEqualIID(riid, &IID_ITfUIElementSink))
         *ppv = (ITfUIElementSink *)sink;
 
     if (*ppv) {
@@ -1052,7 +1117,7 @@ STDMETHODIMP UIElementSink_UpdateUIElement(TSFSink *sink, DWORD dwUIElementId)
         BSTR bstr;
         if (SUCCEEDED(preading->lpVtbl->GetString(preading, &bstr)) && bstr) {
             WCHAR *s = (WCHAR *)bstr;
-            SDL_wcslcpy(videodata->ime_readingstring, s, sizeof(videodata->ime_readingstring));
+            SDL_wcslcpy(videodata->ime_readingstring, s, SDL_arraysize(videodata->ime_readingstring));
             IME_SendEditingEvent(videodata);
             SysFreeString(bstr);
         }
@@ -1095,9 +1160,9 @@ STDMETHODIMP IPPASink_QueryInterface(TSFSink *sink, REFIID riid, PVOID *ppv)
         return E_INVALIDARG;
 
     *ppv = 0;
-    if (SDL_IsEqualIID(riid, &IID_IUnknown))
+    if (WIN_IsEqualIID(riid, &IID_IUnknown))
         *ppv = (IUnknown *)sink;
-    else if (SDL_IsEqualIID(riid, &IID_ITfInputProcessorProfileActivationSink))
+    else if (WIN_IsEqualIID(riid, &IID_ITfInputProcessorProfileActivationSink))
         *ppv = (ITfInputProcessorProfileActivationSink *)sink;
 
     if (*ppv) {
@@ -1111,8 +1176,8 @@ STDMETHODIMP IPPASink_OnActivated(TSFSink *sink, DWORD dwProfileType, LANGID lan
 {
     static const GUID TF_PROFILE_DAYI = { 0x037B2C25, 0x480C, 0x4D7F, { 0xB0, 0x27, 0xD6, 0xCA, 0x6B, 0x69, 0x78, 0x8A } };
     SDL_VideoData *videodata = (SDL_VideoData *)sink->data;
-    videodata->ime_candlistindexbase = SDL_IsEqualGUID(&TF_PROFILE_DAYI, guidProfile) ? 0 : 1;
-    if (SDL_IsEqualIID(catid, &GUID_TFCAT_TIP_KEYBOARD) && (dwFlags & TF_IPSINK_FLAG_ACTIVE))
+    videodata->ime_candlistindexbase = WIN_IsEqualGUID(&TF_PROFILE_DAYI, guidProfile) ? 0 : 1;
+    if (WIN_IsEqualIID(catid, &GUID_TFCAT_TIP_KEYBOARD) && (dwFlags & TF_IPSINK_FLAG_ACTIVE))
         IME_InputLangChanged((SDL_VideoData *)sink->data);
 
     IME_HideCandidateList(videodata);
@@ -1351,7 +1416,6 @@ IME_RenderCandidateList(SDL_VideoData *videodata, HDC hdc)
     SIZE candsizes[MAX_CANDLIST];
     SIZE maxcandsize = {0};
     HBITMAP hbm = NULL;
-    BYTE *bits = NULL;
     const int candcount = SDL_min(SDL_min(MAX_CANDLIST, videodata->ime_candcount), videodata->ime_candpgsize);
     SDL_bool vertical = videodata->ime_candvertical;
 
@@ -1387,7 +1451,7 @@ IME_RenderCandidateList(SDL_VideoData *videodata, HDC hdc)
         if (!*s)
             break;
 
-        GetTextExtentPoint32W(hdc, s, SDL_wcslen(s), &candsizes[i]);
+        GetTextExtentPoint32W(hdc, s, (int)SDL_wcslen(s), &candsizes[i]);
         maxcandsize.cx = SDL_max(maxcandsize.cx, candsizes[i].cx);
         maxcandsize.cy = SDL_max(maxcandsize.cy, candsizes[i].cy);
 
@@ -1433,7 +1497,7 @@ IME_RenderCandidateList(SDL_VideoData *videodata, HDC hdc)
             ;
     }
 
-    bits = StartDrawToBitmap(hdc, &hbm, size.cx, size.cy);
+    StartDrawToBitmap(hdc, &hbm, size.cx, size.cy);
 
     SelectObject(hdc, listpen);
     SelectObject(hdc, listbrush);
@@ -1479,7 +1543,7 @@ IME_RenderCandidateList(SDL_VideoData *videodata, HDC hdc)
         }
 
         DrawRect(hdc, left, top, right, bottom, candborder);
-        ExtTextOutW(hdc, left + candborder + candpadding, top + candborder + candpadding, 0, NULL, s, SDL_wcslen(s), NULL);
+        ExtTextOutW(hdc, left + candborder + candpadding, top + candborder + candpadding, 0, NULL, s, (int)SDL_wcslen(s), NULL);
     }
     StopDrawToBitmap(hdc, &hbm);
 

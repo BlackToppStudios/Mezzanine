@@ -3,8 +3,8 @@ Copyright (c) 2003-2014 Erwin Coumans  http://bullet.googlecode.com
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
-Permission is granted to anyone to use this software for any purpose, 
-including commercial applications, and to alter it and redistribute it freely, 
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it freely,
 subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
@@ -53,7 +53,7 @@ subject to the following restrictions:
 // Using ordinary system-provided mutexes like Windows critical sections was noticeably slower
 // presumably because when it fails to lock at first it would sleep the thread and trigger costly
 // context switching.
-// 
+//
 
 #if __cplusplus >= 201103L
 
@@ -232,21 +232,19 @@ struct ThreadsafeCounter
     ThreadsafeCounter()
     {
         mCounter = 0;
-        --mCounter; // first count should come back 0
     }
 
     unsigned int getNext()
     {
         // no need to optimize this with atomics, it is only called ONCE per thread!
         mMutex.lock();
-        mCounter++;
+        unsigned int val = mCounter++;
         if ( mCounter >= BT_MAX_THREAD_COUNT )
         {
             btAssert( !"thread counter exceeded" );
             // wrap back to the first worker index
-            mCounter = 1;
+            mCounter = val = 1;
         }
-        unsigned int val = mCounter;
         mMutex.unlock();
         return val;
     }
@@ -276,7 +274,7 @@ static ThreadsafeCounter gThreadCounter;
 // We allocate thread-indexes as needed with a sequential global thread counter.
 //
 // Our simple thread-counting scheme falls apart if the task scheduler destroys some threads but
-// continues to re-use other threads and the application repeatedly resizes the thread pool of the 
+// continues to re-use other threads and the application repeatedly resizes the thread pool of the
 // task scheduler.
 // In order to prevent the thread-counter from exceeding the global max (BT_MAX_THREAD_COUNT), we
 // wrap the thread counter back to 1. This should only happen if the worker threads have all been

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,12 +57,12 @@ namespace Mezzanine
         AreaEffect(TheWorld)
         {  }
 
-    GravityField::GravityField(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld)
+    GravityField::GravityField(const EntityID& EntID, World* TheWorld) :
+        AreaEffect(EntID,TheWorld)
         {  }
 
-    GravityField::GravityField(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        AreaEffect(Name,Shape,TheWorld)
+    GravityField::GravityField(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(EntID,Shape,TheWorld)
         {  }
 
     GravityField::GravityField(const XML::Node& SelfRoot, World* TheWorld) :
@@ -75,19 +75,19 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType GravityField::GetType() const
-        { return Mezzanine::WO_AreaEffectGravityField; }
+    Mezzanine::EntityType GravityField::GetEntityType() const
+        { return Mezzanine::ET_AreaEffectGravityField; }
 
     void GravityField::ApplyEffect()
     {
         AreaEffect::ApplyEffect();
         for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
         {
-            const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
-            for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+            const ComponentContainer& OtherComponents = (*AddedIt)->GetComponents();
+            for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
             {
-                if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                    Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                     RigProx->SetGravity(this->Grav);
                 }
             }
@@ -98,11 +98,11 @@ namespace Mezzanine
 
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
-                const ProxyContainer& OtherProxies = (*RemovedIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*RemovedIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                         RigProx->SetGravity(WorldGravity);
                     }
                 }
@@ -126,7 +126,7 @@ namespace Mezzanine
     {
         this->AreaEffect::ProtoSerializeProperties(SelfRoot);
 
-        XML::Node PropertiesNode = SelfRoot.AppendChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.AppendChild( Entity::GetSerializableName() + "Properties" );
 
         if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
         {
@@ -135,7 +135,7 @@ namespace Mezzanine
 
             return;
         }else{
-            SerializeError("Create XML Attribute Values",WorldObject::GetSerializableName() + "Properties",true);
+            SerializeError("Create XML Attribute Values",Entity::GetSerializableName() + "Properties",true);
         }
     }
 
@@ -143,7 +143,7 @@ namespace Mezzanine
     {
         this->AreaEffect::ProtoDeSerializeProperties(SelfRoot);
 
-        XML::Node PropertiesNode = SelfRoot.GetChild( WorldObject::GetSerializableName() + "Properties" );
+        XML::Node PropertiesNode = SelfRoot.GetChild( Entity::GetSerializableName() + "Properties" );
 
         if( !PropertiesNode.Empty() ) {
             if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
@@ -153,10 +153,10 @@ namespace Mezzanine
                     this->SetFieldGravity(Gravity);
                 }
             }else{
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (WorldObject::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Entity::GetSerializableName() + "Properties" ) + ": Not Version 1.");
             }
         }else{
-            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,WorldObject::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,Entity::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
         }
     }
 
@@ -178,22 +178,22 @@ namespace Mezzanine
     String GravityFieldFactory::GetTypeName() const
         { return GravityField::GetSerializableName(); }
 
-    GravityField* GravityFieldFactory::CreateGravityField(const String& Name, World* TheWorld)
-        { return new GravityField(Name,TheWorld); }
+    GravityField* GravityFieldFactory::CreateGravityField(const EntityID& EntID, World* TheWorld)
+        { return new GravityField(EntID,TheWorld); }
 
-    GravityField* GravityFieldFactory::CreateGravityField(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
-        { return new GravityField(Name,AEShape,TheWorld); }
+    GravityField* GravityFieldFactory::CreateGravityField(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new GravityField(EntID,AEShape,TheWorld); }
 
     GravityField* GravityFieldFactory::CreateGravityField(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<GravityField*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<GravityField*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityFieldFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new GravityField(Name,TheWorld); }
+    Entity* GravityFieldFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new GravityField(EntID,TheWorld); }
 
-    AreaEffect* GravityFieldFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* GravityFieldFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new GravityField(XMLNode,TheWorld); }
 
-    void GravityFieldFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void GravityFieldFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

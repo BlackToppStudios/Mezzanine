@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,6 +50,8 @@
 #include <OgreViewport.h>
 #include <OgreRenderWindow.h>
 
+#include <cassert>
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -99,11 +101,19 @@ namespace Mezzanine
 
         Mezzanine::OrientationMode Viewport::GetOrientationMode() const
         {
-            #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
+        #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
             return Mezzanine::OM_Degree_0;
-            #else
+        #else
             return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() );
-            #endif
+        #endif
+        }
+
+        Boole Viewport::IsWithinBounds(const Whole XPos, const Whole YPos) const
+        {
+            return ( XPos >= this->GetActualLeft() &&
+                     XPos <= this->GetActualLeft() + this->GetActualWidth() &&
+                     YPos >= this->GetActualTop() &&
+                     YPos <= this->GetActualTop() + this->GetActualHeight() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

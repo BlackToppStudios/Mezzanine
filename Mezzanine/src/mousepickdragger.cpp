@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,8 +42,8 @@
 
 #include "mousepickdragger.h"
 #include "rayquery.h"
-#include "worldobject.h"
-#include "worldproxy.h"
+#include "entity.h"
+#include "entityproxy.h"
 
 #include "Input/mouse.h"
 
@@ -117,40 +117,41 @@ namespace Mezzanine
         return RayQueryHit();
     }
 
-    WorldProxy* PlaneDragger::GetBestProxy(WorldProxy* Target) const
+    EntityProxy* PlaneDragger::GetBestProxy(EntityProxy* Target) const
     {
-        const UInt32 DesiredTypes = Mezzanine::PT_Physics_RigidProxy;// | Mezzanine::PT_Physics_SoftBody;
-        if( Target->GetProxyType() & DesiredTypes )
+        const ComponentType DesiredTypeFirst = Mezzanine::CT_Physics_RigidProxy;
+        //const ComponentType DesiredTypeLast = Mezzanine::CT_Physics_SoftBody;
+        if( Target->GetComponentType() == DesiredTypeFirst )
             return Target;
 
-        WorldObject* Parent = Target->GetParentObject();
+        Entity* Parent = Target->GetParentEntity();
         if( Parent != NULL ) {
-            WorldProxy* NewTarget = Parent->GetProxy(DesiredTypes,0);
+            EntityProxy* NewTarget = static_cast<EntityProxy*>( Parent->GetComponent(DesiredTypeFirst,0) );
             return ( NewTarget != NULL ? NewTarget : Target );
         }
         return Target;
     }
 
-    WorldProxy* PlaneDragger::GetCurrentTarget() const
+    EntityProxy* PlaneDragger::GetCurrentTarget() const
         { return ( this->Dragger != NULL ? this->Dragger->GetProxyA() : NULL ); }
 
-    WorldProxy* PlaneDragger::GetLastTarget() const
+    EntityProxy* PlaneDragger::GetLastTarget() const
         { return this->LastTarget; }
 
     Boole PlaneDragger::IsDragging() const
         { return ( this->Dragger != NULL ); }
 
-    Boole PlaneDragger::StartDragging(WorldProxy* Target, const Vector3& Offset, const Ray& MouseRay)
+    Boole PlaneDragger::StartDragging(EntityProxy* Target, const Vector3& Offset, const Ray& MouseRay)
     {
         if( this->Dragger == NULL ) {
             Transform TargetTrans(Offset);
-            if( Target->GetProxyType() & Mezzanine::PT_Physics_RigidProxy ) {
+            if( Target->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                 Physics::RigidProxy* CastedTarget = static_cast<Physics::RigidProxy*>(Target);
                 this->SavedActivationState = CastedTarget->GetActivationState();
                 CastedTarget->SetActivationState(Physics::AS_DisableDeactivation);
                 this->Dragger = this->CreateDragger(CastedTarget,TargetTrans);
                 return true;
-            }/*else if( Target->GetProxyType() & Mezzanine::PT_Physics_SoftProxy ) {
+            }/*else if( Target->GetComponentType() == Mezzanine::CT_Physics_SoftProxy ) {
 
             }*/
         }
@@ -248,41 +249,42 @@ namespace Mezzanine
         return RayQueryHit();
     }
 
-    WorldProxy* DistanceDragger::GetBestProxy(WorldProxy* Target) const
+    EntityProxy* DistanceDragger::GetBestProxy(EntityProxy* Target) const
     {
-        const UInt32 DesiredTypes = Mezzanine::PT_Physics_RigidProxy;// | Mezzanine::PT_Physics_SoftBody;
-        if( Target->GetProxyType() & DesiredTypes )
+        const ComponentType DesiredTypeFirst = Mezzanine::CT_Physics_RigidProxy;
+        //const ComponentType DesiredTypeLast = Mezzanine::CT_Physics_SoftBody;
+        if( Target->GetComponentType() == DesiredTypeFirst )
             return Target;
 
-        WorldObject* Parent = Target->GetParentObject();
+        Entity* Parent = Target->GetParentEntity();
         if( Parent != NULL ) {
-            WorldProxy* NewTarget = Parent->GetProxy(DesiredTypes,0);
+            EntityProxy* NewTarget = static_cast<EntityProxy*>( Parent->GetComponent(DesiredTypeFirst,0) );
             return ( NewTarget != NULL ? NewTarget : Target );
         }
         return Target;
     }
 
-    WorldProxy* DistanceDragger::GetCurrentTarget() const
+    EntityProxy* DistanceDragger::GetCurrentTarget() const
         { return ( this->Dragger != NULL ? this->Dragger->GetProxyA() : NULL ); }
 
-    WorldProxy* DistanceDragger::GetLastTarget() const
+    EntityProxy* DistanceDragger::GetLastTarget() const
         { return this->LastTarget; }
 
     Boole DistanceDragger::IsDragging() const
         { return ( this->Dragger != NULL ); }
 
-    Boole DistanceDragger::StartDragging(WorldProxy* Target, const Vector3& Offset, const Ray& MouseRay)
+    Boole DistanceDragger::StartDragging(EntityProxy* Target, const Vector3& Offset, const Ray& MouseRay)
     {
         if( this->Dragger == NULL ) {
             Transform TargetTrans(Offset);
-            if( Target->GetProxyType() & Mezzanine::PT_Physics_RigidProxy ) {
+            if( Target->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
                 Physics::RigidProxy* CastedTarget = static_cast<Physics::RigidProxy*>(Target);
                 this->SavedActivationState = CastedTarget->GetActivationState();
                 CastedTarget->SetActivationState(Physics::AS_DisableDeactivation);
                 this->Dragger = this->CreateDragger(CastedTarget,TargetTrans);
                 this->DragDistance = MouseRay.Origin.Distance(Target->ConvertLocalToGlobal(Offset));
                 return true;
-            }/*else if( Target->GetProxyType() & Mezzanine::PT_Physics_SoftProxy ) {
+            }/*else if( Target->GetComponentType() == Mezzanine::CT_Physics_SoftProxy ) {
 
             }*/
         }

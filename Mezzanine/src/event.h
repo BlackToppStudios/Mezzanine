@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,8 +57,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a common class to represent all possible arguments for a given event that is fired.
     ///////////////////////////////////////
-	class MEZZ_LIB Event
-	{
+    class MEZZ_LIB Event
+    {
     public:
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -76,10 +76,10 @@ namespace Mezzanine
             {  }
         /// @brief Class destructor.
         virtual ~Event() = default;
-	};//Event
+    };//Event
 
-	/// @brief Convenience type for passing around Events.
-	using EventPtr = std::shared_ptr<Event>;
+    /// @brief Convenience type for passing around Events.
+    using EventPtr = std::shared_ptr<Event>;
 
     /// @}
 }//Mezzanine

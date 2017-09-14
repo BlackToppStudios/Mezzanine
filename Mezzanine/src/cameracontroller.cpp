@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,8 +44,7 @@
 
 #include "enumerations.h"
 #include "ray.h"
-#include "worldproxymanager.h"
-#include "worldobject.h"
+#include "entity.h"
 
 #include "Graphics/cameraproxy.h"
 #include "Graphics/scenemanager.h"
@@ -137,7 +136,12 @@ namespace Mezzanine
         assert(this->Controlled != NULL && "Must have a valid camera pointer to work with the controller.");
 
         Ray GroundRay(this->Controlled->GetLocation(),Vector3::Neg_Unit_Y());
-        this->RayCaster.SetProxyTypes(Mezzanine::WO_AllTerrains);
+        this->RayCaster.SetFilterFunction(
+            [](EntityProxy* Prox) {
+                Entity* Ent = Prox->GetParentEntity();
+                return ( Ent && ( Ent->GetEntityType() & Mezzanine::ET_AllTerrains ) );
+            }
+        );
         RayQueryHit Result = this->RayCaster.GetFirstShapeResult(GroundRay);
         if( Result.IsValid() ) {
             return Result.Distance;

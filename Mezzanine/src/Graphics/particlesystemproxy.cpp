@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,24 +77,6 @@ namespace Mezzanine
         ParticleSystemProxy::~ParticleSystemProxy()
             { this->DestroyParticleSystem(); }
 
-        void ParticleSystemProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-        {
-            this->ProtoSerializeTemplate(SelfRoot);
-            this->ProtoSerializeCustomParameters(SelfRoot);
-            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
-            this->ProtoSerializeEmitters(SelfRoot);
-            this->ProtoSerializeAffectors(SelfRoot);
-        }
-
-        void ParticleSystemProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-        {
-            this->ProtoDeSerializeTemplate(SelfRoot);
-            this->ProtoDeSerializeCustomParameters(SelfRoot);
-            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
-            this->ProtoDeSerializeEmitters(SelfRoot);
-            this->ProtoDeSerializeAffectors(SelfRoot);
-        }
-
         void ParticleSystemProxy::CreateParticleSystem(const String& Template)
         {
             this->GraphicsParticleSystem = this->Manager->_GetGraphicsWorldPointer()->createParticleSystem(ParticleSystemProxy::GenerateName(),Template);
@@ -142,9 +124,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType ParticleSystemProxy::GetProxyType() const
+        Mezzanine::ComponentType ParticleSystemProxy::GetComponentType() const
         {
-            return PT_Graphics_ParticleSystemProxy;
+            return Mezzanine::CT_Graphics_ParticleSystemProxy;
         }
 
         Boole ParticleSystemProxy::IsStatic() const
@@ -259,6 +241,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
+        void ParticleSystemProxy::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+            this->ProtoSerializeIsActivated(SelfRoot);
+            this->ProtoSerializeTemplate(SelfRoot);
+            this->ProtoSerializeCustomParameters(SelfRoot);
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeEmitters(SelfRoot);
+            this->ProtoSerializeAffectors(SelfRoot);
+        }
+
         void ParticleSystemProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
@@ -355,6 +348,16 @@ namespace Mezzanine
             }else{
                 SerializeError("Create XML Attribute Values",ParticleSystemProxy::GetSerializableName() + "Affectors",true);
             }
+        }
+
+        void ParticleSystemProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeTemplate(SelfRoot);
+            this->ProtoDeSerializeCustomParameters(SelfRoot);
+            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeEmitters(SelfRoot);
+            this->ProtoDeSerializeAffectors(SelfRoot);
+            this->ProtoDeSerializeIsActivated(SelfRoot);
         }
 
         void ParticleSystemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

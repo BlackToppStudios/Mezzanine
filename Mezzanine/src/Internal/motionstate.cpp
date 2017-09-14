@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@
 
 #include "Internal/motionstate.h.cpp"
 #include "Physics/rigidproxy.h"
-#include "worldobject.h"
+#include "entity.h"
 #include "exception.h"
 
 #include <algorithm>
@@ -73,14 +73,7 @@ namespace Mezzanine
             { this->ParentObject = PO; }
 
         void SimpleMotionState::SetSyncObject(TransformableObject* TO)
-        {
-            //UInt32 ProxType = WP->GetProxyType();
-            //if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
-                this->SyncObject = TO;
-            //}else{
-            //    MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
-            //}
-        }
+            { this->SyncObject = TO; }
 
         void SimpleMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
@@ -160,37 +153,37 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // WorldObjectMotionState methods
+        // EntityMotionState methods
 
-        WorldObjectMotionState::WorldObjectMotionState() :
+        EntityMotionState::EntityMotionState() :
             ParentObject(NULL),
             SyncObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        WorldObjectMotionState::WorldObjectMotionState(Physics::RigidProxy* PO) :
+        EntityMotionState::EntityMotionState(Physics::RigidProxy* PO) :
             ParentObject(PO),
             SyncObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        WorldObjectMotionState::~WorldObjectMotionState()
+        EntityMotionState::~EntityMotionState()
             {  }
 
-        void WorldObjectMotionState::SetParentObject(Physics::RigidProxy* PO)
+        void EntityMotionState::SetParentObject(Physics::RigidProxy* PO)
             { this->ParentObject = PO; }
 
-        void WorldObjectMotionState::SetSyncObject(WorldObject* WO)
+        void EntityMotionState::SetSyncObject(Entity* WO)
             { this->SyncObject = WO; }
 
-        void WorldObjectMotionState::SetPosition(const Vector3& Position)
+        void EntityMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        void WorldObjectMotionState::SetOrientation(const Quaternion& Orientation)
+        void EntityMotionState::SetOrientation(const Quaternion& Orientation)
             { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void WorldObjectMotionState::getWorldTransform(btTransform& worldTrans) const
+        void EntityMotionState::getWorldTransform(btTransform& worldTrans) const
             { worldTrans = this->WorldTrans; }
 
-        void WorldObjectMotionState::setWorldTransform(const btTransform& worldTrans)
+        void EntityMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
             if( this->ParentObject != NULL && this->SyncObject != NULL ) {

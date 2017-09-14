@@ -43,6 +43,20 @@
 #include "Physics/taskscheduler.h.cpp"
 
 #include <cassert>
+#include <iostream>
+
+namespace
+{
+    btSpinMutex IdxMutex;
+    unsigned int GetThreadIdx()
+    {
+        static unsigned int ThreadIndex = 1;
+        btMutexLock(&IdxMutex);
+        unsigned int Ret = ThreadIndex++;
+        btMutexUnlock(&IdxMutex);
+        return Ret;
+    }
+}
 
 namespace Mezzanine
 {
@@ -55,33 +69,48 @@ namespace Mezzanine
             Body(nullptr),
             IndexStart(0),
             IndexEnd(0),
+            ThreadCount(numThreads),
             StillRunning(true)
-            { this->CreatePool(numThreads); }
+            { this->m_savedThreadCounter = 1; }
 
         ParallelForScheduler::~ParallelForScheduler()
-            { this->JoinAllThreads(); }
+            {  }
 
         void ParallelForScheduler::CreatePool(int NumThreads)
         {
+            assert( this->Threads.empty() && "Threads already exist when trying to make a new pool." );
+
             this->Threads.reserve(NumThreads);
             for( int CurrThread = 0 ; CurrThread < NumThreads ; ++CurrThread )
             {
                 auto ThreadFunct = [this]() {
-                    assert( !btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 1" );
                     const unsigned int MyThreadIndex{ btGetCurrentThreadIndex() - 1 };
+                    //const unsigned int MyThreadIndex = GetThreadIdx();
+                    StringStream StartStream;
+                    StartStream << "Thread " << MyThreadIndex << " : starting.\n";
+                    std::cout << StartStream.str();
                     while(true)
                     {
-                        this->StartingLine.Wait(); // Add error checking, this should be false
-                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 2" );
+                        Boole StartCheck = this->StartingLine.Wait(); // Add error checking, this should be false
+                        StringStream GreetStream;
+                        if( StartCheck ) {
+                            GreetStream << "Thread " << MyThreadIndex << ": sends it's regards!  And is NOT ok!\n";
+                            assert( !StartCheck && "Non-false return at start of worker thread loop." );
+                        }else{
+                            GreetStream << "Thread " << MyThreadIndex << ": sends it's regards!  And is ok.\n";
+                        }
+                        std::cout << GreetStream.str();
+
                         if(!StillRunning)
                             { break; }
-                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 3" );
                         const int RangeCount = this->IndexEnd - this->IndexStart;
                         const int PerThread = ( RangeCount / this->getNumThreads() ) + 1;
-                        const int MyStart = std::min(PerThread * MyThreadIndex, static_cast<unsigned int>(IndexEnd));
-                        const int MyEnd = std::min(MyStart + PerThread, IndexEnd);
-                        assert( btThreadsAreRunning() && "Threads are running out of sync of the scheduler! 4" );
-                        this->Body->forLoop(MyStart, MyEnd);
+                        //const int PerThread = ( RangeCount % this->getNumThreads() ? ( RangeCount / this->getNumThreads() ) + 1 : RangeCount / this->getNumThreads() );
+                        const int MyStart = std::min(this->IndexStart + ( PerThread * static_cast<int>( MyThreadIndex ) ), this->IndexEnd);
+                        const int MyEnd = std::min(MyStart + PerThread, this->IndexEnd);
+                        if( MyEnd - MyStart > 0 ) {
+                            this->Body->forLoop(MyStart, MyEnd);
+                        }
                         this->FinishLine.Wait();
                     }
                 };
@@ -89,8 +118,22 @@ namespace Mezzanine
             }
         }
 
+        void ParallelForScheduler::activate()
+        {
+            btITaskScheduler::activate();
+            this->CreatePool(this->ThreadCount);
+        }
+
+        void ParallelForScheduler::deactivate()
+        {
+            this->JoinAllThreads();
+            btITaskScheduler::deactivate();
+        }
+
         void ParallelForScheduler::JoinAllThreads()
         {
+            assert( !this->Threads.empty() && "The Thread pool is empty when attempting to join." );
+
             this->StillRunning = false;
             this->StartingLine.Wait(); // Should be true here
             for( std::thread& CurrThread : this->Threads )
@@ -116,22 +159,31 @@ namespace Mezzanine
 
         void ParallelForScheduler::parallelFor(int iBegin, int iEnd, int grainSize, const btIParallelForBody& body)
         {
+            static unsigned int CallCount = 0;
+            ++CallCount;
+            std::cout << "Number of calls to \"parallelFor\": " << CallCount << ".\n";
+
             const int RangeCount = iEnd - iBegin;
             if( RangeCount < 1 ) {
                 return;
+            }else if( static_cast<size_t>( RangeCount ) <= this->Threads.size() ) {
+                body.forLoop(iBegin,iEnd);
+            }else{
+                btPushThreadsAreRunning();
+                this->Body = &body;
+                this->IndexStart = iBegin;
+                this->IndexEnd = iEnd;
+                std::cout << "Main thread starting it's wait.\n";
+                Boole StartCheck = this->StartingLine.Wait(); // Check that this is true.
+                assert( StartCheck && "Non-true return at start of worker thread launch from main thread." );
+                // all the threads are working, we promise!
+                this->FinishLine.Wait(); // Don't care about return value
+                std::cout << "Main thread resuming after workers.\n";
+                this->Body = nullptr;
+                this->IndexStart = 0;
+                this->IndexEnd = 0;
+                btPopThreadsAreRunning();
             }
-
-            btPushThreadsAreRunning();
-            this->Body = &body;
-            this->IndexStart = iBegin;
-            this->IndexEnd = iEnd;
-            this->StartingLine.Wait(); // Check that this is true.
-            // all the threads are working, we promise!
-            this->FinishLine.Wait(); // Don't care about return value
-            this->Body = nullptr;
-            this->IndexStart = 0;
-            this->IndexEnd = 0;
-            btPopThreadsAreRunning();
         }
     } //Physics
 } //Mezzanine

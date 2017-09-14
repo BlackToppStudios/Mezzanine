@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -48,11 +48,11 @@
 namespace Mezzanine
 {
     Debris::Debris(World* TheWorld) :
-        WorldObject(TheWorld)
+        Entity(TheWorld)
         {  }
 
-    Debris::Debris(const String& Name, World* TheWorld) :
-        WorldObject(Name,TheWorld)
+    Debris::Debris(const EntityID& EntID, World* TheWorld) :
+        Entity(EntID,TheWorld)
         {  }
 
     Debris::~Debris()
@@ -69,12 +69,12 @@ namespace Mezzanine
 
     void Debris::ProtoSerializeProperties(XML::Node& SelfRoot) const
     {
-        this->WorldObject::ProtoSerializeProperties(SelfRoot);
+        this->Entity::ProtoSerializeProperties(SelfRoot);
     }
 
     void Debris::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
-        this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+        this->Entity::ProtoDeSerializeProperties(SelfRoot);
     }
 
     String Debris::GetDerivedSerializableName() const

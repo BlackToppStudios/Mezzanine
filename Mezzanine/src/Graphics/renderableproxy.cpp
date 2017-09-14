@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ namespace Mezzanine
         }
 
         RenderableProxy::RenderableProxy(const UInt32 ID, SceneManager* Creator) :
-            WorldProxy(ID),
+            EntityProxy(ID),
             GraphicsNode(NULL),
             Manager(Creator),
             VisibilityMask(Ogre::MovableObject::getDefaultVisibilityFlags()),
@@ -92,7 +92,7 @@ namespace Mezzanine
         AxisAlignedBox RenderableProxy::GetAABB() const
             { return AxisAlignedBox( this->_GetBaseGraphicsObject()->getBoundingBox() ); }
 
-        void RenderableProxy::AddToWorld()
+        void RenderableProxy::Activate()
         {
             if( !this->InWorld ) {
                 this->_GetBaseGraphicsObject()->setVisibilityFlags( this->VisibilityMask );
@@ -101,7 +101,7 @@ namespace Mezzanine
             }
         }
 
-        void RenderableProxy::RemoveFromWorld()
+        void RenderableProxy::Deactivate()
         {
             if( this->InWorld ) {
                 this->_GetBaseGraphicsObject()->setVisibilityFlags(0);
@@ -110,10 +110,10 @@ namespace Mezzanine
             }
         }
 
-        Boole RenderableProxy::IsInWorld() const
+        Boole RenderableProxy::IsActivated() const
             { return this->InWorld; }
 
-        WorldProxyManager* RenderableProxy::GetCreator() const
+        EntityComponentManager* RenderableProxy::GetCreator() const
             { return this->Manager; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -239,7 +239,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
             XML::Node PropertiesNode = SelfRoot.AppendChild( RenderableProxy::GetSerializableName() + "Properties" );
 
@@ -259,7 +259,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+            this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
             XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( RenderableProxy::GetSerializableName() + "Properties" );

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -73,9 +73,110 @@ namespace Mezzanine
     /// Quadratic is where the force applied drops by the attenuation value times the distance squared (strength - (attenuation amount * distance to AE center * distance to AE center)).
     enum AttenuationStyle
     {
-        Att_None,        ///< No Attentuation, Equal strength through.
-        Att_Linear,      ///< Linear attentuation, Strength weaker farther from center.
-        Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
+        Att_None,        ///< No Attenuation, Equal strength through.
+        Att_Linear,      ///< Linear attenuation, Strength weaker farther from center.
+        Att_Quadratic    ///< Quadratic/Exponential Attenuation, similar to real gravity, it tapers of more the further from the center you get.
+    };
+
+    /// @brief Used by all World proxies to describe what their derived types are.
+    enum ComponentType
+    {
+        CT_ComponentLast = 999,  ///< Placeholder for sorting
+        CT_ProxyFirst = 1000,    ///< Placeholder for sorting
+
+        CT_Audio_First = 1100,
+        CT_Audio_Listener,
+        CT_Audio_SoundProxy,
+        CT_Audio_Last,
+
+        CT_Graphics_First = 1200,
+        CT_Graphics_BillboardSetProxy,
+        CT_Graphics_CameraProxy,
+        CT_Graphics_ItemProxy,
+        CT_Graphics_LightProxy,
+        CT_Graphics_LineGroupProxy,
+        CT_Graphics_ParticleSystemProxy,
+        CT_Graphics_Last,
+
+        CT_Physics_First = 1300,
+        CT_Physics_GhostProxy,
+        CT_Physics_RigidProxy,
+        CT_Physics_SoftProxy,
+        CT_Physics_Last
+    };
+
+    /// @brief Used by various classes to help identify what class an object is.
+    /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
+    enum EntityType
+    {
+        ET_None                   = 0,          ///< Used to help report error conditions.
+        // Generic Entities
+        ET_Generic                = EnumBit(1),
+        // Terrain Objects
+        ET_TerrainFirst           = EnumBit(2),
+
+        ET_MeshTerrain            = EnumBit(2),
+        ET_HeightfieldTerrain     = EnumBit(3),
+        ET_VectorFieldTerrain     = EnumBit(4),
+        ET_VoxelTerrain           = EnumBit(5),
+        ET_MarchingCubeTerrain    = EnumBit(6),
+        ET_UnknownTerrain         = EnumBit(7),
+
+        ET_TerrainLast            = EnumBit(7),
+
+        ET_AllTerrains            = ET_MeshTerrain | ET_HeightfieldTerrain | ET_VectorFieldTerrain |
+                                    ET_VoxelTerrain | ET_MarchingCubeTerrain | ET_UnknownTerrain,
+
+        // Debris Objects
+        ET_DebrisFirst            = EnumBit(8),
+
+        ET_RigidDebris            = EnumBit(8),
+        ET_SoftDebris             = EnumBit(9),
+        ET_UnknownDebris          = EnumBit(10),
+
+        ET_DebrisLast             = EnumBit(10),
+
+        ET_AllDebris              = ET_RigidDebris | ET_SoftDebris | ET_UnknownDebris,
+
+        // AreaEffect Objects
+        ET_AreaEffectFirst        = EnumBit(11),
+
+        ET_AreaEffectGravityField = EnumBit(11),
+        ET_AreaEffectGravityWell  = EnumBit(12),
+        ET_AreaEffectFieldOfForce = EnumBit(13),
+        ET_AreaEffectPlaceHolder1 = EnumBit(14),
+        ET_AreaEffectPlaceHolder2 = EnumBit(15),
+        ET_AreaEffectUnknown      = EnumBit(16),
+
+        ET_AreaEffectLast         = EnumBit(16),
+
+        ET_AllAreaEffects         = ET_AreaEffectGravityField | ET_AreaEffectGravityWell | ET_AreaEffectFieldOfForce |
+                                    ET_AreaEffectPlaceHolder1 | ET_AreaEffectPlaceHolder2 | ET_AreaEffectUnknown,
+
+        // Actor Objects
+        ET_ActorFirst             = EnumBit(17),
+
+        ET_ActorPlaceHolder1      = EnumBit(17),
+        ET_ActorPlaceHolder2      = EnumBit(18),
+        ET_ActorPlaceHolder3      = EnumBit(19),
+
+        ET_ActorLast              = EnumBit(19),
+
+        ET_AllActors              = ET_ActorPlaceHolder1 | ET_ActorPlaceHolder2 | ET_ActorPlaceHolder3,
+
+        // Vehicle Objects
+        ET_VehicleFirst           = EnumBit(20),
+
+        ET_MultiBodyVehicle       = EnumBit(20),
+        ET_RaycastVehicle         = EnumBit(21),
+        ET_SimpleVehicle          = EnumBit(22),
+        ET_VehiclePlaceHolder1    = EnumBit(23),
+        ET_VehiclePlaceHolder2    = EnumBit(24),
+
+        ET_VehicleLast            = EnumBit(24),
+
+        ET_AllVehicles            = ET_MultiBodyVehicle | ET_RaycastVehicle | ET_SimpleVehicle |
+                                    ET_VehiclePlaceHolder1 | ET_VehiclePlaceHolder2
     };
 
     /// @brief Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.
@@ -98,50 +199,11 @@ namespace Mezzanine
     {
         PL_Unpaused          = 0,
 
-        PL_PausePhysics      = ( 1u << 0 ),
-        PL_PauseParticles    = ( 1u << 1 ),
-        PL_PauseAnimations   = ( 1u << 2 ),
+        PL_PausePhysics      = EnumBit(1),
+        PL_PauseParticles    = EnumBit(2),
+        PL_PauseAnimations   = EnumBit(3),
 
         PL_PauseAll          = PL_PausePhysics | PL_PauseParticles | PL_PauseAnimations
-    };
-
-    /// @brief Used by all World proxies to describe what their derived types are.
-    enum ProxyType
-    {
-        PT_Audio_First                  = EnumBit(1),
-
-        PT_Audio_Listener               = EnumBit(1),
-        PT_Audio_SoundProxy             = EnumBit(2),
-
-        PT_Audio_Last                   = EnumBit(2),
-
-        PT_Audio_All_Proxies            = ( PT_Audio_Listener | PT_Audio_SoundProxy ),
-
-        PT_Graphics_First               = EnumBit(3),
-
-        PT_Graphics_BillboardSetProxy   = EnumBit(3),
-        PT_Graphics_CameraProxy         = EnumBit(4),
-        PT_Graphics_EntityProxy         = EnumBit(5),
-        PT_Graphics_LightProxy          = EnumBit(6),
-        PT_Graphics_LineGroupProxy      = EnumBit(7),
-        PT_Graphics_ParticleSystemProxy = EnumBit(8),
-
-        PT_Graphics_Last                = EnumBit(8),
-
-        PT_Graphics_All_Proxies         = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy | PT_Graphics_EntityProxy |
-                                            PT_Graphics_LightProxy | PT_Graphics_LineGroupProxy | PT_Graphics_ParticleSystemProxy ),
-
-        PT_Physics_First                = EnumBit(9),
-
-        PT_Physics_GhostProxy           = EnumBit(9),
-        PT_Physics_RigidProxy           = EnumBit(10),
-        PT_Physics_SoftProxy            = EnumBit(11),
-
-        PT_Physics_Last                 = EnumBit(11),
-
-        PT_Physics_All_Proxies          = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy ),
-
-        PT_All_Proxies                  = ( PT_Audio_All_Proxies | PT_Graphics_All_Proxies | PT_Physics_All_Proxies )
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.
@@ -170,78 +232,6 @@ namespace Mezzanine
         TS_Local  = 0,    ///< Local space, aka the object in questions world position is used as origin.
         TS_Parent = 1,    ///< Mostly reserved for rotations, means a rotation to occur around the parent instead of self.
         TS_World  = 2     ///< World space
-    };
-
-    /// @brief Used by various classes to help identify what class an object is.
-    /// @details This enum can be used to express any object which could be considered "insertable" into the game world.
-    enum WorldObjectType
-    {
-        WO_None                   = 0,          ///< Used to help report error conditions.
-        // Terrain Objects
-        WO_TerrainFirst           = EnumBit(1),
-
-        WO_MeshTerrain            = EnumBit(1),
-        WO_HeightfieldTerrain     = EnumBit(2),
-        WO_VectorFieldTerrain     = EnumBit(3),
-        WO_VoxelTerrain           = EnumBit(4),
-        WO_MarchingCubeTerrain    = EnumBit(5),
-        WO_UnknownTerrain         = EnumBit(6),
-
-        WO_TerrainLast            = EnumBit(6),
-
-        WO_AllTerrains            = WO_MeshTerrain | WO_HeightfieldTerrain | WO_VectorFieldTerrain |
-                                    WO_VoxelTerrain | WO_MarchingCubeTerrain | WO_UnknownTerrain,
-
-        // Debris Objects
-        WO_DebrisFirst            = EnumBit(7),
-
-        WO_RigidDebris            = EnumBit(7),
-        WO_SoftDebris             = EnumBit(8),
-        WO_UnknownDebris          = EnumBit(9),
-
-        WO_DebrisLast             = EnumBit(9),
-
-        WO_AllDebris              = WO_RigidDebris | WO_SoftDebris | WO_UnknownDebris,
-
-        // AreaEffect Objects
-        WO_AreaEffectFirst        = EnumBit(10),
-
-        WO_AreaEffectGravityField = EnumBit(10),
-        WO_AreaEffectGravityWell  = EnumBit(11),
-        WO_AreaEffectFieldOfForce = EnumBit(12),
-        WO_AreaEffectPlaceHolder1 = EnumBit(13),
-        WO_AreaEffectPlaceHolder2 = EnumBit(14),
-        WO_AreaEffectUnknown      = EnumBit(15),
-
-        WO_AreaEffectLast         = EnumBit(15),
-
-        WO_AllAreaEffects         = WO_AreaEffectGravityField | WO_AreaEffectGravityWell | WO_AreaEffectFieldOfForce |
-                                    WO_AreaEffectPlaceHolder1 | WO_AreaEffectPlaceHolder2 | WO_AreaEffectUnknown,
-
-        // Actor Objects
-        WO_ActorFirst             = EnumBit(16),
-
-        WO_ActorPlaceHolder1      = EnumBit(16),
-        WO_ActorPlaceHolder2      = EnumBit(17),
-        WO_ActorPlaceHolder3      = EnumBit(18),
-
-        WO_ActorLast              = EnumBit(18),
-
-        WO_AllActors              = WO_ActorPlaceHolder1 | WO_ActorPlaceHolder2 | WO_ActorPlaceHolder3,
-
-        // Vehicle Objects
-        WO_VehicleFirst           = EnumBit(19),
-
-        WO_MultiBodyVehicle       = EnumBit(19),
-        WO_RaycastVehicle         = EnumBit(20),
-        WO_SimpleVehicle          = EnumBit(21),
-        WO_VehiclePlaceHolder1    = EnumBit(22),
-        WO_VehiclePlaceHolder2    = EnumBit(23),
-
-        WO_VehicleLast            = EnumBit(23),
-
-        WO_AllVehicles            = WO_MultiBodyVehicle | WO_RaycastVehicle | WO_SimpleVehicle |
-                                    WO_VehiclePlaceHolder1 | WO_VehiclePlaceHolder2
     };
 }//Mezzanine
 

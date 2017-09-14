@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ class btManifoldPoint;
 
 namespace Mezzanine
 {
-    class WorldObject;
+    class Entity;
     namespace Physics
     {
         class PhysicsManager;
@@ -125,17 +125,17 @@ namespace Mezzanine
             /// @return Returns a pointer to the second CollidableProxy in this event.
             virtual CollidableProxy* GetProxyB() const;
             /// @brief Gets the parent Object of CollidableProxy A.
-            /// @return Returns a pointer to the parent WorldObject of CollidableProxyA.
-            virtual WorldObject* GetObjectA() const;
+            /// @return Returns a pointer to the parent Entity of CollidableProxyA.
+            virtual Entity* GetObjectA() const;
             /// @brief Gets the parent Object of CollidableProxy B.
-            /// @return Returns a pointer to the parent WorldObject of CollidableProxyB.
-            virtual WorldObject* GetObjectB() const;
+            /// @return Returns a pointer to the parent Entity of CollidableProxyB.
+            virtual Entity* GetObjectB() const;
 
-            /// @brief Convenience function to see if the provided WorldObject pair match the pair in this class.
-            /// @param A The first WorldObject to be compared.  Will be checked against both objects in this collision.
-            /// @param B The second WorldObject to be compared.  Will be checked against both objects in this collision.
+            /// @brief Convenience function to see if the provided Entity pair match the pair in this class.
+            /// @param A The first Entity to be compared.  Will be checked against both objects in this collision.
+            /// @param B The second Entity to be compared.  Will be checked against both objects in this collision.
             /// @return Returns a Boole, true if the pairs match, false otherwise.
-            virtual Boole PairsMatch(WorldObject* A, WorldObject* B) const;
+            virtual Boole PairsMatch(Entity* A, Entity* B) const;
             /// @brief Convenience function to see if the provided CollidableProxy pair match the pair in this class.
             /// @param A The first CollidableProxy to be compared.  Will be checked against both objects in this collision.
             /// @param B The second CollidableProxy to be compared.  Will be checked against both objects in this collision.

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -101,8 +101,9 @@ namespace Mezzanine
 
         SoftProxy::~SoftProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsSoftBody;
         }
@@ -118,7 +119,7 @@ namespace Mezzanine
 
             this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(Entresol::GetSingletonPtr()->GetPhysicsManager()->_GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
             PhysicsObject=PhysicsSoftBody;
-            PhysicsObject->setUserPointer( (WorldObject*)this );
+            PhysicsObject->setUserPointer( (Entity*)this );
             PhysicsShape = PhysicsSoftBody->getCollisionShape();
             PhysicsSoftBody->setTotalMass(mass, true);
             PhysicsSoftBody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
@@ -130,7 +131,7 @@ namespace Mezzanine
             CreateManualMesh(CurMesh);
 
             this->GraphicsObject = Entresol::GetSingletonPtr()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
-            Ogre::Any OgreRef( (WorldObject*)this );
+            Ogre::Any OgreRef( (Entity*)this );
             GraphicsObject->setUserAny(OgreRef);
 
             this->PhysicsSoftBody->m_clusters[0]->m_collide = true;// */
@@ -163,21 +164,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType SoftProxy::GetProxyType() const
+        Mezzanine::ComponentType SoftProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_SoftProxy;
+            return Mezzanine::CT_Physics_SoftProxy;
         }
 
-        void SoftProxy::AddToWorld()
+        void SoftProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->GetSoftWorld()->addSoftBody( this->PhysicsSoftBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void SoftProxy::RemoveFromWorld()
+        void SoftProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->GetSoftWorld()->removeSoftBody( this->PhysicsSoftBody );
             }
         }
@@ -246,7 +247,7 @@ namespace Mezzanine
         void SoftProxy::ProtoSerialize(XML::Node& ParentNode) const
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
+            if( !SelfRoot.AppendAttribute("IsActivated").SetValue( this->IsActivated() ? "true" : "false" ) ) {
                 SerializeError("Create XML Attribute Values",SoftProxy::GetSerializableName(),true);
             }
 
@@ -266,17 +267,17 @@ namespace Mezzanine
 
         void SoftProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
+            Boole WasActivated = false;
+            XML::Attribute IsActivatedAttrib = SelfRoot.GetAttribute("IsActivated");
+            if( !IsActivatedAttrib.Empty() ) {
+                WasActivated = StringTools::ConvertToBool( IsActivatedAttrib.AsString() );
             }
 
             this->ProtoDeSerializeProperties(SelfRoot);
             this->ProtoDeSerializeShape(SelfRoot);
 
-            if( WasInWorld ) {
-                this->AddToWorld();
+            if( WasActivated ) {
+                this->Activate();
             }
         }
 

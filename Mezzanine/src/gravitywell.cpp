@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -62,16 +62,16 @@ namespace Mezzanine
         AllowWorldGrav(true)
         {  }
 
-    GravityWell::GravityWell(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld),
+    GravityWell::GravityWell(const EntityID& EntID, World* TheWorld) :
+        AreaEffect(EntID,TheWorld),
         AttenAmount(0),
         Strength(0),
         AttenStyle(Mezzanine::Att_None),
         AllowWorldGrav(true)
         {  }
 
-    GravityWell::GravityWell(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
-        AreaEffect(Name,Shape,TheWorld),
+    GravityWell::GravityWell(const EntityID& EntID, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(EntID,Shape,TheWorld),
         AttenAmount(0),
         Strength(0),
         AttenStyle(Mezzanine::Att_None),
@@ -92,14 +92,14 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Mezzanine::WorldObjectType GravityWell::GetType() const
-        { return Mezzanine::WO_AreaEffectGravityWell; }
+    Mezzanine::EntityType GravityWell::GetEntityType() const
+        { return Mezzanine::ET_AreaEffectGravityWell; }
 
     void GravityWell::ApplyEffect()
     {
-        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a WorldObject.
+        /// @todo This currently will apply this fields force uniformly to all rigid proxies contained in a Entity.
         /// Instead this should perhaps apply only to the ones in the field, or perhaps apply force based on the proxy position
-        /// rather than the WorldObject position to get more interesting results.
+        /// rather than the Entity position to get more interesting results.
         /// @todo Update to allow the application of force to soft proxies.
         AreaEffect::ApplyEffect();
 
@@ -109,11 +109,11 @@ namespace Mezzanine
         if( !this->AllowWorldGrav && !this->AddedObjects.empty() ){
             for( ObjectIterator AddedIt = this->AddedObjects.begin() ; AddedIt != this->AddedObjects.end() ; ++AddedIt )
             {
-                const ProxyContainer& OtherProxies = (*AddedIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*AddedIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                         RigProx->SetGravity( Vector3(0,0,0) );
                     }
                 }
@@ -143,11 +143,11 @@ namespace Mezzanine
                 }
 
                 //Apply the Force
-                const ProxyContainer& OtherProxies = (*ObjIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*ObjIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
 
                         Real Mass = RigProx->GetMass();
                         if( 0 > AppliedStrength ) {
@@ -164,11 +164,11 @@ namespace Mezzanine
             const Vector3 WorldGravity = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) )->GetWorldGravity();
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
-                const ProxyContainer& OtherProxies = (*RemovedIt)->GetProxies();
-                for( ConstProxyIterator ProxIt = OtherProxies.begin() ; ProxIt != OtherProxies.end() ; ++ProxIt )
+                const ComponentContainer& OtherComponents = (*RemovedIt)->GetComponents();
+                for( ConstComponentIterator CompIt = OtherComponents.begin() ; CompIt != OtherComponents.end() ; ++CompIt )
                 {
-                    if( (*ProxIt)->GetProxyType() == Mezzanine::PT_Physics_RigidProxy ) {
-                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *ProxIt );
+                    if( (*CompIt)->GetComponentType() == Mezzanine::CT_Physics_RigidProxy ) {
+                        Physics::RigidProxy* RigProx = static_cast<Physics::RigidProxy*>( *CompIt );
                         RigProx->SetGravity( WorldGravity );
                     }
                 }
@@ -280,22 +280,22 @@ namespace Mezzanine
     String GravityWellFactory::GetTypeName() const
         { return GravityWell::GetSerializableName(); }
 
-    GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, World* TheWorld)
-        { return new GravityWell(Name,TheWorld); }
+    GravityWell* GravityWellFactory::CreateGravityWell(const EntityID& EntID, World* TheWorld)
+        { return new GravityWell(EntID,TheWorld); }
 
-    GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
-        { return new GravityWell(Name,AEShape,TheWorld); }
+    GravityWell* GravityWellFactory::CreateGravityWell(const EntityID& EntID, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new GravityWell(EntID,AEShape,TheWorld); }
 
     GravityWell* GravityWellFactory::CreateGravityWell(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<GravityWell*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
+        { return static_cast<GravityWell*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityWellFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
-        { return new GravityWell(Name,TheWorld); }
+    Entity* GravityWellFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
+        { return new GravityWell(EntID,TheWorld); }
 
-    AreaEffect* GravityWellFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)
+    Entity* GravityWellFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new GravityWell(XMLNode,TheWorld); }
 
-    void GravityWellFactory::DestroyAreaEffect(AreaEffect* ToBeDestroyed)
+    void GravityWellFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

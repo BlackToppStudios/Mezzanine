@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ namespace Mezzanine
             { this->CreateLight(); }
 
         LightProxy::LightProxy(const UInt32 ID, const Graphics::LightType Type, SceneManager* Creator) :
-            RenderableProxy(Creator),
+            RenderableProxy(ID,Creator),
             GraphicsLight(NULL)
             { this->CreateLight();  this->SetType(Type); }
 
@@ -132,8 +132,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType LightProxy::GetProxyType() const
-            { return Mezzanine::PT_Graphics_LightProxy; }
+        Mezzanine::ComponentType LightProxy::GetComponentType() const
+            { return Mezzanine::CT_Graphics_LightProxy; }
 
         Boole LightProxy::IsStatic() const
             { return false; }

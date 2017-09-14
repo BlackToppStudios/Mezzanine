@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -75,42 +75,28 @@ namespace Mezzanine
             /// @brief Const Iterator type for ParticleAffector instances stored by this class.
             typedef AffectorContainer::const_iterator           ConstAffectorIterator;
         protected:
-            /// @internal
             /// @brief A cache containing all of the custom altered parameters of this particle system.
             /// @note Once we have a proper wrapper for particle systems (or our own implementation) this no longer needs to exist.
             NameValuePairMap CustomSystemParameters;
-            /// @internal
             /// @brief Vector of emitters in use by this particle effect.
             EmitterContainer Emitters;
-            /// @internal
             /// @brief Vector of affectors in use by this particle effect.
             AffectorContainer Affectors;
-            /// @internal
             /// @brief Stores the template, primarily for serialization.
             String Template;
-            /// @internal
             /// @brief Pointer to the ogre ParticleSystem from which this proxy gets it's functionality.
             Ogre::ParticleSystem* GraphicsParticleSystem;
-            /// @internal
             /// @brief Stores the current speed factor of this particle system for when it gets paused.
             Real SpeedFactor;
-            /// @internal
             /// @brief Stores whether or not updates to this particle system are paused.
             Boole Paused;
 
-            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
-            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
-            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-            /// @internal
             /// @brief Constructs this particle system from a pre-made particle script.
             /// @param Name The name of this particle effect.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             virtual void CreateParticleSystem(const String& Template);
-            /// @internal
             /// @brief Destroys the particle system providing this class with it's functionality.
             virtual void DestroyParticleSystem();
-            /// @internal
             /// @brief Generates a name for this ParticleSystem to placate the internal system.
             /// @note This will no longer be necessary in after the switch to Ogre 2.0.
             /// @return Returns a string containing the auto-generated name of this particle.
@@ -133,10 +119,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
-            /// @copydoc WorldProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            /// @copydoc EntityProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const override;
+            /// @copydoc EntityProxy::IsStatic() const
+            virtual Boole IsStatic() const override;
 
             /// @brief Gets the name of this particle effect.
             /// @note This method will be removed in the Ogre 2.0 switch.
@@ -214,8 +200,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const override;
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @brief Convert the template name of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeTemplate(XML::Node& SelfRoot) const;
@@ -229,8 +217,10 @@ namespace Mezzanine
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeAffectors(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
             /// @brief Take the data stored in an XML Node and overwrite the template name of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeTemplate(const XML::Node& SelfRoot);
@@ -244,9 +234,9 @@ namespace Mezzanine
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeAffectors(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const override;
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -257,7 +247,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal particle system this proxy is based on.
             virtual Ogre::ParticleSystem* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//ParticleSystemProxy
     }//Graphics
 }//Mezzanine

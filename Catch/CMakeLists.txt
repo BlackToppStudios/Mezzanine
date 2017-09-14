@@ -129,12 +129,12 @@ endif(${UseCatchArchives})
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.h"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.h"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/levelzone.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/levelzone.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/scorearea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/scorearea.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/startarea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldEntities/startarea.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
     "${${PROJECT_NAME}_SRC_DIR}catchplayer.cpp"
@@ -294,7 +294,9 @@ CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 if(${WIN32})
     message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
     message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+    if(CMAKE_BUILD_TYPE STREQUAL "Release" OR "MinSizeRel")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+    endif(CMAKE_BUILD_TYPE STREQUAL "Release" OR "MinSizeRel")
 endif(${WIN32})
 
 # Linux File Copy Specific Items

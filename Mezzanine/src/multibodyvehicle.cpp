@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -50,8 +50,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // MultiBodyVehicle Methods
 
-    MultiBodyVehicle::MultiBodyVehicle(const String& Name, World* TheWorld) :
-        Vehicle(Name,TheWorld)
+    MultiBodyVehicle::MultiBodyVehicle(const EntityID& EntID, World* TheWorld) :
+        Vehicle(EntID,TheWorld)
     {
 
     }
@@ -70,8 +70,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType MultiBodyVehicle::GetType() const
-        { return Mezzanine::WO_MultiBodyVehicle; }
+    EntityType MultiBodyVehicle::GetEntityType() const
+        { return Mezzanine::ET_MultiBodyVehicle; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -112,18 +112,18 @@ namespace Mezzanine
     String MultiBodyVehicleFactory::GetTypeName() const
         { return MultiBodyVehicle::GetSerializableName(); }
 
-    MultiBodyVehicle* MultiBodyVehicleFactory::CreateMultiBodyVehicle(const String& Name, World* TheWorld)
-        { return new MultiBodyVehicle(Name,TheWorld); }
+    MultiBodyVehicle* MultiBodyVehicleFactory::CreateMultiBodyVehicle(const EntityID& EntID, World* TheWorld)
+        { return new MultiBodyVehicle(EntID,TheWorld); }
 
-    Vehicle* MultiBodyVehicleFactory::CreateVehicle(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* MultiBodyVehicleFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
-        return this->CreateMultiBodyVehicle(Name,TheWorld);
+        return this->CreateMultiBodyVehicle(EntID,TheWorld);
     }
 
-    Vehicle* MultiBodyVehicleFactory::CreateVehicle(const XML::Node& XMLNode, World* TheWorld)
+    Entity* MultiBodyVehicleFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new MultiBodyVehicle(XMLNode,TheWorld); }
 
-    void MultiBodyVehicleFactory::DestroyVehicle(Vehicle* ToBeDestroyed)
+    void MultiBodyVehicleFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

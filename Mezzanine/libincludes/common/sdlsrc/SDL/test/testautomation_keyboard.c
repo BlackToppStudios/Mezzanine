@@ -25,13 +25,13 @@ keyboard_getKeyboardState(void *arg)
    Uint8 *state;
 
    /* Case where numkeys pointer is NULL */
-   state = SDL_GetKeyboardState(NULL);
+   state = (Uint8 *)SDL_GetKeyboardState(NULL);
    SDLTest_AssertPass("Call to SDL_GetKeyboardState(NULL)");
    SDLTest_AssertCheck(state != NULL, "Validate that return value from SDL_GetKeyboardState is not NULL");
 
    /* Case where numkeys pointer is not NULL */
    numkeys = -1;
-   state = SDL_GetKeyboardState(&numkeys);
+   state = (Uint8 *)SDL_GetKeyboardState(&numkeys);
    SDLTest_AssertPass("Call to SDL_GetKeyboardState(&numkeys)");
    SDLTest_AssertCheck(state != NULL, "Validate that return value from SDL_GetKeyboardState is not NULL");
    SDLTest_AssertCheck(numkeys >= 0, "Validate that value of numkeys is >= 0, got: %i", numkeys);
@@ -312,7 +312,7 @@ keyboard_getSetModState(void *arg)
    /* Get state, cache for later reset */
    result = SDL_GetModState();
    SDLTest_AssertPass("Call to SDL_GetModState()");
-   SDLTest_AssertCheck(result >=0 && result <= allStates, "Verify result from call is valid, expected: 0 <= result <= %i, got: %i", allStates, result);
+   SDLTest_AssertCheck(/*result >= 0 &&*/ result <= allStates, "Verify result from call is valid, expected: 0 <= result <= %i, got: %i", allStates, result);
    currentState = result;
 
    /* Set random state */
@@ -401,8 +401,8 @@ keyboard_setTextInputRect(void *arg)
    SDL_Rect refRect;
 
    /* Normal visible refRect, origin inside */
-   refRect.x = SDLTest_RandomIntegerInRange(1, 50);;
-   refRect.y = SDLTest_RandomIntegerInRange(1, 50);;
+   refRect.x = SDLTest_RandomIntegerInRange(1, 50);
+   refRect.y = SDLTest_RandomIntegerInRange(1, 50);
    refRect.w = SDLTest_RandomIntegerInRange(10, 50);
    refRect.h = SDLTest_RandomIntegerInRange(10, 50);
    _testSetTextInputRect(refRect);
@@ -415,8 +415,8 @@ keyboard_setTextInputRect(void *arg)
    _testSetTextInputRect(refRect);
 
    /* 1Pixel refRect */
-   refRect.x = SDLTest_RandomIntegerInRange(10, 50);;
-   refRect.y = SDLTest_RandomIntegerInRange(10, 50);;
+   refRect.x = SDLTest_RandomIntegerInRange(10, 50);
+   refRect.y = SDLTest_RandomIntegerInRange(10, 50);
    refRect.w = 1;
    refRect.h = 1;
    _testSetTextInputRect(refRect);
@@ -450,15 +450,15 @@ keyboard_setTextInputRect(void *arg)
    _testSetTextInputRect(refRect);
 
    /* negative refRect */
-   refRect.x = SDLTest_RandomIntegerInRange(-200, -100);;
-   refRect.y = SDLTest_RandomIntegerInRange(-200, -100);;
+   refRect.x = SDLTest_RandomIntegerInRange(-200, -100);
+   refRect.y = SDLTest_RandomIntegerInRange(-200, -100);
    refRect.w = 50;
    refRect.h = 50;
    _testSetTextInputRect(refRect);
 
    /* oversized refRect */
-   refRect.x = SDLTest_RandomIntegerInRange(1, 50);;
-   refRect.y = SDLTest_RandomIntegerInRange(1, 50);;
+   refRect.x = SDLTest_RandomIntegerInRange(1, 50);
+   refRect.y = SDLTest_RandomIntegerInRange(1, 50);
    refRect.w = 5000;
    refRect.h = 5000;
    _testSetTextInputRect(refRect);

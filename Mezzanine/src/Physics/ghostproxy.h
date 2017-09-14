@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -83,13 +83,13 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
+            /// @copydoc EntityProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const override;
 
-            /// @copydoc WorldProxy::AddToWorld()
-            virtual void AddToWorld();
-            /// @copydoc WorldProxy::RemoveFromWorld()
-            virtual void RemoveFromWorld();
+            /// @copydoc EntityProxy::Activate()
+            virtual void Activate() override;
+            /// @copydoc EntityProxy::Deactivate()
+            virtual void Deactivate() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Overlapping Proxy Access
@@ -117,14 +117,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const override;
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal proxy this proxy is based on.
             virtual btPairCachingGhostObject* _GetPhysicsObject() const;
             /// @copydoc CollidableProxy::_GetBasePhysicsObject()
-            virtual btCollisionObject* _GetBasePhysicsObject() const;
+            virtual btCollisionObject* _GetBasePhysicsObject() const override;
 
         };//GhostProxy
     }//Physics

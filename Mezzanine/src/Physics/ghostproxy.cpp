@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -79,8 +79,9 @@ namespace Mezzanine
 
         GhostProxy::~GhostProxy()
         {
-            if( this->IsInWorld() )
-                this->RemoveFromWorld();
+            if( this->IsActivated() ) {
+                this->Deactivate();
+            }
 
             delete this->PhysicsGhostBody;
         }
@@ -96,21 +97,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType GhostProxy::GetProxyType() const
+        Mezzanine::ComponentType GhostProxy::GetComponentType() const
         {
-            return Mezzanine::PT_Physics_GhostProxy;
+            return Mezzanine::CT_Physics_GhostProxy;
         }
 
-        void GhostProxy::AddToWorld()
+        void GhostProxy::Activate()
         {
-            if( !this->IsInWorld() ) {
+            if( !this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->addCollisionObject( this->PhysicsGhostBody, this->CollisionGroup, this->CollisionMask );
             }
         }
 
-        void GhostProxy::RemoveFromWorld()
+        void GhostProxy::Deactivate()
         {
-            if( this->IsInWorld() ) {
+            if( this->IsActivated() ) {
                 this->Manager->_GetPhysicsWorldPointer()->removeCollisionObject( this->PhysicsGhostBody );
             }
         }

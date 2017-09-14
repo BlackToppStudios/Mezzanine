@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -62,7 +62,7 @@ main(int argc, char *argv[])
             }
             else if (SDL_strcasecmp(argv[i], "--execKey") == 0) {
                 if (argv[i + 1]) {
-                    SDL_sscanf(argv[i + 1], "%llu", (long long unsigned int *)&userExecKey);
+                    SDL_sscanf(argv[i + 1], "%"SDL_PRIu64, (long long unsigned int *)&userExecKey);
                     consumed = 2;
                 }
             }
@@ -80,8 +80,7 @@ main(int argc, char *argv[])
             }
         }
         if (consumed < 0) {
-            fprintf(stderr,
-                    "Usage: %s %s [--iterations #] [--execKey #] [--seed string] [--filter suite_name|test_name]\n",
+            SDL_Log("Usage: %s %s [--iterations #] [--execKey #] [--seed string] [--filter suite_name|test_name]\n",
                     argv[0], SDLTest_CommonUsage(state));
             quit(1);
         }
@@ -114,12 +113,8 @@ main(int argc, char *argv[])
     }
 
     /* Clean up */
-    if (userRunSeed != NULL) {
-        SDL_free(userRunSeed);
-    }
-    if (filter != NULL) {
-        SDL_free(filter);
-    }
+    SDL_free(userRunSeed);
+    SDL_free(filter);
 
     /* Shutdown everything */
     quit(result);

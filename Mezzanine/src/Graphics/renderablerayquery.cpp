@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 #define _graphicsrenderablerayquery_cpp
 
 #include "Graphics/renderablerayquery.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/particlesystemproxy.h"
 #include "Graphics/scenemanager.h"
@@ -82,13 +82,13 @@ namespace Mezzanine
             RayQuery::ResultContainer Results;
             /// @brief A copy of the ray being cast for this query.
             Ray CastRay;
-            /// @brief A bitmask containing the types of objects we want when returning the results.
-            UInt32 Filter;
+            /// @brief A custom filter for potential ray query hits.
+            RayQuery::FilterFunction FilterFunct;
         public:
             /// @brief Class constructor.
             /// @param BeingCast A copy of the ray being cast for this query.
-            /// @param QueryFilter A bitmask containing the types of objects we want when returning the results.
-            AABBQueryListener(const Ray& BeingCast, const UInt32 QueryFilter);
+            /// @param Filter The function that will filter hit results.
+            AABBQueryListener(const Ray& BeingCast, const RayQuery::FilterFunction Filter);
             /// @brief Class destructor.
             virtual ~AABBQueryListener() = default;
 
@@ -109,12 +109,12 @@ namespace Mezzanine
             /// @brief Gets the Ray being cast in the current query.
             /// @return Returns a const reference to the Ray being used by the query.
             const Ray& GetRay() const;
-            /// @brief Sets the filter used to determine the types of objects to be returned.
-            /// @param QueryFilter A bitmask containing the types of objects to return.
-            void SetFilter(UInt32 QueryFilter);
-            /// @brief Gets the filter used to determine the types of objects to be returned.
-            /// @return Returns a bitmask of the types of objects considered valid returns.
-            UInt32 GetFilter() const;
+            /// @brief Sets the custom function that can filter ray query results.
+            /// @param Filter The function that will filter hit results.
+            void SetFilter(const RayQuery::FilterFunction Filter);
+            /// @brief Gets the custom function that will filter ray query results.
+            /// @return Returns the function object currently filtering results from this listener.
+            RayQuery::FilterFunction GetFilter() const;
             /// @brief Gets the current results of the query.
             /// @return Returns the results of the query.
             const RayQuery::ResultContainer& GetResults() const;
@@ -159,8 +159,8 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @param BeingCast A copy of the ray being cast for this query.
-            /// @param QueryFilter A bitmask containing the types of objects we want when returning the results.
-            ShapeQueryListener(const Ray& BeingCast, const UInt32 QueryFilter);
+            /// @param Filter The function that will filter hit results.
+            ShapeQueryListener(const Ray& BeingCast, const RayQuery::FilterFunction Filter);
             /// @brief Class destructor.
             virtual ~ShapeQueryListener() = default;
 
@@ -173,15 +173,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // AABBQueryListener Methods
 
-        AABBQueryListener::AABBQueryListener(const Ray& BeingCast, const UInt32 QueryFilter) :
+        AABBQueryListener::AABBQueryListener(const Ray& BeingCast, const RayQuery::FilterFunction Filter) :
             CastRay(BeingCast),
-            Filter(QueryFilter)
+            FilterFunct(Filter)
             {  }
 
         bool AABBQueryListener::queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
         {
             RenderableProxy* Prox = RenderableProxy::_Upcast(obj);
-            if( Prox != NULL && Prox->GetProxyType() | this->Filter ) {
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 RayQueryHit NewHit;
                 NewHit.Object = Prox;
                 NewHit.Distance = distance;
@@ -206,11 +207,11 @@ namespace Mezzanine
         const Ray& AABBQueryListener::GetRay() const
             { return this->CastRay; }
 
-        void AABBQueryListener::SetFilter(UInt32 QueryFilter)
-            { this->Filter = QueryFilter; }
+        void AABBQueryListener::SetFilter(const RayQuery::FilterFunction Filter)
+            { this->FilterFunct = Filter; }
 
-        UInt32 AABBQueryListener::GetFilter() const
-            { return this->Filter; }
+        RayQuery::FilterFunction AABBQueryListener::GetFilter() const
+            { return this->FilterFunct; }
 
         const RayQuery::ResultContainer& AABBQueryListener::GetResults() const
             { return this->Results; }
@@ -227,23 +228,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // ShapeQueryListener Methods
 
-        ShapeQueryListener::ShapeQueryListener(const Ray& BeingCast, const UInt32 QueryFilter) :
-            AABBQueryListener(BeingCast,QueryFilter)
+        ShapeQueryListener::ShapeQueryListener(const Ray& BeingCast, const RayQuery::FilterFunction Filter) :
+            AABBQueryListener(BeingCast,Filter)
             {  }
 
         Boole ShapeQueryListener::HandleEntity(Ogre::MovableObject* obj)
         {
-            RenderableProxy* MezzObj = RenderableProxy::_Upcast( obj );
-            if( MezzObj == NULL )
-                return false;
-            if( !( MezzObj->GetProxyType() & this->Filter ) )
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( !( FilterResult && Prox != nullptr ) )
                 return false;
 
             Real ResultDistance = std::numeric_limits<Real>::max();
             Integer ResultSubMesh = -1;
             RayResult Result(MathTools::PS_Neither,Vector3(0,0,0));
 
-            Mesh* ObjMesh = static_cast<EntityProxy*>( MezzObj )->GetMesh();
+            Mesh* ObjMesh = static_cast<ItemProxy*>( Prox )->GetMesh();
             Whole NumSubMeshes = ObjMesh->GetNumSubMeshes();
             for( Whole CurrSubMesh = 0 ; CurrSubMesh < NumSubMeshes ; ++CurrSubMesh )
             {
@@ -252,9 +252,9 @@ namespace Mezzanine
 
                 for( Whole IdxCount = 0 ; IdxCount < Indices.size() ; IdxCount += 3 )
                 {
-                    Vector3 PointA = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 0] ] );
-                    Vector3 PointB = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 1] ] );
-                    Vector3 PointC = MezzObj->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 2] ] );
+                    Vector3 PointA = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 0] ] );
+                    Vector3 PointB = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 1] ] );
+                    Vector3 PointC = Prox->ConvertLocalToGlobal( Verts[ Indices[IdxCount + 2] ] );
                     RayResult SingleResult = MathTools::Intersects(PointA,PointB,PointC,this->CastRay);
 
                     if( SingleResult.first != MathTools::PS_Neither ) {
@@ -270,7 +270,7 @@ namespace Mezzanine
 
             if( Result.first != MathTools::PS_Neither ) {
                 RayQueryHit NewHit;
-                NewHit.Object = MezzObj;
+                NewHit.Object = Prox;
                 NewHit.Distance = ResultDistance;
                 NewHit.HitLocation = Result.second;
                 NewHit.HitNormal = -(this->CastRay.Normal);
@@ -283,10 +283,11 @@ namespace Mezzanine
 
         Boole ShapeQueryListener::HandleBillboardSet(Ogre::MovableObject* obj)
         {
-            RenderableProxy* CastedObj = RenderableProxy::_Upcast( obj );
-            if( CastedObj != NULL && CastedObj->GetProxyType() & this->Filter ) {
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 Ogre::BillboardSet* OgreCasted = static_cast<Ogre::BillboardSet*>(obj);
-                return this->HandleBillboardSetNoCheck( CastedObj, OgreCasted );
+                return this->HandleBillboardSetNoCheck( Prox, OgreCasted );
             }
             return false;
         }
@@ -351,14 +352,15 @@ namespace Mezzanine
 
         Boole ShapeQueryListener::HandleParticleSystem(Ogre::MovableObject* obj)
         {
-            RenderableProxy* CastedObj = RenderableProxy::_Upcast( obj );
-            if( CastedObj != NULL && CastedObj->GetProxyType() & this->Filter ) {
+            RenderableProxy* Prox = RenderableProxy::_Upcast( obj );
+            Boole FilterResult = ( this->FilterFunct ? this->FilterFunct(Prox) : true );
+            if( FilterResult && Prox != nullptr ) {
                 Ogre::ParticleSystem* OgreCasted = static_cast<Ogre::ParticleSystem*>(obj);
                 Ogre::ParticleSystemRenderer* Renderer = OgreCasted->getRenderer();
                 if( OgreCasted->getRenderer()->getType() == "billboard" ) {
                     typedef Ogre::BillboardParticleRenderer RendererType;
                     Ogre::BillboardSet* BillSet = static_cast<RendererType*>(Renderer)->getBillboardSet();
-                    return this->HandleBillboardSetNoCheck( CastedObj, BillSet );
+                    return this->HandleBillboardSetNoCheck( Prox, BillSet );
                 }else{
                     MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,
                                    "An unsupported Particle renderer type was found during shape raycast test.");
@@ -394,9 +396,8 @@ namespace Mezzanine
         // RenderableRayQuery Methods
 
         RenderableRayQuery::RenderableRayQuery(SceneManager* ToQuery) :
-            SceneMan(NULL),
-            QueryTool(NULL),
-            ProxyTypesFilter(std::numeric_limits<UInt32>::max()),
+            SceneMan(nullptr),
+            QueryTool(nullptr),
             QueryFilter(std::numeric_limits<UInt32>::max())
             { this->UpdateQueryTool(ToQuery); }
 
@@ -406,12 +407,12 @@ namespace Mezzanine
         void RenderableRayQuery::UpdateQueryTool(SceneManager* NewQuery)
         {
             if( this->SceneMan != NewQuery ) {
-                if( this->QueryTool != NULL ) {
+                if( this->QueryTool != nullptr ) {
                     this->SceneMan->_GetGraphicsWorldPointer()->destroyQuery(this->QueryTool);
-                    this->QueryTool = NULL;
+                    this->QueryTool = nullptr;
                 }
 
-                if( NewQuery != NULL ) {
+                if( NewQuery != nullptr ) {
                     this->QueryTool = NewQuery->_GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(),Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
                     this->QueryTool->setQueryTypeMask(std::numeric_limits<UInt32>::max());
                     this->QueryTool->setSortByDistance(true);
@@ -429,11 +430,11 @@ namespace Mezzanine
         World* RenderableRayQuery::GetWorld() const
             { return this->SceneMan->GetWorld(); }
 
-        void RenderableRayQuery::SetProxyTypes(const UInt32 Filter)
-            { this->ProxyTypesFilter = Filter; }
+        void RenderableRayQuery::SetFilterFunction(const RayQuery::FilterFunction Filter)
+            { this->FilterFunct = Filter; }
 
-        UInt32 RenderableRayQuery::GetProxyTypes() const
-            { return this->ProxyTypesFilter; }
+        RayQuery::FilterFunction RenderableRayQuery::GetFilterFunction() const
+            { return this->FilterFunct; }
 
         void RenderableRayQuery::SetQueryFilter(const UInt32 Filter)
             { this->QueryFilter = Filter; }
@@ -452,7 +453,7 @@ namespace Mezzanine
 
         RayQueryHit RenderableRayQuery::GetFirstAABBResult(const Ray& Cast) const
         {
-            AABBQueryListener QueryListener(Cast,this->ProxyTypesFilter);
+            AABBQueryListener QueryListener(Cast,this->FilterFunct);
             this->QueryTool->setQueryMask(this->QueryFilter);
             this->QueryTool->setRay(Cast.GetOgreRay());
             this->QueryTool->execute(&QueryListener);
@@ -468,7 +469,7 @@ namespace Mezzanine
 
         RayQuery::ResultContainer RenderableRayQuery::GetAllAABBResults(const Ray& Cast, const Whole Limit) const
         {
-            AABBQueryListener QueryListener(Cast,this->ProxyTypesFilter);
+            AABBQueryListener QueryListener(Cast,this->FilterFunct);
             this->QueryTool->setQueryMask(this->QueryFilter);
             this->QueryTool->setRay(Cast.GetOgreRay());
             this->QueryTool->setSortByDistance(true,Limit);
@@ -485,7 +486,7 @@ namespace Mezzanine
 
         RayQueryHit RenderableRayQuery::GetFirstShapeResult(const Ray& Cast) const
         {
-            ShapeQueryListener QueryListener(Cast,this->ProxyTypesFilter);
+            ShapeQueryListener QueryListener(Cast,this->FilterFunct);
             this->QueryTool->setQueryMask(this->QueryFilter);
             this->QueryTool->setRay(Cast.GetOgreRay());
             this->QueryTool->execute(&QueryListener);
@@ -501,7 +502,7 @@ namespace Mezzanine
 
         RayQuery::ResultContainer RenderableRayQuery::GetAllShapeResults(const Ray& Cast, const Whole Limit) const
         {
-            ShapeQueryListener QueryListener(Cast,this->ProxyTypesFilter);
+            ShapeQueryListener QueryListener(Cast,this->FilterFunct);
             this->QueryTool->setQueryMask(this->QueryFilter);
             this->QueryTool->setRay(Cast.GetOgreRay());
             this->QueryTool->setSortByDistance(true,Limit);
@@ -522,7 +523,6 @@ namespace Mezzanine
 
             if( SelfRoot.AppendAttribute("Version").SetValue("1") &&
                 SelfRoot.AppendAttribute("WorldName").SetValue( this->GetWorld()->GetName() ) &&
-                SelfRoot.AppendAttribute("ProxyTypesFilter").SetValue( this->GetProxyTypes() ) &&
                 SelfRoot.AppendAttribute("QueryFilter").SetValue( this->GetQueryFilter() ) )
             {
                 return;
@@ -540,10 +540,6 @@ namespace Mezzanine
                     CurrAttrib = SelfRoot.GetAttribute("WorldName");
                     if( !CurrAttrib.Empty() )
                         this->SetWorld( Entresol::GetSingletonPtr()->GetWorld( CurrAttrib.AsString() ) );
-
-                    CurrAttrib = SelfRoot.GetAttribute("ProxyTypesFilter");
-                    if( !CurrAttrib.Empty() )
-                        this->SetProxyTypes( CurrAttrib.AsUint() );
 
                     CurrAttrib = SelfRoot.GetAttribute("QueryFilter");
                     if( !CurrAttrib.Empty() )

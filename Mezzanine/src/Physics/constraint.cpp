@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,7 +45,6 @@
 #include "Physics/physicsmanager.h"
 #include "Physics/rigidproxy.h"
 
-#include "actormanager.h"
 #include "entresol.h"
 
 #include "stringtool.h"

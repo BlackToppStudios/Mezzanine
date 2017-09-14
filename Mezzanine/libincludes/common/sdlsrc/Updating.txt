@@ -1,3 +1,0 @@
-When updating the version of SDL, apply all the patches located in the "Pending Patches" folder located in the same directory as this file.  Patches may need to be applied manually.
-Also, when updating check SDL for any mention of "-mwindows" in it's CMake files(Note: Not configure files where I also saw it used, probably because of the CMake files).  Any entries that add it to the linker flags should be commented out and replaced with lines that do all the same flags minus "-mwindows".  If adding "-mwindows" is the only thing it does then the line can be commented out entirely.
-Lastly, around line 1134 of the cmakelists.txt -fPIC had to be added in an non-windows conditional check to allow compilation on linux.

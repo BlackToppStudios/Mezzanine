@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,6 +42,8 @@
 
 #include "Graphics/windowsettings.h"
 
+#include "eventpublisher.h"
+
 namespace Ogre
 {
     class RenderWindow;
@@ -56,28 +58,83 @@ namespace Mezzanine
         class GraphicsManager;
         class Viewport;
         class CameraProxy;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the base Event class for application windows.
+        ///////////////////////////////////////
+        class MEZZ_LIB WindowEvent : public Event
+        {
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
+            /// @brief The ID of the Window raising the event.
+            UInt32 WindowID;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Class constructor.
+            /// @param Name The name of the event being fired.
+            /// @param ID The ID of the Window raising the event.
+            WindowEvent(const EventNameType& Name, const UInt32 ID) :
+                Event(Name), WindowID(ID)
+                {  }
+            /// @brief Class destructor.
+            virtual ~WindowEvent() = default;
+        };//WindowEvent
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the Event class for when windows have their position or size altered.
+        ///////////////////////////////////////
+        class MEZZ_LIB WindowTransformEvent : public WindowEvent
+        {
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
+            /// @brief A size or position (depending on the event) on the X axis.
+            Integer DimensionX;
+            /// @brief A size or position (depending on the event) on the Y axis.
+            Integer DimensionY;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Class constructor.
+            /// @param Name The name of the event being fired.
+            /// @param ID The ID of the Window raising the event.
+            /// @param DimX A size or position (depending on the event) on the X axis.
+            /// @param DimY A size or position (depending on the event) on the Y axis.
+            WindowTransformEvent(const EventNameType& Name, const UInt32 ID, const Integer DimX, const Integer DimY) :
+                WindowEvent(Name,ID), DimensionX(DimX), DimensionY(DimY)
+                {  }
+            /// @brief Class destructor.
+            virtual ~WindowTransformEvent() = default;
+        };//WindowTransformEvent
+
+        /// @brief Convenience type for passing around WindowEvent.
+        using WindowEventPtr = std::shared_ptr<WindowEvent>;
+        /// @brief Convenience type for passing around WindowTransformEvent.
+        using WindowTransformEventPtr = std::shared_ptr<WindowTransformEvent>;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is for creating and managing game windows.
-        /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB GameWindow
+        class MEZZ_LIB GameWindow : public EventPublisher
         {
         public:
             /// @brief Basic container type for Viewport storage by this class.
-            typedef std::list<Viewport*> ViewportContainer;
+            using ViewportContainer = std::vector<Viewport*>;
             /// @brief Iterator type for Viewport instances stored by this class.
-            typedef ViewportContainer::iterator ViewportIterator;
+            using ViewportIterator = ViewportContainer::iterator;
             /// @brief Const Iterator type for Viewport instances stored by this class.
-            typedef ViewportContainer::const_iterator ConstViewportIterator;
-            /// @brief Reverse Iterator type for Viewport instances stored by this class.
-            typedef ViewportContainer::reverse_iterator ReverseViewportIterator;
-            /// @brief Const Reverse Iterator type for Viewport instances stored by this class.
-            typedef ViewportContainer::const_reverse_iterator ConstReverseViewportIterator;
+            using ConstViewportIterator = ViewportContainer::const_iterator;
 
             /// @brief A listing of potential options for configuring a game window during construction.
             enum WindowFlags
             {
-                WF_Fullscreen = 1,    ///< This enables fullscreen on the window.
+                WF_Fullscreen = 1,    ///< This enables Fullscreen on the window.
                 WF_Hidden = 2,        ///< This hides the window so that it isn't visible.
                 WF_VsyncEnabled = 4,  ///< This enables vsync for the window.
                 WF_FSAA_2 = 8,        ///< Enables Fullscreen Anti-Aliasing level 2 for the window.
@@ -86,48 +143,78 @@ namespace Mezzanine
                 WF_FSAA_16 = 64,      ///< Enables Fullscreen Anti-Aliasing level 16 for the window.
                 WF_Resizeable = 128,  ///< Creates a window with resizable borders, otherwise it is fixed size.
                 WF_Maximized = 256,   ///< Maximizes the window immediately after construction.
-                WF_Borderless = 512   ///< Removes all window decorations from the window(titlebar, borders, etc.).
+                WF_Borderless = 512   ///< Removes all window decorations from the window(title bar, borders, etc.).
             };
+
+            /// @brief Identifier for the event that is raised when a Window is shown/no longer hidden.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowShown;
+            /// @brief Identifier for the event that is raised when a Window is hidden/no longer shown/isn't rendered.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowHidden;
+            /// @brief Identifier for the event that is raised when a Window was obscured by another Window but no longer is.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowExposed;
+            /// @brief Identifier for the event that is raised when a Window changes position.
+            /// @details Events with this name are of type: WindowTransformEvent.
+            static const EventNameType EventWindowMoved;
+            /// @brief Identifier for the event that is raised when a Window resize attempt is in progress.  Such as dragging a window border.
+            /// @details Events with this name are of type: WindowTransformEvent.
+            static const EventNameType EventWindowResizing;
+            /// @brief Identifier for the event that is raised when a Window resize is completed.
+            /// @details Events with this name are of type: WindowTransformEvent.
+            static const EventNameType EventWindowResized;
+            /// @brief Identifier for the event that is raised when a Window is minimized to the system tray.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowMinimized;
+            /// @brief Identifier for the event that is raised when a Window is maximized to take up the entire screen.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowMaximized;
+            /// @brief Identifier for the event that is raised when a Window is restored to a previous state.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowRestored;
+            /// @brief Identifier for the event that is raised when the mouse cursor enters the Window.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowEnter;
+            /// @brief Identifier for the event that is raised when the mouse cursor leaves the Window.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowLeave;
+            /// @brief Identifier for the event that is raised when a Window takes focus (such as when it's selected).
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowFocusGained;
+            /// @brief Identifier for the event that is raised when a Window loses focus.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowFocusLost;
         protected:
-            /// @internal
             /// @brief A struct storing all the window dimensions and update settings.
             WindowSettings Settings;
-            /// @internal
-            /// @brief A container storing all the viewports belonging to this window.
+            /// @brief A container storing all the Viewports belonging to this window.
             ViewportContainer Viewports;
-            /// @internal
             /// @brief A pointer to the manager that created this window.
             GraphicsManager* Manager;
-            /// @internal
             /// @brief A pointer to the internal window used for rendering.
             Ogre::RenderWindow* OgreWindow;
-            /// @internal
             /// @brief A pointer to the internal window used for collecting input.
             SDL_Window* SDLWindow;
-            /// @internal
-            /// @brief The last set FSAA level for this gamewindow (used for serialization).
+            /// @brief The last set FSAA level for this GameWindow (cached for serialization).
             Whole RequestedFSAA;
-            /// @internal
             /// @brief A bit field containing all the flags used in the construction of this GameWindow.
             Whole CreationFlags;
 
-            /// @internal
             /// @brief Convenience method for constructing a window.
-            /// @param WindowCaption The caption to be set in the window titlebar.
+            /// @param WindowCaption The caption to be set in the window title bar.
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             void CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
-            /// @internal
             /// @brief Inserts a Viewport into this window based on it's ZOrder.
             /// @param NewVP A pointer to the Viewport being added to this window.
             void AddViewport(Viewport* NewVP);
-            /// @internal
-            /// @brief Updates all the viewports of this window and the cameras attached to them after a change in window geometry.
+            /// @brief Updates all the Viewports of this window and the cameras attached to them after a change in window geometry.
             void UpdateViewportsAndCameras();
         public:
             /// @brief Class constructor.
-            /// @param WindowCaption The caption to be set in the window titlebar.
+            /// @param WindowCaption The caption to be set in the window title bar.
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
@@ -143,56 +230,38 @@ namespace Mezzanine
 
             /// @brief Creates an additional Viewport within a created render window.
             /// @param VeiwportCamera The camera that is to be attached to this Viewport.
-            /// @param ZOrder The render order of this viewport relative to other viewports in this window.
+            /// @param ZOrder The render order of this Viewport relative to other Viewports in this window.
             /// @return Returns a pointer to the created Viewport.
             Viewport* CreateViewport(CameraProxy* ViewportCamera, const Integer ZOrder);
-            /// @brief Gets a viewport by index.
+            /// @brief Gets a Viewport by index.
             /// @param Index The index of the Viewport to retrieve.
-            /// @return Returns a pointer to the viewport requested.
+            /// @return Returns a pointer to the Viewport requested.
             Viewport* GetViewport(const Whole Index) const;
-            /// @brief Gets a viewport by ZOrder.
+            /// @brief Gets a Viewport by ZOrder.
             /// @param ZOrder The ZOrder of the Viewport to retrieve.
             /// @return Returns a pointer at the specified ZOrder, or NULL if no Viewports use that ZOrder.
             Viewport* GetViewportByZOrder(const Integer ZOrder) const;
-            /// @brief Gets the number of viewports within this window.
-            /// @return Returns a Whole representing the number of viewports within this window.
+            /// @brief Gets the number of Viewports within this window.
+            /// @return Returns a Whole representing the number of Viewports within this window.
             Whole GetNumViewports() const;
-            /// @brief Destroys a viewport within this window.
-            /// @param ToBeDestroyed The viewport that will be destroyed.
+            /// @brief Destroys a Viewport within this window.
+            /// @param ToBeDestroyed The Viewport that will be destroyed.
             void DestroyViewport(Viewport* ToBeDestroyed);
-            /// @brief Destroys every viewport within this window.
+            /// @brief Destroys every Viewport within this window.
             void DestroyAllViewports();
-
-            /// @brief Gets an iterator to the first viewport in this window.
-            ViewportIterator BeginViewport();
-            /// @brief Gets an iterator to one passed the last viewport in this window.
-            ViewportIterator EndViewport();
-            /// @brief Gets a const iterator to the first viewport in this window.
-            ConstViewportIterator BeginViewport() const;
-            /// @brief Gets a const iterator to one passed the last viewport in this window.
-            ConstViewportIterator EndViewport() const;
-
-            /// @brief Gets an iterator to the last viewport in this window.
-            ReverseViewportIterator ReverseBeginViewport();
-            /// @brief Gets an iterator to one before the first viewport in this window.
-            ReverseViewportIterator ReverseEndViewport();
-            /// @brief Gets a const iterator to the last viewport in this window.
-            ConstReverseViewportIterator ReverseBeginViewport() const;
-            /// @brief Gets a const iterator to one before the first viewport in this window.
-            ConstReverseViewportIterator ReverseEndViewport() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Window Metrics Management
 
             /// @brief Sets the width of the game window.
             /// @param Width The pixel size of the game window on the X axis.
-            void SetWidth(const Whole& Width);
+            void SetWidth(const Whole Width);
             /// @brief Gets the Width of the game window.
             /// @return Returns a Whole containing the size of the game window on the X axis.
             Whole GetWidth() const;
             /// @brief Sets the height of the game window.
             /// @param Height The pixel size of the game window on the Y axis.
-            void SetHeight(const Whole& Height);
+            void SetHeight(const Whole Height);
             /// @brief Gets the height of the game window.
             /// @return Returns a Whole containing the size of the game window on the Y axis.
             Whole GetHeight() const;
@@ -203,7 +272,7 @@ namespace Mezzanine
             /// @brief Sets the width and height of the game window.
             /// @param Width The pixel size of the game window on the X axis.
             /// @param Height The pixel size of the game window on the Y axis.
-            void SetResolution(const Whole& Width, const Whole& Height);
+            void SetResolution(const Whole Width, const Whole Height);
             /// @brief Gets the width and height of the game window.
             /// @return Returns a const Resolution reference containing the pixel size of the window on the X and Y axes.
             const Resolution& GetResolution() const;
@@ -225,9 +294,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Window Settings Methods
 
-            /// @brief Gets the the text in the titlebar.
-            /// @return Returns a const string ref of the text in the titlebar.
-            const String& GetWindowCaption() const;
+            /// @brief Gets the the text in the title bar.
+            /// @return Returns a const string ref of the text in the title bar.
+            const String& GetCaption() const;
+            /// @brief Gets the unique ID of the window.
+            /// @return Returns a UInt32 containing the unique identifier of the window.
+            UInt32 GetID() const;
 
             /// @brief Sets the level of Full Scale Anti-Aliasing to be used when rendering to this window.
             /// @note Generally when this gets set it will not be applied.  Anti-Aliasing is a construction time property of a window.
@@ -294,7 +366,7 @@ namespace Mezzanine
             /// @brief Convert the properties of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-            /// @brief Convert the viewports of this class to an XML::Node ready for serialization.
+            /// @brief Convert the Viewports of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             void ProtoSerializeViewports(XML::Node& SelfRoot) const;
 
@@ -304,7 +376,7 @@ namespace Mezzanine
             /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
-            /// @brief Take the data stored in an XML Node and overwrite the viewports of this object with it.
+            /// @brief Take the data stored in an XML Node and overwrite the Viewports of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             void ProtoDeSerializeViewports(const XML::Node& SelfRoot);
 

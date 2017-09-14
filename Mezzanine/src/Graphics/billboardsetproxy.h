@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -70,22 +70,14 @@ namespace Mezzanine
             /// @brief Const Iterator type for Billboard instances stored by this class.
             typedef BillboardContainer::const_iterator   ConstBillboardIterator;
         protected:
-            /// @internal
             /// @brief Container storing all of the Billboard instances created by this proxy.
             BillboardContainer Billboards;
-            /// @internal
             /// @brief A pointer to the internal BillboardSet this proxy is based on.
             Ogre::BillboardSet* GraphicsBillboardSet;
 
-            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
-            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
-            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-            /// @internal
             /// @param InitialPoolSize The number of billboards to reserve space for.
             /// @brief Creates an internal BillboardSet to be used by the calling instance.
             virtual void CreateBillboardSet(const UInt32 InitialPoolSize);
-            /// @internal
             /// @brief Destroys the internal BillboardSet in use by this proxy.
             virtual void DestroyBillboardSet();
         public:
@@ -104,10 +96,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @copydoc WorldProxy::GetProxyType() const
-            virtual Mezzanine::ProxyType GetProxyType() const;
-            /// @copydoc WorldProxy::IsStatic() const
-            virtual Boole IsStatic() const;
+            /// @copydoc EntityProxy::GetComponentType() const
+            virtual Mezzanine::ComponentType GetComponentType() const override;
+            /// @copydoc EntityProxy::IsStatic() const
+            virtual Boole IsStatic() const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Billboard Management
@@ -216,21 +208,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc EntityProxy::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const override;
+            /// @copydoc EntityProxy::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const override;
             /// @brief Convert the Billboards of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeBillboards(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @copydoc EntityProxy::ProtoDeSerialize(const XML::Node)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot) override;
+            /// @copydoc EntityProxy::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot) override;
             /// @brief Take the data stored in an XML Node and overwrite the Billboards of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             virtual void ProtoDeSerializeBillboards(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxy::GetDerivedSerializableName() const
-            virtual String GetDerivedSerializableName() const;
-            /// @copydoc WorldProxy::GetSerializableName()
+            /// @copydoc EntityProxy::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const override;
+            /// @copydoc EntityProxy::GetSerializableName()
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -241,7 +237,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the internal billboard set this proxy is based on.
             virtual Ogre::BillboardSet* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
-            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
+            virtual Ogre::MovableObject* _GetBaseGraphicsObject() const override;
         };//BillboardSetProxy
     }//Graphics
 }//Mezzanine

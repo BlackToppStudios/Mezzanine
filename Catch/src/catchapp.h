@@ -3,8 +3,8 @@
 
 #include <mezzanine.h>
 
-#include "WorldObjects/scorearea.h"
-#include "WorldObjects/startarea.h"
+#include "WorldEntities/levelzone.h"
+#include "WorldEntities/startarea.h"
 #include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
@@ -29,7 +29,6 @@ public:
         Catch_ScoreScreen
     };
 protected:
-    friend class CatchPreInputWorkUnit;
     friend class CatchPostInputWorkUnit;
     friend class CatchPostUIWorkUnit;
     friend class CatchHUDUpdateWorkUnit;
@@ -39,7 +38,6 @@ protected:
 
     AudioSettingsWorkUnit* AudioSettingsWork;
     VideoSettingsWorkUnit* VideoSettingsWork;
-    CatchPreInputWorkUnit* PreInputWork;
     CatchPostInputWorkUnit* PostInputWork;
     CatchPostUIWorkUnit* PostUIWork;
     CatchPauseWorkUnit* PauseWork;
@@ -67,10 +65,11 @@ protected:
     CatchApp::GameState CurrentState;
 
     MousePicker Picker;
-    MousePicker::FilterDelegate PickerFilter;
 
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
+
+    AppEventDispatcher AppEvents;
 
     void InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
 
@@ -104,14 +103,13 @@ public:
 
     void SetVisibleScreens(const CatchApp::GameState State);
 
-    Boole IsAThrowable(WorldObject* Throwable) const;
+    Boole IsAThrowable(Entity* Throwable) const;
     Boole IsInsideAnyStartZone(Debris* Throwable) const;
     void RegisterStartArea(StartArea* Start);
     void AddThrowable(Debris* Throwable);
 
     AudioSettingsWorkUnit* GetAudioSettingsWork() const;
     VideoSettingsWorkUnit* GetVideoSettingsWork() const;
-    CatchPreInputWorkUnit* GetPreInputWork() const;
     CatchPostInputWorkUnit* GetPostInputWork() const;
     CatchPostUIWorkUnit* GetPostUIWork() const;
     CatchPauseWorkUnit* GetPauseWork() const;
@@ -123,7 +121,6 @@ public:
     World* GetTheWorld() const;
 
     MousePicker& GetPicker();
-    const MousePicker::FilterDelegate& GetPickerFilter() const;
 
     ThrowableContainer& GetThrowables();
     LevelManager* GetLevelManager() const;

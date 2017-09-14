@@ -57,26 +57,6 @@ public:
 };//VideoSettingsWorkUnit
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This workunit is responsible for all Catch logic to be run before Input is collected.
-///////////////////////////////////////
-class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
-{
-protected:
-    /// @brief A pointer to the Catch core class.
-    CatchApp* CatchApplication;
-public:
-    /// @brief Class constructor.
-    /// @param Target A pointer to the Catch core class.
-    CatchPreInputWorkUnit(CatchApp* Target);
-    /// @brief Class destructor.
-    virtual ~CatchPreInputWorkUnit();
-
-    /// @brief Performs all the tasks this WorkUnit is responsible for.
-    /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
-    virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};// CatchPreInputWorkUnit
-
-///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible for all Catch logic to be run after Input is collected.
 ///////////////////////////////////////
 class CatchPostInputWorkUnit : public Threading::DefaultWorkUnit

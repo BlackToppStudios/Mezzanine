@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -464,73 +464,6 @@ namespace Mezzanine
             converter >> Result;
             return Result;
         }
-
-        String ConvertToString(const Input::InputCode& Code, Boole ShiftPressed)
-        {
-            /// @todo Get this ( StringTools::ConvertToString ) to support non us keyboards
-            switch(Code)
-            {
-                case Input::KEY_A:             return ( ShiftPressed ? "A" : "a" );        break;
-                case Input::KEY_B:             return ( ShiftPressed ? "B" : "b" );        break;
-                case Input::KEY_C:             return ( ShiftPressed ? "C" : "c" );        break;
-                case Input::KEY_D:             return ( ShiftPressed ? "D" : "d" );        break;
-                case Input::KEY_E:             return ( ShiftPressed ? "E" : "e" );        break;
-                case Input::KEY_F:             return ( ShiftPressed ? "F" : "f" );        break;
-                case Input::KEY_G:             return ( ShiftPressed ? "G" : "g" );        break;
-                case Input::KEY_H:             return ( ShiftPressed ? "H" : "h" );        break;
-                case Input::KEY_I:             return ( ShiftPressed ? "I" : "i" );        break;
-                case Input::KEY_J:             return ( ShiftPressed ? "J" : "j" );        break;
-                case Input::KEY_K:             return ( ShiftPressed ? "K" : "k" );        break;
-                case Input::KEY_L:             return ( ShiftPressed ? "L" : "l" );        break;
-                case Input::KEY_M:             return ( ShiftPressed ? "M" : "m" );        break;
-                case Input::KEY_N:             return ( ShiftPressed ? "N" : "n" );        break;
-                case Input::KEY_O:             return ( ShiftPressed ? "O" : "o" );        break;
-                case Input::KEY_P:             return ( ShiftPressed ? "P" : "p" );        break;
-                case Input::KEY_Q:             return ( ShiftPressed ? "Q" : "q" );        break;
-                case Input::KEY_R:             return ( ShiftPressed ? "R" : "r" );        break;
-                case Input::KEY_S:             return ( ShiftPressed ? "S" : "s" );        break;
-                case Input::KEY_T:             return ( ShiftPressed ? "T" : "t" );        break;
-                case Input::KEY_U:             return ( ShiftPressed ? "U" : "u" );        break;
-                case Input::KEY_V:             return ( ShiftPressed ? "V" : "v" );        break;
-                case Input::KEY_W:             return ( ShiftPressed ? "W" : "w" );        break;
-                case Input::KEY_X:             return ( ShiftPressed ? "X" : "x" );        break;
-                case Input::KEY_Y:             return ( ShiftPressed ? "Y" : "y" );        break;
-                case Input::KEY_Z:             return ( ShiftPressed ? "Z" : "z" );        break;
-                case Input::KEY_1:             return ( ShiftPressed ? "!" : "1" );        break;
-                case Input::KEY_2:             return ( ShiftPressed ? "@" : "2" );        break;
-                case Input::KEY_3:             return ( ShiftPressed ? "#" : "3" );        break;
-                case Input::KEY_4:             return ( ShiftPressed ? "$" : "4" );        break;
-                case Input::KEY_5:             return ( ShiftPressed ? "%" : "5" );        break;
-                case Input::KEY_6:             return ( ShiftPressed ? "^" : "6" );        break;
-                case Input::KEY_7:             return ( ShiftPressed ? "&" : "7" );        break;
-                case Input::KEY_8:             return ( ShiftPressed ? "*" : "8" );        break;
-                case Input::KEY_9:             return ( ShiftPressed ? "(" : "9" );        break;
-                case Input::KEY_0:             return ( ShiftPressed ? ")" : "0" );        break;
-                case Input::KEY_MINUS:         return ( ShiftPressed ? "_" : "-" );        break;
-                case Input::KEY_EQUALS:        return ( ShiftPressed ? "+" : "=" );        break;
-                case Input::KEY_LEFTBRACKET:   return ( ShiftPressed ? "{" : "[" );        break;
-                case Input::KEY_RIGHTBRACKET:  return ( ShiftPressed ? "}" : "]" );        break;
-                case Input::KEY_BACKSLASH:     return ( ShiftPressed ? "\\" : "|" );       break;
-                case Input::KEY_SEMICOLON:     return ( ShiftPressed ? ":" : ";" );        break;
-                case Input::KEY_APOSTROPHE:    return ( ShiftPressed ? "\"" : "'" );       break;
-                case Input::KEY_GRAVE:         return ( ShiftPressed ? "~" : "`" );        break;
-                case Input::KEY_COMMA:         return ( ShiftPressed ? "<" : "," );        break;
-                case Input::KEY_PERIOD:        return ( ShiftPressed ? ">" : "." );        break;
-                case Input::KEY_SLASH:         return ( ShiftPressed ? "?" : "/" );        break;
-                case Input::KEY_KP_1:          return "1";                                 break;
-                case Input::KEY_KP_2:          return "2";                                 break;
-                case Input::KEY_KP_3:          return "3";                                 break;
-                case Input::KEY_KP_4:          return "4";                                 break;
-                case Input::KEY_KP_5:          return "5";                                 break;
-                case Input::KEY_KP_6:          return "6";                                 break;
-                case Input::KEY_KP_7:          return "7";                                 break;
-                case Input::KEY_KP_8:          return "8";                                 break;
-                case Input::KEY_KP_9:          return "9";                                 break;
-                case Input::KEY_KP_0:          return "0";                                 break;
-                case Input::KEY_KP_PERIOD:     return ".";                                 break;
-                default:                       return "";                                  break;
-            }
-        }//StringTools::ConvertToString
     }//StringTools
 }//Mezzanine
 

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,7 +49,6 @@
 
 #include "UI/uimanager.h"
 
-#include "eventmanager.h"
 #include "crossplatform.h"
 #include "stringtool.h"
 #include "entresol.h"
@@ -84,9 +83,141 @@
 #include <cstdlib>
 #include <algorithm>
 
+namespace
+{
+    using namespace Mezzanine;
+    using namespace Mezzanine::Graphics;
+
+    /// @brief Handles the "Shown" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventShown(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowShown,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Hidden" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventHidden(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowHidden,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Exposed" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventExposed(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowExposed,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Moved" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMoved(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowMoved,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Resizing" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventResizing(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResizing,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Resized" Window event from internal sources.
+    /// @param InternalEvent The internal Window event to handle.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventResized(const SDL_WindowEvent& InternalEvent, GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        Integer X = InternalEvent.data1;
+        Integer Y = InternalEvent.data2;
+        WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResized,WindowID,X,Y);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Minimized" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMinimized(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMinimized,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Maximized" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventMaximized(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMaximized,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Restored" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventRestored(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowRestored,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Enter" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventEnter(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowEnter,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Leave" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventLeave(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowLeave,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Focus Gained" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventFocusGained(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusGained,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+
+    /// @brief Handles the "Focus Lost" Window event from internal sources.
+    /// @param EventWindow A pointer to the Window raising the event.
+    /// @param WindowID The unique ID belonging to the Window raising the event.
+    void HandleWindowEventFocusLost(GameWindow* EventWindow, const UInt32 WindowID)
+    {
+        WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusLost,WindowID);
+        EventWindow->DispatchEvent(WinEv);
+    }
+}
+
 namespace Mezzanine
 {
-    template<> Graphics::GraphicsManager* Singleton<Graphics::GraphicsManager>::SingletonPtr = NULL;
+    template<> Graphics::GraphicsManager* Singleton<Graphics::GraphicsManager>::SingletonPtr = nullptr;
 
     namespace Graphics
     {
@@ -116,20 +247,23 @@ namespace Mezzanine
             this->TargetManager->ThreadResources = &CurrentThreadStorage; // Allow this full access to any thread specific resources it needs
             Ogre::WindowEventUtilities::messagePump();
             this->TargetManager->RenderOneFrame();
-            this->TargetManager->ThreadResources = NULL;                  // Take it all away.
+            this->TargetManager->ThreadResources = nullptr;                  // Take it all away.
         }
 
         ///////////////////////////////////////////////////////////////////////////
         // GraphicsManager Methods
 
-        //template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
+        //template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = nullptr;
         const String GraphicsManager::ImplementationName = "DefaultGraphicsManager";
         const ManagerBase::ManagerType GraphicsManager::InterfaceType = ManagerBase::MT_GraphicsManager;
 
+        const EventNameType GraphicsManager::EventWindowCreated = "WindowCreated";
+        const EventNameType GraphicsManager::EventWindowDestroyed = "WindowDestroyed";
+
         GraphicsManager::GraphicsManager() :
-            PrimaryGameWindow(NULL),
-            RenderWork(NULL),
-            ThreadResources(NULL),
+            PrimaryWindow(nullptr),
+            RenderWork(nullptr),
+            ThreadResources(nullptr),
             CurrRenderSys(Graphics::RS_OpenGL2),
             OgreBeenInitialized(false)
         {
@@ -138,9 +272,9 @@ namespace Mezzanine
         }
 
         GraphicsManager::GraphicsManager(const XML::Node& XMLNode) :
-            PrimaryGameWindow(NULL),
-            RenderWork(NULL),
-            ThreadResources(NULL),
+            PrimaryWindow(nullptr),
+            RenderWork(nullptr),
+            ThreadResources(nullptr),
             CurrRenderSys(Graphics::RS_OpenGL2),
             OgreBeenInitialized(false)
         {
@@ -160,24 +294,24 @@ namespace Mezzanine
             this->Deinitialize();
             this->DestroyAllGameWindows(false);
 
-            #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+        #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
             DestroyD3D9RenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
             DestroyD3D11RenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGL_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGL_SUPPORT
             DestroyGLRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
             DestroyGL3PlusRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
             DestroyGLESRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
             DestroyGLES2RenderSystem();
-            #endif
+        #endif
 
             //UInt32 InitSDLSystems = SDL_WasInit(0);
             //if( SDL_INIT_VIDEO | InitSDLSystems ) {
@@ -189,7 +323,7 @@ namespace Mezzanine
 
         void GraphicsManager::Construct()
         {
-            this->PrimaryGameWindow = NULL;
+            this->PrimaryWindow = nullptr;
             this->RenderWork = new RenderWorkUnit(this);
 
             UInt32 InitSDLSystems = SDL_WasInit(0);
@@ -199,30 +333,114 @@ namespace Mezzanine
                 }
             }
 
+            this->GraphicsPublisher.AddSubscriptionTable(EventWindowCreated);
+            this->GraphicsPublisher.AddSubscriptionTable(EventWindowDestroyed);
+
+            // Ogre handles this stuff for us
+            SDL_EventState(SDL_RENDER_TARGETS_RESET,SDL_DISABLE);
+            SDL_EventState(SDL_RENDER_DEVICE_RESET,SDL_DISABLE);
+
             SDL_DisplayMode DeskMode;
             SDL_GetDesktopDisplayMode(0,&DeskMode);
             DesktopSettings.WinRes.Width = DeskMode.w;
             DesktopSettings.WinRes.Height = DeskMode.h;
             DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
-            #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+        #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
             CreateD3D9RenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
             CreateD3D11RenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGL_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGL_SUPPORT
             CreateGLRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGL3PLUS_SUPPORT
             CreateGL3PlusRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
             CreateGLESRenderSystem();
-            #endif
-            #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+        #endif
+        #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
             CreateGLES2RenderSystem();
-            #endif
+        #endif
+        }
+
+        void GraphicsManager::PumpInternalEvents()
+        {
+            /* A listing of all the SDL_Events we care about in the Graphics System.
+            // A * next to the Event denotes working support for that event does not yet exist.
+            // A - next to the Event denotes that the event is disabled or ignored by Mezzanine.
+            // Window events
+            SDL_WINDOWEVENT    = 0x200, // Window state change
+            SDL_SYSWMEVENT,             // System specific event
+            // Render events
+            -SDL_RENDER_TARGETS_RESET = 0x2000, // The render targets have been reset and their contents need to be updated
+            -SDL_RENDER_DEVICE_RESET,           // The device has been reset and all textures need to be recreated
+            // This is a listing similar to the one above, but are Window specific sub-events.
+            -SDL_WINDOWEVENT_NONE,         // Never used
+            SDL_WINDOWEVENT_SHOWN,         // Window has been shown
+            SDL_WINDOWEVENT_HIDDEN,        // Window has been hidden
+            SDL_WINDOWEVENT_EXPOSED,       // Window has been exposed and should be redrawn
+            SDL_WINDOWEVENT_MOVED,         // Window has been moved to data1, data2
+            SDL_WINDOWEVENT_RESIZED,       // Window has been resized to data1xdata2
+            SDL_WINDOWEVENT_SIZE_CHANGED,  // The window size has changed, either as a result of an API call or through the system or user changing the window size.
+            SDL_WINDOWEVENT_MINIMIZED,     // Window has been minimized
+            SDL_WINDOWEVENT_MAXIMIZED,     // Window has been maximized
+            SDL_WINDOWEVENT_RESTORED,      // Window has been restored to normal size and position
+            SDL_WINDOWEVENT_ENTER,         // Window has gained mouse focus
+            SDL_WINDOWEVENT_LEAVE,         // Window has lost mouse focus
+            SDL_WINDOWEVENT_FOCUS_GAINED,  // Window has gained keyboard focus
+            SDL_WINDOWEVENT_FOCUS_LOST,    // Window has lost keyboard focus
+            SDL_WINDOWEVENT_CLOSE,         // The window manager requests that the window be closed
+            -SDL_WINDOWEVENT_TAKE_FOCUS,   // Window is being offered a focus (should SetWindowInputFocus() on itself or a subwindow, or ignore)
+            -SDL_WINDOWEVENT_HIT_TEST      // Window had a hit test that wasn't SDL_HITTEST_NORMAL.
+            */
+
+            // Make a fixed size array and grab our events.
+            // Internally the event queue is capped at 128 events.  16 seems sane for this, but may need modifying.
+            // SDL_KEYDOWN to SDL_MULTIGESTURE are all input events.  Everything in between those values, as well as those values, will be pulled.
+            std::array<SDL_Event,16> InternalEvents;
+            Integer NumEvents = SDL_PeepEvents(InternalEvents.data(),InternalEvents.size(),SDL_GETEVENT,SDL_WINDOWEVENT,SDL_SYSWMEVENT);
+            assert( NumEvents >= 0 && SDL_GetError() );
+
+            for( Integer CurrEv = 0 ; CurrEv < NumEvents ; ++CurrEv )
+            {
+                UInt32 EventType = InternalEvents[CurrEv].type;
+                if( EventType != SDL_WINDOWEVENT ) {
+                    continue;
+                }
+
+                SDL_WindowEvent InternalEvent = InternalEvents[CurrEv].window;
+
+                UInt32 WindowID = InternalEvent.windowID;
+                GameWindow* EventWindow = this->GetGameWindowByID( WindowID );
+                if( EventWindow == nullptr ) {
+                    continue;
+                }
+
+                switch( InternalEvent.event )
+                {
+                    case SDL_WINDOWEVENT_SHOWN:         HandleWindowEventShown(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_HIDDEN:        HandleWindowEventHidden(EventWindow,WindowID);      break;
+                    case SDL_WINDOWEVENT_EXPOSED:       HandleWindowEventExposed(EventWindow,WindowID);     break;
+                    case SDL_WINDOWEVENT_MOVED:         HandleWindowEventMoved(InternalEvent,EventWindow,WindowID);    break;
+                    case SDL_WINDOWEVENT_RESIZED:       HandleWindowEventResizing(InternalEvent,EventWindow,WindowID); break;
+                    case SDL_WINDOWEVENT_SIZE_CHANGED:  HandleWindowEventResized(InternalEvent,EventWindow,WindowID);  break;
+                    case SDL_WINDOWEVENT_MINIMIZED:     HandleWindowEventMinimized(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_MAXIMIZED:     HandleWindowEventMaximized(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_RESTORED:      HandleWindowEventRestored(EventWindow,WindowID);    break;
+                    case SDL_WINDOWEVENT_ENTER:         HandleWindowEventEnter(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_LEAVE:         HandleWindowEventLeave(EventWindow,WindowID);       break;
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:  HandleWindowEventFocusGained(EventWindow,WindowID); break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:    HandleWindowEventFocusLost(EventWindow,WindowID);   break;
+                    case SDL_WINDOWEVENT_CLOSE:         this->DestroyGameWindow(EventWindow);               break;
+                    default:                            break; // Ignore the event.
+                }// switch window event type
+
+                // We don't care about events other than Window Events.
+                // We could add another if or throw an error here if necessary in the future.
+            }// for each event
         }
 
         void GraphicsManager::InitOgreRenderSystem()
@@ -241,7 +459,7 @@ namespace Mezzanine
                 OgreCore->initialise(false,"");
                 this->OgreBeenInitialized = true;
 
-                this->PrimaryGameWindow = new GameWindow("Primary",1,1,GameWindow::WF_Hidden);
+                this->PrimaryWindow = new GameWindow("Primary",1,1,GameWindow::WF_Hidden);
             }
         }
 
@@ -294,14 +512,14 @@ namespace Mezzanine
                 }
                 else if( "GameWindow" == (*SubSetIt)->GetName() )
                 {
-                    GameWindow* CurrWindow = NULL;
+                    GameWindow* CurrWindow = nullptr;
                     String WinCaption("Mezzanine Window");
                     Whole WinWidth = 800;
                     Whole WinHeight = 600;
                     Whole WinFlags = 0;
 
                     ObjectSettingSet* PropertiesSet = (*SubSetIt)->GetChildObjectSettingSet("GameWindowProperties");
-                    if( PropertiesSet != NULL ) {
+                    if( PropertiesSet != nullptr ) {
                         // Get the caption.
                         CurrSettingValue = PropertiesSet->GetSettingValue("Caption");
                         if(!CurrSettingValue.empty())
@@ -374,7 +592,7 @@ namespace Mezzanine
                     }
                     // Set up the viewports
                     ObjectSettingSet* ViewportsSet = (*SubSetIt)->GetChildObjectSettingSet("Viewports");
-                    if( ViewportsSet != NULL && CurrWindow != NULL ) {
+                    if( ViewportsSet != nullptr && CurrWindow != nullptr ) {
                         for( ObjectSettingSetContainer::SubSetIterator VPIt = ViewportsSet->SubSetBegin() ; VPIt != ViewportsSet->SubSetEnd() ; ++VPIt )
                         {
                             if( "Viewport" == (*VPIt)->GetName() ) {
@@ -388,7 +606,7 @@ namespace Mezzanine
                                 }
 
                                 ObjectSettingSet* PositionSet = (*VPIt)->GetChildObjectSettingSet("Position");
-                                if( PositionSet != NULL ) {
+                                if( PositionSet != nullptr ) {
                                     ObjectSettingSet* PositionVector = PositionSet->GetChildObjectSettingSet("Vector2");
 
                                     CurrSettingValue = PositionVector->GetSettingValue("X");
@@ -402,7 +620,7 @@ namespace Mezzanine
                                 }
 
                                 ObjectSettingSet* SizeSet = (*VPIt)->GetChildObjectSettingSet("Size");
-                                if( SizeSet != NULL ) {
+                                if( SizeSet != nullptr ) {
                                     ObjectSettingSet* SizeVector = SizeSet->GetChildObjectSettingSet("Vector2");
 
                                     CurrSettingValue = SizeVector->GetSettingValue("X");
@@ -415,7 +633,7 @@ namespace Mezzanine
                                     }
                                 }
 
-                                Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
+                                Viewport* CurrViewport = CurrWindow->CreateViewport(nullptr,ZO);
                                 CurrViewport->SetDimensions(Position,Size);
                             }// if - Viewport
                         }// for - Viewports
@@ -427,30 +645,46 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Window Management
 
-        GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
+        GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags)
         {
-            if( !this->OgreBeenInitialized )
+            if( !this->OgreBeenInitialized ) {
                 this->InitOgreRenderSystem();
+            }
 
             GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
             this->GameWindows.push_back(NewWindow);
+
+            WindowEventPtr WinEv = std::make_shared<WindowEvent>(GraphicsManager::EventWindowCreated,NewWindow->GetID());
+            this->GraphicsPublisher.DispatchEvent(WinEv);
+
             return NewWindow;
         }
 
-        GameWindow* GraphicsManager::GetGameWindow(const Whole& Index) const
+        GameWindow* GraphicsManager::GetGameWindow(const Whole Index) const
         {
             return this->GameWindows.at(Index);
         }
 
-        GameWindow* GraphicsManager::GetGameWindow(const String& Caption) const
+        GameWindow* GraphicsManager::GetGameWindowByID(const UInt32 WinID) const
         {
-            for( ConstGameWindowIterator WinIt = this->GameWindows.begin() ; WinIt != this->GameWindows.end() ; ++WinIt )
+            for( GameWindow* CurrWin : this->GameWindows )
             {
-                if( (*WinIt)->GetWindowCaption() == Caption ) {
-                    return (*WinIt);
+                if( CurrWin->GetID() == WinID ) {
+                    return CurrWin;
                 }
             }
-            return NULL;
+            return nullptr;
+        }
+
+        GameWindow* GraphicsManager::GetGameWindowByCaption(const String& Caption) const
+        {
+            for( GameWindow* CurrWin : this->GameWindows )
+            {
+                if( CurrWin->GetCaption() == Caption ) {
+                    return CurrWin;
+                }
+            }
+            return nullptr;
         }
 
         Whole GraphicsManager::GetNumGameWindows() const
@@ -460,11 +694,14 @@ namespace Mezzanine
 
         void GraphicsManager::DestroyGameWindow(GameWindow* ToBeDestroyed)
         {
-            for( GameWindowIterator it = this->GameWindows.begin() ; it != this->GameWindows.end() ; it++ )
+            for( GameWindowIterator WinIt = this->GameWindows.begin() ; WinIt != this->GameWindows.end() ; ++WinIt )
             {
-                if( ToBeDestroyed == (*it) ) {
+                if( ToBeDestroyed == (*WinIt) ) {
+                    WindowEventPtr WinEv = std::make_shared<WindowEvent>(EventWindowDestroyed,(*WinIt)->GetID());
+                    this->GraphicsPublisher.DispatchEvent(WinEv);
+
                     delete ToBeDestroyed;
-                    this->GameWindows.erase(it);
+                    this->GameWindows.erase(WinIt);
                     return;
                 }
             }
@@ -472,51 +709,52 @@ namespace Mezzanine
 
         void GraphicsManager::DestroyAllGameWindows(Boole ExcludePrimary)
         {
-            for( GameWindowIterator Iter = this->GameWindows.begin() ; Iter != this->GameWindows.end() ; ++Iter )
-                { delete *Iter; }
+            for( GameWindow* CurrWin : this->GameWindows )
+            {
+                WindowEventPtr WinEv = std::make_shared<WindowEvent>(EventWindowDestroyed,CurrWin->GetID());
+                this->GraphicsPublisher.DispatchEvent(WinEv);
+
+                delete CurrWin;
+            }
             this->GameWindows.clear();
 
-            if(!ExcludePrimary) {
-                delete this->PrimaryGameWindow;
-                this->PrimaryGameWindow = NULL;
+            if( !ExcludePrimary ) {
+                delete this->PrimaryWindow;
+                this->PrimaryWindow = nullptr;
             }
         }
 
-        GameWindow* GraphicsManager::GetPrimaryGameWindow()
+        GameWindow* GraphicsManager::GetPrimaryWindow()
         {
-            return this->PrimaryGameWindow;
+            return this->PrimaryWindow;
         }
 
         GraphicsManager::GameWindowIterator GraphicsManager::BeginGameWindow()
-        {
-            return this->GameWindows.begin();
-        }
+            { return this->GameWindows.begin(); }
 
         GraphicsManager::GameWindowIterator GraphicsManager::EndGameWindow()
-        {
-            return this->GameWindows.end();
-        }
+            { return this->GameWindows.end(); }
 
         GraphicsManager::ConstGameWindowIterator GraphicsManager::BeginGameWindow() const
-        {
-            return this->GameWindows.begin();
-        }
+            { return this->GameWindows.begin(); }
 
         GraphicsManager::ConstGameWindowIterator GraphicsManager::EndGameWindow() const
-        {
-            return this->GameWindows.end();
-        }
+            { return this->GameWindows.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // RenderSystem Management
 
-        void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boole InitializeRenderSystem)
+        void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem RenderSys, Boole InitializeRenderSystem)
         {
-            if(!this->OgreBeenInitialized) this->CurrRenderSys = RenderSys;
-            else { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
+            if( !this->OgreBeenInitialized ) {
+                this->CurrRenderSys = RenderSys;
+            }else{
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported.");
+            }
 
-            if( InitializeRenderSystem )
+            if( InitializeRenderSystem ) {
                 this->InitOgreRenderSystem();
+            }
         }
 
         Graphics::RenderSystem GraphicsManager::GetCurrRenderSystem()
@@ -524,7 +762,7 @@ namespace Mezzanine
             return this->CurrRenderSys;
         }
 
-        String GraphicsManager::GetRenderSystemName(const Graphics::RenderSystem& RenderSys)
+        String GraphicsManager::GetRenderSystemName(const Graphics::RenderSystem RenderSys)
         {
             switch(RenderSys)
             {
@@ -539,7 +777,7 @@ namespace Mezzanine
             return "";
         }
 
-        String GraphicsManager::GetShortenedRenderSystemName(const Graphics::RenderSystem& RenderSys)
+        String GraphicsManager::GetShortenedRenderSystemName(const Graphics::RenderSystem RenderSys)
         {
             switch(RenderSys)
             {
@@ -558,35 +796,36 @@ namespace Mezzanine
         // Query Methods
 
         const GraphicsManager::ResolutionContainer& GraphicsManager::GetSupportedResolutions() const
-        {
-            return this->SupportedResolutions;
-        }
+            { return this->SupportedResolutions; }
 
         const StringVector& GraphicsManager::GetSupportedDevices() const
-        {
-            return this->SupportedDevices;
-        }
+            { return this->SupportedDevices; }
 
         const WindowSettings& GraphicsManager::GetDesktopSettings() const
-        {
-            return this->DesktopSettings;
-        }
+            { return this->DesktopSettings; }
+
+        EventPublisher& GraphicsManager::GetGraphicsPublisher()
+            { return this->GraphicsPublisher; }
+
+        const EventPublisher& GraphicsManager::GetGraphicsPublisher() const
+            { return this->GraphicsPublisher; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
         void GraphicsManager::RenderOneFrame()
         {
+            this->PumpInternalEvents();
             // Do the actual frame
             Ogre::Root::getSingleton().renderOneFrame();
             // This fixes an undocumented error of some kind
-            if( !this->GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() ) {
+            if( !this->GetPrimaryWindow()->_GetOgreWindowPointer()->isVisible() ) {
                 Ogre::Root::getSingleton().clearEventTimes();
             }
             // Do the Logging aggregation
             /*Ogre::Log* DefaultLog = Ogre::LogManager::getSingleton().getDefaultLog();
-            if( DefaultLog != NULL ) {
-                if( this->ThreadResources != NULL ) {
+            if( DefaultLog != nullptr ) {
+                if( this->ThreadResources != nullptr ) {
                     //this->ThreadResources->GetUsableLogger() << DefaultLog->stream();
                 }else{
                     //Entresol::GetSingletonPtr()->_GetLogStream() << DefaultLog->stream();

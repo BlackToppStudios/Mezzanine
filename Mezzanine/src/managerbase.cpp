@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,22 +77,14 @@ namespace Mezzanine
     {
         switch( ManagerType )
         {
-            case ManagerBase::MT_ActorManager:
-                return "ActorManager";  break;
             case ManagerBase::MT_AnimationManager:
                 return "AnimationManager";  break;
-            case ManagerBase::MT_AreaEffectManager:
-                return "AreaEffectManager";  break;
             case ManagerBase::MT_AudioManager:
                 return "AudioManager";  break;
             case ManagerBase::MT_CollisionShapeManager:
                 return "CollisionShapeManager";  break;
             case ManagerBase::MT_CompositorManager:
                 return "CompositorManager";  break;
-            case ManagerBase::MT_DebrisManager:
-                return "DebrisManager";  break;
-            case ManagerBase::MT_EventManager:
-                return "EventManager";  break;
             case ManagerBase::MT_GraphicsManager:
                 return "GraphicsManager";  break;
             case ManagerBase::MT_InputManager:
@@ -117,14 +109,10 @@ namespace Mezzanine
                 return "ScriptingManager";  break;
             case ManagerBase::MT_SoundScapeManager:
                 return "SoundScapeManager";  break;
-            case ManagerBase::MT_TerrainManager:
-                return "TerrainManager";  break;
             case ManagerBase::MT_TextureManager:
                 return "TextureManager";  break;
             case ManagerBase::MT_UIManager:
                 return "UIManager";  break;
-            case ManagerBase::MT_VehicleManager:
-                return "VehicleManager";  break;
             case ManagerBase::MT_UserCreated:
                 return "UserCreated";  break;
             default:
@@ -140,9 +128,7 @@ namespace Mezzanine
         {
             case 'a':
             {
-                if( 'c' == Lower.at(1) ) return ManagerBase::MT_ActorManager;
-                else if( 'n' == Lower.at(1) ) return ManagerBase::MT_AnimationManager;
-                else if( 'r' == Lower.at(1) ) return ManagerBase::MT_AreaEffectManager;
+                if( 'n' == Lower.at(1) ) return ManagerBase::MT_AnimationManager;
                 else if( 'u' == Lower.at(1) ) return ManagerBase::MT_AudioManager;
                 break;
             }
@@ -152,16 +138,6 @@ namespace Mezzanine
                     if( 'l' == Lower.at(2) ) return ManagerBase::MT_CollisionShapeManager;
                     else if( 'm' == Lower.at(2) ) return ManagerBase::MT_CompositorManager;
                 }
-                break;
-            }
-            case 'd':
-            {
-                return ManagerBase::MT_DebrisManager;
-                break;
-            }
-            case 'e':
-            {
-                return ManagerBase::MT_EventManager;
                 break;
             }
             case 'g':
@@ -214,19 +190,13 @@ namespace Mezzanine
             }
             case 't':
             {
-                if( 'r' == Lower.at(2) ) return ManagerBase::MT_TerrainManager;
-                else if( 'x' == Lower.at(2) ) return ManagerBase::MT_TextureManager;
+                return ManagerBase::MT_TextureManager;
                 break;
             }
             case 'u':
             {
                 if( 'i' == Lower.at(1) ) return ManagerBase::MT_UIManager;
                 else if( 's' == Lower.at(1) ) return ManagerBase::MT_UserCreated;
-                break;
-            }
-            case 'v':
-            {
-                return ManagerBase::MT_VehicleManager;
                 break;
             }
         }

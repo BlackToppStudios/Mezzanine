@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -71,9 +71,7 @@
 #endif
 
 #include "actor.h"
-#include "actormanager.h"
 #include "areaeffect.h"
-#include "areaeffectmanager.h"
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
@@ -84,12 +82,12 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "debris.h"
-#include "debrismanager.h"
+#include "entity.h"
+#include "entitycomponent.h"
+#include "entitycomponentmanager.h"
+#include "entitymanager.h"
+#include "entityproxy.h"
 #include "enumerations.h"
-#include "eventbase.h"
-#include "eventgamewindow.h"
-#include "eventmanager.h"
-#include "eventquit.h"
 #include "exception.h"
 #include "managerbase.h"
 #include "managerfactory.h"
@@ -104,14 +102,12 @@
 #include "vector2.h"
 #include "vector3.h"
 #include "vehicle.h"
-#include "vehiclemanager.h"
 #include "world.h"
 #include "worldmanager.h"
 #include "worldmanagerfactory.h"
-#include "worldobject.h"
-#include "worldproxy.h"
 
 #ifndef SWIG
+#include "appeventdispatcher.h"
 #include "assetid.h"
 #include "datastream.h"
 #include "entresol.h"
@@ -122,7 +118,6 @@
 #include "eventsubscriber.h"
 #include "eventsubscriberbinding.h"
 #include "eventsubscriptiontable.h"
-#include "eventuserinput.h"
 #include "fieldofforce.h"
 #include "filestream.h"
 #include "gravityfield.h"
@@ -130,6 +125,7 @@
 #include "hashedstring.h"
 #include "interpolator.h"
 #include "interval.h"
+#include "iteratorrange.h"
 #include "linesegment.h"
 #include "memorystream.h"
 #include "meshterrain.h"
@@ -153,7 +149,6 @@
 #include "trackiterator.h"
 #include "triangle.h"
 #include "terrain.h"
-#include "terrainmanager.h"
 #include "uidgenerator.h"
 #include "worldtrigger.h"
 #include "version.h"

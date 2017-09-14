@@ -25,7 +25,7 @@ int _userdataValue1 = 1;
 int _userdataValue2 = 2;
 
 /* Event filter that sets some flags and optionally checks userdata */
-int _events_sampleNullEventFilter(void *userdata, SDL_Event *event)
+int SDLCALL _events_sampleNullEventFilter(void *userdata, SDL_Event *event)
 {
    _eventFilterCalled = 1;
 
@@ -58,7 +58,7 @@ events_pushPumpAndPollUserevent(void *arg)
    event1.user.data1 = (void *)&_userdataValue1;
    event1.user.data2 = (void *)&_userdataValue2;
 
-   /* Push a user event onto the queue and force queue update*/
+   /* Push a user event onto the queue and force queue update */
    SDL_PushEvent(&event1);
    SDLTest_AssertPass("Call to SDL_PushEvent()");
    SDL_PumpEvents();
@@ -87,7 +87,7 @@ events_addDelEventWatch(void *arg)
 
    /* Create user event */
    event.type = SDL_USEREVENT;
-   event.user.code = SDLTest_RandomSint32();;
+   event.user.code = SDLTest_RandomSint32();
    event.user.data1 = (void *)&_userdataValue1;
    event.user.data2 = (void *)&_userdataValue2;
 
@@ -101,7 +101,7 @@ events_addDelEventWatch(void *arg)
    SDL_AddEventWatch(_events_sampleNullEventFilter, NULL);
    SDLTest_AssertPass("Call to SDL_AddEventWatch()");
 
-   /* Push a user event onto the queue and force queue update*/
+   /* Push a user event onto the queue and force queue update */
    SDL_PushEvent(&event);
    SDLTest_AssertPass("Call to SDL_PushEvent()");
    SDL_PumpEvents();
@@ -112,7 +112,7 @@ events_addDelEventWatch(void *arg)
    SDL_DelEventWatch(_events_sampleNullEventFilter, NULL);
    SDLTest_AssertPass("Call to SDL_DelEventWatch()");
 
-   /* Push a user event onto the queue and force queue update*/
+   /* Push a user event onto the queue and force queue update */
    _eventFilterCalled = 0;
    SDL_PushEvent(&event);
    SDLTest_AssertPass("Call to SDL_PushEvent()");
@@ -137,7 +137,7 @@ events_addDelEventWatchWithUserdata(void *arg)
 
    /* Create user event */
    event.type = SDL_USEREVENT;
-   event.user.code = SDLTest_RandomSint32();;
+   event.user.code = SDLTest_RandomSint32();
    event.user.data1 = (void *)&_userdataValue1;
    event.user.data2 = (void *)&_userdataValue2;
 
@@ -152,7 +152,7 @@ events_addDelEventWatchWithUserdata(void *arg)
    SDL_AddEventWatch(_events_sampleNullEventFilter, (void *)&_userdataValue);
    SDLTest_AssertPass("Call to SDL_AddEventWatch()");
 
-   /* Push a user event onto the queue and force queue update*/
+   /* Push a user event onto the queue and force queue update */
    SDL_PushEvent(&event);
    SDLTest_AssertPass("Call to SDL_PushEvent()");
    SDL_PumpEvents();
@@ -163,7 +163,7 @@ events_addDelEventWatchWithUserdata(void *arg)
    SDL_DelEventWatch(_events_sampleNullEventFilter, (void *)&_userdataValue);
    SDLTest_AssertPass("Call to SDL_DelEventWatch()");
 
-   /* Push a user event onto the queue and force queue update*/
+   /* Push a user event onto the queue and force queue update */
    _eventFilterCalled = 0;
    SDL_PushEvent(&event);
    SDLTest_AssertPass("Call to SDL_PushEvent()");

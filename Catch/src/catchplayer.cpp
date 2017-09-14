@@ -26,10 +26,10 @@ void CatchPlayer::SetIdentity(GameProfile* CatchPlayerProfile)
     this->ProMan->LoadProfile(this->Profile);
 }
 
-void CatchPlayer::InitWorldObjects(World* GameWorld)
+void CatchPlayer::InitWorldEntities(World* GameWorld)
 {
     Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( GameWorld->GetManager( ManagerBase::MT_SceneManager ) );
-    if( SceneMan != NULL && SceneMan->GetNumProxies(Mezzanine::PT_Graphics_CameraProxy) == 0 ) {
+    if( SceneMan != NULL && SceneMan->GetNumComponents(Mezzanine::CT_Graphics_CameraProxy) == 0 ) {
         Graphics::CameraProxy* PlayCam = SceneMan->CreateCamera();
         PlayCam->SetNearClipDistance(0.5);
         PlayCam->LookAt(Vector3(0,0,0));
@@ -58,12 +58,18 @@ void CatchPlayer::Update(Input::InputManager* InputMan, const Whole DeltaTime)
         this->Control.StrafeRight( 300 * (DeltaTime * 0.001) );
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W) )
         this->Control.MoveForward( 300 * (DeltaTime * 0.001) );
-    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN) || SysKeyboard->IsButtonPressed(Input::KEY_S) )
         this->Control.MoveBackward( 300 * (DeltaTime * 0.001) );
     // Determine our camera angular movement
-    Vector2 Offset = SysMouse->GetMouseDelta();
-    if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && !Offset.IsZero() ) {
-        this->Control.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+    static Boole EnableRotation = false; // Temporary measure
+    if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
+        EnableRotation = !EnableRotation;
+
+    if( EnableRotation ) {
+        Vector2 Offset = SysMouse->GetMouseDelta();
+        if( SysMouse->IsButtonPressed(Input::MOUSEBUTTON_2) && !Offset.IsZero() ) {
+            this->Control.Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+        }
     }
 #endif
 }

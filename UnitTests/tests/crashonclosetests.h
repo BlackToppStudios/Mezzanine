@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ class crashonclosetests : public UnitTestGroup
                 Simulation.GetSimulationWork()->DoWork(Ignored);
                 TestOutput << "Location of an RigidProxy to prevent optimization: " << RigidA->GetLocation() << endl;
                 TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
-                TestOutput << "Some information from the simulation to prevent optimizing the crash out: " << Simulation.GetNumProxies();
+                TestOutput << "Some information from the simulation to prevent optimizing the crash out: " << Simulation.GetNumComponents();
             }
 
 

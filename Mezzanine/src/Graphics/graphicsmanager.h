@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,14 +40,17 @@
 #ifndef _graphicsmanager_h
 #define _graphicsmanager_h
 
-#include "Threading/dagframescheduler.h"
-#include "entresolmanager.h"
-#include "entresolmanagerfactory.h"
-#include "singleton.h"
 #include "Graphics/windowsettings.h"
 #include "Graphics/graphicsenumerations.h"
 #include "Graphics/gamewindow.h"
+
+#include "Threading/dagframescheduler.h"
+
+#include "entresolmanager.h"
+#include "entresolmanagerfactory.h"
+#include "eventpublisher.h"
 #include "objectsettings.h"
+#include "singleton.h"
 
 namespace Ogre
 {
@@ -64,7 +67,7 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        // Used by the scripting language binder to help create bindings for this class. SWIG does know to creation template instances
         #ifdef SWIG
         %template(SingletonGraphicsManager) Singleton<GraphicsManager>;
         #endif
@@ -74,16 +77,12 @@ namespace Mezzanine
         /// @brief This does the main loop processing for required to make the Graphics Manager function
         class MEZZ_LIB RenderWorkUnit : public Threading::MonopolyWorkUnit
         {
-        private:
-            /// @internal
+        protected:
             /// @brief The GraphicsManager this will work with
             GraphicsManager* TargetManager;
 
-            /// @internal
             /// @brief Private copy constructor to prevent useless copying of this,
             RenderWorkUnit(const RenderWorkUnit&) {}
-
-            /// @internal
             /// @brief Private assignment operator to prevent useless assignment of this,
             void operator=(RenderWorkUnit) {}
 
@@ -91,25 +90,20 @@ namespace Mezzanine
             /// @brief Create a GraphicsWorkUnit
             /// @param WhichGraphicsManager This is the Manager that this Work unit must work with.
             RenderWorkUnit(GraphicsManager* Target);
-
             /// @brief virtual deconstructor
             virtual ~RenderWorkUnit();
 
             /// @brief Once The graphics is properly multithread, this will set the amount of threads it should use
             /// @param AmountToUse Currently Ignored.
             virtual void UseThreads(const Whole& AmountToUse);
-
             /// @brief Get the amount of threads this will attempt to sue
             /// @return 1, this will return 1 until this Ogre threading is implemented.
             virtual Whole UsingThreadCount();
-
             /// @brief This does any required update of the Graphical Scene graph and REnders one frame
             virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
         };//RenderWorkUnit
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class GraphicsManager
-        /// @headerfile graphicsmanager.h
         /// @brief This is intended to store basic graphics setting for the user.
         /// @details This stores x/y resolution, fullscreen and in the future other
         /// settings. This is intended to make it easy for developers to pass/move around
@@ -120,64 +114,68 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref GameWindow storage by this class.
-            typedef std::vector<GameWindow*>              GameWindowContainer;
+            using GameWindowContainer = std::vector<GameWindow*>;
             /// @brief Iterator type for @ref GameWindow instances stored by this class.
-            typedef GameWindowContainer::iterator         GameWindowIterator;
+            using GameWindowIterator = GameWindowContainer::iterator;
             /// @brief Const Iterator type for @ref GameWindow instances stored by this class.
-            typedef GameWindowContainer::const_iterator   ConstGameWindowIterator;
-            /// @brief Basic container type for storing the detected supported fullscreen resolutions on the current system.
-            typedef std::vector<Resolution>               ResolutionContainer;
+            using ConstGameWindowIterator = GameWindowContainer::const_iterator;
+            /// @brief Basic container type for storing the detected supported Fullscreen resolutions on the current system.
+            using ResolutionContainer = std::vector<Resolution>;
             /// @brief Iterator type for stored supported resolutions.
-            typedef ResolutionContainer::iterator         ResolutionIterator;
+            using ResolutionIterator = ResolutionContainer::iterator;
             /// @brief Const Iterator type for stored supported resolutions.
-            typedef ResolutionContainer::const_iterator   ConstResolutionIterator;
-            /// @brief Basic container type for registered rendersystem type storage by this class.
-            typedef std::vector<RenderSystem>             RenderSystemTypeContainer;
+            using ConstResolutionIterator = ResolutionContainer::const_iterator;
+            /// @brief Basic container type for registered RenderSystem type storage by this class.
+            using RenderSystemTypeContainer = std::vector<RenderSystem>;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
+
+            /// @brief Identifier for the Event that is raised when a Window is created.
+            /// @details Events with this name are of type: WindowEvent.
+            static const EventNameType EventWindowCreated;
+            /// @brief Identifier for the Event that is raised when a Window is destroyed.
+            /// @details Events with this name are of type: WindowEvent.  The Event will be dispatched prior to
+            /// the window being destroyed, however once the event dispatch is complete it will be promptly
+            /// destroyed.  So any subscribers reacting to the destruction must be immediate if they need the
+            /// window intact.
+            static const EventNameType EventWindowDestroyed;
         protected:
-            /// @internal
-            /// @brief The RenderWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
             friend class RenderWorkUnit;
-            /// @internal
+
             /// @brief A container storing all the game windows created by this manager.
             GameWindowContainer GameWindows;
-            /// @internal
             /// @brief A container of strings storing all the detected supported resolutions on the current hardware.
             ResolutionContainer SupportedResolutions;
-            /// @internal
             /// @brief A container of strings storing all the detected names of video devices on the current hardware.
             StringVector SupportedDevices;
-            /// @internal
+            /// @brief A publisher for notifying when the system graphics configuration changes.
+            EventPublisher GraphicsPublisher;
             /// @brief A struct storing the dimensions of the desktop on the current hardware.
             WindowSettings DesktopSettings;
-            /// @internal
             /// @brief A pointer to the hidden window storing the context and render resources.
-            GameWindow* PrimaryGameWindow;
+            GameWindow* PrimaryWindow;
 
-            /// @internal
             /// @brief The work unit that does all the rendering.
             RenderWorkUnit* RenderWork;
-            /// @internal
             /// @brief Can be used for thread safe logging and other thread Specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
 
-            /// @internal
             /// @brief A RenderSystem enum value storing the RenderSystem type currently in use.
             Graphics::RenderSystem CurrRenderSys;
-            /// @internal
             /// @brief Stores whether the internal graphics subsystem has been initialized.
             Boole OgreBeenInitialized;
 
-            /// @internal
             /// @brief Construct the manager and set sane defaults.
             void Construct();
-            /// @internal
+
+            /// @brief Pumps the internal event queue of graphics events.
+            void PumpInternalEvents();
             /// @brief Initializes the internal graphics subsystem with the currently set configuration.
             void InitOgreRenderSystem();
+
             /// @copydoc ObjectSettingsHandler::GetObjectRootNodeName() const
             virtual String GetObjectRootNodeName() const;
             /// @copydoc ObjectSettingsHandler::AppendCurrentSettings(XML::Node&)
@@ -197,34 +195,38 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Window Management
 
-            /// @brief Creates a new game window to be rendered to.
-            /// @param WindowCaption The caption to be set in the window titlebar.
+            /// @brief Creates a new GameWindow to be rendered to.
+            /// @param WindowCaption The caption to be set in the window title bar.
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see GameWindow class for more info.
             /// @return Returns a pointer to the created window.
-            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
-            /// @brief Gets a game window by index.
+            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
+            /// @brief Gets a GameWindow by index.
             /// @param Index The index of the window to retrieve.
-            /// @return Returns a pointer to the game window at the specified index.
-            GameWindow* GetGameWindow(const Whole& Index) const;
-            /// @brief Gets a game window by it's caption text.
+            /// @return Returns a pointer to the GameWindow at the specified index.
+            GameWindow* GetGameWindow(const Whole Index) const;
+            /// @brief Gets a GameWindow by it's unique ID.
+            /// @param WinID The ID of the Window to retrieve.
+            /// @return Returns a pointer to the GameWindow with the specified ID.
+            GameWindow* GetGameWindowByID(const UInt32 WinID) const;
+            /// @brief Gets a GameWindow by it's caption text.
             /// @note If multiple windows have the same caption, the first one found will be returned.
             /// @param Caption The caption of the window to retrieve.
-            /// @return Returns a pointer to the game window with the specified caption, or NULL if no game windows with that caption exist.
-            GameWindow* GetGameWindow(const String& Caption) const;
-            /// @brief Gets the number of game windows within this manager.
-            /// @return Returns a Whole representing the number of game windows within this manager.
+            /// @return Returns a pointer to the GameWindow with the specified caption, or NULL if no GameWindows with that caption exist.
+            GameWindow* GetGameWindowByCaption(const String& Caption) const;
+            /// @brief Gets the number of GameWindows within this manager.
+            /// @return Returns a Whole representing the number of GameWindow instances within this manager.
             Whole GetNumGameWindows() const;
-            /// @brief Destroys a created game window by index.
+            /// @brief Destroys a created GameWindow by index.
             /// @param WindowIndex The index of the window to be destroyed.
             void DestroyGameWindow(GameWindow* ToBeDestroyed);
-            /// @brief Destroys every game window created.
+            /// @brief Destroys every GameWindow created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
             void DestroyAllGameWindows(Boole ExcludePrimary = true);
-            /// @brief Gets the primary(first) game window.
-            /// @return Returns a pointer to the primary game window.
-            GameWindow* GetPrimaryGameWindow();
+            /// @brief Gets the primary(first) GameWindow.
+            /// @return Returns a pointer to the primary GameWindow.
+            GameWindow* GetPrimaryWindow();
 
             /// @brief Gets an iterator to the first GameWindow stored in this manager.
             GameWindowIterator BeginGameWindow();
@@ -243,7 +245,7 @@ namespace Mezzanine
             /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
             /// @param RenderSys The Render system to be used.
             /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
-            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boole InitializeRenderSystem = false);
+            void SetRenderSystem(const Graphics::RenderSystem RenderSys, Boole InitializeRenderSystem = false);
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
             /// @return Returns an enum value coresponding to the render system being used.
@@ -251,11 +253,11 @@ namespace Mezzanine
             /// @brief Gets the name of the provided render system.
             /// @param RenderSys The rendersystem to get the name of.
             /// @return Returns a string containing the name of the provided render system.
-            String GetRenderSystemName(const Graphics::RenderSystem& RenderSys);
+            String GetRenderSystemName(const Graphics::RenderSystem RenderSys);
             /// @brief Gets a short hand name of the provided render system.
             /// @param RenderSys The rendersystem to get the name of.
             /// @return Returns a string containing the shortened name of the provided render system.
-            String GetShortenedRenderSystemName(const Graphics::RenderSystem& RenderSys);
+            String GetShortenedRenderSystemName(const Graphics::RenderSystem RenderSys);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
@@ -276,10 +278,10 @@ namespace Mezzanine
             // Utility Methods
 
             /// @brief Renders one frame of the scene.
-            virtual void RenderOneFrame();
+            void RenderOneFrame();
             /// @brief Swaps all the buffers of all GameWindows.
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
-            virtual void SwapAllBuffers(Boole WaitForVsync);
+            void SwapAllBuffers(Boole WaitForVsync);
 
             /// @copydoc ManagerBase::Initialize()
             /// @details Added a GraphicWorkUnit to the WorkScheduler on the Entresol as a
@@ -293,6 +295,12 @@ namespace Mezzanine
             /// @brief Gets the work unit responsible for performing the graphics render of all scenes.
             /// @return Returns a pointer to the RenderWorkUnit being used by this manager.
             RenderWorkUnit* GetRenderWork();
+            /// @brief Gets the publisher for the Graphics system events.
+            /// @return Returns a reference to the publisher that will dispatch Graphics events.
+            EventPublisher& GetGraphicsPublisher();
+            /// @brief Gets the publisher for the Graphics system events.
+            /// @return Returns a const reference to the publisher that will dispatch Graphics events.
+            const EventPublisher& GetGraphicsPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // SubSystem Initialization
@@ -314,8 +322,6 @@ namespace Mezzanine
         };//GraphicsManager
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class DefaultGraphicsManagerFactory
-        /// @headerfile graphicsmanager.h
         /// @brief A factory responsible for the creation and destruction of the default graphicsmanager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultGraphicsManagerFactory : public EntresolManagerFactory

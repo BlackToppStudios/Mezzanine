@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 #ifdef SDL_JOYSTICK_LINUX
 
@@ -26,7 +26,7 @@
 #error SDL now requires a Linux 2.4+ kernel with /dev/input/event support.
 #endif
 
-/* This is the system specific header for the SDL joystick API */
+/* This is the Linux implementation of the SDL joystick API */
 
 #include <sys/stat.h>
 #include <unistd.h>
@@ -42,134 +42,18 @@
 #include "../SDL_joystick_c.h"
 #include "SDL_sysjoystick_c.h"
 
-/* !!! FIXME: move this somewhere else. */
-#if !SDL_EVENTS_DISABLED
-#include "../../events/SDL_events_c.h"
-#endif
-
 /* This isn't defined in older Linux kernel headers */
 #ifndef SYN_DROPPED
 #define SYN_DROPPED 3
 #endif
 
-/*
- * !!! FIXME: move all the udev stuff to src/core/linux, so I can reuse it
- * !!! FIXME:  for audio hardware disconnects.
- */
-#ifdef HAVE_LIBUDEV_H
-#define SDL_USE_LIBUDEV 1
-#include "SDL_loadso.h"
-#include <libudev.h>
-#include <sys/time.h>
-#include <sys/types.h>
+#include "../../core/linux/SDL_udev.h"
 
-/* we never link directly to libudev. */
-/* !!! FIXME: can we generalize this? ALSA, etc, do the same things. */
-static const char *udev_library = "libudev.so.0";
-static void *udev_handle = NULL;
-
-/* !!! FIXME: this is kinda ugly. */
-static SDL_bool
-load_udev_sym(const char *fn, void **addr)
-{
-    *addr = SDL_LoadFunction(udev_handle, fn);
-    if (*addr == NULL) {
-        /* Don't call SDL_SetError(): SDL_LoadFunction already did. */
-        return SDL_FALSE;
-    }
-
-    return SDL_TRUE;
-}
-
-/* libudev entry points... */
-static const char *(*UDEV_udev_device_get_action)(struct udev_device *) = NULL;
-static const char *(*UDEV_udev_device_get_devnode)(struct udev_device *) = NULL;
-static const char *(*UDEV_udev_device_get_property_value)(struct udev_device *, const char *) = NULL;
-static struct udev_device *(*UDEV_udev_device_new_from_syspath)(struct udev *, const char *) = NULL;
-static void (*UDEV_udev_device_unref)(struct udev_device *) = NULL;
-static int (*UDEV_udev_enumerate_add_match_property)(struct udev_enumerate *, const char *, const char *) = NULL;
-static int (*UDEV_udev_enumerate_add_match_subsystem)(struct udev_enumerate *, const char *) = NULL;
-static struct udev_list_entry *(*UDEV_udev_enumerate_get_list_entry)(struct udev_enumerate *) = NULL;
-static struct udev_enumerate *(*UDEV_udev_enumerate_new)(struct udev *) = NULL;
-static int (*UDEV_udev_enumerate_scan_devices)(struct udev_enumerate *) = NULL;
-static void (*UDEV_udev_enumerate_unref)(struct udev_enumerate *) = NULL;
-static const char *(*UDEV_udev_list_entry_get_name)(struct udev_list_entry *) = NULL;
-static struct udev_list_entry *(*UDEV_udev_list_entry_get_next)(struct udev_list_entry *) = NULL;
-static int (*UDEV_udev_monitor_enable_receiving)(struct udev_monitor *) = NULL;
-static int (*UDEV_udev_monitor_filter_add_match_subsystem_devtype)(struct udev_monitor *, const char *, const char *) = NULL;
-static int (*UDEV_udev_monitor_get_fd)(struct udev_monitor *) = NULL;
-static struct udev_monitor *(*UDEV_udev_monitor_new_from_netlink)(struct udev *, const char *) = NULL;
-static struct udev_device *(*UDEV_udev_monitor_receive_device)(struct udev_monitor *) = NULL;
-static void (*UDEV_udev_monitor_unref)(struct udev_monitor *) = NULL;
-static struct udev *(*UDEV_udev_new)(void) = NULL;
-static void (*UDEV_udev_unref)(struct udev *) = NULL;
-
-static int
-load_udev_syms(void)
-{
-    /* cast funcs to char* first, to please GCC's strict aliasing rules. */
-    #define SDL_UDEV_SYM(x) \
-        if (!load_udev_sym(#x, (void **) (char *) &UDEV_##x)) return -1
-
-    SDL_UDEV_SYM(udev_device_get_action);
-    SDL_UDEV_SYM(udev_device_get_devnode);
-    SDL_UDEV_SYM(udev_device_get_property_value);
-    SDL_UDEV_SYM(udev_device_new_from_syspath);
-    SDL_UDEV_SYM(udev_device_unref);
-    SDL_UDEV_SYM(udev_enumerate_add_match_property);
-    SDL_UDEV_SYM(udev_enumerate_add_match_subsystem);
-    SDL_UDEV_SYM(udev_enumerate_get_list_entry);
-    SDL_UDEV_SYM(udev_enumerate_new);
-    SDL_UDEV_SYM(udev_enumerate_scan_devices);
-    SDL_UDEV_SYM(udev_enumerate_unref);
-    SDL_UDEV_SYM(udev_list_entry_get_name);
-    SDL_UDEV_SYM(udev_list_entry_get_next);
-    SDL_UDEV_SYM(udev_monitor_enable_receiving);
-    SDL_UDEV_SYM(udev_monitor_filter_add_match_subsystem_devtype);
-    SDL_UDEV_SYM(udev_monitor_get_fd);
-    SDL_UDEV_SYM(udev_monitor_new_from_netlink);
-    SDL_UDEV_SYM(udev_monitor_receive_device);
-    SDL_UDEV_SYM(udev_monitor_unref);
-    SDL_UDEV_SYM(udev_new);
-    SDL_UDEV_SYM(udev_unref);
-
-    #undef SDL_UDEV_SYM
-
-    return 0;
-}
-
-static void
-UnloadUDEVLibrary(void)
-{
-    if (udev_handle != NULL) {
-        SDL_UnloadObject(udev_handle);
-        udev_handle = NULL;
-    }
-}
-
-static int
-LoadUDEVLibrary(void)
-{
-    int retval = 0;
-    if (udev_handle == NULL) {
-        udev_handle = SDL_LoadObject(udev_library);
-        if (udev_handle == NULL) {
-            retval = -1;
-            /* Don't call SDL_SetError(): SDL_LoadObject already did. */
-        } else {
-            retval = load_udev_syms();
-            if (retval < 0) {
-                UnloadUDEVLibrary();
-            }
-        }
-    }
-
-    return retval;
-}
-
-static struct udev *udev = NULL;
-static struct udev_monitor *udev_mon = NULL;
-#endif
+static int MaybeAddDevice(const char *path);
+#if SDL_USE_LIBUDEV
+static int MaybeRemoveDevice(const char *path);
+static void joystick_udev_callback(SDL_UDEV_deviceevent udev_type, int udev_class, const char *devpath);
+#endif /* SDL_USE_LIBUDEV */
 
 
 /* A linked list of available joysticks */
@@ -196,11 +80,108 @@ static int instance_counter = 0;
 static int
 IsJoystick(int fd, char *namebuf, const size_t namebuflen, SDL_JoystickGUID *guid)
 {
+    /* This list is taken from:
+       https://raw.githubusercontent.com/denilsonsa/udev-joystick-blacklist/master/generate_rules.py
+     */
+    static Uint32 joystick_blacklist[] = {
+        /* Microsoft Microsoft Wireless Optical Desktop® 2.10 */
+        /* Microsoft Wireless Desktop - Comfort Edition */
+        MAKE_VIDPID(0x045e, 0x009d),
+
+        /* Microsoft Microsoft® Digital Media Pro Keyboard */
+        /* Microsoft Corp. Digital Media Pro Keyboard */
+        MAKE_VIDPID(0x045e, 0x00b0),
+
+        /* Microsoft Microsoft® Digital Media Keyboard */
+        /* Microsoft Corp. Digital Media Keyboard 1.0A */
+        MAKE_VIDPID(0x045e, 0x00b4),
+
+        /* Microsoft Microsoft® Digital Media Keyboard 3000 */
+        MAKE_VIDPID(0x045e, 0x0730),
+
+        /* Microsoft Microsoft® 2.4GHz Transceiver v6.0 */
+        /* Microsoft Microsoft® 2.4GHz Transceiver v8.0 */
+        /* Microsoft Corp. Nano Transceiver v1.0 for Bluetooth */
+        /* Microsoft Wireless Mobile Mouse 1000 */
+        /* Microsoft Wireless Desktop 3000 */
+        MAKE_VIDPID(0x045e, 0x0745),
+
+        /* Microsoft® SideWinder(TM) 2.4GHz Transceiver */
+        MAKE_VIDPID(0x045e, 0x0748),
+
+        /* Microsoft Corp. Wired Keyboard 600 */
+        MAKE_VIDPID(0x045e, 0x0750),
+
+        /* Microsoft Corp. Sidewinder X4 keyboard */
+        MAKE_VIDPID(0x045e, 0x0768),
+
+        /* Microsoft Corp. Arc Touch Mouse Transceiver */
+        MAKE_VIDPID(0x045e, 0x0773),
+
+        /* Microsoft® 2.4GHz Transceiver v9.0 */
+        /* Microsoft® Nano Transceiver v2.1 */
+        /* Microsoft Sculpt Ergonomic Keyboard (5KV-00001) */
+        MAKE_VIDPID(0x045e, 0x07a5),
+
+        /* Microsoft® Nano Transceiver v1.0 */
+        /* Microsoft Wireless Keyboard 800 */
+        MAKE_VIDPID(0x045e, 0x07b2),
+
+        /* Microsoft® Nano Transceiver v2.0 */
+        MAKE_VIDPID(0x045e, 0x0800),
+
+        /* List of Wacom devices at: http://linuxwacom.sourceforge.net/wiki/index.php/Device_IDs */
+        MAKE_VIDPID(0x056a, 0x0010),  /* Wacom ET-0405 Graphire */
+        MAKE_VIDPID(0x056a, 0x0011),  /* Wacom ET-0405A Graphire2 (4x5) */
+        MAKE_VIDPID(0x056a, 0x0012),  /* Wacom ET-0507A Graphire2 (5x7) */
+        MAKE_VIDPID(0x056a, 0x0013),  /* Wacom CTE-430 Graphire3 (4x5) */
+        MAKE_VIDPID(0x056a, 0x0014),  /* Wacom CTE-630 Graphire3 (6x8) */
+        MAKE_VIDPID(0x056a, 0x0015),  /* Wacom CTE-440 Graphire4 (4x5) */
+        MAKE_VIDPID(0x056a, 0x0016),  /* Wacom CTE-640 Graphire4 (6x8) */
+        MAKE_VIDPID(0x056a, 0x0017),  /* Wacom CTE-450 Bamboo Fun (4x5) */
+        MAKE_VIDPID(0x056a, 0x0016),  /* Wacom CTE-640 Graphire 4 6x8 */
+        MAKE_VIDPID(0x056a, 0x0017),  /* Wacom CTE-450 Bamboo Fun 4x5 */
+        MAKE_VIDPID(0x056a, 0x0018),  /* Wacom CTE-650 Bamboo Fun 6x8 */
+        MAKE_VIDPID(0x056a, 0x0019),  /* Wacom CTE-631 Bamboo One */
+        MAKE_VIDPID(0x056a, 0x00d1),  /* Wacom Bamboo Pen and Touch CTH-460 */
+
+        MAKE_VIDPID(0x09da, 0x054f),  /* A4 Tech Co., G7 750 mouse */
+        MAKE_VIDPID(0x09da, 0x3043),  /* A4 Tech Co., Ltd Bloody R8A Gaming Mouse */
+        MAKE_VIDPID(0x09da, 0x31b5),  /* A4 Tech Co., Ltd Bloody TL80 Terminator Laser Gaming Mouse */
+        MAKE_VIDPID(0x09da, 0x3997),  /* A4 Tech Co., Ltd Bloody RT7 Terminator Wireless */
+        MAKE_VIDPID(0x09da, 0x3f8b),  /* A4 Tech Co., Ltd Bloody V8 mouse */
+        MAKE_VIDPID(0x09da, 0x51f4),  /* Modecom MC-5006 Keyboard */
+        MAKE_VIDPID(0x09da, 0x5589),  /* A4 Tech Co., Ltd Terminator TL9 Laser Gaming Mouse */
+        MAKE_VIDPID(0x09da, 0x7b22),  /* A4 Tech Co., Ltd Bloody V5 */
+        MAKE_VIDPID(0x09da, 0x7f2d),  /* A4 Tech Co., Ltd Bloody R3 mouse */
+        MAKE_VIDPID(0x09da, 0x8090),  /* A4 Tech Co., Ltd X-718BK Oscar Optical Gaming Mouse */
+        MAKE_VIDPID(0x09da, 0x9066),  /* A4 Tech Co., Sharkoon Fireglider Optical */
+        MAKE_VIDPID(0x09da, 0x9090),  /* A4 Tech Co., Ltd XL-730K / XL-750BK / XL-755BK Laser Mouse */
+        MAKE_VIDPID(0x09da, 0x90c0),  /* A4 Tech Co., Ltd X7 G800V keyboard */
+        MAKE_VIDPID(0x09da, 0xf012),  /* A4 Tech Co., Ltd Bloody V7 mouse */
+        MAKE_VIDPID(0x09da, 0xf32a),  /* A4 Tech Co., Ltd Bloody B540 keyboard */
+        MAKE_VIDPID(0x09da, 0xf613),  /* A4 Tech Co., Ltd Bloody V2 mouse */
+        MAKE_VIDPID(0x09da, 0xf624),  /* A4 Tech Co., Ltd Bloody B120 Keyboard */
+
+        MAKE_VIDPID(0x1d57, 0xad03),  /* [T3] 2.4GHz and IR Air Mouse Remote Control */
+
+        MAKE_VIDPID(0x1e7d, 0x2e4a),  /* Roccat Tyon Mouse */
+
+        MAKE_VIDPID(0x20a0, 0x422d),  /* Winkeyless.kr Keyboards */
+
+        MAKE_VIDPID(0x2516, 0x001f),  /* Cooler Master Storm Mizar Mouse */
+        MAKE_VIDPID(0x2516, 0x0028),  /* Cooler Master Storm Alcor Mouse */
+    };
+    struct input_id inpid;
+    int i;
+    Uint32 id;
+    Uint16 *guid16 = (Uint16 *)guid->data;
+
+#if !SDL_USE_LIBUDEV
+    /* When udev is enabled we only get joystick devices here, so there's no need to test them */
     unsigned long evbit[NBITS(EV_MAX)] = { 0 };
     unsigned long keybit[NBITS(KEY_MAX)] = { 0 };
     unsigned long absbit[NBITS(ABS_MAX)] = { 0 };
-    struct input_id inpid;
-    Uint16 *guid16 = (Uint16 *) ((char *) &guid->data);
 
     if ((ioctl(fd, EVIOCGBIT(0, sizeof(evbit)), evbit) < 0) ||
         (ioctl(fd, EVIOCGBIT(EV_KEY, sizeof(keybit)), keybit) < 0) ||
@@ -212,6 +193,7 @@ IsJoystick(int fd, char *namebuf, const size_t namebuflen, SDL_JoystickGUID *gui
           test_bit(ABS_X, absbit) && test_bit(ABS_Y, absbit))) {
         return 0;
     }
+#endif
 
     if (ioctl(fd, EVIOCGNAME(namebuflen), namebuf) < 0) {
         return 0;
@@ -221,30 +203,68 @@ IsJoystick(int fd, char *namebuf, const size_t namebuflen, SDL_JoystickGUID *gui
         return 0;
     }
 
+    /* Check the joystick blacklist */
+    id = MAKE_VIDPID(inpid.vendor, inpid.product);
+    for (i = 0; i < SDL_arraysize(joystick_blacklist); ++i) {
+        if (id == joystick_blacklist[i]) {
+            return 0;
+        }
+    }
+
 #ifdef DEBUG_JOYSTICK
-    printf("Joystick: %s, bustype = %d, vendor = 0x%x, product = 0x%x, version = %d\n", namebuf, inpid.bustype, inpid.vendor, inpid.product, inpid.version);
+    printf("Joystick: %s, bustype = %d, vendor = 0x%.4x, product = 0x%.4x, version = %d\n", namebuf, inpid.bustype, inpid.vendor, inpid.product, inpid.version);
 #endif
 
     SDL_memset(guid->data, 0, sizeof(guid->data));
 
     /* We only need 16 bits for each of these; space them out to fill 128. */
     /* Byteswap so devices get same GUID on little/big endian platforms. */
-    *(guid16++) = SDL_SwapLE16(inpid.bustype);
-    *(guid16++) = 0;
+    *guid16++ = SDL_SwapLE16(inpid.bustype);
+    *guid16++ = 0;
 
-    if (inpid.vendor && inpid.product && inpid.version) {
-        *(guid16++) = SDL_SwapLE16(inpid.vendor);
-        *(guid16++) = 0;
-        *(guid16++) = SDL_SwapLE16(inpid.product);
-        *(guid16++) = 0;
-        *(guid16++) = SDL_SwapLE16(inpid.version);
-        *(guid16++) = 0;
+    if (inpid.vendor && inpid.product) {
+        *guid16++ = SDL_SwapLE16(inpid.vendor);
+        *guid16++ = 0;
+        *guid16++ = SDL_SwapLE16(inpid.product);
+        *guid16++ = 0;
+        *guid16++ = SDL_SwapLE16(inpid.version);
+        *guid16++ = 0;
     } else {
         SDL_strlcpy((char*)guid16, namebuf, sizeof(guid->data) - 4);
     }
 
+    if (SDL_IsGameControllerNameAndGUID(namebuf, *guid) &&
+        SDL_ShouldIgnoreGameController(namebuf, *guid)) {
+        return 0;
+    }
     return 1;
 }
+
+#if SDL_USE_LIBUDEV
+static void joystick_udev_callback(SDL_UDEV_deviceevent udev_type, int udev_class, const char *devpath)
+{
+    if (devpath == NULL) {
+        return;
+    }
+
+    switch (udev_type) {
+        case SDL_UDEV_DEVICEADDED:
+            if (!(udev_class & SDL_UDEV_DEVICE_JOYSTICK)) {
+                return;
+            }
+            MaybeAddDevice(devpath);
+            break;
+            
+        case SDL_UDEV_DEVICEREMOVED:
+            MaybeRemoveDevice(devpath);
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+#endif /* SDL_USE_LIBUDEV */
 
 
 /* !!! FIXME: I would love to dump this code and use libudev instead. */
@@ -314,7 +334,12 @@ MaybeAddDevice(const char *path)
         SDL_joylist_tail = item;
     }
 
-    return numjoysticks++;
+    /* Need to increment the joystick count before we post the event */
+    ++numjoysticks;
+
+    SDL_PrivateJoystickAdded(numjoysticks - 1);
+
+    return numjoysticks;
 }
 
 #if SDL_USE_LIBUDEV
@@ -345,10 +370,15 @@ MaybeRemoveDevice(const char *path)
             if (item == SDL_joylist_tail) {
                 SDL_joylist_tail = prev;
             }
+
+            /* Need to decrement the joystick count before we post the event */
+            --numjoysticks;
+
+            SDL_PrivateJoystickRemoved(item->device_instance);
+
             SDL_free(item->path);
             SDL_free(item->name);
             SDL_free(item);
-            numjoysticks--;
             return retval;
         }
         prev = item;
@@ -358,6 +388,7 @@ MaybeRemoveDevice(const char *path)
 }
 #endif
 
+#if ! SDL_USE_LIBUDEV
 static int
 JoystickInitWithoutUdev(void)
 {
@@ -374,46 +405,24 @@ JoystickInitWithoutUdev(void)
 
     return numjoysticks;
 }
-
+#endif
 
 #if SDL_USE_LIBUDEV
 static int
 JoystickInitWithUdev(void)
 {
-    struct udev_enumerate *enumerate = NULL;
-    struct udev_list_entry *devs = NULL;
-    struct udev_list_entry *item = NULL;
-
-    SDL_assert(udev == NULL);
-    udev = UDEV_udev_new();
-    if (udev == NULL) {
-        return SDL_SetError("udev_new() failed");
+    if (SDL_UDEV_Init() < 0) {
+        return SDL_SetError("Could not initialize UDEV");
     }
 
-    udev_mon = UDEV_udev_monitor_new_from_netlink(udev, "udev");
-    if (udev_mon != NULL) {  /* okay if it's NULL, we just lose hotplugging. */
-        UDEV_udev_monitor_filter_add_match_subsystem_devtype(udev_mon,
-                                                             "input", NULL);
-        UDEV_udev_monitor_enable_receiving(udev_mon);
+    /* Set up the udev callback */
+    if (SDL_UDEV_AddCallback(joystick_udev_callback) < 0) {
+        SDL_UDEV_Quit();
+        return SDL_SetError("Could not set up joystick <-> udev callback");
     }
-
-    enumerate = UDEV_udev_enumerate_new(udev);
-    if (enumerate == NULL) {
-        return SDL_SetError("udev_enumerate_new() failed");
-    }
-
-    UDEV_udev_enumerate_add_match_subsystem(enumerate, "input");
-    UDEV_udev_enumerate_add_match_property(enumerate, "ID_INPUT_JOYSTICK", "1");
-    UDEV_udev_enumerate_scan_devices(enumerate);
-    devs = UDEV_udev_enumerate_get_list_entry(enumerate);
-    for (item = devs; item; item = UDEV_udev_list_entry_get_next(item)) {
-        const char *path = UDEV_udev_list_entry_get_name(item);
-        struct udev_device *dev = UDEV_udev_device_new_from_syspath(udev, path);
-        MaybeAddDevice(UDEV_udev_device_get_devnode(dev));
-        UDEV_udev_device_unref(dev);
-    }
-
-    UDEV_udev_enumerate_unref(enumerate);
+    
+    /* Force a scan to build the initial device list */
+    SDL_UDEV_Scan();
 
     return numjoysticks;
 }
@@ -439,112 +448,25 @@ SDL_SYS_JoystickInit(void)
     }
 
 #if SDL_USE_LIBUDEV
-    if (LoadUDEVLibrary() == 0) {   /* okay if this fails, FOR NOW. */
-        return JoystickInitWithUdev();
-    }
-#endif
-
+    return JoystickInitWithUdev();
+#else 
     return JoystickInitWithoutUdev();
+#endif
 }
 
-int SDL_SYS_NumJoysticks()
+int
+SDL_SYS_NumJoysticks(void)
 {
     return numjoysticks;
 }
 
-static SDL_bool
-HotplugUpdateAvailable(void)
+void
+SDL_SYS_JoystickDetect(void)
 {
 #if SDL_USE_LIBUDEV
-    if (udev_mon != NULL) {
-        const int fd = UDEV_udev_monitor_get_fd(udev_mon);
-        fd_set fds;
-        struct timeval tv;
-
-        FD_ZERO(&fds);
-        FD_SET(fd, &fds);
-        tv.tv_sec = 0;
-        tv.tv_usec = 0;
-        if ((select(fd+1, &fds, NULL, NULL, &tv) > 0) && (FD_ISSET(fd, &fds))) {
-            return SDL_TRUE;
-        }
-    }
+    SDL_UDEV_Poll();
 #endif
-
-    return SDL_FALSE;
-}
-
-void SDL_SYS_JoystickDetect()
-{
-#if SDL_USE_LIBUDEV
-    struct udev_device *dev = NULL;
-    const char *devnode = NULL;
-    const char *action = NULL;
-    const char *val = NULL;
-
-    while (HotplugUpdateAvailable()) {
-        dev = UDEV_udev_monitor_receive_device(udev_mon);
-        if (dev == NULL) {
-            break;
-        }
-        val = UDEV_udev_device_get_property_value(dev, "ID_INPUT_JOYSTICK");
-        if ((!val) || (SDL_strcmp(val, "1") != 0)) {
-            continue;
-        }
-
-        action = UDEV_udev_device_get_action(dev);
-        devnode = UDEV_udev_device_get_devnode(dev);
-
-        if (SDL_strcmp(action, "add") == 0) {
-            const int device_index = MaybeAddDevice(devnode);
-            if (device_index != -1) {
-                /* !!! FIXME: Move this to an SDL_PrivateJoyDeviceAdded() function? */
-                #if !SDL_EVENTS_DISABLED
-                SDL_Event event;
-                event.type = SDL_JOYDEVICEADDED;
-
-                if (SDL_GetEventState(event.type) == SDL_ENABLE) {
-                    event.jdevice.which = device_index;
-                    if ( (SDL_EventOK == NULL) ||
-                         (*SDL_EventOK) (SDL_EventOKParam, &event) ) {
-                        SDL_PushEvent(&event);
-                    }
-                }
-                #endif /* !SDL_EVENTS_DISABLED */
-            }
-        } else if (SDL_strcmp(action, "remove") == 0) {
-            const int inst = MaybeRemoveDevice(devnode);
-            if (inst != -1) {
-                /* !!! FIXME: Move this to an SDL_PrivateJoyDeviceRemoved() function? */
-                #if !SDL_EVENTS_DISABLED
-                SDL_Event event;
-                event.type = SDL_JOYDEVICEREMOVED;
-
-                if (SDL_GetEventState(event.type) == SDL_ENABLE) {
-                    event.jdevice.which = inst;
-                    if ( (SDL_EventOK == NULL) ||
-                         (*SDL_EventOK) (SDL_EventOKParam, &event) ) {
-                        SDL_PushEvent(&event);
-                    }
-                }
-                #endif /* !SDL_EVENTS_DISABLED */
-            }
-        }
-        UDEV_udev_device_unref(dev);
-    }
-#endif
-}
-
-SDL_bool SDL_SYS_JoystickNeedsPolling()
-{
-    /*
-     * This results in a select() call, so technically we're polling to
-     *  decide if we should poll, but I think this function is here because
-     *  Windows has to do an enormous amount of work to detect new sticks,
-     *  whereas libudev just needs to see if there's more data available on
-     *  a socket...so this should be acceptable, I hope.
-     */
-    return HotplugUpdateAvailable();
+    
 }
 
 static SDL_joylist_item *
@@ -633,20 +555,20 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
 #ifdef DEBUG_INPUT_EVENTS
                 printf("Joystick has button: 0x%x\n", i);
 #endif
-                joystick->hwdata->key_map[i - BTN_MISC] = joystick->nbuttons;
+                joystick->hwdata->key_map[i] = joystick->nbuttons;
                 ++joystick->nbuttons;
             }
         }
-        for (i = BTN_MISC; i < BTN_JOYSTICK; ++i) {
+        for (i = 0; i < BTN_JOYSTICK; ++i) {
             if (test_bit(i, keybit)) {
 #ifdef DEBUG_INPUT_EVENTS
                 printf("Joystick has button: 0x%x\n", i);
 #endif
-                joystick->hwdata->key_map[i - BTN_MISC] = joystick->nbuttons;
+                joystick->hwdata->key_map[i] = joystick->nbuttons;
                 ++joystick->nbuttons;
             }
         }
-        for (i = 0; i < ABS_MISC; ++i) {
+        for (i = 0; i < ABS_MAX; ++i) {
             /* Skip hats */
             if (i == ABS_HAT0X) {
                 i = ABS_HAT3Y;
@@ -655,10 +577,11 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
             if (test_bit(i, absbit)) {
                 struct input_absinfo absinfo;
 
-                if (ioctl(fd, EVIOCGABS(i), &absinfo) < 0)
+                if (ioctl(fd, EVIOCGABS(i), &absinfo) < 0) {
                     continue;
+                }
 #ifdef DEBUG_INPUT_EVENTS
-                printf("Joystick has absolute axis: %x\n", i);
+                printf("Joystick has absolute axis: 0x%.2x\n", i);
                 printf("Values = { %d, %d, %d, %d, %d }\n",
                        absinfo.value, absinfo.minimum, absinfo.maximum,
                        absinfo.fuzz, absinfo.flat);
@@ -685,9 +608,17 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
         }
         for (i = ABS_HAT0X; i <= ABS_HAT3Y; i += 2) {
             if (test_bit(i, absbit) || test_bit(i + 1, absbit)) {
+                struct input_absinfo absinfo;
+
+                if (ioctl(fd, EVIOCGABS(i), &absinfo) < 0) {
+                    continue;
+                }
 #ifdef DEBUG_INPUT_EVENTS
                 printf("Joystick has hat %d\n", (i - ABS_HAT0X) / 2);
-#endif
+                printf("Values = { %d, %d, %d, %d, %d }\n",
+                       absinfo.value, absinfo.minimum, absinfo.maximum,
+                       absinfo.fuzz, absinfo.flat);
+#endif /* DEBUG_INPUT_EVENTS */
                 ++joystick->nhats;
             }
         }
@@ -711,7 +642,7 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
 
 
 /* Function to open a joystick for use.
-   The joystick to open is specified by the index field of the joystick.
+   The joystick to open is specified by the device index.
    This should fill the nbuttons and naxes fields of the joystick structure.
    It returns 0, or -1 if there is an error.
  */
@@ -766,13 +697,13 @@ SDL_SYS_JoystickOpen(SDL_Joystick * joystick, int device_index)
     return (0);
 }
 
-/* Function to determine is this joystick is attached to the system right now */
+/* Function to determine if this joystick is attached to the system right now */
 SDL_bool SDL_SYS_JoystickAttached(SDL_Joystick *joystick)
 {
-    return !joystick->closed && (joystick->hwdata->item != NULL);
+    return joystick->hwdata->item != NULL;
 }
 
-static __inline__ void
+static SDL_INLINE void
 HandleHat(SDL_Joystick * stick, Uint8 hat, int axis, int value)
 {
     struct hwdata_hat *the_hat;
@@ -798,14 +729,14 @@ HandleHat(SDL_Joystick * stick, Uint8 hat, int axis, int value)
     }
 }
 
-static __inline__ void
+static SDL_INLINE void
 HandleBall(SDL_Joystick * stick, Uint8 ball, int axis, int value)
 {
     stick->hwdata->balls[ball].axis[axis] += value;
 }
 
 
-static __inline__ int
+static SDL_INLINE int
 AxisCorrect(SDL_Joystick * joystick, int which, int value)
 {
     struct axis_correct *correct;
@@ -834,7 +765,7 @@ AxisCorrect(SDL_Joystick * joystick, int which, int value)
     return value;
 }
 
-static __inline__ void
+static SDL_INLINE void
 PollAllValues(SDL_Joystick * joystick)
 {
     struct input_absinfo absinfo;
@@ -872,7 +803,7 @@ PollAllValues(SDL_Joystick * joystick)
     }
 }
 
-static __inline__ void
+static SDL_INLINE void
 HandleInputEvents(SDL_Joystick * joystick)
 {
     struct input_event events[32];
@@ -890,18 +821,11 @@ HandleInputEvents(SDL_Joystick * joystick)
             code = events[i].code;
             switch (events[i].type) {
             case EV_KEY:
-                if (code >= BTN_MISC) {
-                    code -= BTN_MISC;
-                    SDL_PrivateJoystickButton(joystick,
-                                              joystick->hwdata->key_map[code],
-                                              events[i].value);
-                }
+                SDL_PrivateJoystickButton(joystick,
+                                          joystick->hwdata->key_map[code],
+                                          events[i].value);
                 break;
             case EV_ABS:
-                if (code >= ABS_MISC) {
-                    break;
-                }
-
                 switch (code) {
                 case ABS_HAT0X:
                 case ABS_HAT0Y:
@@ -986,9 +910,7 @@ SDL_SYS_JoystickClose(SDL_Joystick * joystick)
         SDL_free(joystick->hwdata->balls);
         SDL_free(joystick->hwdata->fname);
         SDL_free(joystick->hwdata);
-        joystick->hwdata = NULL;
     }
-    joystick->closed = 1;
 }
 
 /* Function to perform any system-specific joystick related cleanup */
@@ -1011,15 +933,8 @@ SDL_SYS_JoystickQuit(void)
     instance_counter = 0;
 
 #if SDL_USE_LIBUDEV
-    if (udev_mon != NULL) {
-        UDEV_udev_monitor_unref(udev_mon);
-        udev_mon = NULL;
-    }
-    if (udev != NULL) {
-        UDEV_udev_unref(udev);
-        udev = NULL;
-    }
-    UnloadUDEVLibrary();
+    SDL_UDEV_DelCallback(joystick_udev_callback);
+    SDL_UDEV_Quit();
 #endif
 }
 

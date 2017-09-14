@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ public:
     /// @param ExpectedProxy A pointer to the proxy we expect to be in the result.
     /// @param ExpectedDistance The distance we expect the proxy to be at.
     /// @return Returns true if the result contains the values we expect, false otherwise.
-    Boole VerifyResult(const RayQueryHit& Result, WorldProxy* ExpectedProxy, Real ExpectedDistance)
+    Boole VerifyResult(const RayQueryHit& Result, EntityProxy* ExpectedProxy, Real ExpectedDistance)
     {
         Boole ObjectMatch = ( Result.Object == ExpectedProxy );
         Boole DistanceMatch = ( Result.Distance < ExpectedDistance + 0.00001 ) && ( Result.Distance > ExpectedDistance - 0.00001 );
@@ -93,47 +93,47 @@ public:
         // Create entities.  Descriptions are relative to default camera perspective.
         Physics::RigidProxy* Rigid01 = PhysMan->CreateRigidProxy(Mass,TestBox);
         Rigid01->SetLocation(25.0,0.0,0.0);// 25 units to the left.
-        Rigid01->AddToWorld();
+        Rigid01->Activate();
         Physics::RigidProxy* Rigid02 = PhysMan->CreateRigidProxy(Mass,TestBox);
         Rigid02->SetLocation(-25.0,0.0,0.0);// 25 units to the right.
-        Rigid02->AddToWorld();
+        Rigid02->Activate();
         Physics::RigidProxy* Rigid03 = PhysMan->CreateRigidProxy(Mass,TestBox);
         Rigid03->SetLocation(0.0,25.0,0.0);// 25 units above.
-        Rigid03->AddToWorld();
+        Rigid03->Activate();
         Physics::RigidProxy* Rigid04 = PhysMan->CreateRigidProxy(Mass,TestBox);
         Rigid04->SetLocation(0.0,0.0,-25.0);// 25 units in front of.
-        Rigid04->AddToWorld();
+        Rigid04->Activate();
         Physics::RigidProxy* Rigid05 = PhysMan->CreateRigidProxy(Mass,DoubleScaleTestBox);
         Rigid05->SetLocation(0.0,-7.5,-50.0);// 50 units in front of and 7.5 units down.
         Rigid05->SetScale(2.0,2.0,2.0);
-        Rigid05->AddToWorld();
+        Rigid05->Activate();
         Physics::RigidProxy* Rigid06 = PhysMan->CreateRigidProxy(Mass,HalfScaleTestBox);
         Rigid06->SetLocation(0.0,3.0,-75.0);// 75 units in front of and 3 units up.
         Rigid06->SetScale(0.5,0.5,0.5);
-        Rigid06->AddToWorld();
+        Rigid06->Activate();
         Physics::RigidProxy* Rigid07 = PhysMan->CreateRigidProxy(Mass,TestBox);
         Rigid07->SetLocation(50.0,50.0,50.0);// 50 units to the left, up, and back.
-        Rigid07->AddToWorld();
+        Rigid07->Activate();
         Physics::RigidProxy* Rigid08 = PhysMan->CreateRigidProxy(Mass,TestSphere);
         Rigid08->SetLocation(-50.0,-50.0,-50.0);// 50 units to the right, down, and front.
-        Rigid08->AddToWorld();
+        Rigid08->Activate();
         Physics::RigidProxy* Rigid09 = PhysMan->CreateRigidProxy(Mass,TestSphere);
         Rigid09->SetLocation(-50.0,50.0,-50.0);// 50 units to the right, up, and front.
-        Rigid09->AddToWorld();
+        Rigid09->Activate();
         Physics::RigidProxy* Rigid10 = PhysMan->CreateRigidProxy(Mass,TestSphere);
         Rigid10->SetLocation(4.0,4.0,25.0);// 4 units to the left and up, and 25 units behind.
-        Rigid10->AddToWorld();
+        Rigid10->Activate();
         Physics::RigidProxy* Rigid11 = PhysMan->CreateRigidProxy(Mass,TestSphere);
         Rigid11->SetLocation(-4.0,-4.0,50.0);// 4 units to the right and down, and 50 units behind.
-        Rigid11->AddToWorld();
+        Rigid11->Activate();
         Physics::RigidProxy* Rigid12 = PhysMan->CreateRigidProxy(Mass,DoubleScaleTestSphere);
         Rigid12->SetLocation(5.0,100.0,5.0);// 5 units to the left and back, and 100 units up.
         Rigid12->SetScale(2.0,2.0,2.0);
-        Rigid12->AddToWorld();
+        Rigid12->Activate();
 
         Physics::GhostProxy* Ghost = PhysMan->CreateGhostProxy(TestSphere);
         Ghost->SetLocation(75.0,0.0,0.0);
-        Ghost->AddToWorld();
+        Ghost->Activate();
 
         Physics::CollidableRayQuery TestRayQuery(PhysMan);
 
@@ -288,24 +288,23 @@ public:
 
         {//Utility Tests
             {//Get/SetTypes Test
-                UInt32 ProxFilter = Mezzanine::PT_Physics_GhostProxy;
-                TestRayQuery.SetProxyTypes(ProxFilter);
+                RayQuery::FilterFunction ProxFilter = [](EntityProxy* ToFilter) {
+                    return ( ToFilter->GetComponentType() == Mezzanine::CT_Physics_GhostProxy );
+                };
+                TestRayQuery.SetFilterFunction(ProxFilter);
                 Ray FilterTestRay(ZeroVec,Vector3::Unit_X());
 
                 RayQuery::ResultContainer MultiTestResult = TestRayQuery.GetAllShapeResults(FilterTestRay);
                 TEST( MultiTestResult.size() == 1 &&
                       this->VerifyResult( MultiTestResult[0], Ghost, 70.0 ),
-                      "SetProxyTypes(const_UInt32)_Multi" );
+                      "SetFilterFunction(const_FilterFunction)_Multi" );
 
                 RayQueryHit SingleTestResult = TestRayQuery.GetFirstShapeResult(FilterTestRay);
                 TEST( this->VerifyResult( SingleTestResult, Ghost, 70.0 ),
-                      "SetProxyTypes(const_UInt32)_Single" );
+                      "SetFilterFunction(const_FilterFunction)_Single" );
 
-                TEST( TestRayQuery.GetProxyTypes() == ProxFilter,
-                      "GetProxyTypes()_const" );
-
-                TestRayQuery.SetProxyTypes(std::numeric_limits<UInt32>::max());
-            }//Get/SetTypes Test
+                TestRayQuery.SetFilterFunction(RayQuery::FilterFunction());
+            }//Get/SetTypes Test //*/
 
             {//Get/SetQuery Test
                 UInt32 QueryFilter = Physics::CF_SensorFilter;
@@ -329,7 +328,7 @@ public:
         }//Utility Tests
 
         {//Serialize Test
-            String Expected( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Expected( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             Physics::CollidableRayQuery TestRayQuery(PhysMan);
@@ -341,20 +340,19 @@ public:
         }//Serialize Test
 
         {//Deserialize Test
-            String Source( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" ProxyTypesFilter=\"4294967295\" QueryFilter=\"4294967295\" />" );
+            String Source( "<?xml version=\"1.0\"?><CollidableRayQuery Version=\"1\" WorldName=\"CollidableRayTestWorld\" RayCastLength=\"15000\" QueryFilter=\"4294967295\" />" );
 
             XML::Document Doc;
             StringStream Buffer;
             Buffer.str(Source);
             Doc.Load(Buffer);
 
-            Physics::CollidableRayQuery TestRayQuery(NULL);// <- This is #Dicey
+            Physics::CollidableRayQuery TestRayQuery(NULL);
             TestRayQuery.ProtoDeSerialize(Doc.GetFirstChild());
 
             Boole WorldMatch = TestRayQuery.GetWorld() == TheWorld;
-            Boole ProxyTypesMatch = TestRayQuery.GetProxyTypes() == std::numeric_limits<UInt32>::max();
             Boole CollisionFilterMatch = TestRayQuery.GetQueryFilter() == std::numeric_limits<UInt32>::max();
-            TEST( WorldMatch && ProxyTypesMatch && CollisionFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
+            TEST( WorldMatch && CollisionFilterMatch ,"ProtoDeSerialize(const_XML::Node&)");
         }//Deserialize Test
     }
 

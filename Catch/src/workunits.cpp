@@ -221,55 +221,6 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// CatchPreInputWorkUnit Methods
-
-CatchPreInputWorkUnit::CatchPreInputWorkUnit(CatchApp* Target) :
-    CatchApplication(Target) {  }
-
-CatchPreInputWorkUnit::~CatchPreInputWorkUnit()
-    {  }
-
-void CatchPreInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-{
-    EventManager* EventMan = EventManager::GetSingletonPtr();
-    //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = EventMan->PopNextUserInputEvent();
-
-    //We check each Event
-    while(0 != OneInput)
-    {
-        if(OneInput->GetType()!=EventBase::UserInput)
-            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
-
-        //we check each MetaCode in each Event
-        /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
-        {
-            //Is the key we just pushed ESCAPE
-            if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
-                { return false; }
-        }// */
-
-        delete OneInput;
-        OneInput = EventMan->PopNextUserInputEvent();
-    }
-
-    EventGameWindow* OneWindowEvent = EventMan->PopNextGameWindowEvent();
-    while(0 != OneWindowEvent)
-    {
-        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
-
-        if(!OneWindowEvent->IsEventIDValid())
-        {
-            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
-        }
-
-        delete OneWindowEvent;
-        OneWindowEvent = EventMan->PopNextGameWindowEvent();
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // CatchPostInputWorkUnit Methods
 
 CatchPostInputWorkUnit::CatchPostInputWorkUnit(CatchApp* Target) :
@@ -323,7 +274,7 @@ CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
 void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     if( !UIMan->MouseIsInUISystem() ) {
-        this->CatchApplication->GetPicker().Execute(this->CatchApplication->GetPickerFilter());
+        this->CatchApplication->GetPicker().Execute(nullptr);
     }
 }
 

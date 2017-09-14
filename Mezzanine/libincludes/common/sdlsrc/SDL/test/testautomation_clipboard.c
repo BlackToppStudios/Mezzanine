@@ -41,7 +41,7 @@ clipboard_testGetClipboardText(void *arg)
     charResult = SDL_GetClipboardText();
     SDLTest_AssertPass("Call to SDL_GetClipboardText succeeded");
 
-    if (charResult) SDL_free(charResult);
+    SDL_free(charResult);
 
     return TEST_COMPLETED;
 }
@@ -69,8 +69,8 @@ clipboard_testSetClipboardText(void *arg)
         textRef, text);
 
     /* Cleanup */
-    if (textRef) SDL_free(textRef);
-    if (text) SDL_free(text);
+    SDL_free(textRef);
+    SDL_free(text);
 
    return TEST_COMPLETED;
 }
@@ -103,6 +103,7 @@ clipboard_testClipboardTextFunctions(void *arg)
             intResult);
         charResult = SDL_GetClipboardText();
         SDLTest_AssertPass("Call to SDL_GetClipboardText succeeded");
+        SDL_free(charResult);
         boolResult = SDL_HasClipboardText();
         SDLTest_AssertPass("Call to SDL_HasClipboardText succeeded");
         SDLTest_AssertCheck(
@@ -118,9 +119,9 @@ clipboard_testClipboardTextFunctions(void *arg)
         charResult != NULL,
         "Verify SDL_GetClipboardText did not return NULL");
     SDLTest_AssertCheck(
-        SDL_strlen(charResult) == 0,
+        charResult[0] == '\0',
         "Verify SDL_GetClipboardText returned string with length 0, got length %i",
-        SDL_strlen(charResult));
+        (int) SDL_strlen(charResult));
     intResult = SDL_SetClipboardText((const char *)text);
     SDLTest_AssertPass("Call to SDL_SetClipboardText succeeded");
     SDLTest_AssertCheck(
@@ -137,17 +138,18 @@ clipboard_testClipboardTextFunctions(void *arg)
         boolResult == SDL_TRUE,
         "Verify SDL_HasClipboardText returned SDL_TRUE, got %s",
         (boolResult) ? "SDL_TRUE" : "SDL_FALSE");
+    SDL_free(charResult);
     charResult = SDL_GetClipboardText();
     SDLTest_AssertPass("Call to SDL_GetClipboardText succeeded");
     SDLTest_AssertCheck(
-        strcmp(textRef, charResult) == 0,
+        SDL_strcmp(textRef, charResult) == 0,
         "Verify SDL_GetClipboardText returned correct string, expected '%s', got '%s'",
         textRef, charResult);
 
     /* Cleanup */
-    if (textRef) SDL_free(textRef);
-    if (text) SDL_free(text);
-    if (charResult) SDL_free(charResult);
+    SDL_free(textRef);
+    SDL_free(text);
+    SDL_free(charResult);
 
    return TEST_COMPLETED;
 }

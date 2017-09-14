@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -201,8 +201,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Mezzanine::ProxyType CameraProxy::GetProxyType() const
-            { return Mezzanine::PT_Graphics_CameraProxy; }
+        Mezzanine::ComponentType CameraProxy::GetComponentType() const
+            { return Mezzanine::CT_Graphics_CameraProxy; }
 
         Boole CameraProxy::IsStatic() const
             { return false; }

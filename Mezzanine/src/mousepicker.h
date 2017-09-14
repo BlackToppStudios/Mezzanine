@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@
 namespace Mezzanine
 {
     class World;
-    class WorldObject;
+    class Entity;
     class MousePickDragger;
     class RayQuery;
     class RayQueryHit;
@@ -119,7 +119,9 @@ namespace Mezzanine
         World* GetMouseWorld() const;
 
         /// @brief Performs all the checks and updates to drag a target under the mouse.
-        /// @note When implementing the delegate return true to allow picking to proceed, false to prevent it.
+        /// @note When implementing the delegate return true to allow picking to proceed, false to prevent it.  The
+        /// delegate will be run on the results of the RayQuery.  If you want to filter sooner than that there you
+        /// can pass a filter into the RayQuery itself.
         /// @param Filter A delegate to perform custom filtering of which bodies should and shouldn't be pickable.
         void Execute(const FilterDelegate& Filter);
     };//MousePicker

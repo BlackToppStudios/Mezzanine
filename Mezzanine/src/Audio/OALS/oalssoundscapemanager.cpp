@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@
 #include "entresol.h"
 #include "exception.h"
 #include "stringtool.h"
-#include "worldobject.h"
+#include "entity.h"
 
 namespace Mezzanine
 {
@@ -141,7 +141,7 @@ namespace Mezzanine
                     AudioMan->_UnregisterSoundScapeManager(this);
                 }
 
-                this->DestroyAllProxies();
+                this->DestroyAllComponents();
                 this->DestroyAllListeners();
             }
 
@@ -230,7 +230,7 @@ namespace Mezzanine
             {
                 ALCcontext* ListenerContext = this->CreateContext();
                 OALS::Listener* NewListener = new OALS::Listener(SelfRoot,ListenerContext,this);
-                this->ProxyIDGen.ReserveID(NewListener->GetProxyID());
+                this->ProxyIDGen.ReserveID(NewListener->GetComponentID().ID);
                 this->Listeners.push_back(NewListener);
                 return NewListener;
             }
@@ -335,7 +335,7 @@ namespace Mezzanine
                 return NULL;
             }
 
-            WorldProxy* SoundScapeManager::CreateProxy(const XML::Node& SelfRoot)
+            EntityComponent* SoundScapeManager::CreateComponent(const XML::Node& SelfRoot)
             {
                 if( SelfRoot.Name() == OALS::Listener::GetSerializableName() ) return this->CreateListener(SelfRoot);
                 else if( SelfRoot.Name() == OALS::SoundProxy::GetSerializableName() ) return this->CreateSoundProxy(SelfRoot);
@@ -345,18 +345,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
 
-            WorldProxy* SoundScapeManager::GetProxyByID(const UInt32 ID) const
+            EntityComponent* SoundScapeManager::GetComponentByID(const UInt32 ID) const
             {
                 for( ConstListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    if( (*ListIt)->GetProxyID() == ID ) {
+                    if( (*ListIt)->GetComponentID() == ID ) {
                         return (*ListIt);
                     }
                 }
 
                 for( ConstProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    if( (*ProxIt)->GetProxyID() == ID ) {
+                    if( (*ProxIt)->GetComponentID() == ID ) {
                         return (*ProxIt);
                     }
                 }
@@ -364,50 +364,50 @@ namespace Mezzanine
                 return NULL;
             }
 
-            UInt32 SoundScapeManager::GetNumProxies() const
+            UInt32 SoundScapeManager::GetNumComponents() const
             {
                 return ( this->GetNumListeners() + this->GetNumSoundProxies() );
             }
 
-            UInt32 SoundScapeManager::GetNumProxies(const UInt32 Types) const
+            UInt32 SoundScapeManager::GetNumComponents(const UInt32 Types) const
             {
                 UInt32 Count = 0;
-                if( Types & Mezzanine::PT_Audio_Listener )
+                if( Types == Mezzanine::CT_Audio_Listener )
                     Count += this->GetNumListeners();
 
-                if( Types & Mezzanine::PT_Audio_SoundProxy )
+                if( Types == Mezzanine::CT_Audio_SoundProxy )
                     Count += this->GetNumSoundProxies();
 
                 return Count;
             }
 
-            WorldProxyManager::WorldProxyVec SoundScapeManager::GetProxies() const
+            EntityComponentManager::ComponentVec SoundScapeManager::GetComponents() const
             {
-                WorldProxyVec Ret;
+                ComponentVec Ret;
                 Ret.insert(Ret.end(),this->Listeners.begin(),this->Listeners.end());
                 Ret.insert(Ret.end(),this->Proxies.begin(),this->Proxies.end());
                 return Ret;
             }
 
-            void SoundScapeManager::DestroyProxy(WorldProxy* ToBeDestroyed)
+            void SoundScapeManager::DestroyComponent(EntityComponent* ToBeDestroyed)
             {
-                if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_Listener ) {
+                if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_Listener ) {
                     this->DestroyListener( static_cast<OALS::Listener*>( ToBeDestroyed ) );
-                }else if( ToBeDestroyed->GetProxyType() == Mezzanine::PT_Audio_SoundProxy ) {
+                }else if( ToBeDestroyed->GetComponentType() == Mezzanine::CT_Audio_SoundProxy ) {
                     this->DestroySoundProxy( static_cast<OALS::SoundProxy*>( ToBeDestroyed ) );
                 }
             }
 
-            void SoundScapeManager::DestroyAllProxies(const UInt32 Types)
+            void SoundScapeManager::DestroyAllComponents(const UInt32 Types)
             {
-                if( Types & Mezzanine::PT_Audio_SoundProxy ) {
+                if( Types & Mezzanine::CT_Audio_SoundProxy ) {
                     this->DestroyAllSoundProxies();
-                }else if( Types & Mezzanine::PT_Audio_Listener ) {
+                }else if( Types & Mezzanine::CT_Audio_Listener ) {
                     this->DestroyAllListeners();
                 }
             }
 
-            void SoundScapeManager::DestroyAllProxies()
+            void SoundScapeManager::DestroyAllComponents()
             {
                 this->DestroyAllSoundProxies();
                 this->DestroyAllListeners();
@@ -430,11 +430,11 @@ namespace Mezzanine
                     if( (*ListIt) == ToBeDestroyed ) {
                         ListenerContext = static_cast<OALS::Listener*>(ToBeDestroyed)->_GetListenerContext();
 
-                        WorldObject* Parent = (*ListIt)->GetParentObject();
+                        Entity* Parent = (*ListIt)->GetParentEntity();
                         if( Parent )
-                            Parent->RemoveProxy( (*ListIt) );
+                            Parent->RemoveComponent( (*ListIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                         delete ToBeDestroyed;
                         this->Listeners.erase(ListIt);
                     }
@@ -448,11 +448,11 @@ namespace Mezzanine
             {
                 for( ListenerIterator ListIt = this->Listeners.begin() ; ListIt != this->Listeners.end() ; ++ListIt )
                 {
-                    WorldObject* Parent = (*ListIt)->GetParentObject();
+                    Entity* Parent = (*ListIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ListIt) );
+                        Parent->RemoveComponent( (*ListIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ListIt)->GetComponentID().ID );
                     delete (*ListIt);
                 }
                 this->Listeners.clear();
@@ -470,11 +470,11 @@ namespace Mezzanine
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed ) {
-                        WorldObject* Parent = (*ProxIt)->GetParentObject();
+                        Entity* Parent = (*ProxIt)->GetParentEntity();
                         if( Parent )
-                            Parent->RemoveProxy( (*ProxIt) );
+                            Parent->RemoveComponent( (*ProxIt) );
 
-                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetProxyID() );
+                        this->ProxyIDGen.ReleaseID( ToBeDestroyed->GetComponentID().ID );
                         delete ToBeDestroyed;
                         this->Proxies.erase(ProxIt);
                     }
@@ -485,11 +485,11 @@ namespace Mezzanine
             {
                 for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
-                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    Entity* Parent = (*ProxIt)->GetParentEntity();
                     if( Parent )
-                        Parent->RemoveProxy( (*ProxIt) );
+                        Parent->RemoveComponent( (*ProxIt) );
 
-                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetProxyID() );
+                    this->ProxyIDGen.ReleaseID( (*ProxIt)->GetComponentID().ID );
                     delete (*ProxIt);
                 }
                 this->Proxies.clear();

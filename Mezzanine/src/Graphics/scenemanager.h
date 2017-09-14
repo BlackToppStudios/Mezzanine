@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@
 #include "singleton.h"
 
 #include "uidgenerator.h"
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 #include "worldmanagerfactory.h"
 
 #include "Graphics/graphicsenumerations.h"
@@ -69,7 +69,7 @@ namespace Mezzanine
         class RenderableProxy;
         class BillboardSetProxy;
         class CameraProxy;
-        class EntityProxy;
+        class ItemProxy;
         class LightProxy;
         class LineGroupProxy;
         class ParticleSystemProxy;
@@ -83,7 +83,7 @@ namespace Mezzanine
         /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
         /// scenemanager types, and more.
         ///////////////////////////////////////
-        class MEZZ_LIB SceneManager : public WorldProxyManager
+        class MEZZ_LIB SceneManager : public EntityComponentManager
         {
         public:
             /// @brief Basic container type for RenderableProxy storage by this class.
@@ -121,7 +121,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief Generator responsible for creating unique IDs for CollidableProxy instances.
-            UIDGenerator ProxyIDGen;
+            UIDGenerator<UInt32> ProxyIDGen;
             /// @internal
             /// @brief Container storing all of the RenderableProxy instances created by this manager.
             ProxyContainer Proxies;
@@ -275,22 +275,22 @@ namespace Mezzanine
             /// @return Returns a pointer to the created camera.
             CameraProxy* CreateCamera(const XML::Node& SelfRoot);
 
-            /// @brief Creates a new EntityProxy.
+            /// @brief Creates a new ItemProxy.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy();
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy();
+            /// @brief Creates a new ItemProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(Mesh* TheMesh);
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy(Mesh* TheMesh);
+            /// @brief Creates a new ItemProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
-            /// @brief Creates a new EntityProxy.
+            ItemProxy* CreateItemProxy(const String& MeshName, const String& GroupName);
+            /// @brief Creates a new ItemProxy.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
+            ItemProxy* CreateItemProxy(const XML::Node& SelfRoot);
 
             /// @brief Creates a new LightProxy.
             /// @return Returns a pointer to the created proxy.
@@ -321,8 +321,8 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             ParticleSystemProxy* CreateParticleSystemProxy(const XML::Node& SelfRoot);
 
-            /// @copydoc WorldProxyManager::CreateProxy(const XML::Node&)
-            WorldProxy* CreateProxy(const XML::Node& SelfRoot);
+            /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
+            EntityComponent* CreateComponent(const XML::Node& SelfRoot);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
@@ -332,22 +332,22 @@ namespace Mezzanine
             /// @return Returns a pointer to the RenderableProxy at the specified index.
             RenderableProxy* GetProxy(const UInt32 Index) const;
 
-            /// @copydoc WorldProxyManager::GetProxyByID(const UInt32) const
-            WorldProxy* GetProxyByID(const UInt32 ID) const;
+            /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
+            EntityComponent* GetComponentByID(const UInt32 ID) const;
 
-            /// @copydoc WorldProxyManager::GetNumProxies() const
-            UInt32 GetNumProxies() const;
-            /// @copydoc WorldProxyManager::GetNumProxies(const UInt32) const
-            UInt32 GetNumProxies(const UInt32 Types) const;
-            /// @copydoc WorldProxyManager::GetProxies() const
-            WorldProxyManager::WorldProxyVec GetProxies() const;
+            /// @copydoc EntityComponentManager::GetNumComponents() const
+            UInt32 GetNumComponents() const;
+            /// @copydoc EntityComponentManager::GetNumComponents(const UInt32) const
+            UInt32 GetNumComponents(const UInt32 Types) const;
+            /// @copydoc EntityComponentManager::GetComponents() const
+            EntityComponentManager::ComponentVec GetComponents() const;
 
-            /// @copydoc WorldProxyManager::DestroyProxy(WorldProxy*)
-            void DestroyProxy(WorldProxy* ToBeDestroyed);
-            /// @copydoc WorldProxyManager::DestroyAllProxies(const UInt32)
-            void DestroyAllProxies(const UInt32 Types);
-            /// @copydoc WorldProxyManager::DestroyAllProxies()
-            void DestroyAllProxies();
+            /// @copydoc EntityComponentManager::DestroyComponent(EntityComponent*)
+            void DestroyComponent(EntityComponent* ToBeDestroyed);
+            /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
+            void DestroyAllComponents(const UInt32 Types);
+            /// @copydoc EntityComponentManager::DestroyAllComponents()
+            void DestroyAllComponents();
 
             #ifndef SWIG
             /// @brief Gets an iterator to the first Renderable Proxy in this manager.

@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,80 +18,59 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 #if SDL_VIDEO_DRIVER_COCOA
 
 #include "SDL_cocoavideo.h"
 
+#include "../../events/SDL_events_c.h"
 #include "../../events/SDL_keyboard_c.h"
 #include "../../events/scancodes_darwin.h"
 
 #include <Carbon/Carbon.h>
+#include <IOKit/hid/IOHIDLib.h>
 
 /*#define DEBUG_IME NSLog */
 #define DEBUG_IME(...)
 
-#ifndef NX_DEVICERCTLKEYMASK
-    #define NX_DEVICELCTLKEYMASK    0x00000001
-#endif
-#ifndef NX_DEVICELSHIFTKEYMASK
-    #define NX_DEVICELSHIFTKEYMASK  0x00000002
-#endif
-#ifndef NX_DEVICERSHIFTKEYMASK
-    #define NX_DEVICERSHIFTKEYMASK  0x00000004
-#endif
-#ifndef NX_DEVICELCMDKEYMASK
-    #define NX_DEVICELCMDKEYMASK    0x00000008
-#endif
-#ifndef NX_DEVICERCMDKEYMASK
-    #define NX_DEVICERCMDKEYMASK    0x00000010
-#endif
-#ifndef NX_DEVICELALTKEYMASK
-    #define NX_DEVICELALTKEYMASK    0x00000020
-#endif
-#ifndef NX_DEVICERALTKEYMASK
-    #define NX_DEVICERALTKEYMASK    0x00000040
-#endif
-#ifndef NX_DEVICERCTLKEYMASK
-    #define NX_DEVICERCTLKEYMASK    0x00002000
-#endif
-
-@interface SDLTranslatorResponder : NSView <NSTextInput>
-{
+@interface SDLTranslatorResponder : NSView <NSTextInputClient> {
     NSString *_markedText;
     NSRange   _markedRange;
     NSRange   _selectedRange;
     SDL_Rect  _inputRect;
 }
-- (void) doCommandBySelector:(SEL)myselector;
-- (void) setInputRect:(SDL_Rect *) rect;
+- (void)doCommandBySelector:(SEL)myselector;
+- (void)setInputRect:(SDL_Rect *)rect;
 @end
 
 @implementation SDLTranslatorResponder
 
-- (void) setInputRect:(SDL_Rect *) rect
+- (void)setInputRect:(SDL_Rect *)rect
 {
     _inputRect = *rect;
 }
 
-- (void) insertText:(id) aString
+- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 {
+    /* TODO: Make use of replacementRange? */
+
     const char *str;
 
     DEBUG_IME(@"insertText: %@", aString);
 
     /* Could be NSString or NSAttributedString, so we have
      * to test and convert it before return as SDL event */
-    if ([aString isKindOfClass: [NSAttributedString class]])
+    if ([aString isKindOfClass: [NSAttributedString class]]) {
         str = [[aString string] UTF8String];
-    else
+    } else {
         str = [aString UTF8String];
+    }
 
     SDL_SendKeyboardText(str);
 }
 
-- (void) doCommandBySelector:(SEL) myselector
+- (void)doCommandBySelector:(SEL)myselector
 {
     /* No need to do anything since we are not using Cocoa
        selectors to handle special keys, instead we use SDL
@@ -99,50 +78,48 @@
     */
 }
 
-- (BOOL) hasMarkedText
+- (BOOL)hasMarkedText
 {
     return _markedText != nil;
 }
 
-- (NSRange) markedRange
+- (NSRange)markedRange
 {
     return _markedRange;
 }
 
-- (NSRange) selectedRange
+- (NSRange)selectedRange
 {
     return _selectedRange;
 }
 
-- (void) setMarkedText:(id) aString
-         selectedRange:(NSRange) selRange
+- (void)setMarkedText:(id)aString selectedRange:(NSRange)selectedRange replacementRange:(NSRange)replacementRange;
 {
-    if ([aString isKindOfClass: [NSAttributedString class]])
+    if ([aString isKindOfClass:[NSAttributedString class]]) {
         aString = [aString string];
+    }
 
-    if ([aString length] == 0)
-    {
+    if ([aString length] == 0) {
         [self unmarkText];
         return;
     }
 
-    if (_markedText != aString)
-    {
+    if (_markedText != aString) {
         [_markedText release];
         _markedText = [aString retain];
     }
 
-    _selectedRange = selRange;
+    _selectedRange = selectedRange;
     _markedRange = NSMakeRange(0, [aString length]);
 
     SDL_SendEditingText([aString UTF8String],
-                        selRange.location, selRange.length);
+                        (int) selectedRange.location, (int) selectedRange.length);
 
     DEBUG_IME(@"setMarkedText: %@, (%d, %d)", _markedText,
           selRange.location, selRange.length);
 }
 
-- (void) unmarkText
+- (void)unmarkText
 {
     [_markedText release];
     _markedText = nil;
@@ -150,42 +127,49 @@
     SDL_SendEditingText("", 0, 0);
 }
 
-- (NSRect) firstRectForCharacterRange: (NSRange) theRange
+- (NSRect)firstRectForCharacterRange:(NSRange)aRange actualRange:(NSRangePointer)actualRange;
 {
     NSWindow *window = [self window];
-    NSRect contentRect = [window contentRectForFrameRect: [window frame]];
+    NSRect contentRect = [window contentRectForFrameRect:[window frame]];
     float windowHeight = contentRect.size.height;
     NSRect rect = NSMakeRect(_inputRect.x, windowHeight - _inputRect.y - _inputRect.h,
                              _inputRect.w, _inputRect.h);
 
+    if (actualRange) {
+        *actualRange = aRange;
+    }
+
     DEBUG_IME(@"firstRectForCharacterRange: (%d, %d): windowHeight = %g, rect = %@",
-            theRange.location, theRange.length, windowHeight,
+            aRange.location, aRange.length, windowHeight,
             NSStringFromRect(rect));
-    rect.origin = [[self window] convertBaseToScreen: rect.origin];
+
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1070
+    if (![window respondsToSelector:@selector(convertRectToScreen:)]) {
+        rect.origin = [window convertBaseToScreen:rect.origin];
+    } else
+#endif
+    {
+        rect = [window convertRectToScreen:rect];
+    }
 
     return rect;
 }
 
-- (NSAttributedString *) attributedSubstringFromRange: (NSRange) theRange
+- (NSAttributedString *)attributedSubstringForProposedRange:(NSRange)aRange actualRange:(NSRangePointer)actualRange;
 {
-    DEBUG_IME(@"attributedSubstringFromRange: (%d, %d)", theRange.location, theRange.length);
+    DEBUG_IME(@"attributedSubstringFromRange: (%d, %d)", aRange.location, aRange.length);
     return nil;
 }
 
-/* Needs long instead of NSInteger for compilation on Mac OS X 10.4 */
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 1050
-- (long) conversationIdentifier
-#else
-- (NSInteger) conversationIdentifier
-#endif
+- (NSInteger)conversationIdentifier
 {
-    return (long) self;
+    return (NSInteger) self;
 }
 
 /* This method returns the index for character that is
  * nearest to thePoint.  thPoint is in screen coordinate system.
  */
-- (NSUInteger) characterIndexForPoint:(NSPoint) thePoint
+- (NSUInteger)characterIndexForPoint:(NSPoint)thePoint
 {
     DEBUG_IME(@"characterIndexForPoint: (%g, %g)", thePoint.x, thePoint.y);
     return 0;
@@ -196,49 +180,120 @@
  * NSInputServer examines the return value of this
  * method & constructs appropriate attributed string.
  */
-- (NSArray *) validAttributesForMarkedText
+- (NSArray *)validAttributesForMarkedText
 {
     return [NSArray array];
 }
 
 @end
 
-/* This is the original behavior, before support was added for
- * differentiating between left and right versions of the keys.
- */
+/*------------------------------------------------------------------------------
+Set up a HID callback to properly detect Caps Lock up/down events.
+Derived from:
+http://stackoverflow.com/questions/7190852/using-iohidmanager-to-get-modifier-key-events
+*/
+
+static IOHIDManagerRef s_hidManager = NULL;
+
 static void
-DoUnsidedModifiers(unsigned short scancode,
-                   unsigned int oldMods, unsigned int newMods)
+HIDCallback(void *context, IOReturn result, void *sender, IOHIDValueRef value)
 {
-    const int mapping[] = {
-        SDL_SCANCODE_CAPSLOCK,
-        SDL_SCANCODE_LSHIFT,
-        SDL_SCANCODE_LCTRL,
-        SDL_SCANCODE_LALT,
-        SDL_SCANCODE_LGUI
-    };
-    unsigned int i, bit;
+    if (context != s_hidManager) {
+        /* An old callback, ignore it (related to bug 2157 below) */
+        return;
+    }
 
-    /* Iterate through the bits, testing each against the current modifiers */
-    for (i = 0, bit = NSAlphaShiftKeyMask; bit <= NSCommandKeyMask; bit <<= 1, ++i) {
-        unsigned int oldMask, newMask;
+    IOHIDElementRef elem = IOHIDValueGetElement(value);
+    if (IOHIDElementGetUsagePage(elem) != kHIDPage_KeyboardOrKeypad
+        || IOHIDElementGetUsage(elem) != kHIDUsage_KeyboardCapsLock) {
+        return;
+    }
+    CFIndex pressed = IOHIDValueGetIntegerValue(value);
+    SDL_SendKeyboardKey(pressed ? SDL_PRESSED : SDL_RELEASED, SDL_SCANCODE_CAPSLOCK);
+}
 
-        oldMask = oldMods & bit;
-        newMask = newMods & bit;
-
-        if (oldMask && oldMask != newMask) {        /* modifier up event */
-            /* If this was Caps Lock, we need some additional voodoo to make SDL happy */
-            if (bit == NSAlphaShiftKeyMask) {
-                SDL_SendKeyboardKey(SDL_PRESSED, mapping[i]);
-            }
-            SDL_SendKeyboardKey(SDL_RELEASED, mapping[i]);
-        } else if (newMask && oldMask != newMask) { /* modifier down event */
-            SDL_SendKeyboardKey(SDL_PRESSED, mapping[i]);
-            /* If this was Caps Lock, we need some additional voodoo to make SDL happy */
-            if (bit == NSAlphaShiftKeyMask) {
-                SDL_SendKeyboardKey(SDL_RELEASED, mapping[i]);
+static CFDictionaryRef
+CreateHIDDeviceMatchingDictionary(UInt32 usagePage, UInt32 usage)
+{
+    CFMutableDictionaryRef dict = CFDictionaryCreateMutable(kCFAllocatorDefault,
+        0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    if (dict) {
+        CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usagePage);
+        if (number) {
+            CFDictionarySetValue(dict, CFSTR(kIOHIDDeviceUsagePageKey), number);
+            CFRelease(number);
+            number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &usage);
+            if (number) {
+                CFDictionarySetValue(dict, CFSTR(kIOHIDDeviceUsageKey), number);
+                CFRelease(number);
+                return dict;
             }
         }
+        CFRelease(dict);
+    }
+    return NULL;
+}
+
+static void
+QuitHIDCallback()
+{
+    if (!s_hidManager) {
+        return;
+    }
+
+#if 0 /* Releasing here causes a crash on Mac OS X 10.10 and earlier,
+       * so just leak it for now. See bug 2157 for details.
+       */
+    IOHIDManagerUnscheduleFromRunLoop(s_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    IOHIDManagerRegisterInputValueCallback(s_hidManager, NULL, NULL);
+    IOHIDManagerClose(s_hidManager, 0);
+
+    CFRelease(s_hidManager);
+#endif
+    s_hidManager = NULL;
+}
+
+static void
+InitHIDCallback()
+{
+    s_hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+    if (!s_hidManager) {
+        return;
+    }
+    CFDictionaryRef keyboard = NULL, keypad = NULL;
+    CFArrayRef matches = NULL;
+    keyboard = CreateHIDDeviceMatchingDictionary(kHIDPage_GenericDesktop, kHIDUsage_GD_Keyboard);
+    if (!keyboard) {
+        goto fail;
+    }
+    keypad = CreateHIDDeviceMatchingDictionary(kHIDPage_GenericDesktop, kHIDUsage_GD_Keypad);
+    if (!keypad) {
+        goto fail;
+    }
+    CFDictionaryRef matchesList[] = { keyboard, keypad };
+    matches = CFArrayCreate(kCFAllocatorDefault, (const void **)matchesList, 2, NULL);
+    if (!matches) {
+        goto fail;
+    }
+    IOHIDManagerSetDeviceMatchingMultiple(s_hidManager, matches);
+    IOHIDManagerRegisterInputValueCallback(s_hidManager, HIDCallback, s_hidManager);
+    IOHIDManagerScheduleWithRunLoop(s_hidManager, CFRunLoopGetMain(), kCFRunLoopDefaultMode);
+    if (IOHIDManagerOpen(s_hidManager, kIOHIDOptionsTypeNone) == kIOReturnSuccess) {
+        goto cleanup;
+    }
+
+fail:
+    QuitHIDCallback();
+
+cleanup:
+    if (matches) {
+        CFRelease(matches);
+    }
+    if (keypad) {
+        CFRelease(keypad);
+    }
+    if (keyboard) {
+        CFRelease(keyboard);
     }
 }
 
@@ -379,32 +434,6 @@ ReleaseModifierSide(unsigned int device_independent_mask,
     }
 }
 
-/* This is a helper function for DoSidedModifiers.
- * This function handles the CapsLock case.
- */
-static void
-HandleCapsLock(unsigned short scancode,
-               unsigned int oldMods, unsigned int newMods)
-{
-    unsigned int oldMask, newMask;
-
-    oldMask = oldMods & NSAlphaShiftKeyMask;
-    newMask = newMods & NSAlphaShiftKeyMask;
-
-    if (oldMask != newMask) {
-        SDL_SendKeyboardKey(SDL_PRESSED, SDL_SCANCODE_CAPSLOCK);
-        SDL_SendKeyboardKey(SDL_RELEASED, SDL_SCANCODE_CAPSLOCK);
-    }
-
-    oldMask = oldMods & NSNumericPadKeyMask;
-    newMask = newMods & NSNumericPadKeyMask;
-
-    if (oldMask != newMask) {
-        SDL_SendKeyboardKey(SDL_PRESSED, SDL_SCANCODE_NUMLOCKCLEAR);
-        SDL_SendKeyboardKey(SDL_RELEASED, SDL_SCANCODE_NUMLOCKCLEAR);
-    }
-}
-
 /* This function will handle the modifier keys and also determine the
  * correct side of the key.
  */
@@ -433,11 +462,8 @@ DoSidedModifiers(unsigned short scancode,
 
     unsigned int i, bit;
 
-    /* Handle CAPSLOCK separately because it doesn't have a left/right side */
-    HandleCapsLock(scancode, oldMods, newMods);
-
     /* Iterate through the bits, testing each against the old modifiers */
-    for (i = 0, bit = NSShiftKeyMask; bit <= NSCommandKeyMask; bit <<= 1, ++i) {
+    for (i = 0, bit = NSEventModifierFlagShift; bit <= NSEventModifierFlagCommand; bit <<= 1, ++i) {
         unsigned int oldMask, newMask;
 
         oldMask = oldMods & bit;
@@ -471,37 +497,21 @@ HandleModifiers(_THIS, unsigned short scancode, unsigned int modifierFlags)
         return;
     }
 
-    /*
-     * Starting with Panther (10.3.0), the ability to distinguish between
-     * left side and right side modifiers is available.
-     */
-    if (data->osversion >= 0x1030) {
-        DoSidedModifiers(scancode, data->modifierFlags, modifierFlags);
-    } else {
-        DoUnsidedModifiers(scancode, data->modifierFlags, modifierFlags);
-    }
+    DoSidedModifiers(scancode, data->modifierFlags, modifierFlags);
     data->modifierFlags = modifierFlags;
 }
 
 static void
-UpdateKeymap(SDL_VideoData *data)
+UpdateKeymap(SDL_VideoData *data, SDL_bool send_event)
 {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
     TISInputSourceRef key_layout;
-#else
-    KeyboardLayoutRef key_layout;
-#endif
     const void *chr_data;
     int i;
     SDL_Scancode scancode;
     SDL_Keycode keymap[SDL_NUM_SCANCODES];
 
     /* See if the keymap needs to be updated */
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
     key_layout = TISCopyCurrentKeyboardLayoutInputSource();
-#else
-    KLGetCurrentKeyboardLayout(&key_layout);
-#endif
     if (key_layout == data->key_layout) {
         return;
     }
@@ -509,16 +519,14 @@ UpdateKeymap(SDL_VideoData *data)
 
     SDL_GetDefaultKeymap(keymap);
 
-    /* Try Unicode data first (preferred as of Mac OS X 10.5) */
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
+    /* Try Unicode data first */
     CFDataRef uchrDataRef = TISGetInputSourceProperty(key_layout, kTISPropertyUnicodeKeyLayoutData);
-    if (uchrDataRef)
+    if (uchrDataRef) {
         chr_data = CFDataGetBytePtr(uchrDataRef);
-    else
+    } else {
         goto cleanup;
-#else
-    KLGetKeyboardLayoutProperty(key_layout, kKLuchrData, &chr_data);
-#endif
+    }
+
     if (chr_data) {
         UInt32 keyboard_type = LMGetKbdType();
         OSStatus err;
@@ -541,71 +549,23 @@ UpdateKeymap(SDL_VideoData *data)
                                   0, keyboard_type,
                                   kUCKeyTranslateNoDeadKeysMask,
                                   &dead_key_state, 8, &len, s);
-            if (err != noErr)
+            if (err != noErr) {
                 continue;
+            }
 
             if (len > 0 && s[0] != 0x10) {
                 keymap[scancode] = s[0];
             }
         }
         SDL_SetKeymap(0, keymap, SDL_NUM_SCANCODES);
+        if (send_event) {
+            SDL_SendKeymapChangedEvent();
+        }
         return;
     }
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
 cleanup:
     CFRelease(key_layout);
-#else
-    /* Fall back to older style key map data */
-    KLGetKeyboardLayoutProperty(key_layout, kKLKCHRData, &chr_data);
-    if (chr_data) {
-        for (i = 0; i < 128; i++) {
-            UInt32 c, state = 0;
-
-            /* Make sure this scancode is a valid character scancode */
-            scancode = darwin_scancode_table[i];
-            if (scancode == SDL_SCANCODE_UNKNOWN ||
-                (keymap[scancode] & SDLK_SCANCODE_MASK)) {
-                continue;
-            }
-
-            c = KeyTranslate (chr_data, i, &state) & 255;
-            if (state) {
-                /* Dead key, process key up */
-                c = KeyTranslate (chr_data, i | 128, &state) & 255;
-            }
-
-            if (c != 0 && c != 0x10) {
-                /* MacRoman to Unicode table, taken from X.org sources */
-                static const unsigned short macroman_table[128] = {
-                    0xc4, 0xc5, 0xc7, 0xc9, 0xd1, 0xd6, 0xdc, 0xe1,
-                    0xe0, 0xe2, 0xe4, 0xe3, 0xe5, 0xe7, 0xe9, 0xe8,
-                    0xea, 0xeb, 0xed, 0xec, 0xee, 0xef, 0xf1, 0xf3,
-                    0xf2, 0xf4, 0xf6, 0xf5, 0xfa, 0xf9, 0xfb, 0xfc,
-                    0x2020, 0xb0, 0xa2, 0xa3, 0xa7, 0x2022, 0xb6, 0xdf,
-                    0xae, 0xa9, 0x2122, 0xb4, 0xa8, 0x2260, 0xc6, 0xd8,
-                    0x221e, 0xb1, 0x2264, 0x2265, 0xa5, 0xb5, 0x2202, 0x2211,
-                    0x220f, 0x3c0, 0x222b, 0xaa, 0xba, 0x3a9, 0xe6, 0xf8,
-                    0xbf, 0xa1, 0xac, 0x221a, 0x192, 0x2248, 0x2206, 0xab,
-                    0xbb, 0x2026, 0xa0, 0xc0, 0xc3, 0xd5, 0x152, 0x153,
-                    0x2013, 0x2014, 0x201c, 0x201d, 0x2018, 0x2019, 0xf7, 0x25ca,
-                    0xff, 0x178, 0x2044, 0x20ac, 0x2039, 0x203a, 0xfb01, 0xfb02,
-                    0x2021, 0xb7, 0x201a, 0x201e, 0x2030, 0xc2, 0xca, 0xc1,
-                    0xcb, 0xc8, 0xcd, 0xce, 0xcf, 0xcc, 0xd3, 0xd4,
-                    0xf8ff, 0xd2, 0xda, 0xdb, 0xd9, 0x131, 0x2c6, 0x2dc,
-                    0xaf, 0x2d8, 0x2d9, 0x2da, 0xb8, 0x2dd, 0x2db, 0x2c7,
-                };
-
-                if (c >= 128) {
-                    c = macroman_table[c - 128];
-                }
-                keymap[scancode] = c;
-            }
-        }
-        SDL_SetKeymap(0, keymap, SDL_NUM_SCANCODES);
-        return;
-    }
-#endif
 }
 
 void
@@ -613,7 +573,7 @@ Cocoa_InitKeyboard(_THIS)
 {
     SDL_VideoData *data = (SDL_VideoData *) _this->driverdata;
 
-    UpdateKeymap(data);
+    UpdateKeymap(data, SDL_FALSE);
 
     /* Set our own names for the platform-dependent but layout-independent keys */
     /* This key is NumLock on the MacBook keyboard. :) */
@@ -622,14 +582,25 @@ Cocoa_InitKeyboard(_THIS)
     SDL_SetScancodeName(SDL_SCANCODE_LGUI, "Left Command");
     SDL_SetScancodeName(SDL_SCANCODE_RALT, "Right Option");
     SDL_SetScancodeName(SDL_SCANCODE_RGUI, "Right Command");
+
+    data->modifierFlags = [NSEvent modifierFlags];
+    SDL_ToggleModState(KMOD_CAPS, (data->modifierFlags & NSEventModifierFlagCapsLock) != 0);
+
+    InitHIDCallback();
 }
 
 void
 Cocoa_StartTextInput(_THIS)
+{ @autoreleasepool
 {
     SDL_VideoData *data = (SDL_VideoData *) _this->driverdata;
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSView *parentView = [[NSApp keyWindow] contentView];
+    SDL_Window *window = SDL_GetKeyboardFocus();
+    NSWindow *nswindow = nil;
+    if (window) {
+        nswindow = ((SDL_WindowData*)window->driverdata)->nswindow;
+    }
+
+    NSView *parentView = [nswindow contentView];
 
     /* We only keep one field editor per process, since only the front most
      * window can receive text input events, so it make no sense to keep more
@@ -641,30 +612,26 @@ Cocoa_StartTextInput(_THIS)
             [[SDLTranslatorResponder alloc] initWithFrame: NSMakeRect(0.0, 0.0, 0.0, 0.0)];
     }
 
-    if (![[data->fieldEdit superview] isEqual: parentView])
-    {
+    if (![[data->fieldEdit superview] isEqual:parentView]) {
         /* DEBUG_IME(@"add fieldEdit to window contentView"); */
         [data->fieldEdit removeFromSuperview];
         [parentView addSubview: data->fieldEdit];
-        [[NSApp keyWindow] makeFirstResponder: data->fieldEdit];
+        [nswindow makeFirstResponder: data->fieldEdit];
     }
-
-    [pool release];
-}
+}}
 
 void
 Cocoa_StopTextInput(_THIS)
+{ @autoreleasepool
 {
     SDL_VideoData *data = (SDL_VideoData *) _this->driverdata;
 
     if (data && data->fieldEdit) {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         [data->fieldEdit removeFromSuperview];
         [data->fieldEdit release];
         data->fieldEdit = nil;
-        [pool release];
     }
-}
+}}
 
 void
 Cocoa_SetTextInputRect(_THIS, SDL_Rect *rect)
@@ -672,17 +639,21 @@ Cocoa_SetTextInputRect(_THIS, SDL_Rect *rect)
     SDL_VideoData *data = (SDL_VideoData *) _this->driverdata;
 
     if (!rect) {
-    SDL_InvalidParamError("rect");
-    return;
+        SDL_InvalidParamError("rect");
+        return;
     }
 
-    [data->fieldEdit setInputRect: rect];
+    [data->fieldEdit setInputRect:rect];
 }
 
 void
 Cocoa_HandleKeyEvent(_THIS, NSEvent *event)
 {
-    SDL_VideoData *data = (SDL_VideoData *) _this->driverdata;
+    SDL_VideoData *data = _this ? ((SDL_VideoData *) _this->driverdata) : NULL;
+    if (!data) {
+        return;  /* can happen when returning from fullscreen Space on shutdown */
+    }
+
     unsigned short scancode = [event keyCode];
     SDL_Scancode code;
 #if 0
@@ -693,25 +664,25 @@ Cocoa_HandleKeyEvent(_THIS, NSEvent *event)
         /* see comments in SDL_cocoakeys.h */
         scancode = 60 - scancode;
     }
+
     if (scancode < SDL_arraysize(darwin_scancode_table)) {
         code = darwin_scancode_table[scancode];
-    }
-    else {
+    } else {
         /* Hmm, does this ever happen?  If so, need to extend the keymap... */
         code = SDL_SCANCODE_UNKNOWN;
     }
 
     switch ([event type]) {
-    case NSKeyDown:
+    case NSEventTypeKeyDown:
         if (![event isARepeat]) {
             /* See if we need to rebuild the keyboard layout */
-            UpdateKeymap(data);
+            UpdateKeymap(data, SDL_TRUE);
         }
 
         SDL_SendKeyboardKey(SDL_PRESSED, code);
 #if 1
         if (code == SDL_SCANCODE_UNKNOWN) {
-            fprintf(stderr, "The key you just pressed is not recognized by SDL. To help get this fixed, report this to the SDL mailing list <sdl@libsdl.org> or to Christian Walther <cwalther@gmx.ch>. Mac virtual key code is %d.\n", scancode);
+            fprintf(stderr, "The key you just pressed is not recognized by SDL. To help get this fixed, report this to the SDL forums/mailing list <https://discourse.libsdl.org/> or to Christian Walther <cwalther@gmx.ch>. Mac virtual key code is %d.\n", scancode);
         }
 #endif
         if (SDL_EventState(SDL_TEXTINPUT, SDL_QUERY)) {
@@ -726,10 +697,10 @@ Cocoa_HandleKeyEvent(_THIS, NSEvent *event)
 #endif
         }
         break;
-    case NSKeyUp:
+    case NSEventTypeKeyUp:
         SDL_SendKeyboardKey(SDL_RELEASED, code);
         break;
-    case NSFlagsChanged:
+    case NSEventTypeFlagsChanged:
         /* FIXME CW 2007-08-14: check if this whole mess that takes up half of this file is really necessary */
         HandleModifiers(_this, scancode, [event modifierFlags]);
         break;
@@ -741,6 +712,7 @@ Cocoa_HandleKeyEvent(_THIS, NSEvent *event)
 void
 Cocoa_QuitKeyboard(_THIS)
 {
+    QuitHIDCallback();
 }
 
 #endif /* SDL_VIDEO_DRIVER_COCOA */

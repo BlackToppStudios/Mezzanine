@@ -77,9 +77,8 @@ message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 set(${PROJECT_NAME}_sources
         # Root Namespace(Mezzanine) Items
         "${${PROJECT_NAME}_SRC_DIR}actor.h"
-        "${${PROJECT_NAME}_SRC_DIR}actormanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}appeventdispatcher.h"
         "${${PROJECT_NAME}_SRC_DIR}areaeffect.h"
-        "${${PROJECT_NAME}_SRC_DIR}areaeffectmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}assetid.h"
         "${${PROJECT_NAME}_SRC_DIR}axisalignedbox.h"
         "${${PROJECT_NAME}_SRC_DIR}binarybuffer.h"
@@ -93,24 +92,14 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}datastream.h"
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
-        "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/best_practices_doxygen.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/building_the_engine.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/contact_us.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/cxx_training.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_linux.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_macosx.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_windows.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_linux.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_macosx.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_windows.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/path_on_windows.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/jagati_package.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/team_and_credits.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/tech_doc_index.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/mainpage.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/mezzanine_engine.h"
-        "${${PROJECT_NAME}_SRC_DIR}dox/running_doxygen.h"
+        "${${PROJECT_NAME}_SRC_DIR}entity.h"
+        "${${PROJECT_NAME}_SRC_DIR}entityid.h"
+        "${${PROJECT_NAME}_SRC_DIR}entitycomponent.h"
+        "${${PROJECT_NAME}_SRC_DIR}entitycomponentid.h"
+        "${${PROJECT_NAME}_SRC_DIR}entitycomponentmanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}entityfactory.h"
+        "${${PROJECT_NAME}_SRC_DIR}entitymanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}entityproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}entresol.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanagerfactory.h"
@@ -118,14 +107,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}event.h"
         "${${PROJECT_NAME}_SRC_DIR}eventpublisher.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriber.h"
-		"${${PROJECT_NAME}_SRC_DIR}eventsubscriberbinding.h"
+        "${${PROJECT_NAME}_SRC_DIR}eventsubscriberbinding.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriberid.h"
-		"${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontable.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventbase.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventgamewindow.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventmanager.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventquit.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventuserinput.h"
+        "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontable.h"
         "${${PROJECT_NAME}_SRC_DIR}exception.h"
         "${${PROJECT_NAME}_SRC_DIR}fieldofforce.h"
         "${${PROJECT_NAME}_SRC_DIR}filestream.h"
@@ -134,6 +118,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}hashedstring.h"
         "${${PROJECT_NAME}_SRC_DIR}interpolator.h"
         "${${PROJECT_NAME}_SRC_DIR}interval.h"
+        "${${PROJECT_NAME}_SRC_DIR}iteratorrange.h"
         "${${PROJECT_NAME}_SRC_DIR}linesegment.h"
         "${${PROJECT_NAME}_SRC_DIR}managerbase.h"
         "${${PROJECT_NAME}_SRC_DIR}managerfactory.h"
@@ -172,7 +157,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}stringtool.h"
         "${${PROJECT_NAME}_SRC_DIR}swig.h"
         "${${PROJECT_NAME}_SRC_DIR}terrain.h"
-        "${${PROJECT_NAME}_SRC_DIR}terrainmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}timer.h"
         "${${PROJECT_NAME}_SRC_DIR}track.h"
         "${${PROJECT_NAME}_SRC_DIR}trackiterator.h"
@@ -185,15 +169,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}vector2.h"
         "${${PROJECT_NAME}_SRC_DIR}vector3.h"
         "${${PROJECT_NAME}_SRC_DIR}vehicle.h"
-        "${${PROJECT_NAME}_SRC_DIR}vehiclemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}version.h"
         "${${PROJECT_NAME}_SRC_DIR}world.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldmanagerfactory.h"
-        "${${PROJECT_NAME}_SRC_DIR}worldobject.h"
-        "${${PROJECT_NAME}_SRC_DIR}worldobjectmanager.h"
-        "${${PROJECT_NAME}_SRC_DIR}worldproxy.h"
-        "${${PROJECT_NAME}_SRC_DIR}worldproxymanager.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         # Audio Items
         "${${PROJECT_NAME}_SRC_DIR}Audio/acousticproxy.h"
@@ -219,19 +198,37 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Audio/vorbisdecoderfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/wavdecoder.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/wavdecoderfactory.h"
+		# dox Items
+        "${${PROJECT_NAME}_SRC_DIR}dox/best_practices_doxygen.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/building_the_engine.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/contact_us.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/cxx_training.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_linux.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_macosx.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/dev_tools_windows.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_linux.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_macosx.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/installing_engine_deps_windows.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/path_on_windows.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/jagati_package.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/team_and_credits.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/tech_doc_index.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/mainpage.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/mezzanine_engine.h"
+        "${${PROJECT_NAME}_SRC_DIR}dox/running_doxygen.h"
         # Graphics Items
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphics.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/billboard.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/billboardsetproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/bone.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/cameraproxy.h"
-        "${${PROJECT_NAME}_SRC_DIR}Graphics/entityproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphicsenumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphicsmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphicsutilities.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/guillotinetexturepacker.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/image.h"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/itemproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/lightproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/linegroupproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/material.h"
@@ -349,9 +346,11 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Input/input.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Input/inputtypes.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/buttondevice.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/controller.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/device.h"
+        "${${PROJECT_NAME}_SRC_DIR}Input/joystick.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/keyboard.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/metacode.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/metacodekey.h"
@@ -536,6 +535,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/thread.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunit.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/AggregatedLogEntry.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/SingleThreadLogEntry.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadLog.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadIndex.h"
         # UI (User Interface) Items
         "${${PROJECT_NAME}_SRC_DIR}UI/ui.h"
         "${${PROJECT_NAME}_SRC_DIR}UI/uimanager.h"
@@ -632,9 +635,8 @@ set(${PROJECT_NAME}_sources
 
         # Root Namespace(Mezzanine) Items
         "${${PROJECT_NAME}_SRC_DIR}actor.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}actormanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}appeventdispatcher.cpp"
         "${${PROJECT_NAME}_SRC_DIR}areaeffect.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}areaeffectmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}axisalignedbox.cpp"
         "${${PROJECT_NAME}_SRC_DIR}binarybuffer.cpp"
         "${${PROJECT_NAME}_SRC_DIR}cameracontroller.cpp"
@@ -643,18 +645,16 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
         "${${PROJECT_NAME}_SRC_DIR}datastream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}debris.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}debrismanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}entity.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}entitycomponent.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}entitymanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}entityproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}entresol.cpp"
         "${${PROJECT_NAME}_SRC_DIR}entresolmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventpublisher.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriber.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriberbinding.cpp"
 		"${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontable.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}eventgamewindow.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}eventmanager.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}eventquit.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}eventuserinput.cpp"
         "${${PROJECT_NAME}_SRC_DIR}exception.cpp"
         "${${PROJECT_NAME}_SRC_DIR}fieldofforce.cpp"
         "${${PROJECT_NAME}_SRC_DIR}filestream.cpp"
@@ -692,21 +692,16 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}streamlogging.cpp"
         "${${PROJECT_NAME}_SRC_DIR}stringtool.cpp"
         "${${PROJECT_NAME}_SRC_DIR}terrain.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}terrainmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}timer.cpp"
         "${${PROJECT_NAME}_SRC_DIR}track.cpp"
         "${${PROJECT_NAME}_SRC_DIR}transform.cpp"
         "${${PROJECT_NAME}_SRC_DIR}triangle.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}uidgenerator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}unicode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector2.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vector3.cpp"
         "${${PROJECT_NAME}_SRC_DIR}vehicle.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}vehiclemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}world.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldmanager.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}worldobject.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}worldproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         # Audio Items
         "${${PROJECT_NAME}_SRC_DIR}Audio/audiomanager.cpp"
@@ -721,12 +716,12 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/billboardsetproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/bone.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/cameraproxy.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Graphics/entityproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/gamewindow.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphicsmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/graphicsutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/guillotinetexturepacker.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/image.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/itemproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/lightproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/linegroupproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/material.cpp"
@@ -833,9 +828,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/Procedural/Texture/woodgenerator.cpp"
         # Input Items
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Input/buttondevice.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/controller.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Input/device.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Input/joystick.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/keyboard.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/metacode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/metacodekey.cpp"
@@ -1009,6 +1003,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/thread.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunit.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/AggregatedLogEntry.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/SingleThreadLogEntry.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadLog.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/ThreadLog/ThreadIndex.cpp"
         # UI (User Interface) Items
         "${${PROJECT_NAME}_SRC_DIR}UI/uimanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}UI/action.cpp"
@@ -1361,7 +1359,7 @@ add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
 add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/openalsoftsrc)
-add_subdirectory (libincludes/common/sdlsrc/SDL)
+add_subdirectory (libincludes/common/sdlsrc)
 
 #######################################
 # Extra includes from Ogre
@@ -1379,22 +1377,6 @@ endif(${WIN32})
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
-
-set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_FILE      on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_LOADSO    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_POWER     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_RENDER    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_THREADS   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_VIDEO     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-
-set(SDL_SHARED    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
-set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)

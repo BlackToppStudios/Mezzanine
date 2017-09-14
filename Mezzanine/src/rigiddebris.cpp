@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@
 #include "rigiddebris.h"
 
 #include "Graphics/scenemanager.h"
-#include "Graphics/entityproxy.h"
+#include "Graphics/itemproxy.h"
 
 #include "Physics/physicsmanager.h"
 #include "Physics/rigidproxy.h"
@@ -66,12 +66,12 @@ namespace Mezzanine
         Debris(TheWorld)
         {  }
 
-    RigidDebris::RigidDebris(const String& Name, const Real Mass, World* TheWorld) :
-        Debris(Name,TheWorld)
+    RigidDebris::RigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateRigidDebris(Mass); }
 
-    RigidDebris::RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
-        Debris(Name,TheWorld)
+    RigidDebris::RigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
+        Debris(EntID,TheWorld)
         { this->CreateRigidDebris(Mass,DebMesh,DebShape); }
 
     RigidDebris::RigidDebris(const XML::Node& SelfRoot, World* TheWorld) :
@@ -87,15 +87,15 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             RigProx = PhysMan->CreateRigidProxy(Mass);
-            this->AddProxy( RigProx );
+            this->AddComponent( RigProx );
             this->SetPrimaryProxy( RigProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy();
-            this->AddProxy( EntProx );
+            ItemProx = SceneMan->CreateItemProxy();
+            this->AddComponent( ItemProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -109,15 +109,15 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->ParentWorld->GetManager(ManagerBase::MT_PhysicsManager) );
         if( PhysMan ) {
             RigProx = PhysMan->CreateRigidProxy(Mass,DebShape);
-            this->AddProxy( RigProx );
+            this->AddComponent( RigProx );
             this->SetPrimaryProxy( RigProx );
         }
 
-        Graphics::EntityProxy* EntProx = NULL;
+        Graphics::ItemProxy* ItemProx = NULL;
         Graphics::SceneManager* SceneMan = static_cast<Graphics::SceneManager*>( this->ParentWorld->GetManager(ManagerBase::MT_SceneManager) );
         if( SceneMan ) {
-            EntProx = SceneMan->CreateEntityProxy(DebMesh);
-            this->AddProxy( EntProx );
+            ItemProx = SceneMan->CreateItemProxy(DebMesh);
+            this->AddComponent( ItemProx );
         }
 
         //if( RigProx && EntProx ) {
@@ -128,20 +128,20 @@ namespace Mezzanine
     void RigidDebris::DestroyRigidDebris()
     {
         this->RemoveFromWorld();
-        this->DestroyAllProxies();
+        this->DestroyAllComponents();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility and Configuration
 
-    WorldObjectType RigidDebris::GetType() const
-        { return Mezzanine::WO_RigidDebris; }
+    EntityType RigidDebris::GetEntityType() const
+        { return Mezzanine::ET_RigidDebris; }
 
-    Graphics::EntityProxy* RigidDebris::GetEntityProxy() const
-        { return static_cast<Graphics::EntityProxy*>( this->GetProxy(Mezzanine::PT_Graphics_EntityProxy,0) ); }
+    Graphics::ItemProxy* RigidDebris::GetItemProxy() const
+        { return static_cast<Graphics::ItemProxy*>( this->GetComponent(Mezzanine::CT_Graphics_ItemProxy,0) ); }
 
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
-        { return static_cast<Physics::RigidProxy*>( this->GetProxy(Mezzanine::PT_Physics_RigidProxy,0) ); }
+        { return static_cast<Physics::RigidProxy*>( this->GetComponent(Mezzanine::CT_Physics_RigidProxy,0) ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
@@ -182,29 +182,30 @@ namespace Mezzanine
     String RigidDebrisFactory::GetTypeName() const
         { return RigidDebris::GetSerializableName(); }
 
-    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld)
-        { return new RigidDebris(Name,Mass,TheWorld); }
+    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const EntityID& EntID, const Real Mass, World* TheWorld)
+        { return new RigidDebris(EntID,Mass,TheWorld); }
 
-    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld)
-        { return new RigidDebris(Name,Mass,DebMesh,DebShape,TheWorld); }
+    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const EntityID& EntID, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld)
+        { return new RigidDebris(EntID,Mass,DebMesh,DebShape,TheWorld); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
-        { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
+        { return static_cast<RigidDebris*>( this->CreateEntity(XMLNode,TheWorld) ); }
 
-    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params)
+    Entity* RigidDebrisFactory::CreateEntity(const EntityID& EntID, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
         NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
-        if( ParamIt != Params.end() )
+        if( ParamIt != Params.end() ) {
             Mass = StringTools::ConvertToReal( (*ParamIt).second );
+        }
 
-        return new RigidDebris(Name,Mass,TheWorld);
+        return new RigidDebris(EntID,Mass,TheWorld);
     }
 
-    Debris* RigidDebrisFactory::CreateDebris(const XML::Node& XMLNode, World* TheWorld)
+    Entity* RigidDebrisFactory::CreateEntity(const XML::Node& XMLNode, World* TheWorld)
         { return new RigidDebris(XMLNode,TheWorld); }
 
-    void RigidDebrisFactory::DestroyDebris(Debris* ToBeDestroyed)
+    void RigidDebrisFactory::DestroyEntity(Entity* ToBeDestroyed)
         { delete ToBeDestroyed; }
 }//Mezzanine
 

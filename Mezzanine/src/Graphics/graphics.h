@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,10 +61,10 @@ namespace Mezzanine
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/bone.h"
 #include "Graphics/cameraproxy.h"
-#include "Graphics/entityproxy.h"
 #include "Graphics/gamewindow.h"
 #include "Graphics/guillotinetexturepacker.h"
 #include "Graphics/image.h"
+#include "Graphics/itemproxy.h"
 #include "Graphics/lightproxy.h"
 #include "Graphics/linegroupproxy.h"
 #include "Graphics/material.h"

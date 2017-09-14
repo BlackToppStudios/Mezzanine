@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -169,16 +169,6 @@ namespace Mezzanine
                 delete this->SoundDecoder;
             }
 
-            void OALS::SoundProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
-            {
-                this->WorldProxy::ProtoSerializeImpl(SelfRoot);
-            }
-
-            void OALS::SoundProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
-            {
-                this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
-            }
-
             void OALS::SoundProxy::MakeCurrent(ALCcontext* Context)
             {
                 ALCcontext* CurrContext = alcGetCurrentContext();
@@ -246,8 +236,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Mezzanine::ProxyType OALS::SoundProxy::GetProxyType() const
-                { return Mezzanine::PT_Audio_SoundProxy; }
+            Mezzanine::ComponentType OALS::SoundProxy::GetComponentType() const
+                { return Mezzanine::CT_Audio_SoundProxy; }
 
             Boole OALS::SoundProxy::IsValid() const
                 { return ( this->SoundDecoder && this->SoundDecoder->GetStream() ); }//add parameters to check the sources
@@ -337,9 +327,9 @@ namespace Mezzanine
                 return this->DirectSound;
             }
 
-            void OALS::SoundProxy::AddToWorld()
+            void OALS::SoundProxy::Activate()
             {
-                if( !this->IsInWorld() ) {
+                if( !this->IsActivated() ) {
                     this->State = ( this->State | OALS::PS_InWorld );
                     if( this->IsPaused() ) {
                         this->Play();
@@ -347,9 +337,9 @@ namespace Mezzanine
                 }
             }
 
-            void OALS::SoundProxy::RemoveFromWorld()
+            void OALS::SoundProxy::Deactivate()
             {
-                if( this->IsInWorld() ) {
+                if( this->IsActivated() ) {
                     this->State = ( this->State & ~OALS::PS_InWorld );
                     if( this->IsPlaying() ) {
                         this->Pause();
@@ -357,7 +347,7 @@ namespace Mezzanine
                 }
             }
 
-            Boole OALS::SoundProxy::IsInWorld() const
+            Boole OALS::SoundProxy::IsActivated() const
             {
                 return (this->State & OALS::PS_InWorld);
             }
@@ -367,7 +357,7 @@ namespace Mezzanine
                 return false;
             }
 
-            WorldProxyManager* OALS::SoundProxy::GetCreator() const
+            EntityComponentManager* OALS::SoundProxy::GetCreator() const
             {
                 return this->Manager;
             }
@@ -377,8 +367,9 @@ namespace Mezzanine
 
             Boole OALS::SoundProxy::Play()
             {
-                if( !this->IsInWorld() )
+                if( !this->IsActivated() ) {
                     return false;
+                }
 
                 // Setup the buffers for playback
                 if( !this->IsPlaying() ) {
@@ -993,9 +984,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
+            void OALS::SoundProxy::ProtoSerialize(XML::Node& ParentNode) const
+            {
+                this->EntityProxy::ProtoSerialize(ParentNode); // Temporary
+            }
+
             void OALS::SoundProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
                 XML::Node PropertiesNode = SelfRoot.AppendChild( OALS::SoundProxy::GetSerializableName() + "Properties" );
 
@@ -1041,9 +1037,14 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
+            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                this->EntityProxy::ProtoDeSerialize(SelfRoot); // Temporary
+            }
+
             void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             {
-                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
                 XML::Attribute CurrAttrib;
                 XML::Node PropertiesNode = SelfRoot.GetChild( OALS::SoundProxy::GetSerializableName() + "Properties" );

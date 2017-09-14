@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 #ifndef _audiosoundscapemanager_h
 #define _audiosoundscapemanager_h
 
-#include "worldproxymanager.h"
+#include "entitycomponentmanager.h"
 #include "managerfactory.h"
 #include "Audio/audioenumerations.h"
 #include "Threading/workunit.h"
@@ -72,7 +72,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base manager class for audio being played in a 3D environment.
         ///////////////////////////////////////
-        class MEZZ_LIB SoundScapeManager : public WorldProxyManager
+        class MEZZ_LIB SoundScapeManager : public EntityComponentManager
         {
         public:
         protected:

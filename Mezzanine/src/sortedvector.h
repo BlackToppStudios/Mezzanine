@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -216,7 +216,7 @@ namespace Mezzanine
             T& operator[] (size_t Index)
                 { return InternalStorage[Index]; }
 
-            /// @brief Get and interator to a specific item, operates in fast logarithmic time.
+            /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
             /// @param value the item to get the location of.
             /// @return A mutable iterator to an item, can be adjusted by random access.
             iterator find(T value)

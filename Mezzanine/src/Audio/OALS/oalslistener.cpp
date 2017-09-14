@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -111,9 +111,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Mezzanine::ProxyType Listener::GetProxyType() const
+            Mezzanine::ComponentType Listener::GetComponentType() const
             {
-                return Mezzanine::PT_Audio_Listener;
+                return Mezzanine::CT_Audio_Listener;
             }
 
             void Listener::SetVelocity(const Vector3& Vel)
@@ -135,7 +135,7 @@ namespace Mezzanine
             {
                 if( this->VolumeModifier != Vol )
                 {
-                    if( this->IsInWorld() ) {
+                    if( this->IsActivated() ) {
                         this->MakeCurrent();
                         alListenerf(AL_GAIN,Vol);
                     }
@@ -162,25 +162,25 @@ namespace Mezzanine
                 return this->MPU;
             }
 
-            void Listener::AddToWorld()
+            void Listener::Activate()
             {
-                if( !this->IsInWorld() ) {
+                if( !this->IsActivated() ) {
                     this->MakeCurrent();
                     alListenerf(AL_GAIN,this->VolumeModifier);
                     this->InWorld = true;
                 }
             }
 
-            void Listener::RemoveFromWorld()
+            void Listener::Deactivate()
             {
-                if( this->IsInWorld() ) {
+                if( this->IsActivated() ) {
                     this->MakeCurrent();
                     alListenerf(AL_GAIN,0.0);
                     this->InWorld = false;
                 }
             }
 
-            Boole Listener::IsInWorld() const
+            Boole Listener::IsActivated() const
             {
                 return this->InWorld;
             }
@@ -190,7 +190,7 @@ namespace Mezzanine
                 return false;
             }
 
-            WorldProxyManager* Listener::GetCreator() const
+            EntityComponentManager* Listener::GetCreator() const
             {
                 return this->Manager;
             }
@@ -331,7 +331,7 @@ namespace Mezzanine
 
             void Listener::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoSerializeProperties(SelfRoot);
 
                 XML::Node PropertiesNode = SelfRoot.AppendChild( Listener::GetSerializableName() + "Properties" );
 
@@ -350,7 +350,7 @@ namespace Mezzanine
 
             void Listener::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             {
-                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+                this->EntityProxy::ProtoDeSerializeProperties(SelfRoot);
 
                 XML::Attribute CurrAttrib;
                 XML::Node PropertiesNode = SelfRoot.GetChild( Listener::GetSerializableName() + "Properties" );

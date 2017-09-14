@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -241,5 +241,13 @@
         #endif
     #endif
 
+
+    /// @brief Convert something in a macro to a string literal for later concatenation
+    /// @param ToCovertToString A string to make it a string literal
+    #define StringPrep(ToCovertToString) #ToCovertToString
+
+    /// @brief Accepts a non string to be parsed by the preprocessor
+    /// @param ToCovertToString A string to make it a string literal macro
+    #define Stringify(ToCovertToString) StringPrep(ToCovertToString)
 
 #endif

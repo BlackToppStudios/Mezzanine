@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -65,18 +65,23 @@
     #include <cstddef>
 
     #include <algorithm>
+    #include <atomic>
     #include <exception>
+    #include <fstream>
+    #include <functional>
     #include <istream>
     #include <list>
     #include <map>
-    #include <string>
-    #include <sstream>
-    #include <fstream>
-    #include <set>
-    #include <vector>
-    #include <utility>
     #include <memory>
     #include <ostream>
+    #include <set>
+    #include <string>
+    #include <sstream>
+    #include <utility>
+    #include <vector>
+    #include <ostream>
+    #include <chrono>
+    #include <array>
     #include <atomic>
     #include <condition_variable>
 #endif

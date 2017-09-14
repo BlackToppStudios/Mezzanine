@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2017 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include "SDL_config.h"
+#include "../../SDL_internal.h"
 
 /* An implementation of condition variables using semaphores and mutexes */
 /*
@@ -187,7 +187,7 @@ SDL_CondWaitTimeout(SDL_cond * cond, SDL_mutex * mutex, Uint32 ms)
        the signaler can race ahead and get the condition semaphore
        if we are stopped between the mutex unlock and semaphore wait,
        giving a deadlock.  See the following URL for details:
-       http://www-classic.be.com/aboutbe/benewsletter/volume_III/Issue40.html
+       http://web.archive.org/web/20010914175514/http://www-classic.be.com/aboutbe/benewsletter/volume_III/Issue40.html#Workshop
      */
     SDL_LockMutex(cond->lock);
     if (cond->signals > 0) {

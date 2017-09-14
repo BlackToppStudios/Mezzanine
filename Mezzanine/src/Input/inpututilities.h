@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
         The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ namespace Mezzanine
 
         /// @brief Sets system clipboard text.
         /// @param ClipboardText A string containing desired clipboard text.
-        void SetClipboardText( const String & ClipboardText );
+        void SetClipboardText(const String& ClipboardText);
     }
 }
 

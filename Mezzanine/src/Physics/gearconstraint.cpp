@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2016 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -144,8 +144,8 @@ namespace Mezzanine
             XML::Node InitDataNode = SelfRoot.AppendChild( GearConstraint::GetSerializableName() + "InitData" );
 
             if( InitDataNode.AppendAttribute("Version").SetValue("1") &&
-                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetProxyID() ) : false ) &&
-                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetProxyID() ) : false ) )
+                ( this->ProxA != NULL ? InitDataNode.AppendAttribute("ProxyA-ID").SetValue( this->ProxA->GetComponentID().ID ) : false ) &&
+                ( this->ProxB != NULL ? InitDataNode.AppendAttribute("ProxyB-ID").SetValue( this->ProxB->GetComponentID().ID ) : false ) )
             {
                 if( this->ProxA != NULL ) {
                     XML::Node AxisANode = InitDataNode.AppendChild("AxisA");
@@ -191,11 +191,11 @@ namespace Mezzanine
 
                     CurrAttrib = InitDataNode.GetAttribute("ProxyA-ID");
                     if( !CurrAttrib.Empty() )
-                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+                        this->ProxA = static_cast<RigidProxy*>( this->Manager->GetComponentByID( CurrAttrib.AsUint() ) );
 
                     CurrAttrib = InitDataNode.GetAttribute("ProxyB-ID");
                     if( !CurrAttrib.Empty() )
-                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetProxyByID( CurrAttrib.AsUint() ) );
+                        this->ProxB = static_cast<RigidProxy*>( this->Manager->GetComponentByID( CurrAttrib.AsUint() ) );
 
                     XML::Node AxisANode = InitDataNode.GetChild("AxisA").GetFirstChild();
                     if( !AxisANode.Empty() ) {
