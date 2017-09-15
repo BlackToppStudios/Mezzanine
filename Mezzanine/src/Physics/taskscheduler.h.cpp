@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "Threading/spinbarrier.h"
+#include "Threading/backgroundbarrier.h"
 
 #include <LinearMath/btThreads.h>
 
@@ -62,7 +63,7 @@ namespace Mezzanine
             using ThreadContainer = std::vector< std::thread >;
         private:
             /// @brief This is where all threads begin each iteration.
-            Threading::SpinBarrier StartingLine;
+            Threading::BackgroundBarrier StartingLine;
             /// @brief This is where all threads end each iteration.
             Threading::SpinBarrier FinishLine;
             /// @brief Container storing all of the threads to be used by this scheduler.

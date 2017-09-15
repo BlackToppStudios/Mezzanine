@@ -525,7 +525,8 @@ namespace Mezzanine
                     { SolverPool[CurrSolver] = new btSequentialImpulseConstraintSolver(); }
 
                 this->BulletSolver = new btConstraintSolverPoolMt(SolverPool.data(),SolverPool.size());
-                btSetTaskScheduler( new ParallelForScheduler(ThreadCount) );
+                //btSetTaskScheduler( new ParallelForScheduler(ThreadCount) );
+                btSetTaskScheduler( btGetSequentialTaskScheduler() );
             }else{
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
                 btSetTaskScheduler( btGetSequentialTaskScheduler() );
@@ -545,7 +546,7 @@ namespace Mezzanine
                                                                                this->BulletCollisionConfig);
                 }
                 this->IsSoftWorld = true;
-            }else{
+            }else{//*/
                 if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                     this->BulletDynamicsWorld = new btDiscreteDynamicsWorldMt( this->BulletDispatcher,
                                                                                this->BulletBroadphase,
@@ -558,12 +559,7 @@ namespace Mezzanine
                                                                              this->BulletCollisionConfig);
                 }
                 this->IsSoftWorld = false;
-            }//*/
-            this->BulletDynamicsWorld = new btDiscreteDynamicsWorldMt( this->BulletDispatcher,
-                                                                       this->BulletBroadphase,
-                                                                       static_cast<btConstraintSolverPoolMt*>( this->BulletSolver ),
-                                                                       this->BulletCollisionConfig);
-            this->IsSoftWorld = false;
+            //}
 
             // Set up the work units
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -603,12 +599,12 @@ namespace Mezzanine
 
         void PhysicsManager::Destroy()
         {
-            btITaskScheduler* Scheduler = btGetTaskScheduler();
+            /*btITaskScheduler* Scheduler = btGetTaskScheduler();
             btSetTaskScheduler(nullptr);
             if( Scheduler ) {
                 delete Scheduler;
                 Scheduler = nullptr;
-            }
+            }//*/
 
             delete this->BulletDynamicsWorld;
             this->BulletDynamicsWorld = nullptr;

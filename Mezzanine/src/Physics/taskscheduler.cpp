@@ -91,16 +91,7 @@ namespace Mezzanine
                     std::cout << StartStream.str();
                     while(true)
                     {
-                        Boole StartCheck = this->StartingLine.Wait(); // Add error checking, this should be false
-                        StringStream GreetStream;
-                        if( StartCheck ) {
-                            GreetStream << "Thread " << MyThreadIndex << ": sends it's regards!  And is NOT ok!\n";
-                            assert( !StartCheck && "Non-false return at start of worker thread loop." );
-                        }else{
-                            GreetStream << "Thread " << MyThreadIndex << ": sends it's regards!  And is ok.\n";
-                        }
-                        std::cout << GreetStream.str();
-
+                        this->StartingLine.Wait();
                         if(!StillRunning)
                             { break; }
                         const int RangeCount = this->IndexEnd - this->IndexStart;
@@ -159,10 +150,6 @@ namespace Mezzanine
 
         void ParallelForScheduler::parallelFor(int iBegin, int iEnd, int grainSize, const btIParallelForBody& body)
         {
-            static unsigned int CallCount = 0;
-            ++CallCount;
-            std::cout << "Number of calls to \"parallelFor\": " << CallCount << ".\n";
-
             const int RangeCount = iEnd - iBegin;
             if( RangeCount < 1 ) {
                 return;
@@ -173,12 +160,9 @@ namespace Mezzanine
                 this->Body = &body;
                 this->IndexStart = iBegin;
                 this->IndexEnd = iEnd;
-                std::cout << "Main thread starting it's wait.\n";
-                Boole StartCheck = this->StartingLine.Wait(); // Check that this is true.
-                assert( StartCheck && "Non-true return at start of worker thread launch from main thread." );
+                this->StartingLine.Wait();
                 // all the threads are working, we promise!
-                this->FinishLine.Wait(); // Don't care about return value
-                std::cout << "Main thread resuming after workers.\n";
+                this->FinishLine.Wait();
                 this->Body = nullptr;
                 this->IndexStart = 0;
                 this->IndexEnd = 0;
