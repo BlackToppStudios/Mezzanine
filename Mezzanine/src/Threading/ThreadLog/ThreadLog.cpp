@@ -67,7 +67,7 @@ namespace {
 
         Mezzanine::Threading::ThreadLog::PrintAggregatedLog(Output);
 
-        std::quick_exit(EXIT_FAILURE);
+        std::terminate();
     }
 }
 

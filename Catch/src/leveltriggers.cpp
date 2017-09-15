@@ -3,7 +3,7 @@
 
 #include "leveltriggers.h"
 
-BNS_Fan::BNS_Fan(const String& name, Physics::HingeConstraint* Motor, Physics::Generic6DofSpringConstraint* Spring, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter) :
+BNS_Fan::BNS_Fan(const String& name, Physics::HingeConstraint* Motor, Physics::SixDofSpringConstraint* Spring, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter) :
     WorldTrigger(name)
 {
     this->TrigFan = Fan;

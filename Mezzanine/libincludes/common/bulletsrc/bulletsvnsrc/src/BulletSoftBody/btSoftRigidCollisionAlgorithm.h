@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -31,8 +31,8 @@ class btSoftRigidCollisionAlgorithm : public btCollisionAlgorithm
 	//	bool	m_ownManifold;
 	//	btPersistentManifold*	m_manifoldPtr;
 
-	btSoftBody*				m_softBody;
-	btCollisionObject*		m_rigidCollisionObject;
+	//btSoftBody*				m_softBody;
+	//btCollisionObject*		m_rigidCollisionObject;
 
 	///for rigid versus soft (instead of soft versus rigid), we use this swapped boolean
 	bool	m_isSwapped;

@@ -86,7 +86,7 @@ SIMD_FORCE_INLINE GUINT PLANE_CLIP_POLYGON_GENERIC(
     GUINT clipped_count = 0;
 
 
-    // ©lip first point
+    //clip first point
 	GREAL firstdist = distance_func(plane,polygon_points[0]);;
 	if(!(firstdist>G_EPSILON))
 	{
@@ -136,7 +136,7 @@ SIMD_FORCE_INLINE GUINT PLANE_CLIP_TRIANGLE_GENERIC(
 {
     GUINT clipped_count = 0;
 
-    // ©lip first point
+    //clip first point
 	GREAL firstdist = distance_func(plane,point0);;
 	if(!(firstdist>G_EPSILON))
 	{

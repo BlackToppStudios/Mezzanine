@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -21,8 +21,14 @@ subject to the following restrictions:
 ///that is better portable and more predictable
 
 #include "btScalar.h"
-//#define BT_DEBUG_MEMORY_ALLOCATIONS 1
+
+
+///BT_DEBUG_MEMORY_ALLOCATIONS preprocessor can be set in build system
+///for regression tests to detect memory leaks
+///#define BT_DEBUG_MEMORY_ALLOCATIONS 1
 #ifdef BT_DEBUG_MEMORY_ALLOCATIONS
+
+int btDumpMemoryLeaks();
 
 #define btAlignedAlloc(a,b) \
 		btAlignedAllocInternal(a,b,__LINE__,__FILE__)

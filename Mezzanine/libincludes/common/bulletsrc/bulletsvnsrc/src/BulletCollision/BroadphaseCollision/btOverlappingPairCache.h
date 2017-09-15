@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -89,15 +89,23 @@ public:
 
 };
 
-/// Hash-space based Pair Cache, thanks to Erin Catto, Box2D, http://www.box2d.org, and Pierre Terdiman, Codercorner, http:// ©odercorner.com
-class btHashedOverlappingPairCache : public btOverlappingPairCache
+/// Hash-space based Pair Cache, thanks to Erin Catto, Box2D, http://www.box2d.org, and Pierre Terdiman, Codercorner, http://codercorner.com
+
+ATTRIBUTE_ALIGNED16(class) btHashedOverlappingPairCache : public btOverlappingPairCache
 {
 	btBroadphasePairArray	m_overlappingPairArray;
 	btOverlapFilterCallback* m_overlapFilterCallback;
-	bool		m_blockedForChanges;
+
+protected:
+	
+	btAlignedObjectArray<int>	m_hashTable;
+	btAlignedObjectArray<int>	m_next;
+	btOverlappingPairCallback*	m_ghostPairCallback;
 
 
 public:
+	BT_DECLARE_ALIGNED_ALLOCATOR();
+	
 	btHashedOverlappingPairCache();
 	virtual ~btHashedOverlappingPairCache();
 
@@ -207,10 +215,9 @@ private:
 	*/
 
 
-	
-	SIMD_FORCE_INLINE	unsigned int getHash(unsigned int proxyId1, unsigned int proxyId2)
+	SIMD_FORCE_INLINE unsigned int getHash(unsigned int proxyId1, unsigned int proxyId2)
 	{
-		int key = static_cast<int>(((unsigned int)proxyId1) | (((unsigned int)proxyId2) <<16));
+		unsigned int key = proxyId1 | (proxyId2 << 16);
 		// Thomas Wang's hash
 
 		key += ~(key << 15);
@@ -219,11 +226,9 @@ private:
 		key ^=  (key >> 6);
 		key += ~(key << 11);
 		key ^=  (key >> 16);
-		return static_cast<unsigned int>(key);
+		return key;
 	}
 	
-
-
 
 
 	SIMD_FORCE_INLINE btBroadphasePair* internalFindPair(btBroadphaseProxy* proxy0, btBroadphaseProxy* proxy1, int hash)
@@ -265,11 +270,6 @@ private:
 	virtual void	sortOverlappingPairs(btDispatcher* dispatcher);
 	
 
-protected:
-	
-	btAlignedObjectArray<int>	m_hashTable;
-	btAlignedObjectArray<int>	m_next;
-	btOverlappingPairCallback*	m_ghostPairCallback;
 	
 };
 

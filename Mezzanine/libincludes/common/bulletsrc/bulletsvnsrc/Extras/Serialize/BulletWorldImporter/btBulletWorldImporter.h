@@ -30,7 +30,7 @@ namespace bParse
 {
 	class btBulletFile;
 	
-}
+};
 
 
 
@@ -47,14 +47,16 @@ public:
 
 	virtual ~btBulletWorldImporter();
 
-	bool	loadFile(const char* fileName);
+	///if you pass a valid preSwapFilenameOut, it will save a new file with a different endianness 
+	///this pre-swapped file can be loaded without swapping on a target platform of different endianness
+	bool	loadFile(const char* fileName, const char* preSwapFilenameOut=0);
 
 	///the memoryBuffer might be modified (for example if endian swaps are necessary)
 	bool	loadFileFromMemory(char *memoryBuffer, int len);
 
 	bool	loadFileFromMemory(bParse::btBulletFile* file);
 
-	// ©all make sure bulletFile2 has been parsed, either using btBulletFile::parse or btBulletWorldImporter::loadFileFromMemory
+	//call make sure bulletFile2 has been parsed, either using btBulletFile::parse or btBulletWorldImporter::loadFileFromMemory
 	virtual	bool	convertAllObjects(bParse::btBulletFile* file);
 
 	

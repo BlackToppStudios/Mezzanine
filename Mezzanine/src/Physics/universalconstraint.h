@@ -40,7 +40,7 @@
 #ifndef _physicsuniversalconstraint_h
 #define _physicsuniversalconstraint_h
 
-#include "Physics/generic6dofconstraint.h"
+#include "Physics/genericsixdofconstraint.h"
 
 class btUniversalConstraint;
 
@@ -49,7 +49,6 @@ namespace Mezzanine
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UniversalConstraint
         /// @brief This is a constraint for sharing the rotation of one object along an angular axis with another.
         /// @details The UniversalConstriant shares some similarities with the Gear and Hinge2 constraints, but it is distinct in the nuance of
         /// it's behaviors.  @n
@@ -61,7 +60,7 @@ namespace Mezzanine
         /// around.  @n
         /// After the constraint is constructed the constraint will attempt to keep the axes provided at 90 degrees apart, forcing the parent
         /// or child to rotate as needed to maintain that angular distance.
-        class MEZZ_LIB UniversalConstraint : public Generic6DofConstraint
+        class MEZZ_LIB UniversalConstraint : public GenericSixDofConstraint
         {
         protected:
             /// @copydoc TypedConstraint::_GetConstraintBase() const

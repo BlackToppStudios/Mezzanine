@@ -468,9 +468,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/dualtransformconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/dynamicmeshcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/fieldcollisionshape.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/fixedconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/gearconstraint.h"
-        "${${PROJECT_NAME}_SRC_DIR}Physics/generic6dofconstraint.h"
-        "${${PROJECT_NAME}_SRC_DIR}Physics/generic6dofspringconstraint.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/genericsixdofconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/ghostproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/heightfieldcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/hinge2constraint.h"
@@ -482,11 +482,14 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/point2pointconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/primitivecollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/rigidproxy.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/sixdofconstraint.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/sixdofspringconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/sliderconstraint.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/softcollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/softproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.h"
         "${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.h"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/taskscheduler.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/universalconstraint.h"
         # Resource Items
         "${${PROJECT_NAME}_SRC_DIR}Resource/resource.h"
@@ -513,7 +516,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousfileloadingworkunit.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousworkunit.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/atomicoperations.h"
-        "${${PROJECT_NAME}_SRC_DIR}Threading/barrier.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/backgroundbarrier.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/crossplatformincludes.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/dagframescheduler.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/doublebufferedresource.h"
@@ -525,6 +528,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/mutex.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/readwritespinlock.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/rollingaverage.h"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/spinbarrier.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/spinlock.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/systemcalls.h"
         "${${PROJECT_NAME}_SRC_DIR}Threading/threadingenumerations.h"
@@ -933,9 +937,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/dualtransformconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/dynamicmeshcollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/fieldcollisionshape.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/fixedconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/gearconstraint.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Physics/generic6dofconstraint.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Physics/generic6dofspringconstraint.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/genericsixdofconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/ghostproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/heightfieldcollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/hinge2constraint.cpp"
@@ -946,11 +950,14 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Physics/point2pointconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/primitivecollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/rigidproxy.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/sixdofconstraint.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/sixdofspringconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/sliderconstraint.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/softcollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/softproxy.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Physics/taskscheduler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Physics/universalconstraint.cpp"
         # Resource Items
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourcemanager.cpp"
@@ -981,7 +988,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousfileloadingworkunit.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousworkunit.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/atomicoperations.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Threading/barrier.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/backgroundbarrier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/doublebufferedresource.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/framescheduler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/frameschedulerworkunits.cpp"
@@ -989,6 +996,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/monopoly.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/mutex.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/readwritespinlock.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/spinbarrier.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/spinlock.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/rollingaverage.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/systemcalls.cpp"
@@ -1173,8 +1181,7 @@ if(Mezz_Audio_EnableFlacEncoding)
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_FLAC_ENCODE")
 endif(Mezz_Audio_EnableFlacEncoding)
 
-option(Mezz_Audio_EnableVorbisEncoding
-        "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
+option(Mezz_Audio_EnableVorbisEncoding "Enable the encoding and decoding of .ogg (vorbis) encoded data." ON)
 if(Mezz_Audio_EnableVorbisEncoding)
     message ( STATUS "${PROJECT_NAME} - Enabling .ogg (vorbis) encoding.")
     set(Mezz_Audio_Encodings ${Mezz_Audio_Encodings} "${D}ENABLE_VORBIS_ENCODE")
@@ -1246,6 +1253,11 @@ if(${Mezz_BuildRenderSystemOpenGLES2})
 endif(${Mezz_BuildRenderSystemOpenGLES2})
 
 ###############################################################################
+# Physics configuration
+
+option(Mezz_Physics_MultiThreaded "Enable multi-threading support for the physics system." ON)
+
+###############################################################################
 # Functions for Later use
 
 #Description: This function copies items from the Data/lib directory into it's expected location in
@@ -1274,19 +1286,6 @@ endfunction(CopyFilesDuringBuild)
 
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
-
-# Bullet related values
-set(BUILD_AMD_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_INTEL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_NVIDIA_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_MINICL_OPENCL_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_CPU_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(USE_GLUT OFF CACHE BOOL "Do not build demos!" FORCE)
-set(BUILD_DEMOS OFF CACHE BOOL "Do not build demos!" FORCE)
-set(INSTALL_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(INSTALL_EXTRA_LIBS OFF CACHE BOOL "Do not install libs!" FORCE)
-set(BUILD_UNIT_TESTS OFF CACHE BOOL "Do not build unit tests!" FORCE)
-set(BUILD_MULTITHREADING ON CACHE BOOL "Do build multithreading constructs!" FORCE)
 
 #######################################
 # Windows Build Specific Items

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -31,7 +31,7 @@ ATTRIBUTE_ALIGNED16(class) btJacobianEntry
 {
 public:
 	btJacobianEntry() {};
-	// ©onstraint between two different rigidbodies
+	//constraint between two different rigidbodies
 	btJacobianEntry(
 		const btMatrix3x3& world2A,
 		const btMatrix3x3& world2B,
@@ -85,7 +85,7 @@ public:
 		btAssert(m_Adiag > btScalar(0.0));
 	}
 
-	// ©onstraint on one rigidbody
+	//constraint on one rigidbody
 	btJacobianEntry(
 		const btMatrix3x3& world2A,
 		const btVector3& rel_pos1,const btVector3& rel_pos2,

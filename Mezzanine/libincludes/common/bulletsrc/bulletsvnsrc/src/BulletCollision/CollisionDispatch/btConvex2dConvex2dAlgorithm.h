@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,7 +29,7 @@ class btConvexPenetrationDepthSolver;
 
 
 ///The convex2dConvex2dAlgorithm collision algorithm support 2d collision detection for btConvex2dShape
-/// ©urrently it requires the btMinkowskiPenetrationDepthSolver, it has support for 2d penetration depth computation
+///Currently it requires the btMinkowskiPenetrationDepthSolver, it has support for 2d penetration depth computation
 class btConvex2dConvex2dAlgorithm : public btActivatingCollisionAlgorithm
 {
 	btSimplexSolverInterface*		m_simplexSolver;
@@ -40,9 +40,6 @@ class btConvex2dConvex2dAlgorithm : public btActivatingCollisionAlgorithm
 	btPersistentManifold*	m_manifoldPtr;
 	bool			m_lowLevelOfDetail;
 	
-	int m_numPerturbationIterations;
-	int m_minimumPointsPerturbationThreshold;
-
 public:
 
 	btConvex2dConvex2dAlgorithm(btPersistentManifold* mf,const btCollisionAlgorithmConstructionInfo& ci,const btCollisionObjectWrapper* body0Wrap,const btCollisionObjectWrapper* body1Wrap, btSimplexSolverInterface* simplexSolver, btConvexPenetrationDepthSolver* pdSolver, int numPerturbationIterations, int minimumPointsPerturbationThreshold);

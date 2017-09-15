@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -16,13 +16,13 @@ subject to the following restrictions:
 #ifndef BULLET_COLLISION_COMMON_H
 #define BULLET_COLLISION_COMMON_H
 
-/// ©ommon headerfile includes for Bullet Collision Detection
+///Common headerfile includes for Bullet Collision Detection
 
 ///Bullet's btCollisionWorld and btCollisionObject definitions
 #include "BulletCollision/CollisionDispatch/btCollisionWorld.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 
-/// ©ollision Shapes
+///Collision Shapes
 #include "BulletCollision/CollisionShapes/btBoxShape.h"
 #include "BulletCollision/CollisionShapes/btSphereShape.h"
 #include "BulletCollision/CollisionShapes/btCapsuleShape.h"
@@ -52,7 +52,6 @@ subject to the following restrictions:
 #include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
 #include "BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
 #include "BulletCollision/BroadphaseCollision/btAxisSweep3.h"
-#include "BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h"
 #include "BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
 
 ///Math library & Utils

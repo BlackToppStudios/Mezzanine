@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,8 +29,8 @@ struct btSimpleBroadphaseProxy : public btBroadphaseProxy
 	
 	btSimpleBroadphaseProxy() {};
 
-	btSimpleBroadphaseProxy(const btVector3& minpt,const btVector3& maxpt,int shapeType,void* userPtr,short int collisionFilterGroup,short int collisionFilterMask,void* multiSapProxy)
-	:btBroadphaseProxy(minpt,maxpt,userPtr,collisionFilterGroup,collisionFilterMask,multiSapProxy)
+	btSimpleBroadphaseProxy(const btVector3& minpt,const btVector3& maxpt,int shapeType,void* userPtr, int collisionFilterGroup, int collisionFilterMask)
+	:btBroadphaseProxy(minpt,maxpt,userPtr,collisionFilterGroup,collisionFilterMask)
 	{
 		(void)shapeType;
 	}
@@ -127,7 +127,7 @@ public:
 		static bool	aabbOverlap(btSimpleBroadphaseProxy* proxy0,btSimpleBroadphaseProxy* proxy1);
 
 
-	virtual btBroadphaseProxy*	createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr ,short int collisionFilterGroup,short int collisionFilterMask, btDispatcher* dispatcher,void* multiSapProxy);
+	virtual btBroadphaseProxy*	createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr , int collisionFilterGroup, int collisionFilterMask, btDispatcher* dispatcher);
 
 	virtual void	calculateOverlappingPairs(btDispatcher* dispatcher);
 

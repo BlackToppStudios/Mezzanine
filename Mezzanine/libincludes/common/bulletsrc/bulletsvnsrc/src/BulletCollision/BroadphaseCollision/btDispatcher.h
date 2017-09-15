@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -25,7 +25,6 @@ class btOverlappingPairCache;
 struct btCollisionObjectWrapper;
 
 class btPersistentManifold;
-class btStackAlloc;
 class btPoolAllocator;
 
 struct btDispatcherInfo
@@ -47,8 +46,7 @@ struct btDispatcherInfo
 		m_useEpa(true),
 		m_allowedCcdPenetration(btScalar(0.04)),
 		m_useConvexConservativeDistanceUtil(false),
-		m_convexConservativeDistanceThreshold(0.0f),
-		m_stackAllocator(0)
+		m_convexConservativeDistanceThreshold(0.0f)
 	{
 
 	}
@@ -64,7 +62,12 @@ struct btDispatcherInfo
 	btScalar	m_allowedCcdPenetration;
 	bool		m_useConvexConservativeDistanceUtil;
 	btScalar	m_convexConservativeDistanceThreshold;
-	btStackAlloc*	m_stackAllocator;
+};
+
+enum ebtDispatcherQueryType
+{
+	BT_CONTACT_POINT_ALGORITHMS = 1,
+	BT_CLOSEST_POINT_ALGORITHMS = 2
 };
 
 ///The btDispatcher interface class can be used in combination with broadphase to dispatch calculations for overlapping pairs.
@@ -76,7 +79,7 @@ class btDispatcher
 public:
 	virtual ~btDispatcher() ;
 
-	virtual btCollisionAlgorithm* findAlgorithm(const btCollisionObjectWrapper* body0Wrap,const btCollisionObjectWrapper* body1Wrap,btPersistentManifold* sharedManifold=0) = 0;
+	virtual btCollisionAlgorithm* findAlgorithm(const btCollisionObjectWrapper* body0Wrap,const btCollisionObjectWrapper* body1Wrap,btPersistentManifold* sharedManifold, ebtDispatcherQueryType queryType) = 0;
 
 	virtual btPersistentManifold*	getNewManifold(const btCollisionObject* b0,const btCollisionObject* b1)=0;
 

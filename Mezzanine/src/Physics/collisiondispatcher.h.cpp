@@ -40,10 +40,11 @@
 #ifndef _physicscollisiondispatcher_h_cpp
 #define _physicscollisiondispatcher_h_cpp
 
-#include <btBulletDynamicsCommon.h>
-#include <BulletMultiThreaded/SpuGatheringCollisionDispatcher.h>
+//#define BT_THREADSAFE 1
 
-#include <list>
+#include <BulletCollision/CollisionDispatch/btCollisionDispatcherMt.h>
+
+#include <vector>
 
 namespace Mezzanine
 {
@@ -52,32 +53,30 @@ namespace Mezzanine
         // internal forward declarations
         class PhysicsManager;
 
-        /// @brief Convenience datatype for a collection of Collision Algorithms.
-        typedef std::list<btCollisionAlgorithm*> AlgoList;
+        /// @brief Convenience type for a collection of Collision Algorithms.
+        using AlgoContainer = std::vector<btCollisionAlgorithm*>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @brief Used to provide better reporting of collisions.
-        /// @details
         ///////////////////////////////////////
         class CollisionDispatcher : public btCollisionDispatcher
         {
         protected:
-            /// @brief Physics Manager
-            PhysicsManager * PhysMan;
-
-            /// @internal
-            /// @brief A list of all the algorithms that have been created and need processing.
-            AlgoList AlgoCreationQueue;
+            /// @brief A container of all the algorithms that have been created and need processing.
+            AlgoContainer AlgoCreationQueue;
+            /// @brief A pointer to the physics manager to report the collisions to.
+            PhysicsManager* PhysMan;
         public:
             /// @brief Class constructor.
+            /// @param Phys A pointer to the physics manager to report the collisions to.
             /// @param CollisionConfig The collision configuration for the world being created.
-            CollisionDispatcher(PhysicsManager * PhysMan, btCollisionConfiguration* CollisionConfig);
+            CollisionDispatcher(PhysicsManager* Phys, btCollisionConfiguration* CollisionConfig);
             /// @brief Class destructor.
             virtual ~CollisionDispatcher();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // New Implementation based on Algorithm creation
+            // Implementation based on Algorithm creation
 
             /// @brief Allocates space for a new Collision Algorithm between two objects.
             /// @note This usually means that a collision has started between two objects.
@@ -87,41 +86,34 @@ namespace Mezzanine
             /// @note This usually means that a collision has ended between two objects.
             /// @param ptr A pointer to Collision Algorithim that is being removed.
             void freeCollisionAlgorithm(void* ptr);
-            /// @brief Gets the list of algorithms that have been created and need processing.
-            /// @return Returns a reference to the list of algorithms that need processing.
-            AlgoList* GetAlgoCreationQueue();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Old Implementation based on Manifold creation
-
-            /*btPersistentManifold* getNewManifold(void* b0, void* b1);
-            void releaseManifold(btPersistentManifold* manifold);
-            void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };// CollisionDispatcher
+            /// @brief Gets all of the algorithms that have been created and need processing.
+            /// @return Returns a reference to the container of algorithms that need processing.
+            AlgoContainer& GetAlgoCreationQueue();
+        };//CollisionDispatcher
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @brief Used to provide better reporting of collisions in a multithreaded environment.
-        /// @details
+        /// @brief Used to provide better reporting of collisions in a multi-threaded environment.
         ///////////////////////////////////////
-        class ParallelCollisionDispatcher : public SpuGatheringCollisionDispatcher
+        class ParallelCollisionDispatcher : public btCollisionDispatcherMt
         {
         protected:
-            /// @brief Physics Manager
-            PhysicsManager * PhysMan;
-
-            /// @internal
-            /// @brief A list of all the algorithms that have been created and need processing.
-            AlgoList AlgoCreationQueue;
+            /// @brief A container of all the algorithms that have been created and need processing.
+            AlgoContainer AlgoCreationQueue;
+            /// @brief A mutex to protect access to the creation queue in multi-threaded environments.
+            btSpinMutex QueueMutex;
+            /// @brief A pointer to the physics manager to report the collisions to.
+            PhysicsManager* PhysMan;
         public:
             /// @brief Class constructor.
+            /// @param Phys A pointer to the physics manager to report the collisions to.
             /// @param CollisionConfig The collision configuration for the world being created.
-            ParallelCollisionDispatcher(PhysicsManager * PhysMan, btThreadSupportInterface* ThreadInterface, unsigned int MaxNumTasks, btCollisionConfiguration* CollisionConfig);
+            ParallelCollisionDispatcher(PhysicsManager* Phys, btCollisionConfiguration* CollisionConfig, int GrainSize = 40);
             /// @brief Class destructor.
             virtual ~ParallelCollisionDispatcher();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // New Implementation based on Algorithm creation
+            // Implementation based on Algorithm creation
 
             /// @brief Allocates space for a new Collision Algorithm between two objects.
             /// @note This usually means that a collision has started between two objects.
@@ -129,19 +121,12 @@ namespace Mezzanine
             void* allocateCollisionAlgorithm(int size);
             /// @brief Frees up the space belonging to a Collision Algorithm that is no longer needed.
             /// @note This usually means that a collision has ended between two objects.
-            /// @param ptr A pointer to Collision Algorithim that is being removed.
+            /// @param ptr A pointer to Collision Algorithm that is being removed.
             void freeCollisionAlgorithm(void* ptr);
-            /// @brief Gets the list of algorithms that have been created and need processing.
-            /// @return Returns a reference to the list of algorithms that need processing.
-            AlgoList* GetAlgoCreationQueue();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Old Implementation based on Manifold creation
-
-            /*btPersistentManifold* getNewManifold(void* b0, void* b1);
-            void releaseManifold(btPersistentManifold* manifold);
-            void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };// CollisionDispatcher
+            /// @brief Gets all of the algorithms that have been created and need processing.
+            /// @return Returns a reference to the container of algorithms that need processing.
+            AlgoContainer& GetAlgoCreationQueue();
+        };//CollisionDispatcher
     }//Physics
 }//Mezzanine
 

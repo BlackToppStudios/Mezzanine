@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -66,8 +66,8 @@ void btSolve2LinearConstraint::resolveUnilateralPairConstraint(
 	btJacobianEntry jacB(world2A,world2B,rel_posB1,rel_posB2,normalB,invInertiaADiag,invMassA,
 		invInertiaBDiag,invMassB);
 	
-	// ©onst btScalar vel0 = jacA.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
-	// ©onst btScalar vel1 = jacB.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
+	//const btScalar vel0 = jacA.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
+	//const btScalar vel1 = jacB.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
 
 	const btScalar vel0 = normalA.dot(body1->getVelocityInLocalPoint(rel_posA1)-body2->getVelocityInLocalPoint(rel_posA1));
 	const btScalar vel1 = normalB.dot(body1->getVelocityInLocalPoint(rel_posB1)-body2->getVelocityInLocalPoint(rel_posB1));
@@ -155,8 +155,8 @@ void btSolve2LinearConstraint::resolveBilateralPairConstraint(
 	btJacobianEntry jacB(world2A,world2B,rel_posB1,rel_posB2,normalB,invInertiaADiag,invMassA,
 		invInertiaBDiag,invMassB);
 	
-	// ©onst btScalar vel0 = jacA.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
-	// ©onst btScalar vel1 = jacB.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
+	//const btScalar vel0 = jacA.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
+	//const btScalar vel1 = jacB.getRelativeVelocity(linvelA,angvelA,linvelB,angvelB);
 
 	const btScalar vel0 = normalA.dot(body1->getVelocityInLocalPoint(rel_posA1)-body2->getVelocityInLocalPoint(rel_posA1));
 	const btScalar vel1 = normalB.dot(body1->getVelocityInLocalPoint(rel_posB1)-body2->getVelocityInLocalPoint(rel_posB1));

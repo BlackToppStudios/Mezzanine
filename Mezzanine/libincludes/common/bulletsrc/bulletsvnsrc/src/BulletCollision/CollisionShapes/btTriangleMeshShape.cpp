@@ -160,7 +160,7 @@ void	btTriangleMeshShape::processAllTriangles(btTriangleCallback* callback,const
 		{
 			if (TestTriangleAgainstAabb2(&triangle[0],m_aabbMin,m_aabbMax))
 			{
-				// ©heck aabb in triangle-space, before doing this
+				//check aabb in triangle-space, before doing this
 				m_callback->processTriangle(triangle,partId,triangleIndex);
 			}
 			

@@ -53,13 +53,11 @@ namespace Mezzanine
     namespace Physics
     {
         class RigidProxy;
-        class Generic6DofConstraint;
+        class FixedConstraint;
 
         // Sticky Stuff
-        typedef Generic6DofConstraint StickyConstraint;
+        typedef FixedConstraint StickyConstraint;
 
-        /// @struct StickyConstraintConstructionInfo
-        /// @headerfile rigidproxy.h
         /// @brief Simple struct for holding information on how sticky constraints should be constructed.
         struct MEZZ_LIB StickyConstraintConstructionInfo
         {
@@ -80,10 +78,8 @@ namespace Mezzanine
                 this->ProxA = Other.ProxA;
                 this->ProxB = Other.ProxB;
             }
-        };//stickyconstraintconstructioninfo
+        };//StickyConstraintConstructionInfo
 
-        /// @struct StickyData
-        /// @headerfile rigidproxy.h
         /// @brief This is a basic class for storing the data related to the sticky behavior available to rigid bodies.
         struct MEZZ_LIB StickyData
         {
@@ -91,7 +87,7 @@ namespace Mezzanine
             std::vector<StickyConstraint*> StickyConstraints;
             std::vector<StickyConstraintConstructionInfo> CreationQueue;
             Whole MaxNumContacts;
-        };//stickydata
+        };//StickyData
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a proxy from which rigid body proxys are handled.

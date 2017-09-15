@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -169,7 +169,7 @@ typedef btAlignedObjectArray<btBvhSubtreeInfo>		BvhSubtreeInfoArray;
 
 
 ///The btQuantizedBvh class stores an AABB tree that can be quickly traversed on CPU and Cell SPU.
-///It is used by the btBvhTriangleMeshShape as midphase, and by the btMultiSapBroadphase.
+///It is used by the btBvhTriangleMeshShape as midphase.
 ///It is recommended to use quantization for better performance and lower memory requirements.
 ATTRIBUTE_ALIGNED16(class) btQuantizedBvh
 {
@@ -460,7 +460,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////
 
-	///// ©alculate space needed to store BVH for serialization
+	/////Calculate space needed to store BVH for serialization
 	unsigned calculateSerializeBufferSize() const;
 
 	/// Data buffer MUST be 16 byte aligned

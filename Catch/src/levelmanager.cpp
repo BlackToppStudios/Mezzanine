@@ -514,7 +514,7 @@ void LoadBlowsNotSucks()
     RigidDebris* FanButton = EntMan->CreateRigidDebris(2.5);
     FanButton->SetName("FanButton");
     FanButton->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateConvexHull("Button","button.mesh",BlowsNotSucksGroup) );
-    FanButton->GetRigidProxy()->SetGravity( Vector3(0,0,0) );
+    FanButton->GetRigidProxy()->SetIgnoreWorldGravity(true);
     FanButton->GetRigidProxy()->SetAngularMovementFactor(Vector3(0,0,0));
     FanButton->GetItemProxy()->SetMesh("button.mesh",BlowsNotSucksGroup);
     FanButton->SetLocation(-10.5,-107.0,-0.5);
@@ -526,7 +526,7 @@ void LoadBlowsNotSucks()
     FanToBody->SetAllowCollisions(false);
     FanToBody->EnableConstraint(true);
 
-    Physics::Generic6DofSpringConstraint* ButtonToBody = PhysMan->CreateGeneric6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Transform(Vector3(-143,-52,-25.5),Quaternion(0,0,0,1)),Transform(Vector3(0,0,0),Quaternion(0,0,0,1)));
+    Physics::SixDofSpringConstraint* ButtonToBody = PhysMan->CreateSixDofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Transform(Vector3(-143,-52,-25.5),Quaternion(0,0,0,1)),Transform(Vector3(0,0,0),Quaternion(0,0,0,1)));
     ButtonToBody->SetLinearLimitUpper(Vector3(0,15,0));
     ButtonToBody->SetLinearLimitLower(Vector3(0,0,0));
     ButtonToBody->SetAngularLimitUpper(Vector3(0,0,0));

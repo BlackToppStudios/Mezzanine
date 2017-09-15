@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -41,6 +41,10 @@ struct	btBroadphaseRayCallback : public btBroadphaseAabbCallback
 	btScalar		m_lambda_max;
 
 	virtual ~btBroadphaseRayCallback() {}
+	
+protected:
+    
+    btBroadphaseRayCallback() {}
 };
 
 #include "LinearMath/btVector3.h"
@@ -53,7 +57,7 @@ class btBroadphaseInterface
 public:
 	virtual ~btBroadphaseInterface() {}
 
-	virtual btBroadphaseProxy*	createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr, short int collisionFilterGroup,short int collisionFilterMask, btDispatcher* dispatcher,void* multiSapProxy) =0;
+	virtual btBroadphaseProxy*	createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr,  int collisionFilterGroup, int collisionFilterMask, btDispatcher* dispatcher) =0;
 	virtual void	destroyProxy(btBroadphaseProxy* proxy,btDispatcher* dispatcher)=0;
 	virtual void	setAabb(btBroadphaseProxy* proxy,const btVector3& aabbMin,const btVector3& aabbMax, btDispatcher* dispatcher)=0;
 	virtual void	getAabb(btBroadphaseProxy* proxy,btVector3& aabbMin, btVector3& aabbMax ) const =0;
@@ -62,7 +66,7 @@ public:
 
 	virtual void	aabbTest(const btVector3& aabbMin, const btVector3& aabbMax, btBroadphaseAabbCallback& callback) = 0;
 
-	/// ©alculateOverlappingPairs is optional: incremental algorithms (sweep and prune) might do it during the set aabb
+	///calculateOverlappingPairs is optional: incremental algorithms (sweep and prune) might do it during the set aabb
 	virtual void	calculateOverlappingPairs(btDispatcher* dispatcher)=0;
 
 	virtual	btOverlappingPairCache*	getOverlappingPairCache()=0;

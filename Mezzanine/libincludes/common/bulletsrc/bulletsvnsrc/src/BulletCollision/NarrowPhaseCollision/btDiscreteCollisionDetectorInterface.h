@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -19,7 +19,6 @@ subject to the following restrictions:
 
 #include "LinearMath/btTransform.h"
 #include "LinearMath/btVector3.h"
-class btStackAlloc;
 
 /// This interface is made to be used by an iterative approach to do TimeOfImpact calculations
 /// This interface allows to query for closest points and penetration depth between two (convex) objects
@@ -43,15 +42,13 @@ struct btDiscreteCollisionDetectorInterface
 	struct ClosestPointInput
 	{
 		ClosestPointInput()
-			:m_maximumDistanceSquared(btScalar(BT_LARGE_FLOAT)),
-			m_stackAlloc(0)
+			:m_maximumDistanceSquared(btScalar(BT_LARGE_FLOAT))
 		{
 		}
 
 		btTransform m_transformA;
 		btTransform m_transformB;
 		btScalar	m_maximumDistanceSquared;
-		btStackAlloc* m_stackAlloc;
 	};
 
 	virtual ~btDiscreteCollisionDetectorInterface() {};
@@ -70,10 +67,12 @@ struct btStorageResult : public btDiscreteCollisionDetectorInterface::Result
 		btVector3	m_closestPointInB;
 		btScalar	m_distance; //negative means penetration !
 
+    protected:
 		btStorageResult() : m_distance(btScalar(BT_LARGE_FLOAT))
 		{
-
 		}
+		
+	public:
 		virtual ~btStorageResult() {};
 
 		virtual void addContactPoint(const btVector3& normalOnBInWorld,const btVector3& pointInWorld,btScalar depth)

@@ -29,7 +29,7 @@ m_useQuantizedAabbCompression(useQuantizedAabbCompression),
 m_ownsBvh(false)
 {
 	m_shapeType = TRIANGLE_MESH_SHAPE_PROXYTYPE;
-	// ©onstruct bvh from meshInterface
+	//construct bvh from meshInterface
 #ifndef DISABLE_BVH
 
 	if (buildBvh)
@@ -49,7 +49,7 @@ m_useQuantizedAabbCompression(useQuantizedAabbCompression),
 m_ownsBvh(false)
 {
 	m_shapeType = TRIANGLE_MESH_SHAPE_PROXYTYPE;
-	// ©onstruct bvh from meshInterface
+	//construct bvh from meshInterface
 #ifndef DISABLE_BVH
 
 	if (buildBvh)
@@ -245,16 +245,18 @@ void	btBvhTriangleMeshShape::processAllTriangles(btTriangleCallback* callback,co
 		btStridingMeshInterface*	m_meshInterface;
 		btTriangleCallback*		m_callback;
 		btVector3				m_triangle[3];
-
+		int m_numOverlap;
 
 		MyNodeOverlapCallback(btTriangleCallback* callback,btStridingMeshInterface* meshInterface)
 			:m_meshInterface(meshInterface),
-			m_callback(callback)
+			m_callback(callback),
+			m_numOverlap(0)
 		{
 		}
 				
 		virtual void processNode(int nodeSubPart, int nodeTriangleIndex)
 		{
+			m_numOverlap++;
 			const unsigned char *vertexbase;
 			int numverts;
 			PHY_ScalarType type;
@@ -321,8 +323,7 @@ void	btBvhTriangleMeshShape::processAllTriangles(btTriangleCallback* callback,co
 	MyNodeOverlapCallback	myNodeCallback(callback,m_meshInterface);
 
 	m_bvh->reportAabbOverlappingNodex(&myNodeCallback,aabbMin,aabbMax);
-
-
+	
 #endif//DISABLE_BVH
 
 
@@ -435,6 +436,9 @@ const char*	btBvhTriangleMeshShape::serialize(void* dataBuffer, btSerializer* se
 	{
 		trimeshData->m_triangleInfoMap = 0;
 	}
+
+	// Fill padding with zeros to appease msan.
+	memset(trimeshData->m_pad3, 0, sizeof(trimeshData->m_pad3));
 
 	return "btTriangleMeshShapeData";
 }

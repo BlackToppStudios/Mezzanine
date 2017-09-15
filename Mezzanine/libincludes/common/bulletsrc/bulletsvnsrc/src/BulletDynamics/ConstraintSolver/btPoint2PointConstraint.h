@@ -1,11 +1,11 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
-Permission is granted to anyone to use this software for any purpose,
-including commercial applications, and to alter it and redistribute it freely,
+Permission is granted to anyone to use this software for any purpose, 
+including commercial applications, and to alter it and redistribute it freely, 
 subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
@@ -24,10 +24,10 @@ class btRigidBody;
 
 
 #ifdef BT_USE_DOUBLE_PRECISION
-#define btPoint2PointConstraintData	btPoint2PointConstraintDoubleData
-#define btPoint2PointConstraintDataName	"btPoint2PointConstraintDoubleData"
+#define btPoint2PointConstraintData2	btPoint2PointConstraintDoubleData2
+#define btPoint2PointConstraintDataName	"btPoint2PointConstraintDoubleData2"
 #else
-#define btPoint2PointConstraintData	btPoint2PointConstraintFloatData
+#define btPoint2PointConstraintData2	btPoint2PointConstraintFloatData
 #define btPoint2PointConstraintDataName	"btPoint2PointConstraintFloatData"
 #endif //BT_USE_DOUBLE_PRECISION
 
@@ -57,14 +57,14 @@ ATTRIBUTE_ALIGNED16(class) btPoint2PointConstraint : public btTypedConstraint
 public:
 #endif
 	btJacobianEntry	m_jac[3]; //3 orthogonal linear constraints
-
+	
 	btVector3	m_pivotInA;
 	btVector3	m_pivotInB;
-
+	
 	int			m_flags;
 	btScalar	m_erp;
 	btScalar	m_cfm;
-
+	
 public:
 
 	BT_DECLARE_ALIGNED_ALLOCATOR();
@@ -111,16 +111,16 @@ public:
 		return m_pivotInB;
 	}
 
-	///override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5).
+	///override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5). 
 	///If no axis is provided, it uses the default axis for this constraint.
 	virtual	void	setParam(int num, btScalar value, int axis = -1);
 	///return the local value of parameter
 	virtual	btScalar getParam(int num, int axis = -1) const;
-
+	
 	virtual	int getFlags() const
-    {
-        return m_flags;
-    }
+	{
+        	return m_flags;
+    	}
 
 	virtual	int	calculateSerializeBufferSize() const;
 
@@ -139,24 +139,36 @@ struct	btPoint2PointConstraintFloatData
 };
 
 ///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+struct	btPoint2PointConstraintDoubleData2
+{
+	btTypedConstraintDoubleData	m_typeConstraintData;
+	btVector3DoubleData	m_pivotInA;
+	btVector3DoubleData	m_pivotInB;
+};
+
+#ifdef BT_BACKWARDS_COMPATIBLE_SERIALIZATION
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+///this structure is not used, except for loading pre-2.82 .bullet files
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
 struct	btPoint2PointConstraintDoubleData
 {
 	btTypedConstraintData	m_typeConstraintData;
 	btVector3DoubleData	m_pivotInA;
 	btVector3DoubleData	m_pivotInB;
 };
+#endif //BT_BACKWARDS_COMPATIBLE_SERIALIZATION
 
 
 SIMD_FORCE_INLINE	int	btPoint2PointConstraint::calculateSerializeBufferSize() const
 {
-	return sizeof(btPoint2PointConstraintData);
+	return sizeof(btPoint2PointConstraintData2);
 
 }
 
 	///fills the dataBuffer and returns the struct name (and 0 on failure)
 SIMD_FORCE_INLINE	const char*	btPoint2PointConstraint::serialize(void* dataBuffer, btSerializer* serializer) const
 {
-	btPoint2PointConstraintData* p2pData = (btPoint2PointConstraintData*)dataBuffer;
+	btPoint2PointConstraintData2* p2pData = (btPoint2PointConstraintData2*)dataBuffer;
 
 	btTypedConstraint::serialize(&p2pData->m_typeConstraintData,serializer);
 	m_pivotInA.serialize(p2pData->m_pivotInA);

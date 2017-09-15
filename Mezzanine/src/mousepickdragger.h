@@ -57,7 +57,7 @@ namespace Mezzanine
     {
         class CollidableProxy;
         class RigidProxy;
-        class Generic6DofConstraint;
+        class GenericSixDofConstraint;
         class Point2PointConstraint;
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ namespace Mezzanine
         /// @brief The activation state of the target to be restored after dragging completes.
         Physics::ActivationState SavedActivationState;
         /// @brief A pointer to the constraint doing our dragging.
-        Physics::Generic6DofConstraint* Dragger;
+        Physics::GenericSixDofConstraint* Dragger;
         /// @brief A pointer to the CollidableProxy being dragged.
         Physics::CollidableProxy* LastTarget;
 
@@ -140,7 +140,7 @@ namespace Mezzanine
         /// @param Target A pointer to the proxy/object being dragged.
         /// @param LocalTrans The point in local space where the dragger is attaching itself to the target.
         /// @return Returns a pointer to the created dragger.
-        Physics::Generic6DofConstraint* CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans);
+        Physics::GenericSixDofConstraint* CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans);
     public:
         /// @brief Class constructor.
         /// @param ThePlane The plane to drag the object along.
@@ -160,7 +160,7 @@ namespace Mezzanine
 
         /// @brief Gets the constraint dragging the target.
         /// @return Returns a pointer to the physics constraint moving the target.
-        Physics::Generic6DofConstraint* GetDraggingConstraint() const;
+        Physics::GenericSixDofConstraint* GetDraggingConstraint() const;
 
         /// @copydoc MousePickDragger::GetBestQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;
@@ -198,7 +198,7 @@ namespace Mezzanine
         /// @brief The activation state of the target to be restored after dragging completes.
         Physics::ActivationState SavedActivationState;
         /// @brief A pointer to the constraint doing our dragging.
-        Physics::Generic6DofConstraint* Dragger;
+        Physics::GenericSixDofConstraint* Dragger;
         /// @brief A pointer to the CollidableProxy being dragged.
         Physics::CollidableProxy* LastTarget;
 
@@ -206,7 +206,7 @@ namespace Mezzanine
         /// @param Target A pointer to the proxy/object being dragged.
         /// @param LocalTrans The point in local space where the dragger is attaching itself to the target.
         /// @return Returns a pointer to the created dragger.
-        Physics::Generic6DofConstraint* CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans);
+        Physics::GenericSixDofConstraint* CreateDragger(Physics::RigidProxy* Target, const Transform& LocalTrans);
     public:
         /// @brief Class constructor.
         /// @param DistIncrement The amount to change the DragDistance when it is incremented or decremented.
@@ -231,7 +231,7 @@ namespace Mezzanine
 
         /// @brief Gets the constraint dragging the target.
         /// @return Returns a pointer to the physics constraint moving the target.
-        Physics::Generic6DofConstraint* GetDraggingConstraint() const;
+        Physics::GenericSixDofConstraint* GetDraggingConstraint() const;
 
         /// @copydoc MousePickDragger::GetQueryHit(const RayQuery::ResultContainer&) const
         virtual RayQueryHit GetBestQueryHit(const RayQuery::ResultContainer& Targets) const;

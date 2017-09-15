@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 EPA Copyright (c) Ricardo Padrela 2006 
 
@@ -20,7 +20,7 @@ subject to the following restrictions:
 #include "btConvexPenetrationDepthSolver.h"
 
 ///EpaPenetrationDepthSolver uses the Expanding Polytope Algorithm to
-/// ©alculate the penetration depth between two convex shapes.
+///calculate the penetration depth between two convex shapes.
 class btGjkEpaPenetrationDepthSolver : public btConvexPenetrationDepthSolver
 {
 	public :
@@ -33,7 +33,7 @@ class btGjkEpaPenetrationDepthSolver : public btConvexPenetrationDepthSolver
 									  const btConvexShape* pConvexA, const btConvexShape* pConvexB,
 									  const btTransform& transformA, const btTransform& transformB,
 									  btVector3& v, btVector3& wWitnessOnA, btVector3& wWitnessOnB,
-									  class btIDebugDraw* debugDraw,btStackAlloc* stackAlloc );
+									  class btIDebugDraw* debugDraw);
 
 	private :
 
