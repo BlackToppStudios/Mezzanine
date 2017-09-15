@@ -509,57 +509,54 @@ namespace Mezzanine
             }
 
             // Create the dispatcher (narrowphase)
-            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 this->BulletDispatcher = new ParallelCollisionDispatcher(this,this->BulletCollisionConfig,40);
-                //this->BulletDispatcher = new btCollisionDispatcherMt(this->BulletCollisionConfig,40);
-            }else{
+            }else{//*/
                 this->BulletDispatcher = new CollisionDispatcher(this,this->BulletCollisionConfig);
-                //this->BulletDispatcher = new btCollisionDispatcher(this->BulletCollisionConfig);
-            }
+            //}
 
             // Create the constraint solver
-            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                 // There are a bunch of solver types now, we may want to add some logic to be more selective of which solvers we use.
                 std::vector<btConstraintSolver*> SolverPool(ThreadCount);
                 for( Whole CurrSolver = 0 ; CurrSolver < ThreadCount ; ++CurrSolver )
                     { SolverPool[CurrSolver] = new btSequentialImpulseConstraintSolver(); }
 
                 this->BulletSolver = new btConstraintSolverPoolMt(SolverPool.data(),SolverPool.size());
-                //btSetTaskScheduler( new ParallelForScheduler(ThreadCount) );
-                btSetTaskScheduler( btGetSequentialTaskScheduler() );
-            }else{
+                btSetTaskScheduler( new ParallelForScheduler(ThreadCount) );
+            }else{//*/
                 this->BulletSolver = new btSequentialImpulseConstraintSolver();
                 btSetTaskScheduler( btGetSequentialTaskScheduler() );
-            }
+            //}
 
             // Create the world
-            /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
-                if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+            if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_SoftRigidWorld ) {
+                /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                     this->BulletDynamicsWorld = new btSoftRigidDynamicsWorldMt( this->BulletDispatcher,
                                                                                 this->BulletBroadphase,
                                                                                 this->BulletSolver,
                                                                                 this->BulletCollisionConfig);
-                }else{
-                    this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
-                                                                               this->BulletBroadphase,
-                                                                               this->BulletSolver,
-                                                                               this->BulletCollisionConfig);
-                }
+                }else{//*/
+                    this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld( this->BulletDispatcher,
+                                                                              this->BulletBroadphase,
+                                                                              this->BulletSolver,
+                                                                              this->BulletCollisionConfig);
+                //}
                 this->IsSoftWorld = true;
-            }else{//*/
-                if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+            }else{
+                /*if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
                     this->BulletDynamicsWorld = new btDiscreteDynamicsWorldMt( this->BulletDispatcher,
                                                                                this->BulletBroadphase,
                                                                                static_cast<btConstraintSolverPoolMt*>( this->BulletSolver ),
                                                                                this->BulletCollisionConfig);
-                }else{
+                }else{//*/
                     this->BulletDynamicsWorld = new btDiscreteDynamicsWorld( this->BulletDispatcher,
                                                                              this->BulletBroadphase,
                                                                              this->BulletSolver,
                                                                              this->BulletCollisionConfig);
-                }
+                //}
                 this->IsSoftWorld = false;
-            //}
+            }
 
             // Set up the work units
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
@@ -655,9 +652,10 @@ namespace Mezzanine
             for( PhysicsManager::CollisionMapIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ColIt++ )
                 (*ColIt).second->Update();
             //Process the collisions that are in the creation queue
-            AlgoContainer& AlgoQueue = ( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ?
+            /*AlgoContainer& AlgoQueue = ( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ?
                                          static_cast<ParallelCollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() :
-                                         static_cast<CollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() );
+                                         static_cast<CollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue() );//*/
+            AlgoContainer& AlgoQueue = static_cast<CollisionDispatcher*>( this->BulletDispatcher )->GetAlgoCreationQueue();
             #ifdef MEZZDEBUG
             /*StringStream logstream;
             logstream << "Processing " << AlgoQueue.size() << " algorithms for collisions.";

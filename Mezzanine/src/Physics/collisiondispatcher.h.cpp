@@ -40,7 +40,7 @@
 #ifndef _physicscollisiondispatcher_h_cpp
 #define _physicscollisiondispatcher_h_cpp
 
-#define BT_THREADSAFE 1
+//#define BT_THREADSAFE 1
 
 #include <BulletCollision/CollisionDispatch/btCollisionDispatcherMt.h>
 
