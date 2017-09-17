@@ -53,16 +53,12 @@ namespace Mezzanine
     class MEZZ_LIB MemoryStreamBuffer : public std::streambuf
     {
     protected:
-        /// @internal
         /// @brief A pointer to the start of this memory buffer.
         Char8* BufferStart;
-        /// @internal
         /// @brief A pointer to one passed the last element in the range of this buffer.
         Char8* BufferEnd;
-        /// @internal
         /// @brief A bitfield describing the settings this buffer was opened with.
         Whole OpenMode;
-        /// @internal
         /// @brief Stores whether or not the memory allocated will be free'd when this buffer is deleted.
         Boole FreeBuffer;
 
@@ -212,7 +208,6 @@ namespace Mezzanine
     class MEZZ_LIB MemoryStream : public Mezzanine::IOStream
     {
     protected:
-        /// @internal
         /// @brief The buffer object being streamed to/from.
         MemoryStreamBuffer Buffer;
     public:

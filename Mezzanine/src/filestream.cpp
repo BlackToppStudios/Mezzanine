@@ -51,15 +51,15 @@ namespace Mezzanine
 {
     FileStream::FileStream() :
         IOStream(&this->FileBuffer)
-        { /*this->init(&this->FileBuffer);*/ }
+        {  }
 
     FileStream::FileStream(const String& File, const Whole Mode) :
         IOStream(&this->FileBuffer)
-        { /*this->init(&this->FileBuffer);*/  this->OpenFile(File,Mode); }
+        { this->OpenFile(File,Mode); }
 
     FileStream::FileStream(const String& FileName, const String& FilePath, const Whole Mode) :
         IOStream(&this->FileBuffer)
-        { /*this->init(&this->FileBuffer);*/  this->OpenFile(FileName,FilePath,Mode); }
+        { this->OpenFile(FileName,FilePath,Mode); }
 
     FileStream::~FileStream()
         { if( this->IsOpenToFile() ) this->CloseFile(); }
@@ -69,7 +69,6 @@ namespace Mezzanine
 
     void FileStream::OpenFile(const String& File, const Whole Mode)
     {
-        //this->open(File.c_str(),static_cast<const std::ios_base::openmode>(Mode));
         if( !this->FileBuffer.open(File.c_str(),static_cast<const std::ios_base::openmode>(Mode)) ) {
             this->setstate(ios_base::failbit);
         }else{
@@ -114,7 +113,6 @@ namespace Mezzanine
         this->OpenFileName.clear();
         this->Flags = Mezzanine::SF_None;
 
-        //this->close();
         if( !this->FileBuffer.close() ) {
             this->setstate(std::ios_base::failbit);
         }

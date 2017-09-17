@@ -54,9 +54,9 @@ namespace Mezzanine
     // MemoryStreamBuffer Methods
 
     MemoryStreamBuffer::MemoryStreamBuffer() :
-        BufferStart(NULL),
-        BufferEnd(NULL),
-        FreeBuffer(true)
+        BufferStart(nullptr),
+        BufferEnd(nullptr),
+        FreeBuffer(false)
         {  }
 
     MemoryStreamBuffer::~MemoryStreamBuffer()
@@ -103,7 +103,7 @@ namespace Mezzanine
 
     std::streambuf* MemoryStreamBuffer::setbuf(char* s, std::streamsize n)
     {
-        if( s != NULL && n > 0 ) {
+        if( s != nullptr && n > 0 ) {
             this->DestroyBuffer();
 
             this->BufferStart = s;
@@ -112,7 +112,7 @@ namespace Mezzanine
             this->setp(this->BufferStart,this->BufferEnd);// */
             return this;
         }
-        return NULL;
+        return nullptr;
     }
 
     std::streampos MemoryStreamBuffer::seekoff(std::streamoff off, std::ios_base::seekdir way, std::ios_base::openmode which)
@@ -166,7 +166,7 @@ namespace Mezzanine
 
     std::streamsize MemoryStreamBuffer::showmanyc()
     {
-        if( this->BufferStart != NULL ) {
+        if( this->BufferStart != nullptr ) {
             assert( std::less_equal<Char8*>()(this->gptr(),this->egptr()) );
             return this->egptr() - this->gptr();
         }
@@ -266,7 +266,7 @@ namespace Mezzanine
 
     void MemoryStreamBuffer::ConfigureBuffer(const std::streampos Pos, std::ios_base::openmode Mode)
     {
-        if( this->BufferStart != NULL ) {
+        if( this->BufferStart != nullptr ) {
             if( Mode & std::ios_base::in ) {
                 this->setg(this->BufferStart,this->BufferStart + Pos,this->BufferEnd);
             }
@@ -280,10 +280,10 @@ namespace Mezzanine
 
     void MemoryStreamBuffer::DestroyBuffer()
     {
-        if( this->BufferStart != NULL && this->FreeBuffer ) {
+        if( this->BufferStart != nullptr && this->FreeBuffer ) {
             delete[] this->BufferStart;
-            this->BufferStart = NULL;
-            this->BufferEnd = NULL;
+            this->BufferStart = nullptr;
+            this->BufferEnd = nullptr;
         }
     }
 

@@ -46,17 +46,16 @@
 #include <iostream>
 
 /// @file
-/// @brief Declaration of DataStream
-/// @todo Investigate how required these stream implementations are
+/// @brief Declaration of DataStream base classes.
 
 namespace Mezzanine
 {
-    /// @brief Convenience define for the stream position datatype.
-    typedef std::streampos StreamPos;
-    /// @brief Convenience define for the stream offset datatype.
-    typedef std::streamoff StreamOff;
-    /// @brief Convenience define for the stream size datatype.
-    typedef std::streamsize StreamSize;
+    /// @brief Convenience define for the stream position data type.
+    using StreamPos = std::streampos;
+    /// @brief Convenience define for the stream offset data type.
+    using StreamOff = std::streamoff;
+    /// @brief Convenience define for the stream size data type.
+    using StreamSize = std::streamsize;
 
     /// @brief This enum describes the flags that control certain behaviors of a stream.
     /// @details It is important to note that not all of these flags are used by all streams.
@@ -345,34 +344,34 @@ namespace Mezzanine
     // Compatibility Types
 
     /// @brief Convenience type for compatibility.
-    typedef IOStream DataStream;
+    using DataStream = IOStream;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Convenience Standard Types
 
     /// @brief Convenience type for a standard input stream.
-    typedef std::istream StdInputStream;
+    using StdInputStream = std::istream;
     /// @brief Convenience type for a standard output stream.
-    typedef std::ostream StdOutputStream;
+    using StdOutputStream = std::ostream;
     /// @brief Convenience type for a standard input/output stream.
-    typedef std::iostream StdStream;
+    using StdStream = std::iostream;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Convenience Pointer Types
 
     /// @brief Convenience type for a standard input stream in a CountedPtr.
-    typedef CountedPtr<StdInputStream> StdInputStreamPtr;
+    using StdInputStreamPtr = CountedPtr<StdInputStream>;
     /// @brief Convenience type for a standard output stream in a CountedPtr.
-    typedef CountedPtr<StdOutputStream> StdOutputStreamPtr;
+    using StdOutputStreamPtr = CountedPtr<StdOutputStream>;
     /// @brief Convenience type for a standard input/output stream in a CountedPtr.
-    typedef CountedPtr<StdStream> StdStreamPtr;
+    using StdStreamPtr = CountedPtr<StdStream>;
 
     /// @brief Convenience type for a standard input stream in a CountedPtr.
-    typedef CountedPtr<IStream> IStreamPtr;
+    using IStreamPtr = CountedPtr<IStream>;
     /// @brief Convenience type for a standard output stream in a CountedPtr.
-    typedef CountedPtr<OStream> OStreamPtr;
+    using OStreamPtr = CountedPtr<OStream>;
     /// @brief This is a convenience type for a data stream in a counted pointer.
-    typedef CountedPtr<DataStream> DataStreamPtr;
+    using DataStreamPtr = CountedPtr<DataStream>;
 }//Mezzanine
 
 #endif

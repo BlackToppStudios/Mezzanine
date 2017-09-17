@@ -53,17 +53,13 @@ namespace Mezzanine
     class MEZZ_LIB FileStream : public Mezzanine::IOStream
     {
     protected:
-        /// @internal
         /// @brief The buffer object containing most or all of the functionality for this stream.
         std::filebuf FileBuffer;
 
-        /// @internal
         /// @brief The path and name of the file this stream is currently open to.
         String OpenFileName;
-        /// @internal
         /// @brief The type of access this stream has to the file.
         Whole Flags;
-        /// @internal
         /// @brief The size of the stream.
         StreamSize Size;
     public:
