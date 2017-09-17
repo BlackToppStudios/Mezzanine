@@ -55,8 +55,6 @@ namespace Mezzanine
 
     MemoryStreamBuffer::MemoryStreamBuffer() :
         BufferStart(NULL),
-        /*BufferReadPos(NULL),
-        BufferWritePos(NULL),// */
         BufferEnd(NULL),
         FreeBuffer(true)
         {  }
@@ -110,8 +108,6 @@ namespace Mezzanine
 
             this->BufferStart = s;
             this->BufferEnd = this->BufferStart + n;
-            /*this->BufferReadPos = this->BufferStart;
-            this->BufferWritePos = this->BufferStart;// */
             this->setg(this->BufferStart,this->BufferStart,this->BufferEnd);
             this->setp(this->BufferStart,this->BufferEnd);// */
             return this;
@@ -172,7 +168,6 @@ namespace Mezzanine
     {
         if( this->BufferStart != NULL ) {
             assert( std::less_equal<Char8*>()(this->gptr(),this->egptr()) );
-            //return this->BufferEnd - this->BufferReadPos;
             return this->egptr() - this->gptr();
         }
         return 0;
@@ -189,7 +184,6 @@ namespace Mezzanine
     int MemoryStreamBuffer::underflow()
     {
         if( this->gptr() == this->egptr() ) {
-        //if( this->BufferReadPos == this->BufferEnd ) {
             return traits_type::eof();
         }
 
@@ -203,12 +197,10 @@ namespace Mezzanine
 
     int MemoryStreamBuffer::pbackfail(int c)
     {
-        //if( this->BufferReadPos == this->BufferStart || ( c != traits_type::eof() && c != ( this->BufferReadPos - 1 ) ) ) {
         if( this->gptr() == this->eback() || ( c != traits_type::eof() && c != *( this->gptr() - 1 ) ) ) {
             return traits_type::eof();
         }
 
-        //return traits_type::to_int_type( *(--this->BufferReadPos) );
         this->gbump(-1);
         return this->sgetc();
     }
@@ -226,7 +218,6 @@ namespace Mezzanine
 
     int MemoryStreamBuffer::overflow(int c)
     {
-        //if( this->pptr() == this->epptr() )
         return traits_type::eof();
     }
 
@@ -277,11 +268,9 @@ namespace Mezzanine
     {
         if( this->BufferStart != NULL ) {
             if( Mode & std::ios_base::in ) {
-                //this->BufferReadPos = this->BufferStart + Pos;
                 this->setg(this->BufferStart,this->BufferStart + Pos,this->BufferEnd);
             }
             if( Mode & std::ios_base::out ) {
-                //this->BufferWritePos = this->BufferStart + Pos;
                 this->setp(this->BufferStart,this->BufferEnd);
             }
             this->OpenMode = Mode;
@@ -294,8 +283,6 @@ namespace Mezzanine
         if( this->BufferStart != NULL && this->FreeBuffer ) {
             delete[] this->BufferStart;
             this->BufferStart = NULL;
-            /*this->BufferReadPos = NULL;
-            this->BufferWritePos = NULL;// */
             this->BufferEnd = NULL;
         }
     }
@@ -311,19 +298,19 @@ namespace Mezzanine
 
     MemoryStream::MemoryStream() :
         IOStream(&this->Buffer)
-        { /*this->init(&this->Buffer);*/ }
+        {  }
 
     MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode) :
         IOStream(&this->Buffer)
-        { /*this->init(&this->Buffer);*/  this->CreateBuffer(BufferSize,Mode); }
+        { this->CreateBuffer(BufferSize,Mode); }
 
     MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode) :
         IOStream(&this->Buffer)
-        { /*this->init(&this->Buffer);*/  this->CopyBuffer(Buffer,BufferSize,Mode); }
+        { this->CopyBuffer(Buffer,BufferSize,Mode); }
 
     MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode) :
         IOStream(&this->Buffer)
-        { /*this->init(&this->Buffer);*/  this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
+        { this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
 
     MemoryStream::~MemoryStream()
         {  }

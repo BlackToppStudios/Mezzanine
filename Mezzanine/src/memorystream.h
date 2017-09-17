@@ -56,12 +56,6 @@ namespace Mezzanine
         /// @internal
         /// @brief A pointer to the start of this memory buffer.
         Char8* BufferStart;
-        /*/// @internal
-        /// @brief The current position for read operations on this buffer.
-        Char8* BufferReadPos;
-        /// @internal
-        /// @brief The current position for write operations on this buffer.
-        Char8* BufferWritePos;// */
         /// @internal
         /// @brief A pointer to one passed the last element in the range of this buffer.
         Char8* BufferEnd;
