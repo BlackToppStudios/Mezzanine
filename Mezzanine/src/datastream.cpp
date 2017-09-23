@@ -59,9 +59,6 @@ namespace Mezzanine
         std::istream(Buf)
         {  }
 
-    IStream::~IStream()
-        {  }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Base Operations
 
@@ -105,9 +102,6 @@ namespace Mezzanine
         std::ostream(Buf)
         {  }
 
-    OStream::~OStream()
-        {  }
-
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Base Operations
 
@@ -149,9 +143,6 @@ namespace Mezzanine
 
     IOStream::IOStream(std::streambuf* Buf) :
         std::iostream(Buf)
-        {  }
-
-    IOStream::~IOStream()
         {  }
 
     ///////////////////////////////////////////////////////////////////////////////

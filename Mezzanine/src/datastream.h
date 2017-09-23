@@ -85,9 +85,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        iStreamBase() {  }
+        iStreamBase() = default;
         /// @brief Class destructor.
-        virtual ~iStreamBase() {  }
+        virtual ~iStreamBase() = default;
 
         /// @brief Gets the size of the stream.
         /// @return Returns the size of this stream in bytes.
@@ -117,9 +117,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        iInStream() {  }
+        iInStream() = default;
         /// @brief Class destructor.
-        virtual ~iInStream() {  }
+        virtual ~iInStream() = default;
 
         /// @brief Reads from the stream and copies that data to a buffer.
         /// @param Buffer The buffer to be populated with the read data.
@@ -146,9 +146,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        iOutStream() {  }
+        iOutStream() = default;
         /// @brief Class destructor.
-        virtual ~iOutStream() {  }
+        virtual ~iOutStream() = default;
 
         /// @brief Writes data to the stream.
         /// @param Buffer The memory buffer to write to this stream.
@@ -178,7 +178,7 @@ namespace Mezzanine
         /// @param Buf A pointer to the buffer that will be streamed.
         IStream(std::streambuf* Buf);
         /// @brief Class destructor.
-        virtual ~IStream();
+        virtual ~IStream() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
@@ -218,7 +218,7 @@ namespace Mezzanine
         /// @param Buf A pointer to the buffer that will be streamed.
         OStream(std::streambuf* Buf);
         /// @brief Class destructor.
-        virtual ~OStream();
+        virtual ~OStream() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
@@ -258,7 +258,7 @@ namespace Mezzanine
         /// @param Buf A pointer to the buffer that will be streamed.
         IOStream(std::streambuf* Buf);
         /// @brief Class destructor.
-        virtual ~IOStream();
+        virtual ~IOStream() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
