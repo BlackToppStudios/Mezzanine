@@ -45,19 +45,17 @@ namespace Mezzanine
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Archive
-        /// @headerfile resourcearchive.h
         /// @brief
         /// @details
         ///////////////////////////////////////
         class Archive
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                Archive();
-                /// @brief Class destructor.
-                ~Archive();
+        protected:
+        public:
+            /// @brief Class constructor.
+            Archive();
+            /// @brief Class destructor.
+            ~Archive();
         };//Archive
     }//Resource
 }//Mezzanine

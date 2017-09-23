@@ -49,7 +49,78 @@ namespace Mezzanine
 {
     namespace Resource
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A stream buffer object for compressed file archives.
+        ///////////////////////////////////////
+        class MEZZ_LIB ArchiveStreamBuffer : public std::streambuf
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            ArchiveStreamBuffer();
+            /// @brief Class destructor.
+            virtual ~ArchiveStreamBuffer();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+        };//ArchiveStreamBuffer
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief An Input stream for compressed file archives.
+        ///////////////////////////////////////
+        class MEZZ_LIB ArchiveInStream : public Mezzanine::IStream
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            ArchiveInStream();
+            /// @brief Class destructor.
+            virtual ~ArchiveInStream();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Base Operations
+        };//ArchiveInStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief An Output stream for compressed file archives.
+        ///////////////////////////////////////
+        class MEZZ_LIB ArchiveOutStream : public Mezzanine::OStream
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            ArchiveOutStream();
+            /// @brief Class destructor.
+            virtual ~ArchiveOutStream();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Base Operations
+        };//ArchiveOutStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief An I/O stream for compressed file archives.
+        ///////////////////////////////////////
+        class MEZZ_LIB ArchiveIOStream : public Mezzanine::IOStream
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            ArchiveIOStream();
+            /// @brief Class destructor.
+            virtual ~ArchiveIOStream();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Base Operations
+        };//ArchiveIOStream
     }//Resource
 }//Mezzanine
 
