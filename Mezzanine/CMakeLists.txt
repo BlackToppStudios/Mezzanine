@@ -1341,6 +1341,8 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
     #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
+    
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/minizsrc/MiniZ/"
 
     ${OgreConfigHeaderIncludeDir}
     ${OgreHeaderIncludeDir}
@@ -1363,6 +1365,7 @@ add_subdirectory (libincludes/common/ogresrc)
 add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/openalsoftsrc)
 add_subdirectory (libincludes/common/sdlsrc)
+add_subdirectory (libincludes/common/minizsrc)
 
 #######################################
 # Extra includes from Ogre
@@ -1664,9 +1667,27 @@ if(${Mezz_Exception})
 endif(${Mezz_Exception})
 
 #######################################
+# Archive Configuration
+
+set(Archive_ProjectNames
+    "miniz"
+)
+
+set(Archive_LibraryNames
+    "miniz"
+)
+
+#######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${Bullet_LibraryNames}  ${SDLLibraryNames} ${SoundLibraryNames}
-                    "lua" ${SWIG_PROJECT} ${ExceptionProject})
+add_dependencies( ${PROJECT_NAME} 
+    ${Bullet_LibraryNames}  
+    ${SDLLibraryNames} 
+    ${SoundLibraryNames}
+    "lua" 
+    ${Archive_ProjectNames}
+    ${SWIG_PROJECT} 
+    ${ExceptionProject}
+)
 
 if(${Mezz_Exception})
     add_dependencies( ${PROJECT_NAME} ${ExceptionProject})
@@ -1691,6 +1712,7 @@ target_link_libraries( ${PROJECT_NAME}
     ${Bullet_LibraryNames}
     ${SDLLibraryNames}
     ${SoundLibraryNames}
+    ${Archive_LibraryNames}
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
@@ -1708,6 +1730,7 @@ CopyFilesDuringBuild( common/lgpl-2.1.txt data/common/lgpl-2.1.txt )
 CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
 CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
+CopyFilesDuringBuild( common/MiniZ-MIT.txt data/common/MiniZ-MIT.txt )
 CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
 CopyFilesDuringBuild( common/pstdint-BSD.txt data/common/pstdint-BSD.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
