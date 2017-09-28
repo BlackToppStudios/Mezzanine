@@ -49,27 +49,107 @@ namespace Mezzanine
     /// @{
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a base class for all classes that subscribe to events.
+    /// @brief This is an example class that satisfies all the preconditions expected by other event classes.
+    /// @tparam IDType The type to use for the unique identification of subscriber instances.
     ///////////////////////////////////////
+    template<typename SubIDType>
     class MEZZ_LIB EventSubscriber
     {
     public:
-        /// @brief Notifies this subscriber of an event being fired.
-        /// @param Args The specific information regarding the fired event.
-        virtual void NotifyEvent(EventPtr Args) = 0;
+        /// @brief The type to use for the unique identification of subscriber instances.
+        using IDType = SubIDType;
+
+        /// @brief Gets the ID of this subscriber.
+        /// @return Returns an instance of IDType identifying this subscriber.
+        virtual IDType GetID() const = 0;
     };//EventSubscriber
 
-    class MEZZ_LIB QueuedSubscriber : public EventSubscriber
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is an example class that satisfies all the preconditions expected by other event classes.
+    /// @tparam IDType The type to use for the unique identification of subscriber instances.
+    ///////////////////////////////////////
+    template<class SubIDType, class... ArgTypes>
+    class MEZZ_LIB FunctionSubscriber
     {
     public:
+        /// @brief The type to use for the unique identification of subscriber instances.
+        using IDType = SubIDType;
+        /// @brief The type of standard function/function signature to call.
+        using FunctionType = std::function<void(ArgTypes...)>;
+        /// @brief Convenience type
+        using SelfType = FunctionSubscriber<IDType,ArgTypes...>;
+    protected:
+        /// @brief The function to be called when the event is fired.
+        FunctionType SubFunct;
+        /// @brief The ID to be associated with the function set.
+        IDType SubID;
+    public:
+        /// @brief Class constructor.
+        FunctionSubscriber() = delete;
+        /// @brief Descriptive constructor.
+        /// @param ID The ID to be associated with the function set.
+        /// @param Funct The function to be called when the event is fired.
+        FunctionSubscriber(const IDType ID, const FunctionType& Funct) :
+            SubFunct(Funct),
+            SubID(ID)
+            {  }
+        /// @brief Copy constructor.
+        /// @param Other The other subscriber to NOT be copied.
+        FunctionSubscriber(const SelfType& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other subscriber to be moved.
+        FunctionSubscriber(SelfType&& Other) = default;
+        /// @brief Class destructor.
+        ~FunctionSubscriber() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy constructor.
+        /// @param Other The other subscriber to NOT be copied.
+        /// @return Returns a reference to this.
+        SelfType& operator=(const SelfType& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other subscriber to be moved.
+        /// @return Returns a reference to this.
+        SelfType& operator=(SelfType&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ID
+
+        /// @brief Gets the ID of this subscriber.
+        /// @return Returns an instance of IDType identifying this subscriber.
+        IDType GetID() const
+            { return this->SubID; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Callable
+
+        /// @brief Callable method for this subscriber.
+        /// @param Params A variadic template of parameters set by the type of FunctionSubscriber.
+        void operator()(ArgTypes... Params) const
+            { this->SubFunct(Params...); }
+    };//FunctionSubscriber
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a simple subscriber that will queue up the events it receives for later processing.
+    /// @tparam IDType The type to use for the unique identification of subscriber instances.
+    ///////////////////////////////////////
+    template<typename SubIDType>
+    class MEZZ_LIB QueuedSubscriber : public EventSubscriber<SubIDType>
+    {
+    public:
+        /// @brief The type to use for the unique identification of subscriber instances.
+        using IDType = SubIDType;
         /// @brief Basic container type for Events stored by this class.
         using QueueType = std::queue<EventPtr>;
     protected:
         /// @brief The container storing the queued up events to be processed.
         QueueType EventQueue;
     public:
-        /// @copydoc EventSubscriber::NotifyEvent(EventPtr)
-        virtual void NotifyEvent(EventPtr Args);
+        /// @copydoc EventSubscriber::GetID() const
+        virtual IDType GetID() const
+            { return 0; }
     };//QueuedSubscriber
 
     /// @}

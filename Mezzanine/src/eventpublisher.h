@@ -44,6 +44,7 @@
 #include "exception.h"
 #include "sortedvector.h"
 #include "eventdispatcher.h"
+#include "eventsubscriber.h"
 #include "eventsubscriptiontable.h"
 
 namespace Mezzanine
@@ -152,22 +153,22 @@ namespace Mezzanine
     class MEZZ_LIB DefaultEventPublisherTraits
     {
     public:
-        /// @brief The subscriber type that will be invoked when an Event is fired.
-        using InterfaceType = std::function<Boole(EventPtr)>;
         /// @brief The Event type that will contain Event information.
         using EventIDType = EventHashType;
         /// @brief The type that will be used to provide more verbose identification of the Event.
         using EventDescriptorType = EventNameType;
         /// @brief The type that will be used to uniquely identify each subscriber.
         using SubscriberIDType = EventSubscriberID;
+        /// @brief The subscriber type that will be invoked when an Event is fired.
+        using InterfaceType = FunctionSubscriber<SubscriberIDType,EventPtr>;
         /// @brief The type of binding that will be used (if at all) to help track subscription lifetime.
         using BindingType = EventSubscriberBinding<InterfaceType>;
         /// @brief The type of table storing that will be used to store all of the subscribers for a single event.
-        using TableType = EventSubscriptionTable<InterfaceType,true>;
+        using TableType = EventSubscriptionTable<InterfaceType>;
         /// @brief The type of dispatcher that will be used to forward events being fired to the subscription tables.
         using DispatcherType = DefaultEventDispatcher<TableType>;
     };//DefaultPublisherTraits
-
+/*
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     /// @tparam PublisherType The type of publisher this binding will be bound to.
@@ -224,7 +225,7 @@ namespace Mezzanine
         /// you should call Unsubscribe.
         virtual void Unbind();
     };//EventSubscriberBindingImpl
-
+*/
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
@@ -238,12 +239,12 @@ namespace Mezzanine
         using SelfType = EventPublisher<TableType,DispatcherType>;
         /// @brief Retrievable type for querying the type of callable interface the table works with.
         using InterfaceType = typename TableType::InterfaceType;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using InterfaceID = typename TableType::InterfaceID;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename TableType::SubscribeArg;
         /// @brief Convenience type for the return value of the Subscribe method.
         using SubscribeRet = typename TableType::SubscribeRet;
-        /// @brief Convenience type for the actual binding implementation used by this publisher.
-        using BindingImplType = EventSubscriberBindingImpl<SelfType,InterfaceType>;
         /// @brief Basic container type for TableType storage by this class.
         using TableContainer = SortedVector<TableType>;
         /// @brief Iterator type for TableType instances stored by this class.
@@ -361,17 +362,18 @@ namespace Mezzanine
         // Subscription Management - Via Name
 
         /// @brief Adds a subscriber to this event.
+        /// @remarks The ID of the subscriber must be unique among the IDs of the event it is subscribed to.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @exception If the ID of the Sub already exists on the specified event table, this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventName The name of the event to subscribe to.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @param Delegate The callback to be called when the interested event is fired.
+        /// @param Callable The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const SubscribeArg Delegate);
+        SubscribeRet Subscribe(const EventNameType& EventName, const SubscribeArg Callable);
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const EventNameType& EventName, const EventSubscriberID ID);
+        void Unsubscribe(const EventNameType& EventName, const InterfaceID ID);
         /// @brief Removes all subscribers from the named Event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventName The name of the event to unsubscribe from.
@@ -382,17 +384,18 @@ namespace Mezzanine
         // Subscription Management - Via Hash
 
         /// @brief Adds a subscriber to this event.
+        /// @remarks The ID of the subscriber must be unique among the IDs of the event it is subscribed to.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @exception If the ID of the Sub already exists on the specified event table, this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param EventHash The generated hash identifying the event to subscribe to.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @param Delegate The callback to be called when the interested event is fired.
+        /// @param Callable The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const SubscribeArg Delegate);
+        SubscribeRet Subscribe(const EventHashType EventHash, const SubscribeArg Callable);
         /// @brief Removes a single subscriber from the named event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash identifying the event to unsubscribe from.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const EventHashType EventHash, const EventSubscriberID ID);
+        void Unsubscribe(const EventHashType EventHash, const InterfaceID ID);
         /// @brief Removes all subscribers from the named Event.
         /// @exception If this fails to find the event specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param EventHash The generated hash identifying the event to unsubscribe from.
@@ -404,12 +407,12 @@ namespace Mezzanine
 
         /// @brief Removes a single subscriber from all events in this publisher.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const EventSubscriberID ID);
+        void Unsubscribe(const InterfaceID ID);
         /// @brief Removes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
     };//EventPublisher
-
+/*
     ///////////////////////////////////////////////////////////////////////////////
     // EventSubscriberBindingImpl Method Implementations
 
@@ -442,7 +445,7 @@ namespace Mezzanine
         this->EventPub = nullptr;
         this->NameHash = EventNameType::EmptyHash;
     }
-
+*/
     ///////////////////////////////////////////////////////////////////////////////
     // EventPublisher Method Implementations
 
@@ -574,11 +577,11 @@ namespace Mezzanine
 
     template<class TableType, class DispatcherType>
     typename EventPublisher<TableType,DispatcherType>::SubscribeRet
-    EventPublisher<TableType,DispatcherType>::Subscribe(const EventNameType& EventName, const EventSubscriberID ID, const SubscribeArg Delegate)
-        { return this->Subscribe(EventName.GetHash(),ID,Delegate); }
+    EventPublisher<TableType,DispatcherType>::Subscribe(const EventNameType& EventName, const SubscribeArg Callable)
+        { return this->Subscribe(EventName.GetHash(),Callable); }
 
     template<class TableType, class DispatcherType>
-    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventNameType& EventName, const EventSubscriberID ID)
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventNameType& EventName, const EventPublisher<TableType,DispatcherType>::InterfaceID ID)
         { this->Unsubscribe(EventName.GetHash(),ID); }
 
     template<class TableType, class DispatcherType>
@@ -590,11 +593,11 @@ namespace Mezzanine
 
     template<class TableType, class DispatcherType>
     typename EventPublisher<TableType,DispatcherType>::SubscribeRet
-    EventPublisher<TableType,DispatcherType>::Subscribe(const EventHashType EventHash, const EventSubscriberID ID, const SubscribeArg Delegate)
-        { return this->GetSubscriptionTable(EventHash)->Subscribe(ID,Delegate,this); }
+    EventPublisher<TableType,DispatcherType>::Subscribe(const EventHashType EventHash, const SubscribeArg Callable)
+        { return this->GetSubscriptionTable(EventHash)->Subscribe(Callable,this); }
 
     template<class TableType, class DispatcherType>
-    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventHashType EventHash, const EventSubscriberID ID)
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventHashType EventHash, const EventPublisher<TableType,DispatcherType>::InterfaceID ID)
         { this->GetSubscriptionTable(EventHash)->Unsubscribe(ID); }
 
     template<class TableType, class DispatcherType>
@@ -605,7 +608,7 @@ namespace Mezzanine
     // Subscription Management
 
     template<class TableType, class DispatcherType>
-    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventSubscriberID ID)
+    void EventPublisher<TableType,DispatcherType>::Unsubscribe(const EventPublisher<TableType,DispatcherType>::InterfaceID ID)
     {
         for( TableType& CurrTable : this->SubscriptionTables )
             { CurrTable.Unsubscribe(ID); }
@@ -629,7 +632,7 @@ namespace Mezzanine
     template< class TableType,template <typename...> class DispatcherType >
     using EventPublisherAlias = EventPublisher< TableType,DispatcherType<TableType> >;
     /// @brief Default/Convenience implementation of an EventSubscriptionTable.
-    using DefaultEventSubscriptionTable = EventSubscriptionTable<std::function<void(EventPtr)>,true>;
+    using DefaultEventSubscriptionTable = EventBindingTable<FunctionSubscriber<EventSubscriberID,EventPtr>>;
     /// @brief Default/Convenience implementation of an EventPublisher.
     //using DefaultEventPublisher = EventPublisher<DefaultEventSubscriptionTable,DefaultEventDispatcher<DefaultEventSubscriptionTable>>;
     using DefaultEventPublisher = EventPublisherAlias<DefaultEventSubscriptionTable,DefaultEventDispatcher>;

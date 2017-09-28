@@ -54,27 +54,39 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     ///////////////////////////////////////
-    template<typename InterfaceType>
+    template<typename Interface>
     class MEZZ_LIB EventSubscriberBinding
     {
     public:
-        /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = std::function< void(EventPtr) >;
+        /// @brief Retrievable type for querying the type of callable interface this table works with.
+        using InterfaceType = Interface;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using InterfaceID = typename Interface::IDType;
     protected:
         /// @brief The delegate that will be called (if valid) when a desired event is fired.
         InterfaceType Callable;
-        /// @brief The unique identifier for the subscriber/delegate.
-        EventSubscriberID SubID;
         /// @brief The hash of the event name this binding is subscribed to.
         EventHashType NameHash;
+
+        /// @brief One of two helper functions to ensure a common means of dereference.
+        /// @param ToConvert The reference to convert.
+        /// @return Returns a pointer of the templated type.
+        template<class AnyType>
+        static AnyType* ToPointer(AnyType& ToConvert)
+            { return &ToConvert; }
+        /// @brief One of two helper functions to ensure a common means of dereference.
+        /// @param ToConvert The reference to convert.
+        /// @return Returns a pointer of the templated type.
+        template<class AnyType>
+        static AnyType* ToPointer(AnyType* ToConvert)
+            { return ToConvert; }
     public:
         /// @brief Descriptive constructor.
         /// @param ID The unique identifier for the subscriber/delegate.
-        /// @param Delegate The callback to dispatch the event to.
+        /// @param Observer The observer to dispatch the event to.
         /// @param Hash The hash of the event name this binding is subscribed to.
-        EventSubscriberBinding(EventSubscriberID ID, const InterfaceType Delegate, const EventHashType Hash) :
-            Callable(Delegate),
-            SubID(ID),
+        EventSubscriberBinding(const InterfaceType Observer, const EventHashType Hash) :
+            Callable(Observer),
             NameHash(Hash)
             {  }
         /// @brief Copy constructor.
@@ -106,13 +118,13 @@ namespace Mezzanine
         const InterfaceType GetCallable() const
             { return this->Callable; }
         /// @brief Gets the unique identifier of the subscriber.
-        /// @return Returns a SubscriberID that uniquely identifies the subscription in the publisher.
-        EventSubscriberID GetSubID() const
-            { return this->SubID; }
-        /// @brief Gets the hash of the event this binding is bound to.
+        /// @return Returns an ID that uniquely identifies the subscriber in the subscription table.
+        InterfaceID GetID() const
+            { return ToPointer( this->Callable )->GetID(); }
+        /*/// @brief Gets the hash of the event this binding is bound to.
         /// @return Returns the hash for the event name this binding is subscribed to.
         EventHashType GetEventHash() const
-            { return this->NameHash; }
+            { return this->NameHash; }//*/
 
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
@@ -127,8 +139,9 @@ namespace Mezzanine
 
         /// @brief Dispatches an event to the appropriate subscriber in this binding.
         /// @param Args The arguments and extra data related to this event.
-        void DispatchEvent(EventPtr Args) const
-            { this->Callable(Args); }
+        template<class... ArgTypes>
+        void DispatchEvent(ArgTypes... Args) const
+            { this->Callable(Args...); }
     };//EventSubscriberBinding
 
     /// @brief Convenience type for passing around EventSubscriberBindings.
