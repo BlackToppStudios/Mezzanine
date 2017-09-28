@@ -503,6 +503,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/asset.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.h"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/script.h"
@@ -969,6 +970,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/asset.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.cpp"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"

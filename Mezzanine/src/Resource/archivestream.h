@@ -68,40 +68,40 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An Input stream for compressed file archives.
         ///////////////////////////////////////
-        class MEZZ_LIB ArchiveInStream : public Mezzanine::IStream
+        class MEZZ_LIB ArchiveIStream : public Mezzanine::IStream
         {
         protected:
         public:
             /// @brief Class constructor.
-            ArchiveInStream();
+            ArchiveIStream();
             /// @brief Class destructor.
-            virtual ~ArchiveInStream();
+            virtual ~ArchiveIStream();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
-        };//ArchiveInStream
+        };//ArchiveIStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An Output stream for compressed file archives.
         ///////////////////////////////////////
-        class MEZZ_LIB ArchiveOutStream : public Mezzanine::OStream
+        class MEZZ_LIB ArchiveOStream : public Mezzanine::OStream
         {
         protected:
         public:
             /// @brief Class constructor.
-            ArchiveOutStream();
+            ArchiveOStream();
             /// @brief Class destructor.
-            virtual ~ArchiveOutStream();
+            virtual ~ArchiveOStream();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
-        };//ArchiveOutStream
+        };//ArchiveOStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An I/O stream for compressed file archives.
@@ -121,6 +121,13 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
         };//ArchiveIOStream
+
+        /// @brief Convenience type for an Archive input stream in a CountedPtr.
+        using ArchiveIStreamPtr = CountedPtr<ArchiveIStream>;
+        /// @brief Convenience type for an Archive output stream in a CountedPtr.
+        using ArchiveOStreamPtr = CountedPtr<ArchiveOStream>;
+        /// @brief This is a convenience type for an Archive stream in a counted pointer.
+        using ArchiveStreamPtr = CountedPtr<ArchiveIOStream>;
     }//Resource
 }//Mezzanine
 

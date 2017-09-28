@@ -37,40 +37,67 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchiveentry_h
-#define _resourcearchiveentry_h
+#ifndef _resourcedeflatecodec_cpp
+#define _resourcedeflatecodec_cpp
 
-#include "datatypes.h"
+#include "Resource/deflatecodec.h"
+
+#include "exception.h"
+
+#include <miniz.h>
 
 namespace Mezzanine
 {
     namespace Resource
     {
+        DeflateCodec::DeflateCodec() :
+            CompressionLevel(MZ_DEFAULT_COMPRESSION)
+            {  }
+
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief An entry describing a single compressed file in the archive.
-        /// @details In compressed archives, each file is given an entry to describe as much about the file
-        /// that is reasonable prior to performing actual decompression.  This allows basic things like scanning
-        /// for and selecting just one file of many to extract from the archive.
-        ///////////////////////////////////////
-        struct MEZZ_LIB ArchiveEntry
+        // Configuration
+
+        void DeflateCodec::SetCompressionLevel(const Integer Level)
+            { this->CompressionLevel = Level; }
+
+        Integer DeflateCodec::GetCompressionLevel() const
+            { return this->CompressionLevel; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Compression/Decompression
+
+        DeflateCodec::ByteVector DeflateCodec::Compress(const ByteVector& Input) const
         {
-            /// @brief The name of the file this Entry is referencing.
-            String FileName;
-            /// @brief The custom/optional comment associated with this Entry.
-            String Comment;
-            /// @brief The time stamp of the Entry.
-            std::time_t Time : 0;
-            /// @brief The compressed size of the file this Entry is referencing.
-            size_t CompressedSize : 0;
-            /// @brief The uncompressed size of the file this Entry is referencing.
-            size_t UncompressedSize : 0;
-            /// @brief The offset in the archive where the file is located.
-            StreamPos Offset : 0;
-            /// @brief The CRC for the file stream to use for error checking.
-            UInt32 CRC32 : 0;
-            /// @brief Whether or not the archive is encrypted.
-            Boole IsEncrypted : false;
-        };//ArchiveEntry
+            const mz_ulong BoundSize = compressBound( Input.size() );
+            mz_ulong RetSize = BoundSize;
+            ByteVector Ret(RetSize);
+            int ErrorCode = mz_compress2(Ret.data(),&RetSize,Input.data(),Input.size(),this->CompressionLevel);
+
+            if( ErrorCode != MZ_OK ) {
+                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,mz_error(ErrorCode));
+            }
+
+            if( RetSize < BoundSize ) {
+                Ret.resize(RetSize);
+            }
+            return Ret;
+        }
+
+        DeflateCodec::ByteVector DeflateCodec::Decompress(const ByteVector& Input, const StreamSize Expected) const
+        {
+            mz_ulong RetSize = static_cast<mz_ulong>(Expected);
+            ByteVector Ret(RetSize);
+            int ErrorCode = mz_uncompress(Ret.data(),&RetSize,Input.data(),Input.size());
+
+            if( ErrorCode != MZ_OK ) {
+                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,mz_error(ErrorCode));
+            }
+
+            if( RetSize < Expected ) {
+                Ret.resize(RetSize);
+            }
+            return Ret;
+        }
     }//Resource
 }//Mezzanine
 

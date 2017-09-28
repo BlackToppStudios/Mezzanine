@@ -40,22 +40,77 @@
 #ifndef _resourcearchivecodec_h
 #define _resourcearchivecodec_h
 
+#include "datatypes.h"
+#include "Resource/archivestream.h"
+
 namespace Mezzanine
 {
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief
-        /// @details
+        /// @brief A base class for data compression/decompression algorithms to implement.
         ///////////////////////////////////////
         class MEZZ_LIB ArchiveCodec
         {
-        protected:
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Types
+
+            /// @brief Convenience type for passing around byte buffers.
+            using ByteVector = std::vector<UInt8>;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
             /// @brief Class constructor.
-            ArchiveCodec();
+            ArchiveCodec() = default;
             /// @brief Class destructor.
-            ~ArchiveCodec();
+            ~ArchiveCodec() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Compression
+
+            /// @brief Compresses an entire buffer of data.
+            /// @param Input A buffer to be compressed.
+            /// @return Returns a vector containing the compressed result of the input buffer.
+            virtual ByteVector Compress(const ByteVector& Input) const = 0;
+/*
+            /// @brief Compresses data from an input buffer into a stream.
+            /// @remarks The current position in the stream will be used as the start of the data range
+            /// to compress and will use everything until the end of the stream.
+            /// @param Input A buffer to be compressed.
+            /// @param ToCompress The stream providing the data to be compressed.
+            /// @return Returns the resulting size of the buffer after compression.
+            virtual Whole Compress(const ByteVector& Input, ArchiveOStreamPtr ToStream) = 0;
+            /// @brief Compresses data from an input buffer into a stream.
+            /// @remarks The current position in the stream will be used as the start of the data range
+            /// to compress and will use everything until NumBytes have been read.
+            /// @param Input A buffer to be compressed.
+            /// @param ToCompress The stream providing the data to be compressed.
+            /// @param NumBytes The number of bytes from the provided stream to compress.
+            /// @return Returns the resulting size of the buffer after compression.
+            virtual Whole Compress(const ByteVector& Input, Whole NumBytes, ArchiveOStreamPtr ToCompress) = 0;
+*/
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Decompression
+
+            /// @brief Decompresses an entire buffer of data.
+            /// @param Input A buffer to be decompressed.
+            /// @param Expected The expected size of the decompressed data.
+            /// @return Returns a vector containing the decompressed result of the input buffer.
+            virtual ByteVector Decompress(const ByteVector& Input, const StreamSize Expected) const = 0;
+/*
+            /// @brief Decompresses data from a stream to an output buffer.
+            /// @param ToDecompress The stream providing the data to be decompressed.
+            /// @return Returns a vector containing the decompressed result of the input stream.
+            virtual ByteVector Decompress(ArchiveIStreamPtr ToDecompress) = 0;
+            /// @brief Decompresses data from a stream to an output buffer.
+            /// @param ToDecompress The stream providing the data to be decompressed.
+            /// @param NumBytes The number of bytes from the provided stream to decompress.
+            /// @return Returns a vector containing the decompressed result of the input stream.
+            virtual ByteVector Decompress(ArchiveIStreamPtr ToDecompress, Whole NumBytes) = 0;
+*/
         };//ArchiveCodec
     }//Resource
 }//Mezzanine

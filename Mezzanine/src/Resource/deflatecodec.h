@@ -37,40 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchiveentry_h
-#define _resourcearchiveentry_h
+#ifndef _resourcedeflatecodec_h
+#define _resourcedeflatecodec_h
 
-#include "datatypes.h"
+#include "Resource/archivecodec.h"
 
 namespace Mezzanine
 {
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief An entry describing a single compressed file in the archive.
-        /// @details In compressed archives, each file is given an entry to describe as much about the file
-        /// that is reasonable prior to performing actual decompression.  This allows basic things like scanning
-        /// for and selecting just one file of many to extract from the archive.
+        /// @brief A codec implementation for standard DEFLATE/INFLATE.
         ///////////////////////////////////////
-        struct MEZZ_LIB ArchiveEntry
+        class MEZZ_LIB DeflateCodec : public ArchiveCodec
         {
-            /// @brief The name of the file this Entry is referencing.
-            String FileName;
-            /// @brief The custom/optional comment associated with this Entry.
-            String Comment;
-            /// @brief The time stamp of the Entry.
-            std::time_t Time : 0;
-            /// @brief The compressed size of the file this Entry is referencing.
-            size_t CompressedSize : 0;
-            /// @brief The uncompressed size of the file this Entry is referencing.
-            size_t UncompressedSize : 0;
-            /// @brief The offset in the archive where the file is located.
-            StreamPos Offset : 0;
-            /// @brief The CRC for the file stream to use for error checking.
-            UInt32 CRC32 : 0;
-            /// @brief Whether or not the archive is encrypted.
-            Boole IsEncrypted : false;
-        };//ArchiveEntry
+        public:
+        protected:
+            /// @brief The amount of compression to perform when compressing.
+            /// @remarks Range is 1-10.  1 is faster compression, 10 is smaller result.
+            Integer CompressionLevel;
+        public:
+            /// @brief Class constructor.
+            DeflateCodec();
+            /// @brief Class destructor.
+            virtual ~DeflateCodec() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            /// @brief Sets the amount of compression to apply when using the ArchiveCodec API.
+            /// @remarks Level range is 0-10.  0 means no compression at all, 1 is faster compression, 10 is smaller result.
+            /// @param Level The amount of compression to perform when compressing.
+            void SetCompressionLevel(const Integer Level);
+            /// @brief Gets the amount of compression to apply when using the ArchiveCodec API.
+            /// @return Returns an integer representing the amount of compression that will be applied.  -1 is internal default.
+            Integer GetCompressionLevel() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Compression/Decompression
+
+            /// @copydoc ArchiveCodec::Compress(const ByteVector&) const
+            virtual ByteVector Compress(const ByteVector& Input) const override;
+            /// @copydoc ArchiveCodec::Decompress(const ByteVector&, const StreamSize) const
+            virtual ByteVector Decompress(const ByteVector& Input, const StreamSize Expected) const override;
+        };//DeflateCodec
     }//Resource
 }//Mezzanine
 
