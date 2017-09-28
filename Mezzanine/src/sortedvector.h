@@ -60,7 +60,7 @@ namespace Mezzanine
     /// @tparam Compare A functor that accepts two parameters of type to
     /// @return The end iterator if nothing was found or the iterator found by value.
     template<typename Iter, typename T, typename Compare >
-    Iter binary_find(Iter begin, Iter end, T val, Compare Comparer)
+    Iter binary_find(Iter begin, Iter end, const T& val, Compare Comparer)
     {
         // Finds the lower bound in at most log(last - first) + 1 comparisons
         Iter i = std::lower_bound(begin, end, val, Comparer);
@@ -84,7 +84,7 @@ namespace Mezzanine
     /// @tparam T The type of the value the iterator points to.
     /// @return The end iterator if nothing was found or the iterator found by value.
     template<class Iter, class T>
-    Iter binary_find(Iter begin, Iter end, T val)
+    Iter binary_find(Iter begin, Iter end, const T& val)
     {
         // Finds the lower bound in at most log(last - first) + 1 comparisons
         Iter i = std::lower_bound(begin, end, val);
@@ -219,18 +219,18 @@ namespace Mezzanine
             /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
             /// @param value the item to get the location of.
             /// @return A mutable iterator to an item, can be adjusted by random access.
-            iterator find(T value)
+            iterator find(const T& value)
                 { return binary_find(begin(),end(),value,Sorter()); }
-            /// @brief Get and interator to a specific item, operates in fast logarithmic time.
+            /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
             /// @param value the item to get the location of.
             /// @return A const iterator to an item, can be adjusted by random access.
-            const_iterator find(T value) const
+            const_iterator find(const T& value) const
                 { return binary_find(begin(),end(),value,Sorter()); }
 
             /// @brief Does the item exist in this vector?
             /// @param value The item in question.
             /// @return True if present false otherwise.
-            Boole contains(T value) const
+            Boole contains(const T& value) const
                 { return std::binary_search(begin(),end(),value); }
 
             /// @brief Empty the Vector discarding all data.
