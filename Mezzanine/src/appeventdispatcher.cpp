@@ -58,7 +58,7 @@ namespace
     int HandleAppTerminating(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppTerminating);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppTerminating,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -68,7 +68,7 @@ namespace
     int HandleAppLowMemory(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppLowMemory);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppLowMemory,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -78,7 +78,7 @@ namespace
     int HandleAppWillEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterBackground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppWillEnterBackground,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -88,7 +88,7 @@ namespace
     int HandleAppDidEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterBackground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppDidEnterBackground,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -98,7 +98,7 @@ namespace
     int HandleAppWillEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterForeground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppWillEnterForeground,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -108,7 +108,7 @@ namespace
     int HandleAppDidEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterForeground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppDidEnterForeground,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
         return 0;
     }
 

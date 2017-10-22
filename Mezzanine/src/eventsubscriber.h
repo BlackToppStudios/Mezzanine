@@ -127,8 +127,8 @@ namespace Mezzanine
 
         /// @brief Callable method for this subscriber.
         /// @param Params A variadic template of parameters set by the type of FunctionSubscriber.
-        void operator()(ArgTypes... Params) const
-            { this->SubFunct(Params...); }
+        void operator()(ArgTypes&&... Params) const
+            { this->SubFunct( Params... ); }
     };//FunctionSubscriber
 
     ///////////////////////////////////////////////////////////////////////////////

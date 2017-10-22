@@ -44,6 +44,7 @@
 #include <memory>
 
 #include "event.h"
+#include "eventhelper.h"
 #include "eventsubscriberid.h"
 
 namespace Mezzanine
@@ -67,19 +68,6 @@ namespace Mezzanine
         InterfaceType Callable;
         /// @brief The hash of the event name this binding is subscribed to.
         EventHashType NameHash;
-
-        /// @brief One of two helper functions to ensure a common means of dereference.
-        /// @param ToConvert The reference to convert.
-        /// @return Returns a pointer of the templated type.
-        template<class AnyType>
-        static AnyType* ToPointer(AnyType& ToConvert)
-            { return &ToConvert; }
-        /// @brief One of two helper functions to ensure a common means of dereference.
-        /// @param ToConvert The reference to convert.
-        /// @return Returns a pointer of the templated type.
-        template<class AnyType>
-        static AnyType* ToPointer(AnyType* ToConvert)
-            { return ToConvert; }
     public:
         /// @brief Descriptive constructor.
         /// @param ID The unique identifier for the subscriber/delegate.
@@ -120,7 +108,7 @@ namespace Mezzanine
         /// @brief Gets the unique identifier of the subscriber.
         /// @return Returns an ID that uniquely identifies the subscriber in the subscription table.
         InterfaceID GetID() const
-            { return ToPointer( this->Callable )->GetID(); }
+            { return EventHelper::ToPointer( this->Callable )->GetID(); }
         /*/// @brief Gets the hash of the event this binding is bound to.
         /// @return Returns the hash for the event name this binding is subscribed to.
         EventHashType GetEventHash() const
@@ -139,9 +127,9 @@ namespace Mezzanine
 
         /// @brief Dispatches an event to the appropriate subscriber in this binding.
         /// @param Args The arguments and extra data related to this event.
-        template<class... ArgTypes>
-        void DispatchEvent(ArgTypes... Args) const
-            { this->Callable(Args...); }
+        template<class MemberFunct, class... ArgTypes>
+        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
+            { ( EventHelper::ToPointer(this->Callable)->*Funct)( std::forward<ArgTypes>(Args)... ); }
     };//EventSubscriberBinding
 
     /// @brief Convenience type for passing around EventSubscriberBindings.
