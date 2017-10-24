@@ -79,7 +79,7 @@ namespace Mezzanine
         {
             while( RangeBegin != RangeEnd )
             {
-                (EventHelper::ToPointer(*RangeBegin)->*Funct)(Args...);
+               (EventHelper::ToPointer(*RangeBegin)->*Funct)(std::forward<ArgTypes>(Args)...);
                 ++RangeBegin;
             }
         }

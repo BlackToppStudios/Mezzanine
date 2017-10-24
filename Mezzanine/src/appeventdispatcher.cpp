@@ -182,31 +182,31 @@ namespace Mezzanine
     void AppEventDispatcher::HandleAppDropFile(const UInt32 WindowID, const String& PathAndFile)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropFile,PathAndFile,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropFile,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropText(const UInt32 WindowID, const String& Text)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropText,Text,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropText,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropBegin(const UInt32 WindowID)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropBegin,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropBegin,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropEnd(const UInt32 WindowID)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropEnd,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropEnd,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppQuit()
     {
         EventPtr AppEv = std::make_shared<Event>(EventAppQuit);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppQuit,&DefaultEventPublisher::SubscriberType::operator(),AppEv);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

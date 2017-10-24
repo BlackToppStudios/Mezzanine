@@ -131,16 +131,16 @@ namespace Mezzanine
     /// @tparam Interface The type of interface/subscriber this iterator will return on dereference.
     ///////////////////////////////////////
     template<class Interface>
-    class MEZZ_LIB BindingIterator// : public std::iterator<std::bidirectional_iterator_tag,Interface>
+    class MEZZ_LIB BindingIterator
     {
     public:
         /// @brief Convenience type for the BindingIterator implementation being used.
         using SelfType = BindingIterator<Interface>;
         /// @brief Convenience type to the binding pointed to by the iterator.
-        using StoredType = EventSubscriberBinding<Interface>;
+        using StoredType = EventSubscriberBindingPtr<Interface>;
     protected:
         /// @brief A pointer to the binding that will be used on dereference.
-        StoredType* Value;
+        const StoredType* Value;
     public:
         /// @brief Blank constructor.
         BindingIterator() :
@@ -149,8 +149,8 @@ namespace Mezzanine
         /// @brief Iterator constructor.
         /// @param It The iterator to dereference and use to initialize this iterator.
         template<class IteratorType>
-        BindingIterator(IteratorType It) :
-            Value(*It)
+        BindingIterator(const IteratorType It) :
+            Value( std::addressof(*It) )
             {  }
         /// @brief Descriptive constructor.
         /// @param Val A pointer to the value that will be used by this iterator.
@@ -169,7 +169,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Construction Operators
 
+        /// @brief Copy assignment operator.
+        /// @param Other The other iterator to be copied.
+        /// @return Returns a reference to this.
         SelfType& operator=(const SelfType& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other iterator to be moved.
+        /// @return Returns a reference to this.
         SelfType& operator=(SelfType&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -192,11 +198,11 @@ namespace Mezzanine
         /// @brief Reference dereference operator.
         /// @return Returns a reference to the interface in the binding pointed to by this iterator.
         Interface& operator*()
-            { return EventHelper::ToReference(this->Value->GetCallable()); }
+            { return EventHelper::ToReference( (*this->Value)->GetCallable() ); }
         /// @brief Pointer dereference operator.
         /// @return Returns a pointer to the interface in the binding pointed to by this iterator.
         Interface* operator->()
-            { return EventHelper::ToPointer(this->Value->GetCallable()); }
+            { return EventHelper::ToPointer( (*this->Value)->GetCallable() ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manipulation Operators
@@ -288,20 +294,6 @@ namespace Mezzanine
         using DispatchIterator = typename Traits::DispatchIterator;
         /// @brief The type to use for the actual dispatch logic for events.
         using DispatcherType = typename Traits::DispatcherType;
-        /*
-        /// @brief Container for the storage of subscribers tracked by this table.
-        using SubscriberContainer = std::vector<Interface>;
-        /// @brief Iterator type for subscribers stored by this table.
-        using SubscriberIterator = SubscriberContainer::iterator;
-        /// @brief Const Iterator type for subscribers stored by this table.
-        using ConstSubscriberIterator = SubscriberContainer::const_iterator;
-        /// @brief Container for the storage of subscriber bindings tracked by this table.
-        using BindingContainer = std::vector<BindingType>;
-        /// @brief Iterator type for subscriber bindings stored by this table.
-        using BindingIterator = BindingContainer::iterator;
-        /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstBindingIterator = BindingContainer::const_iterator;
-        */
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
         StorageContainer Subscribers;
@@ -450,7 +442,7 @@ namespace Mezzanine
             //    { (*SubIt)->DispatchEvent(Funct,Args...); }
             DispatchIterator Begin = this->Subscribers.begin();
             DispatchIterator End = this->Subscribers.end();
-            this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward(Args)...);
+            this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward<ArgTypes>(Args)...);
         }
     };//EventBindingTable
 

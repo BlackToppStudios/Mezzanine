@@ -108,14 +108,6 @@ namespace Mezzanine
         using DispatchIterator = typename Traits::DispatchIterator;
         /// @brief The type to use for the actual dispatch logic for events.
         using DispatcherType = typename Traits::DispatcherType;
-        /*
-        /// @brief Container for the storage of subscribers tracked by this table.
-        using SubscriberContainer = std::vector<Interface>;
-        /// @brief Iterator type for subscribers stored by this table.
-        using SubscriberIterator = SubscriberContainer::iterator;
-        /// @brief Const Iterator type for subscribers stored by this table.
-        using ConstSubscriberIterator = SubscriberContainer::const_iterator;
-        */
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
         StorageContainer Subscribers;
@@ -243,7 +235,7 @@ namespace Mezzanine
             //    { ((*SubIt)->*Funct)(Args...); }
             DispatchIterator Begin = this->Subscribers.begin();
             DispatchIterator End = this->Subscribers.end();
-            this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward(Args)...);
+            this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward<ArgTypes>(Args)...);
         }
     };//EventSubscriptionTable
 
