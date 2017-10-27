@@ -162,6 +162,8 @@ namespace Mezzanine
             using ControllerIterator = ControllerContainer::iterator;
             /// @brief Const Iterator type for game Controller instances stored by this class.
             using ConstControllerIterator = ControllerContainer::const_iterator;
+            /// @brief Convenience type for the publisher of events fired by this manager.
+            using EventPublisherType = DefaultEventPublisher;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -331,10 +333,10 @@ namespace Mezzanine
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a reference to the publisher that will dispatch Input events.
-            DefaultEventPublisher& GetInputPublisher();
+            EventPublisherType& GetInputPublisher();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a const reference to the publisher that will dispatch Input events.
-            const DefaultEventPublisher& GetInputPublisher() const;
+            const EventPublisherType& GetInputPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

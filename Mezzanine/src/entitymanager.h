@@ -301,6 +301,8 @@ namespace Mezzanine
         using EntityRange = IteratorRange<EntityIterator>;
         /// @brief Convenience type for passing around a const range of entities.
         using ConstEntityRange = IteratorRange<ConstEntityIterator>;
+        /// @brief Convenience type for the publisher of events fired by this manager.
+        using EventPublisherType = DefaultEventPublisher;
 
         /// @brief A String containing the name of this manager implementation.
         static const String ImplementationName;
@@ -323,7 +325,7 @@ namespace Mezzanine
         /// @brief A map containing all registered Entity type factories.
         static FactoryContainer EntityFactories;
         /// @brief An event publisher for global entity related events.
-        DefaultEventPublisher Publisher;
+        EventPublisherType Publisher;
         /// @brief Container storing all Entities belonging to this manager.
         EntityContainer Entities;
         /// @brief Generator for unique IDs belonging to Entities.
@@ -524,10 +526,10 @@ namespace Mezzanine
 
         /// @brief Gets the EventPublisher responsible for dispatching global Entity events.
         /// @return Returns a reference to the EventPublisher that will dispatch Entity events performed by this manager.
-        DefaultEventPublisher& GetPublisher();
+        EventPublisherType& GetPublisher();
         /// @brief Gets the EventPublisher responsible for dispatching global Entity events.
         /// @return Returns a const reference to the EventPublisher that will dispatch Entity events performed by this manager.
-        const DefaultEventPublisher& GetPublisher() const;
+        const EventPublisherType& GetPublisher() const;
 
         /// @brief Gets the work unit responsible for updating Actors stored by this manager.
         /// @return Returns a pointer to the ActorUpdateWorkUnit used by this manager.
