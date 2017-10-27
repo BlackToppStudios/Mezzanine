@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -155,8 +155,7 @@ void resolveSingleBilateral(btRigidBody& body1, const btVector3& pos1,
 		body1.getCenterOfMassTransform().getBasis().transpose() * body1.getAngularVelocity(),
 		body2.getLinearVelocity(),
 		body2.getCenterOfMassTransform().getBasis().transpose() * body2.getAngularVelocity()); 
-	btScalar a;
-	a=jacDiagABInv;
+
 
 
 	rel_vel = normal.dot(vel);

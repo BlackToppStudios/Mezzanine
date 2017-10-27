@@ -61,7 +61,7 @@ void GIM_TRIANGLE_CONTACT::merge_points(const btVector4 & plane,
     }
 }
 
-/// ©lass btPrimitiveTriangle
+///class btPrimitiveTriangle
 bool btPrimitiveTriangle::overlap_test_conservative(const btPrimitiveTriangle& other)
 {
     btScalar total_margin = m_margin + other.m_margin;
@@ -129,7 +129,7 @@ bool btPrimitiveTriangle::find_triangle_collision_clip_method(btPrimitiveTriangl
 
     btVector3 clipped_points[MAX_TRI_CLIPPING];
     int clipped_count;
-    // ©reate planes
+    //create planes
     // plane v vs U points
 
     GIM_TRIANGLE_CONTACT contacts1;
@@ -151,7 +151,7 @@ bool btPrimitiveTriangle::find_triangle_collision_clip_method(btPrimitiveTriangl
     contacts1.m_separating_normal *= -1.f;
 
 
-    // ©lip tri1 by tri2 edges
+    //Clip tri1 by tri2 edges
     GIM_TRIANGLE_CONTACT contacts2;
     contacts2.m_separating_normal = other.m_plane;
 
@@ -169,7 +169,7 @@ bool btPrimitiveTriangle::find_triangle_collision_clip_method(btPrimitiveTriangl
 
 
 
-    //// ©heck most dir for contacts
+    ////check most dir for contacts
     if (contacts2.m_penetration_depth<contacts1.m_penetration_depth)
     {
         contacts.copy_from(contacts2);
@@ -183,7 +183,7 @@ bool btPrimitiveTriangle::find_triangle_collision_clip_method(btPrimitiveTriangl
 
 
 
-/// ©lass btTriangleShapeEx: public btTriangleShape
+///class btTriangleShapeEx: public btTriangleShape
 
 bool btTriangleShapeEx::overlap_test_conservative(const btTriangleShapeEx& other)
 {

@@ -294,7 +294,9 @@ CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 if(${WIN32})
     message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
     message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+    if(CMAKE_BUILD_TYPE STREQUAL "Release" OR "MinSizeRel")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+    endif(CMAKE_BUILD_TYPE STREQUAL "Release" OR "MinSizeRel")
 endif(${WIN32})
 
 # Linux File Copy Specific Items

@@ -611,15 +611,21 @@ endif(${Mezz_Network})
 ###############################################################################
 # Misc library linking names
 set(Bullet_LibraryNames
+    # Extras
     "ConvexDecomposition"
     "GIMPACTUtils"
     "BulletWorldImporter"
     "BulletFileLoader"
+    # Core Libs
+    "BulletSoftBody" 
+    "BulletDynamics" 
+    "BulletCollision" 
+    "LinearMath"
+    # Defunct
     #"BulletSoftBodySolvers_OpenCL"
     #"BulletSoftBodySolvers_CPU"
-    "MiniCL"
-    "BulletMultiThreaded"
-    "BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
+    #"MiniCL"
+    #"BulletMultiThreaded"
 )
 
 set(SoundLibraryNames

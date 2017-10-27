@@ -90,16 +90,16 @@ namespace Mezzanine
         // Axis configuration
 
         void GearConstraint::SetAxisA(const Vector3& Axis)
-            { this->Gear->setAxisInA(Axis.GetBulletVector3()); }
+            { this->Gear->setAxisA(Axis.GetBulletVector3()); }
 
         void GearConstraint::SetAxisB(const Vector3& Axis)
-            { this->Gear->setAxisInB(Axis.GetBulletVector3()); }
+            { this->Gear->setAxisB(Axis.GetBulletVector3()); }
 
         Vector3 GearConstraint::GetAxisA() const
-            { return Vector3( this->Gear->getAxisInA() ); }
+            { return Vector3( this->Gear->getAxisA() ); }
 
         Vector3 GearConstraint::GetAxisB() const
-            { return Vector3( this->Gear->getAxisInB() ); }
+            { return Vector3( this->Gear->getAxisB() ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Ratio Configuration

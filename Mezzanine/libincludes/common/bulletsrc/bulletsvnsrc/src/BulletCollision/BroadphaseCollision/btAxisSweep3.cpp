@@ -1,6 +1,6 @@
 
 //Bullet Continuous Collision Detection and Physics Library
-// ©opyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+//Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 
 //

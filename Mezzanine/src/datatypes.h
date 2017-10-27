@@ -64,24 +64,28 @@
     #include <stdint.h> //Not available in unsupported versions of MSVC (<2012, we support >=2015)
     #include <cstddef>
 
-    #include <algorithm>
-    #include <exception>
-    #include <istream>
+    #include <array>
     #include <list>
     #include <map>
-    #include <string>
-    #include <sstream>
-    #include <fstream>
-    #include <type_traits>
     #include <set>
     #include <vector>
-    #include <utility>
-    #include <memory>
-    #include <ostream>
-    #include <chrono>
-    #include <array>
+
     #include <atomic>
+    #include <condition_variable>
+
+    #include <fstream>
+    #include <istream>
+    #include <ostream>
+    #include <sstream>
+
+    #include <algorithm>
+    #include <chrono>
+    #include <exception>
     #include <functional>
+    #include <memory>
+    #include <string>
+    #include <type_traits>
+    #include <utility>
 #endif
 
 #include "swig.h"

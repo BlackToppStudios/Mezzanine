@@ -48,12 +48,12 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.
-        /// @details Since not all contraints provide tracking for the Actor Transform (location/rotation of the pivot)
+        /// @details Since not all constraints provide tracking for the Actor Transform (location/rotation of the pivot)
         /// we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but
         /// provides uniform access to the transform and rotation functions. \n \n
         /// Any deriving class must implement every thing from TypedConstraint and the four set/get Transform function. It
         /// is expected that more derived classes will implement the Set/Get Pivot/Rotation Function in a more efficient
-        /// Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the
+        /// Manner if a more efficient way exists. The non-transform get/set function are implemented in terms of the
         /// get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly
         /// optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU
         /// caches. As always benchmark if this is something that may be critically slowing you down.
@@ -61,7 +61,6 @@ namespace Mezzanine
         class MEZZ_LIB DualTransformConstraint : public Constraint
         {
         protected:
-            /// @internal
             /// @brief Creates the internal constraint.
             /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
             /// @param RigidA A pointer to the first Proxy to be constrained.
@@ -69,18 +68,15 @@ namespace Mezzanine
             /// @param TransA The offset to place the constraint in the first proxys local space.
             /// @param TransB The offset to place the constraint in the second proxys local space.
             virtual void CreateConstraint(RigidProxy* RigidA, RigidProxy* RigidB, const Transform& TransA, const Transform& TransB) = 0;
-            /// @internal
             /// @brief Destroys the internal constraint.
             /// @remarks This methods exists primarily as a convenience for serialization, and shouldn't be called unless it is known to be safe.
             virtual void DestroyConstraint() = 0;
 
-            /// @internal
             /// @brief Single body inheritance constructor.
             /// @param ID The unique identifier assigned to this constraint.
             /// @param Prox1 A pointer to the first/only proxy that will be constrained.
             /// @param Creator A pointer to the manager that created this constraint.
             DualTransformConstraint(const UInt32 ID, RigidProxy* Prox1, PhysicsManager* Creator);
-            /// @internal
             /// @brief Dual body inheritance constructor.
             /// @param ID The unique identifier assigned to this constraint.
             /// @param Prox1 A pointer to the first proxy that will be constrained.

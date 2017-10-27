@@ -4,8 +4,8 @@ Copyright (c) 2003-2009 Erwin Coumans  http://bulletphysics.org
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
-Permission is granted to anyone to use this software for any purpose, 
-including commercial applications, and to alter it and redistribute it freely, 
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it freely,
 subject to the following restrictions:
 
 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
@@ -25,7 +25,7 @@ ATTRIBUTE_ALIGNED16(class) btStaticPlaneShape : public btConcaveShape
 protected:
 	btVector3	m_localAabbMin;
 	btVector3	m_localAabbMax;
-	
+
 	btVector3	m_planeNormal;
 	btScalar      m_planeConstant;
 	btVector3	m_localScaling;
@@ -46,20 +46,20 @@ public:
 
 	virtual void	setLocalScaling(const btVector3& scaling);
 	virtual const btVector3& getLocalScaling() const;
-	
-	void setPlaneNormal(const btVector3& norm)
+
+	void setPlaneNormal(const btVector3& normal)
 	{
-		m_planeNormal = norm;
+		m_planeNormal = normal;
 	}
 
-	void setPlaneConstant(const btScalar& con)
-	{
-		m_planeConstant = con;
-	}
-	
-	const btVector3&	getPlaneNormal() const
+	const btVector3& getPlaneNormal() const
 	{
 		return	m_planeNormal;
+	}
+
+	void setPlaneConstant(const btScalar constant)
+	{
+		m_planeConstant = constant;
 	}
 
 	const btScalar&	getPlaneConstant() const
@@ -104,7 +104,13 @@ SIMD_FORCE_INLINE	const char*	btStaticPlaneShape::serialize(void* dataBuffer, bt
 	m_localScaling.serializeFloat(planeData->m_localScaling);
 	m_planeNormal.serializeFloat(planeData->m_planeNormal);
 	planeData->m_planeConstant = float(m_planeConstant);
-		
+
+	// Fill padding with zeros to appease msan.
+	planeData->m_pad[0] = 0;
+	planeData->m_pad[1] = 0;
+	planeData->m_pad[2] = 0;
+	planeData->m_pad[3] = 0;
+
 	return "btStaticPlaneShapeData";
 }
 

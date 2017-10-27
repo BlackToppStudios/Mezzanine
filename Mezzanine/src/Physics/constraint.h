@@ -40,11 +40,7 @@
 #ifndef _physicsconstraint_h
 #define _physicsconstraint_h
 
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "quaternion.h"
 #include "transform.h"
-#include "vector3.h"
 
 class btRigidBody;
 class btTypedConstraint;
@@ -125,22 +121,16 @@ namespace Mezzanine
         protected:
             friend class PhysicsManager;
 
-            /// @internal
             /// @brief The first Collidable this constraint applies to.
             RigidProxy* ProxA;
-            /// @internal
             /// @brief The second Collidable this constraint applies to.
             RigidProxy* ProxB;
-            /// @internal
             /// @brief This is a pointer to the physics manager that created and owns this constraint.
             PhysicsManager* Manager;
-            /// @internal
             /// @brief The unique ID used to identify this constraint.
             UInt32 ConstraintID;
-            /// @internal
-            /// @brief Whether or not collisions will be allowed to occure between the constrained bodies.
+            /// @brief Whether or not collisions will be allowed to occurs between the constrained bodies.
             Boole AllowCollisions;
-            /// @internal
             /// @brief Whether or not the constraint is currently taking effect.
             Boole Enabled;
 

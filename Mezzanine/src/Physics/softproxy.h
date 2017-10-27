@@ -43,14 +43,14 @@ John Blackwood - makoenergy02@gmail.com
 #include "Physics/collidableproxy.h"
 
 class btSoftBody;
+class btSoftRigidDynamicsWorld;
 
 namespace Mezzanine
 {
     namespace Physics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the proxy object for soft/compressable bodies.
-        /// @details
+        /// @brief This is the proxy object for soft/compressible bodies.
         ///////////////////////////////////////
         class MEZZ_LIB SoftProxy : public CollidableProxy
         {
@@ -60,7 +60,11 @@ namespace Mezzanine
 
             /// @brief Used to create the physics representation of the soft body.
             /// @param Mass The mass of the soft body to be created.
-            virtual void CreateSoftObject(const Real Mass);
+            void CreateSoftObject(const Real Mass);
+            /// @brief Gets a pointer to the internal soft world.
+            /// @remarks The pointer returned isn't checked for validity, since if we have a SoftProxy, we must have a soft world.
+            /// @return Returns a casted pointer to the internal soft world.
+            btSoftRigidDynamicsWorld* GetSoftWorld() const;
         public:
             /// @brief Class constructor.
             /// @param ID The unique ID assigned to this proxy.

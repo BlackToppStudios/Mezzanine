@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -33,7 +33,9 @@ enum btDynamicsWorldType
 	BT_SIMPLE_DYNAMICS_WORLD=1,
 	BT_DISCRETE_DYNAMICS_WORLD=2,
 	BT_CONTINUOUS_DYNAMICS_WORLD=3,
-	BT_SOFT_RIGID_DYNAMICS_WORLD=4
+	BT_SOFT_RIGID_DYNAMICS_WORLD=4,
+	BT_GPU_DYNAMICS_WORLD=5,
+    BT_SOFT_MULTIBODY_DYNAMICS_WORLD=6
 };
 
 ///The btDynamicsWorld is the interface class for several dynamics implementation, basic, discrete, parallel, and continuous etc.
@@ -87,7 +89,7 @@ public:
 
 		virtual void	addRigidBody(btRigidBody* body) = 0;
 
-		virtual void	addRigidBody(btRigidBody* body, short group, short mask) = 0;
+		virtual void	addRigidBody(btRigidBody* body, int group, int mask) = 0;
 
 		virtual void	removeRigidBody(btRigidBody* body) = 0;
 

@@ -140,7 +140,7 @@ namespace Mezzanine
 
     Boole World::VerifyManagerInitializations()
     {
-
+        return true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -156,6 +156,9 @@ namespace Mezzanine
 
     void World::Clear()
     {
+        #ifdef MEZZDEBUG
+        Entresol::GetSingletonPtr()->_Log( "Starting to clear the contents of World: " + this->Name + ".\n" );
+        #endif
         Physics::PhysicsManager* PhysMan = static_cast<Physics::PhysicsManager*>( this->GetManager(ManagerBase::MT_PhysicsManager) );
         // Start with constraints and anything else that is linking the objects.
         // Nuke the metadata while we're at it.
@@ -185,6 +188,9 @@ namespace Mezzanine
         if( SoundScapeMan != nullptr ) {
             SoundScapeMan->DestroyAllComponents();
         }
+        #ifdef MEZZDEBUG
+        Entresol::GetSingletonPtr()->_Log( "Finished clearing the contents of World: " + this->Name + ".\n" );
+        #endif
     }
 
     ///////////////////////////////////////////////////////////////////////////////

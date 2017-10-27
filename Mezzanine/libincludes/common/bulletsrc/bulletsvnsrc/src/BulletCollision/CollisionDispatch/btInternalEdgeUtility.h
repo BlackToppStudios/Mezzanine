@@ -8,7 +8,7 @@
 #include "BulletCollision/CollisionShapes/btTriangleInfoMap.h"
 
 ///The btInternalEdgeUtility helps to avoid or reduce artifacts due to wrong collision normals caused by internal edges.
-///See also http:// ©ode.google.com/p/bullet/issues/detail?id=27
+///See also http://code.google.com/p/bullet/issues/detail?id=27
 
 class btBvhTriangleMeshShape;
 class btCollisionObject;
@@ -26,11 +26,11 @@ enum btInternalEdgeAdjustFlags
 };
 
 
-/// ©all btGenerateInternalEdgeInfo to create triangle info, store in the shape 'userInfo'
+///Call btGenerateInternalEdgeInfo to create triangle info, store in the shape 'userInfo'
 void	btGenerateInternalEdgeInfo (btBvhTriangleMeshShape*trimeshShape, btTriangleInfoMap* triangleInfoMap);
 
 
-/// ©all the btFixMeshNormal to adjust the collision normal, using the triangle info map (generated using btGenerateInternalEdgeInfo)
+///Call the btFixMeshNormal to adjust the collision normal, using the triangle info map (generated using btGenerateInternalEdgeInfo)
 ///If this info map is missing, or the triangle is not store in this map, nothing will be done
 void	btAdjustInternalEdgeContacts(btManifoldPoint& cp, const btCollisionObjectWrapper* trimeshColObj0Wrap,const btCollisionObjectWrapper* otherColObj1Wrap, int partId0, int index0, int normalAdjustFlags = 0);
 

@@ -257,7 +257,7 @@ public:
 			closest_point_v = vp_e0;
 			// calc edges and separation
 
-			if(isect_u[1]+ MIN_EDGE_EDGE_DIS<isect_v[0]) // ©alc distance between two lines instead
+			if(isect_u[1]+ MIN_EDGE_EDGE_DIS<isect_v[0]) //calc distance between two lines instead
 			{
 				SEGMENT_COLLISION(
 					tu_vertices[tu_e1],tu_vertices[(tu_e1+1)%3],
@@ -291,7 +291,7 @@ public:
 			closest_point_v = vp_e1;
 			// calc edges and separation
 
-			if(isect_v[1]+MIN_EDGE_EDGE_DIS<isect_u[0]) // ©alc distance between two lines instead
+			if(isect_v[1]+MIN_EDGE_EDGE_DIS<isect_u[0]) //calc distance between two lines instead
 			{
 				SEGMENT_COLLISION(
 					tu_vertices[tu_e0],tu_vertices[(tu_e0+1)%3],
@@ -336,7 +336,7 @@ public:
 		tv_vertices[1] = v1;
 		tv_vertices[2] = v2;
 
-		// ©reate planes
+		//create planes
 		// plane v vs U points
 
 		TRIANGLE_PLANE(tv_vertices[0],tv_vertices[1],tv_vertices[2],tv_plane);
@@ -371,7 +371,7 @@ public:
 		else
 		{
 			//Look if we need to invert the triangle
-			distances[0] = (du[0]+du[1]+du[2])/3.0f; // ©entroid
+			distances[0] = (du[0]+du[1]+du[2])/3.0f; //centroid
 
 			if(distances[0]<0.0f)
 			{
@@ -422,7 +422,7 @@ public:
 		else
 		{
 			//Look if we need to invert the triangle
-			distances[1] = (dv[0]+dv[1]+dv[2])/3.0f; // ©entroid
+			distances[1] = (dv[0]+dv[1]+dv[2])/3.0f; //centroid
 
 			if(distances[1]<0.0f)
 			{
@@ -464,18 +464,18 @@ public:
 			return true;
 		}
 
-		// ©lip face against other
+		//clip face against other
 
 		
 		GUINT point_count;
 		//TODO
-		if(bl == 0) // ©lip U points against V
+		if(bl == 0) //clip U points against V
 		{
 			point_count = clip_triangle(tv_plane,tv_vertices,tu_vertices,contact_points);
 			if(point_count == 0) return false;						
 			contacts.merge_points(tv_plane,margin,contact_points,point_count);			
 		}
-		else // ©lip V points against U
+		else //clip V points against U
 		{
 			point_count = clip_triangle(tu_plane,tu_vertices,tv_vertices,contact_points);
 			if(point_count == 0) return false;			
@@ -567,7 +567,7 @@ public:
 		tv_vertices[1] = v1;
 		tv_vertices[2] = v2;
 
-		// ©reate planes
+		//create planes
 		// plane v vs U points
 
 
@@ -586,9 +586,9 @@ public:
 		if(contacts1.m_point_count == 0) return false; // too far
 
 		//Normal pointing to triangle1
-		// ©ontacts1.m_separating_normal *= -1.f;
+		//contacts1.m_separating_normal *= -1.f;
 
-		// ©lip tri1 by tri2 edges
+		//Clip tri1 by tri2 edges
 
 		TRIANGLE_PLANE(tu_vertices[0],tu_vertices[1],tu_vertices[2],contacts2.m_separating_normal);
 
@@ -606,7 +606,7 @@ public:
 
 		contacts2.m_separating_normal *= -1.f;
 
-		//// ©heck most dir for contacts
+		////check most dir for contacts
 		if(contacts2.m_penetration_depth<contacts1.m_penetration_depth)
 		{
 			contacts.copy_from(contacts2);

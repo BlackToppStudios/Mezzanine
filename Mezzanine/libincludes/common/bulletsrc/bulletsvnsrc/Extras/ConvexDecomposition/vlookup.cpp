@@ -38,7 +38,7 @@
 		THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------*/
 
-// http:// ©odesuppository.blogspot.com
+// http://codesuppository.blogspot.com
 //
 // mailto: jratcliff@infiniplex.net
 //
@@ -51,7 +51,7 @@
 // mailto: jratcliff@infiniplex.net
 //
 // Personal website: http://jratcliffscarab.blogspot.com
-// Coding Website:   http:// ©odesuppository.blogspot.com
+// Coding Website:   http://codesuppository.blogspot.com
 // FundRaising Blog: http://amillionpixels.blogspot.com
 // Fundraising site: http://www.amillionpixels.us
 // New Temple Site:  http://newtemple.blogspot.com

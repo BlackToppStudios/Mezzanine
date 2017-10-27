@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -17,13 +17,12 @@ subject to the following restrictions:
 #ifndef BT_CONVEX_PENETRATION_DEPTH_H
 #define BT_CONVEX_PENETRATION_DEPTH_H
 
-class btStackAlloc;
 class btVector3;
 #include "btSimplexSolverInterface.h"
 class btConvexShape;
 class btTransform;
 
-/// ©onvexPenetrationDepthSolver provides an interface for penetration depth calculation.
+///ConvexPenetrationDepthSolver provides an interface for penetration depth calculation.
 class btConvexPenetrationDepthSolver
 {
 public:	
@@ -33,8 +32,7 @@ public:
 		const btConvexShape* convexA,const btConvexShape* convexB,
 					const btTransform& transA,const btTransform& transB,
 				btVector3& v, btVector3& pa, btVector3& pb,
-				class btIDebugDraw* debugDraw,btStackAlloc* stackAlloc
-				) = 0;
+				class btIDebugDraw* debugDraw) = 0;
 
 
 };

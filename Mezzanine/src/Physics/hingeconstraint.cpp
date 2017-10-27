@@ -222,7 +222,7 @@ namespace Mezzanine
             { this->Hinge->setMotorTargetVelocity(TargetVelocity); }
 
         Real HingeConstraint::GetMotorTargetVelocity() const
-            { return this->Hinge->getMotorTargetVelosity(); }
+            { return this->Hinge->getMotorTargetVelocity(); }
 
         void HingeConstraint::SetMotorTarget(const Quaternion& QuatAInB, const Real Delta)
             { this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(),Delta); }

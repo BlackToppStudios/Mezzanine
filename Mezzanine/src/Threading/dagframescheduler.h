@@ -92,7 +92,7 @@
 #include "asynchronousfileloadingworkunit.h"
 #include "asynchronousworkunit.h"
 #include "atomicoperations.h"
-#include "barrier.h"
+#include "backgroundbarrier.h"
 //#include "crossplatformincludes.h" // This is omitted because windows.h include a ton of macros that break clean code, so this vile file's scope must be minimized
 #include "crossplatformexport.h"
 #include "datatypes.h"
@@ -105,6 +105,7 @@
 #include "mutex.h"
 #include "readwritespinlock.h"
 #include "rollingaverage.h"
+#include "spinbarrier.h"
 #include "spinlock.h"
 #include "systemcalls.h"
 #include "thread.h"

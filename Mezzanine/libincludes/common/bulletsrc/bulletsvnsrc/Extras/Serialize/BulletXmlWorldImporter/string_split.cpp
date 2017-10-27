@@ -34,7 +34,7 @@ namespace bullet_utils
 		str_array_free(strArray);
 	}
 
-}
+};
 
 
 

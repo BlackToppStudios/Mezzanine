@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -28,6 +28,15 @@ class btIDebugDraw;
 class btStackAlloc;
 class	btDispatcher;
 /// btConstraintSolver provides solver interface
+
+
+enum btConstraintSolverType
+{
+	BT_SEQUENTIAL_IMPULSE_SOLVER=1,
+	BT_MLCP_SOLVER=2,
+	BT_NNCG_SOLVER=4
+};
+
 class btConstraintSolver
 {
 
@@ -38,12 +47,16 @@ public:
 	virtual void prepareSolve (int /* numBodies */, int /* numManifolds */) {;}
 
 	///solve a group of constraints
-	virtual btScalar solveGroup(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifold,int numManifolds,btTypedConstraint** constraints,int numConstraints, const btContactSolverInfo& info,class btIDebugDraw* debugDrawer, btStackAlloc* stackAlloc,btDispatcher* dispatcher) = 0;
+	virtual btScalar solveGroup(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifold,int numManifolds,btTypedConstraint** constraints,int numConstraints, const btContactSolverInfo& info,class btIDebugDraw* debugDrawer,btDispatcher* dispatcher) = 0;
 
-	virtual void allSolved (const btContactSolverInfo& /* info */,class btIDebugDraw* /* debugDrawer */, btStackAlloc* /* stackAlloc */) {;}
+	virtual void allSolved (const btContactSolverInfo& /* info */,class btIDebugDraw* /* debugDrawer */) {;}
 
-	/// ©lear internal cached data and reset random seed
+	///clear internal cached data and reset random seed
 	virtual	void	reset() = 0;
+
+	virtual btConstraintSolverType	getSolverType() const=0;
+
+
 };
 
 

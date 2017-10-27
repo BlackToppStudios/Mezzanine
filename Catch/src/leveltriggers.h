@@ -13,9 +13,9 @@ protected:
     FieldOfForce* TrigWind;
     Graphics::ParticleSystemProxy* TrigWindClutter;
     Physics::HingeConstraint* TrigMotor;
-    Physics::Generic6DofSpringConstraint* TrigSpring;
+    Physics::SixDofSpringConstraint* TrigSpring;
 public:
-    BNS_Fan(const String& name, Physics::HingeConstraint* Motor, Physics::Generic6DofSpringConstraint* Spring, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter);
+    BNS_Fan(const String& name, Physics::HingeConstraint* Motor, Physics::SixDofSpringConstraint* Spring, RigidDebris* Fan, FieldOfForce* Wind, Graphics::ParticleSystemProxy* WindClutter);
     virtual ~BNS_Fan();
     virtual bool ConditionsAreMet();
     virtual void ApplyTrigger();

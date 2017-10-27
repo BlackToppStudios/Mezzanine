@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -32,10 +32,10 @@ ATTRIBUTE_ALIGNED16 (struct)	btSolverConstraint
 	BT_DECLARE_ALIGNED_ALLOCATOR();
 
 	btVector3		m_relpos1CrossNormal;
-	btVector3		m_contactNormal;
+	btVector3		m_contactNormal1;
 
 	btVector3		m_relpos2CrossNormal;
-	//btVector3		m_contactNormal2;//usually m_contactNormal2 == -m_contactNormal
+	btVector3		m_contactNormal2; //usually m_contactNormal2 == -m_contactNormal1, but not always
 
 	btVector3		m_angularComponentA;
 	btVector3		m_angularComponentB;
@@ -55,6 +55,7 @@ ATTRIBUTE_ALIGNED16 (struct)	btSolverConstraint
 	{
 		void*		m_originalContactPoint;
 		btScalar	m_unusedPadding4;
+		int			m_numRowsForNonContactConstraint;
 	};
 
 	int	m_overrideNumSolverIterations;

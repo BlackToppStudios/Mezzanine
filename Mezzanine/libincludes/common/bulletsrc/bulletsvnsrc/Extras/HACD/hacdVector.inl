@@ -156,13 +156,13 @@ namespace HACD
 		m_data[2] = rhs.m_data[2];
 	}
 	template <typename T>
-	inline Vec3<T>::~Vec3(void){}
+	inline Vec3<T>::~Vec3(void){};
 
 	template <typename T>
 	inline Vec3<T>::Vec3() {}
     
     template<typename T>
-    inline const bool Colinear(const Vec3<T> & a, const Vec3<T> & b, const Vec3<T> & c)
+    inline bool Colinear(const Vec3<T> & a, const Vec3<T> & b, const Vec3<T> & c)
     {
         return  ((c.Z() - a.Z()) * (b.Y() - a.Y()) - (b.Z() - a.Z()) * (c.Y() - a.Y()) == 0.0 /*EPS*/) &&
                 ((b.Z() - a.Z()) * (c.X() - a.X()) - (b.X() - a.X()) * (c.Z() - a.Z()) == 0.0 /*EPS*/) &&
