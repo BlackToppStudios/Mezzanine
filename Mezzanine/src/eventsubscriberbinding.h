@@ -60,22 +60,20 @@ namespace Mezzanine
     {
     public:
         /// @brief Retrievable type for querying the type of callable interface this table works with.
-        using InterfaceType = Interface;
+        using SubscriberType = Interface;
         /// @brief The type to use for uniquely identifying instances of subscribers.
-        using InterfaceID = typename Interface::IDType;
+        using SubscriberIDType = typename Interface::IDType;
+        /// @brief Convenience type for retrieving the subscriber.
+        using SubscriberRet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
     protected:
         /// @brief The delegate that will be called (if valid) when a desired event is fired.
-        InterfaceType Callable;
-        /// @brief The hash of the event name this binding is subscribed to.
-        EventHashType NameHash;
+        SubscriberType Callable;
     public:
         /// @brief Descriptive constructor.
         /// @param ID The unique identifier for the subscriber/delegate.
-        /// @param Observer The observer to dispatch the event to.
-        /// @param Hash The hash of the event name this binding is subscribed to.
-        EventSubscriberBinding(const InterfaceType Observer, const EventHashType Hash) :
-            Callable(Observer),
-            NameHash(Hash)
+        /// @param Sub The observer to dispatch the event to.
+        EventSubscriberBinding(const SubscriberType Sub) :
+            Callable(Sub)
             {  }
         /// @brief Copy constructor.
         /// @param Other The other binding to not be copied.
@@ -102,17 +100,13 @@ namespace Mezzanine
         // Utility
 
         /// @brief Gets the delegate that is called when the subscribed event is dispatched.
-        /// @return Returns a const reference to the delegate bound to the subscribed event.
-        const InterfaceType GetCallable() const
+        /// @return Returns a pointer or reference (depending on implementation) of the stored subscriber.
+        SubscriberRet GetCallable()
             { return this->Callable; }
         /// @brief Gets the unique identifier of the subscriber.
         /// @return Returns an ID that uniquely identifies the subscriber in the subscription table.
-        InterfaceID GetID() const
+        SubscriberIDType GetID() const
             { return EventHelper::ToPointer( this->Callable )->GetID(); }
-        /*/// @brief Gets the hash of the event this binding is bound to.
-        /// @return Returns the hash for the event name this binding is subscribed to.
-        EventHashType GetEventHash() const
-            { return this->NameHash; }//*/
 
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
@@ -131,6 +125,79 @@ namespace Mezzanine
         void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
             { ( EventHelper::ToPointer(this->Callable)->*Funct)( std::forward<ArgTypes>(Args)... ); }
     };//EventSubscriberBinding
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is the base class for any class that generates and publishes events to subscribers.
+    /// @tparam TableType The type of table this binding will be bound to.
+    /// @tparam Interface The type of interface/subscriber this binding will be bound to.
+    ///////////////////////////////////////
+    template<class TableType, class Interface>
+    class MEZZ_LIB EventSubscriberBindingImpl : public EventSubscriberBinding<Interface>
+    {
+    public:
+        /// @brief Convenience type for describing the type of "this".
+        using SelfType = EventSubscriberBindingImpl<TableType,Interface>;
+        /// @brief Retrievable type for querying the type of callable interface this table works with.
+        using SubscriberType = Interface;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Interface::IDType;
+    protected:
+        /// @brief A pointer to the EventSubscriberTable we are subscribed to.
+        TableType* EventTable;
+    public:
+        /// @brief Class constructor.
+        /// @param ID The unique identifier for the subscriber/delegate.
+        /// @param Observer The callback to dispatch the event to.
+        /// @param Table A pointer to the table dispatching the interested event.
+        EventSubscriberBindingImpl(const SubscriberType Observer, TableType* Table) :
+            EventSubscriberBinding<SubscriberType>(Observer),
+            EventTable(Table)
+            {  }
+        /// @brief Copy constructor.
+        /// @param Other The other binding to not be copied.
+        EventSubscriberBindingImpl(const SelfType& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other binding to be moved.
+        EventSubscriberBindingImpl(SelfType&& Other) = default;
+        /// @brief Class destructor.
+        virtual ~EventSubscriberBindingImpl() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy constructor.
+        /// @param Other The other binding to not be copied.
+        /// @return Returns a reference to this.
+        SelfType& operator=(const SelfType& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other binding to be moved.
+        /// @return Returns a reference to this.
+        SelfType& operator=(SelfType&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Check if this binding is still valid.
+        /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
+        virtual Boole IsSubscribed() const
+            { return ( this->EventTable != nullptr ); }
+        /// @brief Removes the subscriber from the list of interested recipients on the publisher.
+        virtual void Unsubscribe()
+        {
+            this->EventTable->Unsubscribe( this->GetID() );
+            this->Unbind();
+        }
+        /// @brief Removes all references to an Event and/or Publisher from this binding.
+        /// @remarks This method is called by Unsubscribe, and should never need to be called manually.
+        /// This method also makes zero attempt to notify the publisher of it's changed state.  For that
+        /// you should call Unsubscribe.
+        virtual void Unbind()
+            { this->EventTable = nullptr; }
+        /// @brief Notifies this binding of an updated address for the table.
+        /// @param ToUpdate An updated pointer to the subscription table that can be used.
+        void UpdateTable(TableType* ToUpdate)
+            { if( this->IsSubscribed() ) this->EventTable = ToUpdate; }
+    };//EventSubscriberBindingImpl
 
     /// @brief Convenience type for passing around EventSubscriberBindings.
     template<typename Interface>

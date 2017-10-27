@@ -75,11 +75,12 @@ namespace Mezzanine
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(IteratorType RangeBegin, IteratorType RangeEnd, MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(IteratorType RangeBegin, IteratorType RangeEnd, MemberFunct Funct, ArgTypes... Args) const
         {
             while( RangeBegin != RangeEnd )
             {
                (EventHelper::ToPointer(*RangeBegin)->*Funct)(std::forward<ArgTypes>(Args)...);
+               //(EventHelper::ToPointer(*RangeBegin)->*Funct)(Args...);
                 ++RangeBegin;
             }
         }

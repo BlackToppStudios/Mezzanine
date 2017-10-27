@@ -50,83 +50,6 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is the base class for any class that generates and publishes events to subscribers.
-    /// @tparam TableType The type of table this binding will be bound to.
-    /// @tparam Interface The type of interface/subscriber this binding will be bound to.
-    ///////////////////////////////////////
-    template<class TableType, class Interface>
-    class MEZZ_LIB EventSubscriberBindingImpl : public EventSubscriberBinding<Interface>
-    {
-    public:
-        /// @brief Convenience type for describing the type of "this".
-        using SelfType = EventSubscriberBindingImpl<TableType,Interface>;
-        /// @brief Retrievable type for querying the type of callable interface this table works with.
-        using InterfaceType = Interface;
-        /// @brief The type to use for uniquely identifying instances of subscribers.
-        using InterfaceIDType = typename Interface::IDType;
-    protected:
-        /// @brief A pointer to the EventSubscriberTable we are subscribed to.
-        TableType* EventTable;
-    public:
-        /// @brief Class constructor.
-        /// @param ID The unique identifier for the subscriber/delegate.
-        /// @param Observer The callback to dispatch the event to.
-        /// @param Table A pointer to the table dispatching the interested event.
-        /// @param Hash The hash of the event name this binding is subscribed to.
-        EventSubscriberBindingImpl(const InterfaceIDType ID, const InterfaceType Observer, TableType* Table, const EventHashType Hash) :
-            EventSubscriberBinding<InterfaceType>(ID,Observer,Hash),
-            EventTable(Table)
-            {  }
-        /// @brief Copy constructor.
-        /// @param Other The other binding to not be copied.
-        EventSubscriberBindingImpl(const SelfType& Other) = delete;
-        /// @brief Move constructor.
-        /// @param Other The other binding to be moved.
-        EventSubscriberBindingImpl(SelfType&& Other) = default;
-        /// @brief Class destructor.
-        virtual ~EventSubscriberBindingImpl() = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Operators
-
-        /// @brief Copy constructor.
-        /// @param Other The other binding to not be copied.
-        /// @return Returns a reference to this.
-        SelfType& operator=(const SelfType& Other) = delete;
-        /// @brief Move assignment operator.
-        /// @param Other The other binding to be moved.
-        /// @return Returns a reference to this.
-        SelfType& operator=(SelfType&& Other) = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Check if this binding is still valid.
-        /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
-        virtual Boole IsSubscribed() const
-            { return ( this->EventTable != nullptr ); }
-        /// @brief Removes the subscriber from the list of interested recipients on the publisher.
-        virtual void Unsubscribe()
-        {
-            this->EventTable->Unsubscribe( this->GetID() );
-            this->Unbind();
-        }
-        /// @brief Removes all references to an Event and/or Publisher from this binding.
-        /// @remarks This method is called by Unsubscribe, and should never need to be called manually.
-        /// This method also makes zero attempt to notify the publisher of it's changed state.  For that
-        /// you should call Unsubscribe.
-        virtual void Unbind()
-        {
-            this->EventTable = nullptr;
-            this->NameHash = EventNameType::EmptyHash;
-        }
-        /// @brief Notifies this binding of an updated address for the table.
-        /// @param ToUpdate An updated pointer to the subscription table that can be used.
-        void UpdateTable(TableType* ToUpdate)
-            { this->EventTable = ToUpdate; }
-    };//EventSubscriberBindingImpl
-
-    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a convenience iterator class used by the EventBindingTable.
     /// @tparam Interface The type of interface/subscriber this iterator will return on dereference.
     ///////////////////////////////////////
@@ -140,7 +63,7 @@ namespace Mezzanine
         using StoredType = EventSubscriberBindingPtr<Interface>;
     protected:
         /// @brief A pointer to the binding that will be used on dereference.
-        const StoredType* Value;
+        StoredType* Value;
     public:
         /// @brief Blank constructor.
         BindingIterator() :
@@ -436,13 +359,14 @@ namespace Mezzanine
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments and extra data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(MemberFunct Funct, ArgTypes... Args)
         {
             //for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
             //    { (*SubIt)->DispatchEvent(Funct,Args...); }
             DispatchIterator Begin = this->Subscribers.begin();
             DispatchIterator End = this->Subscribers.end();
             this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward<ArgTypes>(Args)...);
+            //this->Dispatcher.DispatchEvent(Begin,End,Funct,Args...);
         }
     };//EventBindingTable
 

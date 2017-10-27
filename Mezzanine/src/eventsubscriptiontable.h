@@ -229,7 +229,7 @@ namespace Mezzanine
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments and extra data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args)
         {
             //for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
             //    { ((*SubIt)->*Funct)(Args...); }

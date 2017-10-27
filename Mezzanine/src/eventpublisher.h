@@ -215,10 +215,11 @@ namespace Mezzanine
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(const DispatchIDType ID, MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(const DispatchIDType ID, MemberFunct Funct, ArgTypes... Args)
         {
-            ConstTableIterator TableIt = this->GetSubscriptionTable(ID);
+            TableIterator TableIt = this->GetSubscriptionTable(ID);
             (*TableIt).DispatchEvent(Funct,std::forward<ArgTypes>(Args)...);
+            //(*TableIt).DispatchEvent(Funct,Args...);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
