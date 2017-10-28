@@ -125,25 +125,25 @@ namespace Mezzanine
 
         void Scrollbar::SubscribeToChildEvents()
         {
-            this->Scroller->Subscribe(Button::EventActivated,this,
-                                      [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->Scroller->Subscribe(Button::EventDeactivated,this,
-                                      [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->ScrollBack->Subscribe(Button::EventActivated,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->ScrollBack->Subscribe(Button::EventDeactivated,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->Scroller->Subscribe(Button::EventActivated,SubscriberType(this,
+                                      [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->Scroller->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                      [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->ScrollBack->Subscribe(Button::EventActivated,SubscriberType(this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->ScrollBack->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
             if( this->UpLeftButton != NULL ) {
-                this->UpLeftButton->Subscribe(Button::EventActivated,this,
-                                              [this](EventPtr Args){ this->_NotifyEvent(Args); });
-                this->UpLeftButton->Subscribe(Button::EventDeactivated,this,
-                                              [this](EventPtr Args){ this->_NotifyEvent(Args); });
+                this->UpLeftButton->Subscribe(Button::EventActivated,SubscriberType(this,
+                                              [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+                this->UpLeftButton->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                              [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
             }
             if( this->DownRightButton != NULL ) {
-                this->DownRightButton->Subscribe(Button::EventActivated,this,
-                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); });
-                this->DownRightButton->Subscribe(Button::EventDeactivated,this,
-                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); });
+                this->DownRightButton->Subscribe(Button::EventActivated,SubscriberType(this,
+                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+                this->DownRightButton->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                                 [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
             }
         }
 
@@ -243,8 +243,8 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            ScrollValueChangedEventPtr Args( new ScrollValueChangedEvent(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue) );
-            this->DispatchEvent(Args);
+            ScrollValueChangedEventPtr Args( new ScrollValueChangedEvent(EventScrollValueChanged,this->Name,OldValue,NewValue) );
+            this->DispatchEvent(EventScrollValueChanged,SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

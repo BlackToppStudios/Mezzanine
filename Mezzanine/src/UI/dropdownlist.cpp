@@ -115,12 +115,12 @@ namespace Mezzanine
 
         void DropDownList::SubscribeToChildEvents()
         {
-            this->ListToggle->Subscribe(CheckBox::EventSelected,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->ListToggle->Subscribe(CheckBox::EventDeselected,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this,
-                                                               [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ListToggle->Subscribe(CheckBox::EventSelected,SubscriberType(this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->ListToggle->Subscribe(CheckBox::EventDeselected,SubscriberType(this,
+                                        [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,SubscriberType(this,
+                                                               [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -284,19 +284,12 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Selection List not found after DropDownList deserialization.");
             }
 
-            this->ListToggle->Subscribe(CheckBox::EventSelected,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->ListToggle->Subscribe(CheckBox::EventDeselected,this,
-                                        [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this,
-                                                               [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->SubscribeToChildEvents();
             this->SelectionList->Hide();
         }
 
         String DropDownList::GetSerializableName()
-        {
-            return DropDownList::TypeName;
-        }
+            { return DropDownList::TypeName; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Event Methods
