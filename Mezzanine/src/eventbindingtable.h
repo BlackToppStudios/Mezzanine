@@ -200,7 +200,7 @@ namespace Mezzanine
         /// @brief Convenience type for the actual binding implementation used by this publisher.
         using BindingImplType = EventSubscriberBindingImpl<SelfType,SubscriberType>;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
+        using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
         /// @brief Convenience type for the return value of the Subscribe method.
         using SubscribeRet = BindingType;
         /// @brief Convenience type and check for what exactly will be stored by this subscription table.
@@ -303,7 +303,7 @@ namespace Mezzanine
         /// @exception If the ID of the Sub is already being used by another binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(const SubscribeArg Sub)
+        SubscribeRet Subscribe(SubscribeArg Sub)
         {
             EventSubscriberBindingPtr<SubscriberType> NewSubscriber = this->GetBinding( EventHelper::ToPointer(Sub)->GetID() );
             if( NewSubscriber.use_count() > 0 ) {
@@ -320,7 +320,7 @@ namespace Mezzanine
         {
             for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
             {
-                if( (*SubIt)->GetSubID() == ID ) {
+                if( (*SubIt)->GetID() == ID ) {
                     return (*SubIt);
                 }
             }

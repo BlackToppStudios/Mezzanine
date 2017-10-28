@@ -154,12 +154,14 @@ namespace Mezzanine
     /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
     /// @tparam DispatchType The type to be used to dispatch the event to the Subscription table.
     ///////////////////////////////////////
-    template<class TableType>
+    template<class Table>
     class MEZZ_LIB EventPublisher
     {
     public:
         /// @brief Convenience type for describing the type of "this".
-        using SelfType = EventPublisher<TableType>;
+        using SelfType = EventPublisher<Table>;
+        /// @brief Retrievable type for the table used by this publisher.
+        using TableType = Table;
         /// @brief Retrievable type for querying the type of callable interface the table works with.
         using SubscriberType = typename TableType::SubscriberType;
         /// @brief The type to use for uniquely identifying instances of subscribers.
@@ -309,8 +311,8 @@ namespace Mezzanine
         /// @param ID The unique ID of the table to subscribe to.
         /// @param Callable The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(const DispatchIDType ID, const SubscribeArg Callable)
-            { return this->GetSubscriptionTable(ID)->Subscribe(Callable,this); }
+        SubscribeRet Subscribe(const DispatchIDType ID, SubscribeArg Callable)
+            { return this->GetSubscriptionTable(ID)->Subscribe(Callable); }
         /// @brief Removes a single subscriber from the specified table.
         /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
         /// @param ID The unique ID of the table to unsubscribe from.

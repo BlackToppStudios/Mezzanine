@@ -122,7 +122,7 @@ namespace Mezzanine
     /// @param Stream The std stream to write to.
     /// @param Var The ID to be streamed.
     /// @return Returns a reference to the stream passed in.
-    std::ostream& operator<<(std::ostream& Stream, const Mezzanine::EventID& Var)
+    inline std::ostream& operator<<(std::ostream& Stream, const Mezzanine::EventID& Var)
         { return Stream << Var.ID; }
 
     /// @}
