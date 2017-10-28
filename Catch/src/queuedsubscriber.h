@@ -15,11 +15,13 @@ class CatchQueuedSubscriber
 {
 public:
     /// @brief Container type for EventArguements storage in this class.
-    typedef std::vector<EventPtr>                 EventContainer;
+    using EventContainer = std::vector<EventPtr>;
     /// @brief Iterator type for EventArguments stored in this class.
-    typedef EventContainer::iterator              EventIterator;
+    using EventIterator = EventContainer::iterator;
     /// @brief Const Iterator type for EventArguments stored in this class.
-    typedef EventContainer::const_iterator        ConstEventIterator;
+    using ConstEventIterator = EventContainer::const_iterator;
+    /// @brief Convenience type for the bindings used by this subscriber.
+    using SubscriberType = DefaultEventPublisher::SubscriberType;
 protected:
 public:
     /// @brief Container storing all of the Queued events.
@@ -54,7 +56,7 @@ public:
 
     /// @brief Gets a usable delegate that can be used to subscribe this to an EventPublisher.
     /// @return Returns a Delegate that will call _NotifyEvent(EventPtr) on this subscriber.
-    EventSubscriberBinding::CallbackType GetDelegate();
+    SubscriberType GetDelegate();
 
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited
