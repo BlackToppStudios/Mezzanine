@@ -123,7 +123,7 @@ namespace Mezzanine
         /// @param Args The arguments and extra data related to this event.
         template<class MemberFunct, class... ArgTypes>
         void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
-            { ( EventHelper::ToPointer(this->Callable)->*Funct)( std::forward<ArgTypes>(Args)... ); }
+            { (EventHelper::ToPointer(this->Callable)->*Funct)( std::forward<ArgTypes>(Args)... ); }
     };//EventSubscriberBinding
 
     ///////////////////////////////////////////////////////////////////////////////

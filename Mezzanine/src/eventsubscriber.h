@@ -66,18 +66,25 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an example class that satisfies all the preconditions expected by other event classes.
-    /// @tparam IDType The type to use for the unique identification of subscriber instances.
+    /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
+    /// @tparam ReturnType The type to be returned by the function called when an event is dispatched.
+    /// @tparam ArgTypes A variadic template of types that are the parameters of the function to call.
+    /// @pre SubIDType requires equality comparison operators (==,!=) be available.
+    /// @pre ReturnType has no preconditions.  It's just fed into an std::function.
+    /// @pre ArgTypes is expected to not contain any non-const references or move references.  Also fed into an std::function.
     ///////////////////////////////////////
-    template<class SubIDType, class... ArgTypes>
+    template<class SubIDType, typename ReturnType, typename... ArgTypes>
     class MEZZ_LIB FunctionSubscriber
     {
     public:
         /// @brief The type to use for the unique identification of subscriber instances.
         using IDType = SubIDType;
         /// @brief The type of standard function/function signature to call.
-        using FunctionType = std::function<void(ArgTypes...)>;
+        using FunctionType = std::function<ReturnType(ArgTypes...)>;
+        /// @brief The type to be returned after the function is invoked.
+        using RetType = ReturnType;
         /// @brief Convenience type
-        using SelfType = FunctionSubscriber<IDType,ArgTypes...>;
+        using SelfType = FunctionSubscriber<IDType,ReturnType,ArgTypes...>;
     protected:
         /// @brief The function to be called when the event is fired.
         FunctionType SubFunct;
@@ -126,9 +133,9 @@ namespace Mezzanine
         // Callable
 
         /// @brief Callable method for this subscriber.
-        /// @param Params A variadic template of parameters set by the type of FunctionSubscriber.
-        void operator()(ArgTypes&&... Params) const
-            { this->SubFunct( Params... ); }
+        /// @param Params The parameters of the function to be called.
+        RetType operator()(ArgTypes... Params) const
+            { return this->SubFunct( std::forward<ArgTypes>(Params)... ); }
     };//FunctionSubscriber
 
     ///////////////////////////////////////////////////////////////////////////////
