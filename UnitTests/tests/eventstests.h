@@ -66,13 +66,47 @@ public:
     /// @brief This is called when Automatic tests are run
     void RunAutomaticTests()
     {
+        {//EventID
+            EventID IntegerID(144);
+            TEST(IntegerID.ID == 144,"EventID(const_IDType)");
+
+            HashedString32 IDHashed("TestEventHash");
+            EventID HashEventID(IDHashed);
+            TEST(HashEventID.ID == IDHashed.GetHash(),"EventID(const_HashedString32&)");
+
+            EventID CopyID(IntegerID);
+            TEST(CopyID.ID == 144,"EventID(const_EventID&)");
+
+            EventID MoveSourceID(288);
+            EventID MoveDestID(std::move(MoveSourceID));
+            TEST(MoveDestID.ID == 288,"EventID(EventID&&)");
+
+            EventID AssignSourceID(576);
+            EventID AssignDestID(0);
+            AssignDestID = AssignSourceID;
+            TEST(AssignDestID.ID == 576,"EventID::operator=(const_EventID&&)");
+
+            EventID AssignMoveSourceID(1152);
+            EventID AssignMoveDestID(0);
+            AssignMoveDestID = std::move(AssignMoveSourceID);
+            TEST(AssignMoveDestID.ID == 1152,"EventID::operator=(EventID&&)");
+
+            TEST(EventID(50) == EventID(50),"EventID::operator==(const_EventID&)");
+            TEST(EventID(100) != EventID(242),"EventID::operator!=(const_EventID&)");
+
+            StringStream ResultStream;
+            EventID StreamID(150);
+            ResultStream << StreamID;
+            TEST(ResultStream.str() == "150","operator<<(std::ostream&,const_EventID&)");
+        }//EventID
+
         {//EventSubscriberID
             EventSubscriberID IntegerID(144);
             TEST(IntegerID.ID == 144,"EventSubscriberID(const_IDType)");
 
             EventSubscriberID* SubPtr = &IntegerID;
             EventSubscriberID PointerID(SubPtr);
-            TEST(PointerID.ID == reinterpret_cast<EventSubscriberID::IDType>(SubPtr),"EventSubscriberID(PtrType*)")
+            TEST(PointerID.ID == reinterpret_cast<EventSubscriberID::IDType>(SubPtr),"EventSubscriberID(PtrType*)");
 
             EventSubscriberID CopyID(IntegerID);
             TEST(CopyID.ID == 144,"EventSubscriberID(const_EventSubscriberID&)");
@@ -93,8 +127,109 @@ public:
 
             TEST(EventSubscriberID(50) == EventSubscriberID(50),"EventSubscriberID::operator==(const_EventSubscriberID&)");
             TEST(EventSubscriberID(100) != EventSubscriberID(242),"EventSubscriberID::operator!=(const_EventSubscriberID&)");
+
+            StringStream ResultStream;
+            EventSubscriberID StreamID(150);
+            ResultStream << StreamID;
+            TEST(ResultStream.str() == "150","operator<<(std::ostream&,const_EventSubscriberID&)");
         }//EventSubscriberID
 
+        {//FunctionSubscriber
+            {//SingleArg
+                using TestSubscriberType = FunctionSubscriber<EventSubscriberID,void,EventPtr>;
+
+                Whole DispatchCount = 0;
+                EventPtr TestArg = std::make_shared<Event>("TestEvent");
+                TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
+
+                TestSubscriberType IntegerSub(144,TestDelegate);
+                TEST(IntegerSub.GetID().ID == 144,"FunctionSubscriber(const_IDType,const_FunctionType&)-SingleArg");
+
+                TestSubscriberType CopySub(IntegerSub);
+                TEST(CopySub.GetID().ID == 144,"FunctionSubscriber(const_FunctionSubscriber&)-SingleArg");
+
+                TestSubscriberType MoveSourceSub(288,TestDelegate);
+                TestSubscriberType MoveDestSub(std::move(MoveSourceSub));
+                TEST(MoveDestSub.GetID().ID == 288,"FunctionSubscriber(FunctionSubscriber&&)-SingleArg");
+
+                TestSubscriberType AssignSourceSub(576,TestDelegate);
+                TestSubscriberType AssignDestSub(0,TestDelegate);
+                AssignDestSub = AssignSourceSub;
+                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&&)-SingleArg");
+
+                TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
+                TestSubscriberType AssignMoveDestSub(0,TestDelegate);
+                AssignMoveDestSub = std::move(AssignMoveSourceSub);
+                TEST(AssignMoveDestSub.GetID().ID == 1152,"FunctionSubscriber::operator=(FunctionSubscriber&&)-SingleArg");
+
+                TestSubscriberType DispatchSub(2304,TestDelegate);
+                DispatchSub(TestArg);
+                TEST(DispatchCount == 1,"FunctionSubscriber::DispatchEvent(Args...)_const-SingleArg");
+            }//SingleArg
+
+            {//MixedArg
+                using TestSubscriberType = FunctionSubscriber<EventSubscriberID,void,const Real&, Whole>;
+
+                Whole DispatchCount = 0;
+                Real TestArg1 = 3.1415926;
+                Whole TestArg2 = 8675309;
+                TestSubscriberType::FunctionType TestDelegate([&](const Real& fn, Whole ln){ ++DispatchCount; });
+
+                TestSubscriberType IntegerSub(144,TestDelegate);
+                TEST(IntegerSub.GetID().ID == 144,"FunctionSubscriber(const_IDType,const_FunctionType&)-MixedArg");
+
+                TestSubscriberType CopySub(IntegerSub);
+                TEST(CopySub.GetID().ID == 144,"FunctionSubscriber(const_FunctionSubscriber&)-MixedArg");
+
+                TestSubscriberType MoveSourceSub(288,TestDelegate);
+                TestSubscriberType MoveDestSub(std::move(MoveSourceSub));
+                TEST(MoveDestSub.GetID().ID == 288,"FunctionSubscriber(FunctionSubscriber&&)-MixedArg");
+
+                TestSubscriberType AssignSourceSub(576,TestDelegate);
+                TestSubscriberType AssignDestSub(0,TestDelegate);
+                AssignDestSub = AssignSourceSub;
+                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&&)-MixedArg");
+
+                TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
+                TestSubscriberType AssignMoveDestSub(0,TestDelegate);
+                AssignMoveDestSub = std::move(AssignMoveSourceSub);
+                TEST(AssignMoveDestSub.GetID().ID == 1152,"FunctionSubscriber::operator=(FunctionSubscriber&&)-MixedArg");
+
+                TestSubscriberType DispatchSub(2304,TestDelegate);
+                DispatchSub(TestArg1,TestArg2);
+                TEST(DispatchCount == 1,"FunctionSubscriber::DispatchEvent(Args...)_const-MixedArg");
+            }//MixedArg
+        }//FunctionSubscriber
+
+        {//EventSubscriberBindingImpl
+
+        }//EventSubscriberBindingImpl
+
+        {//EmptyEventDispatcher
+
+        }//EmptyEventDispatcher
+
+        {//SilenceableEventDispatcher
+
+        }//SilenceableEventDispatcher
+
+        {//EventBindingTable
+
+        }//EventBindingTable
+
+        {//EventSubscriptionTable
+
+        }//EventSubscriptionTable
+
+        {//MonoEventPublisher
+
+        }//MonoEventPublisher
+
+        {//MultiEventPublisher
+
+        }//MultiEventPublisher
+
+        /*
         {//EventSubscriberBinding
             EventNameType TestEventName("TestEvent");
             EventPtr TestEvent = std::make_shared<Mezzanine::Event>(TestEventName);
@@ -337,6 +472,7 @@ public:
                  !TestPublisher.HasSubscriptionTable(ThirdTestName),
                  "EventPublisher::RemoveAllSubscriptionTables");
         }//EventPublisher
+        */
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
