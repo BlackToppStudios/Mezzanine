@@ -244,7 +244,7 @@ namespace Mezzanine
             }
 
             ScrollValueChangedEventPtr Args( new ScrollValueChangedEvent(EventScrollValueChanged,this->Name,OldValue,NewValue) );
-            this->DispatchEvent(EventScrollValueChanged,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventScrollValueChanged,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

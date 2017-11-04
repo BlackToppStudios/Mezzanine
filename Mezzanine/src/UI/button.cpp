@@ -352,19 +352,19 @@ namespace Mezzanine
         void Button::_OnActivate()
         {
             EventPtr Args( new WidgetEvent(EventActivated,this->Name) );
-            this->DispatchEvent(EventActivated,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventActivated,&SubscriberType::operator(),Args);
         }
 
         void Button::_OnStandby()
         {
             EventPtr Args( new WidgetEvent(EventStandby,this->Name) );
-            this->DispatchEvent(EventStandby,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventStandby,&SubscriberType::operator(),Args);
         }
 
         void Button::_OnDeactivate()
         {
             EventPtr Args( new WidgetEvent(EventDeactivated,this->Name) );
-            this->DispatchEvent(EventDeactivated,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventDeactivated,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

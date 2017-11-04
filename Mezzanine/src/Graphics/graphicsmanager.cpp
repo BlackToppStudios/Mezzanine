@@ -95,7 +95,7 @@ namespace
     void HandleWindowEventShown(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowShown,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowShown,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowShown,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Hidden" Window event from internal sources.
@@ -104,7 +104,7 @@ namespace
     void HandleWindowEventHidden(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowHidden,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowHidden,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowHidden,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Exposed" Window event from internal sources.
@@ -113,7 +113,7 @@ namespace
     void HandleWindowEventExposed(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowExposed,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowExposed,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowExposed,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Moved" Window event from internal sources.
@@ -125,7 +125,7 @@ namespace
         Integer X = InternalEvent.data1;
         Integer Y = InternalEvent.data2;
         WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowMoved,WindowID,X,Y);
-        EventWindow->DispatchEvent(GameWindow::EventWindowMoved,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowMoved,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Resizing" Window event from internal sources.
@@ -137,7 +137,7 @@ namespace
         Integer X = InternalEvent.data1;
         Integer Y = InternalEvent.data2;
         WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResizing,WindowID,X,Y);
-        EventWindow->DispatchEvent(GameWindow::EventWindowResizing,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowResizing,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Resized" Window event from internal sources.
@@ -149,7 +149,7 @@ namespace
         Integer X = InternalEvent.data1;
         Integer Y = InternalEvent.data2;
         WindowTransformEventPtr WinEv = std::make_shared<WindowTransformEvent>(GameWindow::EventWindowResized,WindowID,X,Y);
-        EventWindow->DispatchEvent(GameWindow::EventWindowResized,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowResized,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Minimized" Window event from internal sources.
@@ -158,7 +158,7 @@ namespace
     void HandleWindowEventMinimized(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMinimized,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowMinimized,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowMinimized,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Maximized" Window event from internal sources.
@@ -167,7 +167,7 @@ namespace
     void HandleWindowEventMaximized(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowMaximized,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowMaximized,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowMaximized,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Restored" Window event from internal sources.
@@ -176,7 +176,7 @@ namespace
     void HandleWindowEventRestored(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowRestored,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowRestored,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowRestored,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Enter" Window event from internal sources.
@@ -185,7 +185,7 @@ namespace
     void HandleWindowEventEnter(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowEnter,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowEnter,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowEnter,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Leave" Window event from internal sources.
@@ -194,7 +194,7 @@ namespace
     void HandleWindowEventLeave(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowLeave,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowLeave,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowLeave,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Focus Gained" Window event from internal sources.
@@ -203,7 +203,7 @@ namespace
     void HandleWindowEventFocusGained(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusGained,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowFocusGained,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowFocusGained,&SubscriberType::operator(),WinEv);
     }
 
     /// @brief Handles the "Focus Lost" Window event from internal sources.
@@ -212,7 +212,7 @@ namespace
     void HandleWindowEventFocusLost(GameWindow* EventWindow, const UInt32 WindowID)
     {
         WindowEventPtr WinEv = std::make_shared<WindowEvent>(GameWindow::EventWindowFocusLost,WindowID);
-        EventWindow->DispatchEvent(GameWindow::EventWindowFocusLost,SubscriberType::operator(),WinEv);
+        EventWindow->DispatchEvent(GameWindow::EventWindowFocusLost,&SubscriberType::operator(),WinEv);
     }
 }
 
@@ -658,7 +658,7 @@ namespace Mezzanine
             this->GameWindows.push_back(NewWindow);
 
             WindowEventPtr WinEv = std::make_shared<WindowEvent>(EventWindowCreated,NewWindow->GetID());
-            this->GraphicsPublisher.DispatchEvent(EventWindowCreated,SubscriberType::operator(),WinEv);
+            this->GraphicsPublisher.DispatchEvent(EventWindowCreated,&SubscriberType::operator(),WinEv);
 
             return NewWindow;
         }
@@ -701,7 +701,7 @@ namespace Mezzanine
             {
                 if( ToBeDestroyed == (*WinIt) ) {
                     WindowEventPtr WinEv = std::make_shared<WindowEvent>(EventWindowDestroyed,(*WinIt)->GetID());
-                    this->GraphicsPublisher.DispatchEvent(EventWindowDestroyed,SubscriberType::operator(),WinEv);
+                    this->GraphicsPublisher.DispatchEvent(EventWindowDestroyed,&SubscriberType::operator(),WinEv);
 
                     delete ToBeDestroyed;
                     this->GameWindows.erase(WinIt);
@@ -715,7 +715,7 @@ namespace Mezzanine
             for( GameWindow* CurrWin : this->GameWindows )
             {
                 WindowEventPtr WinEv = std::make_shared<WindowEvent>(EventWindowDestroyed,CurrWin->GetID());
-                this->GraphicsPublisher.DispatchEvent(EventWindowDestroyed,SubscriberType::operator(),WinEv);
+                this->GraphicsPublisher.DispatchEvent(EventWindowDestroyed,&SubscriberType::operator(),WinEv);
 
                 delete CurrWin;
             }

@@ -256,14 +256,14 @@ namespace Mezzanine
                         Joystick* Added = this->ConstructJoystick( InternalEvents[CurrEv].jdevice.which );
                         DeviceIDType AddID = Added->GetDeviceID();
                         DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventJoystickAdded,AddID);
-                        this->InputPublisher.DispatchEvent(EventJoystickAdded,SubscriberType::operator(),DeviceAdded);
+                        this->InputPublisher.DispatchEvent(EventJoystickAdded,&SubscriberType::operator(),DeviceAdded);
                         break;
                     }
                     case SDL_JOYDEVICEREMOVED:
                     {
                         DeviceIDType RemoveID = InternalEvents[CurrEv].jdevice.which;
                         DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventJoystickRemoved,RemoveID);
-                        this->InputPublisher.DispatchEvent(EventJoystickRemoved,SubscriberType::operator(),DeviceRemoved);
+                        this->InputPublisher.DispatchEvent(EventJoystickRemoved,&SubscriberType::operator(),DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEADDED:
@@ -271,21 +271,21 @@ namespace Mezzanine
                         Controller* Added = this->ConstructController( InternalEvents[CurrEv].cdevice.which );
                         DeviceIDType AddID = Added->GetDeviceID();
                         DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventControllerAdded,AddID);
-                        this->InputPublisher.DispatchEvent(EventControllerAdded,SubscriberType::operator(),DeviceAdded);
+                        this->InputPublisher.DispatchEvent(EventControllerAdded,&SubscriberType::operator(),DeviceAdded);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEREMOVED:
                     {
                         DeviceIDType RemoveID = InternalEvents[CurrEv].cdevice.which;
                         DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventControllerRemoved,RemoveID);
-                        this->InputPublisher.DispatchEvent(EventControllerRemoved,SubscriberType::operator(),DeviceRemoved);
+                        this->InputPublisher.DispatchEvent(EventControllerRemoved,&SubscriberType::operator(),DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEREMAPPED:
                     {
                         DeviceIDType RemapID = InternalEvents[CurrEv].cdevice.which;
                         DeviceEventPtr DeviceRemapped = std::make_shared<DeviceEvent>(EventControllerRemapped,RemapID);
-                        this->InputPublisher.DispatchEvent(EventControllerRemapped,SubscriberType::operator(),DeviceRemapped);
+                        this->InputPublisher.DispatchEvent(EventControllerRemapped,&SubscriberType::operator(),DeviceRemapped);
                         break;
                     }
                     case SDL_FINGERDOWN:
@@ -305,7 +305,7 @@ namespace Mezzanine
                     case SDL_CLIPBOARDUPDATE:
                     {
                         EventPtr ClipboardUpdated = std::make_shared<Event>(EventClipboardUpdated);
-                        this->InputPublisher.DispatchEvent(EventClipboardUpdated,SubscriberType::operator(),ClipboardUpdated);
+                        this->InputPublisher.DispatchEvent(EventClipboardUpdated,&SubscriberType::operator(),ClipboardUpdated);
                         break;
                     }
                     default: // Ignore the event.

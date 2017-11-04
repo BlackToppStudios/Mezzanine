@@ -74,13 +74,13 @@ namespace Mezzanine
         void Action::_OnActivateAction()
         {
             EventPtr Args( new ActionEvent(EventActionActivated,this->ActionName) );
-            this->DispatchEvent(EventActionActivated,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventActionActivated,&SubscriberType::operator(),Args);
         }
 
         void Action::_OnDeactivateAction()
         {
             EventPtr Args( new ActionEvent(EventActionDeactivated,this->ActionName) );
-            this->DispatchEvent(EventActionDeactivated,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventActionDeactivated,&SubscriberType::operator(),Args);
         }
 
         Boole Action::_HandleInput(const Input::MetaCode& Code)

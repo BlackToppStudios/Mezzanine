@@ -480,7 +480,7 @@ namespace Mezzanine
             }
 
             SpinnerValueChangedEventPtr Args( new SpinnerValueChangedEvent(EventSpinValueChanged,this->Name,OldValue,NewValue) );
-            this->DispatchEvent(EventSpinValueChanged,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventSpinValueChanged,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

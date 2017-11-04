@@ -136,7 +136,7 @@ namespace Mezzanine
                 this->DeselectOtherButtons(Selected);
 
                 WidgetEventPtr Args( new WidgetEvent( EventGroupButtonSelected,Selected->GetName()) );
-                this->DispatchEvent(EventGroupButtonSelected,SubscriberType::operator(),Args);
+                this->DispatchEvent(EventGroupButtonSelected,&SubscriberType::operator(),Args);
             }
         }
 

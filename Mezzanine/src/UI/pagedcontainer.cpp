@@ -107,11 +107,11 @@ namespace Mezzanine
                 if( this->LastSelectedChild != DirectChild ) {
                     if( this->LastSelectedChild != NULL ) {
                         ChildSelectedEventPtr DeselectArgs( new ChildSelectedEvent(EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
-                        this->DispatchEvent(EventChildSelected,SubscriberType::operator(),DeselectArgs);
+                        this->DispatchEvent(EventChildSelected,&SubscriberType::operator(),DeselectArgs);
                     }
                     if( DirectChild != NULL ) {
                         ChildSelectedEventPtr SelectArgs( new ChildSelectedEvent(EventChildSelected,this->Name,DirectChild->GetName(),true) );
-                        this->DispatchEvent(EventChildSelected,SubscriberType::operator(),SelectArgs);
+                        this->DispatchEvent(EventChildSelected,&SubscriberType::operator(),SelectArgs);
                     }
                     this->LastSelectedChild = DirectChild;
                 }
@@ -153,7 +153,7 @@ namespace Mezzanine
         {
             if( this->LastSelectedChild != NULL ) {
                 ChildSelectedEventPtr DeselectArgs( new ChildSelectedEvent(EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
-                this->DispatchEvent(EventChildSelected,SubscriberType::operator(),DeselectArgs);
+                this->DispatchEvent(EventChildSelected,&SubscriberType::operator(),DeselectArgs);
                 this->LastSelectedChild = NULL;
             }
         }
@@ -487,7 +487,7 @@ namespace Mezzanine
         void PagedContainer::_OnChildSelected(const String& ChildName, const Boole Selected)
         {
             ChildSelectedEventPtr Args( new ChildSelectedEvent(EventChildSelected,this->Name,ChildName,Selected) );
-            this->DispatchEvent(EventChildSelected,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventChildSelected,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

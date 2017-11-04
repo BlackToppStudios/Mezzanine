@@ -235,7 +235,7 @@ namespace Mezzanine
         this->Entities.insert(InsertPos,ToAdd);
 
         EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityCreated,ToAdd->GetName());
-        this->Publisher.DispatchEvent(EventEntityCreated,SubscriberType::operator(),EntEv);
+        this->Publisher.DispatchEvent(EventEntityCreated,&SubscriberType::operator(),EntEv);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -489,7 +489,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EventEntityDestroyed,SubscriberType::operator(),EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{
@@ -507,7 +507,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EventEntityDestroyed,SubscriberType::operator(),EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{
@@ -525,7 +525,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EventEntityDestroyed,SubscriberType::operator(),EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{

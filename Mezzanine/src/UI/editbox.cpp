@@ -367,7 +367,7 @@ namespace Mezzanine
         void EditBox::_OnTextUpdated()
         {
             WidgetEventPtr Args( new WidgetEvent(EventTextUpdated,this->Name) );
-            this->DispatchEvent(EventTextUpdated,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventTextUpdated,&SubscriberType::operator(),Args);
         }
 
         void EditBox::_OnMouseDragStart()

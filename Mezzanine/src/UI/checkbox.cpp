@@ -205,7 +205,7 @@ namespace Mezzanine
             this->SetGroupFromState(this->State);
 
             EventPtr Args( new WidgetEvent(EventSelected,this->Name) );
-            this->DispatchEvent(EventSelected,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventSelected,&SubscriberType::operator(),Args);
         }
 
         void CheckBox::_OnDeselected()
@@ -214,7 +214,7 @@ namespace Mezzanine
             this->SetGroupFromState(this->State);
 
             EventPtr Args( new WidgetEvent(EventDeselected,this->Name) );
-            this->DispatchEvent(EventDeselected,SubscriberType::operator(),Args);
+            this->DispatchEvent(EventDeselected,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
