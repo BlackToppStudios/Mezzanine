@@ -54,6 +54,8 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
+    /// @tparam Interface The interface that this binding will track the event subscription lifetime of.
+    /// @pre Interface is required to have a type labeled "IDType" defined.  This type should be equality comparable(==,!=).
     ///////////////////////////////////////
     template<typename Interface>
     class MEZZ_LIB EventSubscriberBinding
@@ -67,13 +69,12 @@ namespace Mezzanine
         using SubscriberRet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
     protected:
         /// @brief The delegate that will be called (if valid) when a desired event is fired.
-        SubscriberType Callable;
+        SubscriberType Sub;
     public:
         /// @brief Descriptive constructor.
-        /// @param ID The unique identifier for the subscriber/delegate.
-        /// @param Sub The observer to dispatch the event to.
-        EventSubscriberBinding(const SubscriberType Sub) :
-            Callable(Sub)
+        /// @param BoundSub The observer to dispatch the event to.
+        EventSubscriberBinding(const SubscriberType BoundSub) :
+            Sub(BoundSub)
             {  }
         /// @brief Copy constructor.
         /// @param Other The other binding to not be copied.
@@ -101,12 +102,12 @@ namespace Mezzanine
 
         /// @brief Gets the delegate that is called when the subscribed event is dispatched.
         /// @return Returns a pointer or reference (depending on implementation) of the stored subscriber.
-        SubscriberRet GetCallable()
-            { return this->Callable; }
+        SubscriberRet GetSubscriber()
+            { return this->Sub; }
         /// @brief Gets the unique identifier of the subscriber.
         /// @return Returns an ID that uniquely identifies the subscriber in the subscription table.
         SubscriberIDType GetID() const
-            { return EventHelper::ToPointer( this->Callable )->GetID(); }
+            { return EventHelper::ToPointer( this->Sub )->GetID(); }
 
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
@@ -123,13 +124,15 @@ namespace Mezzanine
         /// @param Args The arguments and extra data related to this event.
         template<class MemberFunct, class... ArgTypes>
         void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
-            { (EventHelper::ToPointer(this->Callable)->*Funct)( std::forward<ArgTypes>(Args)... ); }
+            { (EventHelper::ToPointer(this->Sub)->*Funct)( std::forward<ArgTypes>(Args)... ); }
     };//EventSubscriberBinding
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     /// @tparam TableType The type of table this binding will be bound to.
     /// @tparam Interface The type of interface/subscriber this binding will be bound to.
+    /// @pre TableType is required to have a method with the signature "Unsubscribe(Interface::IDType)".
+    /// @pre Interface is required to have a type labeled "IDType" defined.  This type should be equality comparable(==,!=).
     ///////////////////////////////////////
     template<class TableType, class Interface>
     class MEZZ_LIB EventSubscriberBindingImpl : public EventSubscriberBinding<Interface>
@@ -146,11 +149,10 @@ namespace Mezzanine
         TableType* EventTable;
     public:
         /// @brief Class constructor.
-        /// @param ID The unique identifier for the subscriber/delegate.
-        /// @param Observer The callback to dispatch the event to.
+        /// @param Sub The subscriber to dispatch the event to.
         /// @param Table A pointer to the table dispatching the interested event.
-        EventSubscriberBindingImpl(const SubscriberType Observer, TableType* Table) :
-            EventSubscriberBinding<SubscriberType>(Observer),
+        EventSubscriberBindingImpl(const SubscriberType BoundSub, TableType* Table) :
+            EventSubscriberBinding<SubscriberType>(BoundSub),
             EventTable(Table)
             {  }
         /// @brief Copy constructor.
@@ -177,6 +179,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Gets the table this binding is bound to.
+        /// @return Returns a pointer to the table this binding was created by.
+        TableType* GetTable() const
+            { return this->EventTable; }
+
         /// @brief Check if this binding is still valid.
         /// @return Returns true of the subscriber can still get events from the publisher, false otherwise.
         virtual Boole IsSubscribed() const
@@ -196,12 +203,15 @@ namespace Mezzanine
         /// @brief Notifies this binding of an updated address for the table.
         /// @param ToUpdate An updated pointer to the subscription table that can be used.
         void UpdateTable(TableType* ToUpdate)
-            { if( this->IsSubscribed() ) this->EventTable = ToUpdate; }
+            { this->EventTable = ToUpdate; }
     };//EventSubscriberBindingImpl
 
-    /// @brief Convenience type for passing around EventSubscriberBindings.
+    /// @brief Convenience type for passing around EventSubscriberBinding instances wrapped in a shared ptr.
     template<typename Interface>
     using EventSubscriberBindingPtr = std::shared_ptr< EventSubscriberBinding<Interface> >;
+    /// @brief Convenience type for passing around EventSubscriberBindingImpl instances wrapped in a shared ptr.
+    template<typename TableType, typename Interface>
+    using EventSubscriberBindingImplPtr = std::shared_ptr< EventSubscriberBindingImpl<TableType,Interface> >;
 
     /// @}
 }//Mezzanine

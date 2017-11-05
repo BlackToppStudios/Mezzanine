@@ -51,16 +51,19 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a convenience iterator class used by the EventBindingTable.
-    /// @tparam Interface The type of interface/subscriber this iterator will return on dereference.
+    /// @tparam TableType The type of subscription table that this iterator is being used by.
+    //// @tparam Interface The type of interface/subscriber this iterator will return on dereference.
     ///////////////////////////////////////
-    template<class Interface>
+    template<class TableType>
     class MEZZ_LIB BindingIterator
     {
     public:
         /// @brief Convenience type for the BindingIterator implementation being used.
-        using SelfType = BindingIterator<Interface>;
+        using SelfType = BindingIterator<TableType>;
         /// @brief Convenience type to the binding pointed to by the iterator.
-        using StoredType = EventSubscriberBindingPtr<Interface>;
+        using StoredType = typename TableType::StoredType;
+        /// @brief Convenience type for the interface/subscriber this iterator will return on dereference.
+        using SubscriberType = typename TableType::SubscriberType;
     protected:
         /// @brief A pointer to the binding that will be used on dereference.
         StoredType* Value;
@@ -120,12 +123,12 @@ namespace Mezzanine
 
         /// @brief Reference dereference operator.
         /// @return Returns a reference to the interface in the binding pointed to by this iterator.
-        Interface& operator*()
-            { return EventHelper::ToReference( (*this->Value)->GetCallable() ); }
+        SubscriberType& operator*()
+            { return EventHelper::ToReference( (*this->Value)->GetSubscriber() ); }
         /// @brief Pointer dereference operator.
         /// @return Returns a pointer to the interface in the binding pointed to by this iterator.
-        Interface* operator->()
-            { return EventHelper::ToPointer( (*this->Value)->GetCallable() ); }
+        SubscriberType* operator->()
+            { return EventHelper::ToPointer( (*this->Value)->GetSubscriber() ); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manipulation Operators
@@ -164,21 +167,17 @@ namespace Mezzanine
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
         /// @brief Convenience type for the base binding class that is returned.
-        using BindingType = EventSubscriberBindingPtr<Interface>;
-        /// @brief Convenience type and check for what exactly will be stored by this subscription table.
-        using StoredType = BindingType;
+        using BindingType = EventSubscriberBinding<Interface>;
+        /// @brief Convenience type for the base binding class that is returned wrapped in a shared ptr.
+        using BindingPtrType = EventSubscriberBindingPtr<Interface>;
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
+        template<class StoredType>
         using StorageContainer = std::vector<StoredType>;
-        /// @brief Iterator type for subscriber bindings stored by this table.
-        using StorageIterator = typename StorageContainer::iterator;
-        /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstStorageIterator = typename StorageContainer::const_iterator;
         /// @brief The type to use for uniquely identifying this table among a group of like tables.
         using DispatchIDType = EventID;
-        /// @brief The type of iterator that will be passed to the dispatcher when an event is dispatched.
-        using DispatchIterator = BindingIterator<SubscriberType>;
         /// @brief The type to use for the actual dispatch logic for events.
-        using DispatcherType = EmptyEventDispatcher<DispatchIterator>;
+        template<class IteratorType>
+        using DispatcherType = EmptyEventDispatcher<IteratorType>;
     };//EventSubscriptionTableTraits
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -197,26 +196,30 @@ namespace Mezzanine
         using SubscriberIDType = typename SubscriberType::IDType;
         /// @brief Convenience type for the base binding class that is returned.
         using BindingType = typename Traits::BindingType;
-        /// @brief Convenience type for the actual binding implementation used by this publisher.
+        /// @brief Convenience type for the base binding class that is returned.
+        using BindingPtrType = typename Traits::BindingPtrType;
+        /// @brief Convenience type for the actual binding implementation used by this table.
         using BindingImplType = EventSubscriberBindingImpl<SelfType,SubscriberType>;
+        /// @brief Convenience type for the actual binding implementation used by this table.
+        using BindingImplPtrType = EventSubscriberBindingImplPtr<SelfType,SubscriberType>;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
         /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = BindingType;
+        using SubscribeRet = BindingPtrType;
         /// @brief Convenience type and check for what exactly will be stored by this subscription table.
-        using StoredType = typename Traits::StoredType;
+        using StoredType = BindingImplPtrType;
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
-        using StorageContainer = typename Traits::StorageContainer;
+        using StorageContainer = typename Traits::template StorageContainer<StoredType>;
         /// @brief Iterator type for subscriber bindings stored by this table.
-        using StorageIterator = typename Traits::StorageIterator;
+        using StorageIterator = typename StorageContainer::iterator;
         /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstStorageIterator = typename Traits::ConstStorageIterator;
+        using ConstStorageIterator = typename StorageContainer::const_iterator;
         /// @brief The type to use for uniquely identifying this table among a group of like tables.
         using DispatchIDType = typename Traits::DispatchIDType;
         /// @brief The type of iterator that will be passed to the dispatcher when an event is dispatched.
-        using DispatchIterator = typename Traits::DispatchIterator;
+        using DispatchIterator = BindingIterator<SelfType>;
         /// @brief The type to use for the actual dispatch logic for events.
-        using DispatcherType = typename Traits::DispatcherType;
+        using DispatcherType = typename Traits::template DispatcherType<DispatchIterator>;
     protected:
         /// @brief A container of all the subscriber bindings to this event table.
         StorageContainer Subscribers;
@@ -305,7 +308,7 @@ namespace Mezzanine
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         SubscribeRet Subscribe(SubscribeArg Sub)
         {
-            EventSubscriberBindingPtr<SubscriberType> NewSubscriber = this->GetBinding( EventHelper::ToPointer(Sub)->GetID() );
+            BindingImplPtrType NewSubscriber = this->GetBindingImpl( EventHelper::ToPointer(Sub)->GetID() );
             if( NewSubscriber.use_count() > 0 ) {
                 MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
             }
@@ -316,7 +319,20 @@ namespace Mezzanine
         /// @brief Gets a binding by the subscriber ID.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
         /// @return Returns the binding with the specified ID, or nullptr of none exists.
-        EventSubscriberBindingPtr<SubscriberType> GetBinding(const SubscriberIDType ID) const
+        BindingPtrType GetBinding(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            {
+                if( (*SubIt)->GetID() == ID ) {
+                    return (*SubIt);
+                }
+            }
+            return nullptr;
+        }
+        /// @brief Gets a binding by the subscriber ID.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
+        /// @return Returns the binding with the specified ID, or nullptr of none exists.
+        BindingImplPtrType GetBindingImpl(const SubscriberIDType ID) const
         {
             for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
             {

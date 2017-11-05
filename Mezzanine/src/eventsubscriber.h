@@ -69,7 +69,7 @@ namespace Mezzanine
     /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
     /// @tparam ReturnType The type to be returned by the function called when an event is dispatched.
     /// @tparam ArgTypes A variadic template of types that are the parameters of the function to call.
-    /// @pre SubIDType requires equality comparison operators (==,!=) be available.
+    /// @pre SubIDType is required to have equality comparison operators (==,!=).
     /// @pre ReturnType has no preconditions.  It's just fed into an std::function.
     /// @pre ArgTypes is expected to not contain any non-const references or move references.  Also fed into an std::function.
     ///////////////////////////////////////
