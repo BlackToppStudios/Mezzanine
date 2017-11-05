@@ -188,7 +188,7 @@ public:
                 TestSubscriberType AssignSourceSub(576,TestDelegate);
                 TestSubscriberType AssignDestSub(0,TestDelegate);
                 AssignDestSub = AssignSourceSub;
-                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&&)-MixedArg");
+                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&)-MixedArg");
 
                 TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
                 TestSubscriberType AssignMoveDestSub(0,TestDelegate);
@@ -202,7 +202,84 @@ public:
         }//FunctionSubscriber
 
         {//EventSubscriberBindingImpl
+            using TestTableType = DefaultEventBindingTable<DefaultSubscriberType>;
+            using TestSubscriberType = TestTableType::SubscriberType;
+            using TestBindingType = TestTableType::BindingType;
+            using TestBindingPtrType = TestTableType::BindingPtrType;
+            using TestBindingImplType = TestTableType::BindingImplType;
+            using TestBindingImplPtrType = TestTableType::BindingImplPtrType;
 
+            {//NoTable
+                Whole DispatchCount = 0;
+                TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
+
+                TestBindingImplType IntegerBinding(TestSubscriberType(144,TestDelegate),nullptr);
+                TEST(IntegerBinding.GetID().ID == 144 &&
+                     IntegerBinding.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-NoTable");
+
+                TestBindingImplType MoveBinding(std::move(IntegerBinding));
+                TEST(MoveBinding.GetID().ID == 144 &&
+                     MoveBinding.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-NoTable");
+
+                TestBindingImplType AssignMoveSourceBind(TestSubscriberType(288,TestDelegate),nullptr);
+                TestBindingImplType AssignMoveDestBind(TestSubscriberType(0,TestDelegate),nullptr);
+                AssignMoveDestBind = std::move(AssignMoveSourceBind);
+                TEST(AssignMoveDestBind.GetID().ID == 288 &&
+                     AssignMoveDestBind.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-NoTable");
+
+                TestBindingImplType UtilityTestBinding(TestSubscriberType(576,TestDelegate),nullptr);
+                TEST( !UtilityTestBinding.IsSubscribed() ,"EventSubscriberBindingImpl::IsSubscribed()_const-NoTable");
+            }//NoTable
+
+            {//Table
+                Whole DispatchCount = 0;
+                HashedString32 FirstTestTableName("FirstTestTable");
+                TestTableType FirstTestTable(FirstTestTableName);
+                HashedString32 SecondTestTableName("SecondTestTable");
+                TestTableType SecondTestTable(SecondTestTableName);
+                TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
+
+                TestBindingImplPtrType IntegerBinding = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(144,TestDelegate)));
+                TEST(IntegerBinding->GetID().ID == 144 &&
+                     IntegerBinding->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-Table");
+
+                TestBindingImplPtrType MoveBinding(IntegerBinding);
+                TEST(MoveBinding->GetID().ID == 144 &&
+                     MoveBinding->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-Table");
+
+                TestBindingImplPtrType AssignMoveSourceBind = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(288,TestDelegate)));
+                TestBindingImplPtrType AssignMoveDestBind = std::static_pointer_cast<TestBindingImplType>(SecondTestTable.Subscribe(TestSubscriberType(578,TestDelegate)));
+                *AssignMoveDestBind = std::move(*AssignMoveSourceBind);
+                TEST(AssignMoveDestBind->GetID().ID == 288 &&
+                     AssignMoveDestBind->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-Table");
+
+                TestBindingImplPtrType UtilityTestBinding = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(1156,TestDelegate)));
+                Boole SubscribedPassTest = UtilityTestBinding->IsSubscribed();
+
+                UtilityTestBinding->UpdateTable(&SecondTestTable);
+                TEST(UtilityTestBinding->GetTable() == &SecondTestTable,
+                     "EventSubscriberBindingImpl::UpdateTable(TableType*)-Table");
+
+                UtilityTestBinding->Unbind();
+                TEST(UtilityTestBinding->GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::Unbind()-Table");
+
+                Boole SubscribedFailTest = !UtilityTestBinding->IsSubscribed();
+                TEST(SubscribedPassTest && SubscribedFailTest,
+                     "EventSubscriberBindingImpl::IsSubscribed()_const-Table");
+
+                UtilityTestBinding->UpdateTable(&FirstTestTable);
+                UtilityTestBinding->Unsubscribe();
+                TEST(UtilityTestBinding->IsSubscribed() == false &&
+                     FirstTestTable.GetBinding(1156) == nullptr,
+                     "EventSubscriberBindingImpl::Unsubscribe()-Table");
+            }//Table
         }//EventSubscriberBindingImpl
 
         {//EmptyEventDispatcher
@@ -230,61 +307,6 @@ public:
         }//MultiEventPublisher
 
         /*
-        {//EventSubscriberBinding
-            EventNameType TestEventName("TestEvent");
-            EventPtr TestEvent = std::make_shared<Mezzanine::Event>(TestEventName);
-
-            {//NoPublisher
-                Boole NoPubCalled = false;
-                EventNameType NoPubEventName("NoPubEvent");
-                EventSubscriberBinding::CallbackType NoPubCallback([&](EventPtr Args){ NoPubCalled = true; });
-
-                EventSubscriberBinding NoPubBinding(12,NoPubCallback,nullptr,NoPubEventName.GetHash());
-                TEST(NoPubBinding.GetSubID() == 12 &&
-                     NoPubBinding.GetPublisher() == nullptr &&
-                     NoPubBinding.GetEventHash() == NoPubEventName.GetHash(),
-                     "EventSubscriberBinding::ConstructionAndGetters-NoPublisher");
-
-                TEST(NoPubBinding.IsSubscribed() == false,"EventSubscriberBinding::SubscriptionCheck-NoPublisher");
-
-                NoPubBinding.DispatchEvent(TestEvent);
-                TEST(NoPubCalled,"EventSubscriberBinding::DispatchEvent-NoPublisher");
-
-                //NoPubBinding.Unsubscribe(); // Don't actually call this because of performs no validity checks.  We KNOW we have no publisher, so call Unbind to reset the hash.
-                NoPubBinding.Unbind();
-                TEST(NoPubBinding.GetSubID() == 12 &&
-                     NoPubBinding.GetPublisher() == nullptr &&
-                     NoPubBinding.GetEventHash() == EventNameType::EmptyHash,
-                     "EventSubscriberBinding::Unsubscribe-NoPublisher");
-            }//NoPublisher
-
-            {//Publisher
-                EventPublisher TestPublisher;
-                TestPublisher.AddSubscriptionTable(TestEventName);
-
-                Boole PubCalled = false;
-                //EventNameType PubEventName("PubEvent");
-                EventSubscriberBinding::CallbackType PubCallback([&](EventPtr Args){ PubCalled = true; });
-
-                EventSubscriberBindingPtr BindingPtr = TestPublisher.Subscribe(TestEventName,24,PubCallback);
-                TEST(BindingPtr->GetSubID() == 24 &&
-                     BindingPtr->GetPublisher() == &TestPublisher &&
-                     BindingPtr->GetEventHash() == TestEventName.GetHash(),
-                     "EventSubscriberBinding::ConstructionAndGetters-Publisher");
-
-                TEST(BindingPtr->IsSubscribed() == true,"EventSubscriberBinding::SubscriptionCheck-Publisher");
-
-                BindingPtr->DispatchEvent(TestEvent);
-                TEST(PubCalled,"EventSubscriberBinding::DispatchEvent-Publisher");
-
-                BindingPtr->Unsubscribe();
-                TEST(BindingPtr->GetSubID() == 24 &&
-                     BindingPtr->GetPublisher() == nullptr &&
-                     BindingPtr->GetEventHash() == EventNameType::EmptyHash,
-                     "EventSubscriberBinding::Unsubscribe-Publisher");
-            }//Publisher
-        }//EventSubscriberBinding
-
         {//EventSubscriptionTable
             Whole DispatchCount = 0;
             EventNameType TestName("TestName");
