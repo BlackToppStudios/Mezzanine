@@ -73,7 +73,7 @@ String GenerateRandomString(const int Length = (rand()%15+5))
     return Results;
 }
 
-/// @brief Test
+/// @brief A collection of tests for a vector-like container that keeps its elements sorted.
 class sortedvectortests : public UnitTestGroup
 {
 public:
@@ -128,7 +128,7 @@ public:
             SortedVector<Int32> tested;
             tested.add(5);
             TEST(tested.size() == 1,            "SortedVector.Size2");
-            TEST( *(tested.begin()) == 5,       "SortedVector.BeginDerefenced1");
+            TEST( *(tested.begin()) == 5,       "SortedVector.BeginDereferenced1");
 
             tested.clear();
             TEST( tested.size() == 0,           "SortedVector.SizeIntClear");

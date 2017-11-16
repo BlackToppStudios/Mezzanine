@@ -204,8 +204,8 @@ public:
         {//EventSubscriberBindingImpl
             using TestTableType = DefaultEventBindingTable<DefaultSubscriberType>;
             using TestSubscriberType = TestTableType::SubscriberType;
-            using TestBindingType = TestTableType::BindingType;
-            using TestBindingPtrType = TestTableType::BindingPtrType;
+            //using TestBindingType = TestTableType::BindingType;
+            //using TestBindingPtrType = TestTableType::BindingPtrType;
             using TestBindingImplType = TestTableType::BindingImplType;
             using TestBindingImplPtrType = TestTableType::BindingImplPtrType;
 
