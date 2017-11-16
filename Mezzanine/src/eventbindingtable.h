@@ -178,6 +178,10 @@ namespace Mezzanine
         /// @brief The type to use for the actual dispatch logic for events.
         template<class IteratorType>
         using DispatcherType = EmptyEventDispatcher<IteratorType>;
+
+        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
+        /// @remarks This is ignored if not using SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
+        const size_t StorageCount = 1;
     };//EventSubscriptionTableTraits
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -190,6 +194,8 @@ namespace Mezzanine
     public:
         /// @brief Convenience type for describing the type of this.
         using SelfType = EventBindingTable<Traits>;
+        /// @brief Retrievable type for the traits given to this table.
+        using TableTraits = Traits;
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = typename Traits::SubscriberType;
         /// @brief The type to use for uniquely identifying instances of subscribers.

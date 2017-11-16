@@ -61,7 +61,7 @@
 // conditionally may not be compiled in. For example,
 
 #ifndef SWIG
-    #include <stdint.h> //Not available in unsupported versions of MSVC (<2012, we support >=2015)
+    #include <stdint.h>
     #include <cstddef>
 
     #include <array>
@@ -82,7 +82,9 @@
     #include <chrono>
     #include <exception>
     #include <functional>
+    #include <initializer_list>
     #include <memory>
+    #include <new>
     #include <string>
     #include <type_traits>
     #include <utility>

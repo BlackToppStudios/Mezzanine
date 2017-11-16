@@ -88,11 +88,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
-        /// @brief Copy constructor.
+        /// @brief Copy Assignment Operator.
         /// @param Other The other binding to not be copied.
         /// @return Returns a reference to this.
         EventSubscriberBinding& operator=(const EventSubscriberBinding& Other) = delete;
-        /// @brief Move assignment operator.
+        /// @brief Move Assignment Operator.
         /// @param Other The other binding to be moved.
         /// @return Returns a reference to this.
         EventSubscriberBinding& operator=(EventSubscriberBinding&& Other) = default;
