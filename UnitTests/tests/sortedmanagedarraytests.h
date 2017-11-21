@@ -182,42 +182,20 @@ public:
             TEST( *(tested.rend()-1) == 3,          "SortedManagedArray.SortedValue3REnd");
         }
 
-        class ArrayReporter
-        {
-        public:
-            operator()(const SortedManagedArray<String,6>& ToReport)
-            {
-                std::cout << "Outputting contents of test array:" << std::endl;
-                for( const String& Val : ToReport )
-                    { std::cout << Val << ","; }
-                std::cout << std::endl;
-            }
-        };
-        ArrayReporter TestReporter;
-
         {
             SortedManagedArray<String,6> tested;
             tested.add("B");
-            TestReporter(tested);
             tested.add("E");
-            TestReporter(tested);
             tested.add("C");
-            TestReporter(tested);
             tested.add("A");
-            TestReporter(tested);
             tested.add("F");
-            TestReporter(tested);
             tested.add("D");
-            TestReporter(tested);
             TEST( tested[0] == "A",                 "SortedManagedArray.ErasePrep");
-            TestReporter(tested);
             tested.erase(tested.begin());
             TEST( tested[0] == "B",                 "SortedManagedArray.EraseSingle");
-            TestReporter(tested);
             tested.erase(tested.begin(), tested.begin()+3);
             std::cout << tested[0] << std::endl;
             TEST( tested[0] == "E",                 "SortedManagedArray.EraseRange");
-            TestReporter(tested);
         }
 
         {

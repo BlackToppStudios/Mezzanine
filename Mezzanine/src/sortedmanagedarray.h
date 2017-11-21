@@ -50,16 +50,17 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This container uses a ManagedArray for storage, but manages the amount of used space and keeps them sorted.
-    /// @tparam T The type this container will store, must implement operator< for sorting with the default sorter.
+    /// @tparam ElementType The type this container will store, must implement operator< for sorting with the default sorter.
+    /// @tparam NumElements The number of ElementType instances this array will be allocated to store.
     ///////////////////////////////////////
-    template<typename T, size_t N, typename Sorter = std::less<T> >
+    template<typename ElementType, size_t NumElements, typename Sorter = std::less<T> >
     class SortedManagedArray
     {
     public:
         /// @brief Convenience type to refer to the type of this.
-        typedef SortedManagedArray<T,N,Sorter> SelfType;
+        typedef SortedManagedArray<ElementType,NumElements,Sorter> SelfType;
         /// @brief The type used for internal storage.
-        typedef ManagedArray<T,N> StorageArray;
+        typedef ManagedArray<ElementType,NumElements> StorageArray;
         /// @brief The type used when checking sizes and capacities of instances of this.
         typedef typename StorageArray::size_type size_type;
         /// @brief The type of items stored.
