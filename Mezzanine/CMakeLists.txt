@@ -115,6 +115,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriberbinding.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriberid.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptioncontainer.h"
+        "${${PROJECT_NAME}_SRC_DIR}eventsubscriptionfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontable.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontablebase.h"
         "${${PROJECT_NAME}_SRC_DIR}exception.h"

@@ -53,7 +53,7 @@ namespace Mezzanine
     /// @brief An enum describing which container template specialization to use.
     enum class SubscriberContainerType
     {
-        //SCT_Single,         ///< A container that stores only one element/subscriber.
+        SCT_Single,         ///< A container that stores only one element/subscriber.
         SCT_Unsorted,       ///< A container that stores N-elements/subscribers.
         SCT_Unsorted_Fixed, ///< A container that stores a specific amount of elements/subscribers.
         SCT_Sorted,         ///< A container that stores N-elements/subscribers and keeps them sorted by a given predicate.
@@ -174,16 +174,20 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
     ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Unsorted>
+    template<class TableType, SubscriberContainerType::SCT_Single>
     class MEZZ_LIB EventSubscriptionContainer
     {
     public:
         /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Unsorted>;
+        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Single>;
         /// @brief Convenience type and check for what exactly will be stored by this container.
         using StoredType = typename TableType::StoredType;
         /// @brief Convenience type for the internal container storing the subscriptions.
-        using InternalContainerType = std::vector<StoredType>;
+        using InternalContainerType = void;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -210,6 +214,110 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+
+    };//EventSubscriptionContainer
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a container class for the storage of multiple sorted subscribers.
+    ///////////////////////////////////////
+    template<class TableType, SubscriberContainerType::SCT_Unsorted>
+    class MEZZ_LIB EventSubscriptionContainer
+    {
+    public:
+        /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
+        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Unsorted>;
+        /// @brief Convenience type and check for what exactly will be stored by this container.
+        using StoredType = typename TableType::StoredType;
+        /// @brief Convenience type for the internal container storing the subscriptions.
+        using InternalContainerType = std::vector<StoredType>;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = typename InternalContainerType::iterator;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = typename InternalContainerType::const_iterator;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
+    protected:
+        /// @brief A container of all the subscriptions tracked by this container.
+        InternalContainerType Subscribers;
+    public:
+        /// @brief Blank constructor.
+        EventSubscriptionContainer() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other table to NOT be copied.
+        EventSubscriptionContainer(const EventSubscriptionContainer& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other table to be moved.
+        EventSubscriptionContainer(EventSubscriptionContainer&& Other) = default;
+        /// @brief Class destructor.
+        virtual ~EventSubscriptionContainer() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other table to NOT be copied.
+        /// @return Returns a reference to this.
+        EventSubscriptionContainer& operator=(const EventSubscriptionContainer& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other table to be moved.
+        /// @return Returns a reference to this.
+        EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this container.
+        /// @exception If the ID of the Sub is already being used by another binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @param Sub The subscriber to be called when the interested event is fired.
+        /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
+        SubscribeRet Subscribe(SubscribeArg Sub)
+        {
+            for( StorageIterator StorIt : this->Subscribers )
+            {
+                if( (*StorIt)->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                }
+            }
+            this->Subscribers.push_back(Sub);
+            return;
+        }
+        /// @brief Gets a binding by the subscriber ID.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        /// @return Returns the binding with the specified ID, or nullptr of none exists.
+        SubscriberType GetSubscriber(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            {
+                if( (*SubIt)->GetID() == ID ) {
+                    return (*SubIt);
+                }
+            }
+            return nullptr;
+        }
+
+        /// @brief Removes a single subscriber from this container.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        void Unsubscribe(const SubscriberIDType ID)
+        {
+            for( StorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            {
+                if( (*SubIt)->GetSubID() == ID ) {
+                    this->Subscribers.erase(SubIt);
+                    return;
+                }
+            }
+        }
+        /// @brief Removes all subscribers from this container.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll()
+        {
+            Whole RemoveCount = this->Subscribers.size();
+            this->Subscribers.clear();
+            return RemoveCount;
+        }
     };//EventSubscriptionContainer
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -225,6 +333,10 @@ namespace Mezzanine
         using StoredType = typename TableType::StoredType;
         /// @brief Convenience type for the internal container storing the subscriptions.
         using InternalContainerType = ManagedArray<StoredType,typename TableType::TableTraits::StorageCount>;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -268,6 +380,10 @@ namespace Mezzanine
         using StoragePredicate = typename TableType::TableTraits::StoragePredicate;
         /// @brief Convenience type for the internal container storing the subscriptions.
         using InternalContainerType = SortedVector<StoredType,StoragePredicate>;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -311,6 +427,10 @@ namespace Mezzanine
         using StoragePredicate = typename TableType::TableTraits::StoragePredicate;
         /// @brief Convenience type for the internal container storing the subscriptions.
         using InternalContainerType = SortedManagedArray<StoredType,typename TableType::TableTraits::StorageCount,StoragePredicate>;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename TableType::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename TableType::SubscribeRet;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;

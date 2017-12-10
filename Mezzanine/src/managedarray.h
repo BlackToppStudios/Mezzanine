@@ -50,6 +50,8 @@ namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This container uses an std::array for storage, but manages the amount of used space.
+    /// @tparam ElementType The type this container will store.
+    /// @tparam NumElements The number of ElementType instances this array will be allocated to store.
     /// @details Since this container performs no allocations, it's iterators do not invalidate.
     /// However in some situations the contents of the values under the iterator can change, for
     /// example when swap is called.  The element is still the expected type and can be accessed,

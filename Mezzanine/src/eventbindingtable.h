@@ -164,24 +164,41 @@ namespace Mezzanine
     template<class Interface>
     struct MEZZ_LIB EventBindingTableTraits
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscriber Traits
+
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Binding Traits
+
         /// @brief Convenience type for the base binding class that is returned.
         using BindingType = EventSubscriberBinding<Interface>;
         /// @brief Convenience type for the base binding class that is returned wrapped in a shared ptr.
         using BindingPtrType = EventSubscriberBindingPtr<Interface>;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Storage Traits
+
+        /// @brief The type of subscription container to use.
+        const SubscriberContainerType ContainerType = SubscriberContainerType::SCT_Unsorted;
+        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
+        /// @remarks This is ignored if ContainerType is not SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
+        const size_t StorageCount = 4;
+
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
         template<class StoredType>
         using StorageContainer = std::vector<StoredType>;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Dispatch Traits
+
         /// @brief The type to use for uniquely identifying this table among a group of like tables.
         using DispatchIDType = EventID;
         /// @brief The type to use for the actual dispatch logic for events.
         template<class IteratorType>
         using DispatcherType = EmptyEventDispatcher<IteratorType>;
-
-        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
-        /// @remarks This is ignored if not using SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
-        const size_t StorageCount = 1;
     };//EventSubscriptionTableTraits
 
     ///////////////////////////////////////////////////////////////////////////////

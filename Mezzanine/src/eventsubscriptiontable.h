@@ -58,29 +58,42 @@ namespace Mezzanine
     template<class Interface>
     struct MEZZ_LIB EventSubscriptionTableTraits
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscriber Traits
+
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Storage Traits
+
         /// @brief Convenience type and check for what exactly will be stored by this subscription table.
         using StoredType = Interface;
+        /// @brief The type of subscription container to use.
+        const SubscriberContainerType ContainerType = SubscriberContainerType::SCT_Unsorted;
+        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
+        /// @remarks This is ignored if ContainerType is not SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
+        const size_t StorageCount = 4;
+        /// @brief The function to use for sorting the subscriber container.
+        /// @remarks This is ignored if ContainerType is not SCT_Sorted or SCT_Sorted_Fixed.
+        using StoragePredicate = std::less<StoredType>;
+
         /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
         using StorageContainer = std::vector<StoredType>;
         /// @brief Iterator type for subscriber bindings stored by this table.
         using StorageIterator = typename StorageContainer::iterator;
         /// @brief Const Iterator type for subscriber bindings stored by this table.
         using ConstStorageIterator = typename StorageContainer::const_iterator;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Dispatch Traits
+
         /// @brief The type to use for uniquely identifying this table among a group of like tables.
         using DispatchIDType = EventID;
         /// @brief The type of iterator that will be passed to the dispatcher when an event is dispatched.
         using DispatchIterator = StorageIterator;
         /// @brief The type to use for the actual dispatch logic for events.
         using DispatcherType = EmptyEventDispatcher<DispatchIterator>;
-
-        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
-        /// @remarks This is ignored if not using SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
-        const size_t StorageCount = 1;
-        /// @brief The function to use for sorting the subscriber container.
-        /// @remarks This is ignored if not using SCT_Sorted or SCT_Sorted_Fixed.
-        using StoragePredicate = std::less<StoredType>;
     };//EventSubscriptionTableTraits
 
     ///////////////////////////////////////////////////////////////////////////////
