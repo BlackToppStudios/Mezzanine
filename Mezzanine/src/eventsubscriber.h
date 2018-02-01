@@ -50,10 +50,10 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an example class that satisfies all the preconditions expected by other event classes.
-    /// @tparam IDType The type to use for the unique identification of subscriber instances.
+    /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
     ///////////////////////////////////////
     template<typename SubIDType>
-    class MEZZ_LIB EventSubscriber
+    class EventSubscriber
     {
     public:
         /// @brief The type to use for the unique identification of subscriber instances.
@@ -74,7 +74,7 @@ namespace Mezzanine
     /// @pre ArgTypes is expected to not contain any non-const references or move references.  Also fed into an std::function.
     ///////////////////////////////////////
     template<class SubIDType, typename ReturnType, typename... ArgTypes>
-    class MEZZ_LIB FunctionSubscriber
+    class FunctionSubscriber
     {
     public:
         /// @brief The type to use for the unique identification of subscriber instances.
@@ -140,10 +140,10 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a simple subscriber that will queue up the events it receives for later processing.
-    /// @tparam IDType The type to use for the unique identification of subscriber instances.
+    /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
     ///////////////////////////////////////
     template<typename SubIDType>
-    class MEZZ_LIB QueuedSubscriber : public EventSubscriber<SubIDType>
+    class QueuedSubscriber : public EventSubscriber<SubIDType>
     {
     public:
         /// @brief The type to use for the unique identification of subscriber instances.

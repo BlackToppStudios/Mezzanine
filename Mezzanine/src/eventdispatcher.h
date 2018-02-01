@@ -42,66 +42,112 @@
 
 #include "event.h"
 #include "eventhelper.h"
+#include "eventsubscriptioncontainer.h"
 
 namespace Mezzanine
 {
+    /// @addtogroup Events
+    /// @{
+
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a basic event dispatcher that does simple mindless forwarding.
+    /// @brief This is an empty dispatcher that is the basis from which dispatchers are specialized.
     ///////////////////////////////////////
-    template<class IteratorType>
-    class MEZZ_LIB EmptyEventDispatcher
+    template<class TableType, class Traits, EventDispatcherType DispatcherType>
+    class EventDispatcher
+        {  };
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a basic event dispatcher that does simple mindless dispatch.
+    /// @tparam TableType The type of subscription table using this dispatcher.
+    /// @tparam Traits A collection of types that describes the operation of the subscription table.
+    /// @pre TableType is expected to be a derived type of this dispatcher.  It is also expected to have an
+    /// iterator type "StorageIterator" that can be dereferenced and converted to "SubscriberType", which
+    /// also must be present and defined on the subscription table.
+    /// @pre Traits is not expected to have anything by this class and is not used.
+    ///////////////////////////////////////
+    template<class TableType, class Traits>
+    class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Empty>
     {
-    public:
-        /*
-        /// @brief Convenience type for the element that is stored by the table we are dispatching for.
-        using StoredType = typename TableType::StoredType;
-        /// @brief Convenience type for the container of elements used by the table we are dispatching for.
-        using ContainerType = typename TableType::ContainerType;
-        */
+    protected:
+        /// @brief Class destructor.
+        ~EventDispatcher() = default;
     public:
         /// @brief Class constructor.
-        EmptyEventDispatcher() = default;
-        /// @brief Class destructor.
-        ~EmptyEventDispatcher() = default;
+        EventDispatcher() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Fires an event.
-        /// @tparam MemberFunt The class member function to call for the event.
+        /// @brief Invokes a function on each subscriber.
+        /// @tparam MemberFunct The class member function to call for the event.
         /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
-        /// @param RangeBegin An iterator to the start of the range to dispatch the event to..
-        /// @param RangeEnd An iterator to the end of the range to dispatch the event to.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(IteratorType RangeBegin, IteratorType RangeEnd, MemberFunct Funct, ArgTypes&&... Args)
+        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
         {
+            TableType* CastedTable = const_cast<TableType*>( static_cast<const TableType*>(this) );
+            typename TableType::StorageIterator RangeBegin = CastedTable->begin();
+            typename TableType::StorageIterator RangeEnd = CastedTable->end();
             while( RangeBegin != RangeEnd )
             {
-               (EventHelper::ToPointer(*RangeBegin)->*Funct)(Args...);
+                typename TableType::SubscriberType CurrSub = (*RangeBegin);
+                (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                 ++RangeBegin;
             }
         }
-    };//EmptyEventDispatcher
+
+        /// @brief Invokes a function on each subscriber and returns one result.
+        /// @tparam MemberFunct The class member function to call for the event.
+        /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param Funct The function on the subscriber to call.
+        /// @param Args The arguments/event specific data related to this event.
+        /// @return Returns the value returned by the last subscriber an event was dispatched to.
+        template<class MemberFunct, class... ArgTypes>
+        auto DispatchEventReturn(MemberFunct Funct, ArgTypes&&... Args) const -> decltype(Funct(Args...))
+        {
+            using ReturnType = decltype(Funct(Args...));
+            ReturnType Ret;
+            TableType* CastedTable = const_cast<TableType*>( static_cast<const TableType*>(this) );
+            typename TableType::StorageIterator RangeBegin = CastedTable->begin();
+            typename TableType::StorageIterator RangeEnd = CastedTable->end();
+            while( RangeBegin != RangeEnd )
+            {
+                typename TableType::SubscriberType CurrSub = (*RangeBegin);
+                Ret = (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
+                ++RangeBegin;
+            }
+            return Ret;
+        }
+    };//EventDispatcher
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an event dispatcher capable of blocking the dispatch of events.
+    /// @tparam TableType The type of subscription table using this dispatcher.
+    /// @tparam Traits A collection of types that describes the operation of the subscription table.
+    /// @pre TableType is expected to be a derived type of this dispatcher.  It is also expected to have an
+    /// iterator type "StorageIterator" that can be dereferenced and converted to "SubscriberType", which
+    /// also must be present and defined on the subscription table.
+    /// @pre Traits is not expected to have anything by this class and is not used.
     ///////////////////////////////////////
-    template<class IteratorType>
-    class MEZZ_LIB SilenceableEventDispatcher
+    template<class TableType, class Traits>
+    class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Silencable>
     {
-    public:
     protected:
         /// @brief Controls whether or not the firing of events should be suppressed.
         Boole MuteEvents;
+
+        /// @brief Class destructor.
+        ~EventDispatcher() = default;
     public:
         /// @brief Class constructor.
-        SilenceableEventDispatcher() :
+        EventDispatcher() :
             MuteEvents(false)
             {  }
-        /// @brief Class destructor.
-        ~SilenceableEventDispatcher() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -115,79 +161,90 @@ namespace Mezzanine
         Boole GetMuteEvents() const
             { return this->MuteEvents; }
 
-        /// @brief Fires an event.
-        /// @tparam MemberFunt The class member function to call for the event.
+        /// @brief Invokes a function on each subscriber.
+        /// @tparam MemberFunct The class member function to call for the event.
         /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
-        /// @param RangeBegin An iterator to the start of the range to dispatch the event to..
-        /// @param RangeEnd An iterator to the end of the range to dispatch the event to.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(IteratorType RangeBegin, IteratorType RangeEnd, MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
         {
             if( !this->MuteEvents ) {
+                TableType* CastedTable = const_cast<TableType*>( static_cast<const TableType*>(this) );
+                typename TableType::StorageIterator RangeBegin = CastedTable->begin();
+                typename TableType::StorageIterator RangeEnd = CastedTable->end();
                 while( RangeBegin != RangeEnd )
                 {
-                    (EventHelper::ToPointer(*RangeBegin)->*Funct)(Args...);
+                    typename TableType::SubscriberType CurrSub = (*RangeBegin);
+                    (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                     ++RangeBegin;
                 }
             }
         }
-    };//SilenceableEventDispatcher
+    };//EventDispatcher
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an event dispatcher that queues up events for future dispatch.
+    /// @tparam TableType The type of subscription table using this dispatcher.
+    /// @tparam Traits A collection of types that describes the operation of the subscription table.
     ///////////////////////////////////////
-    template<class IteratorType>
-    class MEZZ_LIB QueuedEventDispatcher
+    template<class TableType, class Traits>
+    class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Queued>
     {
     public:
         /// @brief The type that an event call will be bound to for later dispatch.
-        using QueuedEventType = std::function<void(typename IteratorType::ReferenceType)>;
+        using QueuedEventType = std::function<void(typename Traits::SubscribeArg)>;
         /// @brief The type of container that is storing all of the events that are queued.
         using QueuedEventContainer = std::vector<QueuedEventType>;
     protected:
         /// @brief A container of the events being held on to for future dispatch.
         QueuedEventContainer QueuedEvents;
+
+        /// @brief Class destructor.
+        ~EventDispatcher() = default;
     public:
         /// @brief Class constructor.
-        QueuedEventDispatcher()
+        EventDispatcher()
             {  }
-        /// @brief Class destructor.
-        ~QueuedEventDispatcher() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         /// @brief Queues an event for later dispatch.
-        /// @tparam MemberFunt The class member function to call for the event.
+        /// @tparam MemberFunct The class member function to call for the event.
         /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
-        /// @param RangeBegin An iterator to the start of the range to dispatch the event to.  Ignored.
-        /// @param RangeEnd An iterator to the end of the range to dispatch the event to.  Ignored.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(IteratorType RangeBegin, IteratorType RangeEnd, MemberFunct Funct, ArgTypes&&... Args) const
+        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args) const
         {
-            this->QueuedEvents.emplace_back( std::bind(Funct,std::placeholders::_1,Args...) );
+            this->QueuedEvents.emplace_back( std::bind(Funct,std::placeholders::_1,std::forward<ArgTypes>(Args)...) );
         }
 
         /// @brief Fires all queued events to the provided subscribers.
-        /// @param RangeBegin An iterator to the start of the range to dispatch the event to..
-        /// @param RangeEnd An iterator to the end of the range to dispatch the event to.
-        void FlushEvents(IteratorType RangeBegin, IteratorType RangeEnd)
+        void FlushEvents()
         {
             for( QueuedEventType Queued : this->QueuedEvents )
             {
+                TableType* CastedTable = static_cast<TableType*>(this);
+                typename TableType::StorageIterator RangeBegin = CastedTable->begin();
+                typename TableType::StorageIterator RangeEnd = CastedTable->end();
                 while( RangeBegin != RangeEnd )
                 {
-                    Queued(*RangeBegin);
+                    typename TableType::SubscriberType CurrSub = (*RangeBegin);
+                    Queued(CurrSub);
                     ++RangeBegin;
                 }
             }
             this->QueuedEvents.clear();
         }
-    };//QueuedEventDispatcher
+    };//EventDispatcher
+
+    /// @}
 }//Mezzanine
 
 #endif

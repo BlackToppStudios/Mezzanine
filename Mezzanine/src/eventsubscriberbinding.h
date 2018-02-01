@@ -58,7 +58,7 @@ namespace Mezzanine
     /// @pre Interface is required to have a type labeled "IDType" defined.  This type should be equality comparable(==,!=).
     ///////////////////////////////////////
     template<typename Interface>
-    class MEZZ_LIB EventSubscriberBinding
+    class EventSubscriberBinding
     {
     public:
         /// @brief Retrievable type for querying the type of callable interface this table works with.
@@ -127,6 +127,10 @@ namespace Mezzanine
             { (EventHelper::ToPointer(this->Sub)->*Funct)( std::forward<ArgTypes>(Args)... ); }
     };//EventSubscriberBinding
 
+    /// @brief Convenience type for passing around EventSubscriberBinding instances wrapped in a shared ptr.
+    template<typename Interface>
+    using EventSubscriberBindingPtr = std::shared_ptr< EventSubscriberBinding<Interface> >;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     /// @tparam TableType The type of table this binding will be bound to.
@@ -140,6 +144,10 @@ namespace Mezzanine
     public:
         /// @brief Convenience type for describing the type of "this".
         using SelfType = EventSubscriberBindingImpl<TableType,Interface>;
+        /// @brief Retrievable type for the binding base class this binding inherits from.
+        using BaseBindingType = EventSubscriberBinding<Interface>;
+        /// @brief Retrievable type for the binding base class wrapped in a shared_ptr.
+        using BaseBindingPtrType = EventSubscriberBindingPtr<Interface>;
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
         /// @brief The type to use for uniquely identifying instances of subscribers.
@@ -206,12 +214,89 @@ namespace Mezzanine
             { this->EventTable = ToUpdate; }
     };//EventSubscriberBindingImpl
 
-    /// @brief Convenience type for passing around EventSubscriberBinding instances wrapped in a shared ptr.
-    template<typename Interface>
-    using EventSubscriberBindingPtr = std::shared_ptr< EventSubscriberBinding<Interface> >;
     /// @brief Convenience type for passing around EventSubscriberBindingImpl instances wrapped in a shared ptr.
     template<typename TableType, typename Interface>
     using EventSubscriberBindingImplPtr = std::shared_ptr< EventSubscriberBindingImpl<TableType,Interface> >;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a convenience struct designed to create conversion compatibility between bindings and the subscription containers.
+    /// @tparam BindingPtrType The type of binding this storable will provide storage and conversions for.
+    /// @pre BindingPtrType is required to have a type with "SubscribeRet" type specified and a "GetSubscriber()" method returning "SubscribeRet".
+    ///////////////////////////////////////
+    template<class BindingPtrType>
+    struct MEZZ_LIB EventSubscriberBindingStorable
+    {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Types Used
+
+        /// @brief Convenience type for this storage type.
+        using SelfType = EventSubscriberBindingStorable<BindingPtrType>;
+        /// @brief Convenience type for the binding behind the shared_ptr.
+        using BindingType = typename BindingPtrType::element_type;
+        /// @brief Convenience type for the base class the binding inherits from wrapped in a shared_ptr.
+        using BaseBindingPtrType = typename BindingType::BaseBindingPtrType;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename BindingType::SubscriberIDType;
+        /// @brief Convenience type for what is returned when retrieving the subscriber.
+        using SubscriberRet = typename BindingType::SubscriberRet;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Data Members
+
+        /// @brief The binding this storable wraps.
+        BindingPtrType StoredBinding;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
+        /// @brief Blank constructor.
+        EventSubscriberBindingStorable() = default;
+        /// @brief Binding init constructor.
+        EventSubscriberBindingStorable(BindingPtrType Bind) :
+            StoredBinding(Bind)
+            {  }
+        /// @brief Copy constructor.
+        /// @param Other The other binding storable to copy.
+        EventSubscriberBindingStorable(const SelfType& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other binding storable to move.
+        EventSubscriberBindingStorable(SelfType&& Other) = default;
+        /// @brief Class destructor.
+        ~EventSubscriberBindingStorable() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy assignment operator.
+        /// @param Other The other binding storable to copy.
+        /// @return Returns a reference to this.
+        SelfType& operator=(const SelfType& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other binding storable to move.
+        /// @return Returns a reference to this.
+        SelfType& operator=(SelfType&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Gets the unique identifier of the subscriber.
+        /// @return Returns an ID that uniquely identifies the subscriber in the subscription table.
+        SubscriberIDType GetID() const
+            { return this->StoredBinding->GetID(); }
+
+        /// @brief Conversion to base binding operator.
+        /// @return Returns the binding base of the subscription.
+        operator BaseBindingPtrType() const
+            { return this->StoredBinding; }
+        /// @brief Conversion to binding operator.
+        /// @return Returns the binding implementation of the subscription.
+        operator BindingPtrType() const
+            { return this->StoredBinding; }
+        /// @brief Conversion to subscriber operator.
+        /// @return Returns the subscriber according to the SubscribeRet type expected on the binding type.
+        operator SubscriberRet() const
+            { return this->StoredBinding->GetSubscriber(); }
+    };//EventSubscriberBindingStorable
 
     /// @}
 }//Mezzanine

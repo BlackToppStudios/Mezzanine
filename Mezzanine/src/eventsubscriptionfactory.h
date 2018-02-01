@@ -37,30 +37,90 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscriptioncontainer_h
-#define _eventsubscriptioncontainer_h
+#ifndef _eventsubscriptionfactory_h
+#define _eventsubscriptionfactory_h
 
 #include "eventsubscriberbinding.h"
+#include "eventsubscriptiontabletraits.h"
 
 namespace Mezzanine
 {
+    /// @addtogroup Events
+    /// @{
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is an empty factory that is the basis from which factories are specialized.
+    ///////////////////////////////////////
+    template<class TableType, class SubType, SubscriptionFactoryType FactoryType>
+    class EventSubscriptionFactory
+        {  };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This serves as a common interface to create data necessary for event subscriptions.
     ///////////////////////////////////////
-    template<class TableType>
-    class MEZZ_LIB EventSubscriptionFactory
+    template<class TableType, class SubType>
+    class EventSubscriptionFactory<TableType,SubType,SubscriptionFactoryType::SFT_Subscriber>
     {
     public:
-        /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
-    public:
-        static StoredType CreateSubscription(SubscribeArg Sub)
-        {
+        /// @brief Retrievable type for querying the type of callable interface this table works with.
+        using SubscriberType = SubType;
 
-        }
+        /// @brief Convenience type and check for what exactly will be stored by this container.
+        using StoredType = SubscriberType;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
+        /// @brief Convenience type for what is passed back to the user for tracking the subscription.
+        /// @remarks This is allowed to be different from StoredType, but StoredType must be implicitly convertible to this type.
+        using SubscribeRet = SubscriberType;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscriptionGet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
+    public:
+        /// @brief Creates a subscription from a subscriber.
+        /// @param Sub The subscriber with which to create the subscription.
+        /// @param Table A pointer to the table creating the subscription.
+        /// @return Returns the Sub argument.
+        static StoredType CreateSubscription(SubscribeArg Sub, TableType* Table)
+            { return Sub; }
     };//EventSubscriptionFactory
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This serves as a common interface to create data necessary for event subscriptions.
+    ///////////////////////////////////////
+    template<class TableType, class SubType>
+    class EventSubscriptionFactory<TableType,SubType,SubscriptionFactoryType::SFT_Binding>
+    {
+    public:
+        /// @brief Retrievable type for querying the type of callable interface this table works with.
+        using SubscriberType = SubType;
+
+        /// @brief Convenience type for the base binding class that is returned.
+        using BindingType = EventSubscriberBinding<SubscriberType>;
+        /// @brief Convenience type for the base binding class that is returned wrapped in a shared ptr.
+        using BindingPtrType = EventSubscriberBindingPtr<SubscriberType>;
+        /// @brief Convenience type for the actual binding implementation used by this table.
+        using BindingImplType = EventSubscriberBindingImpl<TableType,SubscriberType>;
+        /// @brief Convenience type for the actual binding implementation used by this table wrapped in a shared ptr.
+        using BindingImplPtrType = EventSubscriberBindingImplPtr<TableType,SubscriberType>;
+
+        /// @brief Convenience type and check for what exactly will be stored by this container.
+        using StoredType = EventSubscriberBindingStorable<BindingImplPtrType>;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
+        /// @brief Convenience type for what is passed back to the user for tracking the subscription.
+        /// @remarks This is allowed to be different from StoredType, but StoredType must be implicitly convertible to this type.
+        using SubscribeRet = BindingPtrType;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscriptionGet = BindingPtrType;
+    public:
+        /// @brief Creates a subscription from a subscriber.
+        /// @param Sub The subscriber with which to create the subscription.
+        /// @param Table A pointer to the table creating the subscription.
+        /// @return Returns a subscription that will bind the table and subscriber.
+        static StoredType CreateSubscription(SubscribeArg Sub, TableType* Table)
+            { return BindingImplPtrType( new BindingImplType(Sub,Table) ); }
+    };//EventSubscriptionFactory
+
+    /// @}
 }//Mezzanine
 
 #endif

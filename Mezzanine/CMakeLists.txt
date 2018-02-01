@@ -118,6 +118,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptionfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontable.h"
         "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontablebase.h"
+        "${${PROJECT_NAME}_SRC_DIR}eventsubscriptiontabletraits.h"
         "${${PROJECT_NAME}_SRC_DIR}exception.h"
         "${${PROJECT_NAME}_SRC_DIR}fieldofforce.h"
         "${${PROJECT_NAME}_SRC_DIR}filestream.h"

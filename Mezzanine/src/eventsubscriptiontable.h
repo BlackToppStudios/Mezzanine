@@ -43,7 +43,6 @@
 #include "hashedstring.h"
 #include "eventhelper.h"
 #include "eventid.h"
-#include "eventsubscriptiontablebase.h"
 #include "eventdispatcher.h"
 
 namespace Mezzanine
@@ -52,89 +51,26 @@ namespace Mezzanine
     /// @{
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a default configuration class of types to use for an EventSubscriptionTable.
-    /// @tparam Interface The interface that will subscribe to events in the table using these traits.
-    ///////////////////////////////////////
-    template<class Interface>
-    struct MEZZ_LIB EventSubscriptionTableTraits
-    {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscriber Traits
-
-        /// @brief Retrievable type for querying the type of callable interface this table works with.
-        using SubscriberType = Interface;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Storage Traits
-
-        /// @brief Convenience type and check for what exactly will be stored by this subscription table.
-        using StoredType = Interface;
-        /// @brief The type of subscription container to use.
-        const SubscriberContainerType ContainerType = SubscriberContainerType::SCT_Unsorted;
-        /// @brief The amount of subscribers to allocate for when using fixed size subscription containers.
-        /// @remarks This is ignored if ContainerType is not SCT_Unsorted_Fixed or SCT_Sorted_Fixed.
-        const size_t StorageCount = 4;
-        /// @brief The function to use for sorting the subscriber container.
-        /// @remarks This is ignored if ContainerType is not SCT_Sorted or SCT_Sorted_Fixed.
-        using StoragePredicate = std::less<StoredType>;
-
-        /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
-        using StorageContainer = std::vector<StoredType>;
-        /// @brief Iterator type for subscriber bindings stored by this table.
-        using StorageIterator = typename StorageContainer::iterator;
-        /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstStorageIterator = typename StorageContainer::const_iterator;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Dispatch Traits
-
-        /// @brief The type to use for uniquely identifying this table among a group of like tables.
-        using DispatchIDType = EventID;
-        /// @brief The type of iterator that will be passed to the dispatcher when an event is dispatched.
-        using DispatchIterator = StorageIterator;
-        /// @brief The type to use for the actual dispatch logic for events.
-        using DispatcherType = EmptyEventDispatcher<DispatchIterator>;
-    };//EventSubscriptionTableTraits
-
-    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
-    /// @tparam Traits A struct of types to use for the operation of this table.
+    /// @tparam Config A struct of types and values to use for the configuration of this table.
     ///////////////////////////////////////
-    template<class Traits>
-    class MEZZ_LIB EventSubscriptionTable : public EventSubscriptionTableBase
+    template<class Config>
+    class EventSubscriptionTable :
+        public EventSubscriptionContainer<EventSubscriptionTable<Config>,EventSubscriptionTableTraits<EventSubscriptionTable<Config>,Config>,Config::ContainerType>,
+        public EventDispatcher<EventSubscriptionTable<Config>,EventSubscriptionTableTraits<EventSubscriptionTable<Config>,Config>,Config::DispatcherType>
     {
     public:
         /// @brief Convenience type for describing the type of this.
-        using SelfType = EventSubscriptionTable<Traits>;
+        using SelfType = EventSubscriptionTable<Config>;
+        /// @brief The type for traits used by this table.
+        using TraitsType = EventSubscriptionTableTraits<SelfType,Config>;
+        /// @brief The type for the container inherited by this table.
+        using ContainerType = EventSubscriptionContainer<SelfType,TraitsType,Config::ContainerType>;
         /// @brief Retrievable type for the traits given to this table.
-        using TableTraits = Traits;
-        /// @brief Retrievable type for querying the type of callable interface this table works with.
-        using SubscriberType = typename Traits::SubscriberType;
-        /// @brief The type to use for uniquely identifying instances of subscribers.
-        using SubscriberIDType = typename SubscriberType::IDType;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = void;
-        /// @brief Convenience type and check for what exactly will be stored by this subscription table.
-        using StoredType = typename Traits::StoredType;
-        /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
-        using StorageContainer = typename Traits::StorageContainer;
-        /// @brief Iterator type for subscriber bindings stored by this table.
-        using StorageIterator = typename Traits::StorageIterator;
-        /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstStorageIterator = typename Traits::ConstStorageIterator;
+        using TableConfig = Config;
         /// @brief The type to use for uniquely identifying this table among a group of like tables.
-        using DispatchIDType = typename Traits::DispatchIDType;
-        /// @brief The type of iterator that will be passed to the dispatcher when an event is dispatched.
-        using DispatchIterator = typename Traits::DispatchIterator;
-        /// @brief The type to use for the actual dispatch logic for events.
-        using DispatcherType = typename Traits::DispatcherType;
+        using DispatchIDType = typename Config::DispatchIDType;
     protected:
-        /// @brief A container of all the subscriber bindings to this event table.
-        StorageContainer Subscribers;
-        /// @brief The dispatcher that will determine how/if the event should be routed to subscribers.
-        DispatcherType Dispatcher;
         /// @brief The hash of the Event the subscribers in this table are subscribed to.
         DispatchIDType DisID;
     public:
@@ -145,7 +81,10 @@ namespace Mezzanine
         EventSubscriptionTable(const SelfType& Other) = delete;
         /// @brief Move constructor.
         /// @param Other The other table to be moved.
-        EventSubscriptionTable(SelfType&& Other) = default;
+        EventSubscriptionTable(SelfType&& Other) :
+            ContainerType( std::move(Other) ),
+            DisID( std::move(Other.DisID) )
+            {  }
         /// @brief Identifier constructor.
         /// @param ID The unique ID of the event this table will store subscriptions for.
         EventSubscriptionTable(const DispatchIDType ID) :
@@ -165,7 +104,12 @@ namespace Mezzanine
         /// @brief Move assignment operator.
         /// @param Other The other table to be moved.
         /// @return Returns a reference to this.
-        SelfType& operator=(SelfType&& Other) = default;
+        SelfType& operator=(SelfType&& Other)
+        {
+            this->ContainerType::operator=( std::move(Other) );
+            this->DisID = std::move(Other.DisID);
+            return *this;
+        }
 
         /// @brief Less-than operator.
         /// @param Other The other table to be compared to.
@@ -176,94 +120,15 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the event dispatcher.
-        /// @return Returns a reference to the event dispatcher being used by this EventSubscriptionTable.
-        DispatcherType& GetDispatcher()
-            { return this->Dispatcher; }
-        /// @brief Gets the event dispatcher.
-        /// @return Returns a const reference to the event dispatcher being used by this EventSubscriptionTable.
-        const DispatcherType& GetDispatcher() const
-            { return this->Dispatcher; }
-
         /// @brief Gets the ID of the event associated with this table.
         /// @return Returns the unique ID of this event.
         DispatchIDType GetID() const
             { return this->DisID; }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
-
-        /// @brief Adds a subscriber to this event table.
-        /// @exception If the ID of the Sub is already being used by another binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
-        /// @param Sub The subscriber to be called when the interested event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(SubscribeArg Sub)
-        {
-            for( StorageIterator StorIt : this->Subscribers )
-            {
-                if( (*StorIt)->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
-                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
-                }
-            }
-            this->Subscribers.push_back(Sub);
-            return;
-        }
-        /// @brief Gets a binding by the subscriber ID.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @return Returns the binding with the specified ID, or nullptr of none exists.
-        SubscriberType GetSubscriber(const SubscriberIDType ID) const
-        {
-            for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
-            {
-                if( (*SubIt)->GetID() == ID ) {
-                    return (*SubIt);
-                }
-            }
-            return nullptr;
-        }
-
-        /// @brief Removes a single subscriber from this event table.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(const SubscriberIDType ID)
-        {
-            for( StorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
-            {
-                if( (*SubIt)->GetSubID() == ID ) {
-                    this->Subscribers.erase(SubIt);
-                    return;
-                }
-            }
-        }
-        /// @brief Removes all subscribers from all events in this publisher.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll()
-        {
-            Whole RemoveCount = this->Subscribers.size();
-            this->Subscribers.clear();
-            return RemoveCount;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        /// @internal
-        /// @brief Notifies all subscribers of this event that this event is firing.
-        /// @param Funct The function on the subscriber to call.
-        /// @param Args The arguments and extra data related to this event.
-        template<class MemberFunct, class... ArgTypes>
-        void DispatchEvent(MemberFunct Funct, ArgTypes&&... Args)
-        {
-            //for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
-            //    { ((*SubIt)->*Funct)(Args...); }
-            DispatchIterator Begin = this->Subscribers.begin();
-            DispatchIterator End = this->Subscribers.end();
-            this->Dispatcher.DispatchEvent(Begin,End,Funct,std::forward<ArgTypes>(Args)...);
-        }
     };//EventSubscriptionTable
 
     /// @brief Convenience type for an EventSubscriptionTable using default traits.
     template<class Interface>
-    using DefaultEventSubscriptionTable = EventSubscriptionTable< EventSubscriptionTableTraits< Interface > >;
+    using DefaultEventSubscriptionTable = EventSubscriptionTable< EventSubscriptionTableConfig< Interface > >;
 
     /// @}
 }//Mezzanine

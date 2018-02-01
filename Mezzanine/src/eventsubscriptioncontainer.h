@@ -40,208 +40,55 @@
 #ifndef _eventsubscriptioncontainer_h
 #define _eventsubscriptioncontainer_h
 
-#include "eventsubscriberbinding.h"
+#include "exception.h"
 #include "sortedvector.h"
 #include "managedarray.h"
 #include "sortedmanagedarray.h"
+#include "eventsubscriptionfactory.h"
 
 namespace Mezzanine
 {
     /// @addtogroup Events
     /// @{
 
-    /// @brief An enum describing which container template specialization to use.
-    enum class SubscriberContainerType
-    {
-        SCT_Single,         ///< A container that stores only one element/subscriber.
-        SCT_Unsorted,       ///< A container that stores N-elements/subscribers.
-        SCT_Unsorted_Fixed, ///< A container that stores a specific amount of elements/subscribers.
-        SCT_Sorted,         ///< A container that stores N-elements/subscribers and keeps them sorted by a given predicate.
-        SCT_Sorted_Fixed    ///< A container that stores a specific amount of elements/subscribers and keeps them sorted by a given predicate.
-    };
-
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a convenience iterator class used by the EventBindingTable.
-    /// @tparam ContainerType The type of subscriber container that this iterator is being used by.
+    /// @brief This is an empty container that is the basis from which containers are specialized.
     ///////////////////////////////////////
-    template<class ContainerType>
-    class MEZZ_LIB BindingIterator
-    {
-    public:
-        /// @brief Convenience type for the BindingIterator implementation being used.
-        using SelfType = BindingIterator<ContainerType>;
-        /// @brief Convenience type to the binding pointed to by the iterator.
-        using StoredType = typename ContainerType::StoredType;
-        /// @brief Convenience type for the interface/subscriber this iterator will return on dereference.
-        using SubscriberType = typename ContainerType::SubscriberType;
-    protected:
-        /// @brief A pointer to the binding that will be used on dereference.
-        StoredType* Value;
-    public:
-        /// @brief Blank constructor.
-        BindingIterator() :
-            Value(nullptr)
-            {  }
-        /// @brief Iterator constructor.
-        /// @param It The iterator to dereference and use to initialize this iterator.
-        template<class IteratorType>
-        BindingIterator(const IteratorType It) :
-            Value( std::addressof(*It) )
-            {  }
-        /// @brief Descriptive constructor.
-        /// @param Val A pointer to the value that will be used by this iterator.
-        BindingIterator(StoredType* Val) :
-            Value(Val)
-            {  }
-        /// @brief Copy constructor.
-        /// @param Other The other iterator to be copied.
-        BindingIterator(const SelfType& Other) = default;
-        /// @brief Move constructor.
-        /// @param Other The other iterator to be moved.
-        BindingIterator(SelfType&& Other) = default;
-        /// @brief Class destructor.
-        ~BindingIterator() = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Construction Operators
-
-        /// @brief Copy assignment operator.
-        /// @param Other The other iterator to be copied.
-        /// @return Returns a reference to this.
-        SelfType& operator=(const SelfType& Other) = default;
-        /// @brief Move assignment operator.
-        /// @param Other The other iterator to be moved.
-        /// @return Returns a reference to this.
-        SelfType& operator=(SelfType&& Other) = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Comparison Operators
-
-        /// @brief Equality comparison operator.
-        /// @param Other The other iterator to be compared to.
-        /// @return Returns true if the two iterators are pointing to the same element, false otherwise.
-        Boole operator==(const SelfType& Other)
-            { return this->Value = Other.Value; }
-        /// @brief Inequality comparison operator.
-        /// @param Other The other iterator to be compared to.
-        /// @return Returns true if the two iterators are pointing to different elements, false otherwise.
-        Boole operator!=(const SelfType& Other)
-            { return this->Value != Other.Value; }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Access Operators
-
-        /// @brief Reference dereference operator.
-        /// @return Returns a reference to the interface in the binding pointed to by this iterator.
-        SubscriberType& operator*()
-            { return EventHelper::ToReference( (*this->Value)->GetSubscriber() ); }
-        /// @brief Pointer dereference operator.
-        /// @return Returns a pointer to the interface in the binding pointed to by this iterator.
-        SubscriberType* operator->()
-            { return EventHelper::ToPointer( (*this->Value)->GetSubscriber() ); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Manipulation Operators
-
-        /// @brief Pre-increment operator.
-        void operator++()
-            { this->Value++; }
-        /// @brief Pre-decrement operator.
-        void operator--()
-            { this->Value--; }
-        /// @brief Post-increment operator.
-        /// @return Returns an iterator to the value held prior to this operation.
-        SelfType operator++(int)
-        {
-            SelfType Ret(this);
-            ++(this->Value);
-            return Ret;
-        }
-        /// @brief Post-decrement operator.
-        /// @return Returns an iterator to the value held prior to this operation.
-        SelfType operator--(int)
-        {
-            SelfType Ret(this);
-            --(this->Value);
-            return Ret;
-        }
-    };//BindingIterator
-
-    template<class TableType, SubscriberContainerType ContainerType>
+    template<class TableType, class Traits, SubscriptionContainerType ContainerType>
     class EventSubscriptionContainer
-    {  };
+        {  };
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
     ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Single>
-    class MEZZ_LIB EventSubscriptionContainer
+    template<class TableType, class Traits>
+    class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Single>
     {
     public:
         /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Single>;
+        using SelfType = EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Single>;
+        /// @brief Retrievable type for querying the type of callable interface that is stored by this container.
+        using SubscriberType = typename Traits::SubscriberType;
+        /// @brief Guaranteed to be a non-pointer, non-reference SubscriberType.
+        using SubscriberValue = typename Traits::SubscriberValue;
+        /// @brief A pointer to the underlying Subscriber type.
+        using SubscriberPtr = typename Traits::SubscriberPtr;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Traits::SubscriberIDType;
         /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
-        /// @brief Convenience type for the internal container storing the subscriptions.
-        using InternalContainerType = void;
+        using StoredType = typename Traits::StoredType;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
+        using SubscribeArg = typename Traits::SubscribeArg;
         /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
-    public:
-        /// @brief Blank constructor.
-        EventSubscriptionContainer() = default;
-        /// @brief Copy constructor.
-        /// @param Other The other table to NOT be copied.
-        EventSubscriptionContainer(const EventSubscriptionContainer& Other) = delete;
-        /// @brief Move constructor.
-        /// @param Other The other table to be moved.
-        EventSubscriptionContainer(EventSubscriptionContainer&& Other) = default;
-        /// @brief Class destructor.
-        virtual ~EventSubscriptionContainer() = default;
+        using SubscribeRet = typename Traits::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename Traits::SubscriptionGet;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Operators
-
-        /// @brief Assignment operator.
-        /// @param Other The other table to NOT be copied.
-        /// @return Returns a reference to this.
-        EventSubscriptionContainer& operator=(const EventSubscriptionContainer& Other) = delete;
-        /// @brief Move assignment operator.
-        /// @param Other The other table to be moved.
-        /// @return Returns a reference to this.
-        EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-
-    };//EventSubscriptionContainer
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a container class for the storage of multiple sorted subscribers.
-    ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Unsorted>
-    class MEZZ_LIB EventSubscriptionContainer
-    {
-    public:
-        /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Unsorted>;
-        /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
-        /// @brief Convenience type for the internal container storing the subscriptions.
-        using InternalContainerType = std::vector<StoredType>;
-        /// @brief Iterator type for subscribers stored by this container.
-        using StorageIterator = typename InternalContainerType::iterator;
-        /// @brief Const Iterator type for subscribers stored by this container.
-        using ConstStorageIterator = typename InternalContainerType::const_iterator;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
+        /// @brief Check to make sure we have a pointer subscriber type, as this is written to expect assigning nullptr to the subscriber will work.
+        static_assert(std::is_pointer<StoredType>::value,"The Single subscriber template specialization only works with pointer subscribers and no bindings.");
     protected:
-        /// @brief A container of all the subscriptions tracked by this container.
-        InternalContainerType Subscribers;
+        /// @brief The storage for the one and only subscription this container will track.
+        StoredType Subscription = nullptr;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -270,42 +117,180 @@ namespace Mezzanine
         // Subscription Management
 
         /// @brief Adds a subscriber to this container.
-        /// @exception If the ID of the Sub is already being used by another binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @param Sub The subscriber to be called when the interested event is fired.
+        /// @return Returns an instance of the subscription storage.
+        SubscribeRet Subscribe(SubscribeArg Sub)
+        {
+            if( this->Subscription->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            }
+            TableType* CastedTable = static_cast<TableType*>(this);
+            this->Subscription = CastedTable->CreateSubscription(Sub);
+            return static_cast<SubscribeRet>( this->Subscription );
+        }
+        /// @brief Gets the subscription stored in this container if it matches a provided ID.
+        /// @exception If a subscription with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param ID The unique ID of the subscriber.
+        /// @return Returns the subscription with the specified ID, otherwise throws an exception.
+        SubscriptionGet GetSubscription(const SubscriberIDType ID) const
+        {
+            if( this->Subscription->GetID() == ID ) {
+                return this->Subscription;
+            }
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets whether or not this container is holding a valid subscription.
+        /// @return Returns true if this container is storing a subscription, false otherwise.
+        Boole HasSubscription() const
+            { return this->Subscription != nullptr; }
+
+        /// @brief Removes the subscription stored in this container if it matches a provided ID.
+        /// @param ID The unique ID of the subscription.
+        void Unsubscribe(const SubscriberIDType ID)
+        {
+            if( this->Subscription->GetID() == ID ) {
+                this->Subscription = nullptr;
+            }
+        }
+        /// @brief Removes the subscription from this container.
+        /// @return Returns true if a subscription was removed from this container, false otherwise.
+        Boole Unsubscribe()
+        {
+            Boole Removed = this->Subscription != nullptr;
+            this->Subscription = nullptr;
+            return Removed;
+        }
+    };//EventSubscriptionContainer
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a container class for the storage of multiple sorted subscribers.
+    ///////////////////////////////////////
+    template<class TableType, class Traits>
+    class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted>
+    {
+    public:
+        /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
+        using SelfType = EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted>;
+        /// @brief Retrievable type for querying the type of callable interface that is stored by this container.
+        using SubscriberType = typename Traits::SubscriberType;
+        /// @brief Guaranteed to be a non-pointer, non-reference SubscriberType.
+        using SubscriberValue = typename Traits::SubscriberValue;
+        /// @brief A pointer to the underlying Subscriber type.
+        using SubscriberPtr = typename Traits::SubscriberPtr;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Traits::SubscriberIDType;
+        /// @brief Convenience type for the factory to use when constructing subscriptions.
+        using FactoryType = typename Traits::ActualFactoryType;
+        /// @brief Convenience type and check for what exactly will be stored by this container.
+        using StoredType = typename Traits::StoredType;
+        /// @brief Convenience type for the internal container storing the subscriptions.
+        using InternalContainerType = std::vector<StoredType>;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = typename InternalContainerType::iterator;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = typename InternalContainerType::const_iterator;
+        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        using SubscribeArg = typename Traits::SubscribeArg;
+        /// @brief Convenience type for the return value of the Subscribe method.
+        using SubscribeRet = typename Traits::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename Traits::SubscriptionGet;
+    protected:
+        /// @brief A container of all the subscriptions tracked by this container.
+        InternalContainerType Subscriptions;
+    public:
+        /// @brief Blank constructor.
+        EventSubscriptionContainer() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other table to NOT be copied.
+        EventSubscriptionContainer(const EventSubscriptionContainer& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other table to be moved.
+        EventSubscriptionContainer(EventSubscriptionContainer&& Other) = default;
+        /// @brief Class destructor.
+        virtual ~EventSubscriptionContainer() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Assignment operator.
+        /// @param Other The other table to NOT be copied.
+        /// @return Returns a reference to this.
+        EventSubscriptionContainer& operator=(const EventSubscriptionContainer& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other table to be moved.
+        /// @return Returns a reference to this.
+        EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Iterator Access
+
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns an iterator to the start of the range of stored subscriptions.
+        StorageIterator begin()
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns a const iterator to the start of the range of stored subscriptions.
+        ConstStorageIterator begin() const
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        StorageIterator end()
+            { return this->Subscriptions.end(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        ConstStorageIterator end() const
+            { return this->Subscriptions.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this container.
+        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
         SubscribeRet Subscribe(SubscribeArg Sub)
         {
-            for( StorageIterator StorIt : this->Subscribers )
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
-                if( (*StorIt)->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
                     MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
                 }
             }
-            this->Subscribers.push_back(Sub);
-            return;
+            StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
+            this->Subscriptions.push_back( NewStorage );
+            return NewStorage;
         }
-        /// @brief Gets a binding by the subscriber ID.
+        /// @brief Gets a subscription by the subscriber ID.
+        /// @exception If a subscriber with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
-        /// @return Returns the binding with the specified ID, or nullptr of none exists.
-        SubscriberType GetSubscriber(const SubscriberIDType ID) const
+        /// @return Returns the subscription with the specified ID, otherwise throws an exception.
+        SubscriptionGet GetSubscription(const SubscriberIDType ID) const
         {
-            for( ConstStorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
-                if( (*SubIt)->GetID() == ID ) {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
                     return (*SubIt);
                 }
             }
-            return nullptr;
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
         }
+
+        /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
+        /// @return Returns the number of subscriptions this container is currently tracking.
+        Whole GetNumSubscriptions() const
+            { return this->Subscriptions.size(); }
 
         /// @brief Removes a single subscriber from this container.
         /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
         void Unsubscribe(const SubscriberIDType ID)
         {
-            for( StorageIterator SubIt = this->Subscribers.begin() ; SubIt != this->Subscribers.end() ; ++SubIt )
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
-                if( (*SubIt)->GetSubID() == ID ) {
-                    this->Subscribers.erase(SubIt);
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    this->Subscriptions.erase(SubIt);
                     return;
                 }
             }
@@ -314,8 +299,8 @@ namespace Mezzanine
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll()
         {
-            Whole RemoveCount = this->Subscribers.size();
-            this->Subscribers.clear();
+            Whole RemoveCount = this->Subscriptions.size();
+            this->Subscriptions.clear();
             return RemoveCount;
         }
     };//EventSubscriptionContainer
@@ -323,20 +308,39 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
     ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Unsorted_Fixed>
-    class MEZZ_LIB EventSubscriptionContainer
+    template<class TableType, class Traits>
+    class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted_Fixed>
     {
     public:
         /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Unsorted_Fixed>;
+        using SelfType = EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted_Fixed>;
+        /// @brief Retrievable type for querying the type of callable interface that is stored by this container.
+        using SubscriberType = typename Traits::SubscriberType;
+        /// @brief Guaranteed to be a non-pointer, non-reference SubscriberType.
+        using SubscriberValue = typename Traits::SubscriberValue;
+        /// @brief A pointer to the underlying Subscriber type.
+        using SubscriberPtr = typename Traits::SubscriberPtr;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Traits::SubscriberIDType;
+        /// @brief Convenience type for the factory to use when constructing subscriptions.
+        using FactoryType = typename Traits::ActualFactoryType;
         /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
+        using StoredType = typename Traits::StoredType;
         /// @brief Convenience type for the internal container storing the subscriptions.
-        using InternalContainerType = ManagedArray<StoredType,typename TableType::TableTraits::StorageCount>;
+        using InternalContainerType = ManagedArray<StoredType,Traits::StorageCount>;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = typename InternalContainerType::iterator;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
+        using SubscribeArg = typename Traits::SubscribeArg;
         /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
+        using SubscribeRet = typename Traits::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename Traits::SubscriptionGet;
+    protected:
+        /// @brief A container of all the subscriptions tracked by this container.
+        InternalContainerType Subscriptions;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -362,28 +366,129 @@ namespace Mezzanine
         EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
+        // Iterator Access
+
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns an iterator to the start of the range of stored subscriptions.
+        StorageIterator begin()
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns a const iterator to the start of the range of stored subscriptions.
+        ConstStorageIterator begin() const
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        StorageIterator end()
+            { return this->Subscriptions.end(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        ConstStorageIterator end() const
+            { return this->Subscriptions.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this container.
+        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
+        /// @param Sub The subscriber to be called when the interested event is fired.
+        /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
+        SubscribeRet Subscribe(SubscribeArg Sub)
+        {
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                }
+            }
+            StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
+            this->Subscriptions.push_back( NewStorage );
+            return NewStorage;
+        }
+        /// @brief Gets a subscription by the subscriber ID.
+        /// @exception If a subscriber with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        /// @return Returns the subscription with the specified ID, otherwise throws an exception.
+        SubscriptionGet GetSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return (*SubIt);
+                }
+            }
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
+        /// @return Returns the number of subscriptions this container is currently tracking.
+        Whole GetNumSubscriptions() const
+            { return this->Subscriptions.size(); }
+
+        /// @brief Gets the maximum number of subscriptions this container supports.
+        /// @return Returns the size of the fixed (stack allocated) storage, and thus the capacity for subscriptions in this container.
+        Whole GetMaxSubscriptions() const
+            { return this->Subscriptions.capacity(); }
+
+        /// @brief Removes a single subscriber from this container.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        void Unsubscribe(const SubscriberIDType ID)
+        {
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    this->Subscriptions.erase(SubIt);
+                    return;
+                }
+            }
+        }
+        /// @brief Removes all subscribers from this container.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll()
+        {
+            Whole RemoveCount = this->Subscriptions.size();
+            this->Subscriptions.clear();
+            return RemoveCount;
+        }
     };//EventSubscriptionContainer
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple unsorted subscribers.
     ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Sorted>
-    class MEZZ_LIB EventSubscriptionContainer
+    template<class TableType, class Traits>
+    class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted>
     {
     public:
         /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Sorted>;
+        using SelfType = EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted>;
+        /// @brief Retrievable type for querying the type of callable interface that is stored by this container.
+        using SubscriberType = typename Traits::SubscriberType;
+        /// @brief Guaranteed to be a non-pointer, non-reference SubscriberType.
+        using SubscriberValue = typename Traits::SubscriberValue;
+        /// @brief A pointer to the underlying Subscriber type.
+        using SubscriberPtr = typename Traits::SubscriberPtr;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Traits::SubscriberIDType;
+        /// @brief Convenience type for the factory to use when constructing subscriptions.
+        using FactoryType = typename Traits::ActualFactoryType;
         /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
+        using StoredType = typename Traits::StoredType;
         /// @brief The function to use for sorting this container.
-        using StoragePredicate = typename TableType::TableTraits::StoragePredicate;
+        using StoragePredicate = typename Traits::StoragePredicate;
         /// @brief Convenience type for the internal container storing the subscriptions.
         using InternalContainerType = SortedVector<StoredType,StoragePredicate>;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = typename InternalContainerType::iterator;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
+        using SubscribeArg = typename Traits::SubscribeArg;
         /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
+        using SubscribeRet = typename Traits::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename Traits::SubscriptionGet;
+    protected:
+        /// @brief A container of all the subscriptions tracked by this container.
+        InternalContainerType Subscriptions;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -409,28 +514,121 @@ namespace Mezzanine
         EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
+        // Iterator Access
+
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns an iterator to the start of the range of stored subscriptions.
+        StorageIterator begin()
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns a const iterator to the start of the range of stored subscriptions.
+        ConstStorageIterator begin() const
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        StorageIterator end()
+            { return this->Subscriptions.end(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        ConstStorageIterator end() const
+            { return this->Subscriptions.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this container.
+        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
+        /// @param Sub The subscriber to be called when the interested event is fired.
+        /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
+        SubscribeRet Subscribe(SubscribeArg Sub)
+        {
+            if( this->Subscriptions.end() != this->Subscriptions.find( EventHelper::ToPointer(Sub)->GetID() ) ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            }
+            StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
+            this->Subscriptions.add( NewStorage );
+            return NewStorage;
+        }
+        /// @brief Gets a subscription by the subscriber ID.
+        /// @exception If a subscriber with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        /// @return Returns the subscription with the specified ID, otherwise throws an exception.
+        SubscriptionGet GetSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return (*SubIt);
+                }
+            }
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
+        /// @return Returns the number of subscriptions this container is currently tracking.
+        Whole GetNumSubscriptions() const
+            { return this->Subscriptions.size(); }
+
+        /// @brief Removes a single subscriber from this container.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        void Unsubscribe(const SubscriberIDType ID)
+        {
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    this->Subscriptions.erase(SubIt);
+                    return;
+                }
+            }
+        }
+        /// @brief Removes all subscribers from this container.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll()
+        {
+            Whole RemoveCount = this->Subscriptions.size();
+            this->Subscriptions.clear();
+            return RemoveCount;
+        }
     };//EventSubscriptionContainer
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
     ///////////////////////////////////////
-    template<class TableType, SubscriberContainerType::SCT_Sorted_Fixed>
-    class MEZZ_LIB EventSubscriptionContainer
+    template<class TableType, class Traits>
+    class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted_Fixed>
     {
     public:
         /// @brief Convenience type for the EventSubscriptionContainer implementation being used.
-        using SelfType = EventSubscriptionContainer<TableType,SubscriberContainerType::SCT_Sorted_Fixed>;
+        using SelfType = EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted_Fixed>;
+        /// @brief Retrievable type for querying the type of callable interface that is stored by this container.
+        using SubscriberType = typename Traits::SubscriberType;
+        /// @brief Guaranteed to be a non-pointer, non-reference SubscriberType.
+        using SubscriberValue = typename Traits::SubscriberValue;
+        /// @brief A pointer to the underlying Subscriber type.
+        using SubscriberPtr = typename Traits::SubscriberPtr;
+        /// @brief The type to use for uniquely identifying instances of subscribers.
+        using SubscriberIDType = typename Traits::SubscriberIDType;
+        /// @brief Convenience type for the factory to use when constructing subscriptions.
+        using FactoryType = typename Traits::ActualFactoryType;
         /// @brief Convenience type and check for what exactly will be stored by this container.
-        using StoredType = typename TableType::StoredType;
+        using StoredType = typename Traits::StoredType;
         /// @brief The function to use for sorting this container.
-        using StoragePredicate = typename TableType::TableTraits::StoragePredicate;
+        using StoragePredicate = typename Traits::StoragePredicate;
         /// @brief Convenience type for the internal container storing the subscriptions.
-        using InternalContainerType = SortedManagedArray<StoredType,typename TableType::TableTraits::StorageCount,StoragePredicate>;
+        using InternalContainerType = SortedManagedArray<StoredType,Traits::StorageCount,StoragePredicate>;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = typename InternalContainerType::iterator;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
-        using SubscribeArg = typename TableType::SubscribeArg;
+        using SubscribeArg = typename Traits::SubscribeArg;
         /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
+        using SubscribeRet = typename Traits::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename Traits::SubscriptionGet;
+    protected:
+        /// @brief A container of all the subscriptions tracked by this container.
+        InternalContainerType Subscriptions;
     public:
         /// @brief Blank constructor.
         EventSubscriptionContainer() = default;
@@ -456,7 +654,86 @@ namespace Mezzanine
         EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
+        // Iterator Access
+
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns an iterator to the start of the range of stored subscriptions.
+        StorageIterator begin()
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to the first subscription in this container.
+        /// @return Returns a const iterator to the start of the range of stored subscriptions.
+        ConstStorageIterator begin() const
+            { return this->Subscriptions.begin(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        StorageIterator end()
+            { return this->Subscriptions.end(); }
+        /// @brief Gets an iterator to one-passed-the-last subscription in this container.
+        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        ConstStorageIterator end() const
+            { return this->Subscriptions.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Subscription Management
+
+        /// @brief Adds a subscriber to this container.
+        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
+        /// @param Sub The subscriber to be called when the interested event is fired.
+        /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
+        SubscribeRet Subscribe(SubscribeArg Sub)
+        {
+            if( this->Subscriptions.end() != this->Subscriptions.find( EventHelper::ToPointer(Sub)->GetID() ) ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            }
+            StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
+            this->Subscriptions.add( NewStorage );
+            return NewStorage;
+        }
+        /// @brief Gets a subscription by the subscriber ID.
+        /// @exception If a subscriber with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        /// @return Returns the subscription with the specified ID, otherwise throws an exception.
+        SubscriptionGet GetSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return (*SubIt);
+                }
+            }
+            MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
+        /// @return Returns the number of subscriptions this container is currently tracking.
+        Whole GetNumSubscriptions() const
+            { return this->Subscriptions.size(); }
+
+        /// @brief Gets the maximum number of subscriptions this container supports.
+        /// @return Returns the size of the fixed (stack allocated) storage, and thus the capacity for subscriptions in this container.
+        Whole GetMaxSubscriptions() const
+            { return this->Subscriptions.capacity(); }
+
+        /// @brief Removes a single subscriber from this container.
+        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this container.
+        void Unsubscribe(const SubscriberIDType ID)
+        {
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    this->Subscriptions.erase(SubIt);
+                    return;
+                }
+            }
+        }
+        /// @brief Removes all subscribers from this container.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll()
+        {
+            Whole RemoveCount = this->Subscriptions.size();
+            this->Subscriptions.clear();
+            return RemoveCount;
+        }
     };//EventSubscriptionContainer
 
     /// @}

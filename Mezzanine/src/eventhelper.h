@@ -49,28 +49,38 @@ namespace Mezzanine
     namespace EventHelper
     {
         /// @brief One of two helper functions to ensure a type can be used as a pointer.
+        /// @tparam AnyType The type that will be converted into a pointer to the same instance.  Can be anything.
+        /// @pre AnyType does not have any requirements.
         /// @param ToConvert The reference to convert.
-        /// @return Returns a pointer of the provided type.
+        /// @return Returns a pointer to the same instance passed into the function.
         template<class AnyType>
-        static AnyType* ToPointer(AnyType& ToConvert)
+        AnyType* ToPointer(AnyType& ToConvert)
             { return &ToConvert; }
         /// @brief One of two helper functions to ensure a type can be used as a pointer.
+        /// @tparam AnyType The type that will be immediately returned.  Can be anything.
+        /// @pre AnyType does not have any requirements.
+        /// @remarks This function doesn't do anything, but needs to exist to ensure the same semantic in the event templates.
         /// @param ToConvert The pointer to return.
-        /// @return Returns a pointer of the provided type.
+        /// @return Returns a pointer to the same instance passed into the function.
         template<class AnyType>
-        static AnyType* ToPointer(AnyType* ToConvert)
+        AnyType* ToPointer(AnyType* ToConvert)
             { return ToConvert; }
         /// @brief One of two helper functions to ensure a type can be used as a reference.
+        /// @tparam AnyType The type that will be immediately returned.  Can be anything.
+        /// @pre AnyType does not have any requirements.
+        /// @remarks This function doesn't do anything, but needs to exist to ensure the same semantic in the event templates.
         /// @param ToConvert The reference to return.
-        /// @return Returns a pointer of the provided type.
+        /// @return Returns a reference to the same instance passed into the function.
         template<class AnyType>
-        static AnyType& ToReference(AnyType& ToConvert)
+        AnyType& ToReference(AnyType& ToConvert)
             { return ToConvert; }
         /// @brief One of two helper functions to ensure a type can be used as a reference.
+        /// @tparam AnyType The type that will be converted into a reference to the same instance.  Can be anything.
+        /// @pre AnyType does not have any requirements.
         /// @param ToConvert The pointer to convert.
-        /// @return Returns a pointer of the provided type.
+        /// @return Returns a reference to the same instance passed into the function.
         template<class AnyType>
-        static AnyType& ToReference(AnyType* ToConvert)
+        AnyType& ToReference(AnyType* ToConvert)
             { return *ToConvert; }
     }//EventHelper
 
