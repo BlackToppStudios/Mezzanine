@@ -53,7 +53,7 @@ namespace Mezzanine
     /// @tparam ElementType The type this container will store, must implement operator< for sorting with the default sorter.
     /// @tparam NumElements The number of ElementType instances this array will be allocated to store.
     ///////////////////////////////////////
-    template<typename ElementType, size_t NumElements, typename Sorter = std::less<T> >
+    template<typename ElementType, size_t NumElements, typename Sorter = std::less<ElementType> >
     class SortedManagedArray
     {
     public:
@@ -158,7 +158,7 @@ namespace Mezzanine
         /// @ref add_range to only sort once.
         /// @param value The value to put into the array.
         /// @return Returns an iterator to the added element.
-        iterator add(T value)
+        iterator add(ElementType value)
         {
             const_iterator InsertPos = std::lower_bound(begin(),end(),value,Sorter());
             return InternalStorage.insert(InsertPos,value);
@@ -192,24 +192,24 @@ namespace Mezzanine
         /// @param Index A 0 based index, if too large this can throw std::out_of_range.
         /// @return A reference to the stored item in the container. If the value is changed
         /// then SortedArray::sort should be called.
-        T& operator[] (size_t Index)
+        ElementType& operator[] (size_t Index)
             { return InternalStorage[Index]; }
 
         /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
         /// @param value the item to get the location of.
         /// @return A mutable iterator to an item, can be adjusted by random access.
-        iterator find(const T& value)
+        iterator find(const ElementType& value)
             { return binary_find(begin(),end(),value,Sorter()); }
         /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
         /// @param value the item to get the location of.
         /// @return A const iterator to an item, can be adjusted by random access.
-        const_iterator find(const T& value) const
+        const_iterator find(const ElementType& value) const
             { return binary_find(begin(),end(),value,Sorter()); }
 
         /// @brief Does the item exist in this array?
         /// @param value The item in question.
         /// @return True if present false otherwise.
-        Boole contains(const T& value) const
+        Boole contains(const ElementType& value) const
             { return std::binary_search(begin(),end(),value); }
 
         /// @brief Empty the array discarding all data.
