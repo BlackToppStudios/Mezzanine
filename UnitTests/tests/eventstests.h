@@ -153,6 +153,8 @@ public:
     /// @brief This is called when Automatic tests are run
     void RunAutomaticTests()
     {
+        // Throughout these tests arbitrary numbers are used for testing.  They are arbitrary.  
+        // They can be replaced with any other value and just work.
         {//EventID
             EventID IntegerID(144);
             TEST(IntegerID.ID == 144,"EventID(const_IDType)");
@@ -171,7 +173,7 @@ public:
             EventID AssignSourceID(576);
             EventID AssignDestID(0);
             AssignDestID = AssignSourceID;
-            TEST(AssignDestID.ID == 576,"EventID::operator=(const_EventID&&)");
+            TEST(AssignDestID.ID == 576,"EventID::operator=(const_EventID&)");
 
             EventID AssignMoveSourceID(1152);
             EventID AssignMoveDestID(0);
@@ -205,7 +207,7 @@ public:
             EventSubscriberID AssignSourceID(576);
             EventSubscriberID AssignDestID(0);
             AssignDestID = AssignSourceID;
-            TEST(AssignDestID.ID == 576,"EventSubscriberID::operator=(const_EventSubscriberID&&)");
+            TEST(AssignDestID.ID == 576,"EventSubscriberID::operator=(const_EventSubscriberID&)");
 
             EventSubscriberID AssignMoveSourceID(1152);
             EventSubscriberID AssignMoveDestID(0);
@@ -242,7 +244,7 @@ public:
                 TestSubscriberType AssignSourceSub(576,TestDelegate);
                 TestSubscriberType AssignDestSub(0,TestDelegate);
                 AssignDestSub = AssignSourceSub;
-                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&&)-SingleArg");
+                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&)-SingleArg");
 
                 TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
                 TestSubscriberType AssignMoveDestSub(0,TestDelegate);
@@ -374,13 +376,16 @@ public:
         {//EventSubscriptionTable
             // Test name suffix key:
             // { B or N } { Sn or Un or Sr or UF or SF } { E or S or Q }
+            //
             // B - Binding Factory
             // N - Non-binding Factory
+            //
             // Sn - Single Container
             // Un - Unsorted Container
             // Sr - Sorted Container
             // UF - Unsorted Fixed-size Container
             // SF - Sorted Fixed-size Container
+            //
             // E - Empty Dispatcher
             // S - Silenceable Dispatcher
             // Q - Queued Dispatcher
@@ -468,8 +473,7 @@ public:
                            TestTableTwo.GetSubscription(0xBAADC0DE),
                            "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-Throw-BUnE");
 
-                Whole Count = TestTableTwo.UnsubscribeAll();
-                TEST(Count == 1,
+                TEST(TestTableTwo.UnsubscribeAll() == 1,
                      "EventSubscriptionTable::UnsubscribeAll()-BUnE");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xDEADBEEF),
