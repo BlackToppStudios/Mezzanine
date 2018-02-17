@@ -204,9 +204,6 @@ namespace Mezzanine
         using StoragePredicate = typename Config::StoragePredicate;
     };//EventSubscriptionTableTraits
 
-    //template<class Table, class Config>
-    //const size_t EventSubscriptionTableTraits<Table,Config>::StorageCount;
-
     /// @}
 }//Mezzanine
 

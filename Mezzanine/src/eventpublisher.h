@@ -349,20 +349,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Default Implementation Types
 
-    /*
-    /// @brief Convenience Type that will repeat the TableType so you don't have to!
-    /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
-    /// @tparam DispatchType The type to be used to dispatch the event to the Subscription table.
-    template< class TableType,template <typename...> class DispatcherType >
-    using EventPublisherAlias = EventPublisher< TableType,DispatcherType<TableType> >;
-    /// @brief Default/Convenience implementation of an EventSubscriptionTable.
-    using DefaultEventSubscriptionTable = EventBindingTable<FunctionSubscriber<EventSubscriberID,EventPtr>>;
-    /// @brief Default/Convenience implementation of an EventPublisher.
-    //using DefaultEventPublisher = EventPublisher<DefaultEventSubscriptionTable,DefaultEventDispatcher<DefaultEventSubscriptionTable>>;
-    using DefaultEventPublisher = EventPublisherAlias<DefaultEventSubscriptionTable,DefaultEventDispatcher>;
-    */
-    //using DefaultEventTraits = EventBindingTableTraits< FunctionSubscriber<EventSubscriberID,EventPtr> >;
-    //using DefaultEventSubscriptionTable = EventBindingTable<DefaultEventTraits>;
     using DefaultSubscriberType = FunctionSubscriber<EventSubscriberID,void,EventPtr>;
     using DefaultEventPublisher = EventPublisher< DefaultEventBindingTable< DefaultSubscriberType > >;
 

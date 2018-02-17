@@ -69,7 +69,7 @@ namespace Mezzanine
     /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
     /// @tparam ReturnType The type to be returned by the function called when an event is dispatched.
     /// @tparam ArgTypes A variadic template of types that are the parameters of the function to call.
-    /// @pre SubIDType is required to have equality comparison operators (==,!=).
+    /// @pre SubIDType is required to have assignment operators, equality comparison operators and a less-than operator(=,==,!=,<).
     /// @pre ReturnType has no preconditions.  It's just fed into an std::function.
     /// @pre ArgTypes is expected to not contain any non-const references or move references.  Also fed into an std::function.
     ///////////////////////////////////////
@@ -121,12 +121,18 @@ namespace Mezzanine
         /// @return Returns a reference to this.
         SelfType& operator=(SelfType&& Other) = default;
 
+        /// @brief Less-Than operator.
+        /// @param Other The other subscriber to compare with.
+        /// @return Returns true if this should be placed before the other
+        Boole operator<(const SelfType& Other) const
+            { return this->SubID < Other.SubID; }
+
         ///////////////////////////////////////////////////////////////////////////////
         // ID
 
         /// @brief Gets the ID of this subscriber.
         /// @return Returns an instance of IDType identifying this subscriber.
-        IDType GetID() const
+        constexpr IDType GetID() const
             { return this->SubID; }
 
         ///////////////////////////////////////////////////////////////////////////////

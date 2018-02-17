@@ -48,6 +48,49 @@ namespace Mezzanine
     /// @brief A simple collection of smaller tools event classes use.
     namespace EventHelper
     {
+        /// @brief An empty template to be specialized from.
+        template <class F>
+        struct DeduceFunctTypes;
+
+        /// @brief A struct designed to deduce the return type of a non-const member function.
+        /// @tparam Return The return type of the function that is ultimately deduced.
+        /// @tparam Object The object type holding the member function.
+        /// @tparam Args A variadic type containing the arguments for the function.
+        /// @pre Return has no expectations from this struct.
+        /// @pre Object has no expectations from this struct.
+        /// @pre Args has no expectations from this struct.
+        template <class Return, class Object, class... Args>
+        struct DeduceFunctTypes<Return(Object::*)(Args...)>
+        {
+            /// @brief The type of object the member function belongs to.
+            using Obj_type = Object;
+            /// @brief The type returned by the member function.
+            using Ret_type = Return;
+        };//DeduceFunctTypes
+
+        /// @brief A struct designed to deduce the return type of a const member function.
+        /// @tparam Return The return type of the function that is ultimately deduced.
+        /// @tparam Object The object type holding the member function.
+        /// @tparam Args A variadic type containing the arguments for the function.
+        /// @pre Return has no expectations from this struct.
+        /// @pre Object has no expectations from this struct.
+        /// @pre Args has no expectations from this struct.
+        template <class Return, class Object, class... Args>
+        struct DeduceFunctTypes<Return(Object::*)(Args...) const>
+        {
+            /// @brief The type of object the member function belongs to.
+            using Obj_type = Object;
+            /// @brief The type returned by the member function.
+            using Ret_type = Return;
+        };//DeduceFunctTypes
+
+        /// @brief Convenience type for retrieving the return type of a member function.
+        template<typename T>
+        using DeduceRetType = typename DeduceFunctTypes<T>::Ret_type;
+        /// @brief Convenience type for retrieving the object type of a member function.
+        template<typename T>
+        using DeduceObjType = typename DeduceFunctTypes<T>::Obj_type;
+
         /// @brief One of two helper functions to ensure a type can be used as a pointer.
         /// @tparam AnyType The type that will be converted into a pointer to the same instance.  Can be anything.
         /// @pre AnyType does not have any requirements.

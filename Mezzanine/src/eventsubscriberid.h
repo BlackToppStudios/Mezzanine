@@ -114,6 +114,12 @@ namespace Mezzanine
         /// @return Returns true if this EventSubscriberID is not the same as the other, false otherwise.
         Boole operator!=(const EventSubscriberID& Other) const
             { return ( this->ID != Other.ID ); }
+
+        /// @brief Less-Than operator.
+        /// @param Other The other ID to compare with.
+        /// @return Returns true if this ID is less than the other ID, false otherwise.
+        Boole operator<(const EventSubscriberID& Other) const
+            { return this->ID < Other.ID; }
     };//EventSubscriberID
 
     /// @brief Output streaming operator for EventSubscriberID.

@@ -146,6 +146,12 @@ namespace Mezzanine
         Boole HasSubscription() const
             { return this->Subscription != nullptr; }
 
+        /// @brief Gets whether the container is storing a subscriber with a specific ID.
+        /// @param ID The subscriber ID to check for.
+        /// @return Returns true if this container contains the specified subscriber, false otherwise.
+        Boole HasSubscription(const SubscriberIDType ID) const
+            { return this->Subscription->GetID() == ID; }
+
         /// @brief Removes the subscription stored in this container if it matches a provided ID.
         /// @param ID The unique ID of the subscription.
         void Unsubscribe(const SubscriberIDType ID)
@@ -276,6 +282,20 @@ namespace Mezzanine
                 }
             }
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets whether the container is storing a subscriber with a specific ID.
+        /// @param ID The subscriber ID to check for.
+        /// @return Returns true if this container contains the specified subscriber, false otherwise.
+        Boole HasSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
@@ -419,6 +439,20 @@ namespace Mezzanine
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
         }
 
+        /// @brief Gets whether the container is storing a subscriber with a specific ID.
+        /// @param ID The subscriber ID to check for.
+        /// @return Returns true if this container contains the specified subscriber, false otherwise.
+        Boole HasSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
         /// @return Returns the number of subscriptions this container is currently tracking.
         Whole GetNumSubscriptions() const
@@ -542,8 +576,11 @@ namespace Mezzanine
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
         SubscribeRet Subscribe(SubscribeArg Sub)
         {
-            if( this->Subscriptions.end() != this->Subscriptions.find( EventHelper::ToPointer(Sub)->GetID() ) ) {
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                }
             }
             StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
             this->Subscriptions.add( NewStorage );
@@ -562,6 +599,20 @@ namespace Mezzanine
                 }
             }
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets whether the container is storing a subscriber with a specific ID.
+        /// @param ID The subscriber ID to check for.
+        /// @return Returns true if this container contains the specified subscriber, false otherwise.
+        Boole HasSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.
@@ -682,8 +733,11 @@ namespace Mezzanine
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
         SubscribeRet Subscribe(SubscribeArg Sub)
         {
-            if( this->Subscriptions.end() != this->Subscriptions.find( EventHelper::ToPointer(Sub)->GetID() ) ) {
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
+                    MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+                }
             }
             StoredType NewStorage = std::move( FactoryType::CreateSubscription(Sub,static_cast<TableType*>(this)) );
             this->Subscriptions.add( NewStorage );
@@ -702,6 +756,20 @@ namespace Mezzanine
                 }
             }
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
+        }
+
+        /// @brief Gets whether the container is storing a subscriber with a specific ID.
+        /// @param ID The subscriber ID to check for.
+        /// @return Returns true if this container contains the specified subscriber, false otherwise.
+        Boole HasSubscription(const SubscriberIDType ID) const
+        {
+            for( ConstStorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+            {
+                if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// @brief Gets the number of subscribers that have subscribed to the event/object this container is associated with.

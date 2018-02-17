@@ -139,7 +139,7 @@ namespace Mezzanine
     /// @pre Interface is required to have a type labeled "IDType" defined.  This type should be equality comparable(==,!=).
     ///////////////////////////////////////
     template<class TableType, class Interface>
-    class MEZZ_LIB EventSubscriberBindingImpl : public EventSubscriberBinding<Interface>
+    class EventSubscriberBindingImpl : public EventSubscriberBinding<Interface>
     {
     public:
         /// @brief Convenience type for describing the type of "this".
@@ -224,7 +224,7 @@ namespace Mezzanine
     /// @pre BindingPtrType is required to have a type with "SubscribeRet" type specified and a "GetSubscriber()" method returning "SubscribeRet".
     ///////////////////////////////////////
     template<class BindingPtrType>
-    struct MEZZ_LIB EventSubscriberBindingStorable
+    struct EventSubscriberBindingStorable
     {
         ///////////////////////////////////////////////////////////////////////////////
         // Types Used
