@@ -47,7 +47,6 @@
 #include "eventsubscriber.h"
 #include "eventsubscriberid.h"
 #include "eventsubscriptiontable.h"
-#include "eventbindingtable.h"
 
 namespace Mezzanine
 {
@@ -168,8 +167,8 @@ namespace Mezzanine
         using SubscriberIDType = typename TableType::SubscriberIDType;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename TableType::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename TableType::SubscribeRet;
+        /// @brief Convenience type for getting a subscription stored in a table.
+        using SubscriptionGet = typename TableType::SubscriptionGet;
         /// @brief Basic container type for TableType storage by this class.
         using TableContainer = SortedVector<TableType>;
         /// @brief Iterator type for TableType instances stored by this class.
@@ -310,7 +309,7 @@ namespace Mezzanine
         /// @param ID The unique ID of the table to subscribe to.
         /// @param Callable The callback to be called when the interested event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        SubscribeRet Subscribe(const DispatchIDType ID, SubscribeArg Callable)
+        SubscriptionGet Subscribe(const DispatchIDType ID, SubscribeArg Callable)
             { return this->GetSubscriptionTable(ID)->Subscribe(Callable); }
         /// @brief Removes a single subscriber from the specified table.
         /// @exception If this fails to find the table specified it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".

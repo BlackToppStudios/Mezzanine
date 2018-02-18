@@ -125,7 +125,7 @@ namespace Mezzanine
     };//EventSubscriptionTableConfig
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a default configuration class of types to use for an EventBindingTable.
+    /// @brief This is a convenience configuration class for tables that wish to use bindings.
     /// @tparam Interface The interface that will subscribe to events in the table using these traits.
     /// @pre Interface is required to have a type "IDType" on it as well as a method named "GetID" which is const, accepts no parameters and returns IDType.
     ///////////////////////////////////////
@@ -140,7 +140,7 @@ namespace Mezzanine
     };//EventBindingTableConfig
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a default configuration class of types to use for an EventBindingTable.
+    /// @brief This is a traits class that stores the bulk of the types used by an EventSubscriptionTable.
     /// @tparam Table The type of table using these traits.
     /// @tparam Interface The interface that will subscribe to events in the table using these traits.
     /// @pre Table is not expected to have anything by this class, however other classes used here will have their own expectations.
@@ -185,13 +185,12 @@ namespace Mezzanine
 
         /// @brief Type stored in subscription containers representing the subscriptions.
         using StoredType = typename ActualFactoryType::StoredType;
-        /// @brief Convenience type for what is passed back to the user for tracking the subscription.
-        /// @remarks This is allowed to be different from StoredType, but StoredType must be implicitly convertible to this type.
-        using SubscribeRet = typename ActualFactoryType::SubscribeRet;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename ActualFactoryType::SubscribeArg;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename ActualFactoryType::SubscriptionGet;
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename ActualFactoryType::DispatchGet;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conditional Types

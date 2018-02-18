@@ -75,12 +75,16 @@ namespace Mezzanine
         using SubscriberPtr = typename Traits::SubscriberPtr;
         /// @brief The type to use for uniquely identifying instances of subscribers.
         using SubscriberIDType = typename Traits::SubscriberIDType;
+        /// @brief Convenience type for the factory to use when constructing subscriptions.
+        using FactoryType = typename Traits::ActualFactoryType;
         /// @brief Convenience type and check for what exactly will be stored by this container.
         using StoredType = typename Traits::StoredType;
+        /// @brief Iterator type for subscribers stored by this container.
+        using StorageIterator = StoredType*;
+        /// @brief Const Iterator type for subscribers stored by this container.
+        using ConstStorageIterator = const StoredType*;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename Traits::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename Traits::SubscribeRet;
         /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename Traits::SubscriptionGet;
 
@@ -114,28 +118,53 @@ namespace Mezzanine
         EventSubscriptionContainer& operator=(EventSubscriptionContainer&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Iterator Access
+
+        /// @brief Gets an iterator to the only subscription in this container.
+        /// @return Returns an iterator to the only stored subscription.
+        StorageIterator begin()
+            { return &this->Subscription; }
+        /// @brief Gets an iterator to the only subscription in this container.
+        /// @return Returns a const iterator to the only stored subscription.
+        ConstStorageIterator begin() const
+            { return &this->Subscription; }
+        /// @brief Gets an iterator to one-passed-the-only subscription in this container.
+        /// @return Returns an iterator to the memory space after the only stored subscription in this container.
+        StorageIterator end()
+            { return ( this->HasSubscription() ? this->begin() + 1 : this->begin() ); }
+        /// @brief Gets an iterator to one-passed-the-only subscription in this container.
+        /// @return Returns a const iterator to the memory space after the only stored subscription in this container.
+        ConstStorageIterator end() const
+            { return ( this->HasSubscription() ? this->begin() + 1 : this->begin() ); }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Subscription Management
 
         /// @brief Adds a subscriber to this container.
-        /// @exception If the ID of the Sub is already being used by another subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
+        /// @exception If this container already has a subscriber, an INVALID_STATE_EXCEPTION will be thrown.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscription storage.
-        SubscribeRet Subscribe(SubscribeArg Sub)
+        SubscriptionGet Subscribe(SubscribeArg Sub)
         {
-            if( this->Subscription->GetID() == EventHelper::ToPointer(Sub)->GetID() ) {
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A subscriber with that ID already exists!");
+            if( this->HasSubscription() ) {
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"A subscriber already exists on this container!");
             }
             TableType* CastedTable = static_cast<TableType*>(this);
-            this->Subscription = CastedTable->CreateSubscription(Sub);
-            return static_cast<SubscribeRet>( this->Subscription );
+            this->Subscription = FactoryType::CreateSubscription(Sub,CastedTable);
+            return static_cast<SubscriptionGet>( this->Subscription );
         }
+
+        /// @brief Gets the subscription stored in this container.
+        /// @return Returns the subscription in this container, which may be nullptr.
+        SubscriptionGet GetSubscription() const
+            { return this->Subscription; }
         /// @brief Gets the subscription stored in this container if it matches a provided ID.
         /// @exception If a subscription with the specified ID is not found, a II_IDENTITY_NOT_FOUND_EXCEPTION will be thrown.
         /// @param ID The unique ID of the subscriber.
         /// @return Returns the subscription with the specified ID, otherwise throws an exception.
         SubscriptionGet GetSubscription(const SubscriberIDType ID) const
         {
-            if( this->Subscription->GetID() == ID ) {
+            if( this->Subscription != nullptr && this->Subscription->GetID() == ID ) {
                 return this->Subscription;
             }
             MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"No Subscriber with the specified ID was found.");
@@ -145,7 +174,6 @@ namespace Mezzanine
         /// @return Returns true if this container is storing a subscription, false otherwise.
         Boole HasSubscription() const
             { return this->Subscription != nullptr; }
-
         /// @brief Gets whether the container is storing a subscriber with a specific ID.
         /// @param ID The subscriber ID to check for.
         /// @return Returns true if this container contains the specified subscriber, false otherwise.
@@ -157,6 +185,7 @@ namespace Mezzanine
         void Unsubscribe(const SubscriberIDType ID)
         {
             if( this->Subscription->GetID() == ID ) {
+                FactoryType::InvalidateSubscription( this->Subscription );
                 this->Subscription = nullptr;
             }
         }
@@ -165,6 +194,7 @@ namespace Mezzanine
         Boole Unsubscribe()
         {
             Boole Removed = this->Subscription != nullptr;
+            FactoryType::InvalidateSubscription( this->Subscription );
             this->Subscription = nullptr;
             return Removed;
         }
@@ -199,8 +229,6 @@ namespace Mezzanine
         using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename Traits::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename Traits::SubscribeRet;
         /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename Traits::SubscriptionGet;
     protected:
@@ -242,7 +270,7 @@ namespace Mezzanine
         ConstStorageIterator begin() const
             { return this->Subscriptions.begin(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
-        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        /// @return Returns a iterator to the end of the range of stored subscriptions.
         StorageIterator end()
             { return this->Subscriptions.end(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
@@ -257,7 +285,7 @@ namespace Mezzanine
         /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
-        SubscribeRet Subscribe(SubscribeArg Sub)
+        SubscriptionGet Subscribe(SubscribeArg Sub)
         {
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
@@ -310,6 +338,7 @@ namespace Mezzanine
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
                 if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    FactoryType::InvalidateSubscription( *SubIt );
                     this->Subscriptions.erase(SubIt);
                     return;
                 }
@@ -320,6 +349,8 @@ namespace Mezzanine
         Whole UnsubscribeAll()
         {
             Whole RemoveCount = this->Subscriptions.size();
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+                { FactoryType::InvalidateSubscription( *SubIt ); }
             this->Subscriptions.clear();
             return RemoveCount;
         }
@@ -354,8 +385,6 @@ namespace Mezzanine
         using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename Traits::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename Traits::SubscribeRet;
         /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename Traits::SubscriptionGet;
     protected:
@@ -397,7 +426,7 @@ namespace Mezzanine
         ConstStorageIterator begin() const
             { return this->Subscriptions.begin(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
-        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        /// @return Returns a iterator to the end of the range of stored subscriptions.
         StorageIterator end()
             { return this->Subscriptions.end(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
@@ -412,7 +441,7 @@ namespace Mezzanine
         /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
-        SubscribeRet Subscribe(SubscribeArg Sub)
+        SubscriptionGet Subscribe(SubscribeArg Sub)
         {
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
@@ -470,6 +499,7 @@ namespace Mezzanine
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
                 if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    FactoryType::InvalidateSubscription( *SubIt );
                     this->Subscriptions.erase(SubIt);
                     return;
                 }
@@ -480,6 +510,8 @@ namespace Mezzanine
         Whole UnsubscribeAll()
         {
             Whole RemoveCount = this->Subscriptions.size();
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+                { FactoryType::InvalidateSubscription( *SubIt ); }
             this->Subscriptions.clear();
             return RemoveCount;
         }
@@ -516,8 +548,6 @@ namespace Mezzanine
         using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename Traits::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename Traits::SubscribeRet;
         /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename Traits::SubscriptionGet;
     protected:
@@ -559,7 +589,7 @@ namespace Mezzanine
         ConstStorageIterator begin() const
             { return this->Subscriptions.begin(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
-        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        /// @return Returns a iterator to the end of the range of stored subscriptions.
         StorageIterator end()
             { return this->Subscriptions.end(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
@@ -574,7 +604,7 @@ namespace Mezzanine
         /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
-        SubscribeRet Subscribe(SubscribeArg Sub)
+        SubscriptionGet Subscribe(SubscribeArg Sub)
         {
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
@@ -627,6 +657,7 @@ namespace Mezzanine
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
                 if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    FactoryType::InvalidateSubscription( *SubIt );
                     this->Subscriptions.erase(SubIt);
                     return;
                 }
@@ -637,6 +668,8 @@ namespace Mezzanine
         Whole UnsubscribeAll()
         {
             Whole RemoveCount = this->Subscriptions.size();
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+                { FactoryType::InvalidateSubscription( *SubIt ); }
             this->Subscriptions.clear();
             return RemoveCount;
         }
@@ -673,8 +706,6 @@ namespace Mezzanine
         using ConstStorageIterator = typename InternalContainerType::const_iterator;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename Traits::SubscribeArg;
-        /// @brief Convenience type for the return value of the Subscribe method.
-        using SubscribeRet = typename Traits::SubscribeRet;
         /// @brief Convenience type for getting a subscription stored in a table.
         using SubscriptionGet = typename Traits::SubscriptionGet;
     protected:
@@ -716,7 +747,7 @@ namespace Mezzanine
         ConstStorageIterator begin() const
             { return this->Subscriptions.begin(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
-        /// @return Returns a const iterator to the end of the range of stored subscriptions.
+        /// @return Returns a iterator to the end of the range of stored subscriptions.
         StorageIterator end()
             { return this->Subscriptions.end(); }
         /// @brief Gets an iterator to one-passed-the-last subscription in this container.
@@ -731,7 +762,7 @@ namespace Mezzanine
         /// @exception If the ID of the Sub is already being used by another subscriber this will throw a II_DUPLICATE_IDENTITY_EXCEPTION.
         /// @param Sub The subscriber to be called when the interested event is fired.
         /// @return Returns an instance of the subscriber storage if applicable.  Could also be void.
-        SubscribeRet Subscribe(SubscribeArg Sub)
+        SubscriptionGet Subscribe(SubscribeArg Sub)
         {
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
@@ -789,6 +820,7 @@ namespace Mezzanine
             for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
             {
                 if( EventHelper::ToPointer( *SubIt )->GetID() == ID ) {
+                    FactoryType::InvalidateSubscription( *SubIt );
                     this->Subscriptions.erase(SubIt);
                     return;
                 }
@@ -799,6 +831,8 @@ namespace Mezzanine
         Whole UnsubscribeAll()
         {
             Whole RemoveCount = this->Subscriptions.size();
+            for( StorageIterator SubIt = this->Subscriptions.begin() ; SubIt != this->Subscriptions.end() ; ++SubIt )
+                { FactoryType::InvalidateSubscription( *SubIt ); }
             this->Subscriptions.clear();
             return RemoveCount;
         }

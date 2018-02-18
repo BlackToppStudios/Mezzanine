@@ -114,7 +114,6 @@
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "event.h"
-#include "eventbindingtable.h"
 #include "eventdispatcher.h"
 #include "eventhelper.h"
 #include "eventid.h"

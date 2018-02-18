@@ -69,11 +69,13 @@ namespace Mezzanine
         using StoredType = SubscriberType;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
-        /// @brief Convenience type for what is passed back to the user for tracking the subscription.
-        /// @remarks This is allowed to be different from StoredType, but StoredType must be implicitly convertible to this type.
-        using SubscribeRet = SubscriberType;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        /// @brief Convenience type for returning the subscription from the Subscribe method.
+        /// @remarks In custom implmentations, this is allowed to be different from StoredType, but StoredType must be convertible to this type.
         using SubscriptionGet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
+        /// @brief Convenience type for allowing the easy passing around of the StoredType.
+        using SubscriptionUpdateType = typename std::conditional<std::is_pointer<StoredType>::value,StoredType,StoredType&>::type;
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
     public:
         /// @brief Creates a subscription from a subscriber.
         /// @param Sub The subscriber with which to create the subscription.
@@ -81,6 +83,15 @@ namespace Mezzanine
         /// @return Returns the Sub argument.
         static StoredType CreateSubscription(SubscribeArg Sub, TableType* Table)
             { return Sub; }
+        /// @brief Performs any necessary operations when the subscription table is moved.
+        /// @param Sub The subscriber to notify/update about the moving of the table.
+        /// @param Table A pointer to the table being moved.
+        static void MoveSubscription(SubscriptionUpdateType Sub, TableType* Table)
+            {  }
+        /// @brief Invalidates an existing subscription.
+        /// @param Sub The subscription to be invalidated.
+        static void InvalidateSubscription(SubscriptionUpdateType Sub)
+            {  }
     };//EventSubscriptionFactory
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -106,11 +117,13 @@ namespace Mezzanine
         using StoredType = EventSubscriberBindingStorable<BindingImplPtrType>;
         /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
         using SubscribeArg = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,const SubscriberType&>::type;
-        /// @brief Convenience type for what is passed back to the user for tracking the subscription.
-        /// @remarks This is allowed to be different from StoredType, but StoredType must be implicitly convertible to this type.
-        using SubscribeRet = BindingPtrType;
-        /// @brief Convenience type for passing the subscriber as an argument to the Subscribe method.
+        /// @brief Convenience type for returning the subscription from the Subscribe method.
+        /// @remarks In custom implmentations, this is allowed to be different from StoredType, but StoredType must be convertible to this type.
         using SubscriptionGet = BindingPtrType;
+        /// @brief Convenience type for allowing the easy passing around of the StoredType.
+        using SubscriptionUpdateType = typename std::conditional<std::is_pointer<StoredType>::value,StoredType,StoredType&>::type;
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
     public:
         /// @brief Creates a subscription from a subscriber.
         /// @param Sub The subscriber with which to create the subscription.
@@ -118,6 +131,15 @@ namespace Mezzanine
         /// @return Returns a subscription that will bind the table and subscriber.
         static StoredType CreateSubscription(SubscribeArg Sub, TableType* Table)
             { return BindingImplPtrType( new BindingImplType(Sub,Table) ); }
+        /// @brief Performs any necessary operations when the subscription table is moved.
+        /// @param Sub The subscriber to notify/update about the moving of the table.
+        /// @param Table A pointer to the table being moved.
+        static void MoveSubscription(SubscriptionUpdateType Sub, TableType* Table)
+            { Sub.StoredBinding->UpdateTable(Table); }
+        /// @brief Invalidates an existing subscription.
+        /// @param Sub The subscription to be invalidated.
+        static void InvalidateSubscription(SubscriptionUpdateType Sub)
+            { Sub.StoredBinding->Unbind(); }
     };//EventSubscriptionFactory
 
     /// @}

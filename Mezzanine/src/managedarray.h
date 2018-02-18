@@ -130,7 +130,12 @@ namespace Mezzanine
         /// @brief Move constructor.
         /// @remarks Since this is all stack allocated, this is pretty much a copy.
         /// @param Other The other array to be moved.
-        ManagedArray(ManagedArray&& Other) = default;
+        ManagedArray(ManagedArray&& Other)
+        {
+            for( Whole CurrIdx = 0 ; CurrIdx < Other.size() ; ++CurrIdx )
+                { push_back( std::move( Other[CurrIdx] ) ); }
+            Other.clear();
+        }
         /// @brief Initializer list constructor.
         /// @param InitList A listing of the values to initialize this array with.
         ManagedArray(std::initializer_list<ElementType> InitList)
@@ -149,7 +154,13 @@ namespace Mezzanine
         /// @brief Move Assignment Operator.
         /// @param Other The other array to be moved.
         /// @return Returns a reference to this.
-        SelfType& operator=(SelfType&& Other) = default;
+        SelfType& operator=(SelfType&& Other)
+        {
+            for( Whole CurrIdx = 0 ; CurrIdx < Other.size() ; ++CurrIdx )
+                { push_back( std::move( Other[CurrIdx] ) ); }
+            Other.clear();
+            return *this;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Iterators

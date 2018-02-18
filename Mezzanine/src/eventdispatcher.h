@@ -69,6 +69,9 @@ namespace Mezzanine
     template<class TableType, class Traits>
     class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Empty>
     {
+    public:
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename Traits::DispatchGet;
     protected:
         /// @brief Gets an iterator range for the subscribers to dispatch to.
         /// @remarks The use of "auto" return type here is due to the circular reference that occurs when trying
@@ -107,7 +110,7 @@ namespace Mezzanine
             IteratorRange<typename TableType::StorageIterator> Subs = this->GetRange();
             while( Subs.RangeStart != Subs.RangeEnd )
             {
-                typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                DispatchGet CurrSub = (*Subs.RangeStart);
                 (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                 ++Subs.RangeStart;
             }
@@ -129,7 +132,7 @@ namespace Mezzanine
             while( Subs.RangeStart != Subs.RangeEnd )
             {
                 if( EventHelper::ToPointer( *Subs.RangeStart )->GetID() == ID ) {
-                    typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                    DispatchGet CurrSub = (*Subs.RangeStart);
                     (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                     return;
                 }
@@ -153,7 +156,7 @@ namespace Mezzanine
             IteratorRange<typename TableType::StorageIterator> Subs = this->GetRange();
             while( Subs.RangeStart != Subs.RangeEnd )
             {
-                typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                DispatchGet CurrSub = (*Subs.RangeStart);
                 Ret.push_back( (EventHelper::ToPointer(CurrSub)->*Funct)(Args...) );
                 ++Subs.RangeStart;
             }
@@ -179,7 +182,7 @@ namespace Mezzanine
             while( Subs.RangeStart != Subs.RangeEnd )
             {
                 if( EventHelper::ToPointer( *Subs.RangeStart )->GetID() == ID ) {
-                    typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                    DispatchGet CurrSub = (*Subs.RangeStart);
                     Ret.push_back( (EventHelper::ToPointer(CurrSub)->*Funct)(Args...) );
                 }
                 ++Subs.RangeStart;
@@ -200,6 +203,9 @@ namespace Mezzanine
     template<class TableType, class Traits>
     class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Silencable>
     {
+    public:
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename Traits::DispatchGet;
     protected:
         /// @brief Controls whether or not the firing of events should be suppressed.
         Boole MuteEvents;
@@ -253,7 +259,7 @@ namespace Mezzanine
                 IteratorRange<typename TableType::StorageIterator> Subs = this->GetRange();
                 while( Subs.RangeStart != Subs.RangeEnd )
                 {
-                    typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                    DispatchGet CurrSub = (*Subs.RangeStart);
                     (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                     ++Subs.RangeStart;
                 }
@@ -277,7 +283,7 @@ namespace Mezzanine
                 while( Subs.RangeStart != Subs.RangeEnd )
                 {
                     if( EventHelper::ToPointer( *Subs.RangeStart )->GetID() == ID ) {
-                        typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                        DispatchGet CurrSub = (*Subs.RangeStart);
                         (EventHelper::ToPointer(CurrSub)->*Funct)(Args...);
                         return;
                     }
@@ -303,7 +309,7 @@ namespace Mezzanine
                 IteratorRange<typename TableType::StorageIterator> Subs = this->GetRange();
                 while( Subs.RangeStart != Subs.RangeEnd )
                 {
-                    typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                    DispatchGet CurrSub = (*Subs.RangeStart);
                     Ret.push_back( (EventHelper::ToPointer(CurrSub)->*Funct)(Args...) );
                     ++Subs.RangeStart;
                 }
@@ -331,7 +337,7 @@ namespace Mezzanine
                 while( Subs.RangeStart != Subs.RangeEnd )
                 {
                     if( EventHelper::ToPointer( *Subs.RangeStart )->GetID() == ID ) {
-                        typename TableType::SubscriberType CurrSub = (*Subs.RangeStart);
+                        DispatchGet CurrSub = (*Subs.RangeStart);
                         Ret.push_back( (EventHelper::ToPointer(CurrSub)->*Funct)(Args...) );
                     }
                     ++Subs.RangeStart;
@@ -395,15 +401,15 @@ namespace Mezzanine
         /// @brief Broadcast dispatch constructor.
         /// @param Queued The event packaged into a std::function to be dispatched.
         QueuedEvent(DispatchFunction&& Queued) :
-            Broadcast(true),
-            Funct( std::move(Queued) )
+            Funct( std::move(Queued) ),
+            Broadcast(true)
             {  }
         /// @brief Single subscriber dispatch constructor.
         /// @param ID The ID of the single subscriber to dispatch to.
         /// @param Queued The event packaged into a std::function to be dispatched.
         QueuedEvent(const SubscriberIDType& ID, DispatchFunction&& Queued) :
-            Broadcast(false),
-            Funct( std::move(Queued) )
+            Funct( std::move(Queued) ),
+            Broadcast(false)
             { this->CreateID(ID); }
         /// @brief Copy constructor.
         /// @param Other The other event to NOT be copied.
@@ -455,6 +461,8 @@ namespace Mezzanine
         using QueuedEventType = QueuedEvent<Traits>;
         /// @brief The type of container that is storing all of the events that are queued.
         using QueuedEventContainer = std::vector<QueuedEventType>;
+        /// @brief Convenience type for the dispatcher to use when retrieving the subscriber during event dispatch.
+        using DispatchGet = typename Traits::DispatchGet;
     protected:
         /// @brief A container of the events being held on to for future dispatch.
         QueuedEventContainer QueuedEvents;
@@ -526,17 +534,18 @@ namespace Mezzanine
                 if( Queued.IsBroadcasting() ) {
                     while( RangeBegin != RangeEnd )
                     {
-                        typename TableType::SubscriberType CurrSub = (*RangeBegin);
+                        DispatchGet CurrSub = (*RangeBegin);
                         Queued.Funct(CurrSub);
                         ++RangeBegin;
                     }
                 }else if( Queued.IsDispatchingToID() ) {
-                    auto FindPredicate = [&Queued](typename TableType::StoredType& Storage) -> Boole {
-                        return ( Storage.GetID() == Queued.GetID() );
+                    auto FindPredicate = [&Queued](typename TableType::StoredType PredSub) -> Boole {
+                        DispatchGet CurrSub = PredSub;
+                        return ( EventHelper::ToPointer(CurrSub)->GetID() == Queued.GetID() );
                     };
                     DispatchIterator DisIt = std::find_if(RangeBegin,RangeEnd,FindPredicate);
                     if( DisIt != RangeEnd ) {
-                        typename TableType::SubscriberType CurrSub = (*DisIt);
+                        DispatchGet CurrSub = (*DisIt);
                         Queued.Funct(CurrSub);
                     }
                 }
@@ -548,10 +557,11 @@ namespace Mezzanine
         {
 
         }
-        /// @brief
+        /// @brief Flushes all Events and Queries.
         void FlushAll()
         {
-
+            this->FlushAllEvents();
+            this->FlushAllQueries();
         }
     };//EventDispatcher
 

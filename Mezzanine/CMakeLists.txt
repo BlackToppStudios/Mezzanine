@@ -106,7 +106,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}entresolmanagerfactory.h"
         "${${PROJECT_NAME}_SRC_DIR}enumerations.h"
         "${${PROJECT_NAME}_SRC_DIR}event.h"
-        "${${PROJECT_NAME}_SRC_DIR}eventbindingtable.h"
         "${${PROJECT_NAME}_SRC_DIR}eventdispatcher.h"
         "${${PROJECT_NAME}_SRC_DIR}eventhelper.h"
         "${${PROJECT_NAME}_SRC_DIR}eventid.h"
