@@ -110,6 +110,9 @@ namespace Mezzanine
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const;
     };//FileStream
+
+    /// @brief This is a convenience type for a file stream in a shared_ptr.
+    using FileStreamPtr = std::shared_ptr<FileStream>;
 }//Mezzanine
 
 #endif

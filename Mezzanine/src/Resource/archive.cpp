@@ -46,7 +46,7 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        Archive::Archive()
+        /*Archive::Archive()
         {
 
         }
@@ -54,7 +54,7 @@ namespace Mezzanine
         Archive::~Archive()
         {
 
-        }
+        }//*/
     }//Resource
 }//Mezzanine
 

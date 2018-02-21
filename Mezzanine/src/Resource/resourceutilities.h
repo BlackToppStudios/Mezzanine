@@ -96,13 +96,21 @@ namespace Mezzanine
         // Path Utilities
 
         /// @brief Get the directory portion of a string.
-        /// @param FileName A complete path and filename.
+        /// @param PathAndFile A complete path and filename.
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\".
-        String MEZZ_LIB DirName(const String& FileName);
+        String MEZZ_LIB GetDirName(const char* PathAndFile);
+        /// @brief Get the directory portion of a string.
+        /// @param PathAndFile A complete path and filename.
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\".
+        String MEZZ_LIB GetDirName(const String& PathAndFile);
         /// @brief Get the filename portion of a string.
-        /// @param FileName A complete path and filename.
+        /// @param PathAndFile A complete path and filename.
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe".
-        String MEZZ_LIB BaseName(const String& FileName);
+        String MEZZ_LIB GetBaseName(const char* PathAndFile);
+        /// @brief Get the filename portion of a string.
+        /// @param PathAndFile A complete path and filename.
+        /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe".
+        String MEZZ_LIB GetBaseName(const String& PathAndFile);
 
         /// @brief Get the character used to separate directories
         /// @return Backslash '\' on windows and Forward slash '/' on other operating systems.

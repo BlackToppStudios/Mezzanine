@@ -51,7 +51,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB DeflateCodec : public ArchiveCodec
         {
-        public:
         protected:
             /// @brief The amount of compression to perform when compressing.
             /// @remarks Range is 1-10.  1 is faster compression, 10 is smaller result.
@@ -59,8 +58,29 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             DeflateCodec();
+            /// @brief Compression level constructor.
+            /// @param Compression The amount of compression to apply.  Valid range: 0-10.
+            DeflateCodec(const Integer Compression);
+            /// @brief Copy constructor.
+            /// @param Other The other codec to be copied.
+            DeflateCodec(const DeflateCodec& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other codec to be moved.
+            DeflateCodec(DeflateCodec&& Other) = default;
             /// @brief Class destructor.
             virtual ~DeflateCodec() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Copy-assignment operator.
+            /// @param Other The other codec to be copied.
+            /// @return Returns a reference to this.
+            DeflateCodec& operator=(const DeflateCodec& Other) = default;
+            /// @brief Move-assignment operator.
+            /// @param Other The other codec to be moved.
+            /// @return Returns a reference to this.
+            DeflateCodec& operator=(DeflateCodec&& Other) = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
@@ -72,6 +92,20 @@ namespace Mezzanine
             /// @brief Gets the amount of compression to apply when using the ArchiveCodec API.
             /// @return Returns an integer representing the amount of compression that will be applied.  -1 is internal default.
             Integer GetCompressionLevel() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Static Compression
+
+            /// @brief Direct compression with deflate.
+            /// @param Input The data to be compressed.
+            /// @param CompressionLevel The amount of compression to apply.
+            /// @return Returns a byte vector containing the compressed input.
+            static ByteVector Deflate(const ByteVector& Input, const Integer CompressionLevel);
+            /// @brief Direct decompression with inflate.
+            /// @param Input The data to be decompressed.
+            /// @param Expected The assumed size of the uncompressed data.
+            /// @return Returns a byte vector containing the decompressed input.
+            static ByteVector Inflate(const ByteVector& Input, const StreamSize Expected);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Compression/Decompression

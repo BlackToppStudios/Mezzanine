@@ -53,9 +53,9 @@ namespace Mezzanine
         protected:
         public:
             /// @brief Class constructor.
-            ArchiveFormat();
+            ArchiveFormat() = default;
             /// @brief Class destructor.
-            ~ArchiveFormat();
+            ~ArchiveFormat() = default;
         };//ArchiveFormat
     }//Resource
 }//Mezzanine

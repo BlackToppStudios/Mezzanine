@@ -54,6 +54,13 @@ namespace Mezzanine
             CompressionLevel(MZ_DEFAULT_COMPRESSION)
             {  }
 
+        DeflateCodec::DeflateCodec(const Integer Compression) :
+            CompressionLevel(Compression)
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration
 
@@ -64,14 +71,14 @@ namespace Mezzanine
             { return this->CompressionLevel; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Compression/Decompression
+        // Static Compression
 
-        DeflateCodec::ByteVector DeflateCodec::Compress(const ByteVector& Input) const
+        DeflateCodec::ByteVector DeflateCodec::Deflate(const ByteVector& Input, const Integer CompressionLevel)
         {
             const mz_ulong BoundSize = compressBound( Input.size() );
             mz_ulong RetSize = BoundSize;
             ByteVector Ret(RetSize);
-            int ErrorCode = mz_compress2(Ret.data(),&RetSize,Input.data(),Input.size(),this->CompressionLevel);
+            int ErrorCode = mz_compress2(Ret.data(),&RetSize,Input.data(),Input.size(),CompressionLevel);
 
             if( ErrorCode != MZ_OK ) {
                 MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,mz_error(ErrorCode));
@@ -83,7 +90,7 @@ namespace Mezzanine
             return Ret;
         }
 
-        DeflateCodec::ByteVector DeflateCodec::Decompress(const ByteVector& Input, const StreamSize Expected) const
+        DeflateCodec::ByteVector DeflateCodec::Inflate(const ByteVector& Input, const StreamSize Expected)
         {
             mz_ulong RetSize = static_cast<mz_ulong>(Expected);
             ByteVector Ret(RetSize);
@@ -98,6 +105,15 @@ namespace Mezzanine
             }
             return Ret;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Compression/Decompression
+
+        DeflateCodec::ByteVector DeflateCodec::Compress(const ByteVector& Input) const
+            { return DeflateCodec::Deflate(Input,this->CompressionLevel); }
+
+        DeflateCodec::ByteVector DeflateCodec::Decompress(const ByteVector& Input, const StreamSize Expected) const
+            { return DeflateCodec::Inflate(Input,Expected); }
     }//Resource
 }//Mezzanine
 

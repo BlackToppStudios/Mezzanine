@@ -219,31 +219,55 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Path Utilities
 
-        String DirName(const String& FileName)
+        String GetDirName(const char* FileName)
         {
-            Whole Last(FileName.find_last_of("\\/"));
-            if(FileName.npos == Last) {
+            Whole SlashPos = std::numeric_limits<Whole>::max(), CurrPos = 0;
+            while( FileName[CurrPos] != '\0' )
+            {
+                if( FileName[CurrPos] == '\\' || FileName[CurrPos] == '/' ) {
+                    SlashPos = CurrPos;
+                }
+                ++CurrPos;
+            }
+            if( SlashPos < std::numeric_limits<Whole>::max() ) {
+                return String(FileName,SlashPos + 1);
+            }
+            return String();
+        }
+
+        String GetDirName(const String& FileName)
+        {
+            Whole SlashPos = FileName.find_last_of("\\/");
+            if( FileName.npos == SlashPos ) {
                 return String();
             }else{
-                if( Last<FileName.size() ) {
-                    return FileName.substr(0,Last+1);
-                }else{
-                    return FileName.substr(0,Last+1);
-                }
+                return FileName.substr(0,SlashPos + 1);
             }
         }
 
-        String BaseName(const String& FileName)
+        String GetBaseName(const char* FileName)
         {
-            Whole Last(FileName.find_last_of("\\/"));
-            if(FileName.npos == Last) {
+            Whole SlashPos = std::numeric_limits<Whole>::max(), CurrPos = 0;
+            while( FileName[CurrPos] != '\0' )
+            {
+                if( FileName[CurrPos] == '\\' || FileName[CurrPos] == '/' ) {
+                    SlashPos = CurrPos;
+                }
+                ++CurrPos;
+            }
+            if( SlashPos < std::numeric_limits<Whole>::max() ) {
+                return String(FileName[SlashPos + 1],CurrPos - SlashPos);
+            }
+            return String(FileName,CurrPos);
+        }
+
+        String GetBaseName(const String& FileName)
+        {
+            Whole SlashPos = FileName.find_last_of("\\/");
+            if( FileName.npos == SlashPos ) {
                 return FileName;
             }else{
-                if(Last<FileName.size()) {
-                    return FileName.substr(Last+1,FileName.npos);
-                }else{
-                    return String("");
-                }
+                return FileName.substr(SlashPos + 1,FileName.npos);
             }
         }
 
@@ -336,19 +360,19 @@ namespace Mezzanine
                 MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
                 if( Length != -1 ) {
                     Results[Length] = '\0';
-                    return DirName(String(Results));
+                    return GetDirName(String(Results));
                 }else{
                     return "";
                 }
             #endif
             #ifdef MEZZ_WINDOWS
                 GetModuleFileName( NULL, Results, FILENAME_MAX );
-                return DirName(String(Results));
+                return GetDirName(String(Results));
             #endif
             #ifdef MEZZ_MACOSX
                 uint32_t size = sizeof(Results);
                 if( _NSGetExecutablePath(Results, &size) == 0 ) {
-                    return DirName(String(Results));
+                    return GetDirName(String(Results));
                 }else{
                     return "";
                 }
@@ -363,11 +387,11 @@ namespace Mezzanine
         String GetExecutableDirFromArg(int ArgCount, char** ArgVars)
         {
             if(ArgCount>0) {
-                if(String("") == BaseName(ArgVars[0])) { // No command is clearly bogus, must bail
+                if(String("") == GetBaseName(ArgVars[0])) { // No command is clearly bogus, must bail
                     return "";
                 }
 
-                String Results(DirName(ArgVars[0]));
+                String Results(GetDirName(ArgVars[0]));
 
                 // strip ./ ../ .\ ..\ and
                 //String::iterator From=Results.begin();

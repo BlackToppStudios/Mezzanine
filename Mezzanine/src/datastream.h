@@ -359,19 +359,19 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Convenience Pointer Types
 
-    /// @brief Convenience type for a standard input stream in a CountedPtr.
-    using StdInputStreamPtr = CountedPtr<StdInputStream>;
-    /// @brief Convenience type for a standard output stream in a CountedPtr.
-    using StdOutputStreamPtr = CountedPtr<StdOutputStream>;
-    /// @brief Convenience type for a standard input/output stream in a CountedPtr.
-    using StdStreamPtr = CountedPtr<StdStream>;
+    /// @brief Convenience type for a standard input stream in a shared_ptr.
+    using StdInputStreamPtr = std::shared_ptr<StdInputStream>;
+    /// @brief Convenience type for a standard output stream in a shared_ptr.
+    using StdOutputStreamPtr = std::shared_ptr<StdOutputStream>;
+    /// @brief Convenience type for a standard input/output stream in a shared_ptr.
+    using StdStreamPtr = std::shared_ptr<StdStream>;
 
-    /// @brief Convenience type for a standard input stream in a CountedPtr.
-    using IStreamPtr = CountedPtr<IStream>;
-    /// @brief Convenience type for a standard output stream in a CountedPtr.
-    using OStreamPtr = CountedPtr<OStream>;
-    /// @brief This is a convenience type for a data stream in a counted pointer.
-    using DataStreamPtr = CountedPtr<DataStream>;
+    /// @brief Convenience type for a standard input stream in a shared_ptr.
+    using IStreamPtr = std::shared_ptr<IStream>;
+    /// @brief Convenience type for a standard output stream in a shared_ptr.
+    using OStreamPtr = std::shared_ptr<OStream>;
+    /// @brief This is a convenience type for a data stream in a shared_ptr.
+    using DataStreamPtr = std::shared_ptr<DataStream>;
 }//Mezzanine
 
 #endif

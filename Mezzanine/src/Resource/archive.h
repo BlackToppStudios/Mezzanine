@@ -40,6 +40,8 @@
 #ifndef _resourcearchive_h
 #define _resourcearchive_h
 
+#include "Resource/archiveentry.h"
+
 namespace Mezzanine
 {
     namespace Resource
@@ -48,14 +50,43 @@ namespace Mezzanine
         /// @brief
         /// @details
         ///////////////////////////////////////
-        class Archive
+        class MEZZ_LIB Archive
         {
         protected:
         public:
             /// @brief Class constructor.
-            Archive();
+            Archive() = default;
             /// @brief Class destructor.
-            ~Archive();
+            virtual ~Archive() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Configuration
+
+            /// @brief Sets any and all special configuration flags the archive may need.
+            /// @remarks An archive may have many flags, or it may have none at all.  Consult the documentation of
+            /// the archive implementation to understand what flags may exist for that archive.
+            /// @param Flags The flags to be set for the archive.
+            virtual void SetFlags(const Whole Flags) = 0;
+            /// @brief Gets the configuration flags used by the archive.
+            /// @return Returns a bitmask pertaining to the configuration of this archive.
+            virtual Whole GetFlags() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Reading
+
+            /// @brief Gets the total size of the archive.
+            /// @return Returns the complete size of the archive in bytes.
+            virtual UInt64 GetSize() const = 0;
+            /// @brief Gets the number of files contained in the archive.
+            /// @return Returns the total number of files stored in this archive.
+            virtual Whole GetFileCount() const = 0;
+            /// @brief Gets the archive entry for a file at the specified index.
+            /// @param Index The index of the entry to retrieve.
+            /// @return Returns an ArchiveEntry containing information of the file at the specified index.
+            virtual ArchiveEntryPtr GetEntry(const Whole Index) const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Writing
         };//Archive
     }//Resource
 }//Mezzanine

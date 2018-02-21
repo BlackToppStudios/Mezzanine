@@ -47,12 +47,44 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        /// @brief Used to indicate what kind of resources the Entrosol should look for
+        /// @brief Used to indicate what kind of resources the Entresol should look for
         enum ArchiveType
         {
-            AT_FileSystem  = 0,    ///< Look for raw files
-            AT_Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
-            AT_Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
+            AT_Invalid     = 0,    ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
+            AT_FileSystem  = 1,    ///< Look for raw files
+            AT_Zip         = 2,    ///< Look for stuff in zip files even if the extension is not '.zip'.
+        };
+
+        /// @brief Used to indicate an algorithm of compression.
+        enum CompressionMethod
+        {
+            CM_None = 0,
+            CM_Deflate,
+            CM_Deflate64,
+            CM_BZip2,
+            CM_ZPAQ,
+            CM_Brotli9,
+            CM_Brotli11,
+            CM_LZMA,
+            CM_LZMA20,
+            CM_LZMA25,
+            CM_LZ4,
+            CM_LZ4F
+        };
+
+        /// @brief Used to indicate an algorithm of encryption.
+        enum EncryptionAlgorithm
+        {
+            EA_Unknown = 0
+        };
+
+        /// @brief Used to differentiate entries in some archive systems.
+        enum EntryType
+        {
+            ET_Unknown,
+            ET_File,
+            ET_Directory,
+            ET_Symlink
         };
 
         /// @brief This enum describes the current state of loading for an asset.

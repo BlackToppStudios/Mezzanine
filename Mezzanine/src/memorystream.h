@@ -270,6 +270,9 @@ namespace Mezzanine
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const;
     };//MemoryStream
+
+    /// @brief This is a convenience type for a memory stream in a shared_ptr.
+    using MemoryStreamPtr = std::shared_ptr<MemoryStream>;
 }//Mezzanine
 
 #endif

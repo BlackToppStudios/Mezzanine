@@ -40,7 +40,8 @@
 #ifndef _resourcearchivestream_h
 #define _resourcearchivestream_h
 
-#include "datastream.h"
+#include "filestream.h"
+#include "memorystream.h"
 
 /// @file
 /// @brief Declaration of ArchiveStream
@@ -55,9 +56,15 @@ namespace Mezzanine
         class MEZZ_LIB ArchiveStreamBuffer : public std::streambuf
         {
         protected:
+            /// @brief A pointer to the stream containing the raw data of the archive.
+            DataStreamPtr Stream;
         public:
-            /// @brief Class constructor.
-            ArchiveStreamBuffer();
+            /// @brief FileStream constructor.
+            /// @param StreamPtr The stream to the raw data of the archive.
+            ArchiveStreamBuffer(FileStreamPtr StreamPtr);
+            /// @brief MemoryStream constructor.
+            /// @param StreamPtr The stream to the raw data of the archive.
+            ArchiveStreamBuffer(MemoryStreamPtr StreamPtr);
             /// @brief Class destructor.
             virtual ~ArchiveStreamBuffer();
 

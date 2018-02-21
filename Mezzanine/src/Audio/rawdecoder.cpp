@@ -78,7 +78,7 @@ namespace Mezzanine
 
         Boole RawDecoder::IsValid()
         {
-            return ( RawStream );
+            return ( RawStream != nullptr );
         }
 
         Audio::Encoding RawDecoder::GetEncoding() const

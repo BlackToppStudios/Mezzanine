@@ -65,7 +65,7 @@ namespace Mezzanine
             /// @brief Class constructor.
             ArchiveCodec() = default;
             /// @brief Class destructor.
-            ~ArchiveCodec() = default;
+            virtual ~ArchiveCodec() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Compression
