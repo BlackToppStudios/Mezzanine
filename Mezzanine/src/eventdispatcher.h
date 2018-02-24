@@ -123,6 +123,7 @@ namespace Mezzanine
         /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
@@ -170,6 +171,7 @@ namespace Mezzanine
         /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         /// @return Returns the value returned by the last subscriber an event was dispatched to.
@@ -273,6 +275,7 @@ namespace Mezzanine
         /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
@@ -324,6 +327,7 @@ namespace Mezzanine
         /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         /// @return Returns the value returned by the last subscriber an event was dispatched to.
@@ -348,7 +352,7 @@ namespace Mezzanine
     };//EventDispatcher
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a helper class that will store extra data that may be needed for a queued dispatch.
+    /// @brief This is a helper class that will store extra data that may be needed for a queued event dispatch.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
     ///////////////////////////////////////
     template<class Traits>
@@ -363,7 +367,7 @@ namespace Mezzanine
         /// @brief Storage type that will keep the stored ID uninitialized until we need it.
         using SubscriberIDStorage = std::aligned_storage_t<sizeof(SubscriberIDType),alignof(SubscriberIDType)>;
         /// @brief Function type that will store the event to be dispatched.
-        using DispatchFunction = std::function<void(typename Traits::SubscribeArg)>;
+        using DispatchFunction = std::function<void(typename Traits::SubscribeArg,const Boole)>;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -449,6 +453,57 @@ namespace Mezzanine
     };//QueuedEvent
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a helper class that will store the results and ready state for a given query dispatch.
+    /// @tparam ResultsType The type returned by the function being queried.
+    ///////////////////////////////////////
+    template <class ResultsType>
+    class QueuedQueryResults
+    {
+    public:
+        /// @brief A container of results from the method queried.
+        std::vector<ResultsType> Results;
+        /// @brief An atomic flag storing whether or not the results are ready.
+        std::atomic_bool ReadyState;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction, Destruction, and Assignment
+
+        /// @brief Default constructor.
+        QueuedQueryResults() :
+            ReadyState(false)
+            {  }
+        /// @brief Copy constructor.
+        /// @param Other The other results to NOT be copied.
+        QueuedQueryResults(const QueuedQueryResults& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other results to be moved.
+        QueuedQueryResults(QueuedQueryResults&& Other) = default;
+        /// @brief Class destructor.
+        ~QueuedQueryResults() = default;
+
+        /// @brief Copy assignment operator.
+        /// @param Other The other results to NOT be copied.
+        /// @return Returns a reference to this.
+        QueuedQueryResults& operator=(const QueuedQueryResults& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other results to be moved.
+        /// @return Returns a reference to this.
+        QueuedQueryResults& operator=(QueuedQueryResults&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief A non-blocking check to see if the results are ready to be accessed/used.
+        /// @return Returns true if the Results member is ready to be used, false otherwise.
+        Boole IsReady() const
+            { return this->ReadyState.load(); }
+    };//QueuedQueryResults
+
+    /// @brief Convenience type for QueuedQueryResults managed by a shared_ptr.
+    template<class ResultsType>
+    using QueuedQueryResultsPtr = std::shared_ptr< QueuedQueryResults<ResultsType> >;
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an event dispatcher that queues up events for future dispatch.
     /// @tparam TableType The type of subscription table using this dispatcher.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
@@ -494,7 +549,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Queues an event for later dispatch.
+        /// @brief Queues an event for later dispatch on all subscribers.
         /// @tparam MemberFunct The class member function to call for the event.
         /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
@@ -507,19 +562,63 @@ namespace Mezzanine
             this->QueuedEvents.emplace_back( std::bind(Funct,std::placeholders::_1,std::forward<ArgTypes>(Args)...) );
         }
 
-        /// @brief Invokes a function on each subscriber.
+        /// @brief Queues an event for later dispatch on one subscriber.
         /// @tparam SubIDType The type used to identify the subscriber to dispatch to.
         /// @tparam MemberFunct The class member function to call for the event.
         /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
         /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
         /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
         void DispatchEventSingle(const SubIDType ID, MemberFunct Funct, ArgTypes&&... Args)
         {
             this->QueuedEvents.emplace_back( ID, std::bind(Funct,std::placeholders::_1,std::forward<ArgTypes>(Args)...) );
+        }
+
+        /// @brief Queues a query for later dispatch on all subscribers.
+        /// @tparam MemberFunct The class member function to call for the event.
+        /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param Funct The function on the subscriber to call.
+        /// @param Args The arguments/event specific data related to this event.
+        template<class MemberFunct, class... ArgTypes>
+        auto DispatchQuery(MemberFunct Funct, ArgTypes&&... Args)
+        {
+            using ReturnType = EventHelper::DeduceRetType<MemberFunct>;
+            QueuedQueryResultsPtr<ReturnType> QueryResults = std::make_shared< QueuedQueryResults<ReturnType> >();
+            this->QueuedQueries.emplace_back( [QueryResults,Funct,Args...](typename Traits::SubscribeArg Subscriber, const Boole Final) {
+                QueryResults->Results.push_back( std::move( (EventHelper::ToPointer(Subscriber)->*Funct)(Args...) ) );
+                if( Final ) {
+                    QueryResults->ReadyState.store(true);
+                }
+            } );
+            return QueryResults;
+        }
+
+        /// @brief Queues a query for later dispatch on one subscriber.
+        /// @tparam SubIDType The type used to identify the subscriber to dispatch to.
+        /// @tparam MemberFunct The class member function to call for the event.
+        /// @tparam ArgTypes A parameter pack of the arguments to pass into MemberFunct.
+        /// @pre SubIDType is expected to be equality comparable to TableType::SubscriberType::IDType.
+        /// @pre MemberFunct is expected to be a member function on "SubscriberType" defined on TableType.
+        /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
+        /// @param ID The ID of the specific subscriber to dispatch to.
+        /// @param Funct The function on the subscriber to call.
+        /// @param Args The arguments/event specific data related to this event.
+        template<class SubIDType, class MemberFunct, class... ArgTypes>
+        auto DispatchQuerySingle(const SubIDType ID, MemberFunct Funct, ArgTypes&&... Args)
+        {
+            using ReturnType = EventHelper::DeduceRetType<MemberFunct>;
+            QueuedQueryResultsPtr<ReturnType> QueryResults = std::make_shared< QueuedQueryResults<ReturnType> >();
+            this->QueuedQueries.emplace_back( ID, [QueryResults,Funct,Args...](typename Traits::SubscribeArg Subscriber, const Boole Final) {
+                QueryResults->Results.push_back( std::move( (EventHelper::ToPointer(Subscriber)->*Funct)(Args...) ) );
+                QueryResults->ReadyState.store(true);
+            } );
+            return QueryResults;
         }
 
         /// @brief Fires all queued events to the provided subscribers.
@@ -530,12 +629,13 @@ namespace Mezzanine
             for( QueuedEventType& Queued : this->QueuedEvents )
             {
                 DispatchIterator RangeBegin = Subs.begin();
-                DispatchIterator RangeEnd = Subs.end();
+                const DispatchIterator RangeEnd = Subs.end();
+                //const DispatchIterator RangeLast = RangeEnd - 1;
                 if( Queued.IsBroadcasting() ) {
                     while( RangeBegin != RangeEnd )
                     {
                         DispatchGet CurrSub = (*RangeBegin);
-                        Queued.Funct(CurrSub);
+                        Queued.Funct(CurrSub,false);
                         ++RangeBegin;
                     }
                 }else if( Queued.IsDispatchingToID() ) {
@@ -546,16 +646,42 @@ namespace Mezzanine
                     DispatchIterator DisIt = std::find_if(RangeBegin,RangeEnd,FindPredicate);
                     if( DisIt != RangeEnd ) {
                         DispatchGet CurrSub = (*DisIt);
-                        Queued.Funct(CurrSub);
+                        Queued.Funct(CurrSub,true);
                     }
                 }
             }
             this->QueuedEvents.clear();
         }
-        /// @brief
+        /// @brief Fires all queued queries to the provided subscribers.
         void FlushAllQueries()
         {
-
+            using DispatchIterator = typename TableType::StorageIterator;
+            IteratorRange<DispatchIterator> Subs = this->GetRange();
+            for( QueuedEventType& Queued : this->QueuedQueries )
+            {
+                DispatchIterator RangeBegin = Subs.begin();
+                const DispatchIterator RangeEnd = Subs.end();
+                const DispatchIterator RangeLast = RangeEnd - 1;
+                if( Queued.IsBroadcasting() ) {
+                    while( RangeBegin != RangeEnd )
+                    {
+                        DispatchGet CurrSub = (*RangeBegin);
+                        Queued.Funct(CurrSub,RangeBegin == RangeLast);
+                        ++RangeBegin;
+                    }
+                }else if( Queued.IsDispatchingToID() ) {
+                    auto FindPredicate = [&Queued](typename TableType::StoredType PredSub) -> Boole {
+                        DispatchGet CurrSub = PredSub;
+                        return ( EventHelper::ToPointer(CurrSub)->GetID() == Queued.GetID() );
+                    };
+                    DispatchIterator DisIt = std::find_if(RangeBegin,RangeEnd,FindPredicate);
+                    if( DisIt != RangeEnd ) {
+                        DispatchGet CurrSub = (*DisIt);
+                        Queued.Funct(CurrSub,true);
+                    }
+                }
+            }
+            this->QueuedQueries.clear();
         }
         /// @brief Flushes all Events and Queries.
         void FlushAll()

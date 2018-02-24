@@ -745,7 +745,24 @@ public:
                      TestSubTwoCallCount == 2,
                      "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ");
 
-                //
+                QueuedQueryResultsPtr<TestSubscriberIDType> ResultsOne = TestTableTwo.DispatchQuery(&TestSubscriberType::GetID);
+                TEST(ResultsOne->IsReady() == false,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PreFlush-BSFQ");
+                TestTableTwo.FlushAllQueries();
+                TEST(ResultsOne->IsReady() == true &&
+                     ResultsOne->Results.size() == 2 &&
+                     ResultsOne->Results[0] == TestSubscriberIDType(0xBAADC0DE) &&
+                     ResultsOne->Results[1] == TestSubscriberIDType(0xDEADBEEF),
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ");
+
+                QueuedQueryResultsPtr<TestSubscriberIDType> ResultsTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberType::GetID);
+                TEST(ResultsTwo->IsReady() == false,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PreFlush-BSFQ");
+                TestTableTwo.FlushAllQueries();
+                TEST(ResultsTwo->IsReady() == true &&
+                     ResultsTwo->Results.size() == 1 &&
+                     ResultsTwo->Results[0] == TestSubscriberIDType(0xBAADC0DE),
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
                 TEST(TestTableTwo.GetNumSubscriptions() == 1 &&
@@ -838,7 +855,24 @@ public:
                      TestSubscriberTwo.TestGet() == 80,
                      "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ");
 
-                //
+                QueuedQueryResultsPtr<Whole> ResultsOne = TestTableTwo.DispatchQuery(&TestSubscriberBase::TestGet);
+                TEST(ResultsOne->IsReady() == false,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PreFlush-NSoQ");
+                TestTableTwo.FlushAllQueries();
+                TEST(ResultsOne->IsReady() == true &&
+                     ResultsOne->Results.size() == 2 &&
+                     ResultsOne->Results[0] == 80 &&
+                     ResultsOne->Results[1] == 20,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ");
+
+                QueuedQueryResultsPtr<Whole> ResultsTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberBase::TestGet);
+                TEST(ResultsTwo->IsReady() == false,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ");
+                TestTableTwo.FlushAllQueries();
+                TEST(ResultsTwo->IsReady() == true &&
+                     ResultsTwo->Results.size() == 1 &&
+                     ResultsTwo->Results[0] == 80,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
                 TEST(TestTableTwo.GetNumSubscriptions() == 1,
