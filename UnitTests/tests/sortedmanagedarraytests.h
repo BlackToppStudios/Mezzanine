@@ -147,6 +147,15 @@ public:
             TEST( *find8 == 8,                  "SortedManagedArray.find2");
             TEST( *find13 == 13,                "SortedManagedArray.find3");
             TEST( find100 == findend,           "SortedManagedArray.findfail1");
+            SortedManagedArray<Int32,3>::iterator findif5 = tested.find_if([](const Int32 Num){ return Num == 5; });
+            SortedManagedArray<Int32,3>::iterator findif8 = tested.find_if([](const Int32 Num){ return Num == 8; });
+            SortedManagedArray<Int32,3>::iterator findif13 = tested.find_if([](const Int32 Num){ return Num == 13; });
+            SortedManagedArray<Int32,3>::iterator findif100 = tested.find_if([](const Int32 Num){ return Num == 100; });
+            SortedManagedArray<Int32,3>::iterator findifend = tested.end();
+            TEST( *findif5 == 5,                  "SortedManagedArray.findif1");
+            TEST( *findif8 == 8,                  "SortedManagedArray.findif2");
+            TEST( *findif13 == 13,                "SortedManagedArray.findif3");
+            TEST( findif100 == findifend,         "SortedManagedArray.findiffail1");
             TEST( tested.contains(5) == true,       "SortedManagedArray.contains1");
             TEST( tested.contains(8) == true,       "SortedManagedArray.contains2");
             TEST( tested.contains(13) == true,      "SortedManagedArray.contains3");

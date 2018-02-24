@@ -206,6 +206,21 @@ namespace Mezzanine
         const_iterator find(const ElementType& value) const
             { return binary_find(begin(),end(),value,Sorter()); }
 
+        /// @brief A convenience method for invoking std::find_if with all the elements of this container.
+        /// @tparam UnaryPredicate The type of invokable that will perform the checks.
+        /// @param Pred An instance of the predicate that will takes one of this containers elements and returns true or false.
+        /// @return Returns an iterator to the element that made the predicate return true, or the end iterator if they all returned false.
+        template<class UnaryPredicate>
+        iterator find_if(UnaryPredicate Pred)
+            { return std::find_if(begin(),end(),Pred); }
+        /// @brief A convenience method for invoking std::find_if with all the elements of this container.
+        /// @tparam UnaryPredicate The type of invokable that will perform the checks.
+        /// @param Pred An instance of the predicate that will takes one of this containers elements and returns true or false.
+        /// @return Returns a const iterator to the element that made the predicate return true, or the end iterator if they all returned false.
+        template<class UnaryPredicate>
+        const_iterator find_if(UnaryPredicate Pred) const
+            { return std::find_if(begin(),end(),Pred); }
+
         /// @brief Does the item exist in this array?
         /// @param value The item in question.
         /// @return True if present false otherwise.
