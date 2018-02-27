@@ -212,9 +212,9 @@ namespace Mezzanine
         {
             this->ClampToLimits(Value);
             if( this->SpinValue != Value ) {
+                this->SpinValue = Value;
                 this->_OnSpinValueChanged(this->SpinValue,Value);
                 this->ValueDisplay->SetText( StringTools::ConvertToString( Value ) );
-                this->SpinValue = Value;
             }
         }
 
