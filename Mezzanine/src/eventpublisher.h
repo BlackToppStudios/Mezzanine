@@ -150,11 +150,10 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
-    /// @tparam TableType The type to be used to store subscriptions that events will be dispatched to.
-    /// @tparam DispatchType The type to be used to dispatch the event to the Subscription table.
+    /// @tparam Table The type to be used to store subscriptions that events will be dispatched to.
     ///////////////////////////////////////
     template<class Table>
-    class MEZZ_LIB EventPublisher
+    class EventPublisher
     {
     public:
         /// @brief Convenience type for describing the type of "this".
@@ -181,6 +180,9 @@ namespace Mezzanine
         /// @brief A container storing all the Events published by this class by name.
         TableContainer SubscriptionTables;
     public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction, Destruction, and Assignment
+
         /// @brief Class constructor.
         EventPublisher() = default;
         /// @brief Reserving constructor.
@@ -195,9 +197,6 @@ namespace Mezzanine
         EventPublisher(SelfType&& Other) = default;
         /// @brief Class destructor.
         ~EventPublisher() = default;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Operators
 
         /// @brief Assignment operator.
         /// @param Other The other publisher to be copied.
@@ -231,7 +230,9 @@ namespace Mezzanine
         /// @return Returns an iterator to the created table.
         TableIterator AddSubscriptionTable(const DispatchIDType ID)
         {
-            TableIterator TableIt = this->SubscriptionTables.find(ID);
+            TableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+                return SubTable.GetID() == ID;
+            });
             if( TableIt == this->SubscriptionTables.end() ) {
                 return this->SubscriptionTables.add_emplace([](const TableType& EvTable, DispatchIDType ID) {
                     return EvTable.GetID() < ID;
@@ -248,7 +249,9 @@ namespace Mezzanine
         /// @return Returns true of the specified table is present in this publisher.
         Boole HasSubscriptionTable(const DispatchIDType ID) const
         {
-            ConstTableIterator TableIt = this->SubscriptionTables.find(ID);
+            ConstTableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+                return SubTable.GetID() == ID;
+            });
             return TableIt != this->SubscriptionTables.end();
         }
         /// @brief Gets a table in this publisher.
@@ -258,7 +261,9 @@ namespace Mezzanine
         /// @return Returns an iterator to the requested table or throws an exception if it was not found.
         TableIterator GetSubscriptionTable(const DispatchIDType ID)
         {
-            TableIterator TableIt = this->SubscriptionTables.find(ID);
+            TableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+                return SubTable.GetID() == ID;
+            });
             if( TableIt != this->SubscriptionTables.end() ) {
                 return TableIt;
             }else{
@@ -274,7 +279,9 @@ namespace Mezzanine
         /// @return Returns a const iterator to the requested table or throws an exception if it was not found.
         ConstTableIterator GetSubscriptionTable(const DispatchIDType ID) const
         {
-            ConstTableIterator TableIt = this->SubscriptionTables.find(ID);
+            ConstTableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+                return SubTable.GetID() == ID;
+            });
             if( TableIt != this->SubscriptionTables.end() ) {
                 return TableIt;
             }else{
@@ -288,7 +295,9 @@ namespace Mezzanine
         /// @param ID The unique ID for the table to remove.
         void RemoveSubscriptionTable(const DispatchIDType ID)
         {
-            ConstTableIterator TableIt = this->SubscriptionTables.find(ID);
+            ConstTableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+                return SubTable.GetID() == ID;
+            });
             return TableIt != this->SubscriptionTables.end();
         }
 
@@ -343,6 +352,35 @@ namespace Mezzanine
                 { Ret += CurrTable.UnsubscribeAll(); }
             return Ret;
         }
+    };//EventPublisher
+
+    template<>
+    class EventPublisher<void>
+    {
+    protected:
+    public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction, Destruction, and Assignment
+
+        /// @brief Class constructor.
+        EventPublisher() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other publisher to be copied.
+        EventPublisher(const SelfType& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other publisher to be moved.
+        EventPublisher(SelfType&& Other) = default;
+        /// @brief Class destructor.
+        ~EventPublisher() = default;
+
+        /// @brief Assignment operator.
+        /// @param Other The other publisher to be copied.
+        /// @return Returns a reference to this.
+        SelfType& operator=(const SelfType& Other) = default;
+        /// @brief Move assignment operator.
+        /// @param Other The other publisher to be moved.
+        /// @return Returns a reference to this.
+        SelfType& operator=(SelfType&& Other) = default;
     };//EventPublisher
 
     ///////////////////////////////////////////////////////////////////////////////
