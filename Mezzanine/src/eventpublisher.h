@@ -150,16 +150,16 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
-    /// @tparam Table The type to be used to store subscriptions that events will be dispatched to.
+    /// @tparam Config A struct of types and values to use for the configuration of the tables used by this publisher.
     ///////////////////////////////////////
-    template<class Table>
+    template<class Config>
     class EventPublisher
     {
     public:
         /// @brief Convenience type for describing the type of "this".
-        using SelfType = EventPublisher<Table>;
+        using SelfType = EventPublisher<Config>;
         /// @brief Retrievable type for the table used by this publisher.
-        using TableType = Table;
+        using TableType = EventSubscriptionTable<Config>;
         /// @brief Retrievable type for querying the type of callable interface the table works with.
         using SubscriberType = typename TableType::SubscriberType;
         /// @brief The type to use for uniquely identifying instances of subscribers.
@@ -357,6 +357,9 @@ namespace Mezzanine
     template<>
     class EventPublisher<void>
     {
+    public:
+        /// @brief Convenience type for describing the type of "this".
+        using SelfType = EventPublisher<void>;
     protected:
     public:
         ///////////////////////////////////////////////////////////////////////////////
@@ -387,7 +390,7 @@ namespace Mezzanine
     // Default Implementation Types
 
     using DefaultSubscriberType = FunctionSubscriber<EventSubscriberID,void,EventPtr>;
-    using DefaultEventPublisher = EventPublisher< DefaultEventBindingTable< DefaultSubscriberType > >;
+    using DefaultEventPublisher = EventPublisher< EventBindingTableConfig< DefaultSubscriberType > >;
 
     /// @}
 }//Mezzanine
