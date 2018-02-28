@@ -444,7 +444,7 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Hovered;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventMouseEnter,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventMouseEnter,this->Name);
                 this->DispatchEvent(EventMouseEnter,&SubscriberType::operator(),Args);
             }
         }
@@ -455,7 +455,7 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Hovered;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventMouseExit,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventMouseExit,this->Name);
                 this->DispatchEvent(EventMouseExit,&SubscriberType::operator(),Args);
             }
         }
@@ -466,7 +466,7 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Dragged;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventMouseDragStart,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventMouseDragStart,this->Name);
                 this->DispatchEvent(EventMouseDragStart,&SubscriberType::operator(),Args);
             }
         }
@@ -477,7 +477,7 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Dragged;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventMouseDragEnd,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventMouseDragEnd,this->Name);
                 this->DispatchEvent(EventMouseDragEnd,&SubscriberType::operator(),Args);
             }
         }
@@ -488,7 +488,7 @@ namespace Mezzanine
                 UInt32 NewState = this->State | WS_Focused;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventFocusGained,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventFocusGained,this->Name);
                 this->DispatchEvent(EventFocusGained,&SubscriberType::operator(),Args);
             }
         }
@@ -499,20 +499,20 @@ namespace Mezzanine
                 UInt32 NewState = this->State & ~WS_Focused;
                 this->ForceState(NewState);
 
-                WidgetEventPtr Args( new WidgetEvent(EventFocusLost,this->Name) );
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventFocusLost,this->Name);
                 this->DispatchEvent(EventFocusLost,&SubscriberType::operator(),Args);
             }
         }
 
         void Widget::_OnFocusLocked()
         {
-            WidgetEventPtr Args( new WidgetEvent(EventFocusLocked,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventFocusLocked,this->Name);
             this->DispatchEvent(EventFocusLocked,&SubscriberType::operator(),Args);
         }
 
         void Widget::_OnFocusUnlocked()
         {
-            WidgetEventPtr Args( new WidgetEvent(EventFocusUnlocked,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventFocusUnlocked,this->Name);
             this->DispatchEvent(EventFocusUnlocked,&SubscriberType::operator(),Args);
         }
 
@@ -521,7 +521,7 @@ namespace Mezzanine
             this->Visible = true;
             this->_MarkDirty();
 
-            WidgetEventPtr Args( new WidgetEvent(EventVisibilityShown,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventVisibilityShown,this->Name);
             this->DispatchEvent(EventVisibilityShown,&SubscriberType::operator(),Args);
         }
 
@@ -530,7 +530,7 @@ namespace Mezzanine
             this->Visible = false;
             this->_MarkDirty();
 
-            WidgetEventPtr Args( new WidgetEvent(EventVisibilityHidden,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventVisibilityHidden,this->Name);
             this->DispatchEvent(EventVisibilityHidden,&SubscriberType::operator(),Args);
         }
 

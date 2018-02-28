@@ -479,7 +479,7 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            SpinnerValueChangedEventPtr Args( new SpinnerValueChangedEvent(EventSpinValueChanged,this->Name,OldValue,NewValue) );
+            SpinnerValueChangedEventPtr Args = std::make_shared<SpinnerValueChangedEvent>(EventSpinValueChanged,this->Name,OldValue,NewValue);
             this->DispatchEvent(EventSpinValueChanged,&SubscriberType::operator(),Args);
         }
 

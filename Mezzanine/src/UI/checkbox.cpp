@@ -204,7 +204,7 @@ namespace Mezzanine
             this->State |= WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventPtr Args( new WidgetEvent(EventSelected,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventSelected,this->Name);
             this->DispatchEvent(EventSelected,&SubscriberType::operator(),Args);
         }
 
@@ -213,7 +213,7 @@ namespace Mezzanine
             this->State &= ~WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventPtr Args( new WidgetEvent(EventDeselected,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventDeselected,this->Name);
             this->DispatchEvent(EventDeselected,&SubscriberType::operator(),Args);
         }
 

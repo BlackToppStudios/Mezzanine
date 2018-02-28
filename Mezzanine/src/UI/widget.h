@@ -80,6 +80,35 @@ namespace Mezzanine
         using WidgetEventPtr = std::shared_ptr<WidgetEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A config/traits class for configuration of the event publisher used by a Widget.
+        ///////////////////////////////////////
+        struct MEZZ_LIB WidgetEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,WidgetEventPtr> >
+        {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Factory Traits
+
+            /// @brief Use bindings to help manage lifetime where appropriate.
+            static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Storage Traits
+
+            /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+            static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Dispatch Traits
+
+            /// @brief Don't need anything fancy for the dispatcher (yet).
+            static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+            /// @brief EventID works fine for dispatch.
+            using DispatchIDType = EventID;
+        };//WidgetEventTableConfig
+
+        /// @brief Convenience type for the event publisher config for widgets.
+        using WidgetEventPublisher = EventPublisher<WidgetEventTableConfig>;
+
+        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for all widgets.
         /// @details A widget is really a mechanism for implementing not-so-generic UI behaviors.  They
         /// are control stuctures allowing UI elements to interact with each other and potentially classes
@@ -89,7 +118,7 @@ namespace Mezzanine
         /// cases. @n @n
         /// Instances of the Widget base class use the base LayoutStrategy.
         ///////////////////////////////////////
-        class MEZZ_LIB Widget : public QuadRenderable, public DefaultEventPublisher
+        class MEZZ_LIB Widget : public QuadRenderable, public WidgetEventPublisher
         {
         public:
             /// @brief Enum describing the current state of the widget.

@@ -50,7 +50,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a class designed to facilitate operations across an entire group of RadioButtons.
         ///////////////////////////////////////
-        class RadioButtonGroup : public DefaultEventPublisher
+        class RadioButtonGroup : public WidgetEventPublisher
         {
         public:
             /// @brief Basic container type for RadioButton storage by this class.

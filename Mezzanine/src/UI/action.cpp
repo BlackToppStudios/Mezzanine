@@ -73,13 +73,13 @@ namespace Mezzanine
 
         void Action::_OnActivateAction()
         {
-            EventPtr Args( new ActionEvent(EventActionActivated,this->ActionName) );
+            ActionEventPtr Args = std::make_shared<ActionEvent>(EventActionActivated,this->ActionName);
             this->DispatchEvent(EventActionActivated,&SubscriberType::operator(),Args);
         }
 
         void Action::_OnDeactivateAction()
         {
-            EventPtr Args( new ActionEvent(EventActionDeactivated,this->ActionName) );
+            ActionEventPtr Args = std::make_shared<ActionEvent>(EventActionDeactivated,this->ActionName);
             this->DispatchEvent(EventActionDeactivated,&SubscriberType::operator(),Args);
         }
 

@@ -366,7 +366,7 @@ namespace Mezzanine
 
         void EditBox::_OnTextUpdated()
         {
-            WidgetEventPtr Args( new WidgetEvent(EventTextUpdated,this->Name) );
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventTextUpdated,this->Name);
             this->DispatchEvent(EventTextUpdated,&SubscriberType::operator(),Args);
         }
 

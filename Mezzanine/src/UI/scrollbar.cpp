@@ -243,7 +243,7 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            ScrollValueChangedEventPtr Args( new ScrollValueChangedEvent(EventScrollValueChanged,this->Name,OldValue,NewValue) );
+            ScrollValueChangedEventPtr Args = std::make_shared<ScrollValueChangedEvent>(EventScrollValueChanged,this->Name,OldValue,NewValue);
             this->DispatchEvent(EventScrollValueChanged,&SubscriberType::operator(),Args);
         }
 
