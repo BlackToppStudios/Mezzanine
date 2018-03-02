@@ -128,7 +128,7 @@ namespace Mezzanine
             /// @brief Basic container type for registered RenderSystem type storage by this class.
             using RenderSystemTypeContainer = std::vector<RenderSystem>;
             /// @brief Convenience type for the publisher of events fired by this manager.
-            using EventPublisherType = DefaultEventPublisher;
+            using EventPublisherType = WindowEventPublisher;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;

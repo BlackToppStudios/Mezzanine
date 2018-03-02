@@ -119,9 +119,38 @@ namespace Mezzanine
         using WindowTransformEventPtr = std::shared_ptr<WindowTransformEvent>;
 
         ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A config/traits class for configuration of the event publisher used by a Window.
+        ///////////////////////////////////////
+        struct MEZZ_LIB WindowEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,WindowEventPtr> >
+        {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Factory Traits
+
+            /// @brief Use bindings to help manage lifetime where appropriate.
+            static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Storage Traits
+
+            /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+            static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Dispatch Traits
+
+            /// @brief Don't need anything fancy for the dispatcher (yet).
+            static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+            /// @brief EventID works fine for dispatch.
+            using DispatchIDType = EventID;
+        };//WindowEventTableConfig
+
+        /// @brief Convenience type for the event publisher config for Window instances.
+        using WindowEventPublisher = EventPublisher<WindowEventTableConfig>;
+
+        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is for creating and managing game windows.
         ///////////////////////////////////////
-        class MEZZ_LIB GameWindow : public DefaultEventPublisher
+        class MEZZ_LIB GameWindow : public WindowEventPublisher
         {
         public:
             /// @brief Basic container type for Viewport storage by this class.
