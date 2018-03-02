@@ -71,7 +71,7 @@ namespace Mezzanine
     /// @tparam ArgTypes A variadic template of types that are the parameters of the function to call.
     /// @pre SubIDType is required to have assignment operators, equality comparison operators and a less-than operator(=,==,!=,<).
     /// @pre ReturnType has no preconditions.  It's just fed into an std::function.
-    /// @pre ArgTypes is expected to not contain any non-const references or move references.  Also fed into an std::function.
+    /// @pre ArgTypes cannot contain any non-const references or move references.  Also fed into an std::function.
     ///////////////////////////////////////
     template<class SubIDType, typename ReturnType, typename... ArgTypes>
     class FunctionSubscriber
