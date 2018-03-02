@@ -2707,9 +2707,9 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_ConstObjectIterator swig_types[12]
 #define SWIGTYPE_p_ConstResultIterator swig_types[13]
 #define SWIGTYPE_p_ConstWorldManagerIterator swig_types[14]
-#define SWIGTYPE_p_DefaultEventPublisher swig_types[15]
-#define SWIGTYPE_p_EntityContainer swig_types[16]
-#define SWIGTYPE_p_EntityIterator swig_types[17]
+#define SWIGTYPE_p_EntityContainer swig_types[15]
+#define SWIGTYPE_p_EntityIterator swig_types[16]
+#define SWIGTYPE_p_EntityManagementEventPublisher swig_types[17]
 #define SWIGTYPE_p_EntityRange swig_types[18]
 #define SWIGTYPE_p_EventNameType swig_types[19]
 #define SWIGTYPE_p_EventPublisherType swig_types[20]
@@ -66619,7 +66619,7 @@ static int _wrap_EntityManager_GetPublisher__SWIG_0(lua_State* L) {
   }
   
   result = (Mezzanine::EntityManager::EventPublisherType *) &(arg1)->GetPublisher();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_DefaultEventPublisher,0); SWIG_arg++; 
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_EntityManagementEventPublisher,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -66643,7 +66643,7 @@ static int _wrap_EntityManager_GetPublisher__SWIG_1(lua_State* L) {
   }
   
   result = (Mezzanine::EntityManager::EventPublisherType *) &((Mezzanine::EntityManager const *)arg1)->GetPublisher();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_DefaultEventPublisher,0); SWIG_arg++; 
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_EntityManagementEventPublisher,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -72734,9 +72734,9 @@ static swig_type_info _swigt__p_ConstManagerFactoryIterator = {"_p_ConstManagerF
 static swig_type_info _swigt__p_ConstObjectIterator = {"_p_ConstObjectIterator", "ConstObjectIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstResultIterator = {"_p_ConstResultIterator", "ConstResultIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstWorldManagerIterator = {"_p_ConstWorldManagerIterator", "ConstWorldManagerIterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_DefaultEventPublisher = {"_p_DefaultEventPublisher", "Mezzanine::EntityManager::EventPublisherType *|DefaultEventPublisher *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EntityContainer = {"_p_EntityContainer", "EntityContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EntityIterator = {"_p_EntityIterator", "EntityIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_EntityManagementEventPublisher = {"_p_EntityManagementEventPublisher", "Mezzanine::EntityManager::EventPublisherType *|EntityManagementEventPublisher *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EntityRange = {"_p_EntityRange", "EntityRange *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EventNameType = {"_p_EventNameType", "EventNameType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_EventPublisherType = {"_p_EventPublisherType", "EventPublisherType *", 0, 0, (void*)0, 0};
@@ -72963,9 +72963,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ConstObjectIterator,
   &_swigt__p_ConstResultIterator,
   &_swigt__p_ConstWorldManagerIterator,
-  &_swigt__p_DefaultEventPublisher,
   &_swigt__p_EntityContainer,
   &_swigt__p_EntityIterator,
+  &_swigt__p_EntityManagementEventPublisher,
   &_swigt__p_EntityRange,
   &_swigt__p_EventNameType,
   &_swigt__p_EventPublisherType,
@@ -73192,9 +73192,9 @@ static swig_cast_info _swigc__p_ConstManagerFactoryIterator[] = {  {&_swigt__p_C
 static swig_cast_info _swigc__p_ConstObjectIterator[] = {  {&_swigt__p_ConstObjectIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstResultIterator[] = {  {&_swigt__p_ConstResultIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstWorldManagerIterator[] = {  {&_swigt__p_ConstWorldManagerIterator, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_DefaultEventPublisher[] = {  {&_swigt__p_DefaultEventPublisher, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EntityContainer[] = {  {&_swigt__p_EntityContainer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EntityIterator[] = {  {&_swigt__p_EntityIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_EntityManagementEventPublisher[] = {  {&_swigt__p_EntityManagementEventPublisher, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EntityRange[] = {  {&_swigt__p_EntityRange, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EventNameType[] = {  {&_swigt__p_EventNameType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_EventPublisherType[] = {  {&_swigt__p_EventPublisherType, 0, 0, 0},{0, 0, 0, 0}};
@@ -73421,9 +73421,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ConstObjectIterator,
   _swigc__p_ConstResultIterator,
   _swigc__p_ConstWorldManagerIterator,
-  _swigc__p_DefaultEventPublisher,
   _swigc__p_EntityContainer,
   _swigc__p_EntityIterator,
+  _swigc__p_EntityManagementEventPublisher,
   _swigc__p_EntityRange,
   _swigc__p_EventNameType,
   _swigc__p_EventPublisherType,
