@@ -304,7 +304,7 @@ namespace Mezzanine
                     }
                     case SDL_CLIPBOARDUPDATE:
                     {
-                        EventPtr ClipboardUpdated = std::make_shared<Event>(EventClipboardUpdated);
+                        DeviceEventPtr ClipboardUpdated = std::make_shared<DeviceEvent>(EventClipboardUpdated);
                         this->InputPublisher.DispatchEvent(EventClipboardUpdated,&SubscriberType::operator(),ClipboardUpdated);
                         break;
                     }
