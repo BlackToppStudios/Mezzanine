@@ -8,7 +8,7 @@ using namespace Mezzanine;
 class CatchApp;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This is a base class for event subscribers that hold on to thier recieved events for later processing.
+/// @brief This is a base class for event subscribers that hold on to their received events for later processing.
 /// @details
 ///////////////////////////////////////
 class CatchQueuedSubscriber
@@ -21,7 +21,7 @@ public:
     /// @brief Const Iterator type for EventArguments stored in this class.
     using ConstEventIterator = EventContainer::const_iterator;
     /// @brief Convenience type for the bindings used by this subscriber.
-    using SubscriberType = DefaultEventPublisher::SubscriberType;
+    using SubscriberType = UI::WidgetEventPublisher::SubscriberType;
 protected:
 public:
     /// @brief Container storing all of the Queued events.

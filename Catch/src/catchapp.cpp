@@ -9,7 +9,7 @@
 #include <set>
 
 using namespace Mezzanine;
-using SubscriberType = DefaultEventPublisher::SubscriberType;
+//using SubscriberType = DefaultEventPublisher::SubscriberType;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
@@ -37,6 +37,8 @@ CatchApp::CatchApp() :
     Paused(false),
     CurrentState(CatchApp::Catch_Init)
 {
+    using SubscriberType = DefaultEventPublisher::SubscriberType;
+
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
 
@@ -154,6 +156,8 @@ void CatchApp::CreateWorld()
 
 void CatchApp::MakeGUI()
 {
+    using SubscriberType = UI::WidgetEventPublisher::SubscriberType;
+
     UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 

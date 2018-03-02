@@ -34,7 +34,7 @@ void CatchQueuedSubscriber::ClearEvents()
 
 CatchQueuedSubscriber::SubscriberType CatchQueuedSubscriber::GetDelegate()
 {
-    return SubscriberType(this,[this](EventPtr Args){ this->_NotifyEvent(Args); });
+    return SubscriberType(this,[this](UI::WidgetEventPtr Args){ this->_NotifyEvent(Args); });
 }
 
 ///////////////////////////////////////////////////////////////////////////////
