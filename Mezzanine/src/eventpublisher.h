@@ -390,7 +390,6 @@ namespace Mezzanine
     // Default Implementation Types
 
     using DefaultSubscriberType = FunctionSubscriber<EventSubscriberID,void,EventPtr>;
-    using DefaultEventPublisher = EventPublisher< EventBindingTableConfig< DefaultSubscriberType > >;
 
     /// @}
 }//Mezzanine

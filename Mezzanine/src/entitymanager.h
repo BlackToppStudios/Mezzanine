@@ -278,7 +278,36 @@ namespace Mezzanine
 
     /// @brief Convenience type for passing around EntityManagementEvent.
     using EntityManagementEventPtr = std::shared_ptr<EntityManagementEvent>;
+#ifndef SWIG
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A config/traits class for configuration of the event publisher used by an EntityManager.
+    ///////////////////////////////////////
+    struct MEZZ_LIB EntityManagementEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,EntityManagementEventPtr> >
+    {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Factory Traits
 
+        /// @brief Use bindings to help manage lifetime where appropriate.
+        static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Storage Traits
+
+        /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+        static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Dispatch Traits
+
+        /// @brief Don't need anything fancy for the dispatcher (yet).
+        static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+        /// @brief EventID works fine for dispatch.
+        using DispatchIDType = EventID;
+    };//EntityManagementEventTableConfig
+
+    /// @brief Convenience type for the event publisher config for widgets.
+    using EntityManagementEventPublisher = EventPublisher<EntityManagementEventTableConfig>;
+#endif // SWIG
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an interface class for a world manager responsible for the management of Entity instances.
     ///////////////////////////////////////
@@ -302,7 +331,7 @@ namespace Mezzanine
         /// @brief Convenience type for passing around a const range of entities.
         using ConstEntityRange = IteratorRange<ConstEntityIterator>;
         /// @brief Convenience type for the publisher of events fired by this manager.
-        using EventPublisherType = DefaultEventPublisher;
+        using EventPublisherType = EntityManagementEventPublisher;
 
         /// @brief A String containing the name of this manager implementation.
         static const String ImplementationName;

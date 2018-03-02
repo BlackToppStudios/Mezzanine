@@ -81,6 +81,35 @@ namespace Mezzanine
     using AppDropEventPtr = std::shared_ptr<AppDropEvent>;
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A config/traits class for configuration of the event publisher used by a AppEventDispatcher.
+    ///////////////////////////////////////
+    struct MEZZ_LIB AppEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,EventPtr> >
+    {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Factory Traits
+
+        /// @brief Use bindings to help manage lifetime where appropriate.
+        static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Storage Traits
+
+        /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+        static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Dispatch Traits
+
+        /// @brief Don't need anything fancy for the dispatcher (yet).
+        static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+        /// @brief EventID works fine for dispatch.
+        using DispatchIDType = EventID;
+    };//AppEventTableConfig
+
+    /// @brief Convenience type for the event publisher config for Application instances.
+    using AppEventPublisher = EventPublisher<AppEventTableConfig>;
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class will check for high level application events from internal sources and dispatch them to subscribers.
     /// @details Drop events are when either text or a file is hovered over the application window and released.  There
     /// are two main types of drop events to reflect which one is which.  In some cases multiple drop events can be triggered
@@ -89,7 +118,7 @@ namespace Mezzanine
     /// events occur.  EventAppDropBegin and EventAppDropComplete can and will fire even if there is just one drop
     /// occurring.  So it is best to ignore them if you aren't trying to track multiple drops from a single action.
     ///////////////////////////////////////
-    class MEZZ_LIB AppEventDispatcher : public DefaultEventPublisher
+    class MEZZ_LIB AppEventDispatcher : public AppEventPublisher
     {
     public:
         /// @brief Event name for when a file is dragged over the application from an external source.
