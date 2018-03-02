@@ -37,7 +37,7 @@ CatchApp::CatchApp() :
     Paused(false),
     CurrentState(CatchApp::Catch_Init)
 {
-    using SubscriberType = DefaultEventPublisher::SubscriberType;
+    using SubscriberType = AppEventPublisher::SubscriberType;
 
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
