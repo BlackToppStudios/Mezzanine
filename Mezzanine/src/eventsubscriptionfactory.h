@@ -50,6 +50,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an empty factory that is the basis from which factories are specialized.
+    /// @details This class does nothing, by design.  If the template specialization fails then the compiler should error.
     ///////////////////////////////////////
     template<class TableType, class SubType, SubscriptionFactoryType FactoryType>
     class EventSubscriptionFactory
@@ -57,6 +58,10 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This serves as a common interface to create data necessary for event subscriptions.
+    /// @tparam TableType The type of table using this factory.
+    /// @tparam SubType The subscriber type to be dispatched to by the subscription table.
+    /// @pre TableType is not used by this factory.
+    /// @pre SubType is expected to not be a reference.
     ///////////////////////////////////////
     template<class TableType, class SubType>
     class EventSubscriptionFactory<TableType,SubType,SubscriptionFactoryType::SFT_Subscriber>
@@ -96,6 +101,10 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This serves as a common interface to create data necessary for event subscriptions.
+    /// @tparam TableType The type of table using this factory.
+    /// @tparam SubType The subscriber type to be dispatched to by the subscription table.
+    /// @pre TableType is not used directly by this factory, but is passed as a parameter to EventSubscriberBindingImpl instances.
+    /// @pre SubType is expected to not be a reference.
     ///////////////////////////////////////
     template<class TableType, class SubType>
     class EventSubscriptionFactory<TableType,SubType,SubscriptionFactoryType::SFT_Binding>

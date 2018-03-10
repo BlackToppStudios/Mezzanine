@@ -128,6 +128,7 @@ namespace Mezzanine
     };//EventSubscriberBinding
 
     /// @brief Convenience type for passing around EventSubscriberBinding instances wrapped in a shared ptr.
+    /// @tparam Interface The subscriber interface to be passed to the EventSubscriberBinding.
     template<typename Interface>
     using EventSubscriberBindingPtr = std::shared_ptr< EventSubscriberBinding<Interface> >;
 
@@ -215,6 +216,8 @@ namespace Mezzanine
     };//EventSubscriberBindingImpl
 
     /// @brief Convenience type for passing around EventSubscriberBindingImpl instances wrapped in a shared ptr.
+    /// @tparam TableType The type of EventSubscriptionTable to be passed to the EventSubscriberBindingImpl.
+    /// @tparam Interface The subscriber interface to be passed to the EventSubscriberBindingImpl.
     template<typename TableType, typename Interface>
     using EventSubscriberBindingImplPtr = std::shared_ptr< EventSubscriberBindingImpl<TableType,Interface> >;
 

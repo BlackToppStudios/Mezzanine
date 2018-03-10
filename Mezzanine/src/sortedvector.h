@@ -78,8 +78,23 @@ namespace Mezzanine
     public:
         /// @brief Class constructor.
         SortedVector() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other SortedVector to be copied.
+        SortedVector(const SortedVector& Other) = default;
+        /// @brief Move constructor.
+        /// @param Other The other SortedVector to be moved.
+        SortedVector(SortedVector&& Other) = default;
         /// @brief Class destructor.
         ~SortedVector() = default;
+
+        /// @brief Copy Assignment operator.
+        /// @param Other The other SortedVector to be copied.
+        /// @return Returns a reference to this.
+        SortedVector& operator=(const SortedVector& Other) = default;
+        /// @brief Move Assignment operator.
+        /// @param Other The other SortedVector to be moved.
+        /// @return Returns a reference to this.
+        SortedVector& operator=(SortedVector&& Other) = default;
 
         /// @brief Get an iterator to the beginning of the container.
         /// @return A mutable iterator pointing to the first element.

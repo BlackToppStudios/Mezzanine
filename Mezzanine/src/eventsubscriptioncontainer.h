@@ -53,13 +53,36 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an empty container that is the basis from which containers are specialized.
+    /// @details This class does nothing, by design.  If the template specialization fails then the compiler should error.
     ///////////////////////////////////////
     template<class TableType, class Traits, SubscriptionContainerType ContainerType>
     class EventSubscriptionContainer
         {  };
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a container class for the storage of multiple sorted subscribers.
+    /// @brief This is a container class for the storage of a single subscriber (if it is a pointer type).
+    /// @tparam TableType The type of table inheriting from this container.
+    /// @tparam Traits The traits class storing all of the types and values to be used by this container.
+    /// @pre TableType is expected to be a class derived from this container.
+    /// @pre Traits is expected to have a LOT of types set on it!  Here's the list: @n
+    ///     "SubscriberType" - The type of subscriber events will be dispatched to.
+    ///         "SubscriberType" is expected to be a pointer type.
+    ///     "SubscriberValue" - The type of subscriber stripped of pointer or reference.
+    ///         "SubscriberValue" has no expectations.
+    ///     "SubscriberPtr" - A pointer to the SubscriberType.
+    ///         "SubscriberPtr" has no expectations.
+    ///     "SubscriberIDType" - The type used to uniquely identify the subscriber.
+    ///         "SubscriberIDType" is expected to be equality comparable with itself (==).
+    ///     "ActualFactoryType" - The type of factory that will create or destroy subscriptions.
+    ///         "ActualFactoryType" is expected to have "CreateSubscription" and "InvalidateSubscription" methods.
+    ///         "CreateSubscription" is expected to take a "SubscribeArg" and return "StoredType".
+    ///         "InvalidateSubscription" is expected to take a "StoredType" and has no return.
+    ///     "StoredType" - The type that will store the subscription/subscriber.
+    ///         "StoredType" is expected to be convertible/assignable to SubscriberType and SubscriptionGet.
+    ///     "SubscribeArg" - A low overhead way to pass SubscriberType into a Subscribe method.
+    ///         "SubscribeArg" is expected to be a subscriber pointer that can be used to construct the subscription.
+    ///     "SubscriptionGet" - A low overhead way to get the stored subscription from the container.
+    ///         "SubscriptionGet" is expected to be able to be safely converted to from StoredType.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Single>
@@ -202,6 +225,28 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
+    /// @tparam TableType The type of table inheriting from this container.
+    /// @tparam Traits The traits class storing all of the types and values to be used by this container.
+    /// @pre TableType is expected to be a class derived from this container.
+    /// @pre Traits is expected to have a LOT of types set on it!  Here's the list: @n
+    ///     "SubscriberType" - The type of subscriber events will be dispatched to.
+    ///         "SubscriberType" is expected to be a pointer type.
+    ///     "SubscriberValue" - The type of subscriber stripped of pointer or reference.
+    ///         "SubscriberValue" has no expectations.
+    ///     "SubscriberPtr" - A pointer to the SubscriberType.
+    ///         "SubscriberPtr" has no expectations.
+    ///     "SubscriberIDType" - The type used to uniquely identify the subscriber.
+    ///         "SubscriberIDType" is expected to be equality comparable with itself (==).
+    ///     "ActualFactoryType" - The type of factory that will create or destroy subscriptions.
+    ///         "ActualFactoryType" is expected to have "CreateSubscription" and "InvalidateSubscription" methods.
+    ///         "CreateSubscription" is expected to take a "SubscribeArg" and return "StoredType".
+    ///         "InvalidateSubscription" is expected to take a "StoredType" and has no return.
+    ///     "StoredType" - The type that will store the subscription/subscriber.
+    ///         "StoredType" is expected to be convertible/assignable to SubscriberType and SubscriptionGet.
+    ///     "SubscribeArg" - A low overhead way to pass SubscriberType into a Subscribe method.
+    ///         "SubscribeArg" is expected to be a subscriber pointer or reference that can be used to construct the subscription.
+    ///     "SubscriptionGet" - A low overhead way to get the stored subscription from the container.
+    ///         "SubscriptionGet" is expected to be able to be safely converted to from StoredType.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted>
@@ -358,6 +403,30 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
+    /// @tparam TableType The type of table inheriting from this container.
+    /// @tparam Traits The traits class storing all of the types and values to be used by this container.
+    /// @pre TableType is expected to be a class derived from this container.
+    /// @pre Traits is expected to have a LOT of types and a value set on it!  Here's the list: @n
+    ///     "SubscriberType" - The type of subscriber events will be dispatched to.
+    ///         "SubscriberType" is expected to be a pointer type.
+    ///     "SubscriberValue" - The type of subscriber stripped of pointer or reference.
+    ///         "SubscriberValue" has no expectations.
+    ///     "SubscriberPtr" - A pointer to the SubscriberType.
+    ///         "SubscriberPtr" has no expectations.
+    ///     "SubscriberIDType" - The type used to uniquely identify the subscriber.
+    ///         "SubscriberIDType" is expected to be equality comparable with itself (==).
+    ///     "ActualFactoryType" - The type of factory that will create or destroy subscriptions.
+    ///         "ActualFactoryType" is expected to have "CreateSubscription" and "InvalidateSubscription" methods.
+    ///         "CreateSubscription" is expected to take a "SubscribeArg" and return "StoredType".
+    ///         "InvalidateSubscription" is expected to take a "StoredType" and has no return.
+    ///     "StoredType" - The type that will store the subscription/subscriber.
+    ///         "StoredType" is expected to be convertible/assignable to SubscriberType and SubscriptionGet.
+    ///     "StorageCount" - An integral value representing the maximum storage to set for this container.
+    ///         "StorageCount" is expected to be a positive value.
+    ///     "SubscribeArg" - A low overhead way to pass SubscriberType into a Subscribe method.
+    ///         "SubscribeArg" is expected to be a subscriber pointer or reference that can be used to construct the subscription.
+    ///     "SubscriptionGet" - A low overhead way to get the stored subscription from the container.
+    ///         "SubscriptionGet" is expected to be able to be safely converted to from StoredType.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Unsorted_Fixed>
@@ -519,6 +588,30 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple unsorted subscribers.
+    /// @tparam TableType The type of table inheriting from this container.
+    /// @tparam Traits The traits class storing all of the types and values to be used by this container.
+    /// @pre TableType is expected to be a class derived from this container.
+    /// @pre Traits is expected to have a LOT of types and a value set on it!  Here's the list: @n
+    ///     "SubscriberType" - The type of subscriber events will be dispatched to.
+    ///         "SubscriberType" is expected to be a pointer type.
+    ///     "SubscriberValue" - The type of subscriber stripped of pointer or reference.
+    ///         "SubscriberValue" has no expectations.
+    ///     "SubscriberPtr" - A pointer to the SubscriberType.
+    ///         "SubscriberPtr" has no expectations.
+    ///     "SubscriberIDType" - The type used to uniquely identify the subscriber.
+    ///         "SubscriberIDType" is expected to be equality comparable with itself (==).
+    ///     "ActualFactoryType" - The type of factory that will create or destroy subscriptions.
+    ///         "ActualFactoryType" is expected to have "CreateSubscription" and "InvalidateSubscription" methods.
+    ///         "CreateSubscription" is expected to take a "SubscribeArg" and return "StoredType".
+    ///         "InvalidateSubscription" is expected to take a "StoredType" and has no return.
+    ///     "StoredType" - The type that will store the subscription/subscriber.
+    ///         "StoredType" is expected to be convertible/assignable to SubscriberType and SubscriptionGet.
+    ///     "StoragePredicate" - The type used to sort the subscriptions stored in the container.
+    ///         "StoragePredicate" is expected to be a functor accepting two subscribers and returns true if the first is to be sorted before the second.
+    ///     "SubscribeArg" - A low overhead way to pass SubscriberType into a Subscribe method.
+    ///         "SubscribeArg" is expected to be a subscriber pointer or reference that can be used to construct the subscription.
+    ///     "SubscriptionGet" - A low overhead way to get the stored subscription from the container.
+    ///         "SubscriptionGet" is expected to be able to be safely converted to from StoredType.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted>
@@ -677,6 +770,32 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a container class for the storage of multiple sorted subscribers.
+    /// @tparam TableType The type of table inheriting from this container.
+    /// @tparam Traits The traits class storing all of the types and values to be used by this container.
+    /// @pre TableType is expected to be a class derived from this container.
+    /// @pre Traits is expected to have a LOT of types and a value set on it!  Here's the list: @n
+    ///     "SubscriberType" - The type of subscriber events will be dispatched to.
+    ///         "SubscriberType" is expected to be a pointer type.
+    ///     "SubscriberValue" - The type of subscriber stripped of pointer or reference.
+    ///         "SubscriberValue" has no expectations.
+    ///     "SubscriberPtr" - A pointer to the SubscriberType.
+    ///         "SubscriberPtr" has no expectations.
+    ///     "SubscriberIDType" - The type used to uniquely identify the subscriber.
+    ///         "SubscriberIDType" is expected to be equality comparable with itself (==).
+    ///     "ActualFactoryType" - The type of factory that will create or destroy subscriptions.
+    ///         "ActualFactoryType" is expected to have "CreateSubscription" and "InvalidateSubscription" methods.
+    ///         "CreateSubscription" is expected to take a "SubscribeArg" and return "StoredType".
+    ///         "InvalidateSubscription" is expected to take a "StoredType" and has no return.
+    ///     "StoredType" - The type that will store the subscription/subscriber.
+    ///         "StoredType" is expected to be convertible/assignable to SubscriberType and SubscriptionGet.
+    ///     "StoragePredicate" - The type used to sort the subscriptions stored in the container.
+    ///         "StoragePredicate" is expected to be a functor accepting two subscribers and returns true if the first is to be sorted before the second.
+    ///     "StorageCount" - An integral value representing the maximum storage to set for this container.
+    ///         "StorageCount" is expected to be a positive value.
+    ///     "SubscribeArg" - A low overhead way to pass SubscriberType into a Subscribe method.
+    ///         "SubscribeArg" is expected to be a subscriber pointer or reference that can be used to construct the subscription.
+    ///     "SubscriptionGet" - A low overhead way to get the stored subscription from the container.
+    ///         "SubscriptionGet" is expected to be able to be safely converted to from StoredType.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventSubscriptionContainer<TableType,Traits,SubscriptionContainerType::SCT_Sorted_Fixed>

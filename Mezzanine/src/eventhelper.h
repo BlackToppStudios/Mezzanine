@@ -49,6 +49,8 @@ namespace Mezzanine
     namespace EventHelper
     {
         /// @brief An empty template to be specialized from.
+        /// @details This class is deliberately left empty in case template specialization
+        /// fails, so the compiler will error.
         template <class F>
         struct DeduceFunctTypes;
 
@@ -85,11 +87,15 @@ namespace Mezzanine
         };//DeduceFunctTypes
 
         /// @brief Convenience type for retrieving the return type of a member function.
-        template<typename T>
-        using DeduceRetType = typename DeduceFunctTypes<T>::Ret_type;
+        /// @tparam MemberFunct The member function to deduce.
+        /// @pre MemberFunct should be a member function for deduction to work properly.
+        template<typename MemberFunct>
+        using DeduceRetType = typename DeduceFunctTypes<MemberFunct>::Ret_type;
         /// @brief Convenience type for retrieving the object type of a member function.
-        template<typename T>
-        using DeduceObjType = typename DeduceFunctTypes<T>::Obj_type;
+        /// @tparam MemberFunct The member function to deduce.
+        /// @pre MemberFunct should be a member function for deduction to work properly.
+        template<typename MemberFunct>
+        using DeduceObjType = typename DeduceFunctTypes<MemberFunct>::Obj_type;
 
         /// @brief One of two helper functions to ensure a type can be used as a pointer.
         /// @tparam AnyType The type that will be converted into a pointer to the same instance.  Can be anything.

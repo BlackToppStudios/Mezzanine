@@ -53,6 +53,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     /// @tparam Config A struct of types and values to use for the configuration of this table.
+    /// @pre Config is expected to be a valid EventSubscriptionTableConfig suitable to configure
+    /// the types on EventSubscriptionTableTraits.  See EventSubscriptionTableTraits for more info.
+    /// Additionally, Config is expected to have "ContainerType", "DispatcherType", and "DispatchIDType".
+    ///     "ContainerType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionContainer.
+    ///     "DispatcherType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionDispatcher.
+    ///     "DispatchIDType" is expected to be less-than comparable (<) and suitable to uniquely identify EventSubscriptionTable instances.
     ///////////////////////////////////////
     template<class Config>
     class EventSubscriptionTable :
@@ -133,14 +139,6 @@ namespace Mezzanine
         DispatchIDType GetID() const
             { return this->DisID; }
     };//EventSubscriptionTable
-
-    /// @brief Convenience type for an EventSubscriptionTable using default traits.
-    template<class Interface>
-    using DefaultEventSubscriptionTable = EventSubscriptionTable< EventSubscriptionTableConfig< Interface > >;
-
-    /// @brief Convenience type for an EventSubscriptionTable using default traits.
-    template<class Interface>
-    using DefaultEventBindingTable = EventSubscriptionTable< EventBindingTableConfig< Interface > >;
 
     /// @}
 }//Mezzanine

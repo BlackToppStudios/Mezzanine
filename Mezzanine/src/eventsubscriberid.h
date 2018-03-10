@@ -79,7 +79,8 @@ namespace Mezzanine
         /// @remarks This exists as a convenience for when pointers are usable as ID's.
         /// Initially void pointers were used but this caused ambiguity when using normal ints as IDs
         /// in some code.
-        /// @tparam The type for the pointer to convert.
+        /// @tparam PtrType The type for the pointer to convert.
+        /// @pre PtrType is expected to be a pointer.  Doesn't matter what to.
         /// @param PtrIdentifier The pointer to be converted into an ID.
         template<class PtrType>
         EventSubscriberID(PtrType* PtrIdentifier) :

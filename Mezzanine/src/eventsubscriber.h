@@ -146,7 +146,9 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a simple subscriber that will queue up the events it receives for later processing.
+    /// @remarks This is not expected to be a complete solution for queuing events subscriber-side.
     /// @tparam SubIDType The type to use for the unique identification of subscriber instances.
+    /// @pre SubIDType is expected to be able to convert 0 into an ID.
     ///////////////////////////////////////
     template<typename SubIDType>
     class QueuedSubscriber : public EventSubscriber<SubIDType>

@@ -52,6 +52,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is an empty dispatcher that is the basis from which dispatchers are specialized.
+    /// @details This class does nothing, by design.  If the template specialization fails then the compiler should error.
     ///////////////////////////////////////
     template<class TableType, class Traits, EventDispatcherType DispatcherType>
     class EventDispatcher
@@ -62,9 +63,10 @@ namespace Mezzanine
     /// @tparam TableType The type of subscription table using this dispatcher.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
     /// @pre TableType is expected to be a derived type of this dispatcher.  It is also expected to have an
-    /// iterator type "StorageIterator" that can be dereferenced and converted to "SubscriberType", which
+    /// iterator type "StorageIterator" that can be dereferenced and converted to "DispatchGet", which
     /// also must be present and defined on the subscription table.
-    /// @pre Traits is not expected to have anything by this class and is not used.
+    /// @pre Traits is expected to have "DispatchGet" defined, which should be a retrieval type for
+    /// subscribers.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Empty>
@@ -198,9 +200,10 @@ namespace Mezzanine
     /// @tparam TableType The type of subscription table using this dispatcher.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
     /// @pre TableType is expected to be a derived type of this dispatcher.  It is also expected to have an
-    /// iterator type "StorageIterator" that can be dereferenced and converted to "SubscriberType", which
+    /// iterator type "StorageIterator" that can be dereferenced and converted to "DispatchGet", which
     /// also must be present and defined on the subscription table.
-    /// @pre Traits is not expected to have anything by this class and is not used.
+    /// @pre Traits is expected to have "DispatchGet" defined, which should be a retrieval type for
+    /// subscribers.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Silencable>
@@ -354,6 +357,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a helper class that will store extra data that may be needed for a queued event dispatch.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
+    /// @pre Traits is expected to have a SubscriberIDType and SubscriptionGet defined.  SubscriberIDType is expected
+    /// to be a type to uniquely identify a single subscriber in an iterator range.  SubscriptionGet is expected to
+    /// be a type suitable for the safe passing or temporary storage of a given subscription.
     ///////////////////////////////////////
     template<class Traits>
     class QueuedEvent
@@ -500,6 +506,7 @@ namespace Mezzanine
     };//QueuedQueryResults
 
     /// @brief Convenience type for QueuedQueryResults managed by a shared_ptr.
+    /// @tparam ResultsType The type returned by the function being queried.
     template<class ResultsType>
     using QueuedQueryResultsPtr = std::shared_ptr< QueuedQueryResults<ResultsType> >;
 
@@ -507,6 +514,11 @@ namespace Mezzanine
     /// @brief This is an event dispatcher that queues up events for future dispatch.
     /// @tparam TableType The type of subscription table using this dispatcher.
     /// @tparam Traits A collection of types that describes the operation of the subscription table.
+    /// @pre TableType is expected to be a derived type of this dispatcher.  It is also expected to have an
+    /// iterator type "StorageIterator" that can be dereferenced and converted to "StoredType", which
+    /// also must be present and defined on the subscription table.
+    /// @pre Traits is expected to have "DispatchGet" defined, which should be a retrieval type for
+    /// subscribers.
     ///////////////////////////////////////
     template<class TableType, class Traits>
     class EventDispatcher<TableType,Traits,EventDispatcherType::EDT_Queued>

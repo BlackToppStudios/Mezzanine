@@ -151,6 +151,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class for any class that generates and publishes events to subscribers.
     /// @tparam Config A struct of types and values to use for the configuration of the tables used by this publisher.
+    /// @pre Config is not used by the EventPublisher directly, but instead is used to configure the tables stored by
+    /// the publisher.  As such, it should be a valid configuration usable by EventSubscriptionTable.  Check the
+    /// EventSubscriptionTable documentation for more information.
     ///////////////////////////////////////
     template<class Config>
     class EventPublisher
@@ -190,8 +193,8 @@ namespace Mezzanine
         EventPublisher(const Whole EventCapacity)
             { this->SubscriptionTables.reserve(EventCapacity); }
         /// @brief Copy constructor.
-        /// @param Other The other publisher to be copied.
-        EventPublisher(const SelfType& Other) = default;
+        /// @param Other The other publisher to NOT be copied.
+        EventPublisher(const SelfType& Other) = delete;
         /// @brief Move constructor.
         /// @param Other The other publisher to be moved.
         EventPublisher(SelfType&& Other) = default;
@@ -199,9 +202,9 @@ namespace Mezzanine
         ~EventPublisher() = default;
 
         /// @brief Assignment operator.
-        /// @param Other The other publisher to be copied.
+        /// @param Other The other publisher to NOT be copied.
         /// @return Returns a reference to this.
-        SelfType& operator=(const SelfType& Other) = default;
+        SelfType& operator=(const SelfType& Other) = delete;
         /// @brief Move assignment operator.
         /// @param Other The other publisher to be moved.
         /// @return Returns a reference to this.
@@ -210,7 +213,29 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
+        /// @brief Gets an iterator to the first table in the publisher.
+        /// @return Returns an iterator to the start of the table range.
+        TableIterator begin()
+            { return this->SubscriptionTables.begin(); }
+        /// @brief Gets a const iterator to the first table in the publisher.
+        /// @return Returns a const iterator to the start of the table range.
+        ConstTableIterator begin() const
+            { return this->SubscriptionTables.begin(); }
+        /// @brief Gets an iterator to one-passed-the-last table in the publisher.
+        /// @return Returns an iterator to the end of the table range.
+        TableIterator end()
+            { return this->SubscriptionTables.end(); }
+        /// @brief Gets a const iterator to one-passed-the-last table in the publisher.
+        /// @return Returns a const iterator to the end of the table range.
+        ConstTableIterator end() const
+            { return this->SubscriptionTables.end(); }
+
         /// @brief Fires an event.
+        /// @tparam MemberFunct The deduced type of member function pointer that will be invoked.
+        /// @tparam ArgTypes A variadic template of arguments to be passed to the member function.
+        /// @pre MemberFunct must be a member of the SubscriberType specified in the EventSubscriptionTableConfig
+        /// class used by the EventSubscriptionTable instantiation.
+        /// @pre ArgTypes is expected to match the needed parameters of the provided member function.
         /// @param DisID The ID of which group of subscribers to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
@@ -291,25 +316,34 @@ namespace Mezzanine
             }
             return this->SubscriptionTables.end();
         }
+        /// @brief Gets the number of subscription tables in this publisher.
+        /// @return Returns the amount of subscription tables being managed by this publisher.
+        Whole GetNumSubscriptionTables() const
+        {
+            return this->SubscriptionTables.size();
+        }
         /// @brief Removes an existing table in this Publisher.
         /// @param ID The unique ID for the table to remove.
         void RemoveSubscriptionTable(const DispatchIDType ID)
         {
-            ConstTableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
+            TableIterator TableIt = this->SubscriptionTables.find_if([ID](const TableType& SubTable) -> Boole {
                 return SubTable.GetID() == ID;
             });
-            return TableIt != this->SubscriptionTables.end();
+            if( TableIt != this->SubscriptionTables.end() ) {
+                this->SubscriptionTables.erase(TableIt);
+            }
+        }
+        /// @brief Removes all events in this Publisher.
+        /// @return Returns the number of tables removed.
+        Whole RemoveAllSubscriptionTables()
+        {
+            Whole Ret = this->SubscriptionTables.size();
+            this->SubscriptionTables.clear();
+            return Ret;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Table Management
-
-        /// @brief Removes all events in this Publisher.
-        void RemoveAllSubscriptionTables()
-            { this->SubscriptionTables.clear(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
+        // Table Specific Subscription Management
 
         /// @brief Adds a subscriber to a table.
         /// @remarks The ID of the subscriber must be unique among the IDs in the table it is subscribed to.
@@ -334,7 +368,7 @@ namespace Mezzanine
             { return this->GetSubscriptionTable(ID)->UnsubscribeAll(); }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
+        // Table Agnostic Subscription Management
 
         /// @brief Removes a single subscriber from all tables in this publisher.
         /// @param ID The unique ID of the subscriber.
@@ -385,11 +419,6 @@ namespace Mezzanine
         /// @return Returns a reference to this.
         SelfType& operator=(SelfType&& Other) = default;
     };//EventPublisher
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Default Implementation Types
-
-    using DefaultSubscriberType = FunctionSubscriber<EventSubscriberID,void,EventPtr>;
 
     /// @}
 }//Mezzanine
