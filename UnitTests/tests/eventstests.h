@@ -78,6 +78,8 @@ public:
 
 class TestSubscriberImpl : public TestSubscriberBase
 {
+protected:
+    static Whole TotalCallCount;
     Whole Data = 0;
     Whole CallCount = 0;
     IDType ID;
@@ -89,11 +91,24 @@ public:
     TestSubscriberImpl& operator=(const TestSubscriberImpl& Other) = default;
     TestSubscriberImpl& operator=(TestSubscriberImpl&& Other) = default;
 
-    void TestSet(const Whole Set) { this->Data = Set;  ++this->CallCount; }
-    Whole TestGet() const { return this->Data; }
-    Whole GetCallCount() const { return this->CallCount; }
-    IDType GetID() const { return this->ID; }
+    void TestSet(const Whole Set)
+    {
+        this->Data = Set;
+        ++CallCount;
+        ++TotalCallCount;
+    }
+    Whole TestGet() const
+        { return this->Data; }
+    Whole GetCallCount() const
+        { return this->CallCount; }
+    IDType GetID() const
+        { return this->ID; }
+
+    static Whole GetTotalCallCount()
+        { return TotalCallCount; }
 };
+
+Whole TestSubscriberImpl::TotalCallCount = 0;
 
 class TestSubscriberSorter
 {
@@ -109,9 +124,14 @@ public:
         { return First->GetID() < Second->GetID(); }
 };
 
-struct BUnETestConfig : public EventBindingTableConfig<DefaultSubscriberType>
+struct NUnETestConfig : public EventSubscriptionTableConfig<TestSubscriberBase*>
 {
+    // Leave the defaults provided by the base class/template param.
+};
 
+struct BUnETestConfig : public EventBindingTableConfig< FunctionSubscriber<EventSubscriberID,void,EventPtr> >
+{
+    // Leave the defaults provided by the base class/template param.
 };
 
 struct NUFSTestConfig : public EventSubscriptionTableConfig<TestSubscriberBase*>
@@ -126,7 +146,7 @@ struct NSnETestConfig : public EventSubscriptionTableConfig<TestSubscriberBase*>
     static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Single;
 };
 
-struct BSFQTestConfig : public EventBindingTableConfig<DefaultSubscriberType>
+struct BSFQTestConfig : public EventBindingTableConfig< FunctionSubscriber<EventSubscriberID,void,EventPtr> >
 {
     static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Sorted_Fixed;
     static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Queued;
@@ -290,7 +310,7 @@ public:
         }//FunctionSubscriber
 
         {//EventSubscriberBindingImpl
-            using TestTableType = DefaultEventBindingTable<DefaultSubscriberType>;
+            using TestTableType = EventSubscriptionTable<EventBindingTableConfig<FunctionSubscriber<EventSubscriberID,void,EventPtr>>>;
             using TestSubscriberType = TestTableType::SubscriberType;
             //using TestBindingType = TestTableType::BindingType;
             //using TestBindingPtrType = TestTableType::BindingPtrType;
@@ -389,8 +409,8 @@ public:
             // S - Silenceable Dispatcher
             // Q - Queued Dispatcher
 
-            {//BUnE (DefaultEventBindingTable)
-                using TestTableType = DefaultEventBindingTable<DefaultSubscriberType>;
+            {//BUnE (Default config settings)
+                using TestTableType = EventSubscriptionTable<BUnETestConfig>;
                 using TestSubscriberType = TestTableType::SubscriberType;
                 using TestSubscriberIDType = TestSubscriberType::IDType;
                 using TestBindingType = TestTableType::SubscriptionGet;
@@ -479,7 +499,7 @@ public:
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xDEADBEEF),
                            "EventSubscriptionTable::UnsubscribeAll()-Verify-BUnE");
-            }//BUnE (DefaultEventBindingTable)
+            }//BUnE (Default config settings)
 
             {//NUFS
                 using TestTableType = EventSubscriptionTable<NUFSTestConfig>;
@@ -889,203 +909,135 @@ public:
             }//NSoQ
         }//EventSubscriptionTable
 
-        {//MonoEventPublisher
-
-        }//MonoEventPublisher
-
-        {//MultiEventPublisher
-
-        }//MultiEventPublisher
-
-        /*
-        {//EventSubscriptionTable
-            Whole DispatchCount = 0;
-            EventNameType TestName("TestName");
-            EventSubscriberBinding::CallbackType TestCallback([&](EventPtr Args) { ++DispatchCount; });
-            EventPtr TestEvent = std::make_shared<Mezzanine::Event>(TestName);
-
-            EventPublisher TestPublisher;
-            TestPublisher.AddSubscriptionTable(TestName);
-
-            EventSubscriptionTable TestTable(TestName.GetHash());
-            TEST(TestTable.GetHash() == TestName.GetHash(),
-                 "EventSubscriptionTable::ConstructionAndGetters");
-
-            EventSubscriberBindingPtr FirstBinding = TestTable.Subscribe(16,TestCallback,&TestPublisher);
-            EventSubscriberBindingPtr SecondBinding = TestTable.Subscribe(32,TestCallback,nullptr);
-            EventSubscriberBindingPtr ThirdBinding = TestTable.Subscribe(48,TestCallback,&TestPublisher);
-            TEST(FirstBinding->GetSubID() == 16 && FirstBinding->GetPublisher() == &TestPublisher && FirstBinding->GetEventHash() == TestName.GetHash() &&
-                 SecondBinding->GetSubID() == 32 && SecondBinding->GetPublisher() == nullptr && SecondBinding->GetEventHash() == TestName.GetHash() &&
-                 ThirdBinding->GetSubID() == 48 && ThirdBinding->GetPublisher() == &TestPublisher && ThirdBinding->GetEventHash() == TestName.GetHash(),
-                 "EventSubscriptionTable::Subscribe");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION>::Type,
-                       TestTable.Subscribe(16,TestCallback,nullptr),
-                       "EventSubscriptionTable::Subscribe-Throw");
-
-            EventSubscriberBindingPtr FirstFetchedBinding = TestTable.GetBinding(16);
-            EventSubscriberBindingPtr SecondFetchedBinding = TestTable.GetBinding(32);
-            EventSubscriberBindingPtr ThirdFetchedBinding = TestTable.GetBinding(48);
-            TEST(FirstBinding == FirstFetchedBinding &&
-                 SecondBinding == SecondFetchedBinding &&
-                 ThirdBinding == ThirdFetchedBinding,
-                 "EventSubscriptionTable::GetBinding");
-
-            TestTable.DispatchEvent(TestEvent);
-            TEST(DispatchCount == 3,
-                 "EventSubscriptionTable::DispatchEvent");
-
-            Whole BeforeRefCount = FirstBinding.use_count();
-            TestTable.Unsubscribe(16);
-            Whole AfterRefCount = FirstBinding.use_count();
-            TEST(BeforeRefCount == 3 && AfterRefCount == 2,
-                 "EventSubscriptionTable::Unsubscribe");
-
-            Whole TotalRemoveCount = TestTable.UnsubscribeAll();
-            TEST(TotalRemoveCount == 2 &&
-                 SecondBinding.use_count() == 2 &&
-                 ThirdBinding.use_count() == 2,
-                 "EventSubscriptionTable::UnsubscribeAll");
-        }//EventSubscriptionTable
-
         {//EventPublisher
-            Whole DispatchCount = 0;
-            EventNameType FirstTestName("FirstTest");
-            EventNameType SecondTestName("SecondTest");
-            EventNameType ThirdTestName("ThirdTest");
-            EventSubscriberBinding::CallbackType TestCallback([&](EventPtr Args) { ++DispatchCount; });
-            EventPtr FirstTestEvent = std::make_shared<Mezzanine::Event>(FirstTestName);
-            EventPtr SecondTestEvent = std::make_shared<Mezzanine::Event>(SecondTestName);
+            {//EventPublisher
+                using TestPublisherType = EventPublisher<NUnETestConfig>;
+                //using TestTableIterator = TestPublisherType::TableIterator;
+                using TestSubscriberType = TestSubscriberImpl;
 
-            EventPublisher TestPublisher(2);
+                TestSubscriberType TestSubscriberOne(0xDEADBEEF);
+                TestSubscriberType TestSubscriberTwo(0xBAADC0DE);
+                TestSubscriberType TestSubscriberThree(0xBABECAFE);
 
-            EventPublisher::SubscriptionTableIterator TableIt = TestPublisher.AddSubscriptionTable(FirstTestName);
-            Boole FirstTestAdd = (*TableIt).GetHash() == FirstTestName.GetHash();
-            TableIt = TestPublisher.AddSubscriptionTable(SecondTestName);
-            Boole SecondTestAdd = (*TableIt).GetHash() == SecondTestName.GetHash();
-            TableIt = TestPublisher.AddSubscriptionTable(ThirdTestName);
-            Boole ThirdTestAdd = (*TableIt).GetHash() == ThirdTestName.GetHash();
-            TEST(FirstTestAdd && SecondTestAdd && ThirdTestAdd,
-                 "EventPublisher::ConstructionAndAddSubscriptionTable");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION>::Type,
-                       TestPublisher.AddSubscriptionTable(FirstTestName),
-                       "EventPublisher::AddSubscriptionTable-Throw");
+                TestPublisherType EmptyTestPublisher;
+                TEST(EmptyTestPublisher.GetNumSubscriptionTables() == 0,
+                     "EventPublisher::EventPublisher()");
 
-            TEST(TestPublisher.HasSubscriptionTable(FirstTestName) &&
-                 TestPublisher.HasSubscriptionTable(SecondTestName.GetHash()) &&
-                 TestPublisher.HasSubscriptionTable(ThirdTestName) &&
-                 !TestPublisher.HasSubscriptionTable("FailTest"),
-                 "EventPublisher::HasSubscriptionTable");
+                TestPublisherType SourceMoveConstruct;
+                SourceMoveConstruct.AddSubscriptionTable(12345);
+                TestPublisherType DestMoveConstruct( std::move(SourceMoveConstruct) );
+                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0 &&
+                     DestMoveConstruct.GetNumSubscriptionTables() == 1,
+                     "EventPublisher::EventPublisher(EventPublisher&&)");
 
-            const EventPublisher& ConstTestPublisher = TestPublisher;
-            TEST(TestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetHash() == FirstTestName.GetHash() &&
-                 TestPublisher.GetSubscriptionTable(SecondTestName.GetHash())->GetHash() == SecondTestName.GetHash() &&
-                 TestPublisher.GetSubscriptionTable(ThirdTestName.GetHash())->GetHash() == ThirdTestName.GetHash() &&
-                 ConstTestPublisher.GetSubscriptionTable(FirstTestName.GetHash())->GetHash() == FirstTestName.GetHash() &&
-                 ConstTestPublisher.GetSubscriptionTable(SecondTestName.GetHash())->GetHash() == SecondTestName.GetHash() &&
-                 ConstTestPublisher.GetSubscriptionTable(ThirdTestName.GetHash())->GetHash() == ThirdTestName.GetHash(),
-                 "EventPublisher::GetSubscriptionTable");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       TestPublisher.GetSubscriptionTable("FailFetch"),
-                       "EventPublisher::GetSubscriptionTable-ThrowString");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       TestPublisher.GetSubscriptionTable(EventNameType::EmptyHash),
-                       "EventPublisher::GetSubscriptionTable-ThrowHash");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       ConstTestPublisher.GetSubscriptionTable("FailFetch"),
-                       "EventPublisher::GetSubscriptionTable-ThrowStringConst");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       ConstTestPublisher.GetSubscriptionTable(EventNameType::EmptyHash),
-                       "EventPublisher::GetSubscriptionTable-ThrowHashConst");
+                TestPublisherType SourceMoveAssign;
+                TestPublisherType DestMoveAssign;
+                SourceMoveAssign.AddSubscriptionTable(12345);
+                DestMoveAssign = std::move(SourceMoveAssign);
+                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0 &&
+                     DestMoveConstruct.GetNumSubscriptionTables() == 1,
+                     "EventPublisher::operator=(EventPublisher&&)");
 
-            EventSubscriberBindingPtr FirstBinding = TestPublisher.Subscribe(FirstTestName,18,TestCallback);
-            EventSubscriberBindingPtr SecondBinding = TestPublisher.Subscribe(FirstTestName,36,TestCallback);
-            EventSubscriberBindingPtr ThirdBinding = TestPublisher.Subscribe(FirstTestName,54,TestCallback);
-            EventSubscriberBindingPtr FourthBinding = TestPublisher.Subscribe(SecondTestName,72,TestCallback);
-            EventSubscriberBindingPtr FifthBinding = TestPublisher.Subscribe(SecondTestName,90,TestCallback);
-            EventSubscriberBindingPtr SixthBinding = TestPublisher.Subscribe(SecondTestName,108,TestCallback);
-            TEST(FirstBinding->GetSubID() == 18 && FirstBinding->GetEventHash() == FirstTestName.GetHash() &&
-                 SecondBinding->GetSubID() == 36 && SecondBinding->GetEventHash() == FirstTestName.GetHash() &&
-                 ThirdBinding->GetSubID() == 54 && ThirdBinding->GetEventHash() == FirstTestName.GetHash() &&
-                 FourthBinding->GetSubID() == 72 && FourthBinding->GetEventHash() == SecondTestName.GetHash() &&
-                 FifthBinding->GetSubID() == 90 && FifthBinding->GetEventHash() == SecondTestName.GetHash() &&
-                 SixthBinding->GetSubID() == 108 && SixthBinding->GetEventHash() == SecondTestName.GetHash(),
-                 "EventPublisher::Subscribe");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       TestPublisher.Subscribe("FailTableName",0,TestCallback),
-                       "EventPublisher::Subscribe-Throw");
+                TestPublisherType TestPublisher(3);
+                const TestPublisherType& ConstTestPublisher = TestPublisher;
+                TEST(TestPublisher.GetNumSubscriptionTables() == 0,
+                     "EventPublisher::EventPublisher(const_Whole)");
 
-            TestPublisher.DispatchEvent(FirstTestEvent);
-            Whole PostFirstDispatchCount = DispatchCount;
-            TestPublisher.DispatchEvent(SecondTestEvent);
-            Whole PostSecondDispatchCount = DispatchCount;
-            TEST(PostFirstDispatchCount == 3 &&
-                 PostSecondDispatchCount == 6,
-                 "EventPublisher::DispatchEvent");
+                TEST(TestPublisher.AddSubscriptionTable(5)->GetID() == 5,
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-First");
+                TEST(TestPublisher.AddSubscriptionTable(25)->GetID() == 25,
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Second");
+                TEST(TestPublisher.AddSubscriptionTable(125)->GetID() == 125,
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Third");
 
-            TestPublisher.SetMuteEvents(true);
-            TestPublisher.DispatchEvent(FirstTestEvent);
-            TestPublisher.DispatchEvent(SecondTestEvent);
-            TEST(TestPublisher.GetMuteEvents() == true &&
-                 DispatchCount == 6,
-                 "EventPublisher::GetAndSetMuteEvents");
+                TEST(TestPublisher.GetNumSubscriptionTables() == 3,
+                     "EventPublisher::GetNumSubscriptionTables()");
 
-            TestPublisher.SetMuteEvents(false);
-            TestPublisher.Unsubscribe(FirstTestName,36);
-            TestPublisher.DispatchEvent(FirstTestEvent);
-            TEST(DispatchCount == 8 &&
-                 FirstBinding.use_count() == 2 &&
-                 SecondBinding.use_count() == 1 &&
-                 ThirdBinding.use_count() == 2,
-                 "EventPublisher::UnsubscribeFromEvent");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       TestPublisher.Unsubscribe("FailTableName",0),
-                       "EventPublisher::UnsubscribeFromEvent-Throw");
+                TEST(TestPublisher.begin()->GetID() == 5,
+                     "EventPublisher::begin()");
+                TEST(ConstTestPublisher.begin()->GetID() == 5,
+                     "EventPublisher::begin()_const");
+                TEST(std::distance(TestPublisher.begin(),TestPublisher.end()) == 3,
+                     "EventPublisher::end()");
+                TEST(std::distance(ConstTestPublisher.begin(),ConstTestPublisher.end()) == 3,
+                     "EventPublisher::end()_const");
 
-            Whole FirstRemoveCount = TestPublisher.UnsubscribeAll(FirstTestName);
-            TestPublisher.DispatchEvent(FirstTestEvent);
-            TEST(FirstRemoveCount == 2 &&
-                 DispatchCount == 8 &&
-                 FirstBinding.use_count() == 1 &&
-                 SecondBinding.use_count() == 1 &&
-                 ThirdBinding.use_count() == 1,
-                 "EventPublisher::UnsubscribeAllFromEvent");
-            TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
-                       TestPublisher.UnsubscribeAll("FailTableName"),
-                       "EventPublisher::UnsubscribeAllFromEvent-Throw");
+                TEST(TestPublisher.HasSubscriptionTable(5),
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-First");
+                TEST(TestPublisher.HasSubscriptionTable(25),
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Second");
+                TEST(TestPublisher.HasSubscriptionTable(125),
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Third");
 
-            TestPublisher.Subscribe(FirstTestName,108,TestCallback);
-            Whole PreRemoveAllUseCount = SixthBinding.use_count();
-            TestPublisher.Unsubscribe(108);
-            Whole PostRemoveAllUseCount = SixthBinding.use_count();
-            TestPublisher.DispatchEvent(SecondTestEvent);
-            TEST(DispatchCount == 10 &&
-                 PreRemoveAllUseCount == 2 &&
-                 PostRemoveAllUseCount == 1,
-                 "EventPublisher::UnsubscribeFromAllEvents");
+                TEST(TestPublisher.GetSubscriptionTable(5) == TestPublisher.begin(),
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-First");
+                TEST(TestPublisher.GetSubscriptionTable(25) == TestPublisher.begin() + 1,
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-Second");
+                TEST(TestPublisher.GetSubscriptionTable(125) == TestPublisher.begin() + 2,
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-Third");
 
-            TestPublisher.Subscribe(FirstTestName,108,TestCallback);
-            Whole SecondRemoveCount = TestPublisher.UnsubscribeAll();
-            TestPublisher.DispatchEvent(SecondTestEvent);
-            TEST(SecondRemoveCount == 3 &&
-                 DispatchCount == 10 &&
-                 FourthBinding.use_count() == 1 &&
-                 FifthBinding.use_count() == 1 &&
-                 SixthBinding.use_count() == 1,
-                 "EventPublisher::UnsubscribeAllFromAllEvents");
+                TEST(ConstTestPublisher.GetSubscriptionTable(5) == ConstTestPublisher.begin(),
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-First");
+                TEST(ConstTestPublisher.GetSubscriptionTable(25) == ConstTestPublisher.begin() + 1,
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Second");
+                TEST(ConstTestPublisher.GetSubscriptionTable(125) == ConstTestPublisher.begin() + 2,
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Third");
 
-            TestPublisher.RemoveSubscriptionTable(SecondTestName);
-            TEST(TestPublisher.HasSubscriptionTable(FirstTestName) &&
-                 !TestPublisher.HasSubscriptionTable(SecondTestName) &&
-                 TestPublisher.HasSubscriptionTable(ThirdTestName),
-                 "EventPublisher::RemoveSubscriptionTable");
+                TEST(TestPublisher.Subscribe(5,&TestSubscriberOne) == &TestSubscriberOne,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SFirst");
+                TEST(TestPublisher.Subscribe(5,&TestSubscriberTwo) == &TestSubscriberTwo,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SSecond");
+                TEST(TestPublisher.Subscribe(5,&TestSubscriberThree) == &TestSubscriberThree,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SThird");
 
-            TestPublisher.RemoveAllSubscriptionTables();
-            TEST(!TestPublisher.HasSubscriptionTable(FirstTestName) &&
-                 !TestPublisher.HasSubscriptionTable(SecondTestName) &&
-                 !TestPublisher.HasSubscriptionTable(ThirdTestName),
-                 "EventPublisher::RemoveAllSubscriptionTables");
+                TEST(TestPublisher.Subscribe(25,&TestSubscriberOne) == &TestSubscriberOne,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SFirst");
+                TEST(TestPublisher.Subscribe(25,&TestSubscriberTwo) == &TestSubscriberTwo,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SSecond");
+                TEST(TestPublisher.Subscribe(25,&TestSubscriberThree) == &TestSubscriberThree,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SThird");
+
+                TEST(TestPublisher.Subscribe(125,&TestSubscriberOne) == &TestSubscriberOne,
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TThird-SFirst");
+
+                const Whole SavedCount = TestSubscriberImpl::GetTotalCallCount();
+                TestPublisher.DispatchEvent(25,TestSubscriberBase::TestSet,1);
+                TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 3,
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-First");
+                TestPublisher.DispatchEvent(125,TestSubscriberBase::TestSet,3);
+                TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 4,
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Second");
+                TestPublisher.DispatchEvent(5,TestSubscriberBase::TestSet,7);
+                TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 7,
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Third");
+
+                TestPublisher.Unsubscribe(25,0xBAADC0DE);
+                TEST(!TestPublisher.GetSubscriptionTable(25)->HasSubscription(0xBAADC0DE),
+                     "EventPublisher::Unsubscribe(const_DispatchIDType,const_SubscriberIDType");
+
+                TestPublisher.Unsubscribe(0xBABECAFE);
+                TEST(!TestPublisher.GetSubscriptionTable(5)->HasSubscription(0xBABECAFE) &&
+                     !TestPublisher.GetSubscriptionTable(25)->HasSubscription(0xBABECAFE),
+                     "EventPublisher::Unsubscribe(const_SubscriberIDType");
+
+                TEST(TestPublisher.UnsubscribeAll(5) == 2,
+                     "EventPublisher::UnsubscribeAll(const_DispatchIDType)");
+
+                TEST(TestPublisher.UnsubscribeAll() == 2,
+                     "EventPublisher::UnsubscribeAll()");
+
+                TestPublisher.RemoveSubscriptionTable(125);
+                TEST(!TestPublisher.HasSubscriptionTable(125),
+                     "EventPublisher::RemoveSubscriptionTable(const_DispatchIDType)");
+
+                TEST(TestPublisher.RemoveAllSubscriptionTables() == 2,
+                     "EventPublisher::RemoveAllSubscriptionTables()");
+            }//EventPublisher
+
+            {//VoidEventPublisher
+
+            }//VoidEventPublisher
         }//EventPublisher
-        */
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.
