@@ -926,17 +926,19 @@ public:
                 TestPublisherType SourceMoveConstruct;
                 SourceMoveConstruct.AddSubscriptionTable(12345);
                 TestPublisherType DestMoveConstruct( std::move(SourceMoveConstruct) );
-                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0 &&
-                     DestMoveConstruct.GetNumSubscriptionTables() == 1,
-                     "EventPublisher::EventPublisher(EventPublisher&&)");
+                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0,
+                     "EventPublisher::EventPublisher(EventPublisher&&)-SourceTables");
+                TEST(DestMoveConstruct.GetNumSubscriptionTables() == 1,
+                     "EventPublisher::EventPublisher(EventPublisher&&)-DestTables");
 
                 TestPublisherType SourceMoveAssign;
                 TestPublisherType DestMoveAssign;
                 SourceMoveAssign.AddSubscriptionTable(12345);
                 DestMoveAssign = std::move(SourceMoveAssign);
-                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0 &&
-                     DestMoveConstruct.GetNumSubscriptionTables() == 1,
-                     "EventPublisher::operator=(EventPublisher&&)");
+                TEST(SourceMoveConstruct.GetNumSubscriptionTables() == 0,
+                     "EventPublisher::operator=(EventPublisher&&)-SourceTables");
+                TEST(DestMoveConstruct.GetNumSubscriptionTables() == 1,
+                     "EventPublisher::operator=(EventPublisher&&)-DestTables");
 
                 TestPublisherType TestPublisher(3);
                 const TestPublisherType& ConstTestPublisher = TestPublisher;
@@ -944,11 +946,11 @@ public:
                      "EventPublisher::EventPublisher(const_Whole)");
 
                 TEST(TestPublisher.AddSubscriptionTable(5)->GetID() == 5,
-                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-First");
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Table1");
                 TEST(TestPublisher.AddSubscriptionTable(25)->GetID() == 25,
-                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Second");
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Table2");
                 TEST(TestPublisher.AddSubscriptionTable(125)->GetID() == 125,
-                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Third");
+                     "EventPublisher::AddSubscriptionTable(const_DispatchIDType)-Table3");
 
                 TEST(TestPublisher.GetNumSubscriptionTables() == 3,
                      "EventPublisher::GetNumSubscriptionTables()");
@@ -963,62 +965,86 @@ public:
                      "EventPublisher::end()_const");
 
                 TEST(TestPublisher.HasSubscriptionTable(5),
-                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-First");
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Table1");
                 TEST(TestPublisher.HasSubscriptionTable(25),
-                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Second");
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Table2");
                 TEST(TestPublisher.HasSubscriptionTable(125),
-                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Third");
+                     "EventPublisher::HasSubscriptionTable(const_DispatchIDType)_const-Table3");
 
                 TEST(TestPublisher.GetSubscriptionTable(5) == TestPublisher.begin(),
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-First");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)-Table1");
                 TEST(TestPublisher.GetSubscriptionTable(25) == TestPublisher.begin() + 1,
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-Second");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)-Table2");
                 TEST(TestPublisher.GetSubscriptionTable(125) == TestPublisher.begin() + 2,
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType-Third");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)-Table3");
 
                 TEST(ConstTestPublisher.GetSubscriptionTable(5) == ConstTestPublisher.begin(),
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-First");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Table1");
                 TEST(ConstTestPublisher.GetSubscriptionTable(25) == ConstTestPublisher.begin() + 1,
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Second");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Table2");
                 TEST(ConstTestPublisher.GetSubscriptionTable(125) == ConstTestPublisher.begin() + 2,
-                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Third");
+                     "EventPublisher::GetSubscriptionTable(const_DispatchIDType)_const-Table3");
 
                 TEST(TestPublisher.Subscribe(5,&TestSubscriberOne) == &TestSubscriberOne,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SFirst");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table1-Sub1");
                 TEST(TestPublisher.Subscribe(5,&TestSubscriberTwo) == &TestSubscriberTwo,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SSecond");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table1-Sub2");
                 TEST(TestPublisher.Subscribe(5,&TestSubscriberThree) == &TestSubscriberThree,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TFirst-SThird");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table1-Sub3");
 
                 TEST(TestPublisher.Subscribe(25,&TestSubscriberOne) == &TestSubscriberOne,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SFirst");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table2-Sub1");
                 TEST(TestPublisher.Subscribe(25,&TestSubscriberTwo) == &TestSubscriberTwo,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SSecond");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table2-Sub2");
                 TEST(TestPublisher.Subscribe(25,&TestSubscriberThree) == &TestSubscriberThree,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TSecond-SThird");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table2-Sub3");
 
                 TEST(TestPublisher.Subscribe(125,&TestSubscriberOne) == &TestSubscriberOne,
-                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-TThird-SFirst");
+                     "EventPublisher::Subscribe(const_DispatchIDType,SubscriberArg)-Table3-Sub1");
 
                 const Whole SavedCount = TestSubscriberImpl::GetTotalCallCount();
-                TestPublisher.DispatchEvent(25,TestSubscriberBase::TestSet,1);
+                TestPublisher.DispatchEvent(25,&TestSubscriberBase::TestSet,1);
                 TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 3,
-                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-First");
-                TestPublisher.DispatchEvent(125,TestSubscriberBase::TestSet,3);
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Table2");
+                TestPublisher.DispatchEvent(125,&TestSubscriberBase::TestSet,3);
                 TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 4,
-                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Second");
-                TestPublisher.DispatchEvent(5,TestSubscriberBase::TestSet,7);
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Table3");
+                TestPublisher.DispatchEvent(5,&TestSubscriberBase::TestSet,7);
                 TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 7,
-                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Third");
+                     "EventPublisher::DispatchEvent(const_DispatchIDType,MemberFunct,Args...)-Table1");
+
+                TestPublisher.DispatchEventSingle(25,0xDEADBEEF,&TestSubscriberBase::TestSet,9);
+                TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 8,
+                     "EventPublisher::DispatchEventSingle(const_DispatchIDType,const_SubscriberIDType,MemberFunct,Args...)-Table2-Sub1");
+                TestPublisher.DispatchEventSingle(5,0xBAADC0DE,&TestSubscriberBase::TestSet,3);
+                TEST(TestSubscriberImpl::GetTotalCallCount() == SavedCount + 9,
+                     "EventPublisher::DispatchEventSingle(const_DispatchIDType,const_SubscriberIDType,MemberFunct,Args...)-Table1-Sub2");
+
+                std::vector<Whole> Results = TestPublisher.DispatchQuery(25,&TestSubscriberBase::TestGet);
+                TEST(Results.size() == 3,
+                     "EventPublisher::DispatchQuery(const_DispatchIDType,MemberFunct,Args...)-Table2-ResultCount");
+                TEST(Results[0] == 9,
+                     "EventPublisher::DispatchQuery(const_DispatchIDType,MemberFunct,Args...)-Table2-Result1");
+                TEST(Results[1] == 3,
+                     "EventPublisher::DispatchQuery(const_DispatchIDType,MemberFunct,Args...)-Table2-Result2");
+                TEST(Results[2] == 7,
+                     "EventPublisher::DispatchQuery(const_DispatchIDType,MemberFunct,Args...)-Table2-Result3");
+
+                std::vector<Whole> ResultsSingle = TestPublisher.DispatchQuerySingle(5,0xBAADC0DE,&TestSubscriberBase::TestGet);
+                TEST(ResultsSingle.size() == 1,
+                     "EventPublisher::DispatchQuerySingle(const_DispatchIDType,const_SubscriberIDType,MemberFunct,Args...)-Table1-Sub2-ResultCount");
+                TEST(ResultsSingle[0] == 3,
+                     "EventPublisher::DispatchQuerySingle(const_DispatchIDType,const_SubscriberIDType,MemberFunct,Args...)-Table1-Sub2-Result1");
 
                 TestPublisher.Unsubscribe(25,0xBAADC0DE);
                 TEST(!TestPublisher.GetSubscriptionTable(25)->HasSubscription(0xBAADC0DE),
-                     "EventPublisher::Unsubscribe(const_DispatchIDType,const_SubscriberIDType");
+                     "EventPublisher::Unsubscribe(const_DispatchIDType,const_SubscriberIDType)");
 
                 TestPublisher.Unsubscribe(0xBABECAFE);
-                TEST(!TestPublisher.GetSubscriptionTable(5)->HasSubscription(0xBABECAFE) &&
-                     !TestPublisher.GetSubscriptionTable(25)->HasSubscription(0xBABECAFE),
-                     "EventPublisher::Unsubscribe(const_SubscriberIDType");
+                TEST(!TestPublisher.GetSubscriptionTable(5)->HasSubscription(0xBABECAFE),
+                     "EventPublisher::Unsubscribe(const_SubscriberIDType)-Table1");
+                TEST(!TestPublisher.GetSubscriptionTable(25)->HasSubscription(0xBABECAFE),
+                     "EventPublisher::Unsubscribe(const_SubscriberIDType)-Table2");
 
                 TEST(TestPublisher.UnsubscribeAll(5) == 2,
                      "EventPublisher::UnsubscribeAll(const_DispatchIDType)");
@@ -1034,9 +1060,9 @@ public:
                      "EventPublisher::RemoveAllSubscriptionTables()");
             }//EventPublisher
 
-            {//VoidEventPublisher
+            {//AnyEventPublisher
 
-            }//VoidEventPublisher
+            }//AnyEventPublisher
         }//EventPublisher
     }
 
