@@ -54,7 +54,7 @@ namespace Mezzanine
     /// @brief This class represents a given event that can be subscribed to and/or fired.
     /// @tparam Config A struct of types and values to use for the configuration of this table.
     /// @pre Config is expected to be a valid EventSubscriptionTableConfig suitable to configure
-    /// the types on EventSubscriptionTableTraits.  See EventSubscriptionTableTraits for more info.
+    /// the types on EventSubscriptionTableTraits.  See @ref EventSubscriptionTableTraits for more info. @n
     /// Additionally, Config is expected to have "ContainerType", "DispatcherType", and "DispatchIDType".
     ///     "ContainerType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionContainer.
     ///     "DispatcherType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionDispatcher.

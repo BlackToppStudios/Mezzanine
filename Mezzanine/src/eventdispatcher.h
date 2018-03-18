@@ -150,7 +150,7 @@ namespace Mezzanine
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
-        /// @return Returns the value returned by the last subscriber an event was dispatched to.
+        /// @return Returns a container (vector) of return values from the subscribers dispatched to.
         template<class MemberFunct, class... ArgTypes>
         auto DispatchQuery(MemberFunct Funct, ArgTypes&&... Args) const
         {
@@ -176,7 +176,7 @@ namespace Mezzanine
         /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
-        /// @return Returns the value returned by the last subscriber an event was dispatched to.
+        /// @return Returns a container (vector) of return values from the subscriber dispatched to.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
         auto DispatchQuerySingle(const SubIDType ID, MemberFunct Funct, ArgTypes&&... Args) const
         {
@@ -305,7 +305,7 @@ namespace Mezzanine
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
-        /// @return Returns the value returned by the last subscriber an event was dispatched to.
+        /// @return Returns a container (vector) of return values from the subscribers dispatched to.
         template<class MemberFunct, class... ArgTypes>
         auto DispatchQuery(MemberFunct Funct, ArgTypes&&... Args) const
         {
@@ -333,7 +333,7 @@ namespace Mezzanine
         /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
-        /// @return Returns the value returned by the last subscriber an event was dispatched to.
+        /// @return Returns a container (vector) of return values from the subscriber dispatched to.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
         auto DispatchQuerySingle(const SubIDType ID, MemberFunct Funct, ArgTypes&&... Args) const
         {
@@ -597,6 +597,7 @@ namespace Mezzanine
         /// @pre ArgTypes is expected to be a series of variables that match the signature of MemberFunct.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
+        /// @return Returns a std::shared_ptr to a QueuedQueryResults containing the return values from the subscribers dispatched to.
         template<class MemberFunct, class... ArgTypes>
         auto DispatchQuery(MemberFunct Funct, ArgTypes&&... Args)
         {
@@ -621,6 +622,7 @@ namespace Mezzanine
         /// @param ID The ID of the specific subscriber to dispatch to.
         /// @param Funct The function on the subscriber to call.
         /// @param Args The arguments/event specific data related to this event.
+        /// @return Returns a std::shared_ptr to a QueuedQueryResults containing the return values from the subscribers dispatched to.
         template<class SubIDType, class MemberFunct, class... ArgTypes>
         auto DispatchQuerySingle(const SubIDType ID, MemberFunct Funct, ArgTypes&&... Args)
         {
