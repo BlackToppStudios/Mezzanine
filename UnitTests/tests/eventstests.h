@@ -176,70 +176,88 @@ public:
         // They can be replaced with any other value and just work.
         {//EventID
             EventID IntegerID(144);
-            TEST(IntegerID.ID == 144,"EventID(const_IDType)");
+            TEST(IntegerID.ID == 144,
+                 "EventID(const_IDType)");
 
             HashedString32 IDHashed("TestEventHash");
             EventID HashEventID(IDHashed);
-            TEST(HashEventID.ID == IDHashed.GetHash(),"EventID(const_HashedString32&)");
+            TEST(HashEventID.ID == IDHashed.GetHash(),
+                 "EventID(const_HashedString32&)");
 
             EventID CopyID(IntegerID);
-            TEST(CopyID.ID == 144,"EventID(const_EventID&)");
+            TEST(CopyID.ID == 144,
+                 "EventID(const_EventID&)");
 
             EventID MoveSourceID(288);
             EventID MoveDestID(std::move(MoveSourceID));
-            TEST(MoveDestID.ID == 288,"EventID(EventID&&)");
+            TEST(MoveDestID.ID == 288,
+                 "EventID(EventID&&)");
 
             EventID AssignSourceID(576);
             EventID AssignDestID(0);
             AssignDestID = AssignSourceID;
-            TEST(AssignDestID.ID == 576,"EventID::operator=(const_EventID&)");
+            TEST(AssignDestID.ID == 576,
+                 "EventID::operator=(const_EventID&)");
 
             EventID AssignMoveSourceID(1152);
             EventID AssignMoveDestID(0);
             AssignMoveDestID = std::move(AssignMoveSourceID);
-            TEST(AssignMoveDestID.ID == 1152,"EventID::operator=(EventID&&)");
+            TEST(AssignMoveDestID.ID == 1152,
+                 "EventID::operator=(EventID&&)");
 
-            TEST(EventID(50) == EventID(50),"EventID::operator==(const_EventID&)");
-            TEST(EventID(100) != EventID(242),"EventID::operator!=(const_EventID&)");
+            TEST(EventID(50) == EventID(50),
+                 "EventID::operator==(const_EventID&)");
+            TEST(EventID(100) != EventID(242),
+                 "EventID::operator!=(const_EventID&)");
 
             StringStream ResultStream;
             EventID StreamID(150);
             ResultStream << StreamID;
-            TEST(ResultStream.str() == "150","operator<<(std::ostream&,const_EventID&)");
+            TEST(ResultStream.str() == "150",
+                 "operator<<(std::ostream&,const_EventID&)");
         }//EventID
 
         {//EventSubscriberID
             EventSubscriberID IntegerID(144);
-            TEST(IntegerID.ID == 144,"EventSubscriberID(const_IDType)");
+            TEST(IntegerID.ID == 144,
+                 "EventSubscriberID(const_IDType)");
 
             EventSubscriberID* SubPtr = &IntegerID;
             EventSubscriberID PointerID(SubPtr);
-            TEST(PointerID.ID == reinterpret_cast<EventSubscriberID::IDType>(SubPtr),"EventSubscriberID(PtrType*)");
+            TEST(PointerID.ID == reinterpret_cast<EventSubscriberID::IDType>(SubPtr),
+                 "EventSubscriberID(PtrType*)");
 
             EventSubscriberID CopyID(IntegerID);
-            TEST(CopyID.ID == 144,"EventSubscriberID(const_EventSubscriberID&)");
+            TEST(CopyID.ID == 144,
+                 "EventSubscriberID(const_EventSubscriberID&)");
 
             EventSubscriberID MoveSourceID(288);
             EventSubscriberID MoveDestID(std::move(MoveSourceID));
-            TEST(MoveDestID.ID == 288,"EventSubscriberID(EventSubscriberID&&)");
+            TEST(MoveDestID.ID == 288,
+                 "EventSubscriberID(EventSubscriberID&&)");
 
             EventSubscriberID AssignSourceID(576);
             EventSubscriberID AssignDestID(0);
             AssignDestID = AssignSourceID;
-            TEST(AssignDestID.ID == 576,"EventSubscriberID::operator=(const_EventSubscriberID&)");
+            TEST(AssignDestID.ID == 576,
+                 "EventSubscriberID::operator=(const_EventSubscriberID&)");
 
             EventSubscriberID AssignMoveSourceID(1152);
             EventSubscriberID AssignMoveDestID(0);
             AssignMoveDestID = std::move(AssignMoveSourceID);
-            TEST(AssignMoveDestID.ID == 1152,"EventSubscriberID::operator=(EventSubscriberID&&)");
+            TEST(AssignMoveDestID.ID == 1152,
+                 "EventSubscriberID::operator=(EventSubscriberID&&)");
 
-            TEST(EventSubscriberID(50) == EventSubscriberID(50),"EventSubscriberID::operator==(const_EventSubscriberID&)");
-            TEST(EventSubscriberID(100) != EventSubscriberID(242),"EventSubscriberID::operator!=(const_EventSubscriberID&)");
+            TEST(EventSubscriberID(50) == EventSubscriberID(50),
+                 "EventSubscriberID::operator==(const_EventSubscriberID&)");
+            TEST(EventSubscriberID(100) != EventSubscriberID(242),
+                 "EventSubscriberID::operator!=(const_EventSubscriberID&)");
 
             StringStream ResultStream;
             EventSubscriberID StreamID(150);
             ResultStream << StreamID;
-            TEST(ResultStream.str() == "150","operator<<(std::ostream&,const_EventSubscriberID&)");
+            TEST(ResultStream.str() == "150",
+                 "operator<<(std::ostream&,const_EventSubscriberID&)");
         }//EventSubscriberID
 
         {//FunctionSubscriber
@@ -251,28 +269,34 @@ public:
                 TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
 
                 TestSubscriberType IntegerSub(144,TestDelegate);
-                TEST(IntegerSub.GetID().ID == 144,"FunctionSubscriber(const_IDType,const_FunctionType&)-SingleArg");
+                TEST(IntegerSub.GetID().ID == 144,
+                     "FunctionSubscriber(const_IDType,const_FunctionType&)-SingleArg");
 
                 TestSubscriberType CopySub(IntegerSub);
-                TEST(CopySub.GetID().ID == 144,"FunctionSubscriber(const_FunctionSubscriber&)-SingleArg");
+                TEST(CopySub.GetID().ID == 144,
+                     "FunctionSubscriber(const_FunctionSubscriber&)-SingleArg");
 
                 TestSubscriberType MoveSourceSub(288,TestDelegate);
                 TestSubscriberType MoveDestSub(std::move(MoveSourceSub));
-                TEST(MoveDestSub.GetID().ID == 288,"FunctionSubscriber(FunctionSubscriber&&)-SingleArg");
+                TEST(MoveDestSub.GetID().ID == 288,
+                     "FunctionSubscriber(FunctionSubscriber&&)-SingleArg");
 
                 TestSubscriberType AssignSourceSub(576,TestDelegate);
                 TestSubscriberType AssignDestSub(0,TestDelegate);
                 AssignDestSub = AssignSourceSub;
-                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&)-SingleArg");
+                TEST(AssignDestSub.GetID().ID == 576,
+                     "FunctionSubscriber::operator=(const_FunctionSubscriber&)-SingleArg");
 
                 TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
                 TestSubscriberType AssignMoveDestSub(0,TestDelegate);
                 AssignMoveDestSub = std::move(AssignMoveSourceSub);
-                TEST(AssignMoveDestSub.GetID().ID == 1152,"FunctionSubscriber::operator=(FunctionSubscriber&&)-SingleArg");
+                TEST(AssignMoveDestSub.GetID().ID == 1152,
+                     "FunctionSubscriber::operator=(FunctionSubscriber&&)-SingleArg");
 
                 TestSubscriberType DispatchSub(2304,TestDelegate);
                 DispatchSub(TestArg);
-                TEST(DispatchCount == 1,"FunctionSubscriber::DispatchEvent(Args...)_const-SingleArg");
+                TEST(DispatchCount == 1,
+                     "FunctionSubscriber::DispatchEvent(Args...)_const-SingleArg");
             }//SingleArg
 
             {//MixedArg
@@ -284,28 +308,34 @@ public:
                 TestSubscriberType::FunctionType TestDelegate([&](const Real& fn, Whole ln){ ++DispatchCount; });
 
                 TestSubscriberType IntegerSub(144,TestDelegate);
-                TEST(IntegerSub.GetID().ID == 144,"FunctionSubscriber(const_IDType,const_FunctionType&)-MixedArg");
+                TEST(IntegerSub.GetID().ID == 144,
+                     "FunctionSubscriber(const_IDType,const_FunctionType&)-MixedArg");
 
                 TestSubscriberType CopySub(IntegerSub);
-                TEST(CopySub.GetID().ID == 144,"FunctionSubscriber(const_FunctionSubscriber&)-MixedArg");
+                TEST(CopySub.GetID().ID == 144,
+                     "FunctionSubscriber(const_FunctionSubscriber&)-MixedArg");
 
                 TestSubscriberType MoveSourceSub(288,TestDelegate);
                 TestSubscriberType MoveDestSub(std::move(MoveSourceSub));
-                TEST(MoveDestSub.GetID().ID == 288,"FunctionSubscriber(FunctionSubscriber&&)-MixedArg");
+                TEST(MoveDestSub.GetID().ID == 288,
+                     "FunctionSubscriber(FunctionSubscriber&&)-MixedArg");
 
                 TestSubscriberType AssignSourceSub(576,TestDelegate);
                 TestSubscriberType AssignDestSub(0,TestDelegate);
                 AssignDestSub = AssignSourceSub;
-                TEST(AssignDestSub.GetID().ID == 576,"FunctionSubscriber::operator=(const_FunctionSubscriber&)-MixedArg");
+                TEST(AssignDestSub.GetID().ID == 576,
+                     "FunctionSubscriber::operator=(const_FunctionSubscriber&)-MixedArg");
 
                 TestSubscriberType AssignMoveSourceSub(1152,TestDelegate);
                 TestSubscriberType AssignMoveDestSub(0,TestDelegate);
                 AssignMoveDestSub = std::move(AssignMoveSourceSub);
-                TEST(AssignMoveDestSub.GetID().ID == 1152,"FunctionSubscriber::operator=(FunctionSubscriber&&)-MixedArg");
+                TEST(AssignMoveDestSub.GetID().ID == 1152,
+                     "FunctionSubscriber::operator=(FunctionSubscriber&&)-MixedArg");
 
                 TestSubscriberType DispatchSub(2304,TestDelegate);
                 DispatchSub(TestArg1,TestArg2);
-                TEST(DispatchCount == 1,"FunctionSubscriber::DispatchEvent(Args...)_const-MixedArg");
+                TEST(DispatchCount == 1,
+                     "FunctionSubscriber::DispatchEvent(Args...)_const-MixedArg");
             }//MixedArg
         }//FunctionSubscriber
 
@@ -322,24 +352,28 @@ public:
                 TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
 
                 TestBindingImplType IntegerBinding(TestSubscriberType(144,TestDelegate),nullptr);
-                TEST(IntegerBinding.GetID().ID == 144 &&
-                     IntegerBinding.GetTable() == nullptr,
-                     "EventSubscriberBindingImpl::ConstructionAndGetters-NoTable");
+                TEST(IntegerBinding.GetID().ID == 144,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-NoTable-IDCheck");
+                TEST(IntegerBinding.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-NoTable-TableCheck");
 
                 TestBindingImplType MoveBinding(std::move(IntegerBinding));
-                TEST(MoveBinding.GetID().ID == 144 &&
-                     MoveBinding.GetTable() == nullptr,
-                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-NoTable");
+                TEST(MoveBinding.GetID().ID == 144,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-NoTable-IDCheck");
+                TEST(MoveBinding.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-NoTable-TableCheck");
 
                 TestBindingImplType AssignMoveSourceBind(TestSubscriberType(288,TestDelegate),nullptr);
                 TestBindingImplType AssignMoveDestBind(TestSubscriberType(0,TestDelegate),nullptr);
                 AssignMoveDestBind = std::move(AssignMoveSourceBind);
-                TEST(AssignMoveDestBind.GetID().ID == 288 &&
-                     AssignMoveDestBind.GetTable() == nullptr,
-                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-NoTable");
+                TEST(AssignMoveDestBind.GetID().ID == 288,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-NoTable-IDCheck");
+                TEST(AssignMoveDestBind.GetTable() == nullptr,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-NoTable-TableCheck");
 
                 TestBindingImplType UtilityTestBinding(TestSubscriberType(576,TestDelegate),nullptr);
-                TEST( !UtilityTestBinding.IsSubscribed() ,"EventSubscriberBindingImpl::IsSubscribed()_const-NoTable");
+                TEST(!UtilityTestBinding.IsSubscribed(),
+                     "EventSubscriberBindingImpl::IsSubscribed()_const-NoTable");
             }//NoTable
 
             {//Table
@@ -351,21 +385,24 @@ public:
                 TestSubscriberType::FunctionType TestDelegate([&](EventPtr Args){ ++DispatchCount; });
 
                 TestBindingImplPtrType IntegerBinding = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(144,TestDelegate)));
-                TEST(IntegerBinding->GetID().ID == 144 &&
-                     IntegerBinding->GetTable() == &FirstTestTable,
-                     "EventSubscriberBindingImpl::ConstructionAndGetters-Table");
+                TEST(IntegerBinding->GetID().ID == 144,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-Table-IDCheck");
+                TEST(IntegerBinding->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::ConstructionAndGetters-Table-TableCheck");
 
                 TestBindingImplPtrType MoveBinding(IntegerBinding);
-                TEST(MoveBinding->GetID().ID == 144 &&
-                     MoveBinding->GetTable() == &FirstTestTable,
-                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-Table");
+                TEST(MoveBinding->GetID().ID == 144,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-Table-IDCheck");
+                TEST(MoveBinding->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::(EventSubscriberBindingImpl&&)-Table-TableCheck");
 
                 TestBindingImplPtrType AssignMoveSourceBind = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(288,TestDelegate)));
                 TestBindingImplPtrType AssignMoveDestBind = std::static_pointer_cast<TestBindingImplType>(SecondTestTable.Subscribe(TestSubscriberType(578,TestDelegate)));
                 *AssignMoveDestBind = std::move(*AssignMoveSourceBind);
-                TEST(AssignMoveDestBind->GetID().ID == 288 &&
-                     AssignMoveDestBind->GetTable() == &FirstTestTable,
-                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-Table");
+                TEST(AssignMoveDestBind->GetID().ID == 288,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-Table-IDCheck");
+                TEST(AssignMoveDestBind->GetTable() == &FirstTestTable,
+                     "EventSubscriberBindingImpl::operator=(EventSubscriberBindingImpl&&)-Table-TableCheck");
 
                 TestBindingImplPtrType UtilityTestBinding = std::static_pointer_cast<TestBindingImplType>(FirstTestTable.Subscribe(TestSubscriberType(1156,TestDelegate)));
                 Boole SubscribedPassTest = UtilityTestBinding->IsSubscribed();
@@ -424,16 +461,20 @@ public:
                 TestSubscriberType TestSubscriberTwo(0xBAADC0DE,[&](EventPtr TheEvent){ ++TestSubCallCount; ++TestSubTwoCallCount; });
                 TestTable.Subscribe(TestSubscriberOne);
 
-                TEST(TestTable.GetID() == 1337 &&
-                     TestTable.GetNumSubscriptions() == 1 &&
-                     TestTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::ConstructionAndGetters-BUnE");
+                TEST(TestTable.GetID() == 1337,
+                     "EventSubscriptionTable::ConstructionAndGetters-BUnE-IDCheck");
+                TEST(TestTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::ConstructionAndGetters-BUnE-NumSubCheck");
+                TEST(TestTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::ConstructionAndGetters-BUnE-SubCheck");
 
                 TestTableType MoveTable( std::move(TestTable) );
-                TEST(MoveTable.GetID() == 1337 &&
-                     MoveTable.GetNumSubscriptions() == 1 &&
-                     MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BUnE");
+                TEST(MoveTable.GetID() == 1337,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BUnE-IDCheck");
+                TEST(MoveTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BUnE-NumSubCheck");
+                TEST(MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BUnE-SubCheck");
 
                 TestTableType AssignMoveSourceTable( 12345 );
                 TestTableType AssignMoveDestTable( 90210 );
@@ -450,16 +491,18 @@ public:
                 TEST(TestTableTwo.GetNumSubscriptions() == 2,
                      "EventSubscriptionTable::GetNumSubscriptions()_const-BUnE");
 
-                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr &&
-                     TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
-                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BUnE");
+                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BUnE-Sub1");
+                TEST(TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BUnE-Sub2");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(12345),
                            "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-Throw-BUnE");
 
-                TEST(TestTableTwo.HasSubscription(0xDEADBEEF) &&
-                     TestTableTwo.HasSubscription(0xBAADC0DE),
-                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BUnE");
+                TEST(TestTableTwo.HasSubscription(0xDEADBEEF),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BUnE-Sub1");
+                TEST(TestTableTwo.HasSubscription(0xBAADC0DE),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BUnE-Sub2");
                 TEST(TestTableTwo.HasSubscription(12345) == false,
                      "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-Failure-BUnE");
 
@@ -469,33 +512,39 @@ public:
                      "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-BUnE");
 
                 TestTableTwo.DispatchEventSingle(0xBAADC0DE,&TestSubscriberType::operator(),ToDispatch);
-                TEST(TestSubCallCount == 3 &&
-                     TestSubTwoCallCount == 2,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-BUnE");
+                TEST(TestSubCallCount == 3,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-BUnE-Sub1");
+                TEST(TestSubTwoCallCount == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-BUnE-Sub2");
 
                 // These aren't stellar tests, but the default subscriber wasn't built with queries in mind
                 std::vector<TestSubscriberIDType> QueryVecOne = TestTableTwo.DispatchQuery(&TestSubscriberType::GetID);
-                TEST(QueryVecOne.size() == 2 &&
-                     QueryVecOne[0] == TestSubscriberIDType(0xDEADBEEF) &&
-                     QueryVecOne[1] == TestSubscriberIDType(0xBAADC0DE),
-                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-BUnE");
+                TEST(QueryVecOne.size() == 2,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-BUnE-ResultCount");
+                TEST(QueryVecOne[0] == TestSubscriberIDType(0xDEADBEEF),
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-BUnE-Result1");
+                TEST(QueryVecOne[1] == TestSubscriberIDType(0xBAADC0DE),
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-BUnE-Result2");
 
                 std::vector<TestSubscriberIDType> QueryVecTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberType::GetID);
-                TEST(QueryVecTwo.size() == 1 &&
-                     QueryVecTwo[0] == TestSubscriberIDType(0xBAADC0DE),
-                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-BUnE");
+                TEST(QueryVecTwo.size() == 1,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-BUnE-ResultCount");
+                TEST(QueryVecTwo[0] == TestSubscriberIDType(0xBAADC0DE),
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-BUnE-Result1");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
-                TEST(TestTableTwo.GetNumSubscriptions() == 1 &&
-                     TestBindingTwo->IsSubscribed() == false,
-                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BUnE");
+                TEST(TestTableTwo.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BUnE-TableCheck");
+                TEST(TestBindingTwo->IsSubscribed() == false,
+                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BUnE-SubCheck");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xBAADC0DE),
                            "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-Verify-BUnE");
 
-                TEST(TestTableTwo.UnsubscribeAll() == 1 &&
-                     TestBindingOne->IsSubscribed() == false,
-                     "EventSubscriptionTable::UnsubscribeAll()-BUnE");
+                TEST(TestTableTwo.UnsubscribeAll() == 1,
+                     "EventSubscriptionTable::UnsubscribeAll()-BUnE-UnsubCount");
+                TEST(TestBindingOne->IsSubscribed() == false,
+                     "EventSubscriptionTable::UnsubscribeAll()-BUnE-SubCheck");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xDEADBEEF),
                            "EventSubscriptionTable::UnsubscribeAll()-Verify-BUnE");
@@ -510,16 +559,20 @@ public:
                 TestSubscriberType TestSubscriberTwo(0xBAADC0DE);
                 TestTable.Subscribe(&TestSubscriberOne);
 
-                TEST(TestTable.GetID() == 1337 &&
-                     TestTable.GetNumSubscriptions() == 1 &&
-                     TestTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::ConstructionAndGetters-NUFS");
+                TEST(TestTable.GetID() == 1337,
+                     "EventSubscriptionTable::ConstructionAndGetters-NUFS-IDCheck");
+                TEST(TestTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::ConstructionAndGetters-NUFS-NumSubCheck");
+                TEST(TestTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::ConstructionAndGetters-NUFS-SubCheck");
 
                 TestTableType MoveTable( std::move(TestTable) );
-                TEST(MoveTable.GetID() == 1337 &&
-                     MoveTable.GetNumSubscriptions() == 1 &&
-                     MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NUFS");
+                TEST(MoveTable.GetID() == 1337,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NUFS-IDCheck");
+                TEST(MoveTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NUFS-NumSubCheck");
+                TEST(MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NUFS-SubCheck");
 
                 TestTableType AssignMoveSourceTable( 12345 );
                 TestTableType AssignMoveDestTable( 90210 );
@@ -528,11 +581,10 @@ public:
                      "EventSubscriptionTable::operator=(EventSubscriptionTable&&)-NUFS");
 
                 TestTableType TestTableTwo(54321);
-                TestSubscriberType* TestSubOnePtr = static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) );
-                TestSubscriberType* TestSubTwoPtr = static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberTwo) );
-                TEST(TestSubOnePtr == &TestSubscriberOne &&
-                     TestSubTwoPtr == &TestSubscriberTwo,
-                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NUFS");
+                TEST(static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) ) == &TestSubscriberOne,
+                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NUFS-Sub1");
+                TEST(static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberTwo) ) == &TestSubscriberTwo,
+                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NUFS-Sub2");
 
                 TEST(TestTableTwo.GetNumSubscriptions() == 2,
                      "EventSubscriptionTable::GetNumSubscriptions()_const-NUFS");
@@ -540,57 +592,74 @@ public:
                 TEST(TestTableTwo.GetMaxSubscriptions() == 3,
                      "EventSubscriptionTable::GetMaxSubscriptions()_const-NUFS");
 
-                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr &&
-                     TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
-                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NUFS");
+                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NUFS-Sub1");
+                TEST(TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NUFS-Sub2");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(12345),
                            "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-Throw-NUFS");
 
-                TEST(TestTableTwo.HasSubscription(0xDEADBEEF) &&
-                     TestTableTwo.HasSubscription(0xBAADC0DE),
-                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NUFS");
+                TEST(TestTableTwo.HasSubscription(0xDEADBEEF),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NUFS-Sub1");
+                TEST(TestTableTwo.HasSubscription(0xBAADC0DE),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NUFS-Sub2");
                 TEST(TestTableTwo.HasSubscription(12345) == false,
                      "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-Failure-NUFS");
 
                 TestTableTwo.DispatchEvent(&TestSubscriberBase::TestSet,20);
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 1 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 20,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NUFS");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NUFS-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NUFS-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NUFS-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NUFS-Sub2-Value");
 
                 TestTableTwo.DispatchEventSingle(0xBAADC0DE,&TestSubscriberBase::TestSet,80);
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 2 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 80,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NUFS");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NUFS-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NUFS-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NUFS-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 80,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NUFS-Sub2-Value");
 
                 std::vector<Whole> QueryVecOne = TestTableTwo.DispatchQuery(&TestSubscriberBase::TestGet);
-                TEST(QueryVecOne.size() == 2 &&
-                     QueryVecOne[0] == 20 &&
-                     QueryVecOne[1] == 80,
-                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NUFS");
+                TEST(QueryVecOne.size() == 2,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NUFS-ResultCount");
+                TEST(QueryVecOne[0] == 20,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NUFS-Result1");
+                TEST(QueryVecOne[1] == 80,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NUFS-Result2");
 
                 std::vector<Whole> QueryVecTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberBase::TestGet);
-                TEST(QueryVecTwo.size() == 1 &&
-                     QueryVecTwo[0] == 80,
-                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NUFS");
+                TEST(QueryVecTwo.size() == 1,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NUFS-ResultCount");
+                TEST(QueryVecTwo[0] == 80,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NUFS-Result1");
 
                 TestTableTwo.SetMuteEvents(true);
                 TestTableTwo.DispatchEvent(&TestSubscriberBase::TestSet,10);
                 TestTableTwo.DispatchEventSingle(0xBAADC0DE,&TestSubscriberBase::TestSet,90);
                 std::vector<Whole> QueryVecThree = TestTableTwo.DispatchQuery(&TestSubscriberBase::TestGet);
                 std::vector<Whole> QueryVecFour = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberBase::TestGet);
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 2 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 80 &&
-                     QueryVecThree.empty() &&
-                     QueryVecFour.empty() &&
-                     TestTableTwo.GetMuteEvents() == true,
-                     "EventSubscriptionTable::SetAndGetMuteEvents-NUFS");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 2,
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 80,
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-Sub2-Value");
+                TEST(QueryVecThree.empty(),
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-QueryResultsEmpty");
+                TEST(QueryVecFour.empty(),
+                     "EventSubscriptionTable::SetMuteEvents(const_Boole)-NUFS-QuerySingleResultsEmpty");
+                TEST(TestTableTwo.GetMuteEvents() == true,
+                     "EventSubscriptionTable::GetMuteEvents()_const-NUFS");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
                 TEST(TestTableTwo.GetNumSubscriptions() == 1,
@@ -615,14 +684,16 @@ public:
                 TestSubscriberType TestSubscriberTwo(0xBAADC0DE);
                 TestTable.Subscribe(&TestSubscriberOne);
 
-                TEST(TestTable.GetID() == 1337 &&
-                     TestTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::ConstructionAndGetters-NSnE");
+                TEST(TestTable.GetID() == 1337,
+                     "EventSubscriptionTable::ConstructionAndGetters-NSnE-IDCheck");
+                TEST(TestTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::ConstructionAndGetters-NSnE-SubCheck");
 
                 TestTableType MoveTable( std::move(TestTable) );
-                TEST(MoveTable.GetID() == 1337 &&
-                     MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSnE");
+                TEST(MoveTable.GetID() == 1337,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSnE-IDCheck");
+                TEST(MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSnE-SubCheck");
 
                 TestTableType AssignMoveSourceTable( 12345 );
                 TestTableType AssignMoveDestTable( 90210 );
@@ -631,8 +702,7 @@ public:
                      "EventSubscriptionTable::operator=(EventSubscriptionTable&&)-NSnE");
 
                 TestTableType TestTableTwo(54321);
-                TestSubscriberType* TestSubOnePtr = static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) );
-                TEST(TestSubOnePtr == &TestSubscriberOne,
+                TEST(static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) ) == &TestSubscriberOne,
                      "EventSubscriptionTable::Subscribe(SubscribeArg)-NSnE");
                 TEST_THROW(ExceptionFactory<ExceptionBase::INVALID_STATE_EXCEPTION>::Type,
                            TestTableTwo.Subscribe(&TestSubscriberTwo),
@@ -654,25 +724,29 @@ public:
                      "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-Failure-NSnE");
 
                 TestTableTwo.DispatchEvent(&TestSubscriberBase::TestSet,20);
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberOne.TestGet() == 20,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NSnE");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NSnE-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-NSnE-Value");
 
                 TestTableTwo.DispatchEventSingle(0xDEADBEEF,&TestSubscriberBase::TestSet,80);
-                TEST(TestSubscriberOne.GetCallCount() == 2 &&
-                     TestSubscriberOne.TestGet() == 80,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NSnE");
+                TEST(TestSubscriberOne.GetCallCount() == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NSnE-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 80,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-NSnE-Value");
 
                 std::vector<Whole> QueryVecOne = TestTableTwo.DispatchQuery(&TestSubscriberBase::TestGet);
-                TEST(QueryVecOne.size() == 1 &&
-                     QueryVecOne[0] == 80,
-                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NSnE");
+                TEST(QueryVecOne.size() == 1,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NSnE-ResultCount");
+                TEST(QueryVecOne[0] == 80,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-NSnE-Result1");
 
                 TestSubscriberOne.TestSet(50);
                 std::vector<Whole> QueryVecTwo = TestTableTwo.DispatchQuerySingle(0xDEADBEEF,&TestSubscriberBase::TestGet);
-                TEST(QueryVecTwo.size() == 1 &&
-                     QueryVecTwo[0] == 50,
-                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NSnE");
+                TEST(QueryVecTwo.size() == 1,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NSnE-ResultCount");
+                TEST(QueryVecTwo[0] == 50,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-NSnE-Result1");
 
                 TestTableTwo.Unsubscribe(0xDEADBEEF);
                 TEST(!TestTableTwo.HasSubscription(),
@@ -704,16 +778,20 @@ public:
                 TestSubscriberType TestSubscriberTwo(0xBAADC0DE,[&](EventPtr TheEvent){ ++TestSubCallCount; ++TestSubTwoCallCount; });
                 TestTable.Subscribe(TestSubscriberOne);
 
-                TEST(TestTable.GetID() == 1337 &&
-                     TestTable.GetNumSubscriptions() == 1 &&
-                     TestTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::ConstructionAndGetters-BSFQ");
+                TEST(TestTable.GetID() == 1337,
+                     "EventSubscriptionTable::ConstructionAndGetters-BSFQ-IDCheck");
+                TEST(TestTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::ConstructionAndGetters-BSFQ-NumSubCheck");
+                TEST(TestTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::ConstructionAndGetters-BSFQ-SubCheck");
 
                 TestTableType MoveTable( std::move(TestTable) );
-                TEST(MoveTable.GetID() == 1337 &&
-                     MoveTable.GetNumSubscriptions() == 1 &&
-                     MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BSFQ");
+                TEST(MoveTable.GetID() == 1337,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BSFQ-IDCheck");
+                TEST(MoveTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BSFQ-NumSubCheck");
+                TEST(MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-BSFQ-SubCheck");
 
                 TestTableType AssignMoveSourceTable( 12345 );
                 TestTableType AssignMoveDestTable( 90210 );
@@ -733,68 +811,81 @@ public:
                 TEST(TestTableTwo.GetMaxSubscriptions() == 3,
                      "EventSubscriptionTable::GetMaxSubscriptions()_const-BSFQ");
 
-                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr &&
-                     TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
-                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BSFQ");
+                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BSFQ-Sub1");
+                TEST(TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-BSFQ-Sub2");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(12345),
                            "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-Throw-BSFQ");
 
-                TEST(TestTableTwo.HasSubscription(0xDEADBEEF) &&
-                     TestTableTwo.HasSubscription(0xBAADC0DE),
-                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BSFQ");
+                TEST(TestTableTwo.HasSubscription(0xDEADBEEF),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BSFQ-Sub1");
+                TEST(TestTableTwo.HasSubscription(0xBAADC0DE),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-BSFQ-Sub2");
                 TEST(TestTableTwo.HasSubscription(12345) == false,
                      "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-Failure-BSFQ");
 
                 EventPtr ToDispatch = std::make_shared<Event>("Test");
                 TestTableTwo.DispatchEvent(&TestSubscriberType::operator(),ToDispatch);
-                TEST(TestSubCallCount == 0 &&
-                     TestSubTwoCallCount == 0,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-BSFQ");
+                TEST(TestSubCallCount == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-BSFQ-Sub1-CallCount");
+                TEST(TestSubTwoCallCount == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-BSFQ-Sub2-CallCount");
                 TestTableTwo.FlushAllEvents();
-                TEST(TestSubCallCount == 2 &&
-                     TestSubTwoCallCount == 1,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-BSFQ");
+                TEST(TestSubCallCount == 2,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-BSFQ-Sub1-CallCount");
+                TEST(TestSubTwoCallCount == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-BSFQ-Sub2-CallCount");
 
                 TestTableTwo.DispatchEventSingle(0xBAADC0DE,&TestSubscriberType::operator(),ToDispatch);
-                TEST(TestSubCallCount == 2 &&
-                     TestSubTwoCallCount == 1,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-BSFQ");
+                TEST(TestSubCallCount == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-BSFQ-Sub1-CallCount");
+                TEST(TestSubTwoCallCount == 1,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-BSFQ-Sub2-CallCount");
                 TestTableTwo.FlushAllEvents();
-                TEST(TestSubCallCount == 3 &&
-                     TestSubTwoCallCount == 2,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ");
+                TEST(TestSubCallCount == 3,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ-Sub1-CallCount");
+                TEST(TestSubTwoCallCount == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ-Sub2-CallCount");
 
                 QueuedQueryResultsPtr<TestSubscriberIDType> ResultsOne = TestTableTwo.DispatchQuery(&TestSubscriberType::GetID);
                 TEST(ResultsOne->IsReady() == false,
                      "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PreFlush-BSFQ");
                 TestTableTwo.FlushAllQueries();
-                TEST(ResultsOne->IsReady() == true &&
-                     ResultsOne->Results.size() == 2 &&
-                     ResultsOne->Results[0] == TestSubscriberIDType(0xBAADC0DE) &&
-                     ResultsOne->Results[1] == TestSubscriberIDType(0xDEADBEEF),
-                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ");
+                TEST(ResultsOne->IsReady() == true,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ-IsReady");
+                TEST(ResultsOne->Results.size() == 2,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ-ResultCount");
+                TEST(ResultsOne->Results[0] == TestSubscriberIDType(0xBAADC0DE),
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ-Result1");
+                TEST(ResultsOne->Results[1] == TestSubscriberIDType(0xDEADBEEF),
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-BSFQ-Result2");
 
                 QueuedQueryResultsPtr<TestSubscriberIDType> ResultsTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberType::GetID);
                 TEST(ResultsTwo->IsReady() == false,
                      "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PreFlush-BSFQ");
                 TestTableTwo.FlushAllQueries();
-                TEST(ResultsTwo->IsReady() == true &&
-                     ResultsTwo->Results.size() == 1 &&
-                     ResultsTwo->Results[0] == TestSubscriberIDType(0xBAADC0DE),
-                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ");
+                TEST(ResultsTwo->IsReady() == true,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ-IsReady");
+                TEST(ResultsTwo->Results.size() == 1,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ-ResultCount");
+                TEST(ResultsTwo->Results[0] == TestSubscriberIDType(0xBAADC0DE),
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-BSFQ-Result1");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
-                TEST(TestTableTwo.GetNumSubscriptions() == 1 &&
-                     TestBindingTwo->IsSubscribed() == false,
-                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BSFQ");
+                TEST(TestTableTwo.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BSFQ-SubCount");
+                TEST(TestBindingTwo->IsSubscribed() == false,
+                     "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-BSFQ-SubCheck");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xBAADC0DE),
                            "EventSubscriptionTable::Unsubscribe(const_SubscriberIDType)-Verify-BSFQ");
 
-                TEST(TestTableTwo.UnsubscribeAll() == 1 &&
-                     TestBindingOne->IsSubscribed() == false,
-                     "EventSubscriptionTable::UnsubscribeAll()-BSFQ");
+                TEST(TestTableTwo.UnsubscribeAll() == 1,
+                     "EventSubscriptionTable::UnsubscribeAll()-BSFQ-UnSubCount");
+                TEST(TestBindingOne->IsSubscribed() == false,
+                     "EventSubscriptionTable::UnsubscribeAll()-BSFQ-SubCheck");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(0xDEADBEEF),
                            "EventSubscriptionTable::UnsubscribeAll()-Verify-BSFQ");
@@ -809,16 +900,20 @@ public:
                 TestSubscriberType TestSubscriberTwo(0xBAADC0DE);
                 TestTable.Subscribe(&TestSubscriberOne);
 
-                TEST(TestTable.GetID() == 1337 &&
-                     TestTable.GetNumSubscriptions() == 1 &&
-                     TestTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::ConstructionAndGetters-NSoQ");
+                TEST(TestTable.GetID() == 1337,
+                     "EventSubscriptionTable::ConstructionAndGetters-NSoQ-IDCheck");
+                TEST(TestTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::ConstructionAndGetters-NSoQ-NumSubCheck");
+                TEST(TestTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::ConstructionAndGetters-NSoQ-SubCheck");
 
                 TestTableType MoveTable( std::move(TestTable) );
-                TEST(MoveTable.GetID() == 1337 &&
-                     MoveTable.GetNumSubscriptions() == 1 &&
-                     MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
-                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSoQ");
+                TEST(MoveTable.GetID() == 1337,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSoQ-IDCheck");
+                TEST(MoveTable.GetNumSubscriptions() == 1,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSoQ-NumSubCheck");
+                TEST(MoveTable.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::(EventSubscriptionTable&&)-NSoQ-SubCheck");
 
                 TestTableType AssignMoveSourceTable( 12345 );
                 TestTableType AssignMoveDestTable( 90210 );
@@ -827,72 +922,90 @@ public:
                      "EventSubscriptionTable::operator=(EventSubscriptionTable&&)-NSoQ");
 
                 TestTableType TestTableTwo(54321);
-                TestSubscriberType* TestSubOnePtr = static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) );
-                TestSubscriberType* TestSubTwoPtr = static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberTwo) );
-                TEST(TestSubOnePtr == &TestSubscriberOne &&
-                     TestSubTwoPtr == &TestSubscriberTwo,
-                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NSoQ");
+                TEST(static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberOne) ) == &TestSubscriberOne,
+                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NSoQ-Sub1");
+                TEST(static_cast<TestSubscriberType*>( TestTableTwo.Subscribe(&TestSubscriberTwo) ) == &TestSubscriberTwo,
+                     "EventSubscriptionTable::Subscribe(SubscribeArg)-NSoQ-Sub2");
 
                 TEST(TestTableTwo.GetNumSubscriptions() == 2,
                      "EventSubscriptionTable::GetNumSubscriptions()_const-NSoQ");
 
-                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr &&
-                     TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
-                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NSoQ");
+                TEST(TestTableTwo.GetSubscription(0xDEADBEEF) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NSoQ-Sub1");
+                TEST(TestTableTwo.GetSubscription(0xBAADC0DE) != nullptr,
+                     "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-NSoQ-Sub2");
                 TEST_THROW(ExceptionFactory<ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION>::Type,
                            TestTableTwo.GetSubscription(12345),
                            "EventSubscriptionTable::GetSubscription(const_SubscriberIDType)_const-Throw-NSoQ");
 
-                TEST(TestTableTwo.HasSubscription(0xDEADBEEF) &&
-                     TestTableTwo.HasSubscription(0xBAADC0DE),
-                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NSoQ");
+                TEST(TestTableTwo.HasSubscription(0xDEADBEEF),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NSoQ-Sub1");
+                TEST(TestTableTwo.HasSubscription(0xBAADC0DE),
+                     "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-NSoQ-Sub2");
                 TEST(TestTableTwo.HasSubscription(12345) == false,
                      "EventSubscriptionTable::HasSubscription(const_SubscriberIDType)_const-Failure-NSoQ");
 
                 TestTableTwo.DispatchEvent(&TestSubscriberBase::TestSet,20);
-                TEST(TestSubscriberOne.GetCallCount() == 0 &&
-                     TestSubscriberTwo.GetCallCount() == 0 &&
-                     TestSubscriberOne.TestGet() == 0 &&
-                     TestSubscriberTwo.TestGet() == 0,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-NSoQ");
+                TEST(TestSubscriberOne.GetCallCount() == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-NSoQ-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-NSoQ-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-NSoQ-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 0,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PreFlush-NSoQ-Sub2-Value");
                 TestTableTwo.FlushAllEvents();
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 1 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 20,
-                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-NSoQ");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-NSoQ-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-NSoQ-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-NSoQ-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEvent(Funct,Args...)_const-PostFlush-NSoQ-Sub2-Value");
 
                 TestTableTwo.DispatchEventSingle(0xBAADC0DE,&TestSubscriberBase::TestSet,80);
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 1 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 20,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ-Sub1-CallCount");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ-Sub1-Value");
+                TEST(TestSubscriberTwo.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ-Sub2-Value");
                 TestTableTwo.FlushAllEvents();
-                TEST(TestSubscriberOne.GetCallCount() == 1 &&
-                     TestSubscriberTwo.GetCallCount() == 2 &&
-                     TestSubscriberOne.TestGet() == 20 &&
-                     TestSubscriberTwo.TestGet() == 80,
-                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ");
+                TEST(TestSubscriberOne.GetCallCount() == 1,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-Sub1-CallCount");
+                TEST(TestSubscriberTwo.GetCallCount() == 2,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-Sub1-Value");
+                TEST(TestSubscriberOne.TestGet() == 20,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-Sub2-CallCount");
+                TEST(TestSubscriberTwo.TestGet() == 80,
+                     "EventSubscriptionTable::DispatchEventSingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-Sub2-Value");
 
                 QueuedQueryResultsPtr<Whole> ResultsOne = TestTableTwo.DispatchQuery(&TestSubscriberBase::TestGet);
                 TEST(ResultsOne->IsReady() == false,
                      "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PreFlush-NSoQ");
                 TestTableTwo.FlushAllQueries();
-                TEST(ResultsOne->IsReady() == true &&
-                     ResultsOne->Results.size() == 2 &&
-                     ResultsOne->Results[0] == 80 &&
-                     ResultsOne->Results[1] == 20,
-                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ");
+                TEST(ResultsOne->IsReady() == true,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ-IsReady");
+                TEST(ResultsOne->Results.size() == 2,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ-ResultCount");
+                TEST(ResultsOne->Results[0] == 80,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ-Result1");
+                TEST(ResultsOne->Results[1] == 20,
+                     "EventSubscriptionTable::DispatchQuery(Funct,Args...)_const-PostFlush-NSoQ-Result2");
 
                 QueuedQueryResultsPtr<Whole> ResultsTwo = TestTableTwo.DispatchQuerySingle(0xBAADC0DE,&TestSubscriberBase::TestGet);
                 TEST(ResultsTwo->IsReady() == false,
                      "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PreFlush-NSoQ");
                 TestTableTwo.FlushAllQueries();
-                TEST(ResultsTwo->IsReady() == true &&
-                     ResultsTwo->Results.size() == 1 &&
-                     ResultsTwo->Results[0] == 80,
-                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ");
+                TEST(ResultsTwo->IsReady() == true,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-IsReady");
+                TEST(ResultsTwo->Results.size() == 1,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-ResultCount");
+                TEST(ResultsTwo->Results[0] == 80,
+                     "EventSubscriptionTable::DispatchQuerySingle(const_SubIDType,Funct,Args...)_const-PostFlush-NSoQ-Result1");
 
                 TestTableTwo.Unsubscribe(0xBAADC0DE);
                 TEST(TestTableTwo.GetNumSubscriptions() == 1,
