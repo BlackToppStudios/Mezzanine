@@ -153,6 +153,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}statemachine.h"
         "${${PROJECT_NAME}_SRC_DIR}statetransition.h"
         "${${PROJECT_NAME}_SRC_DIR}statetransitionaction.h"
+        "${${PROJECT_NAME}_SRC_DIR}staticany.h"
         "${${PROJECT_NAME}_SRC_DIR}streamlogging.h"
         "${${PROJECT_NAME}_SRC_DIR}stringtool.h"
         "${${PROJECT_NAME}_SRC_DIR}swig.h"
