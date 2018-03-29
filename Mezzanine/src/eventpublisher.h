@@ -54,74 +54,77 @@ namespace Mezzanine
     /// @{
 
     /// @page Mezzanine Event System
+    /// @section EvtOverview Overview
     /// Despite the name of the primary classes involved, the Mezzanine Event system more closely resembles the
     /// Observer Pattern for messaging.  It was designed to be as flexible as possible in common game development
     /// tasks with a number of considerations for speed and flexibility.  The original version of the Mezzanine
-    /// event system was already an extremely flexible system, but made assumptions about the needs of subscription
+    /// Event system was already an extremely flexible system, but made assumptions about the needs of subscription
     /// lifetime management that were forced to always be on.  As such event dispatches often required 5 or 6 pointer
     /// indirections and required overhead, even if you weren't using it.  In the transition to the new system both
     /// of these details were refactored, and much more.  Depending on your configuration an event dispatch can be
-    /// done with as few as 2 pointer indirections, or like the old system as many as 6.  Overhead of subscription
-    /// lifetime management is entirely optional.  This allowed the system to move from being suitable for
-    /// communication between subsystems to something that can be used in any context, even when the scope is
-    /// entirely within a single subsystem.
+    /// done with as few as 2 pointer indirections, or like the old Event system, as many as 6.  Overhead of
+    /// subscription lifetime management is entirely optional.  This allowed the Event system to move from being
+    /// suitable for communication between subsystems (such as Physics, Graphics, and UI) to something that can be
+    /// used in any context, even when the scope is entirely within a single subsystem.
     /// @n @n
     /// The primary criteria for the design of the Event System are: @n
-    ///     - Scalable. @n
-    ///       No forced monolithic design or master publisher.  Objects can arbitrarily use the event
-    ///       system classes where they want, be it a simulation object, an application object (such as a
-    ///       window), a manager for a subsystem, or (ironically) a monolithic singleton.  Although I don't
-    ///       recommend that last one.
-    ///     - Modular. @n
-    ///       No EventPublisher needs to be aware of any other EventPublisher.  Each EventPublisher is it's own
-    ///       contained event ecosystem.
-    ///     - Subscribe to specific events. @n
-    ///       In many event systems you subscribe to a publisher and receive all of it's events.  With the
-    ///       Mezzanine Event System you can subscribe to just one, or however many specific events you are
-    ///       interested in.  In some cases this means fewer checks in the callback logic, but it also means
-    ///       less time is wasted on uninterested subscribers during event dispatch.
-    ///     - Flexible Publisher usage. @n
-    ///       Publishers are not interfaces and have no virtual methods.  You are free to inherit from it or
-    ///       store it as a data member, whichever is more appropriate.  In fact, the event system is designed
-    ///       without inheritance or any virtual methods.  It is entirely possible to end up with virtual
-    ///       method calls when dealing with subscribers though.  It is not expected or enforced by the system,
-    ///       but is a sane way to extend the flexibility of how subscribers can interact with the system further.
-    ///     - No forced binding bookkeeping. @n
-    ///       To help with corner cases where both the publisher and subscriber have finite lifetimes you can
-    ///       optionally create bindings to represent the subscriptions which are returned upon subscription.  They
-    ///       are stored in shared_ptr's and interested classes may hold on to them if needed to check if a
-    ///       publisher exists, or can ignore them entirely.  Alternatively, these can be disabled completely for
-    ///       a given table or publisher.
-    ///     - Flexible Event IDs. @n
-    ///       Enums are an intuitive way to identify specific events efficiently, however since publishers are
-    ///       their own event ecosystems, and nothing stops a subscriber from subscribing to multiple publishers
-    ///       it would be possible for event enums between publishers to have the same value, which can be
-    ///       difficult or impossible to sort out in the subscriber logic.  Event IDs can be whatever type you wish
-    ///       as they are a type set in a config class that can be overridden/replaced.  We provide a sane default
-    ///       EventID class that uses hashed strings to define our events which are potentially more
-    ///       descriptive as well as easier to distinguish and extend than enums.  It can also facilitate
-    ///       integration in data driven systems.
-    ///     - Flexible Subscriber IDs. @n
-    ///       Subscriber IDs can be whatever type you wish, as it is a configurable type in a config class.  The
-    ///       Mezzanine event system does provide a default EventSubscriberID class that is set by default in the
-    ///       base config class, but this can be overridden/replaced.  Further, the EventPublisher class will not
-    ///       generate IDs for you.  Ultimately IDs are stored as uintptr_t specifically to allow pointers to be
-    ///       used as unique IDs, but this isn't required and doesn't match the requirements in all cases.  So you
-    ///       are free to specify whatever identification scheme you wish, the only requirement that exists is
-    ///       that the ID be unique to the event subscribed to.
-    ///     - Flexible Subscribers. @n
-    ///       Subscribers have only two requirements mandated by the system, have an ID class defined and a method to
-    ///       get that instances ID.  The method to get the ID, nor anything else on the subscriber, needs to be
-    ///       polymorphic.  Subscribers can be stored as either values, or pointers.  Any method on the subscriber
-    ///       can be invoked during event dispatch.  This allows the same system to have an std::function subscriber
-    ///       (which is provided as FunctionSubscriber) or an interface as a subscriber where each method on the
-    ///       interface allows more granular event dispatch.
+    /// @subsection EvtScalable Scalable
+    /// No forced monolithic design or master publisher.  Objects can arbitrarily use the event
+    /// system classes where they want, be it a simulation object, an application object (such as a
+    /// window), a manager for a subsystem, or (ironically) a monolithic singleton.  Although I don't
+    /// recommend that last one.
+    /// @subsection EvtModular Modular
+    /// No EventPublisher needs to be aware of any other EventPublisher.  Each EventPublisher is it's own
+    /// contained event ecosystem.
+    /// @subsection EvtSubSpecific Subscribe to specific events
+    /// In many event systems you subscribe to a publisher and receive all of it's events.  With the
+    /// Mezzanine Event System you can subscribe to just one, or however many specific events you are
+    /// interested in.  In some cases this means fewer checks in the callback logic, but it also means
+    /// less time is wasted on uninterested subscribers during event dispatch.
+    /// @subsection EvtFlexPub Flexible Publisher usage
+    /// Publishers are not interfaces and have no virtual methods.  You are free to inherit from it or
+    /// store it as a data member, whichever is more appropriate.  In fact, the event system is designed
+    /// without inheritance or any virtual methods.  It is entirely possible to end up with virtual
+    /// method calls when dealing with subscribers though.  It is not expected or enforced by the system,
+    /// but is a sane way to extend the flexibility of how subscribers can interact with the system further.
+    /// @subsection EvtBookOptional No forced binding bookkeeping
+    /// To help with corner cases where both the publisher and subscriber have finite lifetimes you can
+    /// optionally create bindings to represent the subscriptions which are returned upon subscription.  They
+    /// are stored in shared_ptr's and interested classes may hold on to them if needed to check if a
+    /// publisher exists, or can ignore them entirely.  Alternatively, these can be disabled completely for
+    /// a given table or publisher.
+    /// @subsection EvtFlexIDs Flexible Event IDs
+    /// Enums are an intuitive way to identify specific events efficiently, however since publishers are
+    /// their own event ecosystems, and nothing stops a subscriber from subscribing to multiple publishers
+    /// it would be possible for event enums between publishers to have the same value, which can be
+    /// difficult or impossible to sort out in the subscriber logic.  Event IDs can be whatever type you wish
+    /// as they are a type set in a config class that can be overridden/replaced.  We provide a sane default
+    /// EventID class that uses hashed strings to define our events which are potentially more
+    /// descriptive as well as easier to distinguish and extend than enums.  It can also facilitate
+    /// integration in data driven systems.
+    /// @subsection EvtSubIDs Flexible Subscriber IDs
+    /// Subscriber IDs can be whatever type you wish, as it is a configurable type in a config class.  The
+    /// Mezzanine event system does provide a default EventSubscriberID class that is set by default in the
+    /// base config class, but this can be overridden/replaced.  Further, the EventPublisher class will not
+    /// generate IDs for you.  Ultimately IDs are stored as uintptr_t specifically to allow pointers to be
+    /// used as unique IDs, but this isn't required and doesn't match the requirements in all cases.  So you
+    /// are free to specify whatever identification scheme you wish, the only requirement that exists is
+    /// that the ID be unique to the event subscribed to.
+    /// @subsection EvtFlexSubs Flexible Subscribers
+    /// Subscribers have only two requirements mandated by the system; have an ID class defined, and a method to
+    /// get the ID of an instance.  The method to get the ID, nor anything else on the subscriber, needs to be
+    /// polymorphic.  Subscribers can be stored as either values, or pointers.  Any method on the subscriber
+    /// can be invoked during event dispatch.  This allows the same system to have an std::function subscriber
+    /// (which is provided as FunctionSubscriber) or an interface as a subscriber where each method on the
+    /// interface allows more granular event dispatch.
     /// @n @n
+    /// @subsection EvtLimits Limits Overview
     /// The Mezzanine Event system is extremely flexible and was designed with several configurations in mind.  The
     /// one caveat to this configuration is that it is in templates and thus must be configured at compile time
     /// rather than runtime.  Additionally, responsibilities in the system are encapsulated in such a way that
     /// functionality can be added to the system to address more specialized use cases as we discover them.
     /// @n @n
+    /// @section EvtTableConfig Table Configuration
     /// Configuring the event system begins with the @ref EventSubscriptionTableConfig class.  It contains all the
     /// basic information needed to create an EventSubscriptionTable instance.  If settings need to be changed it's
     /// easiest (and expected) to create a new config class that inherits from EventSubscriptionTableConfig and
@@ -131,6 +134,7 @@ namespace Mezzanine
     /// "SubscriptionFactoryType::SFT_Binding", leaving all other parts of the configuration the same as it was in
     /// EventSubscriptionTableConfig.
     /// @n @n
+    /// @section EvtConfigSubs Subscribers
     /// The template parameter "Interface" on EventSubscriptionTableConfig is the subscriber to be set and will be
     /// invoked on event dispatch.  This subscriber can be any value or pointer type.  It can even be an abstract
     /// base/interface class.  If you choose to have a pointer subscriber type, you need to include the "*" in the
@@ -148,6 +152,7 @@ namespace Mezzanine
     /// otherwise event dispatches to that subscriber type would be useless.  There are no expectations or requirements
     /// for those methods.
     /// @n @n
+    /// @section EvtConfigFactories FactoryType Config
     /// The EventSubscriptionTableConfig::FactoryType member is an enum value describing the template specialization
     /// that will be used to create subscriptions for the EventSubscriptionTable.  The @ref SubscriptionFactoryType
     /// enum lists the possible values that can be set.
@@ -164,6 +169,7 @@ namespace Mezzanine
     /// for the system using event dispatch, then using SubscriptionFactoryType::SFT_Binding is likely appropriate.  A
     /// convenience struct is provided that sets this (and only this) named @ref EventBindingTableConfig.
     /// @n @n
+    /// @section EvtConfigContainers ContainerType Config
     /// The EventSubscriptionTableConfig::ContainerType member is an enum value describing the template specialization
     /// that will be used to store the subscriptions created by the FactoryType.  The @ref SubscriptionContainerType
     /// enum lists the possible values that can be set.
@@ -195,16 +201,19 @@ namespace Mezzanine
     /// throughout the lifetime of the container.  It has all the same considerations as SCT_Unsorted_Fixed and
     /// SCT_Sorted.
     /// @n @n
+    /// @section EvtConfigContainerCount Container Storage Count
     /// The EventSubscriptionTableConfig::StorageCount member is used by Fixed-Size containers to allocate fixed storage
     /// on initialization.  This number defaults to 4, but it is important to keep in mind the intended usage when
     /// determining what is an appropriate storage count as it will allocate space for that many subscribers per table
     /// of that type/configuration.
     /// @n @n
+    /// @section EvtConfigContainerPred Container Predicate
     /// The EventSubscriptionTableConfig::StoragePredicate member is used by Sorted containers to keep their stored
     /// subscriptions sorted.  The predicate must be a functor type that can be default constructed, which unfortunately
     /// eliminates lambdas as a possibility.  It's operator() member must take two instances of SubscriberType and
     /// return a bool; true if first should be sorted before second or false otherwise.
     /// @n @n
+    /// @section EvtConfigDispatchers DispatcherType Config
     /// The EventSubscriptionTableConfig::DispatcherType member is an enum value describing the template specialization
     /// that will be used to dispatch the events to the subscriptions stored in the subscription container.  The @ref
     /// EventDispatcherType enum lists the possible values that can be set.
@@ -224,14 +233,17 @@ namespace Mezzanine
     /// notified of the event.  Because of the need to store the dispatch, this is a fairly heavyweight dispatcher,
     /// however this may be required to avoid race conditions that may be otherwise unavoidable.
     /// @n @n
+    /// @section EvtConfigDispatchID Dispatch ID
     /// The EventSubscriptionTableConfig::DispatchIDType member is the type used to uniquely identify EventSubscriptionTable
     /// instances.  This type must be less-than comparable (<).  No other requirements exist for this type.
     /// @n @n
-    /// EventSubscriptionTableConfig is used to by EventSubscriptionTableTraits to generate types and communicate those
+    /// @section EvtTableTraits EventSubscriptionTableTraits
+    /// EventSubscriptionTableConfig is used by EventSubscriptionTableTraits to generate types and communicate those
     /// types to other classes in the event ecosystem.  You as an end user should never need to interact directly with
     /// EventSubscriptionTableTraits and should only need to be acutely aware of it's existence.  Config classes exist
     /// solely to separate the types that are safe to edit from the types that aren't.
     /// @n @n
+    /// @section EvtSubLimits Subscriber Details and Limitations
     /// Subscriber types are given an extreme amount of flexibility in how they are built and what they do.  The
     /// @ref FunctionSubscriber class is provided as a convenience subscriber type that wraps an std::function and provides
     /// the necessary IDType requirements that exist for a subscriber.  This is also provided to help compatibility with
@@ -247,6 +259,7 @@ namespace Mezzanine
     /// to abstract classes and nothing expects them to be, so you are free to use a pointer to anything if you wish.  Any
     /// method called through the event system cannot be overloaded.
     /// @n @n
+    /// @section EvtPub Event Publisher
     /// The EventPublisher class is essentially a glorified EventSubscriptionTable container.  It doesn't perform any
     /// mandatory operation for event dispatch.  If you need multiple tables in one place, it's handy.  However if you have
     /// a setup that doesn't require one, or even requires a different special way of storing your EventSubscriptionTable
@@ -254,6 +267,7 @@ namespace Mezzanine
     /// which supports the storage of only one EventSubscriptionTable type, but future plans for the event system involve
     /// expanding the number and versatility of these table containers.
     /// @n @n
+    /// @section EvtMultiThread Multi-threading considerations.
     /// The Event system was made with minimal code additions designed to facilitate multi-threaded situations.  Ideally
     /// threading dependencies can be set up to avoid these issues, or event dispatches can be confined to one subsystem
     /// where multi-threading isn't a consideration.  For other situations you will likely need some manner of queueing
@@ -264,6 +278,7 @@ namespace Mezzanine
     /// the event dispatch until it is ready to process it.  The specifics will depend on the chosen design of your
     /// subscriber.
     /// @n @n
+    /// @section EvtUsage Using the Event system
     /// Usage of the Mezzanine Event system requires some preparation.  First you need a subscriber type.  Next you need a
     /// config that determines the type of EventSubscriptionTable.  You'll also need some constants that will identify the
     /// EventSubscriptionTable instances you'll be creating.  Keep in mind that unique IDs for EventSubscriptionTable

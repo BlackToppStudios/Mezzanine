@@ -1344,7 +1344,7 @@ elseif(WINDOWS)
     #list(APPEND EXTRA_LDFLAGS "-mwindows")
     set(SDL_CFLAGS "${SDL_CFLAGS} -Dmain=SDL_main")
     #list(APPEND SDL_LIBS "-lmingw32" "-lSDL2main" "-mwindows")
-	list(APPEND SDL_LIBS "-lmingw32" "-lSDL2main")
+    list(APPEND SDL_LIBS "-lmingw32" "-lSDL2main")
   endif()
 elseif(APPLE)
   # TODO: rework this all for proper MacOS X, iOS and Darwin support
