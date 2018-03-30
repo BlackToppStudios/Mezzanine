@@ -61,6 +61,12 @@ namespace Mezzanine
     {
     public:
         ///////////////////////////////////////////////////////////////////////////////
+        // Public Types
+
+        /// @brief Type used to describe how Events should be identified.
+        using EventIDType = EventHashType;
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
         /// @brief The name of the event being fired.
@@ -76,6 +82,14 @@ namespace Mezzanine
             {  }
         /// @brief Class destructor.
         virtual ~Event() = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Gets the ID of this Event.
+        /// @return Returns the unique identifier of this Event.
+        EventIDType GetEventID() const
+            { return this->EventName.GetHash(); }
     };//Event
 
     /// @brief Convenience type for passing around Events.

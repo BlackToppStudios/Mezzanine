@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2017 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,64 +37,72 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef sortedvector_h
-#define sortedvector_h
+#ifndef sortedmanagedarray_h
+#define sortedmanagedarray_h
 
 /// @file
-/// @brief This file includes the declaration and definition for the SortedVector class.
+/// @brief This file includes the declaration and definition for the SortedArray class.
 
-#include "datatypes.h"
 #include "binaryfind.h"
+#include "managedarray.h"
 
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This container uses an std::vector for storage, but sorts all stored elements.
-    /// @tparam T The type this container will store, must implement operator< for sorting with the default sorter.
+    /// @brief This container uses a ManagedArray for storage, but manages the amount of used space and keeps them sorted.
+    /// @tparam ElementType The type this container will store, must implement operator< for sorting with the default sorter.
+    /// @tparam NumElements The number of ElementType instances this array will be allocated to store.
     ///////////////////////////////////////
-    template<typename T, typename Sorter = std::less<T> >
-    class SortedVector
+    template<typename ElementType, size_t NumElements, typename Sorter = std::less<ElementType> >
+    class SortedManagedArray
     {
     public:
+        /// @brief Convenience type to refer to the type of this.
+        typedef SortedManagedArray<ElementType,NumElements,Sorter> SelfType;
         /// @brief The type used for internal storage.
-        typedef std::vector<T> StorageVector;
+        typedef ManagedArray<ElementType,NumElements> StorageArray;
         /// @brief The type used when checking sizes and capacities of instances of this.
-        typedef typename StorageVector::size_type size_type;
+        typedef typename StorageArray::size_type size_type;
         /// @brief The type of items stored.
-        typedef typename StorageVector::value_type value_type;
+        typedef typename StorageArray::value_type value_type;
         /// @brief Type of mutable random access iterator. Invalidated on all insertions.
-        typedef typename StorageVector::iterator iterator;
+        typedef typename StorageArray::iterator iterator;
         /// @brief Type of const random access iterator. Invalidated on all insertions.
-        typedef typename StorageVector::const_iterator const_iterator;
-        /// @brief Type of mutable reverse iterator for random access. Invalidated on all
-        /// insertions.
-        typedef typename StorageVector::reverse_iterator reverse_iterator;
-        /// @brief Type of const reverse iterator for random access. Invalidated on all
-        /// insertions.
-        typedef typename StorageVector::const_reverse_iterator const_reverse_iterator;
+        typedef typename StorageArray::const_iterator const_iterator;
+        /// @brief Type of mutable reverse iterator for random access. Invalidated on all insertions.
+        typedef typename StorageArray::reverse_iterator reverse_iterator;
+        /// @brief Type of const reverse iterator for random access. Invalidated on all insertions.
+        typedef typename StorageArray::const_reverse_iterator const_reverse_iterator;
     private:
-        /// @brief The actual vector that does most of the interesting work.
-        StorageVector InternalStorage;
+        /// @brief The internal array that does most of the interesting work.
+        StorageArray InternalStorage;
     public:
         /// @brief Class constructor.
-        SortedVector() = default;
+        SortedManagedArray() = default;
         /// @brief Copy constructor.
-        /// @param Other The other SortedVector to be copied.
-        SortedVector(const SortedVector& Other) = default;
+        /// @param Other The other array to be copied.
+        SortedManagedArray(const SortedManagedArray& Other) = default;
         /// @brief Move constructor.
-        /// @param Other The other SortedVector to be moved.
-        SortedVector(SortedVector&& Other) = default;
+        /// @remarks Since this is all stack allocated, this is pretty much a copy.
+        /// @param Other The other array to be moved.
+        SortedManagedArray(SortedManagedArray&& Other) = default;
         /// @brief Class destructor.
-        ~SortedVector() = default;
+        ~SortedManagedArray() = default;
 
-        /// @brief Copy Assignment operator.
-        /// @param Other The other SortedVector to be copied.
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy Assignment Operator.
+        /// @param Other The other array to be copied.
         /// @return Returns a reference to this.
-        SortedVector& operator=(const SortedVector& Other) = default;
-        /// @brief Move Assignment operator.
-        /// @param Other The other SortedVector to be moved.
+        SelfType& operator=(const SelfType& Other) = default;
+        /// @brief Move Assignment Operator.
+        /// @param Other The other array to be moved.
         /// @return Returns a reference to this.
-        SortedVector& operator=(SortedVector&& Other) = default;
+        SelfType& operator=(SelfType&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Iterators
 
         /// @brief Get an iterator to the beginning of the container.
         /// @return A mutable iterator pointing to the first element.
@@ -148,11 +156,11 @@ namespace Mezzanine
         /// and costs of find the required place to insert. This sorts the whole container after
         /// adding items, so calling this after for a many additions is really slow, use
         /// @ref add_range to only sort once.
-        /// @param value The value to put into the vector.
+        /// @param value The value to put into the array.
         /// @return Returns an iterator to the added element.
-        iterator add(T value)
+        iterator add(ElementType value)
         {
-            typename StorageVector::const_iterator InsertPos = std::lower_bound(begin(),end(),value,Sorter());
+            const_iterator InsertPos = std::lower_bound(begin(),end(),value,Sorter());
             return InternalStorage.insert(InsertPos,value);
         }
 
@@ -162,7 +170,7 @@ namespace Mezzanine
         template<typename Compare, class... Args>
         iterator add_emplace(Compare PosFinder, Args&&... Params)
         {
-            typename StorageVector::const_iterator InsertPos = std::lower_bound(begin(),end(),Params...,PosFinder);
+            const_iterator InsertPos = std::lower_bound(begin(),end(),Params...,PosFinder);
             return InternalStorage.emplace(InsertPos,Params...);
         }
 
@@ -180,22 +188,22 @@ namespace Mezzanine
             sort();
         }
 
-        /// @brief Get an item in the vector, operates in fast constant time.
+        /// @brief Get an item in the array, operates in fast constant time.
         /// @param Index A 0 based index, if too large this can throw std::out_of_range.
         /// @return A reference to the stored item in the container. If the value is changed
-        /// then SortedVector::sort should be called.
-        T& operator[] (size_t Index)
+        /// then SortedArray::sort should be called.
+        ElementType& operator[] (size_t Index)
             { return InternalStorage[Index]; }
 
         /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
         /// @param value the item to get the location of.
         /// @return A mutable iterator to an item, can be adjusted by random access.
-        iterator find(const T& value)
+        iterator find(const ElementType& value)
             { return binary_find(begin(),end(),value,Sorter()); }
         /// @brief Get and iterator to a specific item, operates in fast logarithmic time.
         /// @param value the item to get the location of.
         /// @return A const iterator to an item, can be adjusted by random access.
-        const_iterator find(const T& value) const
+        const_iterator find(const ElementType& value) const
             { return binary_find(begin(),end(),value,Sorter()); }
 
         /// @brief A convenience method for invoking std::find_if with all the elements of this container.
@@ -213,19 +221,15 @@ namespace Mezzanine
         const_iterator find_if(UnaryPredicate Pred) const
             { return std::find_if(begin(),end(),Pred); }
 
-        /// @brief Does the item exist in this vector?
+        /// @brief Does the item exist in this array?
         /// @param value The item in question.
         /// @return True if present false otherwise.
-        Boole contains(const T& value) const
+        Boole contains(const ElementType& value) const
             { return std::binary_search(begin(),end(),value); }
 
-        /// @brief Empty the Vector discarding all data.
+        /// @brief Empty the array discarding all data.
         void clear()
             { InternalStorage.clear(); }
-        /// @brief Allocate enough space for the specified quantity of items
-        /// @param new_capacity The amount of items to be ready to store.
-        void reserve( size_type new_capacity )
-            { InternalStorage.reserve(new_capacity); }
         /// @brief How many items can this store before requiring an allocation.
         size_type capacity() const
             { return InternalStorage.capacity(); }
@@ -241,16 +245,7 @@ namespace Mezzanine
         /// @return An iterator to one after the erased item.
         iterator erase( iterator first, iterator last )
             { return InternalStorage.erase(first, last); }
-
-//            void resize( size_type count )
-//                { InternalStorage.reserve(count); }
-
-        // proper C++11 way
-        //void resize( size_type count )
-        //    { InternalStorage.reserve(count); }
-        //void resize( size_type count, const value_type& value )
-        //    { InternalStorage.reserve(count,value); }
-    };//SortedVector
-} // /namespace Mezzanine
+    };//SortedManagedArray
+} // Mezzanine
 
 #endif // Include guard

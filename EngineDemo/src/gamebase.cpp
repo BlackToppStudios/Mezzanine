@@ -272,7 +272,7 @@ int main(int argc, char **argv)
         TheEntresol = new Entresol( "data/common/", "EngineDemoLog.txt");
         TheEntresol->SetTargetFrameRate(60);
         DemoAppEvents = new AppEventDispatcher();
-        DemoAppEvents->Subscribe(AppEventDispatcher::EventAppQuit,1,[=](EventPtr Args){ TheEntresol->BreakMainLoop(); });
+        DemoAppEvents->Subscribe(AppEventDispatcher::EventAppQuit,AppEventDispatcher::SubscriberType(1,[=](EventPtr Args){ TheEntresol->BreakMainLoop(); } ) );
 
         TheEntresol->Initialize(false);
 

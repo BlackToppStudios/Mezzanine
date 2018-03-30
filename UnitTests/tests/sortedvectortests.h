@@ -73,7 +73,7 @@ String GenerateRandomString(const int Length = (rand()%15+5))
     return Results;
 }
 
-/// @brief Test
+/// @brief A collection of tests for a vector-like container that keeps its elements sorted.
 class sortedvectortests : public UnitTestGroup
 {
 public:
@@ -128,7 +128,7 @@ public:
             SortedVector<Int32> tested;
             tested.add(5);
             TEST(tested.size() == 1,            "SortedVector.Size2");
-            TEST( *(tested.begin()) == 5,       "SortedVector.BeginDerefenced1");
+            TEST( *(tested.begin()) == 5,       "SortedVector.BeginDereferenced1");
 
             tested.clear();
             TEST( tested.size() == 0,           "SortedVector.SizeIntClear");
@@ -167,6 +167,15 @@ public:
             TEST( *find8 == 8,                  "SortedVector.find2");
             TEST( *find13 == 13,                "SortedVector.find3");
             TEST( find100 == findend,           "SortedVector.findfail1");
+            SortedVector<Int32>::iterator findif5 = tested.find_if([](const Int32 Num){ return Num == 5; });
+            SortedVector<Int32>::iterator findif8 = tested.find_if([](const Int32 Num){ return Num == 8; });
+            SortedVector<Int32>::iterator findif13 = tested.find_if([](const Int32 Num){ return Num == 13; });
+            SortedVector<Int32>::iterator findif100 = tested.find_if([](const Int32 Num){ return Num == 100; });
+            SortedVector<Int32>::iterator findifend = tested.end();
+            TEST( *findif5 == 5,                  "SortedVector.findif1");
+            TEST( *findif8 == 8,                  "SortedVector.findif2");
+            TEST( *findif13 == 13,                "SortedVector.findif3");
+            TEST( findif100 == findifend,         "SortedVector.findiffail1");
             TEST( tested.contains(5) == true,       "SortedVector.contains1");
             TEST( tested.contains(8) == true,       "SortedVector.contains2");
             TEST( tested.contains(13) == true,      "SortedVector.contains3");

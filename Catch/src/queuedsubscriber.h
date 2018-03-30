@@ -8,18 +8,20 @@ using namespace Mezzanine;
 class CatchApp;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This is a base class for event subscribers that hold on to thier recieved events for later processing.
+/// @brief This is a base class for event subscribers that hold on to their received events for later processing.
 /// @details
 ///////////////////////////////////////
 class CatchQueuedSubscriber
 {
 public:
     /// @brief Container type for EventArguements storage in this class.
-    typedef std::vector<EventPtr>                 EventContainer;
+    using EventContainer = std::vector<EventPtr>;
     /// @brief Iterator type for EventArguments stored in this class.
-    typedef EventContainer::iterator              EventIterator;
+    using EventIterator = EventContainer::iterator;
     /// @brief Const Iterator type for EventArguments stored in this class.
-    typedef EventContainer::const_iterator        ConstEventIterator;
+    using ConstEventIterator = EventContainer::const_iterator;
+    /// @brief Convenience type for the bindings used by this subscriber.
+    using SubscriberType = UI::WidgetEventPublisher::SubscriberType;
 protected:
 public:
     /// @brief Container storing all of the Queued events.
@@ -54,7 +56,7 @@ public:
 
     /// @brief Gets a usable delegate that can be used to subscribe this to an EventPublisher.
     /// @return Returns a Delegate that will call _NotifyEvent(EventPtr) on this subscriber.
-    EventSubscriberBinding::CallbackType GetDelegate();
+    SubscriberType GetDelegate();
 
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited

@@ -51,6 +51,7 @@
 namespace
 {
     using namespace Mezzanine;
+    using SubscriberType = AppEventDispatcher::SubscriberType;
 
     /// @brief Handles the "AppTerminating" application event from internal sources.
     /// @param Dispatcher A pointer to the dispatcher that till notify interested subscribers of the event.
@@ -58,7 +59,7 @@ namespace
     int HandleAppTerminating(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppTerminating);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppTerminating,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -68,7 +69,7 @@ namespace
     int HandleAppLowMemory(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppLowMemory);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppLowMemory,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -78,7 +79,7 @@ namespace
     int HandleAppWillEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterBackground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppWillEnterBackground,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -88,7 +89,7 @@ namespace
     int HandleAppDidEnterBackground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterBackground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppDidEnterBackground,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -98,7 +99,7 @@ namespace
     int HandleAppWillEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppWillEnterForeground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppWillEnterForeground,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -108,7 +109,7 @@ namespace
     int HandleAppDidEnterForeground(AppEventDispatcher* Dispatcher)
     {
         EventPtr AppEv = std::make_shared<Event>(AppEventDispatcher::EventAppDidEnterForeground);
-        Dispatcher->DispatchEvent(AppEv);
+        Dispatcher->DispatchEvent(AppEventDispatcher::EventAppDidEnterForeground,&SubscriberType::operator(),AppEv);
         return 0;
     }
 
@@ -182,31 +183,31 @@ namespace Mezzanine
     void AppEventDispatcher::HandleAppDropFile(const UInt32 WindowID, const String& PathAndFile)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropFile,PathAndFile,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropFile,&SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropText(const UInt32 WindowID, const String& Text)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropText,Text,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropText,&SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropBegin(const UInt32 WindowID)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropBegin,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropBegin,&SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppDropEnd(const UInt32 WindowID)
     {
         AppDropEventPtr AppEv = std::make_shared<AppDropEvent>(EventAppDropEnd,WindowID);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppDropEnd,&SubscriberType::operator(),AppEv);
     }
 
     void AppEventDispatcher::HandleAppQuit()
     {
         EventPtr AppEv = std::make_shared<Event>(EventAppQuit);
-        this->DispatchEvent(AppEv);
+        this->DispatchEvent(EventAppQuit,&SubscriberType::operator(),AppEv);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

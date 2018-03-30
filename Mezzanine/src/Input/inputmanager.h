@@ -73,7 +73,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
 
-            /// @brief Class constructor.
+            /// @brief Non-controller constructor.
+            /// @param Name The name of the event being fired.
+            DeviceEvent(const EventNameType& Name) :
+                Event(Name), EventDevice(0)
+                {  }
+            /// @brief Controller constructor.
             /// @param Name The name of the event being fired.
             /// @param Device The ID of the device that was connected or disconnected.
             DeviceEvent(const EventNameType& Name, const DeviceIDType Device) :
@@ -85,6 +90,35 @@ namespace Mezzanine
 
         /// @brief Convenience type for passing around DeviceEvent.
         using DeviceEventPtr = std::shared_ptr<DeviceEvent>;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A config/traits class for configuration of the event publisher used by a Device.
+        ///////////////////////////////////////
+        struct MEZZ_LIB DeviceEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,DeviceEventPtr> >
+        {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Factory Traits
+
+            /// @brief Use bindings to help manage lifetime where appropriate.
+            static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Storage Traits
+
+            /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+            static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Dispatch Traits
+
+            /// @brief Don't need anything fancy for the dispatcher (yet).
+            static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+            /// @brief EventID works fine for dispatch.
+            using DispatchIDType = EventID;
+        };//DeviceEventTableConfig
+
+        /// @brief Convenience type for the event publisher config for Devices.
+        using DeviceEventPublisher = EventPublisher<DeviceEventTableConfig>;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of input device state from the OS.
@@ -162,6 +196,8 @@ namespace Mezzanine
             using ControllerIterator = ControllerContainer::iterator;
             /// @brief Const Iterator type for game Controller instances stored by this class.
             using ConstControllerIterator = ControllerContainer::const_iterator;
+            /// @brief Convenience type for the publisher of events fired by this manager.
+            using EventPublisherType = DeviceEventPublisher;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -192,7 +228,7 @@ namespace Mezzanine
         protected:
             friend class DeviceUpdateWorkUnit;
             /// @brief A publisher for notifying when the system input configuration changes.
-            EventPublisher InputPublisher;
+            EventPublisherType InputPublisher;
 
             /// @brief Container storing all the detected Joysticks on this system.
             JoystickContainer Joysticks;
@@ -331,10 +367,10 @@ namespace Mezzanine
             DeviceUpdateWorkUnit* GetDeviceUpdateWork();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a reference to the publisher that will dispatch Input events.
-            EventPublisher& GetInputPublisher();
+            EventPublisherType& GetInputPublisher();
             /// @brief Gets the publisher for the Input system events.
             /// @return Returns a const reference to the publisher that will dispatch Input events.
-            const EventPublisher& GetInputPublisher() const;
+            const EventPublisherType& GetInputPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

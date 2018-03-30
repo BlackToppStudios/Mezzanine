@@ -127,6 +127,8 @@ namespace Mezzanine
             using ConstResolutionIterator = ResolutionContainer::const_iterator;
             /// @brief Basic container type for registered RenderSystem type storage by this class.
             using RenderSystemTypeContainer = std::vector<RenderSystem>;
+            /// @brief Convenience type for the publisher of events fired by this manager.
+            using EventPublisherType = WindowEventPublisher;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -152,7 +154,7 @@ namespace Mezzanine
             /// @brief A container of strings storing all the detected names of video devices on the current hardware.
             StringVector SupportedDevices;
             /// @brief A publisher for notifying when the system graphics configuration changes.
-            EventPublisher GraphicsPublisher;
+            EventPublisherType GraphicsPublisher;
             /// @brief A struct storing the dimensions of the desktop on the current hardware.
             WindowSettings DesktopSettings;
             /// @brief A pointer to the hidden window storing the context and render resources.
@@ -297,10 +299,10 @@ namespace Mezzanine
             RenderWorkUnit* GetRenderWork();
             /// @brief Gets the publisher for the Graphics system events.
             /// @return Returns a reference to the publisher that will dispatch Graphics events.
-            EventPublisher& GetGraphicsPublisher();
+            EventPublisherType& GetGraphicsPublisher();
             /// @brief Gets the publisher for the Graphics system events.
             /// @return Returns a const reference to the publisher that will dispatch Graphics events.
-            const EventPublisher& GetGraphicsPublisher() const;
+            const EventPublisherType& GetGraphicsPublisher() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // SubSystem Initialization
