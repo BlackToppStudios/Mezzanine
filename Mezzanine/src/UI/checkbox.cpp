@@ -204,8 +204,8 @@ namespace Mezzanine
             this->State |= WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventPtr Args( new WidgetEvent(CheckBox::EventSelected,this->Name) );
-            this->DispatchEvent(Args);
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventSelected,this->Name);
+            this->DispatchEvent(EventSelected,&SubscriberType::operator(),Args);
         }
 
         void CheckBox::_OnDeselected()
@@ -213,8 +213,8 @@ namespace Mezzanine
             this->State &= ~WS_Selected;
             this->SetGroupFromState(this->State);
 
-            EventPtr Args( new WidgetEvent(CheckBox::EventDeselected,this->Name) );
-            this->DispatchEvent(Args);
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventDeselected,this->Name);
+            this->DispatchEvent(EventDeselected,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

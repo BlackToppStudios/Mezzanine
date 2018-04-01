@@ -88,6 +88,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // InputManager Methods
 
+        using SubscriberType = InputManager::EventPublisherType::SubscriberType;
+
         const String InputManager::ImplementationName = "DefaultInputManager";
         const ManagerBase::ManagerType InputManager::InterfaceType = ManagerBase::MT_InputManager;
 
@@ -254,14 +256,14 @@ namespace Mezzanine
                         Joystick* Added = this->ConstructJoystick( InternalEvents[CurrEv].jdevice.which );
                         DeviceIDType AddID = Added->GetDeviceID();
                         DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventJoystickAdded,AddID);
-                        this->InputPublisher.DispatchEvent(DeviceAdded);
+                        this->InputPublisher.DispatchEvent(EventJoystickAdded,&SubscriberType::operator(),DeviceAdded);
                         break;
                     }
                     case SDL_JOYDEVICEREMOVED:
                     {
                         DeviceIDType RemoveID = InternalEvents[CurrEv].jdevice.which;
                         DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventJoystickRemoved,RemoveID);
-                        this->InputPublisher.DispatchEvent(DeviceRemoved);
+                        this->InputPublisher.DispatchEvent(EventJoystickRemoved,&SubscriberType::operator(),DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEADDED:
@@ -269,21 +271,21 @@ namespace Mezzanine
                         Controller* Added = this->ConstructController( InternalEvents[CurrEv].cdevice.which );
                         DeviceIDType AddID = Added->GetDeviceID();
                         DeviceEventPtr DeviceAdded = std::make_shared<DeviceEvent>(EventControllerAdded,AddID);
-                        this->InputPublisher.DispatchEvent(DeviceAdded);
+                        this->InputPublisher.DispatchEvent(EventControllerAdded,&SubscriberType::operator(),DeviceAdded);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEREMOVED:
                     {
                         DeviceIDType RemoveID = InternalEvents[CurrEv].cdevice.which;
                         DeviceEventPtr DeviceRemoved = std::make_shared<DeviceEvent>(EventControllerRemoved,RemoveID);
-                        this->InputPublisher.DispatchEvent(DeviceRemoved);
+                        this->InputPublisher.DispatchEvent(EventControllerRemoved,&SubscriberType::operator(),DeviceRemoved);
                         break;
                     }
                     case SDL_CONTROLLERDEVICEREMAPPED:
                     {
                         DeviceIDType RemapID = InternalEvents[CurrEv].cdevice.which;
                         DeviceEventPtr DeviceRemapped = std::make_shared<DeviceEvent>(EventControllerRemapped,RemapID);
-                        this->InputPublisher.DispatchEvent(DeviceRemapped);
+                        this->InputPublisher.DispatchEvent(EventControllerRemapped,&SubscriberType::operator(),DeviceRemapped);
                         break;
                     }
                     case SDL_FINGERDOWN:
@@ -302,8 +304,8 @@ namespace Mezzanine
                     }
                     case SDL_CLIPBOARDUPDATE:
                     {
-                        EventPtr ClipboardUpdated = std::make_shared<Event>(EventClipboardUpdated);
-                        this->InputPublisher.DispatchEvent(ClipboardUpdated);
+                        DeviceEventPtr ClipboardUpdated = std::make_shared<DeviceEvent>(EventClipboardUpdated);
+                        this->InputPublisher.DispatchEvent(EventClipboardUpdated,&SubscriberType::operator(),ClipboardUpdated);
                         break;
                     }
                     default: // Ignore the event.
@@ -517,10 +519,10 @@ namespace Mezzanine
         DeviceUpdateWorkUnit* InputManager::GetDeviceUpdateWork()
             { return this->DeviceUpdateWork; }
 
-        EventPublisher& InputManager::GetInputPublisher()
+        InputManager::EventPublisherType& InputManager::GetInputPublisher()
             { return this->InputPublisher; }
 
-        const EventPublisher& InputManager::GetInputPublisher() const
+        const InputManager::EventPublisherType& InputManager::GetInputPublisher() const
             { return this->InputPublisher; }
 
         ///////////////////////////////////////////////////////////////////////////////

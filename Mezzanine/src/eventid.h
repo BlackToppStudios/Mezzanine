@@ -37,8 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscriberid_h
-#define _eventsubscriberid_h
+#ifndef _eventid_h
+#define _eventid_h
+
+#include "hashedstring.h"
 
 namespace Mezzanine
 {
@@ -46,18 +48,17 @@ namespace Mezzanine
     /// @{
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a simple class used to handle the identification of a subscriber in the event system.
-    /// @details This is mostly a wrapper over a uintptr_t, but has the added ability to accept a pointer
-    /// to be converted into an int value.  Use of pointers are not necessary and the ID values can follow
-    /// whatever convention you desire.  Pointer conversion simple exists as a convenience.
+    /// @brief This is a simple class used to handle the identification of an event table in the event system.
     ///////////////////////////////////////
-    struct MEZZ_LIB EventSubscriberID
+    struct MEZZ_LIB EventID
     {
         ///////////////////////////////////////////////////////////////////////////////
         // Data Types
 
         /// @brief The underlying type for the ID to be used.
-        using IDType = uintptr_t;
+        using IDType = HashedString32::HashType;
+        /// @brief Value used to describe an ID that is invalid.
+        static const IDType InvalidID = HashedString32::EmptyHash;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Data Members
@@ -69,68 +70,62 @@ namespace Mezzanine
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        EventSubscriberID() = delete;
+        EventID() = delete;
         /// @brief Int constructor.
         /// @param Identifier The unique value for the ID to be used.
-        EventSubscriberID(const IDType Identifier) :
+        EventID(const IDType Identifier) :
             ID(Identifier)
             {  }
-        /// @brief Pointer constructor.
-        /// @remarks This exists as a convenience for when pointers are usable as ID's.
-        /// Initially void pointers were used but this caused ambiguity when using normal ints as IDs
-        /// in some code.
-        /// @tparam PtrType The type for the pointer to convert.
-        /// @pre PtrType is expected to be a pointer.  Doesn't matter what to.
-        /// @param PtrIdentifier The pointer to be converted into an ID.
-        template<class PtrType>
-        EventSubscriberID(PtrType* PtrIdentifier) :
-            ID(reinterpret_cast<IDType>(PtrIdentifier))
+        /// @brief HashedString constructor.
+        /// @param ToConvert The hashed string to fetch the hash from.
+        EventID(const HashedString32& ToConvert) :
+            ID(ToConvert.GetHash())
             {  }
         /// @brief Copy constructor.
-        /// @param Other The other EventSubscriberID to be copied.
-        EventSubscriberID(const EventSubscriberID& Other) = default;
+        /// @param Other The other EventID to be copied.
+        EventID(const EventID& Other) = default;
         /// @brief Move constructor.
-        /// @param Other The other EventSubscriberID to be moved.
-        EventSubscriberID(EventSubscriberID&& Other) = default;
+        /// @param Other The other EventID to be moved.
+        EventID(EventID&& Other) = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other EventSubscriberID to be copied.
+        /// @param Other The other EventID to be copied.
         /// @return Returns a reference to this.
-        EventSubscriberID& operator=(const EventSubscriberID& Other) = default;
+        EventID& operator=(const EventID& Other) = default;
         /// @brief Move Assignment operator.
-        /// @param Other The other EventSubscriberID to be moved.
+        /// @param Other The other EventID to be moved.
         /// @return Returns a reference to this.
-        EventSubscriberID& operator=(EventSubscriberID&& Other) = default;
+        EventID& operator=(EventID&& Other) = default;
+
+        /// @brief Less-than operator.
+        /// @param Other The other EventID to compare to.
+        /// @return Returns true if this ID is supposed to be sorted before the other ID, false otherwise.
+        Boole operator<(const EventID& Other) const
+            { return this->ID < Other.ID; }
 
         /// @brief Equality comparison operator.
-        /// @param Other The other subscriber ID to compare with.
-        /// @return Returns true if this EventSubscriberID is the same as the other, false otherwise.
-        Boole operator==(const EventSubscriberID& Other) const
+        /// @param Other The other ID to compare with.
+        /// @return Returns true if this EventID is the same as the other, false otherwise.
+        Boole operator==(const EventID& Other) const
             { return ( this->ID == Other.ID ); }
         /// @brief Inequality comparison operator.
-        /// @param Other The other subscriber ID to compare with.
-        /// @return Returns true if this EventSubscriberID is not the same as the other, false otherwise.
-        Boole operator!=(const EventSubscriberID& Other) const
-            { return ( this->ID != Other.ID ); }
-
-        /// @brief Less-Than operator.
         /// @param Other The other ID to compare with.
-        /// @return Returns true if this ID is less than the other ID, false otherwise.
-        Boole operator<(const EventSubscriberID& Other) const
-            { return this->ID < Other.ID; }
-    };//EventSubscriberID
+        /// @return Returns true if this EventID is not the same as the other, false otherwise.
+        Boole operator!=(const EventID& Other) const
+            { return ( this->ID != Other.ID ); }
+    };//EventID
 
-    /// @brief Output streaming operator for EventSubscriberID.
+    /// @brief Output streaming operator for EventID.
     /// @param Stream The std stream to write to.
     /// @param Var The ID to be streamed.
     /// @return Returns a reference to the stream passed in.
-    inline std::ostream& operator<<(std::ostream& Stream, const Mezzanine::EventSubscriberID& Var)
+    inline std::ostream& operator<<(std::ostream& Stream, const Mezzanine::EventID& Var)
         { return Stream << Var.ID; }
 
     /// @}
 }//Mezzanine
 
-#endif
+#endif // _eventid_h

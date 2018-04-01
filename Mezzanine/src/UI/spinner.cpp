@@ -183,12 +183,12 @@ namespace Mezzanine
 
         void Spinner::SubscribeToChildEvents()
         {
-            this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,this,
-                                          [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->IncrementSpin->Subscribe(Button::EventDeactivated,this,
-                                           [this](EventPtr Args){ this->_NotifyEvent(Args); });
-            this->DecrementSpin->Subscribe(Button::EventDeactivated,this,
-                                           [this](EventPtr Args){ this->_NotifyEvent(Args); });
+            this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,SubscriberType(this,
+                                          [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->IncrementSpin->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                           [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
+            this->DecrementSpin->Subscribe(Button::EventDeactivated,SubscriberType(this,
+                                           [this](EventPtr Args){ this->_NotifyEvent(Args); } ) );
         }
 
         void Spinner::ClampToLimits(Real& Value)
@@ -212,9 +212,9 @@ namespace Mezzanine
         {
             this->ClampToLimits(Value);
             if( this->SpinValue != Value ) {
+                this->SpinValue = Value;
                 this->_OnSpinValueChanged(this->SpinValue,Value);
                 this->ValueDisplay->SetText( StringTools::ConvertToString( Value ) );
-                this->SpinValue = Value;
             }
         }
 
@@ -479,8 +479,8 @@ namespace Mezzanine
                 this->Container->UpdateVisibleChildren();
             }
 
-            SpinnerValueChangedEventPtr Args( new SpinnerValueChangedEvent(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
-            this->DispatchEvent(Args);
+            SpinnerValueChangedEventPtr Args = std::make_shared<SpinnerValueChangedEvent>(EventSpinValueChanged,this->Name,OldValue,NewValue);
+            this->DispatchEvent(EventSpinValueChanged,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -494,16 +494,12 @@ namespace Mezzanine
                 return;
 
             if( EventWidget == this->ValueDisplay ) {
-                // Squalch events to prevent an infinite loop.
-                Boole OldMute = this->ValueDisplay->GetMuteEvents();
-                this->ValueDisplay->SetMuteEvents(true);
-                String ValueText = this->ValueDisplay->GetText();
-                Real NewValue = StringTools::ConvertToReal(ValueText);
-                this->SetSpinValue(NewValue);
+                Real NewValue = StringTools::ConvertToReal( this->ValueDisplay->GetText() );
+                this->ClampToLimits(NewValue);
                 if( this->SpinValue != NewValue ) {
-                    this->ValueDisplay->SetText( StringTools::ConvertToString( this->SpinValue ) );
+                    this->_OnSpinValueChanged(this->SpinValue,NewValue);
+                    this->SpinValue = NewValue;
                 }
-                this->ValueDisplay->SetMuteEvents(OldMute);
             }else if( EventWidget == this->IncrementSpin ) {
                 Real Temp = this->SpinValue + this->IncrementValue;
                 this->SetSpinValue(Temp);

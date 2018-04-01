@@ -41,7 +41,9 @@
 #define _eventsubscriptiontable_h
 
 #include "hashedstring.h"
-#include "eventsubscriberbinding.h"
+#include "eventhelper.h"
+#include "eventid.h"
+#include "eventdispatcher.h"
 
 namespace Mezzanine
 {
@@ -50,90 +52,92 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class represents a given event that can be subscribed to and/or fired.
+    /// @tparam Config A struct of types and values to use for the configuration of this table.
+    /// @pre Config is expected to be a valid EventSubscriptionTableConfig suitable to configure
+    /// the types on EventSubscriptionTableTraits.  See @ref EventSubscriptionTableTraits for more info. @n
+    /// Additionally, Config is expected to have "ContainerType", "DispatcherType", and "DispatchIDType".
+    ///     "ContainerType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionContainer.
+    ///     "DispatcherType" is expected to be an enum value that has a corresponding valid template specialization of EventSubscriptionDispatcher.
+    ///     "DispatchIDType" is expected to be less-than comparable (<) and suitable to uniquely identify EventSubscriptionTable instances.
     ///////////////////////////////////////
-    class MEZZ_LIB EventSubscriptionTable
+    template<class Config>
+    class EventSubscriptionTable :
+        public EventSubscriptionContainer<EventSubscriptionTable<Config>,EventSubscriptionTableTraits<EventSubscriptionTable<Config>,Config>,Config::ContainerType>,
+        public EventDispatcher<EventSubscriptionTable<Config>,EventSubscriptionTableTraits<EventSubscriptionTable<Config>,Config>,Config::DispatcherType>
     {
     public:
-        /// @brief Convenience type for the callbacks that will be called when events are fired.
-        using CallbackType = EventSubscriberBinding::CallbackType;
-        /// @brief Container for the storage of bindings between subscribers and the events they are interested in.
-        using BindingContainer = std::vector<EventSubscriberBindingPtr>;
-        /// @brief Iterator type for subscriber bindings stored by this table.
-        using BindingIterator = BindingContainer::iterator;
-        /// @brief Const Iterator type for subscriber bindings stored by this table.
-        using ConstBindingIterator = BindingContainer::const_iterator;
+        /// @brief Convenience type for describing the type of this.
+        using SelfType = EventSubscriptionTable<Config>;
+        /// @brief The type for traits used by this table.
+        using TraitsType = EventSubscriptionTableTraits<SelfType,Config>;
+        /// @brief The type for the container inherited by this table.
+        using ContainerType = EventSubscriptionContainer<SelfType,TraitsType,Config::ContainerType>;
+        /// @brief Retrievable type for the traits given to this table.
+        using TableConfig = Config;
+        /// @brief The type to use for uniquely identifying this table among a group of like tables.
+        using DispatchIDType = typename Config::DispatchIDType;
     protected:
-        /// @brief A container of all the subscriber bindings to this event table.
-        BindingContainer Bindings;
         /// @brief The hash of the Event the subscribers in this table are subscribed to.
-        EventHashType EventHash;
+        DispatchIDType DisID;
     public:
         /// @brief Blank constructor.
         EventSubscriptionTable() = delete;
         /// @brief Copy constructor.
-        /// @param Other The other table to be copied.
-        EventSubscriptionTable(const EventSubscriptionTable& Other) = default;
+        /// @param Other The other table to NOT be copied.
+        EventSubscriptionTable(const SelfType& Other) = delete;
         /// @brief Move constructor.
         /// @param Other The other table to be moved.
-        EventSubscriptionTable(EventSubscriptionTable&& Other) = default;
-        /// @brief Class constructor.
-        /// @param Hash The generated hash to use to identify this event.
-        EventSubscriptionTable(const EventHashType Hash);
+        EventSubscriptionTable(SelfType&& Other) :
+            ContainerType( std::move(Other) ),
+            DisID( std::move(Other.DisID) )
+        {
+            for( typename ContainerType::StorageIterator StorIt = this->begin() ; StorIt != this->end() ; ++StorIt )
+                { ContainerType::FactoryType::MoveSubscription( *StorIt, this ); }
+        }
+        /// @brief Identifier constructor.
+        /// @param ID The unique ID of the event this table will store subscriptions for.
+        EventSubscriptionTable(const DispatchIDType ID) :
+            DisID(ID)
+            {  }
         /// @brief Class destructor.
-        ~EventSubscriptionTable();
+        ~EventSubscriptionTable()
+        {
+            for( typename ContainerType::StorageIterator StorIt = this->begin() ; StorIt != this->end() ; ++StorIt )
+                { ContainerType::FactoryType::InvalidateSubscription( *StorIt ); }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
         /// @brief Assignment operator.
-        /// @param Other The other table to be copied.
+        /// @param Other The other table to NOT be copied.
         /// @return Returns a reference to this.
-        EventSubscriptionTable& operator=(const EventSubscriptionTable& Other) = default;
+        SelfType& operator=(const SelfType& Other) = delete;
         /// @brief Move assignment operator.
         /// @param Other The other table to be moved.
         /// @return Returns a reference to this.
-        EventSubscriptionTable& operator=(EventSubscriptionTable&& Other) = default;
+        SelfType& operator=(SelfType&& Other)
+        {
+            this->ContainerType::operator=( std::move(Other) );
+            this->DisID = std::move(Other.DisID);
+            for( typename ContainerType::StorageIterator StorIt = this->begin() ; StorIt != this->end() ; ++StorIt )
+                { ContainerType::FactoryType::MoveSubscription( *StorIt, this ); }
+            return *this;
+        }
 
         /// @brief Less-than operator.
         /// @param Other The other table to be compared to.
         /// @return Returns true if this table is considered less than the other, or should be sorted before the other table.
-        Boole operator<(const EventSubscriptionTable& Other) const;
+        Boole operator<(const SelfType& Other) const
+            { return this->DisID < Other.DisID; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        /// @brief Gets the hash of the event associated with this table.
-        /// @return Returns the hash identifying this event.
-        EventHashType GetHash() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Subscription Management
-
-        /// @brief Adds a subscriber to this event table.
-        /// @exception If ID provided is already being used by a binding/subscriber this will throw a "II_DUPLICATE_IDENTITY_EXCEPTION".
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @param Delegate The callback to be called when the interested event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberBindingPtr Subscribe(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub);
-        /// @brief Gets a binding by the subscriber ID.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        /// @return Returns the binding with the specified ID, or NULL of none exists.
-        EventSubscriberBindingPtr GetBinding(EventSubscriberID ID);
-
-        /// @brief Removes a single subscriber from this event table.
-        /// @param ID The unique ID of the subscriber.  Must be unique among the IDs of this publisher.
-        void Unsubscribe(EventSubscriberID ID);
-        /// @brief Removes all subscribers from all events in this publisher.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeAll();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        /// @internal
-        /// @brief Notifies all subscribers of this event that this event is firing.
-        /// @param Args The arguments and extra data related to this event.
-        void DispatchEvent(EventPtr Args) const;
+        /// @brief Gets the ID of the event associated with this table.
+        /// @return Returns the unique ID of this event.
+        DispatchIDType GetID() const
+            { return this->DisID; }
     };//EventSubscriptionTable
 
     /// @}

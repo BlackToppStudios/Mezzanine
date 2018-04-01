@@ -294,7 +294,7 @@ else(${Mezz_ThreadLog})
     message ( STATUS "${PROJECT_NAME} - Disabling thread log instrumenting and unsetting MEZZTHREADLOG")
     set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG_undefined")
     set(Mezz_ThreadLog_Defined "MEZZTHREADLOG_undefined")
-endif(${Mezz_Profile})
+endif(${Mezz_ThreadLog})
 
 ###############################################################################
 # Check For the Mezz_Network option and set values accordingly
@@ -652,7 +652,7 @@ if(NOT MSVC AND NOT ANDROID)
     endif(Mezz_Platform_Big_Endian)
 endif(NOT MSVC AND NOT ANDROID)
 
-set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_ThreadLog_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++11")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_ThreadLog_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_Ruby_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Mezz_Endian_Arguments} ${Ogre_Arguments} -std=c++14")
 separate_arguments(CommonBuildFlags UNIX_COMMAND "${CommonBuildFlags}")
 
 ###############################################################################

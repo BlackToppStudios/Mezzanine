@@ -49,17 +49,16 @@ namespace Mezzanine
         const EventNameType Action::EventActionActivated = "ActionActivated";
         const EventNameType Action::EventActionDeactivated = "ActionDeactivated";
 
-        Action::Action(const String& Name, ActionHandler* Handler)
-            : ActionName(Name),
-              Parent(Handler)
+        Action::Action(const String& Name, ActionHandler* Handler) :
+            ActionName(Name),
+            Parent(Handler)
         {
             this->AddSubscriptionTable(Action::EventActionActivated);
             this->AddSubscriptionTable(Action::EventActionDeactivated);
         }
 
         Action::~Action()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -74,14 +73,14 @@ namespace Mezzanine
 
         void Action::_OnActivateAction()
         {
-            EventPtr Args( new ActionEvent(Action::EventActionActivated,this->ActionName) );
-            this->DispatchEvent(Args);
+            ActionEventPtr Args = std::make_shared<ActionEvent>(EventActionActivated,this->ActionName);
+            this->DispatchEvent(EventActionActivated,&SubscriberType::operator(),Args);
         }
 
         void Action::_OnDeactivateAction()
         {
-            EventPtr Args( new ActionEvent(Action::EventActionDeactivated,this->ActionName) );
-            this->DispatchEvent(Args);
+            ActionEventPtr Args = std::make_shared<ActionEvent>(EventActionDeactivated,this->ActionName);
+            this->DispatchEvent(EventActionDeactivated,&SubscriberType::operator(),Args);
         }
 
         Boole Action::_HandleInput(const Input::MetaCode& Code)

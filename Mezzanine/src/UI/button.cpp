@@ -351,20 +351,20 @@ namespace Mezzanine
 
         void Button::_OnActivate()
         {
-            EventPtr Args( new WidgetEvent(Button::EventActivated,this->Name) );
-            this->DispatchEvent(Args);
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventActivated,this->Name);
+            this->DispatchEvent(EventActivated,&SubscriberType::operator(),Args);
         }
 
         void Button::_OnStandby()
         {
-            EventPtr Args( new WidgetEvent(Button::EventStandby,this->Name) );
-            this->DispatchEvent(Args);
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventStandby,this->Name);
+            this->DispatchEvent(EventStandby,&SubscriberType::operator(),Args);
         }
 
         void Button::_OnDeactivate()
         {
-            EventPtr Args( new WidgetEvent(Button::EventDeactivated,this->Name) );
-            this->DispatchEvent(Args);
+            WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventDeactivated,this->Name);
+            this->DispatchEvent(EventDeactivated,&SubscriberType::operator(),Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

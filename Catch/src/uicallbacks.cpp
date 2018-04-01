@@ -4,19 +4,19 @@
 #include "uicallbacks.h"
 #include "catchapp.h"
 
-void AllAppExit(EventPtr Args)
+void AllAppExit(UI::WidgetEventPtr Args)
 {
     CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel(NULL);
     Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
-void GSMMReturn(EventPtr Args)
+void GSMMReturn(UI::WidgetEventPtr Args)
 {
     CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel("MainMenu");
     Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
-void GSRestart(EventPtr Args)
+void GSRestart(UI::WidgetEventPtr Args)
 {
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
     LevelMan->SetNextLevel( LevelMan->GetCurrentLevel() );
@@ -34,7 +34,7 @@ MSProfileCreate::MSProfileCreate(ProfileManager* Manager, UI::Screen* HostScreen
 MSProfileCreate::~MSProfileCreate()
     {  }
 
-void MSProfileCreate::operator()(EventPtr Args)
+void MSProfileCreate::operator()(UI::WidgetEventPtr Args)
 {
     UI::EditBox* ProfilesEntry = static_cast<UI::EditBox*>( this->MainScreen->GetWidget("MS_ProfilesEntry") );
     this->ProfileMan->CreateNewProfile( ProfilesEntry->GetText() );
@@ -53,7 +53,7 @@ MSProfileSelect::MSProfileSelect(ProfileManager* Manager, UI::Screen* HostScreen
 MSProfileSelect::~MSProfileSelect()
     {  }
 
-void MSProfileSelect::operator()(EventPtr Args)
+void MSProfileSelect::operator()(UI::WidgetEventPtr Args)
 {
     UI::DropDownList* ProfilesList = static_cast<UI::DropDownList*>( this->MainScreen->GetWidget("MS_ProfilesList") );
     GameProfile* NewSelected = this->ProfileMan->GetProfile( ProfilesList->GetSelectionText() );
@@ -75,7 +75,7 @@ MSLevelCellSelect::MSLevelCellSelect(UI::Screen* HostScreen) :
 MSLevelCellSelect::~MSLevelCellSelect()
     {  }
 
-void MSLevelCellSelect::operator()(EventPtr Args)
+void MSLevelCellSelect::operator()(UI::WidgetEventPtr Args)
 {
     if( Args->EventName == UI::PagedContainer::EventChildSelected ) {
         UI::ChildSelectedEventPtr FocusArgs = std::static_pointer_cast<UI::ChildSelectedEvent>( Args );
@@ -100,7 +100,7 @@ MSLevelStart::MSLevelStart(UI::GridContainer* LS) :
 MSLevelStart::~MSLevelStart()
     {  }
 
-void MSLevelStart::operator()(EventPtr Args)
+void MSLevelStart::operator()(UI::WidgetEventPtr Args)
 {
     CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel( this->LevelSelect->GetLastSelectedChild()->GetName() );
     Entresol::GetSingletonPtr()->BreakMainLoop();

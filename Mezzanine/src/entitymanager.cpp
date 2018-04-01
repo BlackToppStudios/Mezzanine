@@ -169,6 +169,8 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // EntityManager Methods
 
+    using SubscriberType = EntityManager::EventPublisherType::SubscriberType;
+
     const String EntityManager::ImplementationName = "DefaultEntityManager";
     const ManagerBase::ManagerType EntityManager::InterfaceType = ManagerBase::MT_EntityManager;
 
@@ -233,7 +235,7 @@ namespace Mezzanine
         this->Entities.insert(InsertPos,ToAdd);
 
         EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityCreated,ToAdd->GetName());
-        this->Publisher.DispatchEvent(EntEv);
+        this->Publisher.DispatchEvent(EventEntityCreated,&SubscriberType::operator(),EntEv);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -461,6 +463,7 @@ namespace Mezzanine
                 return CurrEnt;
             }
         }
+        return nullptr;
     }
 
     Entity* EntityManager::GetEntityByName(const String& Name) const
@@ -486,7 +489,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{
@@ -504,7 +507,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{
@@ -522,7 +525,7 @@ namespace Mezzanine
             FactoryIterator EntFactIt = this->EntityFactories.find( (*EntIt)->GetDerivedSerializableName() );
             if( EntFactIt != this->EntityFactories.end() ) {
                 EntityManagementEventPtr EntEv = std::make_shared<EntityManagementEvent>(EventEntityDestroyed,(*EntIt)->GetName());
-                this->Publisher.DispatchEvent(EntEv);
+                this->Publisher.DispatchEvent(EventEntityDestroyed,&SubscriberType::operator(),EntEv);
 
                 (*EntFactIt).second->DestroyEntity( (*EntIt) );
             }else{
@@ -700,10 +703,10 @@ namespace Mezzanine
         }
     }
 
-    EventPublisher& EntityManager::GetPublisher()
+    EntityManager::EventPublisherType& EntityManager::GetPublisher()
         { return this->Publisher; }
 
-    const EventPublisher& EntityManager::GetPublisher() const
+    const EntityManager::EventPublisherType& EntityManager::GetPublisher() const
         { return this->Publisher; }
 
     ActorUpdateWorkUnit* EntityManager::GetActorUpdateWork()

@@ -32,9 +32,9 @@ CatchQueuedSubscriber::ConstEventIterator CatchQueuedSubscriber::GetEndEvent() c
 void CatchQueuedSubscriber::ClearEvents()
     { this->Events.clear(); }
 
-EventSubscriberBinding::CallbackType CatchQueuedSubscriber::GetDelegate()
+CatchQueuedSubscriber::SubscriberType CatchQueuedSubscriber::GetDelegate()
 {
-    return [this](EventPtr Args){ this->_NotifyEvent(Args); };
+    return SubscriberType(this,[this](UI::WidgetEventPtr Args){ this->_NotifyEvent(Args); });
 }
 
 ///////////////////////////////////////////////////////////////////////////////

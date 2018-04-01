@@ -359,7 +359,7 @@ namespace Mezzanine
             { return (Input::MOUSEBUTTON_FIRST <= this->Code && Input::MOUSEBUTTON_LAST >= this->Code); }
 
         Boole MetaCode::IsMouseMotion() const
-            { return (Input::MOUSEMOTION_FIRST <= this->Code && Input::MOUSEMOTION_LAST && this->Code); }
+            { return (Input::MOUSEMOTION_FIRST <= this->Code && Input::MOUSEMOTION_LAST >= this->Code); }
 
         Boole MetaCode::IsMouseMultiClick() const
             { return (Input::COMPOUNDINPUT_MOUSEMULTICLICK_FIRST <= this->Code && Input::COMPOUNDINPUT_MOUSEMULTICLICK_LAST >= this->Code); }
