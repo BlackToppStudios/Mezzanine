@@ -158,6 +158,39 @@ namespace Mezzanine
         }
 
         template<class ElementType>
+        void CopyValue(const ElementType& Val)
+        {
+            static_assert(AnySize >= sizeof(ElementType));
+            assert(ElementOp == nullptr);
+
+
+        }
+
+        template<class ElementType>
+        void MoveValue(ElementType&& Val)
+        {
+            static_assert(AnySize >= sizeof(ElementType));
+            assert(ElementOp == nullptr);
+
+        }
+
+        template<size_t OtherSize>
+        void CopyAny(const StaticAny<OtherSize>& Other)
+        {
+            static_assert(AnySize >= Size);
+            assert(ElementOp == nullptr);
+
+        }
+
+        template<size_t OtherSize>
+        void MoveAny(StaticAny<OtherSize>&& Other)
+        {
+            static_assert(AnySize >= Size);
+            assert(ElementOp == nullptr);
+
+        }
+
+        template<class ElementType>
         void AssignFromAny(ElementType&& Val)
         {
 
