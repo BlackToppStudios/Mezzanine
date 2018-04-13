@@ -1,0 +1,8 @@
+19c19
+< pass `-DENABLE_<LIBRARY>=OFF` to cmake, where `<LIBRARY>` is one of
+---
+> pass `-DLIBZIP_ENABLE_<LIBRARY>=OFF` to cmake, where `<LIBRARY>` is one of
+34c34
+< - `BUILD_SHARED_LIBS`: set to `ON` or `OFF` to enable/disable building
+---
+> - `LIBZIP_BUILD_SHARED_LIBS`: set to `ON` or `OFF` to enable/disable building

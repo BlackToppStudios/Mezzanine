@@ -87,10 +87,10 @@ set(OGRE_BUILD_COMPONENT_VOLUME FALSE CACHE BOOL "Forcing minimal build for Mezz
 # Ogre Dependencies
 set(OGREDEPS_BUILD_CG FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 set(OGREDEPS_BUILD_FREEIMAGE TRUE CACHE BOOL "Enabling extended image format support for Ogre." FORCE)
-set(OGREDEPS_BUILD_FREETYPE TRUE CACHE BOOL "Enabling vector text support for Ogre." FORCE)
+set(OGREDEPS_BUILD_FREETYPE FALSE CACHE BOOL "Enabling vector text support for Ogre." FORCE)
 set(OGREDEPS_BUILD_OIS FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
-set(OGREDEPS_BUILD_ZLIB TRUE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
-set(OGREDEPS_BUILD_ZZIPLIB TRUE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
+set(OGREDEPS_BUILD_ZLIB FALSE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
+set(OGREDEPS_BUILD_ZZIPLIB FALSE CACHE BOOL "Enabling enhanced resource reading for Ogre." FORCE)
 set(OGREDEPS_INSTALL_DEV FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 
 set(FREETYPE_FT2BUILD_INCLUDE_DIR "" CACHE PATH "Forcing empty include path to avoid CMake errors." FORCE)
@@ -186,6 +186,8 @@ mark_as_advanced( FORCE
     OGRE_COPY_DEPENDENCIES 
     OGRE_INSTALL_DEPENDENCIES
     OGRE_DEPENDENCIES_DIR
+    ZLIB_LIBRARY_DBG
+    ZLIB_LIBRARY_REL
     
     # Ogre Extras
     OGRE_BUILD_SAMPLES

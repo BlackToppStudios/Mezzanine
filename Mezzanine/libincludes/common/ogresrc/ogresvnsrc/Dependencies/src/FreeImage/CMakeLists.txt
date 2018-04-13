@@ -485,32 +485,32 @@ set(FreeImage_SOURCES
 	Source/Quantizers.h
 	Source/ToneMapping.h
 	Source/Utilities.h
-	Source/ZLib/adler32.c
-	Source/ZLib/compress.c
-	Source/ZLib/crc32.c
-	Source/ZLib/crc32.h
-	Source/ZLib/deflate.c
-	Source/ZLib/deflate.h
-    Source/ZLib/gzclose.c
-    Source/ZLib/gzguts.h
-    Source/ZLib/gzlib.c
-    Source/ZLib/gzread.c
-    Source/ZLib/gzwrite.c
-	Source/ZLib/infback.c
-	Source/ZLib/inffast.c
-	Source/ZLib/inffast.h
-	Source/ZLib/inffixed.h
-	Source/ZLib/inflate.c
-	Source/ZLib/inflate.h
-	Source/ZLib/inftrees.c
-	Source/ZLib/inftrees.h
-	Source/ZLib/trees.c
-	Source/ZLib/trees.h
-	Source/ZLib/uncompr.c
-	Source/ZLib/zconf.h
-	Source/ZLib/zlib.h
-	Source/ZLib/zutil.c
-	Source/ZLib/zutil.h
+#	Source/ZLib/adler32.c
+#	Source/ZLib/compress.c
+#	Source/ZLib/crc32.c
+#	Source/ZLib/crc32.h
+#	Source/ZLib/deflate.c
+#	Source/ZLib/deflate.h
+#   Source/ZLib/gzclose.c
+#   Source/ZLib/gzguts.h
+#   Source/ZLib/gzlib.c
+#   Source/ZLib/gzread.c
+#   Source/ZLib/gzwrite.c
+#	Source/ZLib/infback.c
+#	Source/ZLib/inffast.c
+#	Source/ZLib/inffast.h
+#	Source/ZLib/inffixed.h
+#	Source/ZLib/inflate.c
+#	Source/ZLib/inflate.h
+#	Source/ZLib/inftrees.c
+#	Source/ZLib/inftrees.h
+#	Source/ZLib/trees.c
+#	Source/ZLib/trees.h
+#	Source/ZLib/uncompr.c
+#	Source/ZLib/zconf.h
+#	Source/ZLib/zlib.h
+#	Source/ZLib/zutil.c
+#	Source/ZLib/zutil.h
 )
 
 # need include directories for FreeImage and all the sub libs
@@ -528,10 +528,13 @@ include_directories(Source/OpenEXR/Iex)
 include_directories(Source/OpenEXR/IlmImf)
 include_directories(Source/OpenEXR/IlmThread)
 include_directories(Source/OpenEXR/Imath)
-include_directories(Source/ZLib)
+#include_directories(Source/ZLib)
+include_directories( ${ZLIB_INCLUDE_DIRS} )
 
 add_definitions(-DOPJ_STATIC -DLIBRAW_NODLL -DLIBRAW_LIBRARY_BUILD -DFREEIMAGE_LIB -DNO_LCMS)
 add_library(FreeImage STATIC ${FreeImage_SOURCES})
+add_dependencies(FreeImage ${ZLIB_LIBRARY})
+target_link_libraries(FreeImage ${ZLIB_LIBRARY})
 install_dep(FreeImage include Source/FreeImage.h)
 
 if(WIN32)

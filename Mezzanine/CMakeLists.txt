@@ -1334,31 +1334,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 set(BulletSrcDir "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/")
 
-include_directories( ${${PROJECT_NAME}_SRC_DIR}
-    "${BulletSrcDir}src"
-    "${BulletSrcDir}src/LinearMath"
-    "${BulletSrcDir}Extras/ConvexDecomposition"
-    "${BulletSrcDir}Extras/Serialize/BulletWorldImporter"
-
-    "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
-
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
-    #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
-    
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/minizsrc/MiniZ/"
-
-    ${OgreConfigHeaderIncludeDir}
-    ${OgreHeaderIncludeDir}
-)
-
-
-link_directories(
-        "${ProjectBinaryDir}Mezzanine/bin"
-)
-
 ###############################################################################
 # Prepare the actual Build
 #add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
@@ -1366,12 +1341,7 @@ link_directories(
 #######################################
 # Prepare Common Dependencies
 
-add_subdirectory (libincludes/common/bulletsrc)
-add_subdirectory (libincludes/common/ogresrc)
-add_subdirectory (libincludes/common/oggvorbis)
-add_subdirectory (libincludes/common/openalsoftsrc)
-add_subdirectory (libincludes/common/sdlsrc)
-add_subdirectory (libincludes/common/minizsrc)
+add_subdirectory (libincludes/common)
 
 #######################################
 # Extra includes from Ogre
@@ -1386,18 +1356,45 @@ endif(${WIN32})
 # It's a hack and makes me a sad panda.
 ###############################################################################
 # Prepare the actual Build
+
+link_directories(
+        "${ProjectBinaryDir}Mezzanine/bin"
+)
+
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
+
+target_include_directories( ${PROJECT_NAME} PRIVATE
+    "${${PROJECT_NAME}_SRC_DIR}"
+    "${BulletSrcDir}src"
+    "${BulletSrcDir}src/LinearMath"
+    "${BulletSrcDir}Extras/ConvexDecomposition"
+    "${BulletSrcDir}Extras/Serialize/BulletWorldImporter"
+
+    "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
+
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
+    #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
+    
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/zlibsrc/zlib/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/libzipsrc/libzip/lib/"
+
+    "${OgreConfigHeaderIncludeDir}"
+    "${OgreHeaderIncludeDir}"
+)
 
 target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)
-        include_directories(${Mezz_Lua51IncludeDirectory})
+        target_include_directories(${PROJECT_NAME} PRIVATE ${Mezz_Lua51IncludeDirectory})
 endif(${Mezz_Lua51})
 
 if(${Mezz_Ruby})
         add_subdirectory (libincludes/common/ruby200)
-        include_directories(${RubyIncludeDirectory})
+        target_include_directories(${PROJECT_NAME} PRIVATE ${RubyIncludeDirectory})
 endif(${Mezz_Ruby})
 
 ###############################################################################
@@ -1676,11 +1673,13 @@ endif(${Mezz_Exception})
 # Archive Configuration
 
 set(Archive_ProjectNames
-    "miniz"
+    "zlib"
+    "libzip"
 )
 
 set(Archive_LibraryNames
-    "miniz"
+    "zlibstatic"
+    "zip"
 )
 
 #######################################
@@ -1736,7 +1735,7 @@ CopyFilesDuringBuild( common/lgpl-2.1.txt data/common/lgpl-2.1.txt )
 CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
 CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
-CopyFilesDuringBuild( common/MiniZ-MIT.txt data/common/MiniZ-MIT.txt )
+CopyFilesDuringBuild( common/LibZip-BSD.txt data/common/LibZip-BSD.txt )
 CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
 CopyFilesDuringBuild( common/pstdint-BSD.txt data/common/pstdint-BSD.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )

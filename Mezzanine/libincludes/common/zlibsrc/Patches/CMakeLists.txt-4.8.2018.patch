@@ -1,0 +1,22 @@
+8,9c8,9
+< option(ASM686 "Enable building i686 assembly implementation")
+< option(AMD64 "Enable building amd64 assembly implementation")
+---
+> option(ZLIB_ASM686 "Enable building i686 assembly implementation")
+> option(ZLIB_AMD64 "Enable building amd64 assembly implementation")
+133c133
+<     if(ASM686)
+---
+>     if(ZLIB_ASM686)
+135c135
+<     elseif (AMD64)
+---
+>     elseif (ZLIB_AMD64)
+146c146
+<     if(ASM686)
+---
+>     if(ZLIB_ASM686)
+152c152
+<     elseif (AMD64)
+---
+>     elseif (ZLIB_AMD64)

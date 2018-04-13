@@ -294,7 +294,7 @@ else(${Mezz_ThreadLog})
     message ( STATUS "${PROJECT_NAME} - Disabling thread log instrumenting and unsetting MEZZTHREADLOG")
     set(Mezz_ThreadLog_Arguments "${D}MEZZTHREADLOG_undefined")
     set(Mezz_ThreadLog_Defined "MEZZTHREADLOG_undefined")
-endif(${Mezz_Profile})
+endif(${Mezz_ThreadLog})
 
 ###############################################################################
 # Check For the Mezz_Network option and set values accordingly
@@ -691,7 +691,7 @@ mark_as_advanced( FORCE
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS
-    CMAKE_CXX_COMPILER CMAKE_C_COMPILER CMAKE_RC_COMPILER
+    CMAKE_CXX_COMPILER CMAKE_C_COMPILER CMAKE_RC_COMPILER CMAKE_CODEBLOCKS_MAKE_ARGUMENTS
     EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH
     NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_ICD_CFG NVIDIA_OPENCL_LIBRARIES
     OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY
