@@ -154,6 +154,7 @@
 #include "statemachine.h"
 #include "statetransition.h"
 #include "statetransitionaction.h"
+#include "staticany.h"
 #include "streamlogging.h"
 #include "track.h"
 #include "trackiterator.h"

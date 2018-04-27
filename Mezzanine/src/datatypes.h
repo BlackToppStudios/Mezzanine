@@ -87,6 +87,7 @@
     #include <new>
     #include <string>
     #include <type_traits>
+    #include <typeindex>
     #include <utility>
 #endif
 
