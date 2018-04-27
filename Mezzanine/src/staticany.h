@@ -485,15 +485,6 @@ namespace Mezzanine
         }
         return reinterpret_cast<const ElementType*>( Any.InternalStorage );
     }
-
-    template<size_t AnySize>
-    class TrivialStaticAny
-    {
-    protected:
-    public:
-        TrivialStaticAny();
-        ~TrivialStaticAny();
-    };//TrivialStaticAny
 }//Mezzanine
 
 #endif // _staticany_h
