@@ -1,7 +1,3 @@
-# Edited Files:
-# CMakeLists.txt
-#   Remarked out the "INCLUDE_DIRECTORIES" around line 271 in favor of "TARGET_INCLUDE_DIRECTORIES" elsewhere.
-#
 
 message ( "OpenAL-Soft - Begin" )
 
