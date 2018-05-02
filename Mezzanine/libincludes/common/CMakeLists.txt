@@ -8,3 +8,5 @@ add_subdirectory (sdlsrc)
 add_subdirectory (openalsoftsrc)
 add_subdirectory (bulletsrc)
 add_subdirectory (ogresrc)
+
+mark_as_advanced( FORCE Mezz_DependencyLibDir )
