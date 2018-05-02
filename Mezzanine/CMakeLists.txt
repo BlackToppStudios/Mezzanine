@@ -1100,6 +1100,9 @@ set(${PROJECT_NAME}_sources
 set(AudioProviderSet 0)
 option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine." ON)
 
+set(Audio_Private_Includes )
+set(Audio_Public_Includes )
+
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
         message(FATAL_ERROR "A provider for the Audio subsystem has already been set "
@@ -1144,12 +1147,16 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalssoundscapemanagerfactory.cpp"
     )
 
-    include_directories(
-        "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
+    set(Audio_Private_Includes
+        ${Audio_Private_Includes}
+        #"${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
+    )
+    set(Audio_Public_Includes
+        ${Audio_Public_Includes}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/OpenAL32/include"
     )
-    
+
     IF(WIN32)
         set(SoundLibraryNames ${SoundLibraryNames}
             "OpenAL32"
@@ -1343,11 +1350,16 @@ set(BulletSrcDir "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc
 
 add_subdirectory (libincludes/common)
 
+set(MEZZ_Private_Includes )
+set(MEZZ_Public_Includes )
+
 #######################################
 # Extra includes from Ogre
 
 if(${WIN32})
-    include_directories( ${DirectX_INCLUDE_DIR} ${DirectX_D3D11_INCLUDE_DIR} )
+    set(MEZZ_Private_Includes "${MEZZ_Private_Includes}"
+                              "${DirectX_INCLUDE_DIR}"
+                              "${DirectX_D3D11_INCLUDE_DIR}" )
 endif(${WIN32})
 
 # This was moved to below the sub-libraries so the directX includes in the lines above will work.
@@ -1363,8 +1375,7 @@ link_directories(
 
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
-target_include_directories( ${PROJECT_NAME} PRIVATE
-    "${${PROJECT_NAME}_SRC_DIR}"
+set(MEZZ_Private_Includes "${MEZZ_Private_Includes}"
     "${BulletSrcDir}src"
     "${BulletSrcDir}src/LinearMath"
     "${BulletSrcDir}Extras/ConvexDecomposition"
@@ -1377,13 +1388,22 @@ target_include_directories( ${PROJECT_NAME} PRIVATE
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
     #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
-    
+
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/zlibsrc/zlib/"
     "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/libzipsrc/libzip/lib/"
+
+    "${Audio_Private_Includes}"
 
     "${OgreConfigHeaderIncludeDir}"
     "${OgreHeaderIncludeDir}"
 )
+set(MEZZ_Public_Includes "${MEZZ_Public_Includes}"
+                         "${${PROJECT_NAME}_SRC_DIR}"
+                         "${Audio_Public_Includes}"
+)
+
+target_include_directories( ${PROJECT_NAME} PRIVATE ${MEZZ_Private_Includes} )
+target_include_directories( ${PROJECT_NAME} PUBLIC ${MEZZ_Public_Includes} )
 
 target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
 
@@ -1684,13 +1704,13 @@ set(Archive_LibraryNames
 
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} 
-    ${Bullet_LibraryNames}  
-    ${SDLLibraryNames} 
+add_dependencies( ${PROJECT_NAME}
+    ${Bullet_LibraryNames}
+    ${SDLLibraryNames}
     ${SoundLibraryNames}
-    "lua" 
+    "lua"
     ${Archive_ProjectNames}
-    ${SWIG_PROJECT} 
+    ${SWIG_PROJECT}
     ${ExceptionProject}
 )
 
