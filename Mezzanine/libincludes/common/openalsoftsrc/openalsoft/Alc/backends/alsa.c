@@ -13,8 +13,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the
- *  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- *  Boston, MA  02111-1307, USA.
+ *  Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * Or go to http://www.gnu.org/copyleft/lgpl.html
  */
 
@@ -26,6 +26,8 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "alconfig.h"
+#include "ringbuffer.h"
 #include "threads.h"
 #include "compat.h"
 
@@ -199,15 +201,21 @@ static ALCboolean alsa_load(void)
 #ifdef HAVE_DYNLOAD
     if(!alsa_handle)
     {
+        al_string missing_funcs = AL_STRING_INIT_STATIC();
+
         alsa_handle = LoadLib("libasound.so.2");
         if(!alsa_handle)
+        {
+            WARN("Failed to load %s\n", "libasound.so.2");
             return ALC_FALSE;
+        }
 
         error = ALC_FALSE;
 #define LOAD_FUNC(f) do {                                                     \
     p##f = GetSymbol(alsa_handle, #f);                                        \
     if(p##f == NULL) {                                                        \
         error = ALC_TRUE;                                                     \
+        alstr_append_cstr(&missing_funcs, "\n" #f);                           \
     }                                                                         \
 } while(0)
         ALSA_FUNCS(LOAD_FUNC);
@@ -215,10 +223,11 @@ static ALCboolean alsa_load(void)
 
         if(error)
         {
+            WARN("Missing expected functions:%s\n", alstr_get_cstr(missing_funcs));
             CloseLib(alsa_handle);
             alsa_handle = NULL;
-            return ALC_FALSE;
         }
+        alstr_reset(&missing_funcs);
     }
 #endif
 
@@ -227,14 +236,24 @@ static ALCboolean alsa_load(void)
 
 
 typedef struct {
-    ALCchar *name;
-    char *device;
+    al_string name;
+    al_string device_name;
 } DevMap;
+TYPEDEF_VECTOR(DevMap, vector_DevMap)
 
-static DevMap *allDevNameMap;
-static ALuint numDevNames;
-static DevMap *allCaptureDevNameMap;
-static ALuint numCaptureDevNames;
+static vector_DevMap PlaybackDevices;
+static vector_DevMap CaptureDevices;
+
+static void clear_devlist(vector_DevMap *devlist)
+{
+#define FREE_DEV(i) do {                                                      \
+    AL_STRING_DEINIT((i)->name);                                              \
+    AL_STRING_DEINIT((i)->device_name);                                       \
+} while(0)
+    VECTOR_FOR_EACH(DevMap, *devlist, FREE_DEV);
+    VECTOR_RESIZE(*devlist, 0, 0);
+#undef FREE_DEV
+}
 
 
 static const char *prefix_name(snd_pcm_stream_t stream)
@@ -243,28 +262,65 @@ static const char *prefix_name(snd_pcm_stream_t stream)
     return (stream==SND_PCM_STREAM_PLAYBACK) ? "device-prefix" : "capture-prefix";
 }
 
-static DevMap *probe_devices(snd_pcm_stream_t stream, ALuint *count)
+static void probe_devices(snd_pcm_stream_t stream, vector_DevMap *DeviceList)
 {
     const char *main_prefix = "plughw:";
     snd_ctl_t *handle;
-    int card, err, dev, idx;
     snd_ctl_card_info_t *info;
     snd_pcm_info_t *pcminfo;
-    DevMap *DevList;
+    int card, err, dev;
+    DevMap entry;
+
+    clear_devlist(DeviceList);
 
     snd_ctl_card_info_malloc(&info);
     snd_pcm_info_malloc(&pcminfo);
 
-    DevList = malloc(sizeof(DevMap) * 1);
-    DevList[0].name = strdup(alsaDevice);
-    DevList[0].device = strdup(GetConfigValue("alsa", (stream==SND_PCM_STREAM_PLAYBACK) ?
-                                                      "device" : "capture", "default"));
-    idx = 1;
+    AL_STRING_INIT(entry.name);
+    AL_STRING_INIT(entry.device_name);
+    alstr_copy_cstr(&entry.name, alsaDevice);
+    alstr_copy_cstr(&entry.device_name, GetConfigValue(
+        NULL, "alsa", (stream==SND_PCM_STREAM_PLAYBACK) ? "device" : "capture", "default"
+    ));
+    VECTOR_PUSH_BACK(*DeviceList, entry);
+
+    if(stream == SND_PCM_STREAM_PLAYBACK)
+    {
+        const char *customdevs, *sep, *next;
+        next = GetConfigValue(NULL, "alsa", "custom-devices", "");
+        while((customdevs=next) != NULL && customdevs[0])
+        {
+            next = strchr(customdevs, ';');
+            sep = strchr(customdevs, '=');
+            if(!sep)
+            {
+                al_string spec = AL_STRING_INIT_STATIC();
+                if(next)
+                    alstr_copy_range(&spec, customdevs, next++);
+                else
+                    alstr_copy_cstr(&spec, customdevs);
+                ERR("Invalid ALSA device specification \"%s\"\n", alstr_get_cstr(spec));
+                alstr_reset(&spec);
+                continue;
+            }
+
+            AL_STRING_INIT(entry.name);
+            AL_STRING_INIT(entry.device_name);
+            alstr_copy_range(&entry.name, customdevs, sep++);
+            if(next)
+                alstr_copy_range(&entry.device_name, sep, next++);
+            else
+                alstr_copy_cstr(&entry.device_name, sep);
+            TRACE("Got device \"%s\", \"%s\"\n", alstr_get_cstr(entry.name),
+                  alstr_get_cstr(entry.device_name));
+            VECTOR_PUSH_BACK(*DeviceList, entry);
+        }
+    }
 
     card = -1;
     if((err=snd_card_next(&card)) < 0)
         ERR("Failed to find a card: %s\n", snd_strerror(err));
-    ConfigValueStr("alsa", prefix_name(stream), &main_prefix);
+    ConfigValueStr(NULL, "alsa", prefix_name(stream), &main_prefix);
     while(card >= 0)
     {
         const char *card_prefix = main_prefix;
@@ -288,13 +344,14 @@ static DevMap *probe_devices(snd_pcm_stream_t stream, ALuint *count)
         cardid = snd_ctl_card_info_get_id(info);
 
         snprintf(name, sizeof(name), "%s-%s", prefix_name(stream), cardid);
-        ConfigValueStr("alsa", name, &card_prefix);
+        ConfigValueStr(NULL, "alsa", name, &card_prefix);
 
         dev = -1;
         while(1)
         {
+            const char *device_prefix = card_prefix;
             const char *devname;
-            void *temp;
+            char device[128];
 
             if(snd_ctl_pcm_next_device(handle, &dev) < 0)
                 ERR("snd_ctl_pcm_next_device failed\n");
@@ -304,34 +361,29 @@ static DevMap *probe_devices(snd_pcm_stream_t stream, ALuint *count)
             snd_pcm_info_set_device(pcminfo, dev);
             snd_pcm_info_set_subdevice(pcminfo, 0);
             snd_pcm_info_set_stream(pcminfo, stream);
-            if((err = snd_ctl_pcm_info(handle, pcminfo)) < 0) {
+            if((err = snd_ctl_pcm_info(handle, pcminfo)) < 0)
+            {
                 if(err != -ENOENT)
                     ERR("control digital audio info (hw:%d): %s\n", card, snd_strerror(err));
                 continue;
             }
 
-            temp = realloc(DevList, sizeof(DevMap) * (idx+1));
-            if(temp)
-            {
-                const char *device_prefix = card_prefix;
-                char device[128];
+            devname = snd_pcm_info_get_name(pcminfo);
 
-                DevList = temp;
-                devname = snd_pcm_info_get_name(pcminfo);
+            snprintf(name, sizeof(name), "%s-%s-%d", prefix_name(stream), cardid, dev);
+            ConfigValueStr(NULL, "alsa", name, &device_prefix);
 
-                snprintf(name, sizeof(name), "%s-%s-%d", prefix_name(stream), cardid, dev);
-                ConfigValueStr("alsa", name, &device_prefix);
+            snprintf(name, sizeof(name), "%s, %s (CARD=%s,DEV=%d)",
+                     cardname, devname, cardid, dev);
+            snprintf(device, sizeof(device), "%sCARD=%s,DEV=%d",
+                     device_prefix, cardid, dev);
 
-                snprintf(name, sizeof(name), "%s, %s (CARD=%s,DEV=%d)",
-                         cardname, devname, cardid, dev);
-                snprintf(device, sizeof(device), "%sCARD=%s,DEV=%d",
-                         device_prefix, cardid, dev);
-
-                TRACE("Got device \"%s\", \"%s\"\n", name, device);
-                DevList[idx].name = strdup(name);
-                DevList[idx].device = strdup(device);
-                idx++;
-            }
+            TRACE("Got device \"%s\", \"%s\"\n", name, device);
+            AL_STRING_INIT(entry.name);
+            AL_STRING_INIT(entry.device_name);
+            alstr_copy_cstr(&entry.name, name);
+            alstr_copy_cstr(&entry.device_name, device);
+            VECTOR_PUSH_BACK(*DeviceList, entry);
         }
         snd_ctl_close(handle);
     next_card:
@@ -343,9 +395,6 @@ static DevMap *probe_devices(snd_pcm_stream_t stream, ALuint *count)
 
     snd_pcm_info_free(pcminfo);
     snd_ctl_card_info_free(info);
-
-    *count = idx;
-    return DevList;
 }
 
 
@@ -389,35 +438,50 @@ typedef struct ALCplaybackAlsa {
     ALvoid *buffer;
     ALsizei size;
 
-    volatile int killNow;
-    althread_t thread;
+    ATOMIC(ALenum) killNow;
+    althrd_t thread;
 } ALCplaybackAlsa;
-DECLARE_ALCBACKEND_VTABLE(ALCplaybackAlsa);
 
-static ALuint ALCplaybackAlsa_mixerProc(ALvoid *ptr);
-static ALuint ALCplaybackAlsa_mixerNoMMapProc(ALvoid *ptr);
+static int ALCplaybackAlsa_mixerProc(void *ptr);
+static int ALCplaybackAlsa_mixerNoMMapProc(void *ptr);
 
 static void ALCplaybackAlsa_Construct(ALCplaybackAlsa *self, ALCdevice *device);
-static DECLARE_FORWARD(ALCplaybackAlsa, ALCbackend, void, Destruct)
+static void ALCplaybackAlsa_Destruct(ALCplaybackAlsa *self);
 static ALCenum ALCplaybackAlsa_open(ALCplaybackAlsa *self, const ALCchar *name);
-static void ALCplaybackAlsa_close(ALCplaybackAlsa *self);
 static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self);
 static ALCboolean ALCplaybackAlsa_start(ALCplaybackAlsa *self);
 static void ALCplaybackAlsa_stop(ALCplaybackAlsa *self);
 static DECLARE_FORWARD2(ALCplaybackAlsa, ALCbackend, ALCenum, captureSamples, void*, ALCuint)
 static DECLARE_FORWARD(ALCplaybackAlsa, ALCbackend, ALCuint, availableSamples)
+static ClockLatency ALCplaybackAlsa_getClockLatency(ALCplaybackAlsa *self);
 static DECLARE_FORWARD(ALCplaybackAlsa, ALCbackend, void, lock)
 static DECLARE_FORWARD(ALCplaybackAlsa, ALCbackend, void, unlock)
+DECLARE_DEFAULT_ALLOCATORS(ALCplaybackAlsa)
+
+DEFINE_ALCBACKEND_VTABLE(ALCplaybackAlsa);
 
 
 static void ALCplaybackAlsa_Construct(ALCplaybackAlsa *self, ALCdevice *device)
 {
     ALCbackend_Construct(STATIC_CAST(ALCbackend, self), device);
     SET_VTABLE2(ALCplaybackAlsa, ALCbackend, self);
+
+    self->pcmHandle = NULL;
+    self->buffer = NULL;
+
+    ATOMIC_INIT(&self->killNow, AL_TRUE);
+}
+
+void ALCplaybackAlsa_Destruct(ALCplaybackAlsa *self)
+{
+    if(self->pcmHandle)
+        snd_pcm_close(self->pcmHandle);
+    self->pcmHandle = NULL;
+    ALCbackend_Destruct(STATIC_CAST(ALCbackend, self));
 }
 
 
-static ALuint ALCplaybackAlsa_mixerProc(ALvoid *ptr)
+static int ALCplaybackAlsa_mixerProc(void *ptr)
 {
     ALCplaybackAlsa *self = (ALCplaybackAlsa*)ptr;
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
@@ -429,18 +493,18 @@ static ALuint ALCplaybackAlsa_mixerProc(ALvoid *ptr)
     int err;
 
     SetRTPriority();
-    SetThreadName(MIXER_THREAD_NAME);
+    althrd_setname(althrd_current(), MIXER_THREAD_NAME);
 
     update_size = device->UpdateSize;
     num_updates = device->NumUpdates;
-    while(!self->killNow)
+    while(!ATOMIC_LOAD(&self->killNow, almemory_order_acquire))
     {
         int state = verify_state(self->pcmHandle);
         if(state < 0)
         {
             ERR("Invalid state detected: %s\n", snd_strerror(state));
             ALCplaybackAlsa_lock(self);
-            aluHandleDisconnect(device);
+            aluHandleDisconnect(device, "Bad state: %s", snd_strerror(state));
             ALCplaybackAlsa_unlock(self);
             break;
         }
@@ -509,7 +573,7 @@ static ALuint ALCplaybackAlsa_mixerProc(ALvoid *ptr)
     return 0;
 }
 
-static ALuint ALCplaybackAlsa_mixerNoMMapProc(ALvoid *ptr)
+static int ALCplaybackAlsa_mixerNoMMapProc(void *ptr)
 {
     ALCplaybackAlsa *self = (ALCplaybackAlsa*)ptr;
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
@@ -519,18 +583,18 @@ static ALuint ALCplaybackAlsa_mixerNoMMapProc(ALvoid *ptr)
     int err;
 
     SetRTPriority();
-    SetThreadName(MIXER_THREAD_NAME);
+    althrd_setname(althrd_current(), MIXER_THREAD_NAME);
 
     update_size = device->UpdateSize;
     num_updates = device->NumUpdates;
-    while(!self->killNow)
+    while(!ATOMIC_LOAD(&self->killNow, almemory_order_acquire))
     {
         int state = verify_state(self->pcmHandle);
         if(state < 0)
         {
             ERR("Invalid state detected: %s\n", snd_strerror(state));
             ALCplaybackAlsa_lock(self);
-            aluHandleDisconnect(device);
+            aluHandleDisconnect(device, "Bad state: %s", snd_strerror(state));
             ALCplaybackAlsa_unlock(self);
             break;
         }
@@ -577,7 +641,9 @@ static ALuint ALCplaybackAlsa_mixerNoMMapProc(ALvoid *ptr)
             {
             case -EAGAIN:
                 continue;
+#if ESTRPIPE != EPIPE
             case -ESTRPIPE:
+#endif
             case -EPIPE:
             case -EINTR:
                 ret = snd_pcm_recover(self->pcmHandle, ret, 1);
@@ -614,28 +680,25 @@ static ALCenum ALCplaybackAlsa_open(ALCplaybackAlsa *self, const ALCchar *name)
 
     if(name)
     {
-        size_t idx;
+        const DevMap *iter;
 
-        if(!allDevNameMap)
-            allDevNameMap = probe_devices(SND_PCM_STREAM_PLAYBACK, &numDevNames);
+        if(VECTOR_SIZE(PlaybackDevices) == 0)
+            probe_devices(SND_PCM_STREAM_PLAYBACK, &PlaybackDevices);
 
-        for(idx = 0;idx < numDevNames;idx++)
-        {
-            if(strcmp(name, allDevNameMap[idx].name) == 0)
-            {
-                driver = allDevNameMap[idx].device;
-                break;
-            }
-        }
-        if(idx == numDevNames)
+#define MATCH_NAME(i)  (alstr_cmp_cstr((i)->name, name) == 0)
+        VECTOR_FIND_IF(iter, const DevMap, PlaybackDevices, MATCH_NAME);
+#undef MATCH_NAME
+        if(iter == VECTOR_END(PlaybackDevices))
             return ALC_INVALID_VALUE;
+        driver = alstr_get_cstr(iter->device_name);
     }
     else
     {
         name = alsaDevice;
-        driver = GetConfigValue("alsa", "device", "default");
+        driver = GetConfigValue(NULL, "alsa", "device", "default");
     }
 
+    TRACE("Opening device \"%s\"\n", driver);
     err = snd_pcm_open(&self->pcmHandle, driver, SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK);
     if(err < 0)
     {
@@ -646,14 +709,9 @@ static ALCenum ALCplaybackAlsa_open(ALCplaybackAlsa *self, const ALCchar *name)
     /* Free alsa's global config tree. Otherwise valgrind reports a ton of leaks. */
     snd_config_update_free_global();
 
-    device->DeviceName = strdup(name);
+    alstr_copy_cstr(&device->DeviceName, name);
 
     return ALC_NO_ERROR;
-}
-
-static void ALCplaybackAlsa_close(ALCplaybackAlsa *self)
-{
-    snd_pcm_close(self->pcmHandle);
 }
 
 static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
@@ -663,15 +721,15 @@ static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
     unsigned int periodLen, bufferLen;
     snd_pcm_sw_params_t *sp = NULL;
     snd_pcm_hw_params_t *hp = NULL;
+    snd_pcm_format_t format = -1;
     snd_pcm_access_t access;
-    snd_pcm_format_t format;
     unsigned int periods;
     unsigned int rate;
     const char *funcerr;
     int allowmmap;
+    int dir;
     int err;
 
-    format = -1;
     switch(device->FmtType)
     {
         case DevFmtByte:
@@ -697,7 +755,7 @@ static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
             break;
     }
 
-    allowmmap = GetConfigValueBool("alsa", "mmap", 1);
+    allowmmap = GetConfigValueBool(alstr_get_cstr(device->DeviceName), "alsa", "mmap", 1);
     periods = device->NumUpdates;
     periodLen = (ALuint64)device->UpdateSize * 1000000 / device->Frequency;
     bufferLen = periodLen * periods;
@@ -741,7 +799,7 @@ static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
     }
     CHECK(snd_pcm_hw_params_set_format(self->pcmHandle, hp, format));
     /* test and set channels (implicitly sets frame bits) */
-    if(snd_pcm_hw_params_test_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans)) < 0)
+    if(snd_pcm_hw_params_test_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans, device->AmbiOrder)) < 0)
     {
         static const enum DevFmtChannels channellist[] = {
             DevFmtStereo,
@@ -754,17 +812,24 @@ static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
 
         for(k = 0;k < COUNTOF(channellist);k++)
         {
-            if(snd_pcm_hw_params_test_channels(self->pcmHandle, hp, ChannelsFromDevFmt(channellist[k])) >= 0)
+            if(snd_pcm_hw_params_test_channels(self->pcmHandle, hp, ChannelsFromDevFmt(channellist[k], 0)) >= 0)
             {
                 device->FmtChans = channellist[k];
+                device->AmbiOrder = 0;
                 break;
             }
         }
     }
-    CHECK(snd_pcm_hw_params_set_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans)));
+    CHECK(snd_pcm_hw_params_set_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans, device->AmbiOrder)));
     /* set rate (implicitly constrains period/buffer parameters) */
-    if(snd_pcm_hw_params_set_rate_resample(self->pcmHandle, hp, 0) < 0)
-        ERR("Failed to disable ALSA resampler\n");
+    if(!GetConfigValueBool(alstr_get_cstr(device->DeviceName), "alsa", "allow-resampler", 0) ||
+       !(device->Flags&DEVICE_FREQUENCY_REQUEST))
+    {
+        if(snd_pcm_hw_params_set_rate_resample(self->pcmHandle, hp, 0) < 0)
+            ERR("Failed to disable ALSA resampler\n");
+    }
+    else if(snd_pcm_hw_params_set_rate_resample(self->pcmHandle, hp, 1) < 0)
+        ERR("Failed to enable ALSA resampler\n");
     CHECK(snd_pcm_hw_params_set_rate_near(self->pcmHandle, hp, &rate, NULL));
     /* set buffer time (implicitly constrains period/buffer parameters) */
     if((err=snd_pcm_hw_params_set_buffer_time_near(self->pcmHandle, hp, &bufferLen, NULL)) < 0)
@@ -777,7 +842,9 @@ static ALCboolean ALCplaybackAlsa_reset(ALCplaybackAlsa *self)
     /* retrieve configuration info */
     CHECK(snd_pcm_hw_params_get_access(hp, &access));
     CHECK(snd_pcm_hw_params_get_period_size(hp, &periodSizeInFrames, NULL));
-    CHECK(snd_pcm_hw_params_get_periods(hp, &periods, NULL));
+    CHECK(snd_pcm_hw_params_get_periods(hp, &periods, &dir));
+    if(dir != 0)
+        WARN("Inexact period count: %u (%d)\n", periods, dir);
 
     snd_pcm_hw_params_free(hp);
     hp = NULL;
@@ -809,7 +876,7 @@ error:
 static ALCboolean ALCplaybackAlsa_start(ALCplaybackAlsa *self)
 {
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
-    ALuint (*thread_func)(ALvoid*) = NULL;
+    int (*thread_func)(void*) = NULL;
     snd_pcm_hw_params_t *hp = NULL;
     snd_pcm_access_t access;
     const char *funcerr;
@@ -827,7 +894,7 @@ static ALCboolean ALCplaybackAlsa_start(ALCplaybackAlsa *self)
     self->size = snd_pcm_frames_to_bytes(self->pcmHandle, device->UpdateSize);
     if(access == SND_PCM_ACCESS_RW_INTERLEAVED)
     {
-        self->buffer = malloc(self->size);
+        self->buffer = al_malloc(16, self->size);
         if(!self->buffer)
         {
             ERR("buffer malloc failed\n");
@@ -845,10 +912,11 @@ static ALCboolean ALCplaybackAlsa_start(ALCplaybackAlsa *self)
         }
         thread_func = ALCplaybackAlsa_mixerProc;
     }
-    if(!StartThread(&self->thread, thread_func, self))
+    ATOMIC_STORE(&self->killNow, AL_FALSE, almemory_order_release);
+    if(althrd_create(&self->thread, thread_func, self) != althrd_success)
     {
         ERR("Could not create playback thread\n");
-        free(self->buffer);
+        al_free(self->buffer);
         self->buffer = NULL;
         return ALC_FALSE;
     }
@@ -863,38 +931,36 @@ error:
 
 static void ALCplaybackAlsa_stop(ALCplaybackAlsa *self)
 {
-    if(self->thread)
-    {
-        self->killNow = 1;
-        StopThread(self->thread);
-        self->thread = NULL;
-    }
-    self->killNow = 0;
-    free(self->buffer);
+    int res;
+
+    if(ATOMIC_EXCHANGE(&self->killNow, AL_TRUE, almemory_order_acq_rel))
+        return;
+    althrd_join(self->thread, &res);
+
+    al_free(self->buffer);
     self->buffer = NULL;
 }
 
-static ALint64 ALCplaybackAlsa_getLatency(ALCplaybackAlsa *self)
+static ClockLatency ALCplaybackAlsa_getClockLatency(ALCplaybackAlsa *self)
 {
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
     snd_pcm_sframes_t delay = 0;
+    ClockLatency ret;
     int err;
 
+    ALCplaybackAlsa_lock(self);
+    ret.ClockTime = GetDeviceClockTime(device);
     if((err=snd_pcm_delay(self->pcmHandle, &delay)) < 0)
     {
         ERR("Failed to get pcm delay: %s\n", snd_strerror(err));
-        return 0;
+        delay = 0;
     }
-    return maxi64((ALint64)delay*1000000000/device->Frequency, 0);
+    if(delay < 0) delay = 0;
+    ret.Latency = delay * DEVICE_CLOCK_RES / device->Frequency;
+    ALCplaybackAlsa_unlock(self);
+
+    return ret;
 }
-
-
-static void ALCplaybackAlsa_Delete(ALCplaybackAlsa *self)
-{
-    free(self);
-}
-
-DEFINE_ALCBACKEND_VTABLE(ALCplaybackAlsa);
 
 
 typedef struct ALCcaptureAlsa {
@@ -906,29 +972,50 @@ typedef struct ALCcaptureAlsa {
     ALsizei size;
 
     ALboolean doCapture;
-    RingBuffer *ring;
+    ll_ringbuffer_t *ring;
 
     snd_pcm_sframes_t last_avail;
 } ALCcaptureAlsa;
-DECLARE_ALCBACKEND_VTABLE(ALCcaptureAlsa);
 
 static void ALCcaptureAlsa_Construct(ALCcaptureAlsa *self, ALCdevice *device);
-static DECLARE_FORWARD(ALCcaptureAlsa, ALCbackend, void, Destruct)
+static void ALCcaptureAlsa_Destruct(ALCcaptureAlsa *self);
 static ALCenum ALCcaptureAlsa_open(ALCcaptureAlsa *self, const ALCchar *name);
-static void ALCcaptureAlsa_close(ALCcaptureAlsa *self);
 static DECLARE_FORWARD(ALCcaptureAlsa, ALCbackend, ALCboolean, reset)
 static ALCboolean ALCcaptureAlsa_start(ALCcaptureAlsa *self);
 static void ALCcaptureAlsa_stop(ALCcaptureAlsa *self);
 static ALCenum ALCcaptureAlsa_captureSamples(ALCcaptureAlsa *self, ALCvoid *buffer, ALCuint samples);
 static ALCuint ALCcaptureAlsa_availableSamples(ALCcaptureAlsa *self);
+static ClockLatency ALCcaptureAlsa_getClockLatency(ALCcaptureAlsa *self);
 static DECLARE_FORWARD(ALCcaptureAlsa, ALCbackend, void, lock)
 static DECLARE_FORWARD(ALCcaptureAlsa, ALCbackend, void, unlock)
+DECLARE_DEFAULT_ALLOCATORS(ALCcaptureAlsa)
+
+DEFINE_ALCBACKEND_VTABLE(ALCcaptureAlsa);
 
 
 static void ALCcaptureAlsa_Construct(ALCcaptureAlsa *self, ALCdevice *device)
 {
     ALCbackend_Construct(STATIC_CAST(ALCbackend, self), device);
     SET_VTABLE2(ALCcaptureAlsa, ALCbackend, self);
+
+    self->pcmHandle = NULL;
+    self->buffer = NULL;
+    self->ring = NULL;
+}
+
+void ALCcaptureAlsa_Destruct(ALCcaptureAlsa *self)
+{
+    if(self->pcmHandle)
+        snd_pcm_close(self->pcmHandle);
+    self->pcmHandle = NULL;
+
+    al_free(self->buffer);
+    self->buffer = NULL;
+
+    ll_ringbuffer_free(self->ring);
+    self->ring = NULL;
+
+    ALCbackend_Destruct(STATIC_CAST(ALCbackend, self));
 }
 
 
@@ -940,34 +1027,31 @@ static ALCenum ALCcaptureAlsa_open(ALCcaptureAlsa *self, const ALCchar *name)
     snd_pcm_uframes_t bufferSizeInFrames;
     snd_pcm_uframes_t periodSizeInFrames;
     ALboolean needring = AL_FALSE;
-    snd_pcm_format_t format;
+    snd_pcm_format_t format = -1;
     const char *funcerr;
     int err;
 
     if(name)
     {
-        size_t idx;
+        const DevMap *iter;
 
-        if(!allCaptureDevNameMap)
-            allCaptureDevNameMap = probe_devices(SND_PCM_STREAM_CAPTURE, &numCaptureDevNames);
+        if(VECTOR_SIZE(CaptureDevices) == 0)
+            probe_devices(SND_PCM_STREAM_CAPTURE, &CaptureDevices);
 
-        for(idx = 0;idx < numCaptureDevNames;idx++)
-        {
-            if(strcmp(name, allCaptureDevNameMap[idx].name) == 0)
-            {
-                driver = allCaptureDevNameMap[idx].device;
-                break;
-            }
-        }
-        if(idx == numCaptureDevNames)
+#define MATCH_NAME(i)  (alstr_cmp_cstr((i)->name, name) == 0)
+        VECTOR_FIND_IF(iter, const DevMap, CaptureDevices, MATCH_NAME);
+#undef MATCH_NAME
+        if(iter == VECTOR_END(CaptureDevices))
             return ALC_INVALID_VALUE;
+        driver = alstr_get_cstr(iter->device_name);
     }
     else
     {
         name = alsaDevice;
-        driver = GetConfigValue("alsa", "capture", "default");
+        driver = GetConfigValue(NULL, "alsa", "capture", "default");
     }
 
+    TRACE("Opening device \"%s\"\n", driver);
     err = snd_pcm_open(&self->pcmHandle, driver, SND_PCM_STREAM_CAPTURE, SND_PCM_NONBLOCK);
     if(err < 0)
     {
@@ -978,7 +1062,6 @@ static ALCenum ALCcaptureAlsa_open(ALCcaptureAlsa *self, const ALCchar *name)
     /* Free alsa's global config tree. Otherwise valgrind reports a ton of leaks. */
     snd_config_update_free_global();
 
-    format = -1;
     switch(device->FmtType)
     {
         case DevFmtByte:
@@ -1017,7 +1100,7 @@ static ALCenum ALCcaptureAlsa_open(ALCcaptureAlsa *self, const ALCchar *name)
     /* set format (implicitly sets sample bits) */
     CHECK(snd_pcm_hw_params_set_format(self->pcmHandle, hp, format));
     /* set channels (implicitly sets frame bits) */
-    CHECK(snd_pcm_hw_params_set_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans)));
+    CHECK(snd_pcm_hw_params_set_channels(self->pcmHandle, hp, ChannelsFromDevFmt(device->FmtChans, device->AmbiOrder)));
     /* set rate (implicitly constrains period/buffer parameters) */
     CHECK(snd_pcm_hw_params_set_rate(self->pcmHandle, hp, device->Frequency, 0));
     /* set buffer size in frame units (implicitly sets period size/bytes/time and buffer time/bytes) */
@@ -1039,24 +1122,19 @@ static ALCenum ALCcaptureAlsa_open(ALCcaptureAlsa *self, const ALCchar *name)
 
     if(needring)
     {
-        self->ring = CreateRingBuffer(FrameSizeFromDevFmt(device->FmtChans, device->FmtType),
-                                      device->UpdateSize*device->NumUpdates);
+        self->ring = ll_ringbuffer_create(
+            device->UpdateSize*device->NumUpdates,
+            FrameSizeFromDevFmt(device->FmtChans, device->FmtType, device->AmbiOrder),
+            false
+        );
         if(!self->ring)
         {
             ERR("ring buffer create failed\n");
             goto error2;
         }
-
-        self->size = snd_pcm_frames_to_bytes(self->pcmHandle, periodSizeInFrames);
-        self->buffer = malloc(self->size);
-        if(!self->buffer)
-        {
-            ERR("buffer malloc failed\n");
-            goto error2;
-        }
     }
 
-    device->DeviceName = strdup(name);
+    alstr_copy_cstr(&device->DeviceName, name);
 
     return ALC_NO_ERROR;
 
@@ -1065,22 +1143,12 @@ error:
     if(hp) snd_pcm_hw_params_free(hp);
 
 error2:
-    free(self->buffer);
-    self->buffer = NULL;
-    DestroyRingBuffer(self->ring);
+    ll_ringbuffer_free(self->ring);
     self->ring = NULL;
     snd_pcm_close(self->pcmHandle);
+    self->pcmHandle = NULL;
 
     return ALC_INVALID_VALUE;
-}
-
-static void ALCcaptureAlsa_close(ALCcaptureAlsa *self)
-{
-    snd_pcm_close(self->pcmHandle);
-    DestroyRingBuffer(self->ring);
-
-    free(self->buffer);
-    self->buffer = NULL;
 }
 
 static ALCboolean ALCcaptureAlsa_start(ALCcaptureAlsa *self)
@@ -1089,7 +1157,8 @@ static ALCboolean ALCcaptureAlsa_start(ALCcaptureAlsa *self)
     if(err < 0)
     {
         ERR("start failed: %s\n", snd_strerror(err));
-        aluHandleDisconnect(STATIC_CAST(ALCbackend, self)->mDevice);
+        aluHandleDisconnect(STATIC_CAST(ALCbackend, self)->mDevice, "Capture state failure: %s",
+                            snd_strerror(err));
         return ALC_FALSE;
     }
 
@@ -1114,11 +1183,12 @@ static void ALCcaptureAlsa_stop(ALCcaptureAlsa *self)
         void *ptr;
 
         size = snd_pcm_frames_to_bytes(self->pcmHandle, avail);
-        ptr = realloc(self->buffer, size);
+        ptr = al_malloc(16, size);
         if(ptr)
         {
+            ALCcaptureAlsa_captureSamples(self, ptr, avail);
+            al_free(self->buffer);
             self->buffer = ptr;
-            ALCcaptureAlsa_captureSamples(self, self->buffer, avail);
             self->size = size;
         }
     }
@@ -1134,12 +1204,12 @@ static ALCenum ALCcaptureAlsa_captureSamples(ALCcaptureAlsa *self, ALCvoid *buff
 
     if(self->ring)
     {
-        ReadRingBuffer(self->ring, buffer, samples);
+        ll_ringbuffer_read(self->ring, buffer, samples);
         return ALC_NO_ERROR;
     }
 
     self->last_avail -= samples;
-    while(device->Connected && samples > 0)
+    while(ATOMIC_LOAD(&device->Connected, almemory_order_acquire) && samples > 0)
     {
         snd_pcm_sframes_t amt = 0;
 
@@ -1150,7 +1220,7 @@ static ALCenum ALCcaptureAlsa_captureSamples(ALCcaptureAlsa *self, ALCvoid *buff
             if((snd_pcm_uframes_t)amt > samples) amt = samples;
 
             amt = snd_pcm_frames_to_bytes(self->pcmHandle, amt);
-            memmove(buffer, self->buffer, amt);
+            memcpy(buffer, self->buffer, amt);
 
             if(self->size > amt)
             {
@@ -1159,7 +1229,7 @@ static ALCenum ALCcaptureAlsa_captureSamples(ALCcaptureAlsa *self, ALCvoid *buff
             }
             else
             {
-                free(self->buffer);
+                al_free(self->buffer);
                 self->buffer = NULL;
                 self->size = 0;
             }
@@ -1182,7 +1252,7 @@ static ALCenum ALCcaptureAlsa_captureSamples(ALCcaptureAlsa *self, ALCvoid *buff
             if(amt < 0)
             {
                 ERR("restore error: %s\n", snd_strerror(amt));
-                aluHandleDisconnect(device);
+                aluHandleDisconnect(device, "Capture recovery failure: %s", snd_strerror(amt));
                 break;
             }
             /* If the amount available is less than what's asked, we lost it
@@ -1207,7 +1277,7 @@ static ALCuint ALCcaptureAlsa_availableSamples(ALCcaptureAlsa *self)
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
     snd_pcm_sframes_t avail = 0;
 
-    if(device->Connected && self->doCapture)
+    if(ATOMIC_LOAD(&device->Connected, almemory_order_acquire) && self->doCapture)
         avail = snd_pcm_avail_update(self->pcmHandle);
     if(avail < 0)
     {
@@ -1223,7 +1293,7 @@ static ALCuint ALCcaptureAlsa_availableSamples(ALCcaptureAlsa *self)
         if(avail < 0)
         {
             ERR("restore error: %s\n", snd_strerror(avail));
-            aluHandleDisconnect(device);
+            aluHandleDisconnect(device, "Capture recovery failure: %s", snd_strerror(avail));
         }
     }
 
@@ -1237,12 +1307,15 @@ static ALCuint ALCcaptureAlsa_availableSamples(ALCcaptureAlsa *self)
 
     while(avail > 0)
     {
+        ll_ringbuffer_data_t vec[2];
         snd_pcm_sframes_t amt;
 
-        amt = snd_pcm_bytes_to_frames(self->pcmHandle, self->size);
-        if(avail < amt) amt = avail;
+        ll_ringbuffer_get_write_vector(self->ring, vec);
+        if(vec[0].len == 0) break;
 
-        amt = snd_pcm_readi(self->pcmHandle, self->buffer, amt);
+        amt = (vec[0].len < (snd_pcm_uframes_t)avail) ?
+              vec[0].len : (snd_pcm_uframes_t)avail;
+        amt = snd_pcm_readi(self->pcmHandle, vec[0].buf, amt);
         if(amt < 0)
         {
             ERR("read error: %s\n", snd_strerror(amt));
@@ -1259,42 +1332,46 @@ static ALCuint ALCcaptureAlsa_availableSamples(ALCcaptureAlsa *self)
             if(amt < 0)
             {
                 ERR("restore error: %s\n", snd_strerror(amt));
-                aluHandleDisconnect(device);
+                aluHandleDisconnect(device, "Capture recovery failure: %s", snd_strerror(amt));
                 break;
             }
             avail = amt;
             continue;
         }
 
-        WriteRingBuffer(self->ring, self->buffer, amt);
+        ll_ringbuffer_write_advance(self->ring, amt);
         avail -= amt;
     }
 
-    return RingBufferSize(self->ring);
+    return ll_ringbuffer_read_space(self->ring);
 }
 
-static ALint64 ALCcaptureAlsa_getLatency(ALCcaptureAlsa *self)
+static ClockLatency ALCcaptureAlsa_getClockLatency(ALCcaptureAlsa *self)
 {
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
     snd_pcm_sframes_t delay = 0;
+    ClockLatency ret;
     int err;
 
+    ALCcaptureAlsa_lock(self);
+    ret.ClockTime = GetDeviceClockTime(device);
     if((err=snd_pcm_delay(self->pcmHandle, &delay)) < 0)
     {
         ERR("Failed to get pcm delay: %s\n", snd_strerror(err));
-        return 0;
+        delay = 0;
     }
-    return maxi64((ALint64)delay*1000000000/device->Frequency, 0);
+    if(delay < 0) delay = 0;
+    ret.Latency = delay * DEVICE_CLOCK_RES / device->Frequency;
+    ALCcaptureAlsa_unlock(self);
+
+    return ret;
 }
 
-static void ALCcaptureAlsa_Delete(ALCcaptureAlsa *self)
-{
-    free(self);
-}
 
-DEFINE_ALCBACKEND_VTABLE(ALCcaptureAlsa);
-
-
+static inline void AppendAllDevicesList2(const DevMap *entry)
+{ AppendAllDevicesList(alstr_get_cstr(entry->name)); }
+static inline void AppendCaptureDeviceList2(const DevMap *entry)
+{ AppendCaptureDeviceList(alstr_get_cstr(entry->name)); }
 
 typedef struct ALCalsaBackendFactory {
     DERIVE_FROM_TYPE(ALCbackendFactory);
@@ -1303,6 +1380,9 @@ typedef struct ALCalsaBackendFactory {
 
 static ALCboolean ALCalsaBackendFactory_init(ALCalsaBackendFactory* UNUSED(self))
 {
+    VECTOR_INIT(PlaybackDevices);
+    VECTOR_INIT(CaptureDevices);
+
     if(!alsa_load())
         return ALC_FALSE;
     return ALC_TRUE;
@@ -1310,25 +1390,11 @@ static ALCboolean ALCalsaBackendFactory_init(ALCalsaBackendFactory* UNUSED(self)
 
 static void ALCalsaBackendFactory_deinit(ALCalsaBackendFactory* UNUSED(self))
 {
-    ALuint i;
+    clear_devlist(&PlaybackDevices);
+    VECTOR_DEINIT(PlaybackDevices);
 
-    for(i = 0;i < numDevNames;++i)
-    {
-        free(allDevNameMap[i].name);
-        free(allDevNameMap[i].device);
-    }
-    free(allDevNameMap);
-    allDevNameMap = NULL;
-    numDevNames = 0;
-
-    for(i = 0;i < numCaptureDevNames;++i)
-    {
-        free(allCaptureDevNameMap[i].name);
-        free(allCaptureDevNameMap[i].device);
-    }
-    free(allCaptureDevNameMap);
-    allCaptureDevNameMap = NULL;
-    numCaptureDevNames = 0;
+    clear_devlist(&CaptureDevices);
+    VECTOR_DEINIT(CaptureDevices);
 
 #ifdef HAVE_DYNLOAD
     if(alsa_handle)
@@ -1346,36 +1412,16 @@ static ALCboolean ALCalsaBackendFactory_querySupport(ALCalsaBackendFactory* UNUS
 
 static void ALCalsaBackendFactory_probe(ALCalsaBackendFactory* UNUSED(self), enum DevProbe type)
 {
-    ALuint i;
-
     switch(type)
     {
         case ALL_DEVICE_PROBE:
-            for(i = 0;i < numDevNames;++i)
-            {
-                free(allDevNameMap[i].name);
-                free(allDevNameMap[i].device);
-            }
-
-            free(allDevNameMap);
-            allDevNameMap = probe_devices(SND_PCM_STREAM_PLAYBACK, &numDevNames);
-
-            for(i = 0;i < numDevNames;++i)
-                AppendAllDevicesList(allDevNameMap[i].name);
+            probe_devices(SND_PCM_STREAM_PLAYBACK, &PlaybackDevices);
+            VECTOR_FOR_EACH(const DevMap, PlaybackDevices, AppendAllDevicesList2);
             break;
 
         case CAPTURE_DEVICE_PROBE:
-            for(i = 0;i < numCaptureDevNames;++i)
-            {
-                free(allCaptureDevNameMap[i].name);
-                free(allCaptureDevNameMap[i].device);
-            }
-
-            free(allCaptureDevNameMap);
-            allCaptureDevNameMap = probe_devices(SND_PCM_STREAM_CAPTURE, &numCaptureDevNames);
-
-            for(i = 0;i < numCaptureDevNames;++i)
-                AppendCaptureDeviceList(allCaptureDevNameMap[i].name);
+            probe_devices(SND_PCM_STREAM_CAPTURE, &CaptureDevices);
+            VECTOR_FOR_EACH(const DevMap, CaptureDevices, AppendCaptureDeviceList2);
             break;
     }
 }
@@ -1385,23 +1431,15 @@ static ALCbackend* ALCalsaBackendFactory_createBackend(ALCalsaBackendFactory* UN
     if(type == ALCbackend_Playback)
     {
         ALCplaybackAlsa *backend;
-
-        backend = calloc(1, sizeof(*backend));
+        NEW_OBJ(backend, ALCplaybackAlsa)(device);
         if(!backend) return NULL;
-
-        ALCplaybackAlsa_Construct(backend, device);
-
         return STATIC_CAST(ALCbackend, backend);
     }
     if(type == ALCbackend_Capture)
     {
         ALCcaptureAlsa *backend;
-
-        backend = calloc(1, sizeof(*backend));
+        NEW_OBJ(backend, ALCcaptureAlsa)(device);
         if(!backend) return NULL;
-
-        ALCcaptureAlsa_Construct(backend, device);
-
         return STATIC_CAST(ALCbackend, backend);
     }
 

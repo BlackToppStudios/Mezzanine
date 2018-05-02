@@ -13,8 +13,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the
- *  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- *  Boston, MA  02111-1307, USA.
+ *  Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * Or go to http://www.gnu.org/copyleft/lgpl.html
  */
 
@@ -35,23 +35,6 @@
 #include "AL/alc.h"
 
 
-const struct EffectList EffectList[] = {
-    { "eaxreverb",  EAXREVERB,  "AL_EFFECT_EAXREVERB",      AL_EFFECT_EAXREVERB },
-    { "reverb",     REVERB,     "AL_EFFECT_REVERB",         AL_EFFECT_REVERB },
-    { "autowah",    AUTOWAH,    "AL_EFFECT_AUTOWAH",        AL_EFFECT_AUTOWAH },
-    { "chorus",     CHORUS,     "AL_EFFECT_CHORUS",         AL_EFFECT_CHORUS },
-    { "compressor", COMPRESSOR, "AL_EFFECT_COMPRESSOR",     AL_EFFECT_COMPRESSOR },
-    { "distortion", DISTORTION, "AL_EFFECT_DISTORTION",     AL_EFFECT_DISTORTION },
-    { "echo",       ECHO,       "AL_EFFECT_ECHO",           AL_EFFECT_ECHO },
-    { "equalizer",  EQUALIZER,  "AL_EFFECT_EQUALIZER",      AL_EFFECT_EQUALIZER },
-    { "flanger",    FLANGER,    "AL_EFFECT_FLANGER",        AL_EFFECT_FLANGER },
-    { "modulator",  MODULATOR,  "AL_EFFECT_RING_MODULATOR", AL_EFFECT_RING_MODULATOR },
-    { "dedicated",  DEDICATED,  "AL_EFFECT_DEDICATED_LOW_FREQUENCY_EFFECT", AL_EFFECT_DEDICATED_LOW_FREQUENCY_EFFECT },
-    { "dedicated",  DEDICATED,  "AL_EFFECT_DEDICATED_DIALOGUE", AL_EFFECT_DEDICATED_DIALOGUE },
-    { NULL, 0, NULL, (ALenum)0 }
-};
-
-
 AL_API ALboolean AL_APIENTRY alIsExtensionPresent(const ALchar *extName)
 {
     ALboolean ret = AL_FALSE;
@@ -62,8 +45,8 @@ AL_API ALboolean AL_APIENTRY alIsExtensionPresent(const ALchar *extName)
     context = GetContextRef();
     if(!context) return AL_FALSE;
 
-    if(!(extName))
-        SET_ERROR_AND_GOTO(context, AL_INVALID_VALUE, done);
+    if(!extName)
+        SETERR_GOTO(context, AL_INVALID_VALUE, done, "NULL pointer");
 
     len = strlen(extName);
     ptr = context->ExtensionList;

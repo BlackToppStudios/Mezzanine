@@ -13,8 +13,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the
- *  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- *  Boston, MA  02111-1307, USA.
+ *  Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * Or go to http://www.gnu.org/copyleft/lgpl.html
  */
 
@@ -35,16 +35,15 @@ typedef struct ALCloopback {
 static void ALCloopback_Construct(ALCloopback *self, ALCdevice *device);
 static DECLARE_FORWARD(ALCloopback, ALCbackend, void, Destruct)
 static ALCenum ALCloopback_open(ALCloopback *self, const ALCchar *name);
-static void ALCloopback_close(ALCloopback *self);
 static ALCboolean ALCloopback_reset(ALCloopback *self);
 static ALCboolean ALCloopback_start(ALCloopback *self);
 static void ALCloopback_stop(ALCloopback *self);
 static DECLARE_FORWARD2(ALCloopback, ALCbackend, ALCenum, captureSamples, void*, ALCuint)
 static DECLARE_FORWARD(ALCloopback, ALCbackend, ALCuint, availableSamples)
-static DECLARE_FORWARD(ALCloopback, ALCbackend, ALint64, getLatency)
+static DECLARE_FORWARD(ALCloopback, ALCbackend, ClockLatency, getClockLatency)
 static DECLARE_FORWARD(ALCloopback, ALCbackend, void, lock)
 static DECLARE_FORWARD(ALCloopback, ALCbackend, void, unlock)
-static void ALCloopback_Delete(ALCloopback *self);
+DECLARE_DEFAULT_ALLOCATORS(ALCloopback)
 DEFINE_ALCBACKEND_VTABLE(ALCloopback);
 
 
@@ -59,12 +58,8 @@ static ALCenum ALCloopback_open(ALCloopback *self, const ALCchar *name)
 {
     ALCdevice *device = STATIC_CAST(ALCbackend, self)->mDevice;
 
-    device->DeviceName = strdup(name);
+    alstr_copy_cstr(&device->DeviceName, name);
     return ALC_NO_ERROR;
-}
-
-static void ALCloopback_close(ALCloopback* UNUSED(self))
-{
 }
 
 static ALCboolean ALCloopback_reset(ALCloopback *self)
@@ -80,12 +75,6 @@ static ALCboolean ALCloopback_start(ALCloopback* UNUSED(self))
 
 static void ALCloopback_stop(ALCloopback* UNUSED(self))
 {
-}
-
-
-static void ALCloopback_Delete(ALCloopback *self)
-{
-    free(self);
 }
 
 
@@ -127,14 +116,13 @@ static void ALCloopbackFactory_probe(ALCloopbackFactory* UNUSED(self), enum DevP
 
 static ALCbackend* ALCloopbackFactory_createBackend(ALCloopbackFactory* UNUSED(self), ALCdevice *device, ALCbackend_Type type)
 {
-    ALCloopback *backend;
+    if(type == ALCbackend_Loopback)
+    {
+        ALCloopback *backend;
+        NEW_OBJ(backend, ALCloopback)(device);
+        if(!backend) return NULL;
+        return STATIC_CAST(ALCbackend, backend);
+    }
 
-    assert(type == ALCbackend_Loopback);
-
-    backend = calloc(1, sizeof(*backend));
-    if(!backend) return NULL;
-
-    ALCloopback_Construct(backend, device);
-
-    return STATIC_CAST(ALCbackend, backend);
+    return NULL;
 }

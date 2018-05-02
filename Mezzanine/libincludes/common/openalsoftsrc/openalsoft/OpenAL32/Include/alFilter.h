@@ -1,65 +1,38 @@
 #ifndef _AL_FILTER_H_
 #define _AL_FILTER_H_
 
-#include "alMain.h"
+#include "AL/alc.h"
+#include "AL/al.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define LOWPASSFREQREF  (5000)
+#define LOWPASSFREQREF  (5000.0f)
+#define HIGHPASSFREQREF  (250.0f)
 
 
-/* Filters implementation is based on the "Cookbook formulae for audio   *
- * EQ biquad filter coefficients" by Robert Bristow-Johnson              *
- * http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt                   */
+struct ALfilter;
 
-typedef enum ALfilterType {
-    ALfilterType_HighShelf,
-    ALfilterType_LowShelf,
-    ALfilterType_Peaking,
+typedef struct ALfilterVtable {
+    void (*const setParami)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint val);
+    void (*const setParamiv)(struct ALfilter *filter, ALCcontext *context, ALenum param, const ALint *vals);
+    void (*const setParamf)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat val);
+    void (*const setParamfv)(struct ALfilter *filter, ALCcontext *context, ALenum param, const ALfloat *vals);
 
-    ALfilterType_LowPass,
-    ALfilterType_HighPass,
-    ALfilterType_BandPass,
-} ALfilterType;
+    void (*const getParami)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint *val);
+    void (*const getParamiv)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint *vals);
+    void (*const getParamf)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat *val);
+    void (*const getParamfv)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat *vals);
+} ALfilterVtable;
 
-typedef struct ALfilterState {
-    ALfloat x[2]; /* History of two last input samples  */
-    ALfloat y[2]; /* History of two last output samples */
-    ALfloat a[3]; /* Transfer function coefficients "a" */
-    ALfloat b[3]; /* Transfer function coefficients "b" */
-} ALfilterState;
-
-void ALfilterState_clear(ALfilterState *filter);
-void ALfilterState_setParams(ALfilterState *filter, ALfilterType type, ALfloat gain, ALfloat freq_scale, ALfloat bandwidth);
-
-inline ALfloat ALfilterState_processSingle(ALfilterState *filter, ALfloat sample)
-{
-    ALfloat outsmp;
-
-    outsmp = filter->b[0] * sample +
-             filter->b[1] * filter->x[0] +
-             filter->b[2] * filter->x[1] -
-             filter->a[1] * filter->y[0] -
-             filter->a[2] * filter->y[1];
-    filter->x[1] = filter->x[0];
-    filter->x[0] = sample;
-    filter->y[1] = filter->y[0];
-    filter->y[0] = outsmp;
-
-    return outsmp;
+#define DEFINE_ALFILTER_VTABLE(T)           \
+const struct ALfilterVtable T##_vtable = {  \
+    T##_setParami, T##_setParamiv,          \
+    T##_setParamf, T##_setParamfv,          \
+    T##_getParami, T##_getParamiv,          \
+    T##_getParamf, T##_getParamfv,          \
 }
-
-inline ALfloat ALfilterState_processSingleC(const ALfilterState *filter, ALfloat sample)
-{
-    return filter->b[0] * sample +
-           filter->b[1] * filter->x[0] +
-           filter->b[2] * filter->x[1] -
-           filter->a[1] * filter->y[0] -
-           filter->a[2] * filter->y[1];
-}
-
 
 typedef struct ALfilter {
     // Filter type (AL_FILTER_NULL, ...)
@@ -67,37 +40,25 @@ typedef struct ALfilter {
 
     ALfloat Gain;
     ALfloat GainHF;
+    ALfloat HFReference;
+    ALfloat GainLF;
+    ALfloat LFReference;
 
-    void (*SetParami)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint val);
-    void (*SetParamiv)(struct ALfilter *filter, ALCcontext *context, ALenum param, const ALint *vals);
-    void (*SetParamf)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat val);
-    void (*SetParamfv)(struct ALfilter *filter, ALCcontext *context, ALenum param, const ALfloat *vals);
-
-    void (*GetParami)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint *val);
-    void (*GetParamiv)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALint *vals);
-    void (*GetParamf)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat *val);
-    void (*GetParamfv)(struct ALfilter *filter, ALCcontext *context, ALenum param, ALfloat *vals);
+    const struct ALfilterVtable *vtab;
 
     /* Self ID */
     ALuint id;
 } ALfilter;
+#define ALfilter_setParami(o, c, p, v)   ((o)->vtab->setParami(o, c, p, v))
+#define ALfilter_setParamf(o, c, p, v)   ((o)->vtab->setParamf(o, c, p, v))
+#define ALfilter_setParamiv(o, c, p, v)  ((o)->vtab->setParamiv(o, c, p, v))
+#define ALfilter_setParamfv(o, c, p, v)  ((o)->vtab->setParamfv(o, c, p, v))
+#define ALfilter_getParami(o, c, p, v)   ((o)->vtab->getParami(o, c, p, v))
+#define ALfilter_getParamf(o, c, p, v)   ((o)->vtab->getParamf(o, c, p, v))
+#define ALfilter_getParamiv(o, c, p, v)  ((o)->vtab->getParamiv(o, c, p, v))
+#define ALfilter_getParamfv(o, c, p, v)  ((o)->vtab->getParamfv(o, c, p, v))
 
-#define ALfilter_SetParami(x, c, p, v)  ((x)->SetParami((x),(c),(p),(v)))
-#define ALfilter_SetParamiv(x, c, p, v) ((x)->SetParamiv((x),(c),(p),(v)))
-#define ALfilter_SetParamf(x, c, p, v)  ((x)->SetParamf((x),(c),(p),(v)))
-#define ALfilter_SetParamfv(x, c, p, v) ((x)->SetParamfv((x),(c),(p),(v)))
-
-#define ALfilter_GetParami(x, c, p, v)  ((x)->GetParami((x),(c),(p),(v)))
-#define ALfilter_GetParamiv(x, c, p, v) ((x)->GetParamiv((x),(c),(p),(v)))
-#define ALfilter_GetParamf(x, c, p, v)  ((x)->GetParamf((x),(c),(p),(v)))
-#define ALfilter_GetParamfv(x, c, p, v) ((x)->GetParamfv((x),(c),(p),(v)))
-
-inline struct ALfilter *LookupFilter(ALCdevice *device, ALuint id)
-{ return (struct ALfilter*)LookupUIntMapKey(&device->FilterMap, id); }
-inline struct ALfilter *RemoveFilter(ALCdevice *device, ALuint id)
-{ return (struct ALfilter*)RemoveUIntMapKey(&device->FilterMap, id); }
-
-ALvoid ReleaseALFilters(ALCdevice *device);
+void ReleaseALFilters(ALCdevice *device);
 
 #ifdef __cplusplus
 }
