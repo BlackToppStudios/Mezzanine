@@ -67,7 +67,7 @@ namespace Mezzanine
             DataStreamPtr AtlasStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
             AtlasStream->SetStreamPosition(0);
             XML::Document AtlasDoc;
-            AtlasDoc.Load( *AtlasStream.Get() );
+            AtlasDoc.Load( *AtlasStream.get() );
 
             XML::Node RootNode = AtlasDoc.GetChild("Atlases");
             if( !RootNode.Empty() )
