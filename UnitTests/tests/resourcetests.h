@@ -107,31 +107,31 @@ class resourcetests : public UnitTestGroup
         /// set of checks that need to happen and some situations in which tests will be skipped.
         void TestBaseAndDirName()
         {
-            TestOutput << "Testing DirName: " << endl
-                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::DirName("File.txt") << "\"" << endl
-                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Mezzanine::Resource::DirName("c:\\untitled doc.txt") << "\"" << endl
-                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::DirName("") << "\"" << endl
-                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"/a/b/\"\n\tActual:\t\"" << Mezzanine::Resource::DirName("/a/b/c") << "\"" << endl
-                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"/a/b/c/\"\n\tActual:\t\"" << Mezzanine::Resource::DirName("/a/b/c/") << "\"" << endl
+            TestOutput << "Testing GetDirName: " << endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("File.txt") << "\"" << endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("c:\\untitled doc.txt") << "\"" << endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("") << "\"" << endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"/a/b/\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("/a/b/c") << "\"" << endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"/a/b/c/\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("/a/b/c/") << "\"" << endl
                  << endl;
-            Test(Mezzanine::Resource::DirName("File.txt")=="","DirNameShouldBeEmpty");
-            Test(Mezzanine::Resource::DirName("c:\\untitled doc.txt")=="c:\\","DirNamewindows");
-            Test(Mezzanine::Resource::DirName("")=="","DirNameEmptyNotCrash");
-            Test(Mezzanine::Resource::DirName("/a/b/c")=="/a/b/","DirNameUnix");
-            Test(Mezzanine::Resource::DirName("/a/b/c/")=="/a/b/c/","DirNameUnixDir");
+            Test(Mezzanine::Resource::GetDirName("File.txt")=="","DirNameShouldBeEmpty");
+            Test(Mezzanine::Resource::GetDirName("c:\\untitled doc.txt")=="c:\\","DirNamewindows");
+            Test(Mezzanine::Resource::GetDirName("")=="","DirNameEmptyNotCrash");
+            Test(Mezzanine::Resource::GetDirName("/a/b/c")=="/a/b/","DirNameUnix");
+            Test(Mezzanine::Resource::GetDirName("/a/b/c/")=="/a/b/c/","DirNameUnixDir");
 
-            TestOutput << "Testing BaseName: " << endl
-                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Mezzanine::Resource::BaseName("File.txt") << "\"" << endl
-                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Mezzanine::Resource::BaseName("c:\\untitled doc.txt") << "\"" << endl
-                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::BaseName("") << "\"" << endl
-                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Mezzanine::Resource::BaseName("/a/b/c") << "\"" << endl
-                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::BaseName("/a/b/c/") << "\"" << endl
+            TestOutput << "Testing GetBaseName: " << endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("File.txt") << "\"" << endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("c:\\untitled doc.txt") << "\"" << endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("") << "\"" << endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("/a/b/c") << "\"" << endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("/a/b/c/") << "\"" << endl
                  << endl << endl;
-            Test(Mezzanine::Resource::BaseName("File.txt")=="File.txt","BaseNameShouldCopy");
-            Test(Mezzanine::Resource::BaseName("c:\\untitled doc.txt")=="untitled doc.txt","BaseNamewindows");
-            Test(Mezzanine::Resource::BaseName("")=="","BaseNameEmptyNotCrash");
-            Test(Mezzanine::Resource::BaseName("/a/b/c")=="c","BaseNameUnix");
-            Test(Mezzanine::Resource::BaseName("/a/b/c/")=="","BaseNameUnixDir");
+            Test(Mezzanine::Resource::GetBaseName("File.txt")=="File.txt","BaseNameShouldCopy");
+            Test(Mezzanine::Resource::GetBaseName("c:\\untitled doc.txt")=="untitled doc.txt","BaseNamewindows");
+            Test(Mezzanine::Resource::GetBaseName("")=="","BaseNameEmptyNotCrash");
+            Test(Mezzanine::Resource::GetBaseName("/a/b/c")=="c","BaseNameUnix");
+            Test(Mezzanine::Resource::GetBaseName("/a/b/c/")=="","BaseNameUnixDir");
 
         }
 
@@ -259,14 +259,14 @@ class resourcetests : public UnitTestGroup
 
             TestOutput << "looking for \"ls\" and comparing our results to the system"  << endl
                  << "\t\"" << (Resource::Which("ls")) << "\"" << endl
-                 << "\t\"" << Resource::DirName(GetCommandResults("which ls")) << "\"" << endl;
-            TEST_WARN((Resource::Which("ls"))==Resource::DirName(GetCommandResults("which ls")),"Whichls");
+                 << "\t\"" << Resource::GetDirName(GetCommandResults("which ls")) << "\"" << endl;
+            TEST_WARN((Resource::Which("ls"))==Resource::GetDirName(GetCommandResults("which ls")),"Whichls");
 
             //Does Windows have which, what does where's output look like?
             TestOutput << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
                  << "\t\"" << (Resource::Which("cmd.exe")) << "\"" << endl
-                 << "\t\"" << Resource::DirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
-            TEST_WARN((Resource::Which("cmd.exe"))==Resource::DirName(GetCommandResults("which cmd.exe")),"Whichcmd");
+                 << "\t\"" << Resource::GetDirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
+            TEST_WARN((Resource::Which("cmd.exe"))==Resource::GetDirName(GetCommandResults("which cmd.exe")),"Whichcmd");
         }
 
         void TestChangeDir()
