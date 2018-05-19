@@ -48,65 +48,12 @@ namespace Mezzanine
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief A base class for querying compression specific information on an entry in an archive.
-        /// @details Not all archives will support the storage and/or query of all the information contained here.
-        ///////////////////////////////////////
-        class MEZZ_LIB ArchiveEntryCompressionInfo
-        {
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Type Information
-
-            /// @brief Gets the method used to compress the file referenced by the entry.
-            /// @return Returns an enum value stating the method used to compress the file.
-            virtual CompressionMethod GetCompressionMethod() const = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Basic Metadata
-
-            /// @brief Gets the compressed size of the file.
-            /// @return Returns the size of the file in it's compressed state in the archive in bytes.
-            virtual size_t GetCompressedSize() const = 0;
-            /// @brief Gets the version of the compression method used to create the compressed file.
-            /// @return Returns an integer identifying the version of the compression method used, or zero if this information is unsupported.
-            virtual UInt16 GetCompressVersion() const = 0;
-            /// @brief Gets the version of the compression method needed to decompress the compressed file.
-            /// @return Returns an integer identifying the version of the compression method needed, or zero if this information is unsupported.
-            virtual UInt16 GetDecompressVersion() const = 0;
-            /// @brief Gets the 32-bit Cyclic Redundancy Check (CRC) of the file.
-            /// @return Returns the CRC of the file for verifying file integrity, or zero if CRC is not supported/stored by this archive.
-            virtual UInt32 GetCRC() const = 0;
-        };//ArchiveEntryCompressionInfo
-
-        /// @brief Convenience pointer type for ArchiveEntryCompressionInfo.
-        using ArchiveEntryCompressionInfoPtr = std::unique_ptr<ArchiveEntryCompressionInfo>;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief A base class for querying encryption specific information on an entry in an archive.
-        /// @details Not all archives will support the storage and/or query of all the information contained here.
-        ///////////////////////////////////////
-        class MEZZ_LIB ArchiveEntryEncryptionInfo
-        {
-        public:
-            ///////////////////////////////////////////////////////////////////////////////
-            // Type Information
-
-            /// @brief Gets the algorithm used to encrypt the file referenced by the entry.
-            /// @return Returns an enum value stating the encryption used to encrypt the file.
-            virtual EncryptionAlgorithm GetEncryptionAlgorithm() const = 0;
-        };//ArchiveEntryEncryptionInfo
-
-        /// @brief Convenience pointer type for ArchiveEntryEncryptionInfo.
-        using ArchiveEntryEncryptionInfoPtr = std::unique_ptr<ArchiveEntryEncryptionInfo>;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief A base class for querying information on a specific entry in an archive.
+        /// @brief A base class for conveying information on a specific entry in an archive.
         /// @details An archive can be the intuitive compressed archive, the filesystem, a space in memory, or something
         /// over the network.  Any place a collection of files can be stored, really.  An entry is single collection
         /// of metadata relating to that one file.  This class specifically contains abstract methods for the query
         /// of the most common/basic information that is common between data in most or all of these places.  Not
-        /// every archive will support all of the information covered by these abstract methods, but they should
-        /// contain most of them.
+        /// every archive will support all of the information covered here, but they should contain most of it.
         ///////////////////////////////////////
         class MEZZ_LIB ArchiveEntry
         {
@@ -117,61 +64,53 @@ namespace Mezzanine
             /// @brief Gets the type of archive this entry belongs to.
             /// @remarks Generally archives will each have their own Entry type, so this enum can be used to determine
             /// what this entry can be safely casted to in order to get more detailed metadata about the file.
-            /// @return Returns an enum value describing what kind of Archive this entry belongs to.
-            virtual ArchiveType GetArchiveType() const = 0;
+            ArchiveType ArchType = AT_Invalid;
             /// @brief Gets the type of entry this is in the Archive.
             /// @remarks See the EntryType enum for more detailed description of entry types.
-            /// @return Returns an enum value describing the type of entry this is.
-            virtual EntryType GetEntryType() const = 0;
+            EntryType EntType = ET_Unknown;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Metadata
 
-            /// @brief Gets the name of the file.
-            /// @return Returns a String containing the name of the file this entry pertains to.
-            virtual String GetName() const = 0;
-            /// @brief Gets the path of the file.
-            /// @return Returns a String containing the relative path to the file from the root of the Archive.
-            virtual String GetPath() const = 0;
-            /// @brief Gets a short description of the file.
-            /// @return Returns a String containing a brief note about the file.
-            virtual String GetComment() const = 0;
-            /// @brief Gets the size of the file.
+            /// @brief The full path to and name of the file.
+            String Name;
+            /// @brief A short description of the file.
+            String Comment;
+            /// @brief The size of the file.
             /// @remarks Usually in compressed Archives, this will be the uncompressed size of the file.
-            /// @return Returns the size of the file in the Archive in bytes.
-            virtual size_t GetSize() const = 0;
-            /// @brief Gets the time the file was created.
-            /// @return Returns a UInt64 containing the time stamp of when the file was created.
-            virtual UInt64 GetCreateTime() const = 0;
-            /// @brief Gets the last time the file was accessed.
-            /// @return Returns a UInt64 containing the time stamp of when the file was last opened.
-            virtual UInt64 GetAccessTime() const = 0;
-            /// @brief Gets the last time the file was modified.
-            /// @return Returns a UInt64 containing the time stamp of when the file was last changed.
-            virtual UInt64 GetModifyTime() const = 0;
+            UInt64 Size = 0;
+            /// @brief The time the file was created.
+            UInt64 CreateTime = 0;
+            /// @brief The last time the file was accessed.
+            UInt64 AccessTime = 0;
+            /// @brief The last time the file was modified.
+            UInt64 ModifyTime = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Simple Queries
 
-            /// @brief Gets whether or not the file can only be read.
-            /// @return Returns true if the file can only be read and not written, false otherwise.
-            virtual Boole IsReadOnly() const = 0;
-            /// @brief Gets whether or not the file is compressed.
-            /// @return Returns true if some manner of compression has been applied to the file this entry refers to, false otherwise.
-            virtual Boole IsCompressed() const = 0;
-            /// @brief Gets whether or not the file is encrypted.
-            /// @return Returns true if the file is protected by some encryption scheme, false otherwise.
-            virtual Boole IsEncrypted() const = 0;
+            /// @brief Whether or not the file can only be read.
+            Boole ReadOnly = true;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Extra Metadata
+            // Compression Type Information
 
-            /// @brief Gets the metadata related to the compression of the entry.
-            /// @return Returns a unique_ptr to the compression metadata if this entry is compressed, or nullptr if it's not.
-            virtual ArchiveEntryCompressionInfoPtr GetCompressionInfo() const = 0;
-            /// @brief Gets the metadata related to the encryption of the entry.
-            /// @return Returns a unique_ptr to the encryption metadata if this entry is encrypted, or nullptr if it's not.
-            virtual ArchiveEntryEncryptionInfoPtr GetEncryptionInfo() const = 0;
+            /// @brief Gets the method used to compress the file referenced by the entry.
+            CompressionMethod CompressMethod = CM_Unknown;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Compression Metadata
+
+            /// @brief The compressed size of the file.
+            UInt64 CompressedSize = 0;
+            /// @brief The 32-bit Cyclic Redundancy Check (CRC) of the file.
+            UInt32 CRC = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Encryption Type Information
+
+            /// @brief The algorithm used to encrypt the file referenced by the entry.
+            EncryptionMethod EncryptMethod = EA_Unknown;
         };//ArchiveEntry
 
         /// @brief Convenience pointer type for ArchiveEntry.

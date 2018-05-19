@@ -40,21 +40,52 @@
 #ifndef _resourceziparchive_cpp
 #define _resourceziparchive_cpp
 
-#include <miniz_zip.h>
-
-#define MINIZ_STRUCTS_DECLARED
-
 #include "Resource/ziparchive.h"
 #include "Resource/resourceutilities.h"
 
+#include "zip.h"
+
 namespace
 {
-    size_t ZipReadFunct(void *pOpaque, mz_uint64 file_ofs, void *pBuf, size_t n)
+    using namespace Mezzanine;
+    using namespace Mezzanine::Resource;
+
+    /// @brief Convenience conversion function for compression methods from zip fields.
+    /// @param Method The method value specified in the Zip archive.
+    /// @return Returns a CompressionMethod value corresponding to the method used.
+    Resource::CompressionMethod ConvertCompressionMethod(const zip_uint16_t Method)
+    {
+        switch( Method )
+        {
+            case 8:   return CM_Deflate;    break;
+            case 9:   return CM_Deflate64;  break;
+            case 12:  return CM_BZip2;      break;
+            case 14:  return CM_LZMA;       break;
+            default:  return CM_Unknown;    break;
+        }
+    }
+
+    /// @brief Convenience conversion function for encryption methods from zip fields.
+    /// @param Method The method value specified in the Zip archive.
+    /// @return Returns an EncryptionMethod value corresponding to the method used.
+    Resource::EncryptionMethod ConvertEncryptionMethod(const zip_uint64_t Method)
+    {
+        switch( Method )
+        {
+            case ZIP_EM_TRAD_PKWARE:  return EA_PKWARE;   break;
+            case ZIP_EM_AES_128:      return EA_AES_128;  break;
+            case ZIP_EM_AES_192:      return EA_AES_192;  break;
+            case ZIP_EM_AES_256:      return EA_AES_256;  break;
+            default:                  return EA_Unknown;  break;
+        }
+    }
+
+    size_t ZipReadFunct(void *pOpaque, zip_int64_t file_ofs, void *pBuf, size_t n)
     {
 
     }
 
-    size_t ZipWriteFunct(void *pOpaque, mz_uint64 file_ofs, const void *pBuf, size_t n)
+    size_t ZipWriteFunct(void *pOpaque, zip_int64_t file_ofs, const void *pBuf, size_t n)
     {
 
     }
@@ -70,56 +101,36 @@ namespace Mezzanine
     namespace Resource
     {
         ZipArchive::ZipArchive(DataStreamPtr Stream) :
+            ArchiveStream(Stream),
+            InternalArchive(nullptr)
+            {  }
+
+        ZipArchive::ZipArchive(const String& FullName, const Whole Flags, DataStreamPtr Stream) :
+            ArchivePath(GetDirName(FullName)),
+            ArchiveName(GetBaseName(FullName)),
             ArchiveStream(Stream)
         {
-            this->InternalArchive = new mz_zip_archive();
-            mz_zip_zero_struct(this->InternalArchive);
+            int ErrorCode = ZIP_ER_OK;
+            this->InternalArchive = zip_open(FullName.c_str(),Flags,&ErrorCode);
         }
 
-        ZipArchive::ZipArchive(const String& PathName, const String& FileName, DataStreamPtr Stream) :
+        ZipArchive::ZipArchive(const String& PathName, const String& FileName, const Whole Flags, DataStreamPtr Stream) :
             ArchivePath(PathName),
-            ArchiveFile(FileName),
+            ArchiveName(FileName),
             ArchiveStream(Stream)
         {
-            this->InternalArchive = new mz_zip_archive();
-            mz_zip_zero_struct(this->InternalArchive);
+            int ErrorCode = ZIP_ER_OK;
+            String FullName = CombinePathAndFileName(PathName,FileName);
+            this->InternalArchive = zip_open(FullName.c_str(),Flags,&ErrorCode);
         }
 
         ZipArchive::~ZipArchive()
         {
-            delete this->InternalArchive;
+            zip_close(this->InternalArchive);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        UInt64 ZipArchive::GetSize() const
-            { return mz_zip_get_archive_size(this->InternalArchive); }
-
-        Whole ZipArchive::GetFileCount() const
-            { return mz_zip_reader_get_num_files(this->InternalArchive); }
-
-        ArchiveEntry ZipArchive::GetEntry(const Whole Index) const
-        {
-            /*mz_zip_archive_file_stat* FileStat = ;
-            mz_zip_reader_file_stat(this->InternalArchive,static_cast<mz_uint>(Index),&FileStat);
-
-            ArchiveEntry Ret;
-            String PathAndFile(FileStat.m_filename);
-            Ret.FileName = BaseName(PathAndFile);
-            Ret.FilePath = DirName(PathAndFile);
-            Ret.FileComment.assign(FileStat.m_comment,FileStat.m_comment_size);
-            Ret.HeaderOffset = FileStat.m_local_header_ofs;
-            Ret.CompressedSize = FileStat.m_comp_size;
-            Ret.UncompressedSize = FileStat.m_uncomp_size;
-            Ret.CompressVersion = FileStat.m_version_made_by;
-            Ret.DecompressVersion = FileStat.m_version_needed;
-            Ret.Time =
-            Ret.CRC32 = FileStat.m_crc32;
-            Ret.IsEncrypted = FileStat.m_is_encrypted;
-            Ret.IsSupported = FileStat.m_is_supported;
-            return Ret;//*/
-        }
+        // Configuration
 
         void ZipArchive::SetFlags(const Whole Flags)
         {
@@ -129,6 +140,53 @@ namespace Mezzanine
         Whole ZipArchive::GetFlags() const
         {
 
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Reading
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Writing
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        UInt64 ZipArchive::GetSize() const
+            { return this->ArchiveStream->GetSize(); }
+
+        Whole ZipArchive::GetFileCount() const
+            { return zip_get_num_entries(this->InternalArchive,0); }
+
+        ArchiveEntryPtr ZipArchive::GetEntry(const UInt64 Index) const
+        {
+            zip_stat_t EntryStat;
+            zip_stat_init(&EntryStat);
+            zip_stat_index(this->InternalArchive,Index,0,&EntryStat);
+
+            ArchiveEntryPtr Ret = std::make_unique<ArchiveEntry>();
+            Ret->ArchType = AT_Zip;
+            Ret->Name = EntryStat.name;
+            Ret->Size = EntryStat.size;
+            Ret->ModifyTime = EntryStat.mtime;
+            Ret->CompressedSize = EntryStat.comp_size;
+            Ret->CRC = EntryStat.crc;
+            Ret->ReadOnly = zip_get_archive_flag(this->InternalArchive,ZIP_AFL_RDONLY,0);
+
+            zip_uint32_t CommentSize = 0;
+            const char* Comment = zip_file_get_comment(this->InternalArchive,Index,&CommentSize,0);
+            Ret->Comment.assign(Comment,CommentSize);
+
+            Ret->EntType = ( Ret->Name.back() == '/' || Ret->Name.back() == '\\' ? ET_Directory : ET_File );
+            Ret->CompressMethod = ConvertCompressionMethod( EntryStat.comp_method );
+            Ret->EncryptMethod = ConvertEncryptionMethod( EntryStat.encryption_method );
+
+            return Ret;
+        }
+
+        ArchiveEntryPtr ZipArchive::GetEntry(const String& FileName) const
+        {
+            UInt64 FileIndex = static_cast<UInt64>( zip_name_locate(this->InternalArchive,FileName.c_str(),0) );
+            return this->GetEntry(FileIndex);
         }
     }//Resource
 }//Mezzanine

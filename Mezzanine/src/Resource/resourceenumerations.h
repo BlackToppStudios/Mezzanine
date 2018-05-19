@@ -58,7 +58,8 @@ namespace Mezzanine
         /// @brief Used to indicate an algorithm of compression.
         enum CompressionMethod
         {
-            CM_None = 0,
+            CM_Unknown = 0,
+            CM_None,
             CM_Deflate,
             CM_Deflate64,
             CM_BZip2,
@@ -66,16 +67,22 @@ namespace Mezzanine
             CM_Brotli9,
             CM_Brotli11,
             CM_LZMA,
-            CM_LZMA20,
-            CM_LZMA25,
             CM_LZ4,
             CM_LZ4F
         };
 
         /// @brief Used to indicate an algorithm of encryption.
-        enum EncryptionAlgorithm
+        enum EncryptionMethod
         {
-            EA_Unknown = 0
+            EA_Unknown = 0,
+            EA_PKWARE,
+            EA_AES_128,
+            EA_AES_192,
+            EA_AES_256,
+            EA_RC2,
+            EA_RC4,
+            EA_3DES_112,
+            EA_3DES_168
         };
 
         /// @brief Used to differentiate entries in some archive systems.

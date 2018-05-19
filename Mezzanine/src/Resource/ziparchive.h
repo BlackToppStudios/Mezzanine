@@ -37,15 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchive_h
-#define _resourcearchive_h
+#ifndef _resourceziparchive_h
+#define _resourceziparchive_h
 
+#include "datastream.h"
 #include "Resource/archive.h"
 
-// MiniZ Forward Declares
-#ifndef MINIZ_STRUCTS_DECLARED
-struct mz_zip_archive;
-#endif //MINIZ_STRUCTS_DECLARED
+// Internal Forward Declare
+struct zip;
+struct zip_file;
 
 namespace Mezzanine
 {
@@ -93,34 +93,48 @@ namespace Mezzanine
             /// @brief The stream to the raw data of the Archive.
             DataStreamPtr ArchiveStream;
             /// @brief A pointer to the internal Archive.
-            mz_zip_archive* InternalArchive;
+            zip* InternalArchive;
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to the raw data of the archive.
             ZipArchive(DataStreamPtr Stream);
             // ? Should this accept a URI instead ?
             /// @brief Filesystem constructor.
+            /// @param FullName The full path and file name of the Archive.
+            /// @param Flags Special configuration flags for the opening or operation of the Archive.
+            /// @param Stream The stream to the raw data of the archive.
+            ZipArchive(const String& FullName, const Whole Flags, DataStreamPtr Stream);
+            /// @brief Filesystem constructor.
             /// @param PathName The path to the Archive.
             /// @param FileName The name of the Archive file at the specified path.
+            /// @param Flags Special configuration flags for the opening or operation of the Archive.
             /// @param Stream The stream to the raw data of the archive.
-            ZipArchive(const String& PathName, const String& FileName, DataStreamPtr Stream);
+            ZipArchive(const String& PathName, const String& FileName, const Whole Flags, DataStreamPtr Stream);
             /// @brief Class destructor.
             ~ZipArchive();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @copydoc Archive::GetSize() const
-            virtual UInt64 GetSize() const;
-            /// @copydoc Archive::GetFileCount() const
-            virtual Whole GetFileCount() const;
-            /// @copydoc Archive::GetEntry(const Whole) const
-            virtual ArchiveEntry GetEntry(const Whole Index) const;
+            // Configuration
 
             /// @copydoc Archive::SetFlags(const Whole)
             virtual void SetFlags(const Whole Flags);
             /// @copydoc Archive::GetFlags() const
             virtual Whole GetFlags() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Streaming
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Querying
+
+            /// @copydoc Archive::GetSize() const
+            virtual UInt64 GetSize() const;
+            /// @copydoc Archive::GetFileCount() const
+            virtual Whole GetFileCount() const;
+            /// @copydoc Archive::GetEntry(const UInt64) const
+            virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const;
+            /// @copydoc Archive::GetEntry(const String&) const
+            virtual ArchiveEntryPtr GetEntry(const String& FileName) const;
         };//ZipArchive
     }//Resource
 }//Mezzanine

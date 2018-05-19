@@ -47,7 +47,7 @@ namespace Mezzanine
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief
+        /// @brief This is a base class for collections of files that can be accessed/loaded.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Archive
@@ -72,7 +72,10 @@ namespace Mezzanine
             virtual Whole GetFlags() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Reading
+            // Streaming
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Querying
 
             /// @brief Gets the total size of the archive.
             /// @return Returns the complete size of the archive in bytes.
@@ -83,10 +86,11 @@ namespace Mezzanine
             /// @brief Gets the archive entry for a file at the specified index.
             /// @param Index The index of the entry to retrieve.
             /// @return Returns an ArchiveEntry containing information of the file at the specified index.
-            virtual ArchiveEntryPtr GetEntry(const Whole Index) const = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Writing
+            virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const = 0;
+            /// @brief Gets the archive entry for a file at the specified index.
+            /// @param FileName The name of the file to retrieve the entry for.
+            /// @return Returns an ArchiveEntry containing information of the file at the specified index.
+            virtual ArchiveEntryPtr GetEntry(const String& FileName) const = 0;
         };//Archive
     }//Resource
 }//Mezzanine
