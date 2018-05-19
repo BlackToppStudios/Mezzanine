@@ -44,14 +44,14 @@
 
 #include "exception.h"
 
-#include <miniz.h>
+#include "zlib.h"
 
 namespace Mezzanine
 {
     namespace Resource
     {
         DeflateCodec::DeflateCodec() :
-            CompressionLevel(MZ_DEFAULT_COMPRESSION)
+            CompressionLevel(Z_DEFAULT_COMPRESSION)
             {  }
 
         DeflateCodec::DeflateCodec(const Integer Compression) :
@@ -75,13 +75,13 @@ namespace Mezzanine
 
         DeflateCodec::ByteVector DeflateCodec::Deflate(const ByteVector& Input, const Integer CompressionLevel)
         {
-            const mz_ulong BoundSize = compressBound( Input.size() );
-            mz_ulong RetSize = BoundSize;
+            const uLong BoundSize = compressBound( Input.size() );
+            uLong RetSize = BoundSize;
             ByteVector Ret(RetSize);
-            int ErrorCode = mz_compress2(Ret.data(),&RetSize,Input.data(),Input.size(),CompressionLevel);
+            int ErrorCode = compress2(Ret.data(),&RetSize,Input.data(),Input.size(),CompressionLevel);
 
-            if( ErrorCode != MZ_OK ) {
-                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,mz_error(ErrorCode));
+            if( ErrorCode != Z_OK ) {
+                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,zError(ErrorCode));
             }
 
             if( RetSize < BoundSize ) {
@@ -92,12 +92,12 @@ namespace Mezzanine
 
         DeflateCodec::ByteVector DeflateCodec::Inflate(const ByteVector& Input, const StreamSize Expected)
         {
-            mz_ulong RetSize = static_cast<mz_ulong>(Expected);
+            uLong RetSize = static_cast<uLong>(Expected);
             ByteVector Ret(RetSize);
-            int ErrorCode = mz_uncompress(Ret.data(),&RetSize,Input.data(),Input.size());
+            int ErrorCode = uncompress(Ret.data(),&RetSize,Input.data(),Input.size());
 
-            if( ErrorCode != MZ_OK ) {
-                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,mz_error(ErrorCode));
+            if( ErrorCode != Z_OK ) {
+                MEZZ_EXCEPTION(ExceptionBase::IO_EXCEPTION,zError(ErrorCode));
             }
 
             if( RetSize < Expected ) {
