@@ -2,6 +2,7 @@
 # appveyor.yml
 # CMakeLists.txt
 # INSTALL.md
+# lib/CMakeLists.txt
 #
 # CMake Variable renames:
 # ENABLE_GNUTLS -> LIBZIP_ENABLE_GNUTLS

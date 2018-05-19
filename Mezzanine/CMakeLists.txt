@@ -506,7 +506,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/ziparchive.h"
-        "${${PROJECT_NAME}_SRC_DIR}Resource/zipentry.h"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/script.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scripting.h"
@@ -975,7 +974,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/ziparchive.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Resource/zipentry.cpp"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51.cpp"
@@ -1095,13 +1093,31 @@ set(${PROJECT_NAME}_sources
 )
 
 ###############################################################################
+# Create include path variables
+
+set(Audio_Private_Includes )
+set(Audio_Public_Includes )
+
+set(Graphics_Private_Includes )
+set(Graphics_Public_Includes )
+
+set(Input_Private_Includes )
+set(Input_Public_Includes )
+
+set(Physics_Private_Includes )
+set(Physics_Public_Includes )
+
+set(Resource_Private_Includes )
+set(Resource_Public_Includes )
+
+set(Utility_Private_Includes )
+set(Utility_Public_Includes )
+
+###############################################################################
 # Audio Subsystem Configuration
 
 set(AudioProviderSet 0)
 option(Mezz_Audio_UseOALS "Use OpenAL-Soft as the audio provider for the engine." ON)
-
-set(Audio_Private_Includes )
-set(Audio_Public_Includes )
 
 if(Mezz_Audio_UseOALS)
     if(AudioProviderSet)
@@ -1157,15 +1173,9 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/OpenAL32/include"
     )
 
-    IF(WIN32)
-        set(SoundLibraryNames ${SoundLibraryNames}
-            "OpenAL32"
-        )
-    ELSE()
-        set(SoundLibraryNames ${SoundLibraryNames}
-            "openal"
-        )
-    ENDIF()
+    set(SoundLibraryNames ${SoundLibraryNames}
+        "OpenAL"
+    )
 
     add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" "${D}AL_LIBTYPE_STATIC" )
 endif(Mezz_Audio_UseOALS)
@@ -1300,7 +1310,6 @@ endfunction(CopyFilesDuringBuild)
 # These will set sane defaults (Where possible), but specific platforms should
 # set a value of their own.
 
-set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
 
 #######################################
@@ -1336,31 +1345,97 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
-###############################################################################
-# Common Library Configuration items
-
-set(BulletSrcDir "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/")
-
-###############################################################################
-# Prepare the actual Build
-#add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
-
 #######################################
 # Prepare Common Dependencies
 
 add_subdirectory (libincludes/common)
 
-set(MEZZ_Private_Includes )
-set(MEZZ_Public_Includes )
-
 #######################################
-# Extra includes from Ogre
+# Setup any unset include directories here
+# These can potentially be moved around this file to be some point above the add_library call.
 
+set(Audio_Private_Includes
+    "${Audio_Private_Includes}"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
+)
+set(Audio_Public_Includes
+    "${Audio_Public_Includes}"
+)
+
+set(Graphics_Private_Includes
+    "${Graphics_Private_Includes}"
+    #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
+    "${OgreConfigHeaderIncludeDir}"
+    "${OgreHeaderIncludeDir}"
+)
+set(Graphics_Public_Includes
+    "${Graphics_Public_Includes}"
+)
 if(${WIN32})
-    set(MEZZ_Private_Includes "${MEZZ_Private_Includes}"
-                              "${DirectX_INCLUDE_DIR}"
-                              "${DirectX_D3D11_INCLUDE_DIR}" )
+    set(Graphics_Private_Includes
+        "${Graphics_Private_Includes}"
+        "${DirectX_INCLUDE_DIR}"
+        "${DirectX_D3D11_INCLUDE_DIR}"
+    )
 endif(${WIN32})
+
+set(Input_Private_Includes
+    "${Input_Private_Includes}"
+    "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
+)
+set(Input_Public_Includes
+    "${Input_Public_Includes}"
+)
+
+set(BulletSrcDir "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/")
+set(Physics_Private_Includes
+    "${Physics_Private_Includes}"
+    "${BulletSrcDir}src"
+    "${BulletSrcDir}src/LinearMath"
+    "${BulletSrcDir}Extras/ConvexDecomposition"
+    "${BulletSrcDir}Extras/Serialize/BulletWorldImporter"
+)
+set(Physics_Public_Includes
+    "${Physics_Public_Includes}"
+)
+
+set(Resource_Private_Includes
+    "${Resource_Private_Includes}"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/zlibsrc/zlib/"
+    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/libzipsrc/libzip/lib/"
+    "${ProjectBinaryDir}Mezzanine/libincludes/common/libzipsrc/libzip/"
+)
+set(Resource_Public_Includes
+    "${Resource_Public_Includes}"
+)
+
+set(Utility_Private_Includes
+    "${Utility_Private_Includes}"
+)
+set(Utility_Public_Includes
+    "${Utility_Public_Includes}"
+)
+
+set(MEZZ_Private_Includes
+    "${Audio_Private_Includes}"
+    "${Graphics_Private_Includes}"
+    "${Input_Private_Includes}"
+    "${Physics_Private_Includes}"
+    "${Resource_Private_Includes}"
+    "${Utility_Private_Includes}"
+)
+set(MEZZ_Public_Includes
+    "${${PROJECT_NAME}_SRC_DIR}"
+    "${Audio_Public_Includes}"
+    "${Graphics_Public_Includes}"
+    "${Input_Public_Includes}"
+    "${Physics_Public_Includes}"
+    "${Resource_Public_Includes}"
+    "${Utility_Public_Includes}"
+)
 
 # This was moved to below the sub-libraries so the directX includes in the lines above will work.
 # This is necessary because of static linking and the lack of foresight on the part of the people
@@ -1370,42 +1445,17 @@ endif(${WIN32})
 # Prepare the actual Build
 
 link_directories(
-        "${ProjectBinaryDir}Mezzanine/bin"
+    "${ProjectBinaryDir}Mezzanine/bin"
 )
 
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
-
-set(MEZZ_Private_Includes "${MEZZ_Private_Includes}"
-    "${BulletSrcDir}src"
-    "${BulletSrcDir}src/LinearMath"
-    "${BulletSrcDir}Extras/ConvexDecomposition"
-    "${BulletSrcDir}Extras/Serialize/BulletWorldImporter"
-
-    "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
-
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libvorbis-1.3.3/include/"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/libogg-1.3.0/include/"
-    #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
-
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/zlibsrc/zlib/"
-    "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/libzipsrc/libzip/lib/"
-
-    "${Audio_Private_Includes}"
-
-    "${OgreConfigHeaderIncludeDir}"
-    "${OgreHeaderIncludeDir}"
-)
-set(MEZZ_Public_Includes "${MEZZ_Public_Includes}"
-                         "${${PROJECT_NAME}_SRC_DIR}"
-                         "${Audio_Public_Includes}"
-)
 
 target_include_directories( ${PROJECT_NAME} PRIVATE ${MEZZ_Private_Includes} )
 target_include_directories( ${PROJECT_NAME} PUBLIC ${MEZZ_Public_Includes} )
 
 target_compile_options( ${PROJECT_NAME} PRIVATE ${CommonBuildFlags} )
+
+#target_link_directories( ${PROJECT_NAME} PRIVATE  )
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)

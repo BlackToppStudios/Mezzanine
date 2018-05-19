@@ -6,6 +6,8 @@ set(ALSOFT_EXAMPLES OFF CACHE BOOL "Build and install example programs" FORCE)
 set(ALSOFT_TESTS OFF CACHE BOOL "Enable unit tests for OpenAL-Soft" FORCE)
 set(ALSOFT_INSTALL OFF CACHE BOOL "Install OpenAL-Soft headers and libraries" FORCE)
 
+set(LIBTYPE "STATIC")
+
 add_subdirectory ( openalsoft )
 
 mark_as_advanced( FORCE
