@@ -1381,7 +1381,7 @@ Whole LevelManager::DetectLevels()
 
             LevelDoc.Reset();
             DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
-            LevelDoc.Load( *LevelStream.Get() );
+            LevelDoc.Load( *LevelStream.get() );
 
             GameLevel* NewLevel = new GameLevel(AssetGroupName,LevelDoc);
             this->GameLevels.push_back(NewLevel);
