@@ -9,6 +9,8 @@
 # ENABLE_OPENSSL -> LIBZIP_ENABLE_OPENSSL
 # ENABLE_COMMONCRYPTO -> LIBZIP_ENABLE_COMMONCRYPTO
 # BUILD_SHARED_LIBS -> LIBZIP_BUILD_SHARED_LIBS
+#
+# Commented out "ADD_SUBDIRECTORY(man)" from the root CMake file.
 message ( "LibZip - Begin" )
 
 # Add cache forcing here

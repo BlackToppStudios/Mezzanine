@@ -19,14 +19,14 @@ endif()
 # DSOUND_INCLUDE_DIR
 find_path(DSOUND_INCLUDE_DIR
           NAMES "dsound.h" 
-          PATHS "${DXSDK_DIR}" ${WINSDK_INCLUDE_DIRS} 
+          PATHS "$ENV{DXSDK_DIR}" ${WINSDK_INCLUDE_DIRS} 
           PATH_SUFFIXES include
           DOC "The DirectSound include directory")
 
 # DSOUND_LIBRARY
 find_library(DSOUND_LIBRARY
              NAMES dsound
-             PATHS "${DXSDK_DIR}" ${WINSDK_LIB_DIRS}
+             PATHS "$ENV{DXSDK_DIR}" ${WINSDK_LIB_DIRS}
              PATH_SUFFIXES lib lib/x86 lib/x64
              DOC "The DirectSound library")
 

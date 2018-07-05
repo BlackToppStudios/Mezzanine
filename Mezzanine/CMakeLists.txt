@@ -504,8 +504,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/filesystemarchive.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/ziparchive.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/zipstream.h"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/script.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scripting.h"
@@ -972,8 +974,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/deflatecodec.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/filesystemarchive.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/ziparchive.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/zipstream.cpp"
         # Scripting Items
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51.cpp"

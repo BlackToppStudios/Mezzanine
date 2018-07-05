@@ -1,3 +1,5 @@
+# In cmake/FindDSound.cmake
+# Changed two instances of "${DXSDK_DIR}" to "$ENV{DXSDK_DIR}"
 
 message ( "OpenAL-Soft - Begin" )
 
