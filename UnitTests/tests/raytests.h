@@ -54,10 +54,18 @@
 
 // Needed because windows sucks and uses macros improperly
 // Sqeaky this crap might have been an intentionally introduced incompatibility issue aspart of an ms EEE
+#ifdef CopyFile
+#undef CopyFile
+#endif
+#ifdef MoveFile
+#undef MoveFile
+#endif
+#ifdef DeleteFile
+#undef DeleteFile
+#endif
 #ifdef CreateDirectory
 #undef CreateDirectory
 #endif
-// Needed because windows sucks and uses macros improperly
 #ifdef RemoveDirectory
 #undef RemoveDirectory
 #endif

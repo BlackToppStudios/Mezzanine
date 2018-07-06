@@ -53,10 +53,18 @@
 #include <Ogre.h>
 
 // Needed because windows sucks and uses macros improperly
+#ifdef CopyFile
+#undef CopyFile
+#endif
+#ifdef MoveFile
+#undef MoveFile
+#endif
+#ifdef DeleteFile
+#undef DeleteFile
+#endif
 #ifdef CreateDirectory
 #undef CreateDirectory
 #endif
-// Needed because windows sucks and uses macros improperly
 #ifdef RemoveDirectory
 #undef RemoveDirectory
 #endif
