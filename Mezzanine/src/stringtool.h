@@ -63,6 +63,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Manipulation and checks
 
+        /// @brief Checks if a character is a space.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a space, false otherwise.
+        Boole MEZZ_LIB IsSpace(const Char8 ToCheck);
+        /// @brief Checks if a character is a tab.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a tab, false otherwise.
+        Boole MEZZ_LIB IsTab(const Char8 ToCheck);
+        /// @brief Checks if a character is a newline.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a newline, false otherwise.
+        Boole MEZZ_LIB IsNewline(const Char8 ToCheck);
+        /// @brief Checks if a character is a whitespace.
+        /// @param ToCheck The character to be checked.
+        /// @return Returns true if the character is a whitespace, false otherwise.
+        Boole MEZZ_LIB IsWhitespace(const Char8 ToCheck);
         /// @brief Checks if a character is a decimal digit.
         /// @param ToCheck The character to be checked.
         /// @return Returns true if the character is a decimal digit, false otherwise.
@@ -107,7 +123,7 @@ namespace Mezzanine
         /// @param Source The original string to be trimmed.
         /// @param Left Whether or not to trim the left side of the String.
         /// @param Right Whether or not to trim the right side of the String.
-        void MEZZ_LIB Trim(String& Source, Boole Left = true, Boole Right = true);
+        void MEZZ_LIB Trim(String& Source, const Boole Left = true, const Boole Right = true);
         /// @brief Splits a string into multiple substrings based on the specified delimiters.
         /// @param Source The String to be split.
         /// @param Delims The characters to look for and use as split points in the source String.
@@ -150,6 +166,25 @@ namespace Mezzanine
         /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
         /// @param Source The String to be altered.
         void MEZZ_LIB RemoveDuplicateWhitespaces(String& Source);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Pattern Matching
+
+        /// @brief Checks to see if a string matches a specific pattern.
+        /// @details This function supports a number of features similar to globbing/wildcard matching implementations that exist elsewhere. @n
+        /// A "[" with a matching "]" will encase one or more ranges that can be checked against a single character.  Ranges defined within
+        /// square brackets must have a hyphen "-" separating the two extents of the range.  They must also be the same category of character.
+        /// For example "[A-Z]" is valid as both characters are upper case, but "[A-z]" is not.  Upper case, lower case, or numbers can be
+        /// defined in a range, but cannot be mixed when defining one.  However multiple ranges can be defined back to back.  For example
+        /// "[A-Za-z]" is valid.  Defining multiple ranges will only expand the valid matches for a single character though.  Defining multiple
+        /// ranges will not cause this to match multiple characters. @n
+        /// A "*" (asterisk) will match 0 or more characters of any value. @n
+        /// A "?" (question mark) will match 0 or 1 character of any value.
+        /// @param Source The string to check.
+        /// @param Pattern The pattern to try and match to the source string.
+        /// @param CaseSensitive Whether or not the pattern should match case exactly.
+        /// @return Returns true if the source string matches the specified pattern.
+        Boole MEZZ_LIB PatternMatch(const String& Source, const String& Pattern, const Boole CaseSensitive);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Data Class Utilities
@@ -258,15 +293,21 @@ namespace Mezzanine
             return converter.str();
         }
 
-        // @brief Converts a Boole into a string.
-        // @param ToConvert The Boole to be converted.
-        // @return Returns "true" if true, or "false" if false.
-        //template<>
-        //String MEZZ_LIB ConvertToString<Boole>(const Boole& ToConvert)
-        //{
-        //    if(ToConvert) return "true";
-        //    else return "false";
-        //}
+        /// @brief Converts a Boole into a string.
+        /// @param ToConvert The Boole to be converted.
+        /// @return Returns "true" if true, or "false" if false.
+        template<>
+        String MEZZ_LIB ConvertToString<Boole>(const Boole& ToConvert);
+        /// @brief Converts a Int8 into a string.
+        /// @param ToConvert The Int8 to be converted.
+        /// @return Returns the converted Int8 as a string.
+        template<>
+        String MEZZ_LIB ConvertToString<Int8>(const Int8& ToConvert);
+        /// @brief Converts a UInt8 into a string.
+        /// @param ToConvert The UInt8 to be converted.
+        /// @return Returns the converted UInt8 as a string.
+        template<>
+        String MEZZ_LIB ConvertToString<UInt8>(const UInt8& ToConvert);
     }//StringTools
 }//Mezzanine
 

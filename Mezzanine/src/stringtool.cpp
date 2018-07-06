@@ -46,45 +46,194 @@
 #include <sstream>
 #include <algorithm>
 #include <cctype>
+#include <regex>
 //#include <locale>
 
 namespace
 {
-    /// @internal
-    /// @brief Convenience multiplier used for converting a colour value for a single channel to a scalar value.
-    const Mezzanine::Real HexConversionMultiplier = Mezzanine::Real(1.0 / 255.0);
+    using namespace Mezzanine;
+    using StrIter = String::const_iterator;
 
-    /// @internal
+    /// @brief Convenience multiplier used for converting a colour value for a single channel to a scalar value.
+    const Real HexConversionMultiplier = Real(1.0 / 255.0);
+
     /// @brief Converts a string containing hex to a ColourValue channel.
     /// @param Hex The Hex value to be converted.
     /// @return Returns a Real representing the converted Hex string that can be applied to a ColourValue channel.
-    Mezzanine::Real ConvertHexToColourChannel(const Mezzanine::String& Hex)
+    Real ConvertHexToColourChannel(const String& Hex)
     {
         if( Hex.size() != 2 ) {
-            MEZZ_EXCEPTION(Mezzanine::ExceptionBase::PARAMETERS_EXCEPTION,"Hex code requires 2 characters to express a ColourValue channel.");
+            MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Hex code requires 2 characters to express a ColourValue channel.");
         }
 
-        Mezzanine::Real Ret = 0;
-        Mezzanine::StringStream Converter;
+        Real Ret = 0;
+        StringStream Converter;
         Converter << std::hex << Hex;
         Converter >> Ret;
-        return std::min(Ret *= HexConversionMultiplier,Mezzanine::Real(1.0));
+        return std::min(Ret *= HexConversionMultiplier,Real(1.0));
     }
-    /// @internal
     /// @brief Converts a ColourValue channel to Hex.
     /// @param Channel The value to be converted to Hex.
     /// @return Returns a two character string containing the hex expression for the provided channel value.
-    Mezzanine::String ConvertColourChannelToHex(const Mezzanine::Real Channel)
+    String ConvertColourChannelToHex(const Real Channel)
     {
-        Mezzanine::String Ret;
-        Mezzanine::StringStream Converter;
-        Converter << std::hex << static_cast<Mezzanine::UInt8>( Channel * 255.0 );
+        String Ret;
+        StringStream Converter;
+        Converter << std::hex << static_cast<UInt8>( Channel * 255.0 );
         Converter >> Ret;
 
         if( Ret.size() == 1 ) {
             Ret.insert(0,1,'0');
         }
         return Ret;
+    }
+
+    // Pattern Matching helper methods
+
+    /// @brief Convenience method to compare two characters insensitive of case.
+    /// @param First An iterator to the first character to be compared.
+    /// @param Second An iterator to the second character to be compared.
+    /// @return Returns true if the two characters are the same later, regardless of case, false otherwise.
+    Boole CaseInsensitiveCompare(StrIter First, StrIter Second)
+        { return ( ::tolower( *First ) == ::tolower( *Second ) ); }
+
+    /// @brief Searches for a pattern in the source string.
+    /// @param SrcIt An iterator to the current position in the source string.
+    /// @param SrcEnd An iterator to the end of the source string.
+    /// @param PatIt An iterator to the current position in the string containing the pattern to search for.
+    /// @param PatEnd An iterator to the end of the string containing the pattern to search for.
+    /// @param CaseSensitive Whether or not the pattern to be matched should be matched in the same case.
+    /// @return Returns an iterator to the position in the source string the pattern begins if one is found, or SrcEnd if no pattern was found.
+    StrIter SearchPattern(StrIter SrcIt, const StrIter SrcEnd, StrIter PatIt, const StrIter PatEnd, const Boole CaseSensitive)
+    {
+        for(  ;  ; ++SrcIt )
+        {
+            StrIter SrcCompIt = SrcIt;
+            for( StrIter PatCompIt = PatIt ;  ; ++SrcCompIt, ++PatCompIt )
+            {
+                if( PatCompIt == PatEnd ) {
+                    return SrcIt;
+                }
+                if( SrcCompIt == SrcEnd ) {
+                    return SrcEnd;
+                }
+                if( (*PatCompIt) == '\\' ) {
+                    ++PatCompIt;
+                }
+                if( CaseSensitive ) {
+                    if( (*SrcCompIt) != (*PatCompIt) ) {
+                        break;
+                    }
+                }else{
+                    if( !CaseInsensitiveCompare(SrcCompIt,PatCompIt) ) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /// @brief Checks to see if the pattern following the asterisk matches a pattern in the source string.
+    /// @param SrcIt An iterator to the current position in the source string.
+    /// @param SrcEnd An iterator to the end of the source string.
+    /// @param PatIt An iterator to the current position in the pattern string.
+    /// @param PatEnd An iterator to the end of the pattern string.
+    /// @param CaseSensitive Whether or not the pattern to be matched should be matched in the same case.
+    /// @return Returns true if the pattern immediately following the asterisk matches a sequence in the source, false otherwise.
+    Boole MatchAsterisk(StrIter& SrcIt, const StrIter SrcEnd, StrIter& PatIt, const StrIter PatEnd, const Boole CaseSensitive)
+    {
+        const StrIter PatBegin = PatIt;
+        const String ControlChars("[*?");
+
+        // Quick Check for the easy case.  An asterisk at the end of the pattern.
+        if( PatBegin == ( PatEnd - 1 ) ) {
+            SrcIt = SrcEnd;
+            PatIt = PatEnd;
+            return true;
+        }
+
+        // Get the position of the first non-escaped control character.
+        StrIter ControlIt = PatBegin;
+        do{
+            ++ControlIt;
+            ControlIt = std::find_first_of(ControlIt,PatEnd,ControlChars.begin(),ControlChars.end());
+        }while( *( ControlIt - 1) == '\\' && ControlIt != PatEnd );
+
+        StrIter SrcResult = SearchPattern(SrcIt,SrcEnd,PatBegin + 1,ControlIt,CaseSensitive);
+        if( SrcResult != SrcEnd ) {
+            SrcIt = SrcResult;
+            PatIt = ControlIt;
+            return true;
+        }else{
+            SrcIt = SrcEnd;
+            PatIt = PatEnd;
+            return false;
+        }
+    }
+
+    /// @brief Matches any single character in the source string.
+    /// @param SrcIt An iterator to the current position in the source string.
+    /// @param SrcEnd An iterator to the end of the source string.
+    /// @param PatIt An iterator to the current position in the pattern string.
+    /// @param PatEnd An iterator to the end of the pattern string.
+    /// @return Returns true always.  Question marks are trivial to match.
+    Boole MatchQuestionMark(StrIter& SrcIt, const StrIter SrcEnd, StrIter& PatIt, const StrIter PatEnd)
+    {
+        if( SrcIt != SrcEnd ) {
+            ++SrcIt;
+        }
+        return true;
+    }
+
+    /// @brief Matches a single character in the source string with the range specified in the pattern string.
+    /// @param SrcIt An iterator to the current position in the source string.
+    /// @param SrcEnd An iterator to the end of the source string.
+    /// @param PatIt An iterator to the current position in the pattern string.
+    /// @param PatEnd An iterator to the end of the pattern string.
+    /// @return Returns true if the range is valid and the source character is within it, false otherwise.
+    Boole MatchSingleRange(StrIter& SrcIt, const StrIter SrcEnd, StrIter& PatIt, const StrIter PatEnd)
+    {
+        char LowCheck = *(PatIt - 1);
+        char HighCheck = *(PatIt + 1);
+        std::advance(PatIt,2);
+        if( ( StringTools::IsUpperAlphaLetter( LowCheck ) && StringTools::IsUpperAlphaLetter( HighCheck ) ) ||
+            ( StringTools::IsLowerAlphaLetter( LowCheck ) && StringTools::IsLowerAlphaLetter( HighCheck ) ) ||
+            ( StringTools::IsDigit( LowCheck ) && StringTools::IsDigit( HighCheck ) ) )
+        {
+            return ( (*SrcIt) >= LowCheck && (*SrcIt) <= HighCheck );
+        }
+        return false;
+    }
+
+    /// @brief Marches a single character in the source string with one or more ranges specified in the pattern string.
+    /// @param SrcIt An iterator to the current position in the source string.
+    /// @param SrcEnd An iterator to the end of the source string.
+    /// @param PatIt An iterator to the current position in the pattern string.
+    /// @param PatEnd An iterator to the end of the pattern string.
+    /// @return Returns true if the source character matches any of the valid ranges specified, false otherwise.
+    Boole MatchRangeCharacter(StrIter& SrcIt, const StrIter SrcEnd, StrIter& PatIt, const StrIter PatEnd)
+    {
+        StrIter PatternBegin = PatIt;
+        if( (*PatternBegin) != '[' ) {
+            return false;
+        }
+
+        Boole PassRangeTest = false;
+        while( PatIt != PatEnd && (*PatIt) != ']' )
+        {
+            if( (*PatIt) == '-' ) {
+                PassRangeTest = PassRangeTest || MatchSingleRange(SrcIt,SrcEnd,PatIt,PatEnd);
+            }else{
+                ++PatIt;
+            }
+        }
+        if( PassRangeTest ) {
+            ++SrcIt;
+        }
+        if( PatIt != PatEnd ) {
+            ++PatIt;
+        }
+        return PassRangeTest;
     }
 }
 
@@ -95,16 +244,28 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Manipulation and Checks
 
-        Boole IsDigit(const Mezzanine::Char8 ToCheck)
+        Boole IsSpace(const Char8 ToCheck)
+            { return ( ToCheck == ' ' ); }
+
+        Boole IsTab(const Char8 ToCheck)
+            { return ( ToCheck == '\t' || ToCheck == '\v' ); }
+
+        Boole IsNewline(const Char8 ToCheck)
+            { return ( ToCheck == '\r' || ToCheck == '\n' ); }
+
+        Boole IsWhitespace(const Char8 ToCheck)
+            { return ( IsSpace(ToCheck) || IsTab(ToCheck) || IsNewline(ToCheck) ); }
+
+        Boole IsDigit(const Char8 ToCheck)
             { return ( ToCheck >= '0' && ToCheck <= '9' ); }
 
-        Boole IsLowerAlphaLetter(const Mezzanine::Char8 ToCheck)
+        Boole IsLowerAlphaLetter(const Char8 ToCheck)
             { return ( ToCheck >= 'a' && ToCheck <= 'z' ); }
 
-        Boole IsUpperAlphaLetter(const Mezzanine::Char8 ToCheck)
+        Boole IsUpperAlphaLetter(const Char8 ToCheck)
             { return ( ToCheck >= 'A' && ToCheck <= 'Z' ); }
 
-        Boole IsAlphaLetter(const Mezzanine::Char8 ToCheck)
+        Boole IsAlphaLetter(const Char8 ToCheck)
             { return ( IsLowerAlphaLetter(ToCheck) || IsUpperAlphaLetter(ToCheck) ); }
 
         Boole IsLowerHexLetter(const Char8 ToCheck)
@@ -116,7 +277,7 @@ namespace Mezzanine
         Boole IsHexLetter(const Char8 ToCheck)
             { return ( IsLowerHexLetter(ToCheck) || IsUpperHexLetter(ToCheck) ); }
 
-        Boole IsHexDigit(const Mezzanine::Char8 ToCheck)
+        Boole IsHexDigit(const Char8 ToCheck)
             { return ( IsDigit(ToCheck) || IsHexLetter(ToCheck) ); }
 
         Boole IsAlphanumeric(const Char8 ToCheck)
@@ -125,7 +286,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // String Manipulation and Checks
 
-        void Trim(String& Source, Boole Left, Boole Right)
+        void Trim(String& Source, const Boole Left, const Boole Right)
         {
             const String Delims = " \t\r";
             if( Left ) {
@@ -171,9 +332,9 @@ namespace Mezzanine
                 }else{
                     Ret.push_back(Source.substr(Start,Pos - Start));
                     Start = Pos + 1;
+                    ++Splits;
                 }
                 Start = Source.find_first_not_of(Delims,Start);
-                ++Splits;
             }while(Pos != String::npos);
 
             return Ret;
@@ -203,18 +364,17 @@ namespace Mezzanine
 
         void ToCamelCase(String& Source)
         {
-            Boole PrevCharIsLetter = false;
+            Boole PrevCharIsWhitespace = true;
             for( String::iterator CurrIt = Source.begin() ; CurrIt != Source.end() ; ++CurrIt )
             {
                 Boole CurrCharIsLowerLetter = StringTools::IsLowerAlphaLetter( *CurrIt );
                 Boole CurrCharIsUpperLetter = StringTools::IsUpperAlphaLetter( *CurrIt );
-                if( !PrevCharIsLetter && CurrCharIsLowerLetter ) {
+                if( PrevCharIsWhitespace && CurrCharIsLowerLetter ) {
                     (*CurrIt) -= 32;
-                }else if( PrevCharIsLetter && CurrCharIsUpperLetter ) {
+                }else if( !PrevCharIsWhitespace && CurrCharIsUpperLetter ) {
                     (*CurrIt) += 32;
                 }
-                PrevCharIsLetter = CurrCharIsLowerLetter || CurrCharIsUpperLetter;
-                ++CurrIt;
+                PrevCharIsWhitespace = StringTools::IsWhitespace( *CurrIt );
             }
         }
 
@@ -277,6 +437,54 @@ namespace Mezzanine
                 Source.replace(CurrIndex,EndIndex-CurrIndex," ");
                 CurrIndex++;
             }
+        }
+
+        Boole PatternMatch(const String& Source, const String& Pattern, const Boole CaseSensitive)
+        {
+            String::const_iterator SrcIt = Source.begin();
+            String::const_iterator PatIt = Pattern.begin();
+            const String::const_iterator SrcEnd = Source.end();
+            const String::const_iterator PatEnd = Pattern.end();
+
+            Boole EscapedChar = false;
+            while( PatIt != PatEnd && SrcIt != SrcEnd )
+            {
+                Boole MatchResult = false;
+                if( EscapedChar ) {
+                    EscapedChar = false;
+                    // If we're escaped, doesn't matter what it is.  Process as normal char.
+                    MatchResult = ( (*PatIt) == (*SrcIt) );
+                    ++PatIt;
+                    ++SrcIt;
+                }else if( (*PatIt) == '*' ) {
+                    EscapedChar = false;
+                    MatchResult = MatchAsterisk(SrcIt,SrcEnd,PatIt,PatEnd,CaseSensitive);
+                }else if( (*PatIt) == '[' ) {
+                    EscapedChar = false;
+                    MatchResult = MatchRangeCharacter(SrcIt,SrcEnd,PatIt,PatEnd);
+                }else if( (*PatIt) == '?' ) {
+                    EscapedChar = false;
+                    MatchResult = MatchQuestionMark(SrcIt,SrcEnd,PatIt,PatEnd);
+                }else if( (*PatIt) == '\\' ) {
+                    EscapedChar = true;
+                    ++PatIt;
+                    continue;
+                }else{
+                    EscapedChar = false;
+                    if( CaseSensitive ) {
+                        MatchResult = ( (*PatIt) == (*SrcIt) );
+                    }else{
+                        MatchResult = CaseInsensitiveCompare(PatIt,SrcIt);
+                    }
+                    ++PatIt;
+                    ++SrcIt;
+                }
+
+                if( !MatchResult ) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -420,17 +628,17 @@ namespace Mezzanine
         Int8 ConvertToInt8(const String& ToConvert)
         {
             StringStream converter(ToConvert);
-            Int8 Result;
+            int Result;
             converter >> Result;
-            return Result;
+            return static_cast<Int8>(Result);
         }
 
         UInt8 ConvertToUInt8(const String& ToConvert)
         {
             StringStream converter(ToConvert);
-            UInt8 Result;
+            unsigned int Result;
             converter >> Result;
-            return Result;
+            return static_cast<UInt8>(Result);
         }
 
         Int16 ConvertToInt16(const String& ToConvert)
@@ -463,6 +671,34 @@ namespace Mezzanine
             UInt32 Result;
             converter >> Result;
             return Result;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Convert-To-String functions
+
+        template<>
+        String ConvertToString<Boole>(const Boole& ToConvert)
+        {
+            if(ToConvert) return "true";
+            else return "false";
+        }
+
+        template<>
+        String ConvertToString<Int8>(const Int8& ToConvert)
+        {
+            Integer Convert = ToConvert;
+            StringStream Converter;
+            Converter << Convert;
+            return Converter.str();
+        }
+
+        template<>
+        String ConvertToString<UInt8>(const UInt8& ToConvert)
+        {
+            Whole Convert = ToConvert;
+            StringStream Converter;
+            Converter << Convert;
+            return Converter.str();
         }
     }//StringTools
 }//Mezzanine
