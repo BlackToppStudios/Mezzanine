@@ -1368,7 +1368,7 @@ Whole LevelManager::DetectLevels()
     Whole Detected = 0;
     XML::Document LevelDoc;
     Resource::ResourceManager* ResourceMan = this->GetResourceManager();
-    StringVector LevelSet = Resource::GetDirContents( this->LevelPath );
+    StringVector LevelSet = std::move( Resource::GetDirectoryContentNames( this->LevelPath ) );
     for( StringVector::iterator LvlIt = LevelSet.begin() ; LvlIt != LevelSet.end() ; LvlIt++ )
     {
         const String& FileName = (*LvlIt);

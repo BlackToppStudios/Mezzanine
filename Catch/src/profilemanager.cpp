@@ -188,7 +188,7 @@ Whole ProfileManager::DetectProfiles()
     // Now detect and load.
     Whole Detected = 0;
     XML::Document ProfileDoc;
-    StringVector ProfileVec = Resource::GetDirContents(this->ProfilesDirectory);
+    StringVector ProfileVec = std::move( Resource::GetDirectoryContentNames(this->ProfilesDirectory) );
     for( StringVector::iterator it = ProfileVec.begin() ; it != ProfileVec.end() ; it++ )
     {
         const String& FileName = (*it);
