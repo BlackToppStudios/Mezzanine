@@ -43,6 +43,8 @@
 //Any global enumerations shared between multiple classes in the Resource namespace is to be declared here.
 ///////////////////////////////////////
 
+#include "enumerations.h"
+
 namespace Mezzanine
 {
     namespace Resource
@@ -91,7 +93,30 @@ namespace Mezzanine
             ET_Unknown,
             ET_File,
             ET_Directory,
+            ET_Hardlink,
             ET_Symlink
+        };
+
+        /// @brief Used to identify the permissions a file has in an archive.
+        /// @remarks These permissions are based on posix/std::filesystem permissions.
+        enum FilePermissions
+        {
+            FP_None          = 0,
+            FP_Other_Execute = EnumBit(1),
+            FP_Other_Write   = EnumBit(2),
+            FP_Other_Read    = EnumBit(3),
+            FP_Group_Execute = EnumBit(4),
+            FP_Group_Write   = EnumBit(5),
+            FP_Group_Read    = EnumBit(6),
+            FP_Owner_Execute = EnumBit(7),
+            FP_Owner_Write   = EnumBit(8),
+            FP_Owner_Read    = EnumBit(9),
+            FP_Read = FP_Owner_Read | FP_Group_Read | FP_Other_Read,
+            FP_Write = FP_Owner_Write | FP_Group_Write | FP_Other_Write,
+            FP_Execute = FP_Owner_Execute | FP_Group_Execute | FP_Other_Execute,
+            FP_Other = FP_Other_Read | FP_Other_Write | FP_Other_Execute,
+            FP_Group = FP_Group_Read | FP_Group_Write | FP_Group_Execute,
+            FP_Owner = FP_Owner_Read | FP_Owner_Write | FP_Owner_Execute
         };
 
         /// @brief This enum describes the current state of loading for an asset.

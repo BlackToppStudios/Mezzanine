@@ -37,68 +37,31 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourceziparchive_h
-#define _resourceziparchive_h
+#ifndef _resourcefilesystemarchive_h
+#define _resourcefilesystemarchive_h
 
 #include "datastream.h"
 #include "Resource/archive.h"
-
-// Internal Forward Declare
-struct zip;
-struct zip_file;
-struct zip_source;
 
 namespace Mezzanine
 {
     namespace Resource
     {
-        /// @brief An enum listing the codecs directly supported by the Zip format with their IDs.
-        /// @remarks In addition to the values listed here, there are additional values in the spec that
-        /// are reserved for future use by PKWare. Those values are: 11, 13, 15, 16, and 17. @n
-        /// It is also important to note that these are only what is in the spec and thus what other programs
-        /// are likely to recognize, however little stops you from adding a custom codec to a Zip archive.
-        /// The only potential issue is other archive tools recognizing the value. This isn't a concern if
-        /// you only plan to use that archive with your own custom application.
-        enum ZipCodecSupport
-        {
-            ZCS_Raw                 = 0,  ///< No compression.
-            ZCS_Shrunk              = 1,
-            ZCS_ReducedCompression1 = 2,
-            ZCS_ReducedCompression2 = 3,
-            ZCS_ReducedCompression3 = 4,
-            ZCS_ReducedCompression4 = 5,
-            ZCS_Imploded            = 6,
-            ZCS_Tokenizing          = 7,
-            ZCS_Deflate             = 8,  ///< Standard DEFLATE, which is the default for Zip files.
-            ZCS_Deflate64           = 9,
-            ZCS_IBM_TERSE_Old       = 10,
-            ZCS_BZip2               = 12,
-            ZCS_LZMA                = 14,
-            ZCS_IBM_TERSE_New       = 18,
-            ZCS_LZ77                = 19,
-            ZCS_WavPack             = 97,
-            ZCS_PPMd                = 98
-        };
-
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is an Archive implementation for reading and writing .zip files.
+        /// @brief This is an Archive implementation for reading and writing files as is on disk.
         ///////////////////////////////////////
-        class MEZZ_LIB ZipArchive : public Archive
+        class MEZZ_LIB FileSystemArchive : public Archive
         {
         protected:
             /// @brief The full path and name of the Archive
             String ArchiveIdentifier;
             /// @brief The flags used when opening this archive.
             Whole OpenFlags;
-            /// @brief A pointer to the internal Archive.
-            zip* InternalArchive;
-            /// @brief A pointer to the source of the Archive data.
-            zip_source* InternalSource;
         public:
             /// @brief Class constructor.
-            ZipArchive();
+            FileSystemArchive();
             /// @brief Class destructor.
-            ~ZipArchive();
+            ~FileSystemArchive();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Open / Close
@@ -136,7 +99,7 @@ namespace Mezzanine
             virtual ArchiveEntryPtr GetEntry(const String& FileName) const;
             /// @copydoc Archive::GetEntries(const String& Pattern) const
             virtual ArchiveEntryVector GetEntries(const String& Pattern, const Boole OmitDirs) const;
-        };//ZipArchive
+        };//FileSystemArchive
     }//Resource
 }//Mezzanine
 
