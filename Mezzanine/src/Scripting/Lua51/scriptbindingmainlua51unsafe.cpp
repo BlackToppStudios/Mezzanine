@@ -73568,6 +73568,86 @@ fail:
 }
 
 
+static int _wrap_IsSpace(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 arg1 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::IsSpace",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::IsSpace",1,"Mezzanine::Char8 const");
+  arg1 = (lua_tostring(L, 1))[0];
+  result = (Mezzanine::Boole)Mezzanine::StringTools::IsSpace(arg1);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IsTab(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 arg1 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::IsTab",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::IsTab",1,"Mezzanine::Char8 const");
+  arg1 = (lua_tostring(L, 1))[0];
+  result = (Mezzanine::Boole)Mezzanine::StringTools::IsTab(arg1);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IsNewline(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 arg1 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::IsNewline",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::IsNewline",1,"Mezzanine::Char8 const");
+  arg1 = (lua_tostring(L, 1))[0];
+  result = (Mezzanine::Boole)Mezzanine::StringTools::IsNewline(arg1);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_IsWhitespace(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Char8 arg1 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::IsWhitespace",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::IsWhitespace",1,"Mezzanine::Char8 const");
+  arg1 = (lua_tostring(L, 1))[0];
+  result = (Mezzanine::Boole)Mezzanine::StringTools::IsWhitespace(arg1);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_IsDigit(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Char8 arg1 ;
@@ -73756,8 +73836,8 @@ static int _wrap_Trim__SWIG_0(lua_State* L) {
   
   SWIG_check_num_args("Mezzanine::StringTools::Trim",3,3)
   if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::StringTools::Trim",1,"Mezzanine::String &");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::StringTools::Trim",2,"Mezzanine::Boole");
-  if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::StringTools::Trim",3,"Mezzanine::Boole");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::StringTools::Trim",2,"Mezzanine::Boole const");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::StringTools::Trim",3,"Mezzanine::Boole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
     SWIG_fail_ptr("Trim",1,SWIGTYPE_p_std__string);
@@ -73784,7 +73864,7 @@ static int _wrap_Trim__SWIG_1(lua_State* L) {
   
   SWIG_check_num_args("Mezzanine::StringTools::Trim",2,2)
   if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::StringTools::Trim",1,"Mezzanine::String &");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::StringTools::Trim",2,"Mezzanine::Boole");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::StringTools::Trim",2,"Mezzanine::Boole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
     SWIG_fail_ptr("Trim",1,SWIGTYPE_p_std__string);
@@ -73893,8 +73973,8 @@ static int _wrap_Trim(lua_State* L) {
   
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Trim'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::StringTools::Trim(Mezzanine::String &,Mezzanine::Boole,Mezzanine::Boole)\n"
-    "    Mezzanine::StringTools::Trim(Mezzanine::String &,Mezzanine::Boole)\n"
+    "    Mezzanine::StringTools::Trim(Mezzanine::String &,Mezzanine::Boole const,Mezzanine::Boole const)\n"
+    "    Mezzanine::StringTools::Trim(Mezzanine::String &,Mezzanine::Boole const)\n"
     "    Mezzanine::StringTools::Trim(Mezzanine::String &)\n");
   lua_error(L);return 0;
 }
@@ -74241,6 +74321,34 @@ static int _wrap_RemoveDuplicateWhitespaces(lua_State* L) {
   
   Mezzanine::StringTools::RemoveDuplicateWhitespaces(*arg1);
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PatternMatch(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::Boole arg3 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::Boole result;
+  
+  SWIG_check_num_args("Mezzanine::StringTools::PatternMatch",3,3)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::PatternMatch",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::StringTools::PatternMatch",2,"Mezzanine::String const &");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::StringTools::PatternMatch",3,"Mezzanine::Boole const");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  arg3 = (lua_toboolean(L, 3)!=0);
+  result = (Mezzanine::Boole)Mezzanine::StringTools::PatternMatch((std::string const &)*arg1,(std::string const &)*arg2,arg3);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -77468,6 +77576,10 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "EntityManager_DestroyAllEntityFactories", _wrap_EntityManager_DestroyAllEntityFactories},
     { "EntityManager_AddAllDefaultEntityFactories", _wrap_EntityManager_AddAllDefaultEntityFactories},
     { "Sphere_GetSerializableName", _wrap_Sphere_GetSerializableName},
+    { "IsSpace", _wrap_IsSpace},
+    { "IsTab", _wrap_IsTab},
+    { "IsNewline", _wrap_IsNewline},
+    { "IsWhitespace", _wrap_IsWhitespace},
     { "IsDigit", _wrap_IsDigit},
     { "IsLowerAlphaLetter", _wrap_IsLowerAlphaLetter},
     { "IsUpperAlphaLetter", _wrap_IsUpperAlphaLetter},
@@ -77488,6 +77600,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "StartsWith", _wrap_StartsWith},
     { "EndsWith", _wrap_EndsWith},
     { "RemoveDuplicateWhitespaces", _wrap_RemoveDuplicateWhitespaces},
+    { "PatternMatch", _wrap_PatternMatch},
     { "ConvertToVector2", _wrap_ConvertToVector2},
     { "ConvertToVector3", _wrap_ConvertToVector3},
     { "ConvertToQuaternion", _wrap_ConvertToQuaternion},
