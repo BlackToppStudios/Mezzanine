@@ -40,12 +40,15 @@
 #ifndef _resourceutilities_cpp
 #define _resourceutilities_cpp
 
+#ifdef MEZZ_WINDOWS
+    #define _WIN32_WINNT 0x0601
+#endif
+
 #include "Resource/resourceutilities.h"
 
 #include "exception.h"
 #include "stringtool.h"
 
-#include <dirent.h>
 #ifdef MEZZ_WINDOWS
     #include <Windows.h>
     #include <Winuser.h>
@@ -54,6 +57,7 @@
     // Below includes may not work on MSVC
     #include <direct.h> // for _getcwd
     #include <sys/stat.h>
+    #include <cwchar>
 #elif MEZZ_MACOSX
     #include <CoreServices/CoreServices.h>
     #include <unistd.h>//for sleep and getcwd
@@ -62,6 +66,7 @@
     #include <sys/types.h>
     #include "pwd.h"
     #include <mach-o/dyld.h> // for _NSGetExecutablePath
+    #include <dirent.h>
 #else
     #include <unistd.h>     // for sleep and getcwd
     #include <errno.h>
@@ -69,10 +74,25 @@
     #include <sys/types.h>
     #include <pwd.h>
     #include <cstring>      // for strerror
+    #include <dirent.h>
 #endif
 
 #include <algorithm>
 #include <cstdio>
+
+// Undefs because of windows header file pollution.
+
+#ifdef CopyFile
+#undef CopyFile
+#endif
+
+#ifdef MoveFile
+#undef MoveFile
+#endif
+
+#ifdef DeleteFile
+#undef DeleteFile
+#endif
 
 #ifdef CreateDirectory
 #undef CreateDirectory
@@ -84,6 +104,8 @@
 
 namespace
 {
+    using namespace Mezzanine;
+
     /// @brief ArgC as it was passed into Main.
     /// @details This cannot be set statically, it must wait for main(int, char**) to
     /// be initialized, then call the appropriate function to set this.
@@ -92,6 +114,82 @@ namespace
     /// @details This cannot be set statically, it must wait for main(int, char**) to
     /// be initialized, then call the appropriate function to set this.
     char** ArgV;
+
+#ifdef MEZZ_WINDOWS
+    /// @brief Converts a system time type to a standard time type.
+    /// @param TimeVal the system time type to convert.
+    /// @return Returns a converted standard time value.
+    UInt64 ConvertTime(const FILETIME TimeVal)
+    {
+        LARGE_INTEGER Converter;
+        Converter.HighPart = TimeVal.dwHighDateTime;
+        Converter.LowPart = TimeVal.dwLowDateTime;
+        return static_cast<UInt64>(Converter.QuadPart);
+    }
+    /*/// @brief Converts a standard time type to a system time type.
+    /// @param TimeVal The standard time type to convert.
+    /// @return Returns a converted system time value.
+    FILETIME ConvertTime(const UInt64 TimeVal)
+    {
+        FILETIME Ret;
+        LARGE_INTEGER Converter;
+        Converter.QuadPart = TimeVal;
+        Ret.dwHighDateTime = Converter.HighPart;
+        Ret.dwLowDateTime = Converter.LowPart;
+        return Ret;
+    }//*/
+    /// @brief Converts a narrow (8-bit) string to a wide (16-bit) string.
+    /// @param Narrow The string to be converted.
+    /// @return Returns a wide string with the converted contents.
+    WideString ConvertToWideString(const String& Narrow)
+    {
+        WideString Ret;
+        if( !Narrow.empty() ) {
+            size_t WideLength = ::MultiByteToWideChar(CP_UTF8,0,Narrow.data(),Narrow.size(),0,0);
+            Ret.resize(WideLength,L'\0');
+            ::MultiByteToWideChar(CP_UTF8,0,Narrow.data(),Narrow.size(),&Ret[0],Ret.size());
+        }
+        return Ret;
+    }
+    /// @brief Converts a wide (16-bit) string to a narrow (8-bit) string.
+    /// @param Wide The string to be converted.
+    /// @return Returns a narrow string with the converted contents.
+    String ConvertToNarrowString(const wchar_t* Wide)
+    {
+        String Ret;
+        size_t WideLength = std::wcslen(Wide);
+        if( WideLength > 0 ) {
+            size_t NarrowLength = ::WideCharToMultiByte(CP_UTF8,0,Wide,WideLength,0,0,NULL,NULL);
+            Ret.resize(NarrowLength,'\0');
+            ::WideCharToMultiByte(CP_UTF8,0,Wide,WideLength,&Ret[0],Ret.size(),NULL,NULL);
+        }
+        return Ret;
+    }
+#endif // MEZZ_WINDOWS
+#if defined(MEZZ_MACOSX) || defined(MEZZ_LINUX)
+    /// @brief Converts posix file permissions to Mezzanine permissions.
+    /// @param Perms The permissions to be converted.
+    /// @return Returns a UInt32 bitmask containing the converted file permissions.
+    UInt32 ConvertPermissions(const mode_t Perms)
+    {
+        UInt32 Ret = 0;
+        Ret |= static_cast<UInt32>( Perms & S_IRWXO );
+        Ret |= static_cast<UInt32>( Perms & S_IRWXG );
+        Ret |= static_cast<UInt32>( Perms & S_IRWXU );
+        return Ret;
+    }
+    /// @brief Converts Mezzanine file permissions to posix permissions
+    /// @param Perms The permissions to be converted.
+    /// @return Returns a mode_t bitmask containing the converted file permissions.
+    mode_t ConvertPermissions(const UInt32 Perms)
+    {
+        mode_t Ret = 0;
+        Ret |= static_cast<mode_t>( Perms & Resource::FP_Other );
+        Ret |= static_cast<mode_t>( Perms & Resource::FP_Group );
+        Ret |= static_cast<mode_t>( Perms & Resource::FP_Owner );
+        return Ret;
+    }
+#endif // MEZZ_MACOSX || MEZZ_LINUX
 }
 
 namespace Mezzanine
@@ -110,18 +208,125 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // File Management
 
-        /*Boole RemoveFile(const String& PathAndFile)
+        Boole FileExists(const String& PathAndFile)
         {
-            return ( remove( PathAndFile.c_str() ) == 0 );
-        }// */
+        #ifdef MEZZ_WINDOWS
+            WideString ConvertedPath = std::move( ConvertToWideString(PathAndFile) );
+            DWORD dwAttrib = GetFileAttributesW(ConvertedPath.c_str());
+            return ( dwAttrib != INVALID_FILE_ATTRIBUTES && !( dwAttrib & FILE_ATTRIBUTE_DIRECTORY ) );
+        #else
+            //return ( ::access(PathAndName.c_str(),F_OK) );
+            struct stat st;
+            if( stat(DirectoryPath.c_str(),&st) == 0 ) {
+                return S_ISREG(st.st_mode);
+            }
+            return false;
+        #endif
+        }
+
+        Boole CopyFile(const String& OldPathAndFile, const String& NewPathAndFile, const Boole FailIfExists)
+        {
+        #ifdef MEZZ_WINDOWS
+            DWORD CopyFlags = COPY_FILE_COPY_SYMLINK;
+            if( FailIfExists ) {
+                CopyFlags |= COPY_FILE_FAIL_IF_EXISTS;
+            }
+            WideString ConvertedOldPath = std::move( ConvertToWideString(OldPathAndFile) );
+            WideString ConvertedNewPath = std::move( ConvertToWideString(NewPathAndFile) );
+            return ( ::CopyFileExW(ConvertedOldPath.c_str(),ConvertedNewPath.c_str(),NULL,NULL,NULL,CopyFlags) != 0 );
+        #else
+            if( FailIfExists && FileExists(NewPathAndFile.c_str()) ) {
+                return false;
+            }
+            std::ifstream SrcStream;
+            std::ofstream DestStream;
+
+            SrcStream.open(OldPathAndFile,std::ios::binary | std::ios_base::in);
+            DestStream.open(NewPathAndFile,std::ios::binary | std::ios_base::out);
+
+            DestStream << SrcStream.rdbuf();
+            return true;
+        #endif
+        }
+
+        Boole MoveFile(const String& OldPathAndFile, const String& NewPathAndFile, const Boole FailIfExists)
+        {
+        #ifdef MEZZ_WINDOWS
+            DWORD MoveFlags = MOVEFILE_COPY_ALLOWED;
+            if( !FailIfExists ) {
+                MoveFlags |= MOVEFILE_REPLACE_EXISTING;
+            }
+            WideString ConvertedOldPath = std::move( ConvertToWideString(OldPathAndFile) );
+            WideString ConvertedNewPath = std::move( ConvertToWideString(NewPathAndFile) );
+            return ( ::MoveFileExW(ConvertedOldPath.c_str(),ConvertedNewPath.c_str(),MoveFlags) != 0 );
+        #else
+            if( FailIfExists && FileExists(NewPathAndFile.c_str()) ) {
+                return false;
+            }
+            return ( ::rename(OldPathAndFile.c_str(),NewPathAndFile.c_str()) == 0 );
+        #endif
+        }
+
+        Boole RemoveFile(const String& PathAndFile)
+        {
+        #ifdef MEZZ_WINDOWS
+            WideString ConvertedPath = std::move( ConvertToWideString(PathAndFile) );
+            return ( ::DeleteFileW(ConvertedPath.c_str()) != 0 );
+        #else
+            return ( ::unlink(PathAndFile.c_str()) == 0 );
+        #endif
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Symlinks
+
+        Boole CreateSymlink(const String& SymPath, const String& TargetPath)
+        {
+        #ifdef MEZZ_WINDOWS
+            DWORD LinkFlags = 0;
+            WideString ConvertedSymPath = std::move( ConvertToWideString(SymPath) );
+            WideString ConvertedTargetPath = std::move( ConvertToWideString(TargetPath) );
+            return ( ::CreateSymbolicLinkW(ConvertedSymPath.c_str(),ConvertedTargetPath.c_str(),LinkFlags) != 0 );
+        #else
+            return ( ::symlink(SymPath.c_str(),TargetPath.c_str()) == 0 );
+        #endif
+        }
+
+        Boole CreateDirectorySymlink(const String& SymPath, const String& TargetPath)
+        {
+        #ifdef MEZZ_WINDOWS
+            DWORD LinkFlags = SYMBOLIC_LINK_FLAG_DIRECTORY;
+            WideString ConvertedSymPath = std::move( ConvertToWideString(SymPath) );
+            WideString ConvertedTargetPath = std::move( ConvertToWideString(TargetPath) );
+            return ( ::CreateSymbolicLinkW(ConvertedSymPath.c_str(),ConvertedTargetPath.c_str(),LinkFlags) != 0 );
+        #else
+            return ( ::symlink(SymPath.c_str(),TargetPath.c_str()) == 0 );
+        #endif
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
 
+        Boole DirectoryExists(const String& DirectoryPath)
+        {
+        #ifdef MEZZ_WINDOWS
+            WideString ConvertedPath = std::move( ConvertToWideString(DirectoryPath) );
+            DWORD dwAttrib = GetFileAttributesW(ConvertedPath.c_str());
+            return ( dwAttrib != INVALID_FILE_ATTRIBUTES && ( dwAttrib & FILE_ATTRIBUTE_DIRECTORY ) );
+        #else
+            struct stat st;
+            if( stat(DirectoryPath.c_str(),&st) == 0 ) {
+                return S_ISDIR(st.st_mode);
+            }
+            return false;
+        #endif
+        }
+
         Boole CreateDirectory(const String& DirectoryPath)
         {
-            #ifdef MEZZ_WINDOWS
-            if( ::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0 ) {
+        #ifdef MEZZ_WINDOWS
+            WideString ConvertedPath = std::move( ConvertToWideString(DirectoryPath) );
+            if( ::CreateDirectoryW(ConvertedPath.c_str(),NULL) < 0 ) {
                 if( ERROR_ALREADY_EXISTS == ::GetLastError() ) {
                     return false;
                 }
@@ -135,7 +340,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
-            #else
+        #else
             if( ::mkdir(DirectoryPath.c_str(),0777) < 0 ) {
                 if( EEXIST == errno ) {
                     return false;
@@ -146,7 +351,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
-            #endif
+        #endif
         }
 
         Boole CreateDirectoryPath(const String& DirectoryPath)
@@ -156,18 +361,18 @@ namespace Mezzanine
             StringVector FolderVec = StringTools::Split(DirectoryPath,"/\\");
             size_t StartIndex = 0;
             String PathAttempt;
-            Char8 SysSlash = GetDirectorySeparator();
-            #ifdef MEZZ_WINDOWS
+            Char8 SysSlash = GetPlatformDirectorySeparator();
+        #ifdef MEZZ_WINDOWS
             // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
             if( FolderVec.at(0).find(':') != String::npos ) {
                 PathAttempt.append( FolderVec.at(0) );
                 PathAttempt.append( 1, SysSlash );
                 StartIndex++;
             }
-            #else
+        #else
             PathAttempt.append( 1, SysSlash );
-            #endif
-            for( size_t VecIndex = StartIndex ; VecIndex < FolderVec.size() ; ++VecIndex )
+        #endif
+            for( size_t VecIndex = StartIndex ; Result && VecIndex < FolderVec.size() ; ++VecIndex )
             {
                 PathAttempt.append( FolderVec.at(VecIndex) );
                 PathAttempt.append( 1, SysSlash );
@@ -176,44 +381,169 @@ namespace Mezzanine
             return Result;
         }
 
-        Boole DoesDirectoryExist(const String& DirectoryPath)
+        Boole RemoveDirectory(const String& DirectoryPath)
         {
-            struct stat st;
-            if( stat(DirectoryPath.c_str(),&st) == 0 ) {
-                return S_ISDIR(st.st_mode);
-            }/*else{
-                //MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error getting directory information.");
-                return false;
-            }// */
-            return false;
+        #ifdef MEZZ_WINDOWS
+            WideString ConvertedPath = std::move( ConvertToWideString(DirectoryPath) );
+            return ( ::RemoveDirectoryW(ConvertedPath.c_str()) != 0 );
+        #else
+            return ( ::rmdir(DirectoryPath.c_str()) == 0 );
+        #endif
         }
 
-        void RemoveDirectory(const String& DirectoryPath)
+        ///////////////////////////////////////////////////////////////////////////////
+        // Directory Traversal
+
+        StringVector GetDirectoryContentNames(const String& DirectoryPath)
         {
-            if( !rmdir(DirectoryPath.c_str()) ) {
-                return;
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,"Unknown error removing directory.");
+            StringVector Ret;
+        #ifdef MEZZ_WINDOWS
+            WIN32_FIND_DATAW FileData;
+            HANDLE FileHandle = INVALID_HANDLE_VALUE;
+
+            WideString ConvertedPath = std::move( ConvertToWideString(DirectoryPath) );
+            if( ConvertedPath.back() != L'/' && ConvertedPath.back() != L'\\' ) {
+                ConvertedPath.append(1,L'\\');
             }
-        }
+            ConvertedPath.append(1,L'*');
+            FileHandle = ::FindFirstFileW( ConvertedPath.c_str(), &FileData );
+            if( FileHandle == INVALID_HANDLE_VALUE ) {
+                return Ret;
+            }
 
-        StringVector GetDirContents(const String& Dir)
-        {
-            StringVector Results;
-            DIR *Directory;
-            struct dirent *DirEntry;
-            if( ( Directory = opendir( Dir.c_str() ) ) ) {
-                while( ( DirEntry = readdir(Directory) ) )
+            do{
+                String EntryName = std::move( ConvertToNarrowString( FileData.cFileName ) );
+                if( EntryName == "." || EntryName == ".." ) {
+                    continue;
+                }
+                Ret.push_back( EntryName );
+            }while( ::FindNextFileW( FileHandle, &FileData ) );
+
+            ::FindClose(FileHandle);
+        #else
+            struct dirent* DirEntry;
+            DIR* Directory = ::opendir( DirectoryPath.c_str() );
+            if( Directory ) {
+                stat FileStat;
+                while( ( DirEntry = ::readdir(Directory) ) )
                 {
-                    Results.push_back( DirEntry->d_name );
-                    //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
+                    String EntryName = DirEntry->d_name;
+                    if( EntryName == "." || EntryName == ".." ) {
+                        continue;
+                    }
+
+                    Ret.push_back( std::move(EntryName) );
                 }
 
-                closedir(Directory);
-                return Results;
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Error listing directory contents"));
+                ::closedir(Directory);
             }
+        #endif
+            return Ret;
+        }
+
+        ArchiveEntryVector GetDirectoryContents(const String& DirectoryPath)
+        {
+            ArchiveEntryVector Ret;
+        #ifdef MEZZ_WINDOWS
+            WIN32_FIND_DATAW FileData;
+            LARGE_INTEGER FileSizeConverter;
+            HANDLE FileHandle = INVALID_HANDLE_VALUE;
+
+            WideString ConvertedPath = std::move( ConvertToWideString(DirectoryPath) );
+            if( ConvertedPath.back() != L'/' && ConvertedPath.back() != L'\\' ) {
+                ConvertedPath.append(1,L'\\');
+            }
+            ConvertedPath.append(1,L'*');
+            FileHandle = ::FindFirstFileW( ConvertedPath.c_str(), &FileData );
+            if( FileHandle == INVALID_HANDLE_VALUE ) {
+                return Ret;
+            }
+
+            do{
+                String EntryName = std::move( ConvertToNarrowString( FileData.cFileName ) );
+                if( EntryName == "." || EntryName == ".." ) {
+                    continue;
+                }
+
+                ArchiveEntry NewEntry;
+                NewEntry.ArchType = Resource::AT_FileSystem;
+                NewEntry.Name = std::move( EntryName );
+                NewEntry.CreateTime = ConvertTime( FileData.ftCreationTime );
+                NewEntry.AccessTime = ConvertTime( FileData.ftLastAccessTime );
+                NewEntry.ModifyTime = ConvertTime( FileData.ftLastWriteTime );
+                NewEntry.Attributes = Resource::FP_Read;
+                if( ( FileData.dwFileAttributes & FILE_ATTRIBUTE_READONLY ) == 0 ) {
+                    NewEntry.Attributes |= Resource::FP_Write;
+                }
+                size_t DotPos = NewEntry.Name.find_last_of('.');
+                if( DotPos < NewEntry.Name.size() ) {
+                    String Extension = NewEntry.Name.substr( NewEntry.Name.find_last_of('.') );
+                    StringTools::ToLowerCase(Extension);
+                    if( Extension == ".exe" || Extension == ".bat" || Extension == ".com" || Extension == ".cmd" ) {
+                        NewEntry.Attributes |= Resource::FP_Execute;
+                    }
+                }
+                if( FileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) {
+                    NewEntry.EntType = Resource::ET_Directory;
+                }else{
+                    if( FileData.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT ) {
+                        NewEntry.EntType = Resource::ET_Symlink;
+                    }else{ // if( FileData.dwFileAttributes &  ) {
+                        NewEntry.EntType = Resource::ET_File;
+                    }
+
+                    FileSizeConverter.LowPart = FileData.nFileSizeLow;
+                    FileSizeConverter.HighPart = FileData.nFileSizeHigh;
+                    NewEntry.Size = FileSizeConverter.QuadPart;
+                }
+                Ret.push_back(NewEntry);
+            }while( ::FindNextFileW( FileHandle, &FileData ) );
+
+            ::FindClose(FileHandle);
+        #else
+            struct dirent* DirEntry;
+            DIR* Directory = ::opendir( DirectoryPath.c_str() );
+            if( Directory ) {
+                stat FileStat;
+                while( ( DirEntry = ::readdir(Directory) ) )
+                {
+                    if( ::stat(DirEntry->d_name,&FileStat) ) {
+                        continue;
+                    }
+                    String EntryName = DirEntry->d_name;
+                    if( EntryName == "." || EntryName == ".." ) {
+                        continue;
+                    }
+
+                    ArchiveEntry NewEntry;
+                    NewEntry.ArchType = Resource::AT_FileSystem;
+                    NewEntry.Name = std::move( EntryName );
+                    NewEntry.CreateTime = ConvertTime( FileStat.st_ctime );
+                    NewEntry.AccessTime = ConvertTime( FileStat.st_atime );
+                    NewEntry.ModifyTime = ConvertTime( FileStat.st_mtime );
+                    NewEntry.Attributes = ConvertPermissions(FileStat.st_mode);
+
+                    if( S_ISDIR(FileStat.st_mode) ) {
+                        NewEntry.EntType = Resource::ET_Directory;
+                    }else{
+                        if( S_ISLNK(FileStat.st_mode) ) {
+                            NewEntry.EntType = Resource::ET_Symlink;
+                        }else if( S_ISREG(FileStat.st_mode) ) { // if( FileData.dwFileAttributes &  ) {
+                            NewEntry.EntType = Resource::ET_File;
+                        }else{
+                            // I dunno wtf we found
+                            continue;
+                        }
+
+                        NewEntry.Size = FileStat.st_size;
+                    }
+                    Ret.push_back(NewEntry);
+                }
+
+                ::closedir(Directory);
+            }
+        #endif
+            return Ret;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -221,7 +551,7 @@ namespace Mezzanine
 
         String GetDirName(const char* FileName)
         {
-            Whole SlashPos = std::numeric_limits<Whole>::max(), CurrPos = 0;
+            size_t SlashPos = String::npos, CurrPos = 0;
             while( FileName[CurrPos] != '\0' )
             {
                 if( FileName[CurrPos] == '\\' || FileName[CurrPos] == '/' ) {
@@ -229,7 +559,7 @@ namespace Mezzanine
                 }
                 ++CurrPos;
             }
-            if( SlashPos < std::numeric_limits<Whole>::max() ) {
+            if( SlashPos != String::npos ) {
                 return String(FileName,SlashPos + 1);
             }
             return String();
@@ -237,7 +567,7 @@ namespace Mezzanine
 
         String GetDirName(const String& FileName)
         {
-            Whole SlashPos = FileName.find_last_of("\\/");
+            size_t SlashPos = FileName.find_last_of("\\/");
             if( FileName.npos == SlashPos ) {
                 return String();
             }else{
@@ -247,7 +577,7 @@ namespace Mezzanine
 
         String GetBaseName(const char* FileName)
         {
-            Whole SlashPos = std::numeric_limits<Whole>::max(), CurrPos = 0;
+            size_t SlashPos = String::npos, CurrPos = 0;
             while( FileName[CurrPos] != '\0' )
             {
                 if( FileName[CurrPos] == '\\' || FileName[CurrPos] == '/' ) {
@@ -255,15 +585,15 @@ namespace Mezzanine
                 }
                 ++CurrPos;
             }
-            if( SlashPos < std::numeric_limits<Whole>::max() ) {
-                return String(FileName[SlashPos + 1],CurrPos - SlashPos);
+            if( SlashPos != String::npos ) {
+                return String(FileName + (SlashPos + 1),(CurrPos - SlashPos) - 1);
             }
             return String(FileName,CurrPos);
         }
 
         String GetBaseName(const String& FileName)
         {
-            Whole SlashPos = FileName.find_last_of("\\/");
+            size_t SlashPos = FileName.find_last_of("\\/");
             if( FileName.npos == SlashPos ) {
                 return FileName;
             }else{
@@ -271,28 +601,89 @@ namespace Mezzanine
             }
         }
 
-        Char8 GetDirectorySeparator()
+        Boole IsDirectorySeparator(const Char8 ToCheck)
         {
-            #ifdef MEZZ_WINDOWS
+            return ( ToCheck == '\\' || ToCheck == '/' );
+        }
+
+        Boole IsPlatformDirectorySeparator(const Char8 ToCheck)
+        {
+        #ifdef MEZZ_WINDOWS
+            return ( ToCheck == '\\' );
+        #else
+            return ( ToCheck == '/' );
+        #endif
+        }
+
+        Char8 GetPlatformDirectorySeparator()
+        {
+        #ifdef MEZZ_WINDOWS
             return '\\';
-            #else
+        #else
             return '/';
-            #endif
+        #endif
+        }
+
+        Char8 GetUniversalDirectorySeparator()
+        {
+            return '/';
         }
 
         Char8 GetPathSeparator()
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             return ';';
-            #else
+        #else
             return ':';
-            #endif
+        #endif
+        }
+
+        Boole IsPathAbsolute(const String& ToCheck)
+        {
+        #ifdef MEZZ_WINDOWS
+            return IsPathAbsolute_Windows(ToCheck);
+        #else
+            return IsPathAbsolute_Posix(ToCheck);
+        #endif
+        }
+
+        Boole IsPathAbsolute_Posix(const String& ToCheck)
+        {
+            if( !ToCheck.empty() ) {
+                return ( ToCheck[0] == '/' );
+            }
+            return false;
+        }
+
+        Boole IsPathAbsolute_Windows(const String& ToCheck)
+        {
+            if( ToCheck.size() >= 3 ) {
+                return ( StringTools::IsAlphaLetter(ToCheck[0]) &&
+                         ToCheck[1] == ':' &&
+                         ( ToCheck[2] == '\\' || ToCheck[2] == '/' ) );
+            }
+            return false;
+        }
+
+        Boole IsPathRelative(const String& ToCheck)
+        {
+            return !IsPathAbsolute(ToCheck);
+        }
+
+        Boole IsPathRelative_Posix(const String& ToCheck)
+        {
+            return !IsPathAbsolute_Posix(ToCheck);
+        }
+
+        Boole IsPathRelative_Windows(const String& ToCheck)
+        {
+            return !IsPathAbsolute_Windows(ToCheck);
         }
 
         String CombinePathAndFileName(const String& FilePath, const String& FileName)
         {
             String FullPath = FilePath;
-            String Separator(1,Resource::GetDirectorySeparator());
+            String Separator(1,Resource::GetUniversalDirectorySeparator());
             if( !StringTools::EndsWith(FilePath,Separator,true) ) {
                 FullPath.append(Separator);
             }
@@ -323,13 +714,12 @@ namespace Mezzanine
 
         String Which(const String& ExecutableName)
         {
-            StringVector PATH( GetSystemPATH() );
-
+            StringVector PATH = std::move( GetSystemPATH() );
             for( StringVector::const_iterator Iter = PATH.begin() ; Iter!=PATH.end() ; ++Iter )
             {
-                StringVector Entries( GetDirContents(*Iter) );
+                StringVector Entries = std::move( GetDirectoryContentNames(*Iter) );
                 if( std::find(Entries.begin(),Entries.end(),ExecutableName) != Entries.end() ) {
-                    return (*Iter) + GetDirectorySeparator();
+                    return (*Iter) + GetPlatformDirectorySeparator();
                 }
             }
             return String();
@@ -356,27 +746,27 @@ namespace Mezzanine
         String GetExecutableDirFromSystem()
         {
             char Results[FILENAME_MAX];
-            #ifdef MEZZ_LINUX
-                MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
-                if( Length != -1 ) {
-                    Results[Length] = '\0';
-                    return GetDirName(String(Results));
-                }else{
-                    return "";
-                }
-            #endif
-            #ifdef MEZZ_WINDOWS
-                GetModuleFileName( NULL, Results, FILENAME_MAX );
+        #ifdef MEZZ_LINUX
+            MaxInt Length = ::readlink("/proc/self/exe", Results, sizeof(Results)-1);
+            if( Length != -1 ) {
+                Results[Length] = '\0';
                 return GetDirName(String(Results));
-            #endif
-            #ifdef MEZZ_MACOSX
-                uint32_t size = sizeof(Results);
-                if( _NSGetExecutablePath(Results, &size) == 0 ) {
-                    return GetDirName(String(Results));
-                }else{
-                    return "";
-                }
-            #endif
+            }else{
+                return "";
+            }
+        #endif
+        #ifdef MEZZ_WINDOWS
+            GetModuleFileName( NULL, Results, FILENAME_MAX );
+            return GetDirName(String(Results));
+        #endif
+        #ifdef MEZZ_MACOSX
+            uint32_t size = sizeof(Results);
+            if( _NSGetExecutablePath(Results, &size) == 0 ) {
+                return GetDirName(String(Results));
+            }else{
+                return "";
+            }
+        #endif
         }
 
         String GetExecutableDirFromArg()
@@ -416,11 +806,11 @@ namespace Mezzanine
 
         void ChangeWorkingDirectory(const String& ChangeTo)
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             if(_chdir(ChangeTo.c_str()))
-            #else
+        #else
             if(chdir(ChangeTo.c_str()))
-            #endif
+        #endif
             { MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,String("Could not change to directory \"")+ChangeTo+"\" error: "+ToString(errno)); }
         }
 
@@ -428,11 +818,11 @@ namespace Mezzanine
         {
             char cCurrentPath[FILENAME_MAX];
             // char cCurrentPath[MAXPATHLEN];
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
-            #else
+        #else
             String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
-            #endif
+        #endif
             return Results;
         }
 
@@ -455,12 +845,12 @@ namespace Mezzanine
 
         String GetLocalAppDataDir()
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             TCHAR path_local_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata))) {
                 return path_local_appdata;
             }
-            #else
+        #else
             struct passwd* pw = getpwuid(getuid());
             if(pw) {
                 return String(pw->pw_dir);
@@ -476,61 +866,61 @@ namespace Mezzanine
             FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
             FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
             return path;*/
-            #endif
+        #endif
             return "";
         }
 
         String GetShareableAppDataDir()
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             TCHAR path_appdata[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata))) {
                 return path_appdata;
             }
-            #else
+        #else
             struct passwd* pw = getpwuid(getuid());
             if(pw) {
                 return String(pw->pw_dir);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
             }
-            #endif
+        #endif
             return "";
         }
 
         String GetCurrentUserDataDir()
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             TCHAR path_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal))) {
                 return path_personal;
             }
-            #else
+        #else
             struct passwd* pw = getpwuid(getuid());
             if(pw) {
                 return String(pw->pw_dir);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
             }
-            #endif
+        #endif
             return "";
         }
 
         String GetCommonUserDataDir()
         {
-            #ifdef MEZZ_WINDOWS
+        #ifdef MEZZ_WINDOWS
             TCHAR path_common_personal[MAX_PATH];
             if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal))) {
                 return path_common_personal;
             }
-            #else
+        #else
             struct passwd* pw = getpwuid(getuid());
             if(pw) {
                 return String(pw->pw_dir);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
             }
-            #endif
+        #endif
             return "";
         }
     }//Resource

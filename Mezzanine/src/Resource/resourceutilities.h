@@ -41,6 +41,7 @@
 #define _resourceutilities_h
 
 #include "datatypes.h"
+#include "Resource/archiveentry.h"
 
 namespace Mezzanine
 {
@@ -55,15 +56,53 @@ namespace Mezzanine
         void MEZZ_LIB CacheMainArgs(int ArgCount, char** ArgVars);
 
         ///////////////////////////////////////////////////////////////////////////////
-        // File Management
+        // Basic File Management
 
-        /*/// @brief Deletes a file existing on the filesystem.
+        /// @brief Verifies the existence of a file.
+        /// @param PathAndFile The path and name of the file to check for.
+        /// @return Returns true if the file at the specified location exists, false otherwise.
+        Boole MEZZ_LIB FileExists(const String& PathAndFile);
+
+        /// @brief Copies a file on disk to a new location.
+        /// @note This function makes no attempt to copy file permissions or attributes, only data.
+        /// @param OldPathAndFile The existing path to the file (including the filename) to be copied.
+        /// @param NewPathAndFile The path (including the filename) to where the file should be copied.
+        /// @param FailIfExists If true the operation will fail if a file with the target name already exists.
+        /// @return Returns true if the file was successfully copied, false otherwise.
+        Boole MEZZ_LIB CopyFile(const String& OldPathAndFile, const String& NewPathAndFile, const Boole FailIfExists);
+        /// @brief Moves a file on disk from one location to another.
+        /// @remarks This function can be used to rename files.
+        /// @param OldPathAndFile The existing path to the file (including the filename) to be moved.
+        /// @param NewPathAndFile The path (including the filename) to where the file should be named.
+        /// @param FailIfExists If true the operation will fail if a file with the target name already exists.
+        /// @return Returns true if the file was successfully moved, false otherwise.
+        Boole MEZZ_LIB MoveFile(const String& OldPathAndFile, const String& NewPathAndFile, const Boole FailIfExists);
+        /// @brief Deletes a file existing on the filesystem.
         /// @param PathAndFile A string containing both the path to the directory where the file is located, and the name of the file to be deleted.
         /// @return Returns true if the operation was successful, false if it failed.
-        Boole MEZZ_LIB RemoveFile(const String& PathAndFile);// */
+        Boole MEZZ_LIB RemoveFile(const String& PathAndFile);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Symlinks
+
+        /// @brief Creates a symbolic link to a file on disk.
+        /// @param SymPath A path (including the name of the symbolic link) to where the link should be placed.
+        /// @param TargetPath A path to where the symbolic link will point to.
+        /// @return Returns true if the operation was successful, false otherwise.
+        Boole MEZZ_LIB CreateSymlink(const String& SymPath, const String& TargetPath);
+        /// @brief Creates a symbolic link to a directory on disk.
+        /// @param SymPath A path (including the name of the symbolic link) to where the link should be placed.
+        /// @param TargetPath A path to where the symbolic link will point to.
+        /// @return Returns true if the operation was successful, false otherwise.
+        Boole MEZZ_LIB CreateDirectorySymlink(const String& SymPath, const String& TargetPath);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
+
+        /// @brief Verifies the existence of a folder.
+        /// @param DirectoryPath The path and name of the folder to check for.
+        /// @return Returns true if the folder at the specified location exists, false otherwise.
+        Boole MEZZ_LIB DirectoryExists(const String& DirectoryPath);
 
         /// @brief Creates a single new directory.
         /// @remarks This function will only create the directory specified at the end of the path.
@@ -74,23 +113,22 @@ namespace Mezzanine
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
         Boole MEZZ_LIB CreateDirectoryPath(const String& DirectoryPath);
-        /// @brief Checks to see if the given path exists and if it is a folder.
-        /// @exception On Error this might throw a Mezzanine::IOException with detail about why it failed.
-        /// @param DirectoryPath A String containing the path to test.
-        /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
-        Boole MEZZ_LIB DoesDirectoryExist(const String& DirectoryPath);
         /// @brief Remove an empty directory.
-        /// @exception On Error this might throw a Mezzanine::IOException with details about why it failed.
         /// @param DirectoryPath The Path to the directory to remove.
-        void MEZZ_LIB RemoveDirectory(const String& DirectoryPath);
+        /// @return Returns true if the directory was successfully removed, false otherwise.
+        Boole MEZZ_LIB RemoveDirectory(const String& DirectoryPath);
 
-        /// @brief Get a Listing of the files and subdirectories in a directory.
-        /// @details This follows normal command line conventions, "." is the current directory,
-        /// ".." is the parent directory. To access the file system root you will need to use a
-        /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
-        /// @param Dir The directory to check.
-        /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
-        StringVector MEZZ_LIB GetDirContents(const String& Dir = ".");
+        ///////////////////////////////////////////////////////////////////////////////
+        // Directory Contents
+
+        /// @brief Gets a listing of file and subdirectory names in a directory.
+        /// @param DirectoryPath The directory to look in.
+        /// @return Returns a vector of strings containing the names of every subdirectory and file in the directory.
+        StringVector MEZZ_LIB GetDirectoryContentNames(const String& DirectoryPath);
+        /// @brief Gets a listing of file and subdirectory metadata in a directory.
+        /// @param DirectoryPath The directory to look in.
+        /// @return Returns a vector of archive entries containing metadata on every file and subdirectory in directory specified.
+        ArchiveEntryVector MEZZ_LIB GetDirectoryContents(const String& DirectoryPath);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Path Utilities
@@ -112,12 +150,59 @@ namespace Mezzanine
         /// @return If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe".
         String MEZZ_LIB GetBaseName(const String& PathAndFile);
 
-        /// @brief Get the character used to separate directories
-        /// @return Backslash '\' on windows and Forward slash '/' on other operating systems.
-        Char8 MEZZ_LIB GetDirectorySeparator();
+        /// @brief Checks to see if the character is used to separate directories.
+        /// @param ToCheck The character to check.
+        /// @return Returns true if the character specified is '\\' or '/', false otherwise.
+        Boole MEZZ_LIB IsDirectorySeparator(const Char8 ToCheck);
+        /// @brief Checks to see if the character is used by the client OS to separate directories.
+        /// @param ToCheck The character to check.
+        /// @return Returns true on windows if the character specified is '\\' or on linux if it's '/', false otherwise.
+        Boole MEZZ_LIB IsPlatformDirectorySeparator(const Char8 ToCheck);
+        /// @brief Get the character used by the client OS to separate directories.
+        /// @return Returns a backslash '\\' on windows and forward slash '/' on other operating systems.
+        Char8 MEZZ_LIB GetPlatformDirectorySeparator();
+        /// @brief Get the character readable by all platforms to separate directories.
+        /// @return Retursn a forward slash '/' always.
+        Char8 MEZZ_LIB GetUniversalDirectorySeparator();
         /// @brief Get the character used to separate entries in the system PATH
         /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
         Char8 MEZZ_LIB GetPathSeparator();
+
+        /// @brief Gets whether or not a path is absolute.
+        /// @details A path is absolute if it defines an explicit location of a resource. @n @n
+        /// This will call the version of this method that matches the compiled platform.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is absolute, false otherwise.
+        Boole MEZZ_LIB IsPathAbsolute(const String& ToCheck);
+        /// @brief Gets whether or not a path is absolute on Posix.
+        /// @details A path is absolute if it defines an explicit location of a resource.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered absolute on a Posix platform, false otherwise.
+        Boole MEZZ_LIB IsPathAbsolute_Posix(const String& ToCheck);
+        /// @brief Gets whether or not a path is absolute on Windows.
+        /// @details A path is absolute if it defines an explicit location of a resource.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered absolute on a Windows platform, false otherwise.
+        Boole MEZZ_LIB IsPathAbsolute_Windows(const String& ToCheck);
+        /// @brief Gets whether or not a path is relative.
+        /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
+        /// @details A path is relative if it requires using the current working directory to define the location of a resource. @n @n
+        /// This will call the version of this method that matches the compiled platform.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is relative, false otherwise.
+        Boole MEZZ_LIB IsPathRelative(const String& ToCheck);
+        /// @brief Gets whether or not a path is relative on Posix.
+        /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
+        /// @details A path is relative if it requires using the current working directory to define the location of a resource.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered relative on a Posix platform, false otherwise.
+        Boole MEZZ_LIB IsPathRelative_Posix(const String& ToCheck);
+        /// @brief Gets whether or not a path is relative on Windows.
+        /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
+        /// @details A path is relative if it requires using the current working directory to define the location of a resource.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered relative on a Windows platform, false otherwise.
+        Boole MEZZ_LIB IsPathRelative_Windows(const String& ToCheck);
 
         /// @brief Convenience method to verify the necessary system separator is present when concatenating.
         /// @param FilePath The directory path to the file.

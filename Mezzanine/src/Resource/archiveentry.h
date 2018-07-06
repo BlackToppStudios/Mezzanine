@@ -59,6 +59,30 @@ namespace Mezzanine
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Class constructor.
+            ArchiveEntry() = default;
+            /// @brief Copy constructor.
+            /// @param Other The other entry to be copied.
+            ArchiveEntry(const ArchiveEntry& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other entry to be moved.
+            ArchiveEntry(ArchiveEntry&& Other) = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Copy assignment operator.
+            /// @param Other The other entry to be copied.
+            /// @return Returns a reference to this.
+            ArchiveEntry& operator=(const ArchiveEntry& Other) = default;
+            /// @brief Move assignment operator.
+            /// @param Other The other entry to be moved.
+            /// @return Returns a reference to this.
+            ArchiveEntry& operator=(ArchiveEntry&& Other) = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Type Information
 
             /// @brief Gets the type of archive this entry belongs to.
@@ -68,6 +92,10 @@ namespace Mezzanine
             /// @brief Gets the type of entry this is in the Archive.
             /// @remarks See the EntryType enum for more detailed description of entry types.
             EntryType EntType = ET_Unknown;
+            /// @brief Gets the method used to compress the file referenced by the entry.
+            CompressionMethod CompressMethod = CM_Unknown;
+            /// @brief The algorithm used to encrypt the file referenced by the entry.
+            EncryptionMethod EncryptMethod = EA_Unknown;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Metadata
@@ -79,42 +107,32 @@ namespace Mezzanine
             /// @brief The size of the file.
             /// @remarks Usually in compressed Archives, this will be the uncompressed size of the file.
             UInt64 Size = 0;
+            /// @brief The compressed size of the file (if applicable).
+            UInt64 CompressedSize = 0;
             /// @brief The time the file was created.
             UInt64 CreateTime = 0;
             /// @brief The last time the file was accessed.
             UInt64 AccessTime = 0;
             /// @brief The last time the file was modified.
             UInt64 ModifyTime = 0;
+            /// @brief The 32-bit Cyclic Redundancy Check (CRC) of the file (if applicable).
+            UInt32 CRC = 0;
+            /// @brief A bitmask describing the attributes given to the file in the archive.
+            UInt32 Attributes = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Simple Queries
 
-            /// @brief Whether or not the file can only be read.
-            Boole ReadOnly = true;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Compression Type Information
-
-            /// @brief Gets the method used to compress the file referenced by the entry.
-            CompressionMethod CompressMethod = CM_Unknown;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Compression Metadata
-
-            /// @brief The compressed size of the file.
-            UInt64 CompressedSize = 0;
-            /// @brief The 32-bit Cyclic Redundancy Check (CRC) of the file.
-            UInt32 CRC = 0;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Encryption Type Information
-
-            /// @brief The algorithm used to encrypt the file referenced by the entry.
-            EncryptionMethod EncryptMethod = EA_Unknown;
+            /// @brief Checks whether or not the file can only be read (not written to or executed).
+            /// @return Returns true if the file is read-only, false otherwise.
+            Boole IsReadOnly() const
+                { return ( this->Attributes ^ Resource::FP_Read ) == 0; }
         };//ArchiveEntry
 
         /// @brief Convenience pointer type for ArchiveEntry.
         using ArchiveEntryPtr = std::unique_ptr<ArchiveEntry>;
+        /// @brief Convenience vector type for ArchiveEntry.
+        using ArchiveEntryVector = std::vector<ArchiveEntry>;
     }//Resource
 }//Mezzanine
 

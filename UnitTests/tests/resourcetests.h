@@ -47,6 +47,26 @@
 
 #include <fstream>
 
+#ifdef CopyFile
+#undef CopyFile
+#endif
+
+#ifdef MoveFile
+#undef MoveFile
+#endif
+
+#ifdef DeleteFile
+#undef DeleteFile
+#endif
+
+#ifdef CreateDirectory
+#undef CreateDirectory
+#endif
+
+#ifdef RemoveDirectory
+#undef RemoveDirectory
+#endif
+
 /// @file
 /// @brief A few tests of the resource system, only partial coverage
 
@@ -57,82 +77,269 @@ using namespace Mezzanine::Testing;
 class resourcetests : public UnitTestGroup
 {
     public:
-        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @copydoc Testing::UnitTestGroup::Name
         /// @return Returns a String containing "Resource"
         virtual String Name()
             { return String("Resource"); }
 
-        /// @brief Test only directory creation and removal
-        /// @param TestDirString the directory to attempt to create and remove
+        /// @brief Tests only file utility functions.
+        void TestFileUtilities()
+        {
+            TEST(!Resource::FileExists("UtilityTestFile.txt"),"FileExists-FailCheck");
+
+            std::ofstream UtilityFile;
+            UtilityFile.open("./UtilityTestFile.txt");
+            UtilityFile << "I exist!";
+            UtilityFile.close();
+
+            TEST(Resource::FileExists("UtilityTestFile.txt"),"FileExists-PassCheck");
+            TEST(Resource::CopyFile("UtilityTestFile.txt","UtilityTestCopy.txt",false),"CopyFile-Fresh");
+            TEST(Resource::FileExists("UtilityTestCopy.txt"),"CopyFile-Exists");
+            TEST(!Resource::CopyFile("UtilityTestCopy.txt","UtilityTestFile.txt",true),"CopyFile-DuplicateFail");
+            TEST(Resource::CreateDirectory("MoveTarget/"),"MoveFile-CreateDest");
+            TEST(Resource::MoveFile("UtilityTestCopy.txt","MoveTarget/UtilityTestCopy.txt",true),"MoveFile-ActualMove");
+            TEST(!Resource::FileExists("UtilityTestCopy.txt"),"MoveFile-SourceDoesntExist");
+            TEST(Resource::FileExists("MoveTarget/UtilityTestCopy.txt"),"MoveFile-DestExists");
+            TEST(Resource::MoveFile("MoveTarget/UtilityTestCopy.txt","MoveTarget/RenamedCopy.txt",true),"MoveFile-Rename");
+            TEST(Resource::RemoveFile("MoveTarget/RenamedCopy.txt"),"RemoveFile-DeleteMoved");
+            TEST(!Resource::FileExists("MoveTarget/RenamedCopy.txt"),"RemoveFile-VerifyMoved");
+            TEST(Resource::RemoveFile("UtilityTestFile.txt"),"RemoveFile-DeleteOriginal");
+            TEST(!Resource::FileExists("UtilityTestFile.txt"),"RemoveFile-VerifyOriginal");
+            TEST(Resource::RemoveDirectory("MoveTarget/"),"MoveFile-DestroyDest");
+        }
+
+        /// @brief Tests the directory contents functions.
+        void TestDirectoryContents()
+        {
+            String FileData1 = "This is a simple test file.";
+            String FileData2 = "This is a larger test file text for testing.";
+            String FileData3 = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+            String FileData4 = "When in the Course of human events, it becomes necessary for one people to dissolve "
+                               "the political bands which have connected them with another, and to assume among the "
+                               "powers of the earth, the separate and equal station to which the Laws of Nature and "
+                               "of Nature's God entitle them, a decent respect to the opinions of mankind requires "
+                               "that they should declare the causes which impel them to the separation.";
+
+            Resource::CreateDirectory("Content/");
+            {// GetDirectoryContentNames
+                std::ofstream NameTestFile1;
+                NameTestFile1.open("./Content/NameTestFile1.txt");
+                NameTestFile1 << FileData1;
+                NameTestFile1.close();
+                std::ofstream NameTestFile2;
+                NameTestFile2.open("./Content/NameTestFile2.txt");
+                NameTestFile2 << FileData2;
+                NameTestFile2.close();
+                std::ofstream NameTestFile3;
+                NameTestFile3.open("./Content/NameTestFile3.txt");
+                NameTestFile3 << FileData3;
+                NameTestFile3.close();
+                std::ofstream NameTestFile4;
+                NameTestFile4.open("./Content/NameTestFile4.txt");
+                NameTestFile4 << FileData4;
+                NameTestFile4.close();
+
+                Resource::CreateDirectory("Content/TestDir/");
+
+                StringVector ContentNames = std::move( Resource::GetDirectoryContentNames("Content/") );
+                TEST(ContentNames.size() == 5,"GetDirectoryContentNames-Count");
+                TEST(std::find(ContentNames.begin(),ContentNames.end(),"TestDir") != ContentNames.end(),"GetDirectoryContentNames-First");
+                TEST(std::find(ContentNames.begin(),ContentNames.end(),"NameTestFile1.txt") != ContentNames.end(),"GetDirectoryContentNames-Second");
+                TEST(std::find(ContentNames.begin(),ContentNames.end(),"NameTestFile2.txt") != ContentNames.end(),"GetDirectoryContentNames-Third");
+                TEST(std::find(ContentNames.begin(),ContentNames.end(),"NameTestFile3.txt") != ContentNames.end(),"GetDirectoryContentNames-Fourth");
+                TEST(std::find(ContentNames.begin(),ContentNames.end(),"NameTestFile4.txt") != ContentNames.end(),"GetDirectoryContentNames-Fifth");
+
+                Resource::RemoveFile("./Content/NameTestFile1.txt");
+                Resource::RemoveFile("./Content/NameTestFile2.txt");
+                Resource::RemoveFile("./Content/NameTestFile3.txt");
+                Resource::RemoveFile("./Content/NameTestFile4.txt");
+                Resource::RemoveDirectory("Content/TestDir/");
+            }// GetDirectoryContentNames
+
+            {// GetDirectoryContents
+                using ArchiveEntry = Resource::ArchiveEntry;
+                using ArchiveEntryVector = Resource::ArchiveEntryVector;
+                using ArchiveEntryIterator = ArchiveEntryVector::iterator;
+
+                std::ofstream ContentTestFile2;
+                ContentTestFile2.open("./Content/ContentTestFile2.txt");
+                ContentTestFile2 << FileData2;
+                ContentTestFile2.close();
+                std::ofstream ContentTestFile3;
+                ContentTestFile3.open("./Content/ContentTestFile3.txt");
+                ContentTestFile3 << FileData3;
+                ContentTestFile3.close();
+                std::ofstream ContentTestFile4;
+                ContentTestFile4.open("./Content/ContentTestFile4.txt");
+                ContentTestFile4 << FileData4;
+                ContentTestFile4.close();
+
+                Resource::CreateDirectory("Content/TestDir/");
+
+                ArchiveEntryVector ContentEntries = std::move( Resource::GetDirectoryContents("Content/") );
+                TEST(ContentEntries.size() == 4,"GetDirectoryContents-Count");
+                ArchiveEntryIterator EntryIt = ContentEntries.end();
+                EntryIt = std::find_if(ContentEntries.begin(),ContentEntries.end(),[](const ArchiveEntry& Entry){
+                    return ( Entry.Name == "TestDir" );
+                });
+                TEST(EntryIt != ContentEntries.end(),"GetDirectoryContents-FirstFound");
+                if( EntryIt != ContentEntries.end() ) {
+                    TEST((*EntryIt).ArchType == Resource::AT_FileSystem,"GetDirectoryContents-FirstArchiveType");
+                    TEST((*EntryIt).EntType == Resource::ET_Directory,"GetDirectoryContents-FirstEntryType");
+                    TEST((*EntryIt).Name == "TestDir","GetDirectoryContents-FirstName");
+                    TEST((*EntryIt).Size == 0,"GetDirectoryContents-FirstSize");
+                }else{
+                    TEST(false,"GetDirectoryContents-FirstArchiveType");
+                    TEST(false,"GetDirectoryContents-FirstEntryType");
+                    TEST(false,"GetDirectoryContents-FirstName");
+                    TEST(false,"GetDirectoryContents-FirstSize");
+                }
+                EntryIt = std::find_if(ContentEntries.begin(),ContentEntries.end(),[](const ArchiveEntry& Entry){
+                    return ( Entry.Name == "ContentTestFile2.txt" );
+                });
+                TEST(EntryIt != ContentEntries.end(),"GetDirectoryContents-SecondFound");
+                if( EntryIt != ContentEntries.end() ) {
+                    TEST((*EntryIt).ArchType == Resource::AT_FileSystem,"GetDirectoryContents-SecondArchiveType");
+                    TEST((*EntryIt).EntType == Resource::ET_File,"GetDirectoryContents-SecondEntryType");
+                    TEST((*EntryIt).Name == "ContentTestFile2.txt","GetDirectoryContents-SecondName");
+                    TEST((*EntryIt).Size == FileData2.size(),"GetDirectoryContents-SecondSize");
+                }else{
+                    TEST(false,"GetDirectoryContents-SecondArchiveType");
+                    TEST(false,"GetDirectoryContents-SecondEntryType");
+                    TEST(false,"GetDirectoryContents-SecondName");
+                    TEST(false,"GetDirectoryContents-SecondSize");
+                }
+                EntryIt = std::find_if(ContentEntries.begin(),ContentEntries.end(),[](const ArchiveEntry& Entry){
+                    return ( Entry.Name == "ContentTestFile3.txt" );
+                });
+                TEST(EntryIt != ContentEntries.end(),"GetDirectoryContents-ThirdFound");
+                if( EntryIt != ContentEntries.end() ) {
+                    TEST((*EntryIt).ArchType == Resource::AT_FileSystem,"GetDirectoryContents-ThirdArchiveType");
+                    TEST((*EntryIt).EntType == Resource::ET_File,"GetDirectoryContents-ThirdEntryType");
+                    TEST((*EntryIt).Name == "ContentTestFile3.txt","GetDirectoryContents-ThirdName");
+                    TEST((*EntryIt).Size == FileData3.size(),"GetDirectoryContents-ThirdSize");
+                }else{
+                    TEST(false,"GetDirectoryContents-ThirdArchiveType");
+                    TEST(false,"GetDirectoryContents-ThirdEntryType");
+                    TEST(false,"GetDirectoryContents-ThirdName");
+                    TEST(false,"GetDirectoryContents-ThirdSize");
+                }
+                EntryIt = std::find_if(ContentEntries.begin(),ContentEntries.end(),[](const ArchiveEntry& Entry){
+                    return ( Entry.Name == "ContentTestFile4.txt" );
+                });
+                TEST(EntryIt != ContentEntries.end(),"GetDirectoryContents-FourthFound");
+                if( EntryIt != ContentEntries.end() ) {
+                    TEST((*EntryIt).ArchType == Resource::AT_FileSystem,"GetDirectoryContents-FourthArchiveType");
+                    TEST((*EntryIt).EntType == Resource::ET_File,"GetDirectoryContents-FourthEntryType");
+                    TEST((*EntryIt).Name == "ContentTestFile4.txt","GetDirectoryContents-FourthName");
+                    TEST((*EntryIt).Size == FileData4.size(),"GetDirectoryContents-FourthSize");
+                }else{
+                    TEST(false,"GetDirectoryContents-FourthArchiveType");
+                    TEST(false,"GetDirectoryContents-FourthEntryType");
+                    TEST(false,"GetDirectoryContents-FourthName");
+                    TEST(false,"GetDirectoryContents-FourthSize");
+                }
+
+                Resource::RemoveFile("./Content/ContentTestFile2.txt");
+                Resource::RemoveFile("./Content/ContentTestFile3.txt");
+                Resource::RemoveFile("./Content/ContentTestFile4.txt");
+                Resource::RemoveDirectory("Content/TestDir/");
+            }// GetDirectoryContents
+            Resource::RemoveDirectory("Content/");
+        }
+
+        /// @brief Tests only directory utility functions.
+        /// @param TestDirString The directory to attempt to create and remove.
         /// @details The functions under test are required to test one another. This creates an unusual
         /// set of checks that need to happen and some situations in which tests will be skipped.
-        void CreateRemoveDirectory(const String& TestDirString)
+        void TestDirectoryUtilities(const String& TestDirString)
         {
-            Boole Exists = Mezzanine::Resource::DoesDirectoryExist(TestDirString);
-            TestOutput << "Does testing directory exists: " << Exists << endl;
-            if(Exists)
-            {
-                TestOutput << "Removing " << TestDirString << endl;
-                Mezzanine::Resource::RemoveDirectory(TestDirString);
+            Boole Exists = Resource::DirectoryExists(TestDirString);
+            TestOutput << "Testing whether directory exists: " << Exists << std::endl;
+            if(Exists) {
+                TestOutput << "Removing " << TestDirString << std::endl;
+                Resource::RemoveDirectory(TestDirString);
             }else{
-                TestOutput << "No cleanup required" << endl;
+                TestOutput << "No cleanup required" << std::endl;
             }
 
-            Exists = Mezzanine::Resource::DoesDirectoryExist(TestDirString);
-            if(Exists)
-            {
+            Exists = Resource::DirectoryExists(TestDirString);
+            if(Exists) {
                 TEST(false, "RemoveDirectory");
                 TEST_RESULT(Testing::Skipped, "CreateDirectory");
             }else{
-                TestOutput << "Attempting to create a directory: " << TestDirString << endl;
-                Mezzanine::Resource::CreateDirectory(TestDirString);
-                Exists = Mezzanine::Resource::DoesDirectoryExist(TestDirString);
-                TEST(Exists, "CreateDirectory");
-                TestOutput << "Did it work: " << Exists << endl;
+                TestOutput << "Attempting to create a directory: " << TestDirString << std::endl;
+                TEST(Resource::CreateDirectory(TestDirString), "CreateDirectory");
+                Exists = Resource::DirectoryExists(TestDirString);
+                TEST(Exists, "DirectoryExists");
+                TestOutput << "Did it work: " << Exists << std::endl;
 
-                if(Exists)
-                {
-                    TestOutput << "Testing removal of: " << TestDirString << endl;
-                    Mezzanine::Resource::RemoveDirectory(TestDirString);
-                    Exists = Mezzanine::Resource::DoesDirectoryExist(TestDirString);
+                if(Exists) {
+                    TestOutput << "Testing removal of: " << TestDirString << std::endl;
+                    Resource::RemoveDirectory(TestDirString);
+                    Exists = Resource::DirectoryExists(TestDirString);
                     TEST(!Exists, "RemoveDirectory");
-                    TestOutput << "Did it work: " << !Exists << endl;
+                    TestOutput << "Did it work: " << !Exists << std::endl;
                 }else{
                     TEST_RESULT(Testing::Skipped, "RemoveDirectory");
                 }
             }
+
+            TestOutput << "Testing the creation of multiple directories in a path." << std::endl;
+            String BaseDir = "./";
+            String Depth1 = "Depth1/";
+            String Depth2 = "Depth2/";
+            String Depth3 = "Depth3/";
+            String DepthDir = BaseDir + Depth1 + Depth2 + Depth3;
+
+            TestOutput << "Creating directory path: " << DepthDir << std::endl;
+            TEST(Resource::CreateDirectoryPath(DepthDir),"CreateDirectoryPath");
+            TEST(Resource::DirectoryExists(DepthDir),"VerifyCreateDirectoryPath");
+            TestOutput << "Cleaning up directories." << std::endl;
+            Resource::RemoveDirectory(BaseDir + Depth1 + Depth2 + Depth3);
+            Resource::RemoveDirectory(BaseDir + Depth1 + Depth2);
+            Resource::RemoveDirectory(BaseDir + Depth1);
         }
 
         /// @brief Verify the basename and dirname functions does their jobs right
         /// set of checks that need to happen and some situations in which tests will be skipped.
         void TestBaseAndDirName()
         {
-            TestOutput << "Testing GetDirName: " << endl
-                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("File.txt") << "\"" << endl
-                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("c:\\untitled doc.txt") << "\"" << endl
-                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("") << "\"" << endl
-                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"/a/b/\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("/a/b/c") << "\"" << endl
-                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"/a/b/c/\"\n\tActual:\t\"" << Mezzanine::Resource::GetDirName("/a/b/c/") << "\"" << endl
-                 << endl;
-            Test(Mezzanine::Resource::GetDirName("File.txt")=="","DirNameShouldBeEmpty");
-            Test(Mezzanine::Resource::GetDirName("c:\\untitled doc.txt")=="c:\\","DirNamewindows");
-            Test(Mezzanine::Resource::GetDirName("")=="","DirNameEmptyNotCrash");
-            Test(Mezzanine::Resource::GetDirName("/a/b/c")=="/a/b/","DirNameUnix");
-            Test(Mezzanine::Resource::GetDirName("/a/b/c/")=="/a/b/c/","DirNameUnixDir");
+            TestOutput << "Testing GetDirName: " << std::endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetDirName("File.txt") << "\"" << std::endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Resource::GetDirName("c:\\untitled doc.txt") << "\"" << std::endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetDirName("") << "\"" << std::endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"/a/b/\"\n\tActual:\t\"" << Resource::GetDirName("/a/b/c") << "\"" << std::endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"/a/b/c/\"\n\tActual:\t\"" << Resource::GetDirName("/a/b/c/") << "\"" << std::endl
+                 << std::endl;
+            Test(Resource::GetDirName("File.txt")=="","GetDirName-ShouldBeEmptyCStr");
+            Test(Resource::GetDirName("c:\\untitled doc.txt")=="c:\\","GetDirName-WindowsCStr");
+            Test(Resource::GetDirName("")=="","GetDirName-EmptyNotCrashCStr");
+            Test(Resource::GetDirName("/a/b/c")=="/a/b/","GetDirName-UnixCStr");
+            Test(Resource::GetDirName("/a/b/c/")=="/a/b/c/","GetDirName-UnixDirCStr");
+            Test(Resource::GetDirName(String("File.txt"))=="","GetDirName-ShouldBeEmpty");
+            Test(Resource::GetDirName(String("c:\\untitled doc.txt"))=="c:\\","GetDirName-Windows");
+            Test(Resource::GetDirName(String(""))=="","GetDirName-EmptyNotCrash");
+            Test(Resource::GetDirName(String("/a/b/c"))=="/a/b/","GetDirName-Unix");
+            Test(Resource::GetDirName(String("/a/b/c/"))=="/a/b/c/","GetDirName-UnixDir");
 
-            TestOutput << "Testing GetBaseName: " << endl
-                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("File.txt") << "\"" << endl
-                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("c:\\untitled doc.txt") << "\"" << endl
-                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("") << "\"" << endl
-                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("/a/b/c") << "\"" << endl
-                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetBaseName("/a/b/c/") << "\"" << endl
-                 << endl << endl;
-            Test(Mezzanine::Resource::GetBaseName("File.txt")=="File.txt","BaseNameShouldCopy");
-            Test(Mezzanine::Resource::GetBaseName("c:\\untitled doc.txt")=="untitled doc.txt","BaseNamewindows");
-            Test(Mezzanine::Resource::GetBaseName("")=="","BaseNameEmptyNotCrash");
-            Test(Mezzanine::Resource::GetBaseName("/a/b/c")=="c","BaseNameUnix");
-            Test(Mezzanine::Resource::GetBaseName("/a/b/c/")=="","BaseNameUnixDir");
-
+            TestOutput << "Testing GetBaseName: " << std::endl
+                 << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Resource::GetBaseName("File.txt") << "\"" << std::endl
+                 << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Resource::GetBaseName("c:\\untitled doc.txt") << "\"" << std::endl
+                 << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetBaseName("") << "\"" << std::endl
+                 << "Passing:\t\"/a/b/c\"\n\tExpecting:\t\"c\"\n\tActual:\t\"" << Resource::GetBaseName("/a/b/c") << "\"" << std::endl
+                 << "Passing:\t\"/a/b/c/\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetBaseName("/a/b/c/") << "\"" << std::endl
+                 << std::endl << std::endl;
+            Test(Resource::GetBaseName("File.txt")=="File.txt","GetBaseName-ShouldCopyCStr");
+            Test(Resource::GetBaseName("c:\\untitled doc.txt")=="untitled doc.txt","GetBaseName-WindowsCStr");
+            Test(Resource::GetBaseName("")=="","GetBaseName-EmptyNotCrashCStr");
+            Test(Resource::GetBaseName("/a/b/c")=="c","GetBaseName-UnixCStr");
+            Test(Resource::GetBaseName("/a/b/c/")=="","GetBaseName-UnixDirCStr");
+            Test(Resource::GetBaseName(String("File.txt"))=="File.txt","GetBaseName-ShouldCopy");
+            Test(Resource::GetBaseName(String("c:\\untitled doc.txt"))=="untitled doc.txt","GetBaseName-Windows");
+            Test(Resource::GetBaseName(String(""))=="","GetBaseName-EmptyNotCrash");
+            Test(Resource::GetBaseName(String("/a/b/c"))=="c","GetBaseName-Unix");
+            Test(Resource::GetBaseName(String("/a/b/c/"))=="","GetBaseName-UnixDir");
         }
 
         void TestGetExeDir()
@@ -151,78 +358,78 @@ class resourcetests : public UnitTestGroup
             char** PtrReasonablew = &Reasonablew;
             char* Reasonableu = const_cast<char *>("/usr/share/bin/game");
             char** PtrReasonableu = &Reasonableu;
-            TestOutput << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << endl
-                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << endl
-                 << "With empty records \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(0,0) << "\"" << endl
-                 << "With \"" << ExePtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,ExePtr) << "\"" << endl
-                 << "With \"" << ExeDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,ExeDSPtr) << "\"" << endl
-                 << "With \"" << ExewDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,ExewDSPtr) << "\"" << endl
-                 << "With \"" << PtrwPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,PtrwPath) << "\"" << endl
-                 << "With \"" << PtruPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,PtruPath) << "\"" << endl
-                 << "With \"" << PtrReasonablew[0] << "\" \n\tExpecting:\t\"c:\\fungamedir\\\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,PtrReasonablew) << "\"" << endl
-                 << "With \"" << PtrReasonableu[0] << "\" \n\tExpecting:\t\"/usr/share/bin/\"\n\tActual:\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(1,PtrReasonableu) << "\"" << endl
-                 << endl;
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(0,0) == String(""),"GetExeDirEmpty");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,ExePtr) == String("."),"GetExeExeOnly");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,ExeDSPtr) == String("."),"GetExeDothSlash");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,ExewDSPtr) == String("."),"GetExewinDotSlash");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,PtrwPath) == String(""),"GetExeNoExewin");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,PtruPath) == String(""),"GetExeNoExenix");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
-            TEST(Mezzanine::Resource::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
+            TestOutput << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << std::endl
+                 << "On your system with the real args this provides:\n\t\"" << Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << std::endl
+                 << "With empty records \n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(0,0) << "\"" << std::endl
+                 << "With \"" << ExePtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,ExePtr) << "\"" << std::endl
+                 << "With \"" << ExeDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,ExeDSPtr) << "\"" << std::endl
+                 << "With \"" << ExewDSPtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,ExewDSPtr) << "\"" << std::endl
+                 << "With \"" << PtrwPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,PtrwPath) << "\"" << std::endl
+                 << "With \"" << PtruPath[0] << "\" \n\tExpecting:\t\"\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,PtruPath) << "\"" << std::endl
+                 << "With \"" << PtrReasonablew[0] << "\" \n\tExpecting:\t\"c:\\fungamedir\\\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,PtrReasonablew) << "\"" << std::endl
+                 << "With \"" << PtrReasonableu[0] << "\" \n\tExpecting:\t\"/usr/share/bin/\"\n\tActual:\t\"" << Resource::GetExecutableDirFromArg(1,PtrReasonableu) << "\"" << std::endl
+                 << std::endl;
+            TEST(Resource::GetExecutableDirFromArg(0,0) == String(""),"GetExeDirEmpty");
+            TEST(Resource::GetExecutableDirFromArg(1,ExePtr) == String("."),"GetExeExeOnly");
+            TEST(Resource::GetExecutableDirFromArg(1,ExeDSPtr) == String("."),"GetExeDothSlash");
+            TEST(Resource::GetExecutableDirFromArg(1,ExewDSPtr) == String("."),"GetExewinDotSlash");
+            TEST(Resource::GetExecutableDirFromArg(1,PtrwPath) == String(""),"GetExeNoExewin");
+            TEST(Resource::GetExecutableDirFromArg(1,PtruPath) == String(""),"GetExeNoExenix");
+            TEST(Resource::GetExecutableDirFromArg(1,PtrReasonablew) == String("c:\\fungamedir\\"),"GetExeValidwin");
+            TEST(Resource::GetExecutableDirFromArg(1,PtrReasonableu) == String("/usr/share/bin/"),"GetExeValidnix");
 
             Whole Count = 10000; // set to 100000 or higher and remark out env test for faster results
             MaxInt ArgTime = 0;
             MaxInt SyscallTime = 0;
             MaxInt GetTime = 0;
 
-            TestOutput << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << endl
-                 << "On your system with the real args this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << endl
-                 << endl;
+            TestOutput << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << std::endl
+                 << "On your system with the real args this provides:\n\t\"" << Resource::GetExecutableDirFromArg(GetMainArgumentCount(), GetMainArgumentVector()) << "\"" << std::endl
+                 << std::endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                TestOutput << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << std::endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDirFromArg(GetMainArgumentCount(),GetMainArgumentVector())); }
+                    { CacheDefeater.push_back(Resource::GetExecutableDirFromArg(GetMainArgumentCount(),GetMainArgumentVector())); }
                 Whole N = (rand()%Count);
                 TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 ArgTime = Timed.GetLength();
-                TestOutput << ArgTime << " microseconds." << endl << endl;
+                TestOutput << ArgTime << " microseconds." << std::endl << std::endl;
             }
 
-            TestOutput << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
-                 << "On your system this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDirFromSystem() << "\"" << endl
-                 << endl;
+            TestOutput << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << std::endl
+                 << "On your system this provides:\n\t\"" << Resource::GetExecutableDirFromSystem() << "\"" << std::endl
+                 << std::endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                TestOutput << "Calling GetExecutableDirFromSystem() " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDirFromSystem() " << Count << " times and timing it." << std::endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDirFromSystem()); }
+                    { CacheDefeater.push_back(Resource::GetExecutableDirFromSystem()); }
                 Whole N = (rand()%Count);
                 TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 SyscallTime = Timed.GetLength();
-                TestOutput << SyscallTime << " microseconds." << endl << endl;
+                TestOutput << SyscallTime << " microseconds." << std::endl << std::endl;
             }
 
 
-            TestOutput << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << endl
-                 << "On your system this provides:\n\t\"" << Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << endl
-                 << endl << endl;
+            TestOutput << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << std::endl
+                 << "On your system this provides:\n\t\"" << Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << std::endl
+                 << std::endl << std::endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                TestOutput << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << std::endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
-                    { CacheDefeater.push_back(Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector())); }
+                    { CacheDefeater.push_back(Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector())); }
                 Whole N = (rand()%Count);
                 TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 GetTime = Timed.GetLength();
-                TestOutput << GetTime << " microseconds." << endl << endl;
+                TestOutput << GetTime << " microseconds." << std::endl << std::endl;
             }
 
             TEST_WARN(ArgTime<SyscallTime,"ArgIsFastest")
@@ -230,15 +437,15 @@ class resourcetests : public UnitTestGroup
 
         void TestPath()
         {
-            TestOutput << "Your Current PATH as parsed by GetSystemPATH():" << endl;
-            StringVector PATH(Resource::GetSystemPATH());
+            TestOutput << "Your Current PATH as parsed by GetSystemPATH():" << std::endl;
+            StringVector PATH = std::move( Resource::GetSystemPATH() );
             for(StringVector::const_iterator Iter = PATH.begin();
                 Iter!=PATH.end();
                 Iter++)
             {
-                TestOutput << "\t\"" << *Iter << "\"" << endl;
+                TestOutput << "\t\"" << *Iter << "\"" << std::endl;
             }
-            TestOutput << "End of current system PATH" << endl;
+            TestOutput << "End of current system PATH" << std::endl;
 
 
             std::stringstream SamplePath;
@@ -246,60 +453,60 @@ class resourcetests : public UnitTestGroup
                        << "/bin" << Resource::GetPathSeparator()
                        << Resource::GetPathSeparator();
 
-            TestOutput << "Test parsing a sample PATH: " << SamplePath.str() << endl
+            TestOutput << "Test parsing a sample PATH: " << SamplePath.str() << std::endl
                  << "Becomes: ";
-            PATH=Resource::GetSystemPATH(SamplePath.str());
+            PATH = std::move( Resource::GetSystemPATH(SamplePath.str()) );
             for(StringVector::const_iterator Iter = PATH.begin();
                 Iter!=PATH.end();
                 Iter++)
             {
-                TestOutput << "\t\"" << *Iter << "\"" << endl;
+                TestOutput << "\t\"" << *Iter << "\"" << std::endl;
             }
             TEST(PATH[0]=="/a/b/c"&&PATH[1]=="/bin"&&PATH[2]=="", "PATHParsing");
 
-            TestOutput << "looking for \"ls\" and comparing our results to the system"  << endl
-                 << "\t\"" << (Resource::Which("ls")) << "\"" << endl
-                 << "\t\"" << Resource::GetDirName(GetCommandResults("which ls")) << "\"" << endl;
+            TestOutput << "looking for \"ls\" and comparing our results to the system"  << std::endl
+                 << "\t\"" << (Resource::Which("ls")) << "\"" << std::endl
+                 << "\t\"" << Resource::GetDirName(GetCommandResults("which ls")) << "\"" << std::endl;
             TEST_WARN((Resource::Which("ls"))==Resource::GetDirName(GetCommandResults("which ls")),"Whichls");
 
             //Does Windows have which, what does where's output look like?
-            TestOutput << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
-                 << "\t\"" << (Resource::Which("cmd.exe")) << "\"" << endl
-                 << "\t\"" << Resource::GetDirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
+            TestOutput << "looking for \"cmd.exe\" and comparing our results to the system"  << std::endl
+                 << "\t\"" << (Resource::Which("cmd.exe")) << "\"" << std::endl
+                 << "\t\"" << Resource::GetDirName(GetCommandResults("which cmd.exe")) << "\"" << std::endl;
             TEST_WARN((Resource::Which("cmd.exe"))==Resource::GetDirName(GetCommandResults("which cmd.exe")),"Whichcmd");
         }
 
         void TestChangeDir()
         {
-            TestOutput << "Testing Directory Changing." << endl;
-            Mezzanine::Resource::CreateDirectory("Change");
+            TestOutput << "Testing Directory Changing." << std::endl;
+            Resource::CreateDirectory("Change");
             String StartDir(Resource::GetWorkingDirectory());
-            String TargetDir(StartDir+Resource::GetDirectorySeparator()+String("Change"));
+            String TargetDir(StartDir+Resource::GetPlatformDirectorySeparator()+String("Change"));
 
-            TestOutput << "Current directory: " << Resource::GetWorkingDirectory() << endl;
-            TestOutput << "\tExpected: " << StartDir << endl;
-            Mezzanine::Resource::ChangeWorkingDirectory("Change");
+            TestOutput << "Current directory: " << Resource::GetWorkingDirectory() << std::endl;
+            TestOutput << "\tExpected: " << StartDir << std::endl;
+            Resource::ChangeWorkingDirectory("Change");
             Test(TargetDir==Resource::GetWorkingDirectory(),"CDRelative");
-            TestOutput << "Changing with relative path (cd Change): " << Resource::GetWorkingDirectory() << endl;
-            TestOutput << "\tExpected: " << TargetDir << endl;
+            TestOutput << "Changing with relative path (cd Change): " << Resource::GetWorkingDirectory() << std::endl;
+            TestOutput << "\tExpected: " << TargetDir << std::endl;
 
-            Mezzanine::Resource::ChangeWorkingDirectory("..");
+            Resource::ChangeWorkingDirectory("..");
             Test(StartDir==Resource::GetWorkingDirectory(),"CDDotDot");
-            TestOutput << "Changing back with relative path (cd ..): " << Resource::GetWorkingDirectory() << endl;
-            TestOutput << "\tExpected: " << StartDir << endl;
+            TestOutput << "Changing back with relative path (cd ..): " << Resource::GetWorkingDirectory() << std::endl;
+            TestOutput << "\tExpected: " << StartDir << std::endl;
 
 
-            Mezzanine::Resource::ChangeWorkingDirectory(TargetDir);
-            TestOutput << "Changing with absolute path (cd /a/b/Change): " << Resource::GetWorkingDirectory() << endl;
-            TestOutput << "\tExpected: " << TargetDir << endl;
+            Resource::ChangeWorkingDirectory(TargetDir);
+            TestOutput << "Changing with absolute path (cd /a/b/Change): " << Resource::GetWorkingDirectory() << std::endl;
+            TestOutput << "\tExpected: " << TargetDir << std::endl;
             Test(TargetDir==Resource::GetWorkingDirectory(),"CDAbsolute");
 
-            Mezzanine::Resource::ChangeWorkingDirectory(StartDir);
+            Resource::ChangeWorkingDirectory(StartDir);
             Test(StartDir==Resource::GetWorkingDirectory(),"CDAbsolute2");
-            TestOutput << "Changing back with absolute path (cd /a/b/Change): " << Resource::GetWorkingDirectory() << endl;
-            TestOutput << "\tExpected: " << StartDir << endl;
+            TestOutput << "Changing back with absolute path (cd /a/b/Change): " << Resource::GetWorkingDirectory() << std::endl;
+            TestOutput << "\tExpected: " << StartDir << std::endl;
 
-
+            Resource::RemoveDirectory("Change");
         }
 
         /// @brief This is called when Automatic tests are run
@@ -308,13 +515,16 @@ class resourcetests : public UnitTestGroup
             String TestDirString(TestingScratchDir);
             TestDirString += "resourcetesting";
 
-            try
-            {
-                CreateRemoveDirectory(TestDirString);
-            } catch (Mezzanine::IOException& e) {
-                TestOutput << "Error testing directory creation and removal: " << e.what() << endl;
+            try{
+                TestDirectoryUtilities(TestDirString);
+            } catch (IOException& e) {
+                TestOutput << "Error testing directory creation and removal: " << e.what() << std::endl;
             }
-            TestOutput << endl;
+            TestOutput << std::endl;
+
+            TestFileUtilities();
+
+            TestDirectoryContents();
 
             TestBaseAndDirName();
 
@@ -324,8 +534,8 @@ class resourcetests : public UnitTestGroup
 
             TestChangeDir();
 
-            //TestOutput << "Attempting to create a Mezzanine::ResourceManager" << endl;
-            //Mezzanine::ResourceManager res;
+            //TestOutput << "Attempting to create a ResourceManager" << std::endl;
+            //ResourceManager res;
             //TEST(true,"ConstructionDidNotFailMiserably");
 
         }
@@ -342,13 +552,13 @@ class resourcetests : public UnitTestGroup
             Logger Temp;
 
             Temp << "GetExecutableDirFromSystem() - On your system with the real args this provides:\n\t\""
-                 << Mezzanine::Resource::GetExecutableDirFromSystem() << "\"" << endl
+                 << Resource::GetExecutableDirFromSystem() << "\"" << std::endl
                  << "Is that location correct? " ;
             TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDirFromSystem()");
 
             Temp.str("");
             Temp << "GetExecutableDir(ArgC,ArgV) - On your system with the real args this provides:\n\t\""
-                 << Mezzanine::Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << endl
+                 << Resource::GetExecutableDir(GetMainArgumentCount(),GetMainArgumentVector()) << "\"" << std::endl
                  << "Is that location correct? " ;
             TEST_RESULT(GetTestAnswerFromStdin(Temp.str()), "GetExecutableDir(ArgC,ArgV)");
         }
