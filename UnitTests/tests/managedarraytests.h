@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _sortedmanagedarraytests_h
-#define _sortedmanagedarraytests_h
+#ifndef _managedarraytests_h
+#define _managedarraytests_h
 
 #include "mezztest.h"
 
@@ -52,7 +52,7 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-/// @brief A collection of tests for am array that acts like a vector as much as it can short of allocating memory.
+/// @brief A collection of tests for an array that acts like a vector as much as it can short of allocating memory.
 class managedarraytests : public UnitTestGroup
 {
 public:
@@ -123,27 +123,37 @@ public:
         }//Operators
 
         {//Iterators
-            ManagedArray<int,10> TestArray = { 3, 14, 15, 92, 65, 35, 89, 79, 32, 38 };
-            const ManagedArray<int,15> ConstTestArray = { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120 };
+            using FirstArrayType = ManagedArray<int,10>;
+            using SecondArrayType = ManagedArray<int,15>;
+            FirstArrayType TestArray = { 3, 14, 15, 92, 65, 35, 89, 79, 32, 38 };
+            const SecondArrayType ConstTestArray = { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120 };
 
-            ManagedArray<int,10>::iterator BeginIter = TestArray.begin();
-            ManagedArray<int,15>::const_iterator ConstBeginIter = ConstTestArray.begin();
+            FirstArrayType::iterator BeginIter = TestArray.begin();
+            FirstArrayType::const_iterator CBeginIter = TestArray.cbegin();
+            SecondArrayType::const_iterator ConstBeginIter = ConstTestArray.begin();
             TEST(*BeginIter == 3,"ManagedArray::begin()");
+            TEST(*CBeginIter == 3,"ManagedArray::cbegin()_const");
             TEST(*ConstBeginIter == 1,"ManagedArray::begin()_const");
 
-            ManagedArray<int,10>::iterator EndIter = TestArray.end();
-            ManagedArray<int,15>::const_iterator ConstEndIter = ConstTestArray.end();
+            FirstArrayType::iterator EndIter = TestArray.end();
+            FirstArrayType::const_iterator CEndIter = TestArray.cend();
+            SecondArrayType::const_iterator ConstEndIter = ConstTestArray.end();
             TEST(EndIter - BeginIter == 10,"ManagedArray::end()");
+            TEST(CEndIter - CBeginIter == 10,"ManagedArray::cend()_const");
             TEST(ConstEndIter - ConstBeginIter == 15,"ManagedArray::end()_const");
 
-            ManagedArray<int,10>::reverse_iterator BeginRevIter = TestArray.rbegin();
-            ManagedArray<int,15>::const_reverse_iterator ConstBeginRevIter = ConstTestArray.rbegin();
+            FirstArrayType::reverse_iterator BeginRevIter = TestArray.rbegin();
+            FirstArrayType::const_reverse_iterator CBeginRevIter = TestArray.crbegin();
+            SecondArrayType::const_reverse_iterator ConstBeginRevIter = ConstTestArray.rbegin();
             TEST(*BeginRevIter == 38,"ManagedArray::rbegin()");
+            TEST(*CBeginRevIter == 38,"ManagedArray::crbegin()_const");
             TEST(*ConstBeginRevIter == 120,"ManagedArray::rbegin()_const");
 
-            ManagedArray<int,10>::reverse_iterator EndRevIter = TestArray.rend();
-            ManagedArray<int,15>::const_reverse_iterator ConstEndRevIter = ConstTestArray.rend();
+            FirstArrayType::reverse_iterator EndRevIter = TestArray.rend();
+            FirstArrayType::const_reverse_iterator CEndRevIter = TestArray.crend();
+            SecondArrayType::const_reverse_iterator ConstEndRevIter = ConstTestArray.rend();
             TEST(EndRevIter - BeginRevIter == 10,"ManagedArray::rend()");
+            TEST(CEndRevIter - CBeginRevIter == 10,"ManagedArray::crend()_const");
             TEST(ConstEndRevIter - ConstBeginRevIter == 15,"ManagedArray::rend()_const");
         }//Iterators
 
@@ -161,6 +171,11 @@ public:
                  QueryArray.capacity() == 16 &&
                  ConstQueryArray.capacity() == 24,
                  "ManagedArray::capacity()_const");
+
+            TEST(EmptyArray.max_size() == 8 &&
+                 QueryArray.max_size() == 16 &&
+                 ConstQueryArray.max_size() == 24,
+                 "ManagedArray::max_size()_const");
 
             TEST(EmptyArray.empty() == true &&
                  QueryArray.empty() == false &&

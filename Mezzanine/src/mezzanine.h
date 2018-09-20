@@ -128,6 +128,7 @@
 #include "eventsubscriptiontabletraits.h"
 #include "fieldofforce.h"
 #include "filestream.h"
+#include "flatmap.h"
 #include "gravityfield.h"
 #include "gravitywell.h"
 #include "hashedstring.h"

@@ -173,6 +173,10 @@ namespace Mezzanine
         /// @return A const iterator pointing to the first element.
         const_iterator begin() const
             { return reinterpret_cast<const value_type*>( InternalStorage ); }
+        /// @brief Get a const iterator to the beginning of the container.
+        /// @return A const iterator pointing to the first element.
+        const_iterator cbegin() const
+            { return reinterpret_cast<const value_type*>( InternalStorage ); }
 
         /// @brief Get an iterator to one past the end of the container.
         /// @return A mutable iterator to one past the end of the container.
@@ -181,6 +185,10 @@ namespace Mezzanine
         /// @brief Get a const iterator to one past the end of the container.
         /// @return A const iterator to one past the end of the container.
         const_iterator end() const
+            { return begin() + UsedSpace; }
+        /// @brief Get a const iterator to one past the end of the container.
+        /// @return A const iterator to one past the end of the container.
+        const_iterator cend() const
             { return begin() + UsedSpace; }
 
         /// @brief Get an iterator to the last element of the container, going backwards.
@@ -191,6 +199,10 @@ namespace Mezzanine
         /// @return A const reverse iterator pointing to the first element at the end.
         const_reverse_iterator rbegin() const
             { return const_reverse_iterator( end() ); }
+        /// @brief Get a const iterator to the last element of the container, going backwards.
+        /// @return A const reverse iterator pointing to the first element at the end.
+        const_reverse_iterator crbegin() const
+            { return const_reverse_iterator( end() ); }
 
         /// @brief Get an iterator to one before the first element of the container.
         /// @return A mutable reverse iterator pointing to the reverse end element at the start.
@@ -199,6 +211,10 @@ namespace Mezzanine
         /// @brief Get a const iterator to one before the first element of the container.
         /// @return A const reverse iterator pointing to the reverse end element at the start.
         const_reverse_iterator rend() const
+            { return const_reverse_iterator( begin() ); }
+        /// @brief Get a const iterator to one before the first element of the container.
+        /// @return A const reverse iterator pointing to the reverse end element at the start.
+        const_reverse_iterator crend() const
             { return const_reverse_iterator( begin() ); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -209,8 +225,16 @@ namespace Mezzanine
         size_type size() const
             { return UsedSpace; }
         /// @brief Gets the maximum number of elements this array could store.
+        /// @remarks This function does the same/is the same as max_size().  It exists for
+        /// compatibility with container adapters.
         /// @return Returns the total number of elements this array has room for.
         size_type capacity() const
+            { return NumElements; }
+        /// @brief Gets the maximum number of elements this array can support.
+        /// @remarks This function does the same/is the same as capacity().  It exists for
+        /// compatibility with container adapters.
+        /// @return Returns the total number of elements this array can store.
+        size_type max_size() const
             { return NumElements; }
         /// @brief Gets whether or not this array is empty.
         /// @return Returns true if this array is not storing any elements, false otherwise.
@@ -218,11 +242,13 @@ namespace Mezzanine
             { return UsedSpace == 0;  }
 
         /// @brief Gets the element at the specified index.
+        /// @note Take care with the use of this function.  It performs no bounds checking.
         /// @param Index The offset of the element to retrieve.
         /// @return Returns a reference to the element at the specified index.
         value_type& operator[] (size_t Index)
             { return Retrieve(Index); }
         /// @brief Gets the element at the specified index.
+        /// @note Take care with the use of this function.  It performs no bounds checking.
         /// @param Index The offset of the element to retrieve.
         /// @return Returns a reference to the element at the specified index.
         const value_type& operator[] (size_t Index) const
