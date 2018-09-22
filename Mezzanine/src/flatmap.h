@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2018 BlackTopp Studios Inc.
+// Â© Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -135,19 +135,19 @@ namespace Mezzanine
         /// @param Right The second stored type to be compared.
         /// @return Returns true if the Left pair should be sorted before the Right pair, false otherwise.
         Boole operator()(const StoredType& Left, const StoredType& Right) const
-            { return CompFunct(Left.first,Right.first); }
+            { return CompFunct( Left.first, Right.first ); }
         /// @brief Compares a key on a stored type to a standalone key to see which one should be sorted before the other.
         /// @param Key The key to compare to the stored pair.
         /// @param Pair The pair whose key will be used for the comparison.
         /// @return Returns true if the Left key should be sorted before the Right key, false otherwise.
         Boole operator()(const KeyType& Key, const StoredType& Pair) const
-            { return CompFunct(Key,Pair.first); }
+            { return CompFunct( Key, Pair.first ); }
         /// @brief Compares a key on a stored type to a standalone key to see which one should be sorted before the other.
         /// @param Pair The pair whose key will be used for the comparison.
         /// @param Key The key to compare to the stored pair.
         /// @return Returns true if the Left key should be sorted before the Right key, false otherwise.
         Boole operator()(const StoredType& Pair, const KeyType& Key) const
-            { return CompFunct(Pair.first,Key); }
+            { return CompFunct( Pair.first, Key ); }
 
         /// @brief Compares a key on a stored type to a standalone key to see which one should be sorted before the other.
         /// @tparam alt_key The type for the key to compare.  This must be a comparison supported by CompareType.
@@ -156,7 +156,7 @@ namespace Mezzanine
         /// @return Returns true if the Left key should be sorted before the Right key, false otherwise.
         template<class alt_key, typename = std::enable_if_t<Is_Transparent<CompareType,alt_key>::value>>
         Boole operator()(const alt_key& Key, const StoredType& Pair)
-            { return CompFunct(Key,Pair.first); }
+            { return CompFunct( Key, Pair.first ); }
         /// @brief Compares a key on a stored type to a standalone key to see which one should be sorted before the other.
         /// @tparam alt_key The type for the key to compare.  This must be a comparison supported by CompareType.
         /// @param Pair The pair whose key will be used for the comparison.
@@ -164,7 +164,7 @@ namespace Mezzanine
         /// @return Returns true if the Left key should be sorted before the Right key, false otherwise.
         template<class alt_key, typename = std::enable_if_t<Is_Transparent<CompareType,alt_key>::value>>
         Boole operator()(const StoredType& Pair, const alt_key& Key)
-            { return CompFunct(Pair.first,Key); }
+            { return CompFunct( Pair.first, Key ); }
     };//FlatPairCompare
 
     ///////////////////////////////////////////////////////////////////////////////
