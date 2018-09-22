@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _managedarraytests_h
-#define _managedarraytests_h
+#ifndef _sortedmanagedarraytests_h
+#define _sortedmanagedarraytests_h
 
 #include "mezztest.h"
 

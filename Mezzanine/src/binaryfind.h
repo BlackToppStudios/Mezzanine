@@ -44,7 +44,7 @@
 
 namespace Mezzanine
 {
-    /// @brief Search throught an iterator range and return the desired iterator.
+    /// @brief Search through an iterator range and return the desired iterator.
     /// @details Thanks to stack overflow and their CC-by-SA license which is written permission to
     /// use this.
     /// http://stackoverflow.com/questions/446296/where-can-i-get-a-useful-c-binary-search-algorithm
@@ -68,7 +68,7 @@ namespace Mezzanine
             return end; // not found
     }
 
-    /// @brief Search throught an iterator range and return the desired iterator.
+    /// @brief Search through an iterator range and return the desired iterator.
     /// @details This uses the operator< to perform searches and matching for the contained item.
     /// @n
     /// Thanks to stack overflow and their CC-by-SA license which is written permission to

@@ -459,7 +459,7 @@ namespace Mezzanine
         /// @brief Const Iterator type for TableType instances stored by this class.
         using ConstTableIterator = typename TableContainer::const_iterator;
         /// @brief The type to use for uniquely identifying events that can be dispatched.
-        using DispatchIDType = typename TableType::DispatchIDType;
+        using DispatchIDType = typename Config::DispatchIDType;
     protected:
         /// @brief A container storing all the Events published by this class by name.
         TableContainer SubscriptionTables;

@@ -121,6 +121,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}exception.h"
         "${${PROJECT_NAME}_SRC_DIR}fieldofforce.h"
         "${${PROJECT_NAME}_SRC_DIR}filestream.h"
+        "${${PROJECT_NAME}_SRC_DIR}flatmap.h"
         "${${PROJECT_NAME}_SRC_DIR}gravityfield.h"
         "${${PROJECT_NAME}_SRC_DIR}gravitywell.h"
         "${${PROJECT_NAME}_SRC_DIR}hashedstring.h"
