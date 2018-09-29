@@ -152,7 +152,7 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable. 
+#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
@@ -236,6 +236,9 @@ include_directories(
     "${Mezz_SDLBuildDir}/SDL/include/"
 )
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
+
+set(BigObjFiles "-Wa,-mbig-obj")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BigObjFiles}")
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine OgreMain)

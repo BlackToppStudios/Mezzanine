@@ -64,11 +64,15 @@ public:
     void RunAutomaticTests()
     {
         {// Traits
-            using AnyType = StaticAny<12>;
+            using AnyType = StaticAny<12,4>;
             static_assert( is_static_any<AnyType>::value, "Supposed to Pass." );
             static_assert( !is_static_any<int>::value, "Supposed to Fail." );
             static_assert( is_static_any_v<AnyType>, "Supposed to Pass." );
             static_assert( !is_static_any_v<float>, "Supposed to Fail." );
+            static_assert( is_static_any_decayed<AnyType&>::value, "Supposed to Pass." );
+            static_assert( !is_static_any_decayed<int>::value, "Supposed to Fail." );
+            static_assert( is_static_any_decayed_v<const AnyType&>, "Supposed to Pass." );
+            static_assert( !is_static_any_decayed_v<float>, "Supposed to Fail." );
 
             TEST( is_static_any<AnyType>::value,
                   "is_static_any<ElementType>-Pass" );
@@ -76,37 +80,67 @@ public:
                   "is_static_any<ElementType>-Fail" );
             TEST( is_static_any_v<AnyType>,
                   "is_static_any_v<ElementType>-Pass" );
-            TEST( !is_static_any_v<float>,
+            TEST( !is_static_any_v<const AnyType>,
                   "is_static_any_v<ElementType>-Fail" );
+            TEST( is_static_any_decayed<AnyType&>::value,
+                  "is_static_any_decayed<ElementType>-Pass" );
+            TEST( !is_static_any_decayed<int>::value,
+                  "is_static_any_decayed<ElementType>-Fail" );
+            TEST( is_static_any_decayed_v<const AnyType&>,
+                  "is_static_any_decayed_v<ElementType>-Pass" );
+            TEST( !is_static_any_decayed_v<float>,
+                  "is_static_any_decayed_v<ElementType>-Fail" );
         }// Traits
 
         {// Casting
-            using AnyType = StaticAny<32>;
+            using AnyType = StaticAny<40>;
 
             AnyType StringAny( String("Test") );
+            const AnyType ConstStringAny( String("ConstTest") );
             TEST( StaticAnyCast<String>(StringAny) == "Test",
-                  "StaticAnyCast<String>(StaticAny<>)-Pass");
+                  "StaticAnyCast<String>(StaticAny<>)-Ref-Pass");
+            TEST( StaticAnyCast<String>(ConstStringAny) == "ConstTest",
+                  "StaticAnyCast<String>(StaticAny<>)-ConstRef-Pass");
             TEST_THROW( std::bad_cast,
                         StaticAnyCast< std::vector<char> >(StringAny),
-                        "StaticAnyCast<String>(StaticAny<>)-Fail");
-
-            AnyType DoubleAny( double(3.1415926) );
-            TEST( StaticAnyCast<double>(DoubleAny) == double(3.1415926),
-                  "StaticAnyCast<double>(StaticAny<>)-Pass");
+                        "StaticAnyCast<String>(StaticAny<>)-Ref-Fail");
             TEST_THROW( std::bad_cast,
-                        StaticAnyCast<float>(DoubleAny),
-                        "StaticAnyCast<double>(StaticAny<>)-Fail");
+                        StaticAnyCast< std::vector<char> >(ConstStringAny),
+                        "StaticAnyCast<String>(StaticAny<>)-ConstRef-Fail");
+
+            double Archimedes(3.1415926);
+            const double Eulers(2.7182818);
+            AnyType DoubleAny( Archimedes );
+            const AnyType ConstDoubleAny( Eulers );
+            TEST_EQUAL_EPSILON( *StaticAnyCast<double>(&DoubleAny),Archimedes,
+                                "StaticAnyCast<double>(StaticAny<>)-Ptr-Pass");
+            TEST_EQUAL_EPSILON( *StaticAnyCast<double>(&ConstDoubleAny),Eulers,
+                                "StaticAnyCast<double>(StaticAny<>)-ConstPtr-Pass");
+            TEST_THROW( std::bad_cast,
+                        StaticAnyCast<float>(&DoubleAny),
+                        "StaticAnyCast<double>(StaticAny<>)-Ptr-Fail");
+            TEST_THROW( std::bad_cast,
+                        StaticAnyCast<float>(&ConstDoubleAny),
+                        "StaticAnyCast<double>(StaticAny<>)-ConstPtr-Fail");
 
             AnyType SharedPtrAny( std::make_shared<int>(123) );
+            const AnyType ConstSharedPtrAny( std::make_shared<short>( short(12345) ) );
             TEST( *( StaticAnyCast< std::shared_ptr<int> >(SharedPtrAny) ) == int(123),
+                  "StaticAnyCast<_std::shared_ptr<int>_>(StaticAny<>)-Pass");
+            TEST( *( StaticAnyCast< std::shared_ptr<short> >(ConstSharedPtrAny) ) == short(12345),
                   "StaticAnyCast<_std::shared_ptr<int>_>(StaticAny<>)-Pass");
             TEST_THROW( std::bad_cast,
                         StaticAnyCast< std::shared_ptr<char> >(SharedPtrAny),
                         "StaticAnyCast<_std::shared_ptr<int>_>(StaticAny<>)-Fail");
+            TEST_THROW( std::bad_cast,
+                        StaticAnyCast< std::shared_ptr<char> >(ConstSharedPtrAny),
+                        "StaticAnyCast<_std::shared_ptr<int>_>(StaticAny<>)-Fail");
+
+
         }// Casting
 
         {// Construct / Destruct
-            using AnyType = StaticAny<32>;
+            using AnyType = StaticAny<32,alignof(std::shared_ptr<String>)>;
 
             std::shared_ptr<String> StringPtr = std::make_shared<String>("Test");
             AnyType FirstAny( StringPtr );
@@ -118,8 +152,8 @@ public:
         }// Construct / Destruct
 
         {// Integer
-            using AnyType = StaticAny<sizeof(unsigned)>;
-            using SmallerAnyType = StaticAny<sizeof(short)>;
+            using AnyType = StaticAny<sizeof(unsigned),alignof(unsigned)>;
+            using SmallerAnyType = StaticAny<sizeof(short),alignof(short)>;
 
             //
             // Constructors
@@ -209,24 +243,44 @@ public:
             //
 
             AnyType UtilityAny;
+            TEST( AnyType::capacity() == sizeof(unsigned),
+                  "StaticAny::capacity()-Unsigned" );
+            TEST( SmallerAnyType::capacity() == sizeof(short),
+                  "StaticAny::capacity()-Short" );
+
+            TEST( AnyType::align() == alignof(unsigned),
+                  "StaticAny::align()-Unsigned" );
+            TEST( SmallerAnyType::align() == alignof(short),
+                  "StaticAny::align()-Short" );
+
             TEST( UtilityAny.empty(),
-                  "StaticAny::empty()_const-Unsigned" );
+                  "StaticAny::empty()_const-Unassigned-Unsigned" );
+            TEST( UtilityAny.size() == 0,
+                  "StaticAny::size()_const-Unassigned-Unsigned" );
+            TEST( UtilityAny.get_type() == typeid(void),
+                  "StaticAny::get_type()_const-Unassigned-Unsigned" );
 
             UtilityAny.emplace<unsigned>(2304);
             TEST( StaticAnyCast<unsigned>(UtilityAny) == unsigned(2304),
                   "StaticAny::emplace(ArgTypes&&...)-Unsigned" );
 
+            TEST( !UtilityAny.empty(),
+                  "StaticAny::empty()_const-Assigned-Unsigned" );
+            TEST( UtilityAny.size() == sizeof(unsigned),
+                  "StaticAny::size()_const-Assigned-Unsigned" );
             TEST( UtilityAny.get_type() == typeid(unsigned),
-                  "StaticAny::get_type()_const-Unsigned" );
+                  "StaticAny::get_type()_const-Assigned-Unsigned" );
 
-            UtilityAny = char('a');
-            TEST( UtilityAny.size() == 1,
-                  "StaticAny::size()_const-Unsigned" );
+            UtilityAny = char('A');
+            TEST( StaticAnyCast<char>(UtilityAny) == char('A'),
+                  "StaticAny::emplace(ArgTypes&&...)-Unsigned-Char" );
 
-            TEST( AnyType::capacity() == sizeof(unsigned),
-                  "StaticAny::capacity()-Large-Unsigned" );
-            TEST( AnyType::capacity() == sizeof(unsigned),
-                  "StaticAny::capacity()-Small-Unsigned" );
+            TEST( !UtilityAny.empty(),
+                  "StaticAny::empty()_const-Unsigned-Char" );
+            TEST( UtilityAny.size() == sizeof(char),
+                  "StaticAny::size()_const-Unsigned-Char" );
+            TEST( UtilityAny.get_type() == typeid(char),
+                  "StaticAny::get_type()_const-Unsigned-Char" );
 
             UtilityAny.clear();
             TEST( UtilityAny.empty(),
@@ -234,7 +288,7 @@ public:
         }// Integer
 
         {// String
-            using AnyType = StaticAny<sizeof(String)>;
+            using AnyType = StaticAny<sizeof(String),alignof(String)>;
             using SmallerAnyType = StaticAny<(sizeof(char) * 3)>;
 
             //
@@ -325,24 +379,44 @@ public:
             //
 
             AnyType UtilityAny;
+            TEST( AnyType::capacity() == sizeof(String),
+                  "StaticAny::capacity()-String" );
+            TEST( SmallerAnyType::capacity() == (sizeof(char) * 3),
+                  "StaticAny::capacity()-CharString" );
+
+            TEST( AnyType::align() == sizeof(String),
+                  "StaticAny::align()-String" );
+            TEST( SmallerAnyType::align() == (sizeof(char) * 3),
+                  "StaticAny::align()-CharString" );
+
             TEST( UtilityAny.empty(),
-                  "StaticAny::empty()_const-String" );
+                  "StaticAny::empty()_const-Unassigned-String" );
+            TEST( UtilityAny.size() == 0,
+                  "StaticAny::size()_const-Unassigned-String" );
+            TEST( UtilityAny.get_type() == typeid(void),
+                  "StaticAny::get_type()_const-Unassigned-String" );
 
             UtilityAny.emplace<String>("2304");
             TEST( StaticAnyCast<String>(UtilityAny) == String("2304"),
                   "StaticAny::emplace(ArgTypes&&...)-String" );
 
+            TEST( !UtilityAny.empty(),
+                  "StaticAny::empty()_const-Assigned-String" );
+            TEST( UtilityAny.size() == sizeof(String),
+                  "StaticAny::size()_const-Assigned-String" );
             TEST( UtilityAny.get_type() == typeid(String),
-                  "StaticAny::get_type()_const-String" );
+                  "StaticAny::get_type()_const-Assigned-String" );
 
             UtilityAny = char('a');
-            TEST( UtilityAny.size() == 1,
-                  "StaticAny::size()_const-String" );
+            TEST( StaticAnyCast<char>(UtilityAny) == char('a'),
+                  "StaticAny::emplace(ArgTypes&&...)-String-Char" );
 
-            TEST( AnyType::capacity() == sizeof(String),
-                  "StaticAny::capacity()-Large-String" );
-            TEST( SmallerAnyType::capacity() == (sizeof(char) * 3),
-                  "StaticAny::capacity()-Small-String" );
+            TEST( !UtilityAny.empty(),
+                  "StaticAny::empty()_const-Assigned-String-Char" );
+            TEST( UtilityAny.size() == sizeof(char),
+                  "StaticAny::size()_const-Assigned-String-Char" );
+            TEST( UtilityAny.get_type() == typeid(char),
+                  "StaticAny::get_type()_const-Assigned-String-Char" );
 
             UtilityAny.clear();
             TEST( UtilityAny.empty(),
