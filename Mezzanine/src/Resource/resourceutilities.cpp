@@ -80,27 +80,7 @@
 #include <algorithm>
 #include <cstdio>
 
-// Undefs because of windows header file pollution.
-
-#ifdef CopyFile
-#undef CopyFile
-#endif
-
-#ifdef MoveFile
-#undef MoveFile
-#endif
-
-#ifdef DeleteFile
-#undef DeleteFile
-#endif
-
-#ifdef CreateDirectory
-#undef CreateDirectory
-#endif
-
-#ifdef RemoveDirectory
-#undef RemoveDirectory
-#endif
+#include "Resource/platformundefs.h"
 
 namespace
 {
@@ -361,7 +341,7 @@ namespace Mezzanine
             StringVector FolderVec = StringTools::Split(DirectoryPath,"/\\");
             size_t StartIndex = 0;
             String PathAttempt;
-            Char8 SysSlash = GetPlatformDirectorySeparator();
+            Char8 SysSlash = GetHostDirectorySeparator();
         #ifdef MEZZ_WINDOWS
             // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
             if( FolderVec.at(0).find(':') != String::npos ) {
@@ -606,7 +586,7 @@ namespace Mezzanine
             return ( ToCheck == '\\' || ToCheck == '/' );
         }
 
-        Boole IsPlatformDirectorySeparator(const Char8 ToCheck)
+        Boole IsHostDirectorySeparator(const Char8 ToCheck)
         {
         #ifdef MEZZ_WINDOWS
             return ( ToCheck == '\\' );
@@ -615,7 +595,7 @@ namespace Mezzanine
         #endif
         }
 
-        Char8 GetPlatformDirectorySeparator()
+        Char8 GetHostDirectorySeparator()
         {
         #ifdef MEZZ_WINDOWS
             return '\\';
@@ -629,7 +609,7 @@ namespace Mezzanine
             return '/';
         }
 
-        Char8 GetPathSeparator()
+        Char8 GetSystemPathSeparator()
         {
         #ifdef MEZZ_WINDOWS
             return ';';
@@ -639,6 +619,11 @@ namespace Mezzanine
         }
 
         Boole IsPathAbsolute(const String& ToCheck)
+        {
+            return IsPathAbsolute_Windows(ToCheck) || IsPathAbsolute_Posix(ToCheck);
+        }
+
+        Boole IsPathAbsolute_Host(const String& ToCheck)
         {
         #ifdef MEZZ_WINDOWS
             return IsPathAbsolute_Windows(ToCheck);
@@ -670,6 +655,11 @@ namespace Mezzanine
             return !IsPathAbsolute(ToCheck);
         }
 
+        Boole IsPathRelative_Host(const String& ToCheck)
+        {
+            return !IsPathAbsolute_Host(ToCheck);
+        }
+
         Boole IsPathRelative_Posix(const String& ToCheck)
         {
             return !IsPathAbsolute_Posix(ToCheck);
@@ -678,6 +668,123 @@ namespace Mezzanine
         Boole IsPathRelative_Windows(const String& ToCheck)
         {
             return !IsPathAbsolute_Windows(ToCheck);
+        }
+
+        Integer GetDirectoryDepth(const String& ToCheck, const Boole ExitIfNegative)
+        {
+            Integer Depth = 0;
+            String DirStr;
+            for( Char8 CurrChar : ToCheck )
+            {
+                if( CurrChar == '/' || CurrChar == '\\' ) {
+                    if( DirStr == ".." ) {
+                        Depth -= 1;
+                    }else if( DirStr != "." ) {
+                        Depth += 1;
+                    }
+                    DirStr.clear();
+
+                    if( ExitIfNegative && Depth < 0 ) {
+                        break;
+                    }
+                }else{
+                    DirStr.append(1,CurrChar);
+                }
+            }
+            return Depth;
+        }
+
+        Boole IsSubPath(const String& BasePath, const String& CheckPath)
+        {
+            Boole BaseIsAbsolute = IsPathAbsolute(BasePath);
+            Boole CheckIsAbsolute = IsPathAbsolute(CheckPath);
+
+            if( BaseIsAbsolute == CheckIsAbsolute ) {
+                String NormBasePath = RemoveDotSegments(BasePath);
+                String NormCheckPath = RemoveDotSegments(CheckPath);
+                String::const_iterator BaseIt = NormBasePath.begin();
+                String::const_iterator BaseEnd = NormBasePath.end();
+                String::const_iterator CheckIt = NormCheckPath.begin();
+                String::const_iterator CheckEnd = NormCheckPath.begin();
+
+                if( IsPathAbsolute_Windows(BasePath) ) {
+                    std::advance(BaseIt,2);
+                }
+
+                while( BaseIt != BaseEnd )
+                {
+                    if( CheckIt == CheckEnd || (*BaseIt) != (*CheckIt) ) {
+                        return false;
+                    }
+
+                    ++BaseIt;
+                    ++CheckIt;
+                }
+
+                String CheckRemains(CheckIt,CheckEnd);
+                return ( GetDirectoryDepth(CheckRemains,true) > 0 );
+            }
+
+            if( BaseIsAbsolute && !CheckIsAbsolute ) {
+                return ( GetDirectoryDepth(CheckPath,true) > 0 );
+            }
+
+            if( !BaseIsAbsolute && CheckIsAbsolute ) {
+                String WorkingDir = GetWorkingDirectory();
+                if( IsDirectorySeparator(WorkingDir.back()) ) {
+                    Whole StartIdx = ( IsDirectorySeparator(BasePath.front()) ? 1 : 0 );
+                    WorkingDir.append(BasePath,StartIdx,String::npos);
+                }else{
+                    if( !IsDirectorySeparator(BasePath.front()) ) {
+                        WorkingDir.append(1,GetUniversalDirectorySeparator());
+                    }
+                    WorkingDir.append(BasePath);
+                }
+                return IsSubPath(WorkingDir,CheckPath);
+            }
+
+            return false;
+        }
+
+        String BuildPath(const StringVector& ToBuild, const Boole EndWithSlash)
+        {
+            Whole CharCount = ToBuild.size();
+            StringVector::const_iterator BuildIt = ToBuild.begin();
+            // Get a count of the characters we'll be using
+            std::for_each(BuildIt,ToBuild.end(),[&CharCount](const String& CurrStr) {
+                CharCount += CurrStr.length();
+            });
+            // Create the variables we'll be using
+            String Ret;
+            Ret.reserve(CharCount);
+            const Char8 UnivSeparator = GetUniversalDirectorySeparator();
+            // Build the path
+            while( BuildIt != ToBuild.end() )
+            {
+                Ret.append( 1, UnivSeparator );
+                Ret.append( *BuildIt );
+                ++BuildIt;
+            }
+            if( EndWithSlash ) {
+                Ret.append( 1, UnivSeparator );
+            }
+            return Ret;
+        }
+
+        String RemoveDotSegments(const String& ToRemove)
+        {
+            Boole EndsWithSlash = IsDirectorySeparator(ToRemove.back());
+            StringVector RetSegments;
+            StringVector SplitPath = StringTools::Split(ToRemove,"/\\",std::numeric_limits<Whole>::max());
+            for( StringVector::iterator VecIt = SplitPath.begin() ; VecIt != SplitPath.end() ; ++VecIt )
+            {
+                if( (*VecIt) == ".." ) {
+                    RetSegments.pop_back();
+                }else if( (*VecIt) != "." ) {
+                    RetSegments.push_back(*VecIt);
+                }
+            }
+            return std::move( BuildPath(RetSegments,EndsWithSlash) );
         }
 
         String CombinePathAndFileName(const String& FilePath, const String& FileName)
@@ -697,12 +804,12 @@ namespace Mezzanine
         StringVector GetSystemPATH(const String& PATH)
         {
             StringVector Results;
-            const Char8 Sep = GetPathSeparator();
+            const Char8 Sep = GetSystemPathSeparator();
             String OneEntry;
 
-            for( String::const_iterator Current = PATH.begin() ; PATH.end()!=Current ; ++Current )
+            for( String::const_iterator Current = PATH.begin() ; PATH.end() != Current ; ++Current )
             {
-                if(Sep==*Current) {
+                if( Sep == *Current ) {
                     Results.push_back(OneEntry);
                     OneEntry.clear();
                 }else{
@@ -719,7 +826,7 @@ namespace Mezzanine
             {
                 StringVector Entries = std::move( GetDirectoryContentNames(*Iter) );
                 if( std::find(Entries.begin(),Entries.end(),ExecutableName) != Entries.end() ) {
-                    return (*Iter) + GetPlatformDirectorySeparator();
+                    return (*Iter) + GetHostDirectorySeparator();
                 }
             }
             return String();

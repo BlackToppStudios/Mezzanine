@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -157,23 +157,29 @@ namespace Mezzanine
         /// @brief Checks to see if the character is used by the client OS to separate directories.
         /// @param ToCheck The character to check.
         /// @return Returns true on windows if the character specified is '\\' or on linux if it's '/', false otherwise.
-        Boole MEZZ_LIB IsPlatformDirectorySeparator(const Char8 ToCheck);
+        Boole MEZZ_LIB IsHostDirectorySeparator(const Char8 ToCheck);
         /// @brief Get the character used by the client OS to separate directories.
         /// @return Returns a backslash '\\' on windows and forward slash '/' on other operating systems.
-        Char8 MEZZ_LIB GetPlatformDirectorySeparator();
+        Char8 MEZZ_LIB GetHostDirectorySeparator();
         /// @brief Get the character readable by all platforms to separate directories.
         /// @return Retursn a forward slash '/' always.
         Char8 MEZZ_LIB GetUniversalDirectorySeparator();
-        /// @brief Get the character used to separate entries in the system PATH
+        /// @brief Get the character used to separate entries in the system PATH.
         /// @return Semicolon ';' on windows and Forward slash ':' on other operating systems.
-        Char8 MEZZ_LIB GetPathSeparator();
+        Char8 MEZZ_LIB GetSystemPathSeparator();
 
         /// @brief Gets whether or not a path is absolute.
         /// @details A path is absolute if it defines an explicit location of a resource. @n @n
-        /// This will call the version of this method that matches the compiled platform.
+        /// This will check if the path is absolute on either windows or posix platforms.
         /// @param ToCheck The path to check.
         /// @return Returns true if the specified path is absolute, false otherwise.
         Boole MEZZ_LIB IsPathAbsolute(const String& ToCheck);
+        /// @brief Gets whether or not a path is absolute on the host.
+        /// @details A path is absolute if it defines an explicit location of a resource. @n @n
+        /// This will call the version of this method that matches the compiled platform.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered absolute on the host platform, false otherwise.
+        Boole MEZZ_LIB IsPathAbsolute_Host(const String& ToCheck);
         /// @brief Gets whether or not a path is absolute on Posix.
         /// @details A path is absolute if it defines an explicit location of a resource.
         /// @param ToCheck The path to check.
@@ -187,10 +193,17 @@ namespace Mezzanine
         /// @brief Gets whether or not a path is relative.
         /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
         /// @details A path is relative if it requires using the current working directory to define the location of a resource. @n @n
-        /// This will call the version of this method that matches the compiled platform.
+        /// This will check if the path is absolute on either windows or posix platforms.
         /// @param ToCheck The path to check.
         /// @return Returns true if the specified path is relative, false otherwise.
         Boole MEZZ_LIB IsPathRelative(const String& ToCheck);
+        /// @brief Gets whether or not a path is relative on the host.
+        /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
+        /// @details A path is relative if it requires using the current working directory to define the location of a resource. @n @n
+        /// This will call the version of this method that matches the compiled platform.
+        /// @param ToCheck The path to check.
+        /// @return Returns true if the specified path is considered relative on the host platform, false otherwise.
+        Boole MEZZ_LIB IsPathRelative_Host(const String& ToCheck);
         /// @brief Gets whether or not a path is relative on Posix.
         /// @warning This method is imperfect and doesn't check for a faulty path, just that it's not absolute.
         /// @details A path is relative if it requires using the current working directory to define the location of a resource.
@@ -203,6 +216,33 @@ namespace Mezzanine
         /// @param ToCheck The path to check.
         /// @return Returns true if the specified path is considered relative on a Windows platform, false otherwise.
         Boole MEZZ_LIB IsPathRelative_Windows(const String& ToCheck);
+
+        /// @brief Gets how many directories deep a path is.
+        /// @param ToCheck The path to get the depth of.
+        /// @param ExitIfNegative If true, this will cause the function to return immediately if the depth count becomes negative.
+        /// @return Returns an Integer representing how many directories down (or up, if negative) the path goes.
+        Integer MEZZ_LIB GetDirectoryDepth(const String& ToCheck, const Boole ExitIfNegative);
+        /// @brief Checks whether or not a given path is a subdirectory or file of a base path.
+        /// @note This method will make no attempt to remove dot segments or perform any other normalization routine to the
+        /// provided path, thus these transformations must be done manually before calling this method if they are needed.
+        /// @param BasePath The base path to check.
+        /// @param CheckPath The path being checked against base path to see if it points to a subdirectory or file.
+        /// @return Returns true if CheckPath is a subdirectory or file of BasePath.
+        Boole MEZZ_LIB IsSubPath(const String& BasePath, const String& CheckPath);
+
+        /// @brief Builds a String path based on a number of directory/file names in a String vector.
+        /// @note The directory separators generated by this method are Universal/Unix style. @n
+        /// This function will NOT include a drive letter for Windows paths, that must be added manually after.
+        /// @param ToBuild A vector of Strings containing the overall path to be built.
+        /// @param EndWithSlash Whether or not to end the built path with a Universal separator (for directories).
+        /// @return Returns a String containing the rebuilt path.
+        String MEZZ_LIB BuildPath(const StringVector& ToBuild, const Boole EndWithSlash);
+        /// @brief Removes all instances of "." or ".." and makes appropriate edits to the path.
+        /// @details A dot segment is "." or "..".  They often get in the way of path parsing and this method will remove
+        /// any extraneous dot segments that may exist in the provided String.
+        /// @param ToRemove The String to remove dot segments from.
+        /// @return Returns a copy of the ToRemove parameter with all dot segments removed.
+        String MEZZ_LIB RemoveDotSegments(const String& ToRemove);
 
         /// @brief Convenience method to verify the necessary system separator is present when concatenating.
         /// @param FilePath The directory path to the file.
