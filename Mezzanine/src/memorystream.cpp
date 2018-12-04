@@ -294,23 +294,181 @@ namespace Mezzanine
         { return this->FreeBuffer; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // MemoryStream Methods
+    // MemoryIStream Methods
 
-    MemoryStream::MemoryStream() :
-        IOStream(&this->Buffer)
+    MemoryIStream::MemoryIStream(const String& Identifier) :
+        IStream(&this->Buffer),
+        BufferIdentifier(Identifier)
         {  }
 
-    MemoryStream::MemoryStream(const Whole BufferSize, const Whole Mode) :
-        IOStream(&this->Buffer)
-        { this->CreateBuffer(BufferSize,Mode); }
+    MemoryIStream::MemoryIStream(const String& Identifier, const Whole BufferSize, const Whole Flags) :
+        IStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CreateBuffer(BufferSize,Flags); }
 
-    MemoryStream::MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode) :
-        IOStream(&this->Buffer)
-        { this->CopyBuffer(Buffer,BufferSize,Mode); }
+    MemoryIStream::MemoryIStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags) :
+        IStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CopyBuffer(Buffer,BufferSize,Flags); }
 
-    MemoryStream::MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode) :
-        IOStream(&this->Buffer)
-        { this->SetBuffer(Buffer,BufferSize,FreeAfter,Mode); }
+    MemoryIStream::MemoryIStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags) :
+        IStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->SetBuffer(Buffer,BufferSize,FreeAfter,Flags); }
+
+    MemoryIStream::~MemoryIStream()
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void MemoryIStream::CreateBuffer(const Whole Size, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
+        this->Buffer.CreateBuffer(Size);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    void MemoryIStream::SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
+        this->Buffer.SetBuffer(static_cast<char*>(Buffer),BufferSize,FreeBuf);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    void MemoryIStream::CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
+        this->Buffer.CopyBuffer(static_cast<const char*>(Buffer),BufferSize);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    Char8* MemoryIStream::GetBufferStart() const
+        { return this->Buffer.GetBufferStart(); }
+
+    Char8* MemoryIStream::GetBufferEnd() const
+        { return this->Buffer.GetBufferEnd(); }
+
+    void MemoryIStream::SetFreeBuffer(const Boole FreeBuf)
+        { this->Buffer.SetFreeBuffer(FreeBuf); }
+
+    Boole MemoryIStream::GetFreeBuffer() const
+        { return this->Buffer.GetFreeBuffer(); }
+
+    void MemoryIStream::SetStreamIdentifier(const String& Identifier)
+        { this->BufferIdentifier = Identifier; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Stream Base Operations
+
+    String MemoryIStream::GetStreamIdentifier() const
+        { return this->BufferIdentifier; }
+
+    Boole MemoryIStream::CanSeek() const
+        { return true; }
+
+    StreamSize MemoryIStream::GetSize() const
+        { return this->Buffer.GetBufferSize(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // MemoryOStream Methods
+
+    MemoryOStream::MemoryOStream(const String& Identifier) :
+        OStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        {  }
+
+    MemoryOStream::MemoryOStream(const String& Identifier, const Whole BufferSize, const Whole Flags) :
+        OStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CreateBuffer(BufferSize,Flags); }
+
+    MemoryOStream::MemoryOStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags) :
+        OStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CopyBuffer(Buffer,BufferSize,Flags); }
+
+    MemoryOStream::MemoryOStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags) :
+        OStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->SetBuffer(Buffer,BufferSize,FreeAfter,Flags); }
+
+    MemoryOStream::~MemoryOStream()
+        {  }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    void MemoryOStream::CreateBuffer(const Whole Size, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
+        this->Buffer.CreateBuffer(Size);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    void MemoryOStream::SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
+        this->Buffer.SetBuffer(static_cast<char*>(Buffer),BufferSize,FreeBuf);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    void MemoryOStream::CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags)
+    {
+        const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
+        this->Buffer.CopyBuffer(static_cast<const char*>(Buffer),BufferSize);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(FilteredFlags));
+    }
+
+    Char8* MemoryOStream::GetBufferStart() const
+        { return this->Buffer.GetBufferStart(); }
+
+    Char8* MemoryOStream::GetBufferEnd() const
+        { return this->Buffer.GetBufferEnd(); }
+
+    void MemoryOStream::SetFreeBuffer(const Boole FreeBuf)
+        { this->Buffer.SetFreeBuffer(FreeBuf); }
+
+    Boole MemoryOStream::GetFreeBuffer() const
+        { return this->Buffer.GetFreeBuffer(); }
+
+    void MemoryOStream::SetStreamIdentifier(const String& Identifier)
+        { this->BufferIdentifier = Identifier; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Stream Base Operations
+
+    String MemoryOStream::GetStreamIdentifier() const
+        { return this->BufferIdentifier; }
+
+    Boole MemoryOStream::CanSeek() const
+        { return true; }
+
+    StreamSize MemoryOStream::GetSize() const
+        { return this->Buffer.GetBufferSize(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // MemoryStream Methods
+
+    MemoryStream::MemoryStream(const String& Identifier) :
+        IOStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        {  }
+
+    MemoryStream::MemoryStream(const String& Identifier, const Whole BufferSize, const Whole Flags) :
+        IOStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CreateBuffer(BufferSize,Flags); }
+
+    MemoryStream::MemoryStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags) :
+        IOStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->CopyBuffer(Buffer,BufferSize,Flags); }
+
+    MemoryStream::MemoryStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags) :
+        IOStream(&this->Buffer),
+        BufferIdentifier(Identifier)
+        { this->SetBuffer(Buffer,BufferSize,FreeAfter,Flags); }
 
     MemoryStream::~MemoryStream()
         {  }
@@ -318,14 +476,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void MemoryStream::CreateBuffer(const Whole Size, const Whole Mode)
-        { this->Buffer.CreateBuffer(Size);  this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Mode)); }
+    void MemoryStream::CreateBuffer(const Whole Size, const Whole Flags)
+    {
+        this->Buffer.CreateBuffer(Size);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Flags));
+    }
 
-    void MemoryStream::SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Mode)
-        { this->Buffer.SetBuffer(static_cast<char*>(Buffer),BufferSize,FreeBuf);  this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Mode)); }
+    void MemoryStream::SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags)
+    {
+        this->Buffer.SetBuffer(static_cast<char*>(Buffer),BufferSize,FreeBuf);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Flags));
+    }
 
-    void MemoryStream::CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Mode)
-        { this->Buffer.CopyBuffer(static_cast<const char*>(Buffer),BufferSize);  this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Mode)); }
+    void MemoryStream::CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags)
+    {
+        this->Buffer.CopyBuffer(static_cast<const char*>(Buffer),BufferSize);
+        this->Buffer.ConfigureBuffer(0,static_cast<std::ios_base::openmode>(Flags));
+    }
 
     Char8* MemoryStream::GetBufferStart() const
         { return this->Buffer.GetBufferStart(); }
@@ -339,8 +506,17 @@ namespace Mezzanine
     Boole MemoryStream::GetFreeBuffer() const
         { return this->Buffer.GetFreeBuffer(); }
 
+    void MemoryStream::SetStreamIdentifier(const String& Identifier)
+        { this->BufferIdentifier = Identifier; }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Base Operations
+
+    String MemoryStream::GetStreamIdentifier() const
+        { return this->BufferIdentifier; }
+
+    Boole MemoryStream::CanSeek() const
+        { return true; }
 
     StreamSize MemoryStream::GetSize() const
         { return this->Buffer.GetBufferSize(); }

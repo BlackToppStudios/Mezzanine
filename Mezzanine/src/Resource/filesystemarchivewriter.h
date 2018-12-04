@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,25 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchive_cpp
-#define _resourcearchive_cpp
+#ifndef _resourcefilesystemarchivewriter_h
+#define _resourcefilesystemarchivewriter_h
 
-#include "Resource/archive.h"
+#include "datastream.h"
+#include "Resource/archivewriter.h"
 
 namespace Mezzanine
 {
-    namespace Resource
-    {
-        /*Archive::Archive()
-        {
 
-        }
-
-        Archive::~Archive()
-        {
-
-        }//*/
-    }//Resource
 }//Mezzanine
 
 #endif

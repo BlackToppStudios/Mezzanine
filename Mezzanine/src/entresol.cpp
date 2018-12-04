@@ -64,6 +64,7 @@
 #include "Physics/collisionshapemanager.h"
 #include "Physics/physicsmanager.h"
 #include "Resource/resourcemanager.h"
+#include "Resource/pathutilities.h"
 #include "UI/uimanager.h"
 
 #include "filestream.h"
@@ -250,7 +251,7 @@ namespace Mezzanine
 
         // Open and load the initializer doc.
         Resource::ResourceManager* ResourceMan = static_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager) );
-        FileStream InitStream(InitializerFile,EngineDataPath);
+        FileStream InitStream( Resource::CombinePathAndFileName(EngineDataPath,InitializerFile) );
         XML::Document InitDoc;
         XML::ParseResult DocResult = InitDoc.Load(InitStream);
         if( DocResult.Status != XML::StatusOk ) {
@@ -317,7 +318,7 @@ namespace Mezzanine
         // Load additional resource groups
         if( !ResourceInit.empty() ) {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            FileStream ResourceStream(ResourceInit,EngineDataPath);
+            FileStream ResourceStream( Resource::CombinePathAndFileName(EngineDataPath,ResourceInit) );
             XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.

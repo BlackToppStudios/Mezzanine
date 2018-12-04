@@ -61,13 +61,17 @@ namespace Mezzanine
     /// @details It is important to note that not all of these flags are used by all streams.
     enum StreamFlags
     {
+        // Standard Flags
         SF_None         = 0,                     ///< Error/no special initialization.
         SF_Read         = std::ios_base::in,     ///< Permit read operations on the stream.
         SF_Write        = std::ios_base::out,    ///< Permit write operations on the stream.
         SF_Append       = std::ios_base::app,    ///< All write operations on the stream are done at the end of the stream.
         SF_AtEnd        = std::ios_base::ate,    ///< Moves the starting position of the stream to the end upon initialization.
         SF_Binary       = std::ios_base::binary, ///< Tell the stream that the file in question is Binary.
-        SF_Truncate     = std::ios_base::trunc   ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+        SF_Truncate     = std::ios_base::trunc,  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+        // Convenience Flags
+        SF_Create       = SF_Truncate,
+        SF_ReadWrite    = SF_Read | SF_Write
     };
 
     /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
@@ -89,9 +93,19 @@ namespace Mezzanine
         /// @brief Class destructor.
         virtual ~iStreamBase() = default;
 
+        /// @brief Gets the identifier for this stream.
+        /// @remarks Typically the identifier will uniquely identify the source of the stream such
+        /// as a file name or URI.  This is meant to be more flexible than that though as it may
+        /// need to be used to identify a memory buffer in some cases.
+        /// @return Returns a String containing the identifier for the stream.
+        virtual String GetStreamIdentifier() const = 0;
         /// @brief Gets the size of the stream.
         /// @return Returns the size of this stream in bytes.
         virtual StreamSize GetSize() const = 0;
+        /// @brief Gets whether or not this stream supports seeking.
+        /// @return Returns true if this stream supports seeking to any point in the stream, false otherwise.
+        virtual Boole CanSeek() const = 0;
+
         /// @brief Gets whether or not the current position is at the end of the stream.
         /// @return Returns true if the current position has reached the end of the stream, false otherwise.
         virtual Boole EoF() const = 0;
@@ -104,6 +118,7 @@ namespace Mezzanine
         /// @brief Gets whether or not this stream is intact and ready for operations.
         /// @return Returns true if no failures have been detected, false otherwise.
         virtual Boole IsValid() const = 0;
+
         /// @brief Clears any stored error state on the stream.
         /// @remarks This is useful for non-critical errors such as ones that cause "EoF()" or "Fail()" to return true but not
         /// "Bad()".  Using this to clear critical errors is not advised.
@@ -137,6 +152,10 @@ namespace Mezzanine
         /// @brief Gets the current read position in this stream.
         /// @return Returns a StreamPos representing the current read position.
         virtual StreamPos GetReadPosition() = 0;
+
+        /// @brief Synchronizes the internal stream buffer with data from the stream source.
+        /// @return Returns true if the sync was successful and the stream is usable, false otherwise.
+        virtual Boole Sync() = 0;
     };//iInStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -166,6 +185,10 @@ namespace Mezzanine
         /// @brief Gets the current write position in this stream.
         /// @return Returns a StreamPos representing the current write position.
         virtual StreamPos GetWritePosition() = 0;
+
+        /// @brief Flushes all writes to the streams internal buffer to the stream destination.
+        /// @return Returns true if the flush was successful and the stream is usable, false otherwise.
+        virtual Boole Flush() = 0;
     };//iOutStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -206,6 +229,9 @@ namespace Mezzanine
         virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin);
         /// @copydoc iInStream::GetReadPosition()
         virtual StreamPos GetReadPosition();
+
+        /// @copydoc iInStream::Sync()
+        virtual Boole Sync();
     };//IStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -246,6 +272,9 @@ namespace Mezzanine
         virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin);
         /// @copydoc iOutStream::GetWritePosition()
         virtual StreamPos GetWritePosition();
+
+        /// @copydoc iOutStream::Flush()
+        virtual Boole Flush();
     };//OStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -287,6 +316,9 @@ namespace Mezzanine
         /// @copydoc iInStream::GetReadPosition()
         virtual StreamPos GetReadPosition();
 
+        /// @copydoc iInStream::Sync()
+        virtual Boole Sync();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Output methods
 
@@ -299,6 +331,9 @@ namespace Mezzanine
         virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin);
         /// @copydoc iOutStream::GetWritePosition()
         virtual StreamPos GetWritePosition();
+
+        /// @copydoc iOutStream::Flush()
+        virtual Boole Flush();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Input/Output methods

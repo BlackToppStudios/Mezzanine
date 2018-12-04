@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,41 +37,14 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _resourcefilesystemarchivewriter_cpp
+#define _resourcefilesystemarchivewriter_cpp
+
+#include "Resource/filesystemarchivewriter.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
-    {
 
-    }
-}
-
-#include "Resource/resourceenumerations.h"
-#include "Resource/resourcemanager.h"
-
-#include "Resource/archiveentry.h"
-#include "Resource/archivereader.h"
-#include "Resource/archivestream.h"
-#include "Resource/archivewriter.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/deflatecodec.h"
-#include "Resource/directorycontents.h"
-#include "Resource/filesystemarchivereader.h"
-#include "Resource/filesystemarchivewriter.h"
-#include "Resource/filesystemmanagement.h"
-#include "Resource/pathutilities.h"
-#include "Resource/specialdirectoryutilities.h"
-#include "Resource/systempathutilities.h"
-#include "Resource/ziparchivereader.h"
-#include "Resource/ziparchivewriter.h"
-#include "Resource/zipstream.h"
+}//Mezzanine
 
 #endif

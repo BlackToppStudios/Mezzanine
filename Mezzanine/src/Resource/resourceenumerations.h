@@ -128,6 +128,34 @@ namespace Mezzanine
             LS_Loading = 3,
             LS_Loaded = 4
         };
+
+        /// @brief An enum listing the codecs directly supported by the Zip format implementation with their IDs.
+        /// @remarks In addition to the values listed here, there are additional values in the spec that
+        /// are reserved for future use by PKWare. Those values are: 11, 13, 15, 16, and 17. @n
+        /// It is also important to note that these are only what is in the spec and thus what other programs
+        /// are likely to recognize, however little stops you from adding a custom codec to a Zip archive.
+        /// The only potential issue is other archive tools recognizing the value. This isn't a concern if
+        /// you only plan to use that archive with your own custom application.
+        enum ZipCodecSupport
+        {
+            ZCS_Raw                 = 0,  ///< Supported.  No compression.
+            ZCS_Shrunk              = 1,  ///< Not Supported.
+            ZCS_ReducedCompression1 = 2,  ///< Not Supported.
+            ZCS_ReducedCompression2 = 3,  ///< Not Supported.
+            ZCS_ReducedCompression3 = 4,  ///< Not Supported.
+            ZCS_ReducedCompression4 = 5,  ///< Not Supported.
+            ZCS_Imploded            = 6,  ///< Not Supported.
+            ZCS_Tokenizing          = 7,  ///< Not Supported.
+            ZCS_Deflate             = 8,  ///< Supported.  Standard DEFLATE, which is the default for Zip files.
+            ZCS_Deflate64           = 9,  ///< Not Supported.
+            ZCS_IBM_TERSE_Old       = 10, ///< Not Supported.
+            ZCS_BZip2               = 12, ///< Supported.
+            ZCS_LZMA                = 14, ///< Not Supported.
+            ZCS_IBM_TERSE_New       = 18, ///< Not Supported.
+            ZCS_LZ77                = 19, ///< Not Supported.
+            ZCS_WavPack             = 97, ///< Not Supported.
+            ZCS_PPMd                = 98  ///< Not Supported.
+        };
     }//Resource
 }//Mezzanine
 

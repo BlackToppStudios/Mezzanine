@@ -61,9 +61,13 @@ namespace Mezzanine
     /// @brief An enum used to describe additional details about the stream to the asset.
     enum class AssetStreamDesc : UInt16
     {
-        ASD_None,       ///< No additional description.
-        ASD_Zip,        ///< The stream is zip compressed.
-        ASD_7z          ///< The stream is lzma compressed.
+        ASD_Unknown,       ///< Error value.
+        ASD_Raw,           ///< The stream is not from an archive.
+        ASD_Raw_Encrypted, ///< The stream is not from an archive but is encrypted.
+        ASD_Zip,           ///< The stream is from a zip archive.
+        ASD_Zip_Encrypted, ///< The stream is from a zip archive and is encrypted.
+        ASD_7z,            ///< The stream is from a 7z archive.
+        ASD_7z_Encrypted   ///< The stream is from a 7z archive and is encrypted.
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -75,41 +79,27 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
-        /// @brief A string containing the name of the resource group this Asset belongs to.
+        /// @brief A string containing the name of the resource group the Asset was loaded from.
         /// @remarks This string is optional and only needed when using the resource system.
         String GroupName;
-        /// @brief A string containing the name of this Asset.
+        /// @brief A string containing the path and name of the Asset.
         String Identifier;
         /// @brief The type of storage the asset is being streamed from.
-        AssetSourceType SourceType;
+        AssetSourceType SourceType = AssetSourceType::AST_Memory;
         /// @brief Additional details for the stream to the asset.
-        AssetStreamDesc StreamDesc;
+        AssetStreamDesc StreamDesc = AssetStreamDesc::ASD_Unknown;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
 
         /// @brief Blank constructor.
-        AssetID() :
-            SourceType(AssetSourceType::AST_Memory),
-            StreamDesc(AssetStreamDesc::ASD_None)
-            {  }
+        AssetID() = default;
         /// @brief Copy constructor.
         /// @param Other The other AssetID to copy from.
-        AssetID(const AssetID& Other) :
-            GroupName(Other.GroupName),
-            Identifier(Other.Identifier),
-            SourceType(Other.SourceType),
-            StreamDesc(Other.StreamDesc)
-            {  }
+        AssetID(const AssetID& Other) = default;
         /// @brief Move constructor.
         /// @param Other The other AssetID to be moved.
-        AssetID(AssetID&& Other) :
-            SourceType(Other.SourceType),
-            StreamDesc(Other.StreamDesc)
-        {
-            this->GroupName.swap(Other.GroupName);
-            this->Identifier.swap(Other.Identifier);
-        }
+        AssetID(AssetID&& Other) = default;
         /// @brief Source-Stream constructor.
         /// @param Source The type of storage the asset is being streamed from.
         /// @param Stream Additional details for the stream to the asset.
@@ -148,11 +138,77 @@ namespace Mezzanine
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         AssetID(const XML::Node& SelfRoot) :
             SourceType(AssetSourceType::AST_Memory),
-            StreamDesc(AssetStreamDesc::ASD_None)
+            StreamDesc(AssetStreamDesc::ASD_Unknown)
             { this->ProtoDeSerialize(SelfRoot); }
         /// @brief Class destructor.
         ~AssetID()
             {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        /// @brief Copy Assignment operator.
+        /// @param Other The other AssetID to be copied.
+        /// @return Returns a reference to this.
+        AssetID& operator=(const AssetID& Other) = default;
+        /// @brief Move Assignment operator.
+        /// @param Other The other AssetID to be moved.
+        /// @return Returns a reference to this.
+        AssetID& operator=(AssetID&& Other) = default;
+
+        /// @brief Less-than operator.
+        /// @param Other The other AssetID to compare with.
+        /// @return Returns true if this Asset should be order before the other Asset, false otherwise.
+        Boole operator<(const AssetID& Other)
+        {
+            if( this->SourceType != Other.SourceType )
+                return ( this->SourceType < Other.SourceType );
+
+            if( this->StreamDesc != Other.StreamDesc )
+                return ( this->StreamDesc < Other.StreamDesc );
+
+            if( this->GroupName != Other.GroupName )
+                return ( this->GroupName < Other.GroupName );
+
+            return ( this->Identifier < Other.Identifier );
+        }
+        /// @brief Greater-than operator.
+        /// @param Other The other AssetID to compare with.
+        /// @return Returns true if this Asset should be order after the other Asset, false otherwise.
+        Boole operator>(const AssetID& Other)
+        {
+            if( this->SourceType != Other.SourceType )
+                return ( this->SourceType > Other.SourceType );
+
+            if( this->StreamDesc != Other.StreamDesc )
+                return ( this->StreamDesc > Other.StreamDesc );
+
+            if( this->GroupName != Other.GroupName )
+                return ( this->GroupName > Other.GroupName );
+
+            return ( this->Identifier > Other.Identifier );
+        }
+
+        /// @brief Equality operator.
+        /// @param Other The other AssetID to compare with.
+        /// @return Returns true if this Asset is the same as another asset, false otherwise.
+        Boole operator==(const AssetID& Other)
+        {
+            return ( this->SourceType == Other.SourceType ) &&
+                   ( this->StreamDesc == Other.StreamDesc ) &&
+                   ( this->GroupName == Other.GroupName ) &&
+                   ( this->Identifier == Other.Identifier );
+        }
+        /// @brief Inequality operator.
+        /// @param Other The other AssetID to compare with.
+        /// @return Returns true if this Asset is not the same as another asset, false otherwise..
+        Boole operator!=(const AssetID& Other)
+        {
+            return ( this->SourceType != Other.SourceType ) ||
+                   ( this->StreamDesc != Other.StreamDesc ) ||
+                   ( this->GroupName != Other.GroupName ) ||
+                   ( this->Identifier != Other.Identifier );
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -209,75 +265,6 @@ namespace Mezzanine
         /// @return A string containing the name of this class.
         static String GetSerializableName()
             { return "AssetID"; }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Operators
-
-        /// @brief Less-than operator.
-        /// @param Other The other AssetID to compare with.
-        /// @return Returns true if this Asset should be order before the other Asset, false otherwise.
-        Boole operator<(const AssetID& Other)
-        {
-            if( this->SourceType != Other.SourceType )
-                return ( this->SourceType < Other.SourceType );
-
-            if( this->StreamDesc != Other.StreamDesc )
-                return ( this->StreamDesc < Other.StreamDesc );
-
-            if( this->GroupName != Other.GroupName )
-                return ( this->GroupName < Other.GroupName );
-
-            return ( this->Identifier < Other.Identifier );
-        }
-        /// @brief Greater-than operator.
-        /// @param Other The other AssetID to compare with.
-        /// @return Returns true if this Asset should be order after the other Asset, false otherwise.
-        Boole operator>(const AssetID& Other)
-        {
-            if( this->SourceType != Other.SourceType )
-                return ( this->SourceType > Other.SourceType );
-
-            if( this->StreamDesc != Other.StreamDesc )
-                return ( this->StreamDesc > Other.StreamDesc );
-
-            if( this->GroupName != Other.GroupName )
-                return ( this->GroupName > Other.GroupName );
-
-            return ( this->Identifier > Other.Identifier );
-        }
-
-        /// @brief Assignment operator.
-        /// @param Other The other AssetID to be copied.
-        /// @return Returns a reference to this.
-        AssetID& operator=(const AssetID& Other)
-        {
-            this->SourceType = Other.SourceType;
-            this->StreamDesc = Other.StreamDesc;
-            this->GroupName = Other.GroupName;
-            this->Identifier = Other.Identifier;
-            return *this;
-        }
-
-        /// @brief Equality operator.
-        /// @param Other The other AssetID to compare with.
-        /// @return Returns true if this Asset is the same as another asset, false otherwise.
-        Boole operator==(const AssetID& Other)
-        {
-            return ( this->SourceType == Other.SourceType ) &&
-                   ( this->StreamDesc == Other.StreamDesc ) &&
-                   ( this->GroupName == Other.GroupName ) &&
-                   ( this->Identifier == Other.Identifier );
-        }
-        /// @brief Inequality operator.
-        /// @param Other The other AssetID to compare with.
-        /// @return Returns true if this Asset is not the same as another asset, false otherwise..
-        Boole operator!=(const AssetID& Other)
-        {
-            return ( this->SourceType != Other.SourceType ) ||
-                   ( this->StreamDesc != Other.StreamDesc ) ||
-                   ( this->GroupName != Other.GroupName ) ||
-                   ( this->Identifier != Other.Identifier );
-        }
     };//AssetID
 }//Mezzanine
 

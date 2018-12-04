@@ -43,6 +43,7 @@
 #include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
 #include "Graphics/meshmanager.h"
+#include "Resource/pathutilities.h"
 #include "Resource/resourcemanager.h"
 
 #include "filestream.h"
@@ -589,7 +590,8 @@ namespace Mezzanine
         void CollisionShapeManager::LoadAllShapesFromXMLFile(const String& FileName, const String& Group)
         {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            FileStream ShapesStream( FileName, Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
+            Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
+            FileStream ShapesStream( Resource::CombinePathAndFileName( ResourceMan->GetAssetPath(FileName,Group), FileName ) );
             XML::Document ShapesDoc;
             XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
             if( DocResult.Status != XML::StatusOk ) {
@@ -621,7 +623,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                FileStream SettingsStream(FileName,".",Mezzanine::SF_Truncate | Mezzanine::SF_Write);
+                FileStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -642,7 +644,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                FileStream SettingsStream(FileName,".",Mezzanine::SF_Truncate | Mezzanine::SF_Write);
+                FileStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -655,22 +657,19 @@ namespace Mezzanine
             Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
             char* buffer = new char[Stream->size()];
             Stream->read((void*)buffer, Stream->size());
-            if(!Importer.loadFileFromMemory(buffer, Stream->size()))
-            {
+            if( !Importer.loadFileFromMemory(buffer, Stream->size()) ) {
                 MEZZ_EXCEPTION(ExceptionBase::IO_FILE_EXCEPTION,"Failed to load file: " + FileName + ".")
             }
             delete[] buffer;
-            for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X )
+            for( Integer ShapeIdx = 0 ; ShapeIdx < Importer.getNumCollisionShapes() ; ++ShapeIdx )
             {
-                btCollisionShape* Shape = Importer.getCollisionShapeByIndex(X);
+                btCollisionShape* Shape = Importer.getCollisionShapeByIndex(ShapeIdx);
                 const char* MaybeAName = Importer.getNameForPointer((void*)Shape);
                 String Name;
-                if(MaybeAName)
-                {
+                if( MaybeAName ) {
                     Name = String(MaybeAName);
                     ShapeMapIterator it = this->CollisionShapes.find(Name);
-                    if(it == this->CollisionShapes.end())
-                    {
+                    if( it == this->CollisionShapes.end() ) {
                         CollisionShape* NewShape = this->WrapShape(Name,Shape);
                         this->CollisionShapes.insert( std::pair<String,CollisionShape*>(Name,NewShape) );
                     }

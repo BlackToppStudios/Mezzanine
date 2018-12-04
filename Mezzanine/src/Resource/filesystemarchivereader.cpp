@@ -37,11 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcefilesystemarchive_cpp
-#define _resourcefilesystemarchive_cpp
+#ifndef _resourcefilesystemarchivereader_cpp
+#define _resourcefilesystemarchivereader_cpp
 
-#include "Resource/filesystemarchive.h"
-#include "Resource/resourceutilities.h"
+#include "Resource/filesystemarchivereader.h"
+#include "Resource/directorycontents.h"
+#include "Resource/filesystemmanagement.h"
+#include "Resource/pathutilities.h"
 
 #include "stringtool.h"
 #include "datastream.h"
@@ -66,24 +68,22 @@ namespace
         for( const Resource::ArchiveEntry& Ent : CurrDirContents )
         {
             String FullName = Dir + Ent.Name;
-            if( !StringTools::PatternMatch(FullName,Pattern,false) ) {
-                continue;
-            }
-
             if( Ent.EntType == Resource::ET_Directory ) {
                 if( !Resource::IsDirectorySeparator( FullName.back() ) ) {
-                    FullName.append(1,Resource::GetUniversalDirectorySeparator());
+                    FullName.append(1,Resource::GetDirectorySeparator_Universal());
                 }
 
-                if( !OmitDirs ) {
+                if( StringTools::PatternMatch(FullName,Pattern,true) && !OmitDirs ) {
                     Contents.emplace_back(Ent);
                     Contents.back().Name = FullName;
                 }
 
                 PopulateDirectoryContentsRecursive(BaseDir,FullName,Pattern,Contents,OmitDirs);
             }else{
-                Contents.emplace_back(Ent);
-                Contents.back().Name = FullName;
+                if( StringTools::PatternMatch(FullName,Pattern,true) ) {
+                    Contents.emplace_back(Ent);
+                    Contents.back().Name = FullName;
+                }
             }
         }
     }
@@ -93,113 +93,135 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        FileSystemArchive::FileSystemArchive() :
-            OpenFlags(0)
-            {  }
+        Boole FileSystemArchiveReader::VerifyValidPath(const String& PathStr) const
+        {
+            return Resource::IsSubPath(this->ArchiveIdentifier,PathStr);
+        }
 
-        FileSystemArchive::~FileSystemArchive()
-            {  }
+        void FileSystemArchiveReader::VerifyValidPathExcept(const String& PathStr) const
+        {
+            if( !this->VerifyValidPath(PathStr) ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "The given path \""
+                                << PathStr << "\" is not a valid sub-path of \""
+                                << this->ArchiveIdentifier << "\".\n";
+                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,ExceptionStream.str());
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
-        void FileSystemArchive::Open(const char* Identifier, const Whole Flags)
+        void FileSystemArchiveReader::Open(const String& Identifier)
         {
-            this->Open(Identifier,Flags);
-        }
-
-        void FileSystemArchive::Open(const String& Identifier, const Whole Flags)
-        {
-            Boole DirExists = DirectoryExists(Identifier);
+            Boole DirExists = Resource::DirectoryExists(Identifier);
             if( !DirExists ) {
-                if( Flags & AOF_Create ) {
-                    DirExists = CreateDirectory(Identifier);
-                }
-
-                if( !DirExists ) {
-                    StringStream ExceptionStream;
-                    ExceptionStream << "Directory \"" << Identifier << "\" not found.";
-                    MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
-                }
+                StringStream ExceptionStream;
+                ExceptionStream << "Directory \"" << Identifier << "\" not found.";
+                MEZZ_EXCEPTION(ExceptionBase::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
 
-            this->OpenFlags = Flags;
             this->ArchiveIdentifier.assign(Identifier);
             if( !Resource::IsDirectorySeparator( this->ArchiveIdentifier.back() ) ) {
-                this->ArchiveIdentifier.append(1,Resource::GetUniversalDirectorySeparator());
+                this->ArchiveIdentifier.append(1,Resource::GetDirectorySeparator_Universal());
             }
         }
 
-        void FileSystemArchive::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Whole Flags, const Boole Owner)
+        void FileSystemArchiveReader::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner)
         {
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"FileSystem Archives do not support initializing from a memory buffer.");
         }
 
-        Boole FileSystemArchive::IsOpen() const
+        Boole FileSystemArchiveReader::IsOpen() const
         {
             return !this->ArchiveIdentifier.empty();
         }
 
-        void FileSystemArchive::Close()
+        void FileSystemArchiveReader::Close()
         {
-            this->OpenFlags = AOF_None;
             this->ArchiveIdentifier.clear();
         }
 
-        Whole FileSystemArchive::GetFlags() const
+        ///////////////////////////////////////////////////////////////////////////////
+        // File and Directory Query
+
+        Boole FileSystemArchiveReader::DirectoryExists(const String& DirectoryPath) const
         {
-            return this->OpenFlags;
+            if( IsPathRelative(DirectoryPath) ) {
+                return Resource::DirectoryExists( this->ArchiveIdentifier + DirectoryPath );
+            }else{
+                VerifyValidPathExcept(DirectoryPath);
+                return Resource::DirectoryExists(DirectoryPath);
+            }
+        }
+
+        Boole FileSystemArchiveReader::FileExists(const String& PathAndFile) const
+        {
+            if( IsPathRelative(PathAndFile) ) {
+                return Resource::FileExists( this->ArchiveIdentifier + PathAndFile );
+            }else{
+                VerifyValidPathExcept(PathAndFile);
+                return Resource::FileExists(PathAndFile);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Streaming
 
-        DataStreamPtr FileSystemArchive::OpenStream(const char* Identifier, const Whole Flags)
+        IStreamPtr FileSystemArchiveReader::OpenIStream(const String& Identifier, const Whole Flags, const Boole Raw)
         {
-            String StreamIdentifier(Identifier);
-            return OpenStream(StreamIdentifier,Flags);
+            FileIStreamPtr Ret = std::make_shared<FileIStream>();
+            if( IsPathRelative(Identifier) ) {
+                Ret->OpenFile(this->ArchiveIdentifier + Identifier,this->ArchiveIdentifier.size(),Flags);
+            }else{
+                VerifyValidPathExcept(Identifier);
+                Whole SplitIdx = 0;
+                while( SplitIdx < Identifier.size() )
+                {
+                    if( Identifier[SplitIdx] != this->ArchiveIdentifier[SplitIdx] ) {
+                        break;
+                    }
+                    ++SplitIdx;
+                }
+                Ret->OpenFile(Identifier,SplitIdx,Flags);
+            }
+            return Ret;
         }
 
-        DataStreamPtr FileSystemArchive::OpenStream(const String& Identifier, const Whole Flags)
+        IStreamPtr FileSystemArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
         {
-            if( Flags & Mezzanine::SF_Write && !( this->OpenFlags & AOF_Write ) ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to open a stream for writing while parent archive prohibits writing.");
-            }
-            if( Flags & Mezzanine::SF_Read && !( this->OpenFlags & AOF_Read ) ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Attempting to open a stream for reading while parent archive prohibits reading.");
-            }
-            FileStreamPtr Ret = std::make_shared<FileStream>();
-            Ret->OpenFile(Identifier,Flags);
-            return Ret;
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Reading encrypted files from the filesystem is not yet supported.");
+            return nullptr;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Querying
 
-        Int64 FileSystemArchive::GetEntryCount() const
+        Int64 FileSystemArchiveReader::GetEntryCount() const
             { return -1; }
 
-        ArchiveEntryPtr FileSystemArchive::GetEntry(const UInt64 Index) const
+        ArchiveEntryPtr FileSystemArchiveReader::GetEntry(const UInt64 Index) const
             { return nullptr; }
 
-        ArchiveEntryPtr FileSystemArchive::GetEntry(const String& FileName) const
+        ArchiveEntryPtr FileSystemArchiveReader::GetEntry(const String& FileName) const
         {
+            using ArchiveEntryIterator = ArchiveEntryVector::iterator;
             String ActualFileName = Resource::GetBaseName(FileName);
-            String DirPath = this->ArchiveIdentifier;
-            DirPath.append(Resource::GetDirName(FileName));
-            ArchiveEntryVector Contents = Resource::GetDirectoryContents(DirPath);
-            ArchiveEntryVector::iterator EntIt = std::find_if(Contents.begin(),Contents.end(),[=](const ArchiveEntry& Ent){
+            String ArchiveOffset = Resource::GetDirName(FileName);
+            ArchiveEntryVector Contents = Resource::GetDirectoryContents(this->ArchiveIdentifier + ArchiveOffset);
+            ArchiveEntryIterator EntIt = std::find_if(Contents.begin(),Contents.end(),[=](const ArchiveEntry& Ent) {
                 return ( Ent.Name == ActualFileName );
             });
             if( EntIt != Contents.end() ) {
                 ArchiveEntryPtr Ret = std::make_unique<ArchiveEntry>(*EntIt);
+                Ret->Name.insert(0,ArchiveOffset);
                 return Ret;
             }else{
                 return nullptr;
             }
         }
 
-        ArchiveEntryVector FileSystemArchive::GetEntries(const String& Pattern, const Boole OmitDirs) const
+        ArchiveEntryVector FileSystemArchiveReader::GetEntries(const String& Pattern, const Boole OmitDirs) const
         {
             ArchiveEntryVector Ret;
             PopulateDirectoryContentsRecursive(this->ArchiveIdentifier,StringTools::Blank,Pattern,Ret,OmitDirs);

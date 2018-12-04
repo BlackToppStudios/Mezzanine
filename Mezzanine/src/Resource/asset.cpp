@@ -41,7 +41,7 @@
 #define _resourceasset_cpp
 
 #include "Resource/asset.h"
-#include "Resource/resourceutilities.h"
+#include "Resource/pathutilities.h"
 #include "Resource/resourcemanager.h"
 
 #include "exception.h"

@@ -37,69 +37,84 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcefilesystemarchive_h
-#define _resourcefilesystemarchive_h
+#ifndef _resourceziparchivereader_h
+#define _resourceziparchivereader_h
 
 #include "datastream.h"
-#include "Resource/archive.h"
+#include "Resource/archivereader.h"
+
+// Internal Forward Declare
+struct zip;
+struct zip_source;
 
 namespace Mezzanine
 {
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is an Archive implementation for reading and writing files as is on disk.
+        /// @brief This is an Archive implementation for reading and writing .zip files.
         ///////////////////////////////////////
-        class MEZZ_LIB FileSystemArchive : public Archive
+        class MEZZ_LIB ZipArchiveReader : public ArchiveReader
         {
         protected:
             /// @brief The full path and name of the Archive
             String ArchiveIdentifier;
-            /// @brief The flags used when opening this archive.
-            Whole OpenFlags;
+            /// @brief A pointer to the internal Archive.
+            zip* InternalArchive;
+            /// @brief A pointer to the source of the Archive data.
+            zip_source* InternalSource;
         public:
             /// @brief Class constructor.
-            FileSystemArchive();
+            ZipArchiveReader();
             /// @brief Class destructor.
-            ~FileSystemArchive();
+            virtual ~ZipArchiveReader();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Open / Close
 
-            /// @copydoc Archive::Open(const char*, const Whole)
-            virtual void Open(const char* Identifier, const Whole Flags);
-            /// @copydoc Archive::Open(const String&, const Whole)
-            virtual void Open(const String& Identifier, const Whole Flags);
-            /// @copydoc Archive::Open(const String&, Char8*, const size_t, const Whole, const Boole)
-            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Whole Flags, const Boole Owner);
-            /// @copydoc Archive::IsOpen() const
+            /// @copydoc ArchiveReader::Open(const String&)
+            virtual void Open(const String& Identifier);
+            /// @copydoc ArchiveReader::Open(const String&, Char8*, const size_t, const Boole)
+            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner);
+            /// @copydoc ArchiveReader::IsOpen() const
             virtual Boole IsOpen() const;
-            /// @copydoc Archive::Close()
+            /// @copydoc ArchiveReader::Close()
             virtual void Close();
 
-            /// @copydoc Archive::GetFlags() const
-            virtual Whole GetFlags() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // File and Directory Query
+
+            /// @copydoc ArchiveReader::DirectoryExists(const String&) const
+            virtual Boole DirectoryExists(const String& DirectoryPath) const;
+            /// @copydoc ArchiveReader::FileExists(const String&) const
+            virtual Boole FileExists(const String& PathAndFile) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Streaming
 
-            /// @copydoc Archive::OpenStream(const char*, const Whole)
-            virtual DataStreamPtr OpenStream(const char* Identifier, const Whole Flags);
-            /// @copydoc Archive::OpenStream(const String&, const Whole)
-            virtual DataStreamPtr OpenStream(const String& Identifier, const Whole Flags);
+            /// @copydoc ArchiveReader::OpenIStream(const String&, const Whole, const Boole)
+            virtual IStreamPtr OpenIStream(const String& Identifier,
+                                           const Whole Flags = SF_Read,
+                                           const Boole Raw = false);
+            /// @copydoc ArchiveReader::OpenIStream(const String&, const String&, const Whole, const Boole)
+            virtual IStreamPtr OpenEncryptedIStream(const String& Identifier,
+                                                    const String& Password,
+                                                    const Whole Flags = SF_Read,
+                                                    const Boole Raw = false);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Querying
+            // Reading / Entry Query
 
-            /// @copydoc Archive::GetEntryCount() const
+            /// @copydoc ArchiveReader::GetEntryCount() const
             virtual Int64 GetEntryCount() const;
-            /// @copydoc Archive::GetEntry(const UInt64) const
+            /// @copydoc ArchiveReader::GetEntry(const UInt64) const
             virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const;
-            /// @copydoc Archive::GetEntry(const String&) const
+            /// @copydoc ArchiveReader::GetEntry(const String&) const
+            /// @note This will only lookup entries for files, not directories.
             virtual ArchiveEntryPtr GetEntry(const String& FileName) const;
-            /// @copydoc Archive::GetEntries(const String& Pattern) const
+            /// @copydoc ArchiveReader::GetEntries(const String& Pattern) const
             virtual ArchiveEntryVector GetEntries(const String& Pattern, const Boole OmitDirs) const;
-        };//FileSystemArchive
+        };//ZipArchiveReader
     }//Resource
 }//Mezzanine
 

@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,41 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _resourcesystempathutilities_h
+#define _resourcesystempathutilities_h
+
+#include "datatypes.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
     namespace Resource
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // System Path Utilities
 
-    }
-}
+        /// @brief Get the $PATH or %PATH% split and order for easy checking of how the OS does it.
+        /// @param PATH Defaults to the PATH environment variable. But any value like a system path will be split the return of GetPathSeparator().
+        /// @return A collection of directories that this system will for executables in the order they will be checked.
+        StringVector MEZZ_LIB GetSystemPATH(const String& PATH = String(getenv("PATH")));
 
-#include "Resource/resourceenumerations.h"
-#include "Resource/resourcemanager.h"
-
-#include "Resource/archiveentry.h"
-#include "Resource/archivereader.h"
-#include "Resource/archivestream.h"
-#include "Resource/archivewriter.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/deflatecodec.h"
-#include "Resource/directorycontents.h"
-#include "Resource/filesystemarchivereader.h"
-#include "Resource/filesystemarchivewriter.h"
-#include "Resource/filesystemmanagement.h"
-#include "Resource/pathutilities.h"
-#include "Resource/specialdirectoryutilities.h"
-#include "Resource/systempathutilities.h"
-#include "Resource/ziparchivereader.h"
-#include "Resource/ziparchivewriter.h"
-#include "Resource/zipstream.h"
+        /// @brief Search the system path the same way most systems do to find an executable.
+        /// @warning This function is case sensitive and not all operating systems are.
+        /// @todo Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched.
+        /// @param ExecutableName The executable to look for.
+        /// @return If the executable is not found "" is returned otherwise the first directory in the PATH containing it is returned.
+        String MEZZ_LIB Which(const String& ExecutableName);
+    }//Resource
+}//Mezzanine
 
 #endif

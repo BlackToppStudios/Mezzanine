@@ -67,6 +67,28 @@ namespace Mezzanine
         return ( 1 << ( Bit - 1 ) );
     }
 
+    /// @brief Adds bit values to an existing bit mask.
+    /// @param Base The base bit mask to add to.
+    /// @param ToAdd The additional mask values that will be added.
+    /// @return Returns the new bit mask with the combined mask values.
+    template<typename IntType>
+    constexpr IntType AddBits(const IntType Base, const IntType ToAdd)
+    {
+        static_assert(std::is_integral<IntType>::value,"Must use an integral type for bit masks.");
+        return ( Base & ToAdd );
+    }
+
+    /// @brief Removes bit values from an existing bit mask.
+    /// @param Base The base bit mask to remove from.
+    /// @param ToAdd The additional mask values that will be removed.
+    /// @return Returns the new bit mask with the removed mask values.
+    template<typename IntType>
+    constexpr IntType RemoveBits(const IntType Base, const IntType ToRemove)
+    {
+        static_assert(std::is_integral<IntType>::value,"Must use an integral type for bit masks.");
+        return ( Base & ( ~ToRemove ) );
+    }
+
     /// @brief These values represent the kind of attenuation applied to the field strength over a distance.
     /// @details None is the default, where the force is constant in all area's of the field.  @n
     /// Linear is where the force applied drops by the attenuation value times the distance (strength - (attenuation amount * distance to AE center)).  @n

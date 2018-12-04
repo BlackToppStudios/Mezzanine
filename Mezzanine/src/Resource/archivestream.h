@@ -75,66 +75,260 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An Input stream for compressed file archives.
         ///////////////////////////////////////
+        template<typename BufferType>
         class MEZZ_LIB ArchiveIStream : public Mezzanine::IStream
         {
         protected:
+            /// @brief A buffer or buffer meta-data structure to the archive that will be streamed.
+            BufferType ArchiveBuffer;
         public:
-            /// @brief Class constructor.
-            ArchiveIStream();
+            /// @brief Variadic constructor.
+            /// @tparam ArgTypes The types for each argument to be passed to the buffer used.
+            /// @param Args The arguments that will be used to initialize the internal archive buffer.
+            template<class... ArgTypes>
+            ArchiveIStream(ArgTypes&&... Args) :
+                IStream(&ArchiveBuffer),
+                ArchiveBuffer(std::forward<ArgTypes>(Args)...)
+                {  }
             /// @brief Class destructor.
-            virtual ~ArchiveIStream();
+            virtual ~ArchiveIStream()
+                { if( this->IsOpenToFile() ) this->CloseFile(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @brief Opens this stream to a file in an archive.
+            /// @remarks The StreamFlags value SF_Write will be ignored if used.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
+            {
+                const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
+                this->ArchiveBuffer.OpenFile(Identifier,FilteredFlags,Raw);
+            }
+            /// @brief Opens this stream to a password protected file in an archive.
+            /// @remarks The StreamFlags value SF_Write will be ignored if used.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Password The password to access the file.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
+            {
+                const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
+                this->ArchiveBuffer.OpenEncryptedFile(Identifier,Password,FilteredFlags,Raw);
+            }
+            /// @brief Gets whether or not this stream is currently open to a archive.
+            /// @return Returns true if this is streaming to/from a archive.  False otherwise.
+            Boole IsOpenToFile() const
+                { return this->ArchiveBuffer.IsOpenToFile(); }
+            /// @brief Closes the archive that is currently opened.
+            void CloseFile()
+                { this->ArchiveBuffer.CloseFile(); }
+
+            /// @brief Gets the flags that were used to open the archive.
+            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            Whole GetStreamFlags() const
+                { return this->ArchiveBuffer.GetStreamFlags(); }
+
+            /// @brief Gets the compressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the raw size of the stream in bytes.
+            StreamSize GetCompressedSize() const
+                { return this->ArchiveBuffer.GetCompressedSize(); }
+            /// @brief Gets the uncompressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the size of the data in the stream before it was compressed.
+            StreamSize GetUncompressedSize() const
+                { return this->ArchiveBuffer.GetUncompressedSize(); }
+
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
+
+            /// @copydoc StreamBase::GetStreamIdentifier() const
+            String GetStreamIdentifier() const
+                { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
+            /// @copydoc StreamBase::CanSeek() const
+            Boole CanSeek() const override
+                { return this->ArchiveBuffer.CanSeek(); }
+            /// @copydoc StreamBase::GetSize() const
+            virtual StreamSize GetSize() const
+                { return this->ArchiveBuffer.GetSize(); }
         };//ArchiveIStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An Output stream for compressed file archives.
         ///////////////////////////////////////
+        template<typename BufferType>
         class MEZZ_LIB ArchiveOStream : public Mezzanine::OStream
         {
         protected:
+            /// @brief A buffer or buffer meta-data structure to the archive that will be streamed.
+            BufferType ArchiveBuffer;
         public:
-            /// @brief Class constructor.
-            ArchiveOStream();
+            /// @brief Variadic constructor.
+            /// @tparam ArgTypes The types for each argument to be passed to the buffer used.
+            /// @param Args The arguments that will be used to initialize the internal archive buffer.
+            template<class... ArgTypes>
+            ArchiveOStream(ArgTypes&&... Args) :
+                ArchiveBuffer(std::forward<ArgTypes>(Args)...)
+                {  }
             /// @brief Class destructor.
-            virtual ~ArchiveOStream();
+            virtual ~ArchiveOStream()
+                { if( this->IsOpenToFile() ) this->CloseFile(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @brief Opens this stream to a file in an archive.
+            /// @remarks The StreamFlags value SF_Read will be ignored if used.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
+            {
+                const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
+                this->OpenFile(Identifier,FilteredFlags,Raw);
+            }
+            /// @brief Opens this stream to a password protected file in an archive.
+            /// @remarks The StreamFlags value SF_Read will be ignored if used.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Password The password to access the file.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
+            {
+                const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
+                this->OpenEncryptedFile(Identifier,Password,FilteredFlags,Raw);
+            }
+            /// @brief Gets whether or not this stream is currently open to a archive.
+            /// @return Returns true if this is streaming to/from a archive.  False otherwise.
+            Boole IsOpenToFile() const
+                { return this->ArchiveBuffer.IsOpenToFile(); }
+            /// @brief Closes the archive that is currently opened.
+            void CloseFile()
+                { this->ArchiveBuffer.CloseFile(); }
+
+            /// @brief Gets the flags that were used to open the archive.
+            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            Whole GetStreamFlags() const
+                { return this->ArchiveBuffer.GetStreamFlags(); }
+
+            /// @brief Gets the compressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the raw size of the stream in bytes.
+            StreamSize GetCompressedSize() const
+                { return this->ArchiveBuffer.GetCompressedSize(); }
+            /// @brief Gets the uncompressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the size of the data in the stream before it was compressed.
+            StreamSize GetUncompressedSize() const
+                { return this->ArchiveBuffer.GetUncompressedSize(); }
+
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
+
+            /// @copydoc StreamBase::GetStreamIdentifier() const
+            String GetStreamIdentifier() const
+                { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
+            /// @copydoc StreamBase::CanSeek() const
+            Boole CanSeek() const override
+                { return this->ArchiveBuffer.CanSeek(); }
+            /// @copydoc StreamBase::GetSize() const
+            StreamSize GetSize() const
+                { return this->ArchiveBuffer.GetSize(); }
         };//ArchiveOStream
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief An I/O stream for compressed file archives.
         ///////////////////////////////////////
-        class MEZZ_LIB ArchiveIOStream : public Mezzanine::IOStream
+        template<typename BufferType>
+        class MEZZ_LIB ArchiveStream : public Mezzanine::IOStream
         {
         protected:
+            /// @brief A buffer or buffer meta-data structure to the archive that will be streamed.
+            BufferType ArchiveBuffer;
         public:
-            /// @brief Class constructor.
-            ArchiveIOStream();
+            /// @brief Variadic constructor.
+            /// @tparam ArgTypes The types for each argument to be passed to the buffer used.
+            /// @param Args The arguments that will be used to initialize the internal archive buffer.
+            template<class... ArgTypes>
+            ArchiveStream(ArgTypes&&... Args) :
+                ArchiveBuffer(std::forward<ArgTypes>(Args)...)
+                {  }
             /// @brief Class destructor.
-            virtual ~ArchiveIOStream();
+            virtual ~ArchiveStream()
+                { if( this->IsOpenToFile() ) this->CloseFile(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
+            /// @brief Opens this stream to a file in an archive.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write, const Boole Raw = false)
+                { this->OpenFile(Identifier,Flags,Raw); }
+            /// @brief Opens this stream to a password protected file in an archive.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
+            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param File The combined name and path to the file to be opened.
+            /// @param Password The password to access the file.
+            /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
+            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write, const Boole Raw = false)
+                { this->OpenEncryptedFile(Identifier,Password,Flags,Raw); }
+            /// @brief Gets whether or not this stream is currently open to a archive.
+            /// @return Returns true if this is streaming to/from a archive.  False otherwise.
+            Boole IsOpenToFile() const
+                { return this->ArchiveBuffer.IsOpenToFile(); }
+            /// @brief Closes the archive that is currently opened.
+            void CloseFile()
+                { this->ArchiveBuffer.CloseFile(); }
+
+            /// @brief Gets the flags that were used to open the archive.
+            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            Whole GetStreamFlags() const
+                { return this->ArchiveBuffer.GetStreamFlags(); }
+
+            /// @brief Gets the compressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the raw size of the stream in bytes.
+            StreamSize GetCompressedSize() const
+                { return this->ArchiveBuffer.GetCompressedSize(); }
+            /// @brief Gets the uncompressed size of the data in the stream.
+            /// @return Returns a StreamSize indicating the size of the data in the stream before it was compressed.
+            StreamSize GetUncompressedSize() const
+                { return this->ArchiveBuffer.GetUncompressedSize(); }
+
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
-        };//ArchiveIOStream
 
-        /// @brief Convenience type for an Archive input stream in a CountedPtr.
-        using ArchiveIStreamPtr = CountedPtr<ArchiveIStream>;
-        /// @brief Convenience type for an Archive output stream in a CountedPtr.
-        using ArchiveOStreamPtr = CountedPtr<ArchiveOStream>;
-        /// @brief This is a convenience type for an Archive stream in a counted pointer.
-        using ArchiveStreamPtr = CountedPtr<ArchiveIOStream>;
+            /// @copydoc StreamBase::GetStreamIdentifier() const
+            String GetStreamIdentifier() const
+                { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
+            /// @copydoc StreamBase::CanSeek() const
+            Boole CanSeek() const override
+                { return this->ArchiveBuffer.CanSeek(); }
+            /// @copydoc StreamBase::GetSize() const
+            StreamSize GetSize() const override
+                { return this->ArchiveBuffer.GetSize(); }
+        };//ArchiveStream
+
+        /// @brief Convenience type for an Archive input stream in a std::shared_ptr.
+        template<typename BufferType>
+        using ArchiveIStreamPtr = std::shared_ptr< ArchiveIStream<BufferType> >;
+        /// @brief Convenience type for an Archive output stream in a std::shared_ptr.
+        template<typename BufferType>
+        using ArchiveOStreamPtr = std::shared_ptr< ArchiveOStream<BufferType> >;
+        /// @brief This is a convenience type for an Archive stream in a std::shared_ptr.
+        template<typename BufferType>
+        using ArchiveStreamPtr = std::shared_ptr< ArchiveStream<BufferType> >;
     }//Resource
 }//Mezzanine
 

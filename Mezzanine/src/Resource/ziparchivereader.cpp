@@ -37,11 +37,11 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourceziparchive_cpp
-#define _resourceziparchive_cpp
+#ifndef _resourceziparchivereader_cpp
+#define _resourceziparchivereader_cpp
 
-#include "Resource/ziparchive.h"
-#include "Resource/resourceutilities.h"
+#include "Resource/ziparchivereader.h"
+#include "Resource/zipstream.h"
 
 #include "exception.h"
 #include "stringtool.h"
@@ -90,44 +90,18 @@ namespace Mezzanine
 {
     namespace Resource
     {
-        ZipArchive::ZipArchive() :
+        ZipArchiveReader::ZipArchiveReader() :
             InternalArchive(nullptr),
             InternalSource(nullptr)
             {  }
 
-        ZipArchive::~ZipArchive()
+        ZipArchiveReader::~ZipArchiveReader()
             { this->Close(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
-        void ZipArchive::Open(const char* Identifier, const Whole Flags)
-        {
-            if( this->IsOpen() ) {
-                StringStream ExceptionStream;
-                ExceptionStream << "Attempting to open an already opened Archive: \"";
-                ExceptionStream << this->ArchiveIdentifier << "\".";
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
-            }
-
-            zip_error_t ArchiveError;
-            zip_error_init(&ArchiveError);
-            zip_source_t* TempSource = zip_source_file_create(Identifier,0,-1,&ArchiveError);
-            if( ArchiveError.zip_err != ZIP_ER_OK ) {
-                MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,String(ArchiveError.str));
-            }
-            zip_t* TempArchive = zip_open_from_source(this->InternalSource,0,&ArchiveError);
-            if( ArchiveError.zip_err != ZIP_ER_OK ) {
-                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,String(ArchiveError.str));
-            }
-
-            this->OpenFlags = Flags;
-            this->InternalSource = TempSource;
-            this->InternalArchive = TempArchive;
-            this->ArchiveIdentifier.assign(Identifier);
-        }
-
-        void ZipArchive::Open(const String& Identifier, const Whole Flags)
+        void ZipArchiveReader::Open(const String& Identifier)
         {
             if( this->IsOpen() ) {
                 StringStream ExceptionStream;
@@ -142,18 +116,17 @@ namespace Mezzanine
             if( ArchiveError.zip_err != ZIP_ER_OK ) {
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,String(ArchiveError.str));
             }
-            zip_t* TempArchive = zip_open_from_source(this->InternalSource,0,&ArchiveError);
+            zip_t* TempArchive = zip_open_from_source(TempSource,0,&ArchiveError);
             if( ArchiveError.zip_err != ZIP_ER_OK ) {
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,String(ArchiveError.str));
             }
 
-            this->OpenFlags = Flags;
             this->InternalSource = TempSource;
             this->InternalArchive = TempArchive;
             this->ArchiveIdentifier.assign(Identifier);
         }
 
-        void ZipArchive::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Whole Flags, const Boole Owner)
+        void ZipArchiveReader::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner)
         {
             if( this->IsOpen() ) {
                 StringStream ExceptionStream;
@@ -168,62 +141,109 @@ namespace Mezzanine
             if( ArchiveError.zip_err != ZIP_ER_OK ) {
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,String(ArchiveError.str));
             }
-            zip_t* TempArchive = zip_open_from_source(this->InternalSource,0,&ArchiveError);
+            zip_t* TempArchive = zip_open_from_source(TempSource,0,&ArchiveError);
             if( ArchiveError.zip_err != ZIP_ER_OK ) {
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,String(ArchiveError.str));
             }
 
-            this->OpenFlags = Flags;
             this->InternalSource = TempSource;
             this->InternalArchive = TempArchive;
             this->ArchiveIdentifier.assign(Identifier);
         }
 
-        Boole ZipArchive::IsOpen() const
+        Boole ZipArchiveReader::IsOpen() const
         {
             return this->InternalArchive != nullptr;
         }
 
-        void ZipArchive::Close()
+        void ZipArchiveReader::Close()
         {
             if( this->IsOpen() ) {
                 zip_close(this->InternalArchive);
                 this->InternalArchive = nullptr;
                 this->InternalSource = nullptr;
-                this->OpenFlags = AOF_None;
                 this->ArchiveIdentifier.clear();
             }
         }
 
-        Whole ZipArchive::GetFlags() const
+        ///////////////////////////////////////////////////////////////////////////////
+        // File and Directory Query
+
+        Boole ZipArchiveReader::DirectoryExists(const String& DirectoryPath) const
         {
-            return this->OpenFlags;
+            if( this->InternalArchive == nullptr ) {
+                return false;
+            }
+
+            zip_stat_t EntryStat;
+            zip_stat_init(&EntryStat);
+            zip_flags_t LocateFlags = ZIP_FL_ENC_GUESS;
+            zip_uint64_t EntryCount = static_cast<zip_uint64_t>(this->GetEntryCount());
+            for( zip_uint64_t CurrIdx = 0 ; CurrIdx < EntryCount ; ++CurrIdx )
+            {
+                zip_stat_index(this->InternalArchive,CurrIdx,LocateFlags,&EntryStat);
+                if( EntryStat.valid && DirectoryPath == EntryStat.name ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        Boole ZipArchiveReader::FileExists(const String& PathAndFile) const
+        {
+            if( this->InternalArchive == nullptr ) {
+                return false;
+            }
+
+            zip_stat_t EntryStat;
+            zip_stat_init(&EntryStat);
+            zip_flags_t LocateFlags = ZIP_FL_ENC_GUESS;
+            if( zip_stat(this->InternalArchive,PathAndFile.c_str(),LocateFlags,&EntryStat) < 0 ) {
+                return false;
+            }
+            return ( EntryStat.valid & ZIP_STAT_INDEX && EntryStat.index >= 0 );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Streaming
 
-        DataStreamPtr ZipArchive::OpenStream(const char* Identifier, const Whole Flags)
+        IStreamPtr ZipArchiveReader::OpenIStream(const String& Identifier, const Whole Flags, const Boole Raw)
         {
-
+            if( this->InternalArchive == nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "Attempting to open stream \"" << Identifier << "\" in uninitialized zip archive.\n";
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
+            }
+            ZipIStreamPtr NewStream = std::make_shared<ZipIStream>(this->InternalArchive);
+            NewStream->OpenFile(Identifier,Flags,Raw);
+            return NewStream;
         }
 
-        DataStreamPtr ZipArchive::OpenStream(const String& Identifier, const Whole Flags)
+        IStreamPtr ZipArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
         {
-
+            if( this->InternalArchive == nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "Attempting to open stream \"" << Identifier << "\" in uninitialized zip archive.\n";
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
+            }
+            ZipIStreamPtr NewStream = std::make_shared<ZipIStream>(this->InternalArchive);
+            NewStream->OpenEncryptedFile(Identifier,Password,Flags,Raw);
+            return NewStream;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Querying
 
-        Int64 ZipArchive::GetEntryCount() const
+        Int64 ZipArchiveReader::GetEntryCount() const
             { return zip_get_num_entries(this->InternalArchive,0); }
 
-        ArchiveEntryPtr ZipArchive::GetEntry(const UInt64 Index) const
+        ArchiveEntryPtr ZipArchiveReader::GetEntry(const UInt64 Index) const
         {
             zip_stat_t EntryStat;
             zip_stat_init(&EntryStat);
-            zip_stat_index(this->InternalArchive,Index,0,&EntryStat);
+            if( zip_stat_index(this->InternalArchive,Index,0,&EntryStat) < 0 ) {
+                return nullptr;
+            }
 
             ArchiveEntryPtr Ret = std::make_unique<ArchiveEntry>();
             Ret->ArchType = AT_Zip;
@@ -248,13 +268,13 @@ namespace Mezzanine
             return Ret;
         }
 
-        ArchiveEntryPtr ZipArchive::GetEntry(const String& FileName) const
+        ArchiveEntryPtr ZipArchiveReader::GetEntry(const String& FileName) const
         {
             UInt64 FileIndex = static_cast<UInt64>( zip_name_locate(this->InternalArchive,FileName.c_str(),0) );
             return this->GetEntry(FileIndex);
         }
 
-        ArchiveEntryVector ZipArchive::GetEntries(const String& Pattern, const Boole OmitDirs) const
+        ArchiveEntryVector ZipArchiveReader::GetEntries(const String& Pattern, const Boole OmitDirs) const
         {
             ArchiveEntryVector Ret;
 

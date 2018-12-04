@@ -95,6 +95,9 @@ namespace Mezzanine
     StreamPos IStream::GetReadPosition()
         { return this->tellg(); }
 
+    Boole IStream::Sync()
+        { return ( this->sync() == 0 ); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // OStream Methods
 
@@ -137,6 +140,12 @@ namespace Mezzanine
 
     StreamPos OStream::GetWritePosition()
         { return this->tellp(); }
+
+    Boole OStream::Flush()
+    {
+        this->flush();
+        return !this->fail();
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // IOStream Methods
@@ -181,6 +190,9 @@ namespace Mezzanine
     StreamPos IOStream::GetReadPosition()
         { return this->tellg(); }
 
+    Boole IOStream::Sync()
+        { return ( this->sync() == 0 ); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Output methods
 
@@ -198,6 +210,12 @@ namespace Mezzanine
 
     StreamPos IOStream::GetWritePosition()
         { return this->tellp(); }
+
+    Boole IOStream::Flush()
+    {
+        this->flush();
+        return !this->fail();
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Input/Output methods

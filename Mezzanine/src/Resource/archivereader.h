@@ -37,57 +37,41 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchive_h
-#define _resourcearchive_h
+#ifndef _resourcearchivereader_h
+#define _resourcearchivereader_h
 
 #include "datastream.h"
 #include "Resource/archiveentry.h"
+#include "Resource/resourceenumerations.h"
 
 namespace Mezzanine
 {
     namespace Resource
     {
-        /// @brief A small collection of flags for the opening settings of an Archive.
-        enum ArchiveOpenFlags
-        {
-            AOF_None           = 0,          ///< No flags.
-            AOF_Read           = EnumBit(1), ///< Enable reading from the archive.
-            AOF_Write          = EnumBit(2), ///< Enable writing to the archive.
-            AOF_Create         = EnumBit(3), ///< If the file or directory(ies) don't exist, create them.
-            AOF_RecurseSubDirs = EnumBit(4)  ///< Enable operations on more than the root directory of the archive, if more directories exist.
-        };
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a base class for collections of files that can be accessed/loaded.
-        /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Archive
+        class MEZZ_LIB ArchiveReader
         {
         protected:
         public:
             /// @brief Class constructor.
-            Archive() = default;
+            ArchiveReader() = default;
             /// @brief Class destructor.
-            virtual ~Archive() = default;
+            virtual ~ArchiveReader() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Open / Close
 
             /// @brief Opens an archive for IO operations.
             /// @param Identifier The path and name to the archive to be opened.
-            /// @param Flags A bitmask of the options to open the archive with.
-            virtual void Open(const char* Identifier, const Whole Flags) = 0;
-            /// @brief Opens an archive for IO operations.
-            /// @param Identifier The path and name to the archive to be opened.
-            /// @param Flags A bitmask of the options to open the archive with.
-            virtual void Open(const String& Identifier, const Whole Flags) = 0;
+            virtual void Open(const String& Identifier) = 0;
             /// @brief Open an archive to a memory buffer.
             /// @param Identifier A string identifying the buffer to be used as the archive.
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
-            /// @param Flags A bitmask of the options to open the archive with.
             /// @param Owner A bool to indicate if the archive should become the owner of the buffer, deleting it when it closes.
-            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Whole Flags, const Boole Owner) = 0;
+            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner) = 0;
             /// @brief Gets whether or not this archive is open for I/O operations.
             /// @return Returns true if this archive is open and in use, false otherwise.
             virtual Boole IsOpen() const = 0;
@@ -95,26 +79,43 @@ namespace Mezzanine
             /// @remarks The archive will be set back to a pre-open state and can be reopened.
             virtual void Close() = 0;
 
-            /// @brief Gets the configuration flags used to open the archive.
-            /// @return Returns the bitmask that was used to open the archive.
-            virtual Whole GetFlags() const = 0;
+            ///////////////////////////////////////////////////////////////////////////////
+            // File and Directory Query
+
+            /// @brief Checks to see if a directory exists within the archive.
+            /// @param DirectoryPath The path to the directory (or just name of the directory if it's at the root) to check for.
+            /// @return Returns true if the operation was successful, false otherwise.
+            virtual Boole DirectoryExists(const String& DirectoryPath) const = 0;
+            /// @brief Checks to see if a file exists within the archive.
+            /// @param PathAndFile The path and name of the file (or just name of the file if it's at the root) to check for.
+            /// @return Returns true if the operation was successful, false otherwise.
+            virtual Boole FileExists(const String& PathAndFile) const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Streaming
 
             /// @brief Opens a stream to a resource in the archive.
+            /// @remarks See StreamFlags enum for information on valid flags.
             /// @param Identifier The unique identifier for the resource in the archive.
-            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for information on valid flags.
+            /// @param Flags A bitmask of the options to open the stream with.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
             /// @return Returns a pointer to the opened stream.
-            virtual DataStreamPtr OpenStream(const char* Identifier, const Whole Flags) = 0;
+            virtual IStreamPtr OpenIStream(const String& Identifier,
+                                           const Whole Flags = SF_Read,
+                                           const Boole Raw = false) = 0;
             /// @brief Opens a stream to a resource in the archive.
             /// @param Identifier The unique identifier for the resource in the archive.
+            /// @param Password The password needed to access/decrypt the resource in the archive.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for information on valid flags.
+            /// @param Raw If true, the stream will perform no decompression or decryption on the data before emitting.
             /// @return Returns a pointer to the opened stream.
-            virtual DataStreamPtr OpenStream(const String& Identifier, const Whole Flags) = 0;
+            virtual IStreamPtr OpenEncryptedIStream(const String& Identifier,
+                                                    const String& Password,
+                                                    const Whole Flags = SF_Read,
+                                                    const Boole Raw = false) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Querying
+            // Reading / Entry Query
 
             /// @brief Gets the number of entries contained in the archive.
             /// @remarks Not all archives support getting the file count up front.  A file count can still be retrieved
@@ -128,6 +129,8 @@ namespace Mezzanine
             /// @return Returns an ArchiveEntryPtr to file metadata at the specified index, or a nullptr if this is not supported.
             virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const = 0;
             /// @brief Gets the archive entry for a file at the specified index.
+            /// @remarks In archives where multiple files of the same name exist, this will return the first such file found.  If
+            /// finding a version other than the first is desired, the pattern matching "GetEntries" should be used instead.
             /// @param FileName The name of the file to retrieve the entry for.
             /// @return Returns an ArchiveEntryPtr to file metadata belonging to the specified file, or a nullptr if the file was not found.
             virtual ArchiveEntryPtr GetEntry(const String& FileName) const = 0;
@@ -137,7 +140,7 @@ namespace Mezzanine
             /// @param OmitDirs True to not include directory entries in the results.
             /// @return Returns a vector of archives entries matching the provided pattern.
             virtual ArchiveEntryVector GetEntries(const String& Pattern, const Boole OmitDirs) const = 0;
-        };//Archive
+        };//ArchiveReader
     }//Resource
 }//Mezzanine
 

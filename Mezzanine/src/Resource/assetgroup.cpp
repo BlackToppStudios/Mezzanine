@@ -97,14 +97,14 @@ namespace Mezzanine
 
         DataStreamPtr AssetGroup::CreateDataStream(void* Buffer, const UInt32 BufferSize)
         {
-            DataStreamPtr NewStream( new MemoryStream(Buffer,BufferSize,true) );
+            DataStreamPtr NewStream( new MemoryStream(String(),Buffer,BufferSize,true) );
             this->UnnamedGroupAssets.push_back(NewStream);
             return NewStream;
         }
 
         DataStreamPtr AssetGroup::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
         {
-            DataStreamPtr NewStream( new MemoryStream(Buffer,BufferSize,true) );
+            DataStreamPtr NewStream( new MemoryStream(AssetName,Buffer,BufferSize,true) );
             this->GroupAssets.insert(std::pair<String,DataStreamPtr>(AssetName,NewStream));
             return NewStream;
         }

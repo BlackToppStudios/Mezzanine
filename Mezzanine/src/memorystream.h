@@ -203,32 +203,38 @@ namespace Mezzanine
     };//MemoryStreamBuffer
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief An I/O stream to a buffer of memory.
+    /// @brief An input stream to a buffer of memory.
     ///////////////////////////////////////
-    class MEZZ_LIB MemoryStream : public Mezzanine::IOStream
+    class MEZZ_LIB MemoryIStream : public Mezzanine::IStream
     {
     protected:
         /// @brief The buffer object being streamed to/from.
         MemoryStreamBuffer Buffer;
+        /// @brief The String uniquely identifying this stream.
+        String BufferIdentifier;
     public:
         /// @brief Blank constructor.
-        MemoryStream();
+        /// @param Identifier The unique identity of this stream.
+        MemoryIStream(const String& Identifier);
         /// @brief Buffer initialization constructor.
+        /// @param Identifier The unique identity of this stream.
         /// @param BufferSize The size of the buffer being wrapped.
-        /// @param Mode The configuration to open the memory buffer with.
-        MemoryStream(const Whole BufferSize, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryIStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
         /// @brief Buffer copy constructor.
+        /// @param Identifier The unique identity of this stream.
         /// @param BufferSize The size of the buffer being wrapped.
-        /// @param Mode The configuration to open the memory buffer with.
-        MemoryStream(const void* Buffer, const Whole BufferSize, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryIStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
         /// @brief Buffer wrapper constructor.
+        /// @param Identifier The unique identity of this stream.
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
-        /// @param Mode The configuration to open the memory buffer with.
-        MemoryStream(void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryIStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Read);
         /// @brief Class destructor.
-        virtual ~MemoryStream();
+        virtual ~MemoryIStream();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -236,19 +242,19 @@ namespace Mezzanine
         /// @brief Creates a new memory buffer to stream to/from.
         /// @remarks No changes will be made if the Size is set to 0 or less.
         /// @param Size The size of the buffer to be allocated.
-        /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CreateBuffer(const Whole Size, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Read);
         /// @brief Wraps an external buffer for streaming.
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
-        /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
-        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Read);
         /// @brief Copies a pre-existing buffer to this buffer for streaming.
         /// @param Buffer The buffer to be copied.
         /// @param BufferSize The size of the buffer to be copied.
-        /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Mode = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
 
         /// @brief Gets the start of this buffer.
         /// @return Returns a pointer to the first valid element in this buffer.
@@ -264,14 +270,195 @@ namespace Mezzanine
         /// @return Returns true if the internal buffer will be deleted when this is destroyed.
         Boole GetFreeBuffer() const;
 
+        /// @brief Sets the identifier of this stream.
+        /// @remarks This should be used with care and only when/if buffers are being changed.
+        /// @param Identifier The unique identity of this stream.
+        void SetStreamIdentifier(const String& Identifier);
+
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
 
+        /// @copydoc StreamBase::GetStreamIdentifier() const
+        virtual String GetStreamIdentifier() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
         /// @copydoc StreamBase::GetSize() const
-        virtual StreamSize GetSize() const;
+        virtual StreamSize GetSize() const override;
+    };//MemoryIStream
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief An output stream to a buffer of memory.
+    ///////////////////////////////////////
+    class MEZZ_LIB MemoryOStream : public Mezzanine::OStream
+    {
+    protected:
+        /// @brief The buffer object being streamed to/from.
+        MemoryStreamBuffer Buffer;
+        /// @brief The String uniquely identifying this stream.
+        String BufferIdentifier;
+    public:
+        /// @brief Blank constructor.
+        /// @param Identifier The unique identity of this stream.
+        MemoryOStream(const String& Identifier);
+        /// @brief Buffer initialization constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryOStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Buffer copy constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryOStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Buffer wrapper constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Buffer The buffer to be wrapped.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryOStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Class destructor.
+        virtual ~MemoryOStream();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Creates a new memory buffer to stream to/from.
+        /// @remarks No changes will be made if the Size is set to 0 or less.
+        /// @param Size The size of the buffer to be allocated.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Wraps an external buffer for streaming.
+        /// @param Buffer The buffer to be wrapped.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+
+        /// @brief Gets the start of this buffer.
+        /// @return Returns a pointer to the first valid element in this buffer.
+        Char8* GetBufferStart() const;
+        /// @brief Gets the end of this buffer.
+        /// @return Returns a pointer to one passed the last valid element in this buffer.
+        Char8* GetBufferEnd() const;
+
+        /// @brief Sets if this should delete it's internal buffer when it is destroyed.
+        /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        void SetFreeBuffer(const Boole FreeBuf);
+        /// @brief Gets if this should delete it's internal buffer when it is destroyed.
+        /// @return Returns true if the internal buffer will be deleted when this is destroyed.
+        Boole GetFreeBuffer() const;
+
+        /// @brief Sets the identifier of this stream.
+        /// @remarks This should be used with care and only when/if buffers are being changed.
+        /// @param Identifier The unique identity of this stream.
+        void SetStreamIdentifier(const String& Identifier);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Base Operations
+
+        /// @copydoc StreamBase::GetStreamIdentifier() const
+        virtual String GetStreamIdentifier() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetSize() const
+        virtual StreamSize GetSize() const override;
+    };//MemoryOStream
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief An I/O stream to a buffer of memory.
+    ///////////////////////////////////////
+    class MEZZ_LIB MemoryStream : public Mezzanine::IOStream
+    {
+    protected:
+        /// @brief The buffer object being streamed to/from.
+        MemoryStreamBuffer Buffer;
+        /// @brief The String uniquely identifying this stream.
+        String BufferIdentifier;
+    public:
+        /// @brief Blank constructor.
+        /// @param Identifier The unique identity of this stream.
+        MemoryStream(const String& Identifier);
+        /// @brief Buffer initialization constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @brief Buffer copy constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @brief Buffer wrapper constructor.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Buffer The buffer to be wrapped.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        /// @param Flags The configuration to open the memory buffer with.
+        MemoryStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @brief Class destructor.
+        virtual ~MemoryStream();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        /// @brief Creates a new memory buffer to stream to/from.
+        /// @remarks No changes will be made if the Size is set to 0 or less.
+        /// @param Size The size of the buffer to be allocated.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @brief Wraps an external buffer for streaming.
+        /// @param Buffer The buffer to be wrapped.
+        /// @param BufferSize The size of the buffer being wrapped.
+        /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+
+        /// @brief Gets the start of this buffer.
+        /// @return Returns a pointer to the first valid element in this buffer.
+        Char8* GetBufferStart() const;
+        /// @brief Gets the end of this buffer.
+        /// @return Returns a pointer to one passed the last valid element in this buffer.
+        Char8* GetBufferEnd() const;
+
+        /// @brief Sets if this should delete it's internal buffer when it is destroyed.
+        /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
+        void SetFreeBuffer(const Boole FreeBuf);
+        /// @brief Gets if this should delete it's internal buffer when it is destroyed.
+        /// @return Returns true if the internal buffer will be deleted when this is destroyed.
+        Boole GetFreeBuffer() const;
+
+        /// @brief Sets the identifier of this stream.
+        /// @remarks This should be used with care and only when/if buffers are being changed.
+        /// @param Identifier The unique identity of this stream.
+        void SetStreamIdentifier(const String& Identifier);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Base Operations
+
+        /// @copydoc StreamBase::GetStreamIdentifier() const
+        virtual String GetStreamIdentifier() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetSize() const
+        virtual StreamSize GetSize() const override;
     };//MemoryStream
 
-    /// @brief This is a convenience type for a memory stream in a shared_ptr.
+    /// @brief This is a convenience type for an input memory stream in a shared_ptr.
+    using MemoryIStreamPtr = std::shared_ptr<MemoryIStream>;
+    /// @brief This is a convenience type for am output memory stream in a shared_ptr.
+    using MemoryOStreamPtr = std::shared_ptr<MemoryOStream>;
+    /// @brief This is a convenience type for an input/output memory stream in a shared_ptr.
     using MemoryStreamPtr = std::shared_ptr<MemoryStream>;
 }//Mezzanine
 

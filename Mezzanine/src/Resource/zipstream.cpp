@@ -40,13 +40,195 @@
 #ifndef _resourcezipstream_cpp
 #define _resourcezipstream_cpp
 
-#include "zipstream.h"
+#include "Resource/zipstream.h"
+
+#include "exception.h"
+
+#include <zip.h>
 
 namespace Mezzanine
 {
     namespace Resource
     {
+        ZipStreamBuffer::ZipStreamBuffer(zip* Arch) :
+            InternalArchive(Arch),
+            InternalFile(nullptr),
+            FileIndex(-1),
+            StreamFlags(Mezzanine::SF_None),
+            RawStream(false)
+            {  }
 
+        ZipStreamBuffer::~ZipStreamBuffer()
+            { this->CloseFile(); }
+
+        void ZipStreamBuffer::CheckOpenError()
+        {
+            if( this->InternalFile == nullptr ) {
+                // Ruh Roh
+                zip_error_t* ArchError = zip_get_error(this->InternalArchive);
+                int ErrorCode = zip_error_code_zip(ArchError);
+
+                // A small subset of file errors.
+                StringStream ExceptionStream;
+                ExceptionStream << zip_error_strerror(ArchError) << '\n';
+                if( ErrorCode == ZIP_ER_COMPNOTSUPP || ErrorCode == ZIP_ER_ENCRNOTSUPP ) {
+                    MEZZ_EXCEPTION(ExceptionBase::IO_FILE_EXCEPTION,ExceptionStream.str());
+                }else if( ErrorCode == ZIP_ER_NOPASSWD || ErrorCode == ZIP_ER_WRONGPASSWD ) {
+                    MEZZ_EXCEPTION(ExceptionBase::IO_FILE_PERMISSION_EXCEPTION,ExceptionStream.str());
+                }else if( ErrorCode == ZIP_ER_READ || ErrorCode == ZIP_ER_SEEK ) {
+                    MEZZ_EXCEPTION(ExceptionBase::IO_FILE_READ_EXCEPTION,ExceptionStream.str());
+                }else if( ErrorCode == ZIP_ER_ZLIB ) {
+                    MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,ExceptionStream.str());
+                }else{
+                    MEZZ_EXCEPTION(ExceptionBase::IO_FILE_EXCEPTION,ExceptionStream.str());
+                }
+            }
+        }
+
+        int ZipStreamBuffer::underflow()
+        {
+            if( this->gptr() && ( this->gptr() < this->egptr() ) ) {
+                return *reinterpret_cast<Char8*>( this->gptr() );
+            }
+
+            if( !(this->StreamFlags & SF_Read) || !this->IsOpenToFile() ) {
+                return traits_type::eof();
+            }
+
+            static const Integer PutBackMax = 6;
+            Integer PutBack = this->gptr() - this->eback();
+            if( PutBack > PutBackMax ) {
+                PutBack = PutBackMax;
+            }
+            memcpy(this->Buffer,this->gptr() - PutBack,static_cast<size_t>(PutBack));
+
+            zip_int64_t AmountRead = zip_fread(this->InternalFile,this->Buffer + PutBack,BufferSize - PutBack);
+            if( AmountRead <= 0 ) {
+                return traits_type::eof();
+            }
+
+            this->setg( this->Buffer, this->Buffer + PutBack, this->Buffer + BufferSize );
+            return *reinterpret_cast<Char8*>( this->gptr() );
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        void ZipStreamBuffer::OpenFile(const String& Identifier, const Whole Flags, const Boole Raw)
+        {
+            zip_flags_t LocateFlags = ZIP_FL_ENC_GUESS;
+            zip_int64_t FileIdx = zip_name_locate(this->InternalArchive,Identifier.c_str(),LocateFlags);
+            if( FileIdx < 0 ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File \"" << Identifier << "\" not found in ZIP archive.\n";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+
+            zip_flags_t FOpenFlags = ( Raw ? ZIP_FL_COMPRESSED : 0 );
+            this->InternalFile = zip_fopen_index(this->InternalArchive,FileIdx,FOpenFlags);
+
+            this->CheckOpenError();
+
+            this->FileIndex = FileIdx;
+            this->StreamFlags = Flags;
+            this->RawStream = Raw;
+        }
+
+        void ZipStreamBuffer::OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
+        {
+            zip_flags_t LocateFlags = ZIP_FL_ENC_GUESS;
+            zip_int64_t FileIdx = zip_name_locate(this->InternalArchive,Identifier.c_str(),LocateFlags);
+            if( FileIdx < 0 ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File \"" << Identifier << "\" not found in ZIP archive.\n";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+
+            zip_flags_t FOpenFlags = ( Raw ? ZIP_FL_COMPRESSED : 0 );
+            this->InternalFile = zip_fopen_index_encrypted(this->InternalArchive,FileIdx,FOpenFlags,Password.c_str());
+
+            this->CheckOpenError();
+
+            this->FileIndex = FileIdx;
+            this->StreamFlags = Flags;
+            this->RawStream = Raw;
+        }
+
+        Boole ZipStreamBuffer::IsOpenToFile() const
+            { return ( this->InternalFile != nullptr ); }
+
+        void ZipStreamBuffer::CloseFile()
+        {
+            if( this->IsOpenToFile() ) {
+                zip_fclose(this->InternalFile);
+
+                this->InternalFile = nullptr;
+                this->FileIndex = -1;
+                this->StreamFlags = Mezzanine::SF_None;
+                this->RawStream = false;
+            }
+        }
+
+        Whole ZipStreamBuffer::GetStreamFlags() const
+            { return this->StreamFlags; }
+
+        StreamSize ZipStreamBuffer::GetCompressedSize() const
+        {
+            if( this->FileIndex >= 0 ) {
+                zip_stat_t FileStat;
+                zip_stat_init(&FileStat);
+                zip_stat_index(this->InternalArchive,this->FileIndex,0,&FileStat);
+                if( FileStat.valid & ZIP_STAT_COMP_SIZE ) {
+                    return static_cast<StreamSize>(FileStat.comp_size);
+                }
+            }
+            return 0;
+        }
+
+        StreamSize ZipStreamBuffer::GetUncompressedSize() const
+        {
+            if( this->FileIndex >= 0 ) {
+                zip_stat_t FileStat;
+                zip_stat_init(&FileStat);
+                zip_stat_index(this->InternalArchive,this->FileIndex,0,&FileStat);
+                if( FileStat.valid & ZIP_STAT_SIZE ) {
+                    return static_cast<StreamSize>(FileStat.size);
+                }
+            }
+            return 0;
+        }
+
+        String ZipStreamBuffer::GetStreamIdentifier() const
+        {
+            String Ret;
+            if( this->FileIndex >= 0 ) {
+                zip_flags_t NameFlags = ZIP_FL_ENC_GUESS;
+                Ret.assign( zip_get_name(this->InternalArchive,this->FileIndex,NameFlags) );
+            }
+            return Ret;
+        }
+
+        Boole ZipStreamBuffer::CanSeek() const
+        {
+            if( this->FileIndex >= 0 ) {
+                zip_stat_t FileStat;
+                zip_stat_init(&FileStat);
+                zip_stat_index(this->InternalArchive,this->FileIndex,0,&FileStat);
+                Boole CompressValid = ( FileStat.valid & ZIP_STAT_COMP_METHOD ) && ( FileStat.comp_method == ZIP_CM_STORE );
+                Boole EncryptValid = ( FileStat.valid & ZIP_STAT_ENCRYPTION_METHOD ) && ( FileStat.encryption_method == ZIP_EM_NONE );
+                return ( CompressValid && EncryptValid );
+            }
+            return false;
+        }
+
+        StreamSize ZipStreamBuffer::GetSize() const
+        {
+            if( this->RawStream ) {
+                return this->GetCompressedSize();
+            }else{
+                return this->GetUncompressedSize();
+            }
+        }
     }//Resource
 }//Mezzanine
 

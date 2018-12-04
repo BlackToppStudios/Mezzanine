@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2018 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,41 +37,51 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _resourcesystempathutilities_cpp
+#define _resourcesystempathutilities_cpp
+
+#include "Resource/systempathutilities.h"
+#include "Resource/directorycontents.h"
+#include "Resource/pathutilities.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
     namespace Resource
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // System Path Utilities
 
-    }
-}
+        StringVector GetSystemPATH(const String& PATH)
+        {
+            StringVector Results;
+            const Char8 Sep = GetPathSeparator_Host();
+            String OneEntry;
 
-#include "Resource/resourceenumerations.h"
-#include "Resource/resourcemanager.h"
+            for( String::const_iterator Current = PATH.begin() ; PATH.end() != Current ; ++Current )
+            {
+                if( Sep == *Current ) {
+                    Results.push_back(OneEntry);
+                    OneEntry.clear();
+                }else{
+                    OneEntry += *Current;
+                }
+            }
+            return Results;
+        }
 
-#include "Resource/archiveentry.h"
-#include "Resource/archivereader.h"
-#include "Resource/archivestream.h"
-#include "Resource/archivewriter.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/deflatecodec.h"
-#include "Resource/directorycontents.h"
-#include "Resource/filesystemarchivereader.h"
-#include "Resource/filesystemarchivewriter.h"
-#include "Resource/filesystemmanagement.h"
-#include "Resource/pathutilities.h"
-#include "Resource/specialdirectoryutilities.h"
-#include "Resource/systempathutilities.h"
-#include "Resource/ziparchivereader.h"
-#include "Resource/ziparchivewriter.h"
-#include "Resource/zipstream.h"
+        String Which(const String& ExecutableName)
+        {
+            StringVector PATH = std::move( GetSystemPATH() );
+            for( StringVector::const_iterator Iter = PATH.begin() ; Iter!=PATH.end() ; ++Iter )
+            {
+                StringVector Entries = std::move( GetDirectoryContentNames(*Iter) );
+                if( std::find(Entries.begin(),Entries.end(),ExecutableName) != Entries.end() ) {
+                    return (*Iter) + GetDirectorySeparator_Host();
+                }
+            }
+            return String();
+        }
+    }//Resource
+}//Mezzanine
 
 #endif

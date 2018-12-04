@@ -316,6 +316,11 @@ namespace Mezzanine
         StringVector Split(const String& Source, const String& Delims, const Whole MaxSplits)
         {
             StringVector Ret;
+
+            if( Source.empty() ) {
+                return Ret;
+            }
+
             Ret.reserve( MaxSplits ? MaxSplits + 1 : 10 );
             Whole Splits = 0;
 
