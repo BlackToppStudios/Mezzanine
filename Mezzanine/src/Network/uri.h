@@ -75,83 +75,66 @@ namespace Mezzanine
             /// characters in the GenDelims String, if these characters are found they'll be percent encoded.
             static const String SubDelims;
         protected:
-            /// @internal
             /// @brief The Scheme of the URI, usually noting the type of data the resource is.
             String URIScheme;
-            /// @internal
             /// @brief The optional user authentication information to be used when accessing the resource.
             String URIUserInfo;
-            /// @internal
             /// @brief The domain or address of the Host where the resource is located.
             String URIHost;
-            /// @internal
             /// @brief The path to the resource on the Host machine holding the resource.
             String URIPath;
-            /// @internal
             /// @brief The optional Query to provide additional non-hierarchical information about the resource.
             String URIQuery;
-            /// @internal
             /// @brief The optional Fragment providing additional direction to a subset of the resource.
             String URIFragment;
-            /// @internal
             /// @brief The port number on the host to connect to in order to access the resource.
-            UInt16 URIPort;
+            UInt16 URIPort{0};
 
-            /// @internal
             /// @brief Parses the Scheme of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseScheme(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the User Information of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseUserInfo(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Host of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseHost(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Port of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParsePort(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Path of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParsePath(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Query of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseQuery(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Fragment of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseFragment(StringIterator CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Authority of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseAuthority(StringIterator& CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Authority of a URI String, without checking for the preceding slashes.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
             /// @param EndIt Then end of the character sequence being parsed.
             void ParseAuthorityNoSlash(StringIterator& CurrIt, const StringIterator EndIt);
-            /// @internal
             /// @brief Parses the Path, Query, and Fragment components of a URI String.
             /// @exception If an invalid character or an error is encountered a SYNTAX_ERROR_EXCEPTION will be thrown.
             /// @param CurrIt A modifiable iterator to the current character in the parsing operation.
@@ -159,10 +142,13 @@ namespace Mezzanine
             void ParsePathQueryFrag(StringIterator& CurrIt, const StringIterator EndIt);
         public:
             /// @brief Blank constructor.
-            URI();
+            URI() = default;
             /// @brief Copy constructor.
             /// @param Other The other URI to be copied.
-            URI(const URI& Other);
+            URI(const URI& Other) = default;
+            /// @brief Move constructor.
+            /// @param Other The other URI to be moved.
+            URI(URI&& Other) = default;
             /// @brief Parsing constructor.
             /// @param ToParse The String to be parsed by this URI.
             URI(const String& ToParse);
@@ -185,7 +171,28 @@ namespace Mezzanine
             /// @param Fragment The Fragment component of the URI.
             URI(const String& Scheme, const String& UserInfo, const String& Host, const UInt16 Port, const String& Path, const String& Query, const String& Fragment);
             /// @brief Class destructor.
-            ~URI();
+            ~URI() = default;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Copy assignment operator.
+            /// @param Other The other URI that will be copied.
+            /// @return Returns a reference to this.
+            URI& operator=(const URI& Other) = default;
+            /// @brief Move assignment operator.
+            /// @param Other The other URI that will be moved.
+            /// @return Returns a reference to this.
+            URI& operator=(URI&& Other) = default;
+
+            /// @brief Equality Comparison Operator.
+            /// @param Other The other URI to compare to.
+            /// @return Returns true if the two URI's are equal, false otherwise.
+            Boole operator==(const URI& Other) const;
+            /// @brief Inequality Comparison Operator.
+            /// @param Other The other URI to compare to.
+            /// @return Returns true if the two URI's are not equal, false otherwise.
+            Boole operator!=(const URI& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Percent Encoding
@@ -322,7 +329,7 @@ namespace Mezzanine
             Boole IsEmpty() const;
 
             /// @brief Computes the absolute referenced URI from a relative URI and the absolute URI it is relative to.
-            /// @param Other The other URI to resolve against.  Must me relative.
+            /// @param Other The other URI to resolve against.  Must be relative.
             /// @return Returns a new absolute URI to the referenced resource.
             URI Resolve(const URI& Relative) const;
 
@@ -448,22 +455,6 @@ namespace Mezzanine
             /// @brief Gets whether or not any Authority component of the URI has been set.
             /// @return Returns true if anything has been set for the Authority, false otherwise.
             Boole HasAuthority() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Operators
-
-            /// @brief Assignment Operator.
-            /// @param Other The other URI to be assigned to this.
-            void operator=(const URI& Other);
-
-            /// @brief Equality Comparison Operator.
-            /// @param Other The other URI to compare to.
-            /// @return Returns true if the two URI's are equal, false otherwise.
-            Boole operator==(const URI& Other) const;
-            /// @brief Inequality Comparison Operator.
-            /// @param Other The other URI to compare to.
-            /// @return Returns true if the two URI's are not equal, false otherwise.
-            Boole operator!=(const URI& Other) const;
         };//URI
     }//Network
 }//Mezzanine

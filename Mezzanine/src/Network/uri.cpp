@@ -78,14 +78,14 @@ namespace Mezzanine
             StringVector PathSegments;
             StringVector MergedSegments;
             if( !Base.empty() ) {
-                StringVector BaseSegs = StringTools::Split(Base,"/",std::numeric_limits<Whole>::max());
+                StringVector BaseSegs = StringTools::Split(Base,"/\\",std::numeric_limits<Whole>::max());
                 if( *(Base.rbegin()) != '/' ) {
                     BaseSegs.pop_back();
                 }
                 PathSegments.insert(PathSegments.end(),BaseSegs.begin(),BaseSegs.end());
             }
             if( !Relative.empty() ) {
-                StringVector RelativeSegs = StringTools::Split(Relative,"/",std::numeric_limits<Whole>::max());
+                StringVector RelativeSegs = StringTools::Split(Relative,"/\\",std::numeric_limits<Whole>::max());
                 PathSegments.insert(PathSegments.end(),RelativeSegs.begin(),RelativeSegs.end());
             }
             for( StringVector::const_iterator SegIt = PathSegments.begin() ; SegIt != PathSegments.end() ; ++SegIt )
@@ -107,20 +107,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // URI Methods
-
-        URI::URI() :
-            URIPort(0)
-            {  }
-
-        URI::URI(const URI& Other) :
-            URIScheme(Other.URIScheme),
-            URIUserInfo(Other.URIUserInfo),
-            URIHost(Other.URIHost),
-            URIPath(Other.URIPath),
-            URIQuery(Other.URIQuery),
-            URIFragment(Other.URIFragment),
-            URIPort(Other.URIPort)
-            {  }
 
         URI::URI(const String& ToParse)
             { this->ParseFromString(ToParse); }
@@ -145,8 +131,30 @@ namespace Mezzanine
             URIPort(Port)
             {  }
 
-        URI::~URI()
-            {  }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        Boole URI::operator==(const URI& Other) const
+        {
+            return ( this->URIScheme == Other.URIScheme &&
+                     this->URIUserInfo == Other.URIUserInfo &&
+                     this->URIHost == Other.URIHost &&
+                     this->URIPath == Other.URIPath &&
+                     this->URIQuery == Other.URIQuery &&
+                     this->URIFragment == Other.URIFragment &&
+                     this->URIPort == Other.URIPort );
+        }
+
+        Boole URI::operator!=(const URI& Other) const
+        {
+            return ( this->URIScheme != Other.URIScheme ||
+                     this->URIUserInfo != Other.URIUserInfo ||
+                     this->URIHost != Other.URIHost ||
+                     this->URIPath != Other.URIPath ||
+                     this->URIQuery != Other.URIQuery ||
+                     this->URIFragment != Other.URIFragment ||
+                     this->URIPort != Other.URIPort );
+        }
 
         void URI::ParseScheme(StringIterator CurrIt, const StringIterator EndIt)
         {
@@ -492,7 +500,7 @@ namespace Mezzanine
         {
             if( !ToRemove.empty() ) {
                 StringVector RetSegments;
-                StringVector PathSegments = StringTools::Split(ToRemove,"/",std::numeric_limits<Whole>::max());
+                StringVector PathSegments = StringTools::Split(ToRemove,"/\\",std::numeric_limits<Whole>::max());
                 StringVector::iterator SegIt = PathSegments.begin();
 
                 // If we're operating on a Relative URI, then the content doesn't matter, be it a dot segment or not.
@@ -927,42 +935,6 @@ namespace Mezzanine
 
         Boole URI::HasAuthority() const
             { return this->HasHost(); } //Other Authority items add description to the host, so without it the Authority means nothing.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Operators
-
-        void URI::operator=(const URI& Other)
-        {
-            this->URIScheme = Other.URIScheme;
-            this->URIUserInfo = Other.URIUserInfo;
-            this->URIHost = Other.URIHost;
-            this->URIPath = Other.URIPath;
-            this->URIQuery = Other.URIQuery;
-            this->URIFragment = Other.URIFragment;
-            this->URIPort = Other.URIPort;
-        }
-
-        Boole URI::operator==(const URI& Other) const
-        {
-            return ( this->URIScheme == Other.URIScheme &&
-                     this->URIUserInfo == Other.URIUserInfo &&
-                     this->URIHost == Other.URIHost &&
-                     this->URIPath == Other.URIPath &&
-                     this->URIQuery == Other.URIQuery &&
-                     this->URIFragment == Other.URIFragment &&
-                     this->URIPort == Other.URIPort );
-        }
-
-        Boole URI::operator!=(const URI& Other) const
-        {
-            return ( this->URIScheme != Other.URIScheme ||
-                     this->URIUserInfo != Other.URIUserInfo ||
-                     this->URIHost != Other.URIHost ||
-                     this->URIPath != Other.URIPath ||
-                     this->URIQuery != Other.URIQuery ||
-                     this->URIFragment != Other.URIFragment ||
-                     this->URIPort != Other.URIPort );
-        }
     }//Network
 }//Mezzanine
 
