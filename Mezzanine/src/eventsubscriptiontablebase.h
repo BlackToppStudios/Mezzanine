@@ -37,56 +37,48 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscriberbinding_cpp
-#define _eventsubscriberbinding_cpp
-
-#include "eventsubscriberbinding.h"
-#include "eventpublisher.h"
+#ifndef _eventsubscriptiontablebase_h
+#define _eventsubscriptiontablebase_h
 
 namespace Mezzanine
 {
-    EventSubscriberBinding::EventSubscriberBinding(EventSubscriberID ID, const CallbackType& Delegate, EventPublisher* Pub, const EventHashType Hash) :
-        Callback(Delegate),
-        SubID(ID),
-        Publisher(Pub),
-        NameHash(Hash)
-        {  }
+    /// @addtogroup Events
+    /// @{
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Operators
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Utility
-
-    const EventSubscriberBinding::CallbackType& EventSubscriberBinding::GetCallback() const
-        { return this->Callback; }
-
-    EventSubscriberID EventSubscriberBinding::GetSubID() const
-        { return this->SubID; }
-
-    EventPublisher* EventSubscriberBinding::GetPublisher() const
-        { return this->Publisher; }
-
-    EventHashType EventSubscriberBinding::GetEventHash() const
-        { return this->NameHash; }
-
-    Boole EventSubscriberBinding::IsSubscribed() const
-        { return ( this->Publisher != NULL ); }
-
-    void EventSubscriberBinding::Unsubscribe()
+    /// @brief This is a base class for tables of subscribers.
+    ///////////////////////////////////////
+    class MEZZ_LIB EventSubscriptionTableBase
     {
-        this->Publisher->GetSubscriptionTable(this->NameHash)->Unsubscribe(this->SubID);
-        this->Unbind();
-    }
+    public:
+        /// @brief Blank constructor.
+        EventSubscriptionTableBase() = default;
+        /// @brief Copy constructor.
+        /// @param Other The other table to NOT be copied.
+        EventSubscriptionTableBase(const EventSubscriptionTableBase& Other) = delete;
+        /// @brief Move constructor.
+        /// @param Other The other table to be moved.
+        EventSubscriptionTableBase(EventSubscriptionTableBase&& Other) = default;
+        /// @brief Class destructor.
+        virtual ~EventSubscriptionTableBase() = default;
 
-    void EventSubscriberBinding::Unbind()
-    {
-        this->Publisher = NULL;
-        this->NameHash = EventNameType::EmptyHash;
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
 
-    void EventSubscriberBinding::DispatchEvent(EventPtr Args) const
-        { this->Callback(Args); }
+        /// @brief Assignment operator.
+        /// @param Other The other table to NOT be copied.
+        /// @return Returns a reference to this.
+        EventSubscriptionTableBase& operator=(const EventSubscriptionTableBase& Other) = delete;
+        /// @brief Move assignment operator.
+        /// @param Other The other table to be moved.
+        /// @return Returns a reference to this.
+        EventSubscriptionTableBase& operator=(EventSubscriptionTableBase&& Other) = default;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+    };//EventSubscriptionTableBase
+
+    /// @}
 }//Mezzanine
 
 #endif

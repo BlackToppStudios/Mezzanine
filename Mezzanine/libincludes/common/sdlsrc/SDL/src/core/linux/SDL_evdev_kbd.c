@@ -284,7 +284,7 @@ SDL_EVDEV_kbd_quit(SDL_EVDEV_keyboard_state *kbd)
 /*
  * Helper Functions.
  */
-static void put_queue(SDL_EVDEV_keyboard_state *kbd, uint c)
+static void put_queue(SDL_EVDEV_keyboard_state *kbd, unsigned int c)
 {
     /* c is already part of a UTF-8 sequence and safe to add as a character */
     if (kbd->text_len < (sizeof(kbd->text)-1)) {
@@ -292,7 +292,7 @@ static void put_queue(SDL_EVDEV_keyboard_state *kbd, uint c)
     }
 }
 
-static void put_utf8(SDL_EVDEV_keyboard_state *kbd, uint c)
+static void put_utf8(SDL_EVDEV_keyboard_state *kbd, unsigned int c)
 {
     if (c < 0x80)
         /*  0******* */

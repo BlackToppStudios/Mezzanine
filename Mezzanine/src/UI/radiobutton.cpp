@@ -135,8 +135,8 @@ namespace Mezzanine
                 this->CurrentSelection = Selected;
                 this->DeselectOtherButtons(Selected);
 
-                WidgetEventPtr Args( new WidgetEvent( RadioButtonGroup::EventGroupButtonSelected,Selected->GetName()) );
-                this->DispatchEvent(Args);
+                WidgetEventPtr Args = std::make_shared<WidgetEvent>(EventGroupButtonSelected,Selected->GetName());
+                this->DispatchEvent(EventGroupButtonSelected,&SubscriberType::operator(),Args);
             }
         }
 

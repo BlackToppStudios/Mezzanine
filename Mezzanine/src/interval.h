@@ -51,7 +51,7 @@ namespace Mezzanine
     /// @brief This class will generate keep track of a pool of unique 32-bit ID's that can be used for distinct object instances.
     ///////////////////////////////////////
     template<class NumType>
-    class MEZZ_LIB Interval
+    class Interval
     {
     public:
         /// @brief Convenience type for the implemented type.

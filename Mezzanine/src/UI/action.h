@@ -72,10 +72,42 @@ namespace Mezzanine
             virtual ~ActionEvent() {  }
         };//ActionEvent
 
+        /// @brief Convenience type for passing around ActionEvent.
+        using ActionEventPtr = std::shared_ptr<ActionEvent>;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A config/traits class for configuration of the event publisher used by an Action.
+        ///////////////////////////////////////
+        struct MEZZ_LIB ActionEventTableConfig : public EventSubscriptionTableConfig< FunctionSubscriber<EventSubscriberID,void,ActionEventPtr> >
+        {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Factory Traits
+
+            /// @brief Use bindings to help manage lifetime where appropriate.
+            static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Storage Traits
+
+            /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+            static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Dispatch Traits
+
+            /// @brief Don't need anything fancy for the dispatcher (yet).
+            static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+            /// @brief EventID works fine for dispatch.
+            using DispatchIDType = EventID;
+        };//ActionEventTableConfig
+
+        /// @brief Convenience type for the event publisher config for widgets.
+        using ActionEventPublisher = EventPublisher<ActionEventTableConfig>;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents an action to be taken.  Can have multiple inputs bound to it.
         ///////////////////////////////////////
-        class MEZZ_LIB Action : public EventPublisher
+        class MEZZ_LIB Action : public ActionEventPublisher
         {
         public:
             /// @brief Event name for when this Action is activated.

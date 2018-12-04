@@ -61,29 +61,34 @@
 // conditionally may not be compiled in. For example,
 
 #ifndef SWIG
-    #include <stdint.h> //Not available in unsupported versions of MSVC (<2012, we support >=2015)
+    #include <stdint.h>
     #include <cstddef>
 
-    #include <algorithm>
-    #include <atomic>
-    #include <exception>
-    #include <fstream>
-    #include <functional>
-    #include <istream>
+    #include <array>
     #include <list>
     #include <map>
-    #include <memory>
-    #include <ostream>
     #include <set>
-    #include <string>
-    #include <sstream>
-    #include <utility>
     #include <vector>
-    #include <ostream>
-    #include <chrono>
-    #include <array>
+
     #include <atomic>
     #include <condition_variable>
+
+    #include <fstream>
+    #include <istream>
+    #include <ostream>
+    #include <sstream>
+
+    #include <algorithm>
+    #include <chrono>
+    #include <exception>
+    #include <functional>
+    #include <initializer_list>
+    #include <memory>
+    #include <new>
+    #include <string>
+    #include <type_traits>
+    #include <typeindex>
+    #include <utility>
 #endif
 
 #include "swig.h"
