@@ -277,7 +277,7 @@ void REPLLineNoise::Launch()
     //Prepare Values
     String CurrentInput;
     ExecutionResults CurrentResults = Doer.Do("banner");
-    String HistoryDir(Resource::GetCurrentUserDataDir() + Resource::GetUniversalDirectorySeparator() + ".EntreLua" + Resource::GetUniversalDirectorySeparator());
+    String HistoryDir(Resource::GetCurrentUserDataDir() + Resource::GetDirectorySeparator_Universal() + ".EntreLua" + Resource::GetDirectorySeparator_Universal());
     String HistoryFile("history.txt");
     String HistoryFullName(HistoryDir+HistoryFile);
     TargetRepl=this;
