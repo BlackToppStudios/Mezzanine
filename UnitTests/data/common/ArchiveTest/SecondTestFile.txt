@@ -1,0 +1,3 @@
+Second test file, first line.
+Still the second test file, second line.
+Third and final line of the second test file.

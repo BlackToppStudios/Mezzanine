@@ -351,6 +351,11 @@ CopyFilesDuringBuild( common/images/TexturePacker-Skyline-Single-SLP_BestAreaFit
 CopyFilesDuringBuild( common/images/TexturePacker-Skyline-SLP_BestAreaFit.png data/images/TexturePacker-Skyline-SLP_BestAreaFit.png )
 CopyFilesDuringBuild( common/images/TexturePacker-Skyline-SLP_TopLeft.png data/images/TexturePacker-Skyline-SLP_TopLeft.png )
 
+CopyFilesDuringBuild( common/ArchiveTest/FirstTestFile.txt data/ArchiveTest/FirstTestFile.txt )
+CopyFilesDuringBuild( common/ArchiveTest/SecondTestFile.txt data/ArchiveTest/SecondTestFile.txt )
+CopyFilesDuringBuild( common/ArchiveTest/TestFolder/SubDirTestFile.txt data/ArchiveTest/TestFolder/SubDirTestFile.txt )
+CopyFilesDuringBuild( common/ArchiveTestData.zip data/ArchiveTestData.zip )
+
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-2.1.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt )
