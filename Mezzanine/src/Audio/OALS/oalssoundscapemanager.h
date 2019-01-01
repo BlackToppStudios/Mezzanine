@@ -60,19 +60,15 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the work unit for updating audio buffers as necessary for audio playback.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB BufferUpdate3DWorkUnit : public Audio::iBufferUpdate3DWorkUnit
             {
             protected:
-                /// @internal
                 /// @brief A pointer to the manager this work unit is processing.
                 OALS::SoundScapeManager* TargetManager;
-                /// @internal
                 /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
                 /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
                 BufferUpdate3DWorkUnit(const BufferUpdate3DWorkUnit& Other);
-                /// @internal
                 /// @brief Protected assignment operator.  THIS IS NOT ALLOWED.
                 /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
                 BufferUpdate3DWorkUnit& operator=(const BufferUpdate3DWorkUnit& Other);
@@ -93,7 +89,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             /// @brief This is the base manager class for audio being played in a 3D environment.
-            /// @details
             ///////////////////////////////////////
             class MEZZ_LIB SoundScapeManager : public Audio::SoundScapeManager
             {
@@ -159,47 +154,43 @@ namespace Mezzanine
                 // Proxy Creation
 
                 /// @copydoc Audio::SoundScapeManager::CreateListener()
-                iListener* CreateListener();
+                iListener* CreateListener() override;
                 /// @copydoc Audio::SoundScapeManager::CreateListener(XML::Node&)
-                iListener* CreateListener(const XML::Node& SelfRoot);
+                iListener* CreateListener(const XML::Node& SelfRoot) override;
 
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, DataStreamPtr, const Audio::Encoding)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, DataStreamPtr, const UInt32, const Audio::BitConfig)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type) override;
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, IStreamPtr, const Audio::Encoding)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode) override;
+                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, IStreamPtr, const UInt32, const Audio::BitConfig)
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) override;
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, const String&)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const Audio::Encoding)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-                /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(const UInt16, const String&, Char8*, const UInt32, const UInt32, const Audio::BitConfig)
-                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
+                Audio::SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group) override;
                 /// @copydoc Audio::SoundScapeManager::CreateSoundProxy(XML::Node&)
-                Audio::SoundProxy* CreateSoundProxy(const XML::Node& SelfRoot);
+                Audio::SoundProxy* CreateSoundProxy(const XML::Node& SelfRoot) override;
 
                 /// @copydoc EntityComponentManager::CreateComponent(const XML::Node&)
-                EntityComponent* CreateComponent(const XML::Node& SelfRoot);
+                EntityComponent* CreateComponent(const XML::Node& SelfRoot) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // General Proxy Management
 
                 /// @copydoc EntityComponentManager::GetComponentByID(const UInt32) const
-                EntityComponent* GetComponentByID(const UInt32 ID) const;
+                EntityComponent* GetComponentByID(const UInt32 ID) const override;
 
                 /// @copydoc EntityComponentManager::GetNumComponents() const
-                UInt32 GetNumComponents() const;
+                UInt32 GetNumComponents() const override;
                 /// @copydoc EntityComponentManager::GetNumComponents(const UInt32
-                UInt32 GetNumComponents(const UInt32 Types) const;
+                UInt32 GetNumComponents(const UInt32 Types) const override;
                 /// @copydoc EntityComponentManager::GetComponents() const
-                EntityComponentManager::ComponentVec GetComponents() const;
+                EntityComponentManager::ComponentVec GetComponents() const override;
 
                 /// @copydoc EntityComponentManager::DestroyComponent(EntityComponent*)
-                void DestroyComponent(EntityComponent* ToBeDestroyed);
+                void DestroyComponent(EntityComponent* ToBeDestroyed) override;
                 /// @copydoc EntityComponentManager::DestroyAllComponents(const UInt32)
-                void DestroyAllComponents(const UInt32 Types);
+                void DestroyAllComponents(const UInt32 Types) override;
                 /// @copydoc EntityComponentManager::DestroyAllComponents()
-                void DestroyAllComponents();
+                void DestroyAllComponents() override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Specific Proxy Management
@@ -249,21 +240,21 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc WorldManager::Pause(const UInt32)
-                virtual void Pause(const UInt32 PL);
+                virtual void Pause(const UInt32 PL) override;
 
                 /// @copydoc WorldManager::Initialize()
-                virtual void Initialize();
+                virtual void Initialize() override;
                 /// @copydoc ManagerBase::Deinitialize()
-                virtual void Deinitialize();
+                virtual void Deinitialize() override;
 
                 /// @copydoc Audio::SoundScapeManager::GetBufferUpdate3DWork()
-                virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork();
+                virtual iBufferUpdate3DWorkUnit* GetBufferUpdate3DWork() override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Type Identifier Methods
 
                 /// @copydoc ManagerBase::GetImplementationTypeName()
-                virtual String GetImplementationTypeName() const;
+                virtual String GetImplementationTypeName() const override;
             };//SoundScapeManager
         }//OALS
     }//Audio

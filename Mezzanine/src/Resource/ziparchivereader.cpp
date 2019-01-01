@@ -167,7 +167,12 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // File and Directory Query
+        // Utility Queries
+
+        const String& ZipArchiveReader::GetIdentifier() const
+        {
+            return this->ArchiveIdentifier;
+        }
 
         Boole ZipArchiveReader::DirectoryExists(const String& DirectoryPath) const
         {
@@ -219,7 +224,8 @@ namespace Mezzanine
             return NewStream;
         }
 
-        IStreamPtr ZipArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
+        IStreamPtr ZipArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password,
+                                                          const Whole Flags, const Boole Raw)
         {
             if( this->InternalArchive == nullptr ) {
                 StringStream ExceptionStream;

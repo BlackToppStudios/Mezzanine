@@ -106,7 +106,7 @@ namespace Mezzanine
             OALS::SoundProxy::SoundProxy(const UInt16 Type, const UInt32 ID, iDecoder* Decode, const ContextContainer& Contexts, SoundScapeManager* Creator) :
                 Audio::SoundProxy(ID),
                 Manager(Creator),
-                SoundFilter(NULL),
+                SoundFilter(nullptr),
                 SoundDecoder(Decode),
                 DopplerStrength(1.0),
                 OuterConeAngle(360.0),
@@ -129,7 +129,7 @@ namespace Mezzanine
                 this->Orientation.SetIdentity();
 
                 // Allocate our space for contexts and create our sources
-                this->ContextsAndSources.resize(OALS_MAX_LISTENERS_PER_MANAGER,ContextSourcePair(NULL,0));
+                this->ContextsAndSources.resize(OALS_MAX_LISTENERS_PER_MANAGER,ContextSourcePair(nullptr,0));
                 for( UInt32 Index = 0 ; Index < OALS_MAX_LISTENERS_PER_MANAGER ; ++Index )
                 {
                     this->ContextsAndSources[Index].first = Contexts[Index];
@@ -144,7 +144,7 @@ namespace Mezzanine
                 }
 
                 // Create the storage space for our effect slots
-                Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,NULL);
+                Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,nullptr);
 
                 // Create and place our buffers
                 alGenBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
@@ -154,7 +154,7 @@ namespace Mezzanine
             {
                 for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                 {
-                    if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                    if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                         this->MakeCurrent( (*CSI).first );
                         // Stop the source
                         alSourceStop((*CSI).second);
@@ -213,7 +213,7 @@ namespace Mezzanine
 
             void OALS::SoundProxy::RefreshFilter(const UInt32 SourceID)
             {
-                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
+                if( this->SoundFilter != nullptr && this->SoundFilter->_IsDirty() ) {
                     ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                     alSourcei( SourceID, AL_DIRECT_FILTER, FilterID );
                 }
@@ -224,10 +224,10 @@ namespace Mezzanine
                 for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
                 {
                     OALS::Effect* CurrEffect = this->Effects.at(Index);
-                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
+                    if( CurrEffect != nullptr && CurrEffect->_IsDirty() ) {
                         //ALuint EffectID = CurrEffect->_GetInternalEffect();
                         ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
-                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                        ALuint FilterID = ( CurrEffect->GetFilter() != nullptr ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                         alSource3i( SourceID, AL_AUXILIARY_SEND_FILTER, EffectSlotID, Index, FilterID);
                     }
                 }
@@ -253,7 +253,7 @@ namespace Mezzanine
                 if( this->SoundPitch != Pitch ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_PITCH,Pitch);
                         }
@@ -267,19 +267,19 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void OALS::SoundProxy::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(IStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
-                if( Factory != NULL ) {
+                if( Factory != nullptr ) {
                     if( this->SoundDecoder ) {
                         delete this->SoundDecoder;
-                        this->SoundDecoder = NULL;
+                        this->SoundDecoder = nullptr;
                     }
                     this->SoundDecoder = Factory->CreateDecoder(Stream);
                 }
             }
 
-            void OALS::SoundProxy::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
+            void OALS::SoundProxy::SetStream(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);
@@ -289,7 +289,7 @@ namespace Mezzanine
             {
                 if( this->SoundDecoder ) {
                     delete SoundDecoder;
-                    SoundDecoder = NULL;
+                    SoundDecoder = nullptr;
                 }
                 this->SoundDecoder = Decode;
             }
@@ -306,7 +306,7 @@ namespace Mezzanine
                     // This is unfortuately hackish
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             if( Enable ) {
@@ -380,7 +380,7 @@ namespace Mezzanine
                         /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
                         for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                         {
-                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                                 this->MakeCurrent( (*CSI).first );
                                 alSourcei((*CSI).second,AL_BUFFER,0);
                             }
@@ -392,7 +392,7 @@ namespace Mezzanine
                         }
                         for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                         {
-                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                                 this->MakeCurrent( (*CSI).first );
                                 alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
                             }
@@ -401,7 +401,7 @@ namespace Mezzanine
 
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcePlay((*CSI).second);
                         }
@@ -425,7 +425,7 @@ namespace Mezzanine
                     // Pause the source
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcePause((*CSI).second);
                         }
@@ -447,7 +447,7 @@ namespace Mezzanine
                 if( !this->IsStopped() ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             // Stop the source
                             alSourceStop((*CSI).second);
@@ -517,7 +517,7 @@ namespace Mezzanine
                 if( this->MinVolume != MinVol ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MIN_GAIN,MinVol);
                         }
@@ -536,7 +536,7 @@ namespace Mezzanine
                 if( this->MaxVolume != MaxVol ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MAX_GAIN,MaxVol);
                         }
@@ -558,7 +558,7 @@ namespace Mezzanine
                 if( this->RolloffFactor != Rolloff ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_ROLLOFF_FACTOR,Rolloff);
                         }
@@ -577,7 +577,7 @@ namespace Mezzanine
                 if( this->MinDist != MinDistance ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_REFERENCE_DISTANCE,MinDistance);
                         }
@@ -596,7 +596,7 @@ namespace Mezzanine
                 if( this->MaxDist != MaxDistance ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MAX_DISTANCE,MaxDistance);
                         }
@@ -615,7 +615,7 @@ namespace Mezzanine
                 if( this->InnerConeAngle != InnerAngle ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_INNER_ANGLE,InnerAngle);
                         }
@@ -634,7 +634,7 @@ namespace Mezzanine
                 if( this->OuterConeAngle != OuterAngle ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_OUTER_ANGLE,OuterAngle);
                         }
@@ -653,7 +653,7 @@ namespace Mezzanine
                 if( this->OuterConeVolume != OuterVolume ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_OUTER_GAIN,OuterVolume);
                         }
@@ -672,7 +672,7 @@ namespace Mezzanine
                 if( this->DopplerStrength != DopStr ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_DOPPLER_FACTOR,DopStr);
                         }
@@ -691,7 +691,7 @@ namespace Mezzanine
                 if( this->DopplerVelocity != DopVel ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_DOPPLER_VELOCITY,DopVel.X,DopVel.Y,DopVel.Z);
                         }
@@ -710,7 +710,7 @@ namespace Mezzanine
                 if( this->Velocity != Vel ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_VELOCITY,Vel.X,Vel.Y,Vel.Z);
                         }
@@ -747,7 +747,7 @@ namespace Mezzanine
                 if( this->Location != Loc ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_POSITION,Loc.X,Loc.Y,Loc.Z);
                         }
@@ -772,7 +772,7 @@ namespace Mezzanine
                 if( this->Orientation != Ori ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             if( this->DirectSound ) {
@@ -884,11 +884,11 @@ namespace Mezzanine
 
                         for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                         {
-                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                            if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                                 this->MakeCurrent( (*CSI).first );
 
                                 ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
-                                ALuint FilterID = ( BeingAdded->GetFilter() != NULL ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                                ALuint FilterID = ( BeingAdded->GetFilter() != nullptr ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                                 alSource3i((*CSI).second,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Slot,FilterID);
                             }
                         }
@@ -903,7 +903,7 @@ namespace Mezzanine
                 if( Slot < this->Effects.size() ) {
                     return Effects.at(Slot);
                 }else{
-                    return NULL;
+                    return nullptr;
                 }
             }
 
@@ -917,7 +917,7 @@ namespace Mezzanine
                 UInt32 Available = 0;
                 for( ConstEffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
                 {
-                    if( (*EffIt) != NULL )
+                    if( (*EffIt) != nullptr )
                         ++Available;
                 }
                 return Available;
@@ -926,11 +926,11 @@ namespace Mezzanine
             void OALS::SoundProxy::RemoveEffect(const UInt32 Slot)
             {
                 if( Slot < this->Effects.size() ) {
-                    this->Effects[Slot] = NULL;
+                    this->Effects[Slot] = nullptr;
 
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3i((*CSI).second,AL_AUXILIARY_SEND_FILTER,AL_EFFECTSLOT_NULL,Slot,AL_FILTER_NULL);
                         }
@@ -947,10 +947,10 @@ namespace Mezzanine
                     return false;
 
                 this->SoundFilter = static_cast<OALS::Filter*>(Fil);
-                if( this->SoundFilter != NULL ) {
+                if( this->SoundFilter != nullptr ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             ALuint FilterID = this->SoundFilter->_GetInternalFilter();
@@ -968,12 +968,12 @@ namespace Mezzanine
 
             void OALS::SoundProxy::RemoveFilter()
             {
-                if( this->SoundFilter != NULL ) {
-                    this->SoundFilter = NULL;
+                if( this->SoundFilter != nullptr ) {
+                    this->SoundFilter = nullptr;
 
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
+                        if( (*CSI).first != nullptr && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcei((*CSI).second,AL_DIRECT_FILTER,AL_FILTER_NULL);
                         }
@@ -1222,7 +1222,7 @@ namespace Mezzanine
                 if( Index < this->ContextsAndSources.size() ) {
                     ALCcontext* OldContext = this->ContextsAndSources[Index].first;
 
-                    if( OldContext != NULL )
+                    if( OldContext != nullptr )
                         { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Attempting to write over an existing context."); }
 
                     this->MakeCurrent(Context);
@@ -1239,12 +1239,12 @@ namespace Mezzanine
                     ALCcontext* Context = this->ContextsAndSources[Index].first;
                     UInt32 SourceID = this->ContextsAndSources[Index].second;
 
-                    if( Context != NULL && SourceID != 0 ) {
+                    if( Context != nullptr && SourceID != 0 ) {
                         this->MakeCurrent(Context);
                         alSourceStop(SourceID);
                         alDeleteSources(1,&SourceID);
 
-                        this->ContextsAndSources[Index].first = NULL;
+                        this->ContextsAndSources[Index].first = nullptr;
                         this->ContextsAndSources[Index].second = 0;
                     }
                 }

@@ -58,7 +58,7 @@ namespace Mezzanine
         {
         protected:
             /// @brief This is a shared pointer to the stream being decoded.
-            DataStreamPtr RawStream;
+            IStreamPtr RawStream;
             /// @brief This is used to cache the total size of the stream used by this decoder.
             Integer RawStreamSize;
             /// @brief This is used to cache the current stream position for this decoder.
@@ -69,13 +69,13 @@ namespace Mezzanine
             Audio::BitConfig BitConfiguration;
 
             /// @copydoc iDecoder::ClearStreamErrors()
-            void ClearStreamErrors();
+            void ClearStreamErrors() override;
         public:
             /// @brief Class constructor.
             /// @param Stream The stream to decode.
             /// @param Freq The frequency of the audio being decoded.
             /// @param Config The bit configuration of the audio being decoded.
-            RawDecoder(DataStreamPtr Stream, const UInt32 Freq = 22050, const Audio::BitConfig Config = Audio::BC_16Bit_Mono);
+            RawDecoder(IStreamPtr Stream, const UInt32 Freq = 22050, const Audio::BitConfig Config = Audio::BC_16Bit_Mono);
             /// @brief Class destructor.
             virtual ~RawDecoder();
 
@@ -83,45 +83,45 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc iDecoder::IsValid()
-            Boole IsValid();
+            Boole IsValid() override;
             /// @copydoc iDecoder::GetEncoding() const
-            Audio::Encoding GetEncoding() const;
+            Audio::Encoding GetEncoding() const override;
             /// @copydoc iDecoder::IsSeekingSupported()
-            Boole IsSeekingSupported();
+            Boole IsSeekingSupported() override;
             /// @copydoc iDecoder::GetBitConfiguration() const
-            Audio::BitConfig GetBitConfiguration() const;
+            Audio::BitConfig GetBitConfiguration() const override;
             /// @copydoc iDecoder::GetFrequency() const
-            UInt32 GetFrequency() const;
+            UInt32 GetFrequency() const override;
             /// @copydoc iDecoder::GetStream() const
-            DataStreamPtr GetStream() const;
+            IStreamPtr GetStream() const override;
             /// @copydoc iDecoder::IsEndOfStream() const
-            Boole IsEndOfStream() const;
+            Boole IsEndOfStream() const override;
 
             /// @copydoc iDecoder::SetPosition(Int32, const Boole)
-            Boole SetPosition(Int32 Position, const Boole Relative);
+            Boole SetPosition(Int32 Position, const Boole Relative) override;
             /// @copydoc iDecoder::GetPosition() const
-            Int32 GetPosition() const;
+            Int32 GetPosition() const override;
             /// @copydoc iDecoder::Seek(const Real, const Boole)
-            Boole Seek(const Real Seconds, const Boole Relative);
+            Boole Seek(const Real Seconds, const Boole Relative) override;
 
             /// @copydoc iDecoder::ReadAudioData(void*, UInt32)
-            UInt32 ReadAudioData(void* Output, UInt32 Amount);
+            UInt32 ReadAudioData(void* Output, UInt32 Amount) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Stats
 
             /// @copydoc iDecoder::GetTotalTime() const
-            Real GetTotalTime() const;
+            Real GetTotalTime() const override;
             /// @copydoc iDecoder::GetCurrentTime() const
-            Real GetCurrentTime() const;
+            Real GetCurrentTime() const override;
             /// @copydoc iDecoder::GetTotalSize() const
-            UInt32 GetTotalSize() const;
+            UInt32 GetTotalSize() const override;
             /// @copydoc iDecoder::GetCompressedSize() const
-            UInt32 GetCompressedSize() const;
+            UInt32 GetCompressedSize() const override;
             /// @copydoc iDecoder::GetCurrentPosition() const
-            UInt32 GetCurrentPosition() const;
+            UInt32 GetCurrentPosition() const override;
             /// @copydoc iDecoder::GetCurrentCompressedPosition() const
-            UInt32 GetCurrentCompressedPosition() const;
+            UInt32 GetCurrentCompressedPosition() const override;
         };//RawDecoder
     }//Audio
 }//Mezzanine

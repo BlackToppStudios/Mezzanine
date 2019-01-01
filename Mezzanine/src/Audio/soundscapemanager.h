@@ -105,39 +105,20 @@ namespace Mezzanine
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Creates a new SoundProxy from a custom stream that is unencoded.
             /// @param Type A UInt16 that is the ID for the type of sound the created SoundProxy is to be categorized as.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
+            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Creates a new SoundProxy from a file.
             /// @param Type A UInt16 that is the ID for the type of sound the created SoundProxy is to be categorized as.
             /// @param FileName The name of the file to read audio data from.
             /// @param Group The resource group in which the file resides.
             /// @return Returns a pointer to the SoundProxy instance that was created.
             virtual SoundProxy* CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group) = 0;
-            /// @brief Creates a new SoundProxy from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param Type A UInt16 that is the ID for the type of sound the created SoundProxy is to be categorized as.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode) = 0;
-            /// @brief Creates a new SoundProxy from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param Type A UInt16 that is the ID for the type of sound the created SoundProxy is to be categorized as.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Creates a new SoundProxy.
             /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
             /// @return Returns a pointer to the SoundProxy instance that was created.
@@ -163,47 +144,47 @@ namespace Mezzanine
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateAmbientSoundProxy(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual SoundProxy* CreateAmbientSoundProxy(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Dialog SoundProxy from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateDialogSoundProxy(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual SoundProxy* CreateDialogSoundProxy(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Effect SoundProxy from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateEffectSoundProxy(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual SoundProxy* CreateEffectSoundProxy(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Music SoundProxy from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateMusicSoundProxy(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual SoundProxy* CreateMusicSoundProxy(IStreamPtr Stream, const Audio::Encoding Encode);
 
             /// @brief Creates a new Ambient SoundProxy from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateAmbientSoundProxy(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual SoundProxy* CreateAmbientSoundProxy(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Dialog SoundProxy from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateDialogSoundProxy(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual SoundProxy* CreateDialogSoundProxy(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Effect SoundProxy from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateEffectSoundProxy(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual SoundProxy* CreateEffectSoundProxy(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Music SoundProxy from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this SoundProxy.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateMusicSoundProxy(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual SoundProxy* CreateMusicSoundProxy(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
 
             /// @brief Creates a new Ambient SoundProxy from a file.
             /// @param FileName The name of the file to read audio data from.
@@ -225,76 +206,6 @@ namespace Mezzanine
             /// @param Group The resource group in which the file resides.
             /// @return Returns a pointer to the SoundProxy instance that was created.
             virtual SoundProxy* CreateMusicSoundProxy(const String& FileName, const String& Group);
-
-            /// @brief Creates a new Ambient SoundProxy from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Dialog SoundProxy from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name of the SoundProxy instance.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Effect SoundProxy from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Music SoundProxy from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this SoundProxy.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-
-            /// @brief Creates a new Ambient SoundProxy from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Dialog SoundProxy from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateDialogSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Effect SoundProxy from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateEffectSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Music SoundProxy from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the SoundProxy instance that was created.
-            virtual SoundProxy* CreateMusicSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

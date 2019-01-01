@@ -101,7 +101,7 @@ namespace Mezzanine
 
             Sound::Sound(const UInt16 Type, iDecoder* Decode, ALCcontext* PlayContext) :
                 Context(PlayContext),
-                SoundFilter(NULL),
+                SoundFilter(nullptr),
                 SoundDecoder(Decode),
                 SType(Type),
                 State(OALS::PS_Stopped),
@@ -116,7 +116,7 @@ namespace Mezzanine
                 // Create the storage space for our buffer handles
                 this->Buffers.resize(OALS_SOURCE_NUM_BUFFERS,0);
                 // Create the storage space for our effect slots
-                this->Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,NULL);
+                this->Effects.resize(OALS_SOURCE_MAX_EFFECT_SLOTS,nullptr);
 
                 // Create and place our buffers
                 alGenBuffers(OALS_SOURCE_NUM_BUFFERS,&Buffers[0]);
@@ -185,7 +185,7 @@ namespace Mezzanine
 
             void Sound::RefreshFilter()
             {
-                if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
+                if( this->SoundFilter != nullptr && this->SoundFilter->_IsDirty() ) {
                     ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
                 }
@@ -196,10 +196,10 @@ namespace Mezzanine
                 for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
                 {
                     OALS::Effect* CurrEffect = this->Effects.at(Index);
-                    if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
+                    if( CurrEffect != nullptr && CurrEffect->_IsDirty() ) {
                         //ALuint EffectID = CurrEffect->_GetInternalEffect();
                         ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
-                        ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                        ALuint FilterID = ( CurrEffect->GetFilter() != nullptr ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                         alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Index,FilterID);
                     }
                 }
@@ -237,19 +237,19 @@ namespace Mezzanine
                 return this->SoundPitch;
             }
 
-            void Sound::SetStream(DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(IStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
-                if( Factory != NULL ) {
+                if( Factory != nullptr ) {
                     if( this->SoundDecoder ) {
                         delete this->SoundDecoder;
-                        this->SoundDecoder = NULL;
+                        this->SoundDecoder = nullptr;
                     }
                     this->SoundDecoder = Factory->CreateDecoder(Stream);
                 }
             }
 
-            void Sound::SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
+            void Sound::SetStream(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode)
             {
                 this->SType = Type;
                 this->SetStream(Stream,Encode);
@@ -259,7 +259,7 @@ namespace Mezzanine
             {
                 if( this->SoundDecoder ) {
                     delete this->SoundDecoder;
-                    this->SoundDecoder = NULL;
+                    this->SoundDecoder = nullptr;
                 }
                 this->SoundDecoder = Decode;
             }
@@ -411,7 +411,7 @@ namespace Mezzanine
                         this->Effects[Slot] = BeingAdded;
 
                         ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
-                        ALuint FilterID = ( BeingAdded->GetFilter() != NULL ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
+                        ALuint FilterID = ( BeingAdded->GetFilter() != nullptr ? static_cast<OALS::Filter*>(BeingAdded->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
                         alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,EffectSlotID,Slot,FilterID);
                         return true;
                     }
@@ -424,7 +424,7 @@ namespace Mezzanine
                 if( Slot < this->Effects.size() ) {
                     return Effects.at(Slot);
                 }else{
-                    return NULL;
+                    return nullptr;
                 }
             }
 
@@ -438,7 +438,7 @@ namespace Mezzanine
                 UInt32 Available = 0;
                 for( ConstEffectIterator EffIt = this->Effects.begin() ; EffIt != this->Effects.end() ; ++EffIt )
                 {
-                    if( (*EffIt) != NULL )
+                    if( (*EffIt) != nullptr )
                         ++Available;
                 }
                 return Available;
@@ -447,7 +447,7 @@ namespace Mezzanine
             void Sound::RemoveEffect(const UInt32 Slot)
             {
                 if( Slot < this->Effects.size() ) {
-                    this->Effects[Slot] = NULL;
+                    this->Effects[Slot] = nullptr;
                     alSource3i(this->InternalSource,AL_AUXILIARY_SEND_FILTER,AL_EFFECTSLOT_NULL,Slot,AL_FILTER_NULL);
                 }
             }
@@ -461,7 +461,7 @@ namespace Mezzanine
                     return false;
 
                 this->SoundFilter = static_cast<OALS::Filter*>(Fil);
-                if( this->SoundFilter != NULL ) {
+                if( this->SoundFilter != nullptr ) {
                     ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,FilterID);
                 }
@@ -475,8 +475,8 @@ namespace Mezzanine
 
             void Sound::RemoveFilter()
             {
-                if( this->SoundFilter != NULL ) {
-                    this->SoundFilter = NULL;
+                if( this->SoundFilter != nullptr ) {
+                    this->SoundFilter = nullptr;
                     alSourcei(this->InternalSource,AL_DIRECT_FILTER,AL_FILTER_NULL);
                 }
             }

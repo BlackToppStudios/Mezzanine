@@ -458,12 +458,10 @@ void LoadContent()
 
     Real mass = 15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
-    ResourceMan->AddAssetLocation("data/common", Resource::AT_FileSystem, groupname, false);
-    ResourceMan->AddAssetLocation("data/common/music", Resource::AT_FileSystem, groupname, false);
-    ResourceMan->AddAssetLocation("data/common/sounds", Resource::AT_FileSystem, groupname, false);
-    //ResourceMan->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    ResourceMan->AddAssetLocation("", Resource::AT_FileSystem, groupname, false);
-    ResourceMan->InitAssetGroup(groupname);
+    ResourceMan->AddAssetLocation("data/common/", Resource::AT_FileSystem, groupname);
+    ResourceMan->AddAssetLocation("data/common/music/", Resource::AT_FileSystem, groupname);
+    ResourceMan->AddAssetLocation("data/common/sounds/", Resource::AT_FileSystem, groupname);
+    ResourceMan->AddAssetLocation("", Resource::AT_FileSystem, groupname);
 
     Vector3 grav( 0.0, -400.0, 0.0 );
     PhysMan->SetWorldGravity(grav);

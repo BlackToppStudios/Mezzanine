@@ -185,7 +185,7 @@ namespace Mezzanine
         Char8* GetBufferEnd() const;
         /// @brief Gets the size of the current buffer being streamed to/from.
         /// @return Returns a std::streamsize representing the size of the current buffer, or 0 if one hasn't been initialized.
-        std::streamsize GetBufferSize() const;
+        StreamSize GetBufferSize() const;
 
         /// @brief Sets the get and put pointers for the streambuffer and assigns the current position to the specified offset.
         /// @param Pos The offset to set the current read/write position to.

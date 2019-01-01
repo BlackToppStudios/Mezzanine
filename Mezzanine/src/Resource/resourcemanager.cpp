@@ -55,15 +55,9 @@
 #include <fstream>
 #include <cstdlib>
 
-#include <OgreResourceGroupManager.h>
-#include <OgreDataStream.h>
-#include <OgreArchive.h>
-//#include <btBulletWorldImporter.h>
-//#include <btBulletDynamicsCommon.h>
-
 namespace Mezzanine
 {
-    template<> Resource::ResourceManager* Singleton<Resource::ResourceManager>::SingletonPtr = NULL;
+    template<> Resource::ResourceManager* Singleton<Resource::ResourceManager>::SingletonPtr = nullptr;
 
     namespace Resource
     {
@@ -72,16 +66,12 @@ namespace Mezzanine
 
         ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType)
         {
-            this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
             this->EngineDataDir = EngineDataPath;
-            this->AddAssetLocation(EngineDataPath, ArchType, "EngineData", false);
-            this->CreateAssetGroup("");
+            this->AddAssetLocation(EngineDataPath, ArchType, "EngineData");
         }
 
         ResourceManager::ResourceManager(const XML::Node& XMLNode)
         {
-            this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-            this->CreateAssetGroup("");
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
 
@@ -92,45 +82,31 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Stream Management
-
-        DataStreamPtr ResourceManager::OpenAssetStream(const String& AssetName, const String& GroupName)
-            { return this->GetAssetGroupExcept(GroupName)->OpenAssetStream(AssetName); }
-
-        DataStreamPtr ResourceManager::CreateDataStream(void* Buffer, const UInt32 BufferSize)
-            { return this->GetAssetGroupExcept("")->CreateDataStream(Buffer,BufferSize); }
-
-        DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
-            { return this->GetAssetGroupExcept("")->CreateDataStream(AssetName,Buffer,BufferSize); }
-
-        DataStreamPtr ResourceManager::CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize)
-            { return this->GetAssetGroupExcept(GroupName)->CreateDataStream(AssetName,Buffer,BufferSize); }
-
-        ///////////////////////////////////////////////////////////////////////////////
         // AssetGroup Management
 
-        void ResourceManager::AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, Boole Recursive)
+        void ResourceManager::AddAssetLocation(const String& Location, const ArchiveType Type, const String& GroupName)
         {
-            this->GetOrCreateAssetGroup(Group);
-            this->OgreResource->addResourceLocation(Location, this->GetStringFromArchiveType(Type), Group, Recursive);
+            AssetGroup* FoundGroup = this->GetOrCreateAssetGroup(GroupName);
+            FoundGroup->AddReadLocation(Location,Type);
         }
 
         AssetGroup* ResourceManager::CreateAssetGroup(const String& GroupName)
         {
-            AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
-            if( GroupIt != this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"An AssetGroup with the name \"" + GroupName + "\" already exists.");
+            if( this->GetAssetGroup(GroupName) != nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "An AssetGroup with the name \"" << GroupName << "\" already exists.";
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
             }
 
             AssetGroup* NewGroup = new AssetGroup(GroupName);
-            this->AssetGroups[GroupName] = NewGroup;
+            this->AssetGroups.push_back(NewGroup);
             return NewGroup;
         }
 
         AssetGroup* ResourceManager::GetOrCreateAssetGroup(const String& GroupName)
         {
             AssetGroup* Ret = this->GetAssetGroup(GroupName);
-            if( Ret == NULL ) {
+            if( Ret == nullptr ) {
                 Ret = this->CreateAssetGroup(GroupName);
             }
             return Ret;
@@ -138,76 +114,103 @@ namespace Mezzanine
 
         AssetGroup* ResourceManager::GetAssetGroup(const String& GroupName)
         {
-            AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
-            if( GroupIt != this->AssetGroups.end() ) {
-                return (*GroupIt).second;
+            for( AssetGroup* CurrGroup : this->AssetGroups )
+            {
+                if( CurrGroup->GetName() == GroupName ) {
+                    return CurrGroup;
+                }
             }
-            return NULL;
+            return nullptr;
         }
 
         AssetGroup* ResourceManager::GetAssetGroupExcept(const String& GroupName)
         {
-            AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
-            if( GroupIt == this->AssetGroups.end() ) {
-                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,"AssetGroup named \"" + GroupName + "\" not found.");
+            AssetGroup* FoundGroup = this->GetAssetGroup(GroupName);
+            if( FoundGroup == nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "AssetGroup named \"" << GroupName << "\" not found.";
+                MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
-            return (*GroupIt).second;
+            return FoundGroup;
         }
 
         void ResourceManager::DestroyAssetGroup(const String& GroupName)
         {
-            AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
-            if( GroupIt != this->AssetGroups.end() ) {
-                delete (*GroupIt).second;
-                this->AssetGroups.erase(GroupIt);
+            AssetGroupIterator GroupIt = this->AssetGroups.begin();
+            while( GroupIt != this->AssetGroups.end() )
+            {
+                if( (*GroupIt)->GetName() == GroupName ) {
+                    delete (*GroupIt);
+                    this->AssetGroups.erase(GroupIt);
+                    return;
+                }
+                ++GroupIt;
             }
         }
 
         void ResourceManager::DestroyAssetGroup(AssetGroup* ToBeDestroyed)
         {
-            this->DestroyAssetGroup( ToBeDestroyed->GetName() );
+            AssetGroupIterator GroupIt = this->AssetGroups.begin();
+            while( GroupIt != this->AssetGroups.end() )
+            {
+                if( (*GroupIt) == ToBeDestroyed ) {
+                    delete ToBeDestroyed;
+                    this->AssetGroups.erase(GroupIt);
+                    return;
+                }
+                ++GroupIt;
+            }
         }
 
         void ResourceManager::DestroyAllAssetGroups()
         {
-            for( AssetGroupIterator GroupIt = this->AssetGroups.begin() ; GroupIt != this->AssetGroups.end() ; ++GroupIt )
-                { delete (*GroupIt).second; }
+            for( AssetGroup* CurrGroup : this->AssetGroups )
+                { delete CurrGroup; }
             this->AssetGroups.clear();
         }
 
-        void ResourceManager::InitAssetGroup(const String& GroupName)
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Management
+
+        IStreamPtr ResourceManager::OpenAsset(const String& Identifier, const String& GroupName,
+                                              const Whole Flags, const Boole Raw)
         {
-            AssetGroupIterator GroupIt = this->AssetGroups.find(GroupName);
-            if( GroupIt != this->AssetGroups.end() ) {
-                (*GroupIt).second->InitializeAssets();
-            }
+            return this->GetAssetGroupExcept(GroupName)->OpenAsset(Identifier,Flags,Raw);
+        }
+
+        IStreamPtr ResourceManager::OpenEncryptedAsset(const String& Identifier, const String& Password,
+                                                       const String& GroupName, const Whole Flags, const Boole Raw)
+        {
+            return this->GetAssetGroupExcept(GroupName)->OpenEncryptedAsset(Identifier,Password,Flags,Raw);
+        }
+
+        IStreamPtr ResourceManager::BufferAsset(const String& Identifier, const String& GroupName,
+                                                const Whole Flags, const Boole Raw)
+        {
+            return this->GetAssetGroupExcept(GroupName)->BufferAsset(Identifier,Flags,Raw);
+        }
+
+        IStreamPtr ResourceManager::BufferEncryptedAsset(const String& Identifier, const String& Password,
+                                                         const String& GroupName, const Whole Flags, const Boole Raw)
+        {
+            return this->GetAssetGroupExcept(GroupName)->BufferEncryptedAsset(Identifier,Password,Flags,Raw);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Resource/Asset Query
 
-        String ResourceManager::GetAssetPath(const String& FileName, const String& Group)
-        {
-            Ogre::FileInfoListPtr FileList = this->OgreResource->listResourceFileInfo(Group);
-            for( Whole X = 0 ; X < FileList->size() ; ++X )
-            {
-                if( FileName == FileList->at(X).filename ) {
-                    //return FileList->at(X).path;
-                    return FileList->at(X).archive->getName() + "/" + FileList->at(X).path;
-                }
-            }
-            return "";
-        }
+        String ResourceManager::GetAssetPath(const String& FileName, const String& GroupName)
+            { return this->GetAssetGroupExcept(GroupName)->GetAssetPath(FileName); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        String ResourceManager::GetEngineDataDirectory() const
+        const String& ResourceManager::GetEngineDataDirectory() const
         {
-            return EngineDataDir;
+            return this->EngineDataDir;
         }
 
-        String ResourceManager::GetPluginExtension() const
+        String ResourceManager::GetPluginExtension()
         {
             #ifdef MEZZ_WINDOWS
             return ".dll";

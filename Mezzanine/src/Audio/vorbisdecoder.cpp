@@ -147,7 +147,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // VorbisDecoder Methods
 
-        VorbisDecoder::VorbisDecoder(DataStreamPtr Stream) :
+        VorbisDecoder::VorbisDecoder(IStreamPtr Stream) :
             VorbisStream(Stream),
             VorbisStreamSize(0),
             VorbisStreamPos(0),
@@ -231,7 +231,7 @@ namespace Mezzanine
             else return 0;
         }
 
-        DataStreamPtr VorbisDecoder::GetStream() const
+        IStreamPtr VorbisDecoder::GetStream() const
         {
             return this->VorbisStream;
         }

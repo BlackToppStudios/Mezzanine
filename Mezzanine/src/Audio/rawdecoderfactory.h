@@ -65,13 +65,13 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~RawDecoderFactory() {  }
 
-            /// @copydoc iDecoderFactory::CreateDecoder(DataStreamPtr)
-            virtual iDecoder* CreateDecoder(DataStreamPtr Stream)
+            /// @copydoc iDecoderFactory::CreateDecoder(IStreamPtr)
+            virtual iDecoder* CreateDecoder(IStreamPtr Stream)
                 { return new RawDecoder(Stream); }
-            /// @copydoc iDecoderFactory::CreateDecoder(DataStreamPtr)
+            /// @copydoc iDecoderFactory::CreateDecoder(IStreamPtr)
             /// @param Freq The frequency of the audio being decoded.
             /// @param Config The bit configuration of the audio being decoded.
-            virtual iDecoder* CreateDecoder(DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config)
+            virtual iDecoder* CreateDecoder(IStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config)
                 { return new RawDecoder(Stream,Freq,Config); }
             /// @copydoc iDecoderFactory::GetSupportedEncoding() const
             virtual Audio::Encoding GetSupportedEncoding() const

@@ -79,29 +79,29 @@ namespace Mezzanine
                     Ogre::TexturePtr NewTexture = Ogre::TextureManager::getSingletonPtr()->getByName(Casted->mName,GroupName);
                     if( NewTexture.isNull() ) {
                         // Get our stream and make it usable to Ogre.
-                        DataStreamPtr TextureStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Casted->mName,GroupName);
-                        Ogre::DataStreamPtr TextureWrapper(new IOStreamWrapper(TextureStream.get(),false));
+                        IStreamPtr TextureStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(Casted->mName,GroupName);
+                        Ogre::DataStreamPtr TextureWrapper(new IStreamWrapper(TextureStream.get(),false));
 
-                        // Textures are a bit more complicated given they don't have a convenient serialzied class like Skeletons and Meshes.
+                        // Textures are a bit more complicated given they don't have a convenient serialized class like Skeletons and Meshes.
                         // Maybe because there isn't an official Ogre texture format, which is probably for the best.
                         // So we gotta jump through some hoops to get at the information we need, then fallback to the extension should that fail.
-                        Ogre::Codec* TextureCodec = NULL;
+                        Ogre::Codec* TextureCodec = nullptr;
 
                         size_t MagicNumLength = std::min(TextureStream->GetSize(),StreamSize(32));
                         char MagicBuffer[32];
                         TextureStream->Read(MagicBuffer,MagicNumLength);
                         // Reset the read position so we don't mess up the decode.
-                        TextureStream->SetStreamPosition(0);
+                        TextureStream->SetReadPosition(0);
                         TextureCodec = Ogre::Codec::getCodec(MagicBuffer,MagicNumLength);
 
                         // Here's our fallback.  Infer from the extension, while technically easier, it makes the system less idiot proof to do first.
-                        if( TextureCodec == NULL ) {
+                        if( TextureCodec == nullptr ) {
                             String TextureExtension = Casted->mName.substr(Casted->mName.find_last_of("."));
                             TextureCodec = Ogre::Codec::getCodec(TextureExtension);
                         }
 
                         // If we're still not here, it's unsupported.
-                        if( TextureCodec == NULL ) {
+                        if( TextureCodec == nullptr ) {
                             MEZZ_EXCEPTION(ExceptionBase::INTERNAL_EXCEPTION,"Texture being loaded does not use a supported Codec.");
                         }
 

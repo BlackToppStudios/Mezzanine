@@ -50,10 +50,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is an Archive implementation for reading and writing files as is on disk.
         ///////////////////////////////////////
-        class MEZZ_LIB FileSystemArchiveReader : public ArchiveReader
+        class MEZZ_LIB FileSystemArchiveReader final : public ArchiveReader
         {
         protected:
-            /// @brief The full path and name of the Archive
+            /// @brief The full path and name of the Archive.
             String ArchiveIdentifier;
 
             /// @brief Verifies a given path is valid to use with this archive.
@@ -75,41 +75,53 @@ namespace Mezzanine
             // Open / Close
 
             /// @copydoc ArchiveReader::Open(const String&)
-            virtual void Open(const String& Identifier);
+            void Open(const String& Identifier) override;
             /// @copydoc ArchiveReader::Open(const String&, Char8*, const size_t, const Boole)
-            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner);
+            void Open(const String& Identifier,
+                      Char8* Buffer,
+                      const size_t BufferSize,
+                      const Boole Owner) override;
+
             /// @copydoc ArchiveReader::IsOpen() const
-            virtual Boole IsOpen() const;
+            Boole IsOpen() const override;
             /// @copydoc ArchiveReader::Close()
-            virtual void Close();
+            void Close();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // File and Directory Query
+            // Utility Queries
+
+            /// @copydoc ArchiveReader::GetIdentifier() const
+            const String& GetIdentifier() const override;
 
             /// @copydoc ArchiveReader::DirectoryExists(const String&) const
-            virtual Boole DirectoryExists(const String& DirectoryPath) const;
+            Boole DirectoryExists(const String& DirectoryPath) const override;
             /// @copydoc ArchiveReader::FileExists(const String&) const
-            virtual Boole FileExists(const String& PathAndFile) const;
+            Boole FileExists(const String& PathAndFile) const override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Streaming
 
             /// @copydoc ArchiveReader::OpenIStream(const String&, const Whole, const Boole)
-            virtual IStreamPtr OpenIStream(const String& Identifier, const Whole Flags, const Boole Raw);
+            IStreamPtr OpenIStream(const String& Identifier,
+                                   const Whole Flags,
+                                   const Boole Raw) override;
             /// @copydoc ArchiveReader::OpenIStream(const String&, const String&, const Whole, const Boole)
-            virtual IStreamPtr OpenEncryptedIStream(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw);
+            IStreamPtr OpenEncryptedIStream(const String& Identifier,
+                                            const String& Password,
+                                            const Whole Flags,
+                                            const Boole Raw) override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Querying
 
             /// @copydoc ArchiveReader::GetEntryCount() const
-            virtual Int64 GetEntryCount() const;
+            Int64 GetEntryCount() const override;
             /// @copydoc ArchiveReader::GetEntry(const UInt64) const
-            virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const;
+            ArchiveEntryPtr GetEntry(const UInt64 Index) const override;
             /// @copydoc ArchiveReader::GetEntry(const String&) const
-            virtual ArchiveEntryPtr GetEntry(const String& FileName) const;
+            ArchiveEntryPtr GetEntry(const String& FileName) const override;
             /// @copydoc ArchiveReader::GetEntries(const String& Pattern) const
-            virtual ArchiveEntryVector GetEntries(const String& Pattern, const Boole OmitDirs) const;
+            ArchiveEntryVector GetEntries(const String& Pattern, const Boole OmitDirs) const override;
         };//FileSystemArchiveReader
     }//Resource
 }//Mezzanine

@@ -61,8 +61,8 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~VorbisDecoderFactory() {  }
 
-            /// @copydoc iDecoderFactory::CreateDecoder(DataStreamPtr Stream)
-            virtual iDecoder* CreateDecoder(DataStreamPtr Stream)
+            /// @copydoc iDecoderFactory::CreateDecoder(IStreamPtr Stream)
+            virtual iDecoder* CreateDecoder(IStreamPtr Stream)
                  { return new VorbisDecoder(Stream); }
             /// @copydoc iDecoderFactory::GetSupportedEncoding() const
             virtual Audio::Encoding GetSupportedEncoding() const

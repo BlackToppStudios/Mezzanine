@@ -91,9 +91,15 @@ public:
         TEST( !TestReader.IsOpen(),
               "FileSystemArchiveReader::FileSystemArchiveReader()" );
 
+        TEST( TestReader.GetIdentifier().empty(),
+              "FileSystemArchiveReader::GetIdentifier()_const-Empty" );
+
         TestReader.Open(ArchivePath);
         TEST( TestReader.IsOpen(),
               "FileSystemArchiveReader::Open(const_String&)" );
+
+        TEST( TestReader.GetIdentifier() == ArchivePath,
+              "FileSystemArchiveReader::GetIdentifier()_const" );
 
         TEST( TestReader.DirectoryExists("TestFolder/"),
               "FileSystemArchiveReader::DirectoryExists(const_String&)-Pass" );

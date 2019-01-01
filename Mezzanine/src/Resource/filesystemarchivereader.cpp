@@ -61,7 +61,8 @@ namespace
     /// @param Pattern The pattern to use as a filter of what entries should be appended.
     /// @param Contents The listing of contents to append to.
     /// @param OmitDirs Whether or not the entries for subdirectories should not be appended to the container.
-    void PopulateDirectoryContentsRecursive(const String& BaseDir, const String& Dir, const String& Pattern, Resource::ArchiveEntryVector& Contents, const Boole OmitDirs)
+    void PopulateDirectoryContentsRecursive(const String& BaseDir, const String& Dir, const String& Pattern,
+                                            Resource::ArchiveEntryVector& Contents, const Boole OmitDirs)
     {
         String ActualDir = BaseDir + Dir;
         Resource::ArchiveEntryVector CurrDirContents = Resource::GetDirectoryContents(ActualDir);
@@ -127,9 +128,11 @@ namespace Mezzanine
             }
         }
 
-        void FileSystemArchiveReader::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner)
+        void FileSystemArchiveReader::Open(const String& Identifier, Char8* Buffer,
+                                           const size_t BufferSize, const Boole Owner)
         {
-            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"FileSystem Archives do not support initializing from a memory buffer.");
+            String ExceptionMsg("FileSystem Archives do not support initializing from a memory buffer.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
         }
 
         Boole FileSystemArchiveReader::IsOpen() const
@@ -143,7 +146,12 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // File and Directory Query
+        // Utility Queries
+
+        const String& FileSystemArchiveReader::GetIdentifier() const
+        {
+            return this->ArchiveIdentifier;
+        }
 
         Boole FileSystemArchiveReader::DirectoryExists(const String& DirectoryPath) const
         {
@@ -188,9 +196,11 @@ namespace Mezzanine
             return Ret;
         }
 
-        IStreamPtr FileSystemArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
+        IStreamPtr FileSystemArchiveReader::OpenEncryptedIStream(const String& Identifier, const String& Password,
+                                                                 const Whole Flags, const Boole Raw)
         {
-            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Reading encrypted files from the filesystem is not yet supported.");
+            String ExceptionMsg("Reading encrypted files from the filesystem is not yet supported.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
             return nullptr;
         }
 

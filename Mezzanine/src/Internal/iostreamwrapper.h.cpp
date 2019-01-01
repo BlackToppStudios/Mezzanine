@@ -53,7 +53,6 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A class for wrapping standard I/O wrappers to be used by the Ogre resource system.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB IOStreamWrapper : public Ogre::DataStream
         {

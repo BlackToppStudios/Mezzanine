@@ -184,10 +184,10 @@ namespace Mezzanine
                 virtual void SetPitch(const Real Pitch) override;
                 /// @copydoc iSound::GetPitch() const
                 virtual Real GetPitch() const override;
-                /// @copydoc iSound::SetStream(DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode) override;
-                /// @copydoc iSound::SetStream(const UInt16, DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) override;
+                /// @copydoc iSound::SetStream(IStreamPtr, const Audio::Encoding)
+                virtual void SetStream(IStreamPtr Stream, const Audio::Encoding Encode) override;
+                /// @copydoc iSound::SetStream(const UInt16, IStreamPtr, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode) override;
                 /// @copydoc iSound::SetStream(iDecoder*)
                 virtual void SetStream(iDecoder* Decode) override;
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)

@@ -52,9 +52,10 @@ namespace Mezzanine
         /// @brief Used to indicate what kind of resources the Entresol should look for
         enum ArchiveType
         {
-            AT_Invalid     = 0,    ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
-            AT_FileSystem  = 1,    ///< Look for raw files
-            AT_Zip         = 2,    ///< Look for stuff in zip files even if the extension is not '.zip'.
+            AT_Invalid     = 0,    ///< Indicates an error condition of some kind.
+            AT_FileSystem  = 1,    ///< No archive format, raw binary on disk.
+            AT_Zip         = 2,    ///< Archive abiding by the PKWARE Zip format.
+            AT_7z          = 3     ///< Archive abiding by the 7zip format.
         };
 
         /// @brief Used to indicate an algorithm of compression.

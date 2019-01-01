@@ -41,11 +41,61 @@
 #define _resourceassetgroup_cpp
 
 #include "Resource/assetgroup.h"
+#include "Resource/filesystemarchivereader.h"
+#include "Resource/filesystemarchivewriter.h"
+#include "Resource/ziparchivereader.h"
+#include "Resource/ziparchivewriter.h"
+
 #include "memorystream.h"
 #include "filestream.h"
+#include "exception.h"
 
 #include <OgreResourceGroupManager.h>
 #include <OgreDataStream.h>
+
+namespace
+{
+    using namespace Mezzanine;
+    using namespace Mezzanine::Resource;
+
+    /// @brief Creates a new ArchiveReader of a specified type.
+    /// @exception If the ArchiveType isn't supported, a NOT_IMPLEMENTED_EXCEPTION will be thrown.
+    /// @param ArchType The type of ArchiveReader to create.  See ArchiveType enum for more info.
+    /// @return Returns a pointer to the new ArchiveReader.
+    ArchiveReader* CreateArchiveReader(const ArchiveType ArchType)
+    {
+        switch( ArchType )
+        {
+            case Resource::AT_FileSystem:  return new FileSystemArchiveReader();  break;
+            case Resource::AT_Zip:         return new ZipArchiveReader();         break;
+            //case Resource::AT_7z:          return new SevenZipArchiveReader();    break;
+            default:
+            {
+                String ExceptionMsg("Requesting creation of unknown ArchiveType reader.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
+            }
+        }
+    }
+
+    /// @brief Creates a new ArchiveWriter of a specified type.
+    /// @exception If the ArchiveType isn't supported, a NOT_IMPLEMENTED_EXCEPTION will be thrown.
+    /// @param ArchType The type of ArchiveWriter to create.  See ArchiveType enum for more info.
+    /// @return Returns a pointer to the new ArchiveWriter.
+    ArchiveWriter* CreateArchiveWriter(const ArchiveType ArchType)
+    {
+        switch( ArchType )
+        {
+            //case Resource::AT_FileSystem:  return new FileSystemArchiveWriter();  break;
+            //case Resource::AT_Zip:         return new ZipArchiveWriter();         break;
+            //case Resource::AT_7z:          return new SevenZipArchiveWriter();    break;
+            default:
+            {
+                String ExceptionMsg("Requesting creation of unknown ArchiveType writer.");
+                MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
+            }
+        }
+    }
+}
 
 namespace Mezzanine
 {
@@ -53,60 +103,133 @@ namespace Mezzanine
     {
         AssetGroup::AssetGroup(const String& GroupName) :
             Name(GroupName)
-        {
-            Ogre::ResourceGroupManager::getSingletonPtr()->createResourceGroup(this->Name);
-        }
+            {  }
 
         AssetGroup::~AssetGroup()
         {
-            Ogre::ResourceGroupManager::getSingletonPtr()->destroyResourceGroup(this->Name);
+            this->RemoveAllReadLocations();
+        }
+
+        ArchiveReader* AssetGroup::FindAsset(const String& Identifier) const
+        {
+            for( ArchiveReader* CurrReader : this->Readers )
+            {
+                if( CurrReader->FileExists(Identifier) ) {
+                    return CurrReader;
+                }
+            }
+            return nullptr;
+        }
+
+        ArchiveReader* AssetGroup::FindAssetExcept(const String& Identifier) const
+        {
+            ArchiveReader* FoundReader = this->FindAsset(Identifier);
+            if( FoundReader == nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "Asset \"" << Identifier << "\" was not found in group \"" << this->Name << "\".";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return FoundReader;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         const String& AssetGroup::GetName() const
+            { return this->Name; }
+
+        String AssetGroup::GetAssetPath(const String& Identifier)
         {
-            return this->Name;
+            ArchiveReader* FoundReader = this->FindAsset(Identifier);
+            if( FoundReader != nullptr ) {
+                return FoundReader->GetIdentifier();
+            }else{
+                return String();
+            }
         }
 
-        void AssetGroup::InitializeAssets()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Locations
+
+        void AssetGroup::AddReadLocation(const String& Identifier, const ArchiveType ArchType,
+                                         Char8* Buffer, const size_t BufferSize, const Boole Owner)
         {
-            Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(this->Name);
+            ArchiveReader* NewReader = CreateArchiveReader(ArchType);
+            NewReader->Open(Identifier,Buffer,BufferSize,Owner);
+            this->Readers.push_back(NewReader);
+        }
+
+        void AssetGroup::AddReadLocation(const String& Identifier, const ArchiveType ArchType)
+        {
+            ArchiveReader* NewReader = CreateArchiveReader(ArchType);
+            NewReader->Open(Identifier);
+            this->Readers.push_back(NewReader);
+        }
+
+        void AssetGroup::RemoveReadLocation(const String& Identifier)
+        {
+            for( ReaderIterator ReaderIt = this->Readers.begin() ; ReaderIt != this->Readers.end() ; ++ReaderIt )
+            {
+                if( (*ReaderIt)->GetIdentifier() == Identifier ) {
+                    (*ReaderIt)->Close();
+                    delete (*ReaderIt);
+                    return;
+                }
+            }
+        }
+
+        void AssetGroup::RemoveAllReadLocations()
+        {
+            for( ArchiveReader* CurrReader : this->Readers )
+                { delete CurrReader; }
+            this->Readers.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Management
 
-        DataStreamPtr AssetGroup::OpenAssetStream(const String& AssetName)
+        IStreamPtr AssetGroup::OpenAsset(const String& Identifier, const Whole Flags, const Boole Raw )
         {
-            /// @todo This entire method is a bit of a hack.  When the resource system gets refactored it should go through our archives or whatever equivalent.
-            /// Since we currently have to put up with Ogre's system, we'll use it for now as a hack.
-
-            AssetIterator StreamIt = this->GroupAssets.find(AssetName);
-            if( StreamIt != this->GroupAssets.end() )
-                return (*StreamIt).second;
-
-            Ogre::DataStreamPtr OgreStream = Ogre::ResourceGroupManager::getSingletonPtr()->openResource(AssetName,this->Name);
-            Char8* AssetBuffer = new Char8[ OgreStream->size() ];
-            OgreStream->read( (void*)AssetBuffer, OgreStream->size() );
-
-            DataStreamPtr Ret = this->CreateDataStream(AssetName,AssetBuffer,OgreStream->size());
-            return Ret;
-        }
-
-        DataStreamPtr AssetGroup::CreateDataStream(void* Buffer, const UInt32 BufferSize)
-        {
-            DataStreamPtr NewStream( new MemoryStream(String(),Buffer,BufferSize,true) );
-            this->UnnamedGroupAssets.push_back(NewStream);
+            ArchiveReader* FoundReader = this->FindAssetExcept(Identifier);
+            IStreamPtr NewStream = FoundReader->OpenIStream(Identifier,Flags,Raw);
+            this->InputStreams.push_back(NewStream);
             return NewStream;
         }
 
-        DataStreamPtr AssetGroup::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
+        IStreamPtr AssetGroup::OpenEncryptedAsset(const String& Identifier, const String& Password,
+                                                  const Whole Flags, const Boole Raw)
         {
-            DataStreamPtr NewStream( new MemoryStream(AssetName,Buffer,BufferSize,true) );
-            this->GroupAssets.insert(std::pair<String,DataStreamPtr>(AssetName,NewStream));
+            ArchiveReader* FoundReader = this->FindAssetExcept(Identifier);
+            IStreamPtr NewStream = FoundReader->OpenEncryptedIStream(Identifier,Password,Flags,Raw);
+            this->InputStreams.push_back(NewStream);
             return NewStream;
+        }
+
+        IStreamPtr AssetGroup::BufferAsset(const String& Identifier, const Whole Flags, const Boole Raw)
+        {
+            ArchiveReader* FoundReader = this->FindAssetExcept(Identifier);
+            IStreamPtr TempStream = FoundReader->OpenIStream(Identifier,Flags,Raw);
+
+            MemoryIStreamPtr BufferedStream( new MemoryIStream(Identifier) );
+            BufferedStream->CreateBuffer( TempStream->GetSize() );
+            TempStream->Read( BufferedStream->GetBufferStart(), BufferedStream->GetSize() );
+
+            this->InputStreams.push_back(BufferedStream);
+            return BufferedStream;
+        }
+
+        IStreamPtr AssetGroup::BufferEncryptedAsset(const String& Identifier, const String& Password,
+                                                    const Whole Flags, const Boole Raw)
+        {
+            ArchiveReader* FoundReader = this->FindAssetExcept(Identifier);
+            IStreamPtr TempStream = FoundReader->OpenEncryptedIStream(Identifier,Password,Flags,Raw);
+
+            MemoryIStreamPtr BufferedStream( new MemoryIStream(Identifier) );
+            BufferedStream->CreateBuffer( TempStream->GetSize() );
+            TempStream->Read( BufferedStream->GetBufferStart(), BufferedStream->GetSize() );
+
+            this->InputStreams.push_back(BufferedStream);
+            return BufferedStream;
         }
     }//Resource
 }//Mezzanine

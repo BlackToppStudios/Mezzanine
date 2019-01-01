@@ -94,9 +94,15 @@ public:
         TEST( !TestReader.IsOpen(),
               "ZipArchiveReader::ZipArchiveReader()" );
 
+        TEST( TestReader.GetIdentifier().empty(),
+              "ZipArchiveReader::GetIdentifier()_const-Empty" );
+
         TestReader.Open(ArchivePath);
         TEST( TestReader.IsOpen(),
               "ZipArchiveReader::Open(const_String&)" );
+
+        TEST( TestReader.GetIdentifier() == ArchivePath,
+              "ZipArchiveReader::GetIdentifier()_const" );
 
         TEST( TestReader.DirectoryExists("TestFolder/"),
               "ZipArchiveReader::DirectoryExists(const_String&)-Pass" );

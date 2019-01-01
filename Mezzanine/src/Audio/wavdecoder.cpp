@@ -53,7 +53,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        WavDecoder::WavDecoder(DataStreamPtr Stream) :
+        WavDecoder::WavDecoder(IStreamPtr Stream) :
             WavStream(Stream),
             WavStreamSize(0),
             WavStreamPos(0),
@@ -76,7 +76,7 @@ namespace Mezzanine
         WavDecoder::~WavDecoder()
             {  }
 
-        void WavDecoder::ReadWavMetaData(DataStreamPtr Stream)
+        void WavDecoder::ReadWavMetaData(IStreamPtr Stream)
         {
             const char* RIFFTAG = "RIFF";
             const char* WAVETAG = "WAVE";
@@ -201,7 +201,7 @@ namespace Mezzanine
             return this->SampleRate;
         }
 
-        DataStreamPtr WavDecoder::GetStream() const
+        IStreamPtr WavDecoder::GetStream() const
         {
             return this->WavStream;
         }

@@ -121,7 +121,7 @@ CatchApp::~CatchApp()
 void CatchApp::InitializeFromXML(const String& CatchDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
 {
     // Start with the XML initializer file
-    FileStream InitStream(InitializerFile,CatchDataPath);
+    FileIStream InitStream( Resource::CombinePathAndFileName(CatchDataPath,InitializerFile) );
     XML::Document InitDoc;
     XML::ParseResult DocResult = InitDoc.Load(InitStream);
     if( DocResult.Status != XML::StatusOk ) {

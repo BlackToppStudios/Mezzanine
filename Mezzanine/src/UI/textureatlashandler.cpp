@@ -64,8 +64,8 @@ namespace Mezzanine
         void TextureAtlasHandler::LoadAtlasFromFile(const String& Name, const String& Group)
         {
             /// @todo Update after we have refactored the resource system if needed.
-            DataStreamPtr AtlasStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
-            AtlasStream->SetStreamPosition(0);
+            IStreamPtr AtlasStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(Name,Group);
+            AtlasStream->SetReadPosition(0);
             XML::Document AtlasDoc;
             AtlasDoc.Load( *AtlasStream.get() );
 

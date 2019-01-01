@@ -259,7 +259,7 @@ namespace Mezzanine
         return this->egptr();
     }
 
-    std::streamsize MemoryStreamBuffer::GetBufferSize() const
+    StreamSize MemoryStreamBuffer::GetBufferSize() const
     {
         return this->egptr() - this->eback();
     }

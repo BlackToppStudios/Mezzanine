@@ -88,7 +88,7 @@ namespace Mezzanine
             virtual UInt32 GetFrequency() const = 0;
             /// @brief Gets the stream being decoded.
             /// @return Returns a shared pointer to the DataStream being decoded.
-            virtual DataStreamPtr GetStream() const = 0;
+            virtual IStreamPtr GetStream() const = 0;
             /// @brief Checks to see if the decode has reached the end of the stream.
             /// @remarks Multiple decoders may use the same stream, and when this happens the actual underlying stream position
             /// may be altered multiple times to varying positions in the stream.  Because of this, checking the underlying

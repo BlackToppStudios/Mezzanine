@@ -26,8 +26,7 @@ void LoadFerris()
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup, false);
-    ResourceMan->InitAssetGroup(FerrisGroup);
+    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -319,8 +318,7 @@ void LoadBigCurve()
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup, false);
-    ResourceMan->InitAssetGroup(BigCurveGroup);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -446,8 +444,7 @@ void LoadBlowsNotSucks()
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup, false);
-    ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -672,8 +669,7 @@ void LoadJustice()
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup, false);
-    ResourceMan->InitAssetGroup(JusticeGroup);
+    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -911,8 +907,7 @@ void LoadRollers()
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup, false);
-    ResourceMan->InitAssetGroup(RollersGroup);
+    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -1056,8 +1051,7 @@ void LoadJustBounce()
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup, false);
-    ResourceMan->InitAssetGroup(JustBounceGroup);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup);
 
     // Scoring and Shop Setup
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
@@ -1300,8 +1294,9 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
                     // Next attempt to load the specified file, if one is specified
                     CurrAttrib = (*ScriptNodeIt).GetAttribute("FileName");
                     if( !CurrAttrib.Empty() ) {
-                        DataStreamPtr ScriptStream = ResourceMan->OpenAssetStream( CurrAttrib.AsString(), this->LevelName );
-                        ScriptSource = ScriptStream->GetAsString();
+                        IStreamPtr ScriptStream = ResourceMan->OpenAsset( CurrAttrib.AsString(), this->LevelName );
+                        ScriptSource.reserve( ScriptStream->GetSize() );
+                        ScriptSource.assign( std::istreambuf_iterator<char>( *ScriptStream.get() ), {} );
                     }
                 }
 
@@ -1380,7 +1375,7 @@ Whole LevelManager::DetectLevels()
             ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
 
             LevelDoc.Reset();
-            DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
+            IStreamPtr LevelStream = ResourceMan->OpenAsset("Level.xml",AssetGroupName);
             LevelDoc.Load( *LevelStream.get() );
 
             GameLevel* NewLevel = new GameLevel(AssetGroupName,LevelDoc);

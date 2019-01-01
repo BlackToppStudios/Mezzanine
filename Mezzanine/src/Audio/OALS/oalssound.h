@@ -125,97 +125,95 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc iSound::IsValid() const
-                virtual Boole IsValid() const;
+                virtual Boole IsValid() const override;
                 /// @copydoc iSound::GetType() const
-                virtual UInt16 GetType() const;
+                virtual UInt16 GetType() const override;
                 /// @copydoc iSound::GetDecoder() const
-                virtual iDecoder* GetDecoder() const;
+                virtual iDecoder* GetDecoder() const override;
 
                 /// @copydoc iSound::SetPitch(const Real)
-                virtual void SetPitch(const Real Pitch);
+                virtual void SetPitch(const Real Pitch) override;
                 /// @copydoc iSound::GetPitch() const
-                virtual Real GetPitch() const;
-                /// @copydoc iSound::SetStream(DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(DataStreamPtr Stream, const Audio::Encoding Encode);
-                /// @copydoc iSound::SetStream(const UInt16, DataStreamPtr, const Audio::Encoding)
-                virtual void SetStream(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode);
+                virtual Real GetPitch() const override;
+                /// @copydoc iSound::SetStream(IStreamPtr, const Audio::Encoding)
+                virtual void SetStream(IStreamPtr Stream, const Audio::Encoding Encode) override;
+                /// @copydoc iSound::SetStream(const UInt16, IStreamPtr, const Audio::Encoding)
+                virtual void SetStream(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode) override;
                 /// @copydoc iSound::SetStream(iDecoder*)
-                virtual void SetStream(iDecoder* Decode);
+                virtual void SetStream(iDecoder* Decode) override;
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)
-                virtual void SetStream(const UInt16 Type, iDecoder* Decode);
+                virtual void SetStream(const UInt16 Type, iDecoder* Decode) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Playback
 
                 /// @copydoc iSound::Play()
-                virtual Boole Play();
+                virtual Boole Play() override;
                 /// @copydoc iSound::IsPlaying() const
-                virtual Boole IsPlaying() const;
+                virtual Boole IsPlaying() const override;
                 /// @copydoc iSound::Pause()
-                virtual void Pause();
+                virtual void Pause() override;
                 /// @copydoc iSound::IsPaused() const
-                virtual Boole IsPaused() const;
+                virtual Boole IsPaused() const override;
                 /// @copydoc iSound::Stop()
-                virtual void Stop();
+                virtual void Stop() override;
                 /// @copydoc iSound::IsStopped() const
-                virtual Boole IsStopped() const;
+                virtual Boole IsStopped() const override;
                 /// @copydoc iSound::Loop(Boole ToLoop)
-                virtual void Loop(Boole ToLoop);
+                virtual void Loop(Boole ToLoop) override;
                 /// @copydoc iSound::IsLooping() const
-                virtual Boole IsLooping() const;
+                virtual Boole IsLooping() const override;
 
                 /// @copydoc iSound::Seek(const Real, Boole)
-                virtual Boole Seek(const Real Seconds, Boole Relative = false);
+                virtual Boole Seek(const Real Seconds, Boole Relative = false) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Control
 
                 /// @copydoc iSound::GetVolume() const
-                virtual Real GetVolume() const;
+                virtual Real GetVolume() const override;
                 /// @copydoc iSound::SetBaseVolume(const Real)
-                virtual void SetBaseVolume(const Real Base);
+                virtual void SetBaseVolume(const Real Base) override;
                 /// @copydoc iSound::GetBaseVolume() const
-                virtual Real GetBaseVolume() const;
+                virtual Real GetBaseVolume() const override;
                 /// @copydoc iSound::SetMinVolume(const Real)
-                virtual void SetMinVolume(const Real MinVol);
+                virtual void SetMinVolume(const Real MinVol) override;
                 /// @copydoc iSound::GetMinVolume() const
-                virtual Real GetMinVolume() const;
+                virtual Real GetMinVolume() const override;
                 /// @copydoc iSound::SetMaxVolume(const Real)
-                virtual void SetMaxVolume(const Real MaxVol);
+                virtual void SetMaxVolume(const Real MaxVol) override;
                 /// @copydoc iSound::GetMaxVolume() const
-                virtual Real GetMaxVolume() const;
+                virtual Real GetMaxVolume() const override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Effects Methods
 
                 /// @copydoc iSound::AttachEffect(const UInt32, iEffect*)
-                virtual Boole AttachEffect(const UInt32 Slot, iEffect* Eff);
+                virtual Boole AttachEffect(const UInt32 Slot, iEffect* Eff) override;
                 /// @copydoc iSound::GetEffect(const UInt32 Slot) const
-                virtual iEffect* GetEffect(const UInt32 Slot) const;
+                virtual iEffect* GetEffect(const UInt32 Slot) const override;
                 /// @copydoc iSound::GetMaxEffectSlots() const
-                virtual UInt32 GetMaxEffectSlots() const;
+                virtual UInt32 GetMaxEffectSlots() const override;
                 /// @copydoc iSound::GetNumEffectSlotsAvailable() const
-                virtual UInt32 GetNumEffectSlotsAvailable() const;
+                virtual UInt32 GetNumEffectSlotsAvailable() const override;
                 /// @copydoc iSound::RemoveEffect(const UInt32)
-                virtual void RemoveEffect(const UInt32 Slot);
+                virtual void RemoveEffect(const UInt32 Slot) override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Filter Methods
 
                 /// @copydoc iSound::AttachFilter(iFilter*)
-                virtual Boole AttachFilter(iFilter* Fil);
+                virtual Boole AttachFilter(iFilter* Fil) override;
                 /// @copydoc iSound::GetFilter() const
-                virtual iFilter* GetFilter() const;
+                virtual iFilter* GetFilter() const override;
                 /// @copydoc iSound::RemoveFilter()
-                virtual void RemoveFilter();
+                virtual void RemoveFilter() override;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods
 
-                /// @internal
                 /// @brief Updates all the necessary components of this sound.
                 virtual void _Update();
-                /// @internal
                 /// @brief Updates the buffers for this sound as necessary for seemless playback.
                 /// @return Returns true of there were no errors updating, false if there were.
                 virtual Boole _UpdateBuffers();

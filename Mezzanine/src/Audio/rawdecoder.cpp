@@ -51,7 +51,7 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        RawDecoder::RawDecoder(DataStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config) :
+        RawDecoder::RawDecoder(IStreamPtr Stream, const UInt32 Freq, const Audio::BitConfig Config) :
             RawStream(Stream),
             RawStreamSize(0),
             RawStreamPos(0),
@@ -101,7 +101,7 @@ namespace Mezzanine
             return this->Frequency;
         }
 
-        DataStreamPtr RawDecoder::GetStream() const
+        IStreamPtr RawDecoder::GetStream() const
         {
             return this->RawStream;
         }

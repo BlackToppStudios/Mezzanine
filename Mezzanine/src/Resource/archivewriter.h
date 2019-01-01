@@ -54,8 +54,7 @@ namespace Mezzanine
         {
             /// @param CompressType The type of compression to be applied when writing to the file.
             Whole CompressType;
-            /// @param CompressLevel The amount of compression to apply.  Different compression methods
-            /// support different levels.  Consult compression method documentation for supported levels.
+            /// @param CompressLevel The amount of compression to apply (based on compression type).
             Integer CompressLevel;
         };
 
@@ -94,8 +93,9 @@ namespace Mezzanine
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
             /// @param Flags A bitmask of the options to open the archive with.
-            /// @param Owner A bool to indicate if the archive should become the owner of the buffer, deleting it when it closes.
+            /// @param Owner Indicates if the writer should become the owner of the buffer, deleting it when it closes.
             virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Whole Flags, const Boole Owner) = 0;
+
             /// @brief Gets whether or not this archive is open for I/O operations.
             /// @return Returns true if this archive is open and in use, false otherwise.
             virtual Boole IsOpen() const = 0;
@@ -108,7 +108,11 @@ namespace Mezzanine
             virtual Whole GetFlags() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // File and Directory Query
+            // Utility Queries
+
+            /// @brief Gets the identifier string passed into the last call to Open.
+            /// @return Returns the identifier of this reader, or an empty string if the reader isn't open.
+            virtual String GetIdentifier() const = 0;
 
             /// @brief Checks to see if a directory exists within the archive.
             /// @param DirectoryPath The path to the directory (or just name of the directory if it's at the root) to check for.
@@ -160,6 +164,7 @@ namespace Mezzanine
             /// @param DirectoryPath The path to the directory that will be created.
             /// @return Returns true if the operation was successful, false otherwise.
             virtual Boole CreateDirectory(const String& DirectoryPath) = 0;
+
             /// @brief Creates a new file and writes the contents of a stream to it.
             /// @param PathAndFile The path and name of the file to be created.
             /// @param Input The stream containing the data that will be written to the file.
@@ -188,39 +193,7 @@ namespace Mezzanine
                                      std::istream& Input,
                                      const CompressParameters& CompParams,
                                      const EncryptParameters& EncryptParams) = 0;
-            /// @brief Creates a new file and writes the contents of a buffer to it.
-            /// @remarks CompressType and EncryptType parameters are ignored by filesystem archives.
-            /// @param PathAndFile The path and name of the file to be created.
-            /// @param Buffer The buffer that will be written to the file.
-            /// @param BufSize The size of the buffer to write to the file.
-            /// @return Returns true if the operation was successful, false otherwise.
-            virtual Boole CreateFile(const String& PathAndFile,
-                                     void* Buffer,
-                                     const Whole BufSize) = 0;
-            /// @brief Creates a new file and writes the contents of a buffer to it.
-            /// @remarks CompressType and EncryptType parameters are ignored by filesystem archives.
-            /// @param PathAndFile The path and name of the file to be created.
-            /// @param Buffer The buffer that will be written to the file.
-            /// @param BufSize The size of the buffer to write to the file.
-            /// @param CompParams The parameters for the compression to be applied when writing to the file.
-            /// @return Returns true if the operation was successful, false otherwise.
-            virtual Boole CreateFile(const String& PathAndFile,
-                                     void* Buffer,
-                                     const Whole BufSize,
-                                     const CompressParameters& CompParams) = 0;
-            /// @brief Creates a new file and writes the contents of a buffer to it.
-            /// @remarks CompressType and EncryptType parameters are ignored by filesystem archives.
-            /// @param PathAndFile The path and name of the file to be created.
-            /// @param Buffer The buffer that will be written to the file.
-            /// @param BufSize The size of the buffer to write to the file.
-            /// @param CompParams The parameters for the compression to be applied when writing to the file.
-            /// @param EncryptParams The parameters for the encryption to be applied when writing to the file.
-            /// @return Returns true if the operation was successful, false otherwise.
-            virtual Boole CreateFile(const String& PathAndFile,
-                                     void* Buffer,
-                                     const Whole BufSize,
-                                     const CompressParameters& CompParams,
-                                     const EncryptParameters& EncryptParams) = 0;
+
             /// @brief Deletes an existing file.
             /// @param PathAndFile The path and name of the file to be deleted.
             /// @return Returns true if the operation was successful, false otherwise.

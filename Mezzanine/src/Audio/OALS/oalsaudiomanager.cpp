@@ -138,14 +138,14 @@ namespace Mezzanine
             const ManagerBase::ManagerType OALS::AudioManager::InterfaceType = ManagerBase::MT_AudioManager;
 
             OALS::AudioManager::AudioManager() :
-                InternalDevice(NULL),
-                NonSpacialContext(NULL),
-                EffHandler(NULL),
-                MPlayer(NULL),
+                InternalDevice(nullptr),
+                NonSpacialContext(nullptr),
+                EffHandler(nullptr),
+                MPlayer(nullptr),
 
-                BufferUpdate2DWork(NULL),
-                EffectFilterCleanWork(NULL),
-                ThreadResources(NULL),
+                BufferUpdate2DWork(nullptr),
+                EffectFilterCleanWork(nullptr),
+                ThreadResources(nullptr),
 
                 ContextOutputFrequency(44100),
                 MasterVolume(1.0),
@@ -158,14 +158,14 @@ namespace Mezzanine
             }
 
             OALS::AudioManager::AudioManager(const XML::Node& XMLNode) :
-                InternalDevice(NULL),
-                NonSpacialContext(NULL),
-                EffHandler(NULL),
-                MPlayer(NULL),
+                InternalDevice(nullptr),
+                NonSpacialContext(nullptr),
+                EffHandler(nullptr),
+                MPlayer(nullptr),
 
-                BufferUpdate2DWork(NULL),
-                EffectFilterCleanWork(NULL),
-                ThreadResources(NULL),
+                BufferUpdate2DWork(nullptr),
+                EffectFilterCleanWork(nullptr),
+                ThreadResources(nullptr),
 
                 ContextOutputFrequency(44100),
                 MasterVolume(1.0),
@@ -184,8 +184,7 @@ namespace Mezzanine
             OALS::AudioManager::~AudioManager()
             {
                 this->DestroyAllSounds();
-                if( this->EffHandler )
-                {
+                if( this->EffHandler ) {
                     this->EffHandler->DestroyAllEffects();
                     this->EffHandler->DestroyAllFilters();
                 }
@@ -201,8 +200,7 @@ namespace Mezzanine
             SoundTypeHandler* OALS::AudioManager::GetOrCreateSoundTypeHandler(const UInt16 Type) const
             {
                 SoundTypeHandler* Ret = GetSoundTypeHandler(Type);
-                if( Ret == NULL )
-                {
+                if( Ret == nullptr ) {
                     Ret = new SoundTypeHandler();
                     SoundsByType.insert( std::pair<UInt16,SoundTypeHandler*>(Type,Ret) );
                 }
@@ -213,14 +211,13 @@ namespace Mezzanine
             {
                 ConstSoundTypesIterator TypeIt = SoundsByType.find(Type);
                 if( TypeIt != SoundsByType.end() ) return (*TypeIt).second;
-                else return NULL;
+                else return nullptr;
             }
 
             SoundTypeHandler* OALS::AudioManager::GetSoundTypeHandlerExcept(const UInt16 Type) const
             {
                 ConstSoundTypesIterator TypeIt = SoundsByType.find(Type);
-                if( TypeIt == SoundsByType.end() )
-                {
+                if( TypeIt == SoundsByType.end() ) {
                     StringStream ExceptionStream;
                     ExceptionStream << "No SoundTypeHandler of Type \"" << Type << "\" found.";
                     MEZZ_EXCEPTION(ExceptionBase::II_IDENTITY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
@@ -280,8 +277,7 @@ namespace Mezzanine
                                 DeviceName = this->GetDefaultPlaybackDeviceName();
                         }
                         // Check if everything is initialized and set the settings appropriately
-                        if(Initialized == false)
-                        {
+                        if(Initialized == false) {
                             this->InitializePlaybackDevice(DeviceName,OutputFreq);
                         }else{
                             /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
@@ -335,14 +331,11 @@ namespace Mezzanine
             void OALS::AudioManager::GetAvailableDeviceNames()
             {
                 // Get our Playback Device list
-                const char* pDeviceList = NULL;
-                if( alcIsExtensionPresent(NULL, "ALC_ENUMERATE_ALL_EXT") == AL_TRUE )
-                {
-                    pDeviceList = alcGetString(NULL, ALC_ALL_DEVICES_SPECIFIER);
-                }
-                else if( alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT") == AL_TRUE )
-                {
-                    pDeviceList = alcGetString(NULL, ALC_DEVICE_SPECIFIER);
+                const char* pDeviceList = nullptr;
+                if( alcIsExtensionPresent(nullptr, "ALC_ENUMERATE_ALL_EXT") == AL_TRUE ) {
+                    pDeviceList = alcGetString(nullptr, ALC_ALL_DEVICES_SPECIFIER);
+                }else if( alcIsExtensionPresent(nullptr, "ALC_ENUMERATION_EXT") == AL_TRUE ) {
+                    pDeviceList = alcGetString(nullptr, ALC_DEVICE_SPECIFIER);
                 }
                 // Go through our playback devices and update our string vectors
                 if( pDeviceList )
@@ -355,14 +348,12 @@ namespace Mezzanine
                     }
                 }
                 // Get our Recording Device list
-                const char* rDeviceList = NULL;
-                if( alcIsExtensionPresent(NULL, "ALC_EXT_CAPTURE") == AL_TRUE )
-                {
-                    rDeviceList = alcGetString(NULL, ALC_CAPTURE_DEVICE_SPECIFIER);
+                const char* rDeviceList = nullptr;
+                if( alcIsExtensionPresent(nullptr, "ALC_EXT_CAPTURE") == AL_TRUE ) {
+                    rDeviceList = alcGetString(nullptr, ALC_CAPTURE_DEVICE_SPECIFIER);
                 }
                 // Go through our recorder devices and update our string vectors
-                if( rDeviceList )
-                {
+                if( rDeviceList ) {
                     while( *rDeviceList )
                     {
                         String device(rDeviceList);
@@ -380,18 +371,18 @@ namespace Mezzanine
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
-                OALS::Sound* NewSound = new OALS::Sound(Type,NULL,this->NonSpacialContext);
+                OALS::Sound* NewSound = new OALS::Sound(Type,nullptr,this->NonSpacialContext);
                 Sounds.push_back(NewSound);
                 return NewSound;
             }
 
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode)
+            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Encode);
-                if( Factory == NULL )
+                if( Factory == nullptr )
                     { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
@@ -400,13 +391,13 @@ namespace Mezzanine
                 return NewSound;
             }
 
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
 
                 iDecoderFactory* Factory = this->GetDecoderFactory(Audio::Enc_RAW);
-                if( Factory == NULL )
+                if( Factory == nullptr )
                     { MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Unsupported encoding requested.  Did you enable the proper encoding in CMake?"); }
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
@@ -422,7 +413,7 @@ namespace Mezzanine
 
                 // Setup our needed parameters
                 Audio::Encoding Encode = Audio::Enc_RAW;
-                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(FileName,Group);
+                IStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(FileName,Group);
 
                 // Figure out the encoding from the filename
                 String Extension = FileName.substr(FileName.find_last_of(".")+1);
@@ -446,28 +437,6 @@ namespace Mezzanine
                 return this->CreateSound(Type,SoundStream,Encode);
             }
 
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, const String& SoundName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
-            {
-                if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
-
-                // Create our stream and get on with it
-                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
-
-                return this->CreateSound(Type,SoundStream,Encode);
-            }
-
-            iSound* OALS::AudioManager::CreateSound(const UInt16 Type, const String& SoundName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
-            {
-                if( this->Initialized == false )
-                    { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Cannot create a new Sound without an audio device being initialized."); }
-
-                // Create our stream and get on with it
-                DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(SoundName,Buffer,Length);
-
-                return this->CreateSound(Type,SoundStream,Frequency,Config);
-            }
-
             iSound* OALS::AudioManager::GetSound(const UInt32 Index) const
             {
                 return this->Sounds.at(Index);
@@ -482,8 +451,7 @@ namespace Mezzanine
             {
                 for( SoundIterator SoundIt = this->Sounds.begin() ; SoundIt != this->Sounds.end() ; ++SoundIt )
                 {
-                    if( ToBeDestroyed == (*SoundIt) )
-                    {
+                    if( ToBeDestroyed == (*SoundIt) ) {
                         this->Sounds.erase(SoundIt);
                         delete ToBeDestroyed;
                         return;
@@ -512,7 +480,7 @@ namespace Mezzanine
             Real OALS::AudioManager::GetTypeVolume(const UInt16 Type) const
             {
                 SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
-                return ( Handler != NULL ? Handler->Volume : 0 );
+                return ( Handler != nullptr ? Handler->Volume : 0 );
             }
 
             void OALS::AudioManager::MuteType(const UInt16 Type, Boole Enable)
@@ -574,8 +542,7 @@ namespace Mezzanine
             {
                 for( RecorderIterator RecIt = Recorders.begin() ; RecIt != Recorders.end() ; ++RecIt )
                 {
-                    if( ToBeDestroyed == (*RecIt) )
-                    {
+                    if( ToBeDestroyed == (*RecIt) ) {
                         this->Recorders.erase(RecIt);
                         delete ToBeDestroyed;
                         return;
@@ -598,7 +565,7 @@ namespace Mezzanine
             String OALS::AudioManager::GetCurrentPlaybackDeviceName() const
             {
                 return this->CurrentDeviceName;
-                //return ( this->InternalDevice != NULL ? alcGetString(this->InternalDevice,ALC_DEVICE_SPECIFIER) : "");
+                //return ( this->InternalDevice != nullptr ? alcGetString(this->InternalDevice,ALC_DEVICE_SPECIFIER) : "");
             }
 
             String OALS::AudioManager::GetAvailablePlaybackDeviceName(const Whole& Index) const
@@ -613,7 +580,7 @@ namespace Mezzanine
 
             String OALS::AudioManager::GetDefaultPlaybackDeviceName() const
             {
-                return alcGetString(NULL,ALC_DEFAULT_DEVICE_SPECIFIER);
+                return alcGetString(nullptr,ALC_DEFAULT_DEVICE_SPECIFIER);
             }
 
             Boole OALS::AudioManager::PlaybackDeviceNameValid(const String& DeviceName) const
@@ -637,8 +604,7 @@ namespace Mezzanine
                 ALint Attribs[6] = { 0 };
                 UInt8 AttribIndex = 0;
                 // Sort out our frequency attrib
-                if( OutputFrequency > 0 )
-                {
+                if( OutputFrequency > 0 ) {
                     Attribs[AttribIndex++] = ALC_FREQUENCY;
                     Attribs[AttribIndex++] = OutputFrequency;
                 }
@@ -648,27 +614,24 @@ namespace Mezzanine
 
                 // Create the device we'll use
                 this->InternalDevice = alcOpenDevice(DeviceName.c_str());
-                if( this->InternalDevice == NULL )
-                {
+                if( this->InternalDevice == nullptr ) {
                     // Well shit
                     return false;
                 }
 
                 // Create our context
                 this->NonSpacialContext = alcCreateContext(this->InternalDevice,Attribs);
-                if( this->NonSpacialContext == NULL )
-                {
+                if( this->NonSpacialContext == nullptr ) {
                     alcCloseDevice(this->InternalDevice);
-                    this->InternalDevice = NULL;
+                    this->InternalDevice = nullptr;
                     return false;
                 }
 
-                if( alcMakeContextCurrent(this->NonSpacialContext) == false )
-                {
+                if( alcMakeContextCurrent(this->NonSpacialContext) == false ) {
                     alcDestroyContext(this->NonSpacialContext);
                     alcCloseDevice(this->InternalDevice);
-                    this->NonSpacialContext = NULL;
-                    this->InternalDevice = NULL;
+                    this->NonSpacialContext = nullptr;
+                    this->InternalDevice = nullptr;
                     return false;
                 }
 
@@ -683,8 +646,7 @@ namespace Mezzanine
 
             void OALS::AudioManager::ShutdownPlaybackDevice()
             {
-                if( this->InternalDevice )
-                {
+                if( this->InternalDevice ) {
                     // Eradicate all sounds
                     this->DestroyAllSounds();
                     for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
@@ -694,28 +656,26 @@ namespace Mezzanine
                     }
 
                     // Disable the context
-                    alcMakeContextCurrent(NULL);
+                    alcMakeContextCurrent(nullptr);
                     // Destroy the context
                     alcDestroyContext(this->NonSpacialContext);
-                    this->NonSpacialContext = NULL;
+                    this->NonSpacialContext = nullptr;
                     // Destroy/close the device
                     alcCloseDevice(this->InternalDevice);
                     // If you are getting Segfaults in the line above, then linking is most likely broken between openAL
                     // and your Operating Systems default sound API.  For example, removing pulseaudio will cause Ubuntu 11.04 to Segfault with a SIGSEGV.
-                    this->InternalDevice = NULL;
+                    this->InternalDevice = nullptr;
 
                     // Clean up effects as well
-                    if( this->EffHandler )
-                    {
+                    if( this->EffHandler ) {
                         delete this->EffHandler;
-                        this->EffHandler = NULL;
+                        this->EffHandler = nullptr;
                     }
 
                     // Get the music player too
-                    if( this->MPlayer )
-                    {
+                    if( this->MPlayer ) {
                         delete this->MPlayer;
-                        this->MPlayer = NULL;
+                        this->MPlayer = nullptr;
                     }
                 }
             }
@@ -730,16 +690,15 @@ namespace Mezzanine
                 { return this->AvailableRecorderDevices.size(); }
 
             String OALS::AudioManager::GetDefaultRecordingDeviceName()
-                { return alcGetString(NULL,ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER); }
+                { return alcGetString(nullptr,ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             void OALS::AudioManager::Initialize()
             {
-                if( !this->Initialized )
-                {
-                    if( this->InternalDevice == NULL ) {
+                if( !this->Initialized ) {
+                    if( this->InternalDevice == nullptr ) {
                         if( this->InitializePlaybackDevice( this->GetDefaultPlaybackDeviceName() ) == false )
                             { MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Unable to initialize an audio device."); }
                     }
@@ -761,9 +720,8 @@ namespace Mezzanine
 
             void OALS::AudioManager::Deinitialize()
             {
-                if( this->Initialized )
-                {
-                    if( this->InternalDevice != NULL ) {
+                if( this->Initialized ) {
+                    if( this->InternalDevice != nullptr ) {
                         this->ShutdownPlaybackDevice();
                     }
 
@@ -822,8 +780,7 @@ namespace Mezzanine
             {
                 for( SoundScapeManagerIterator SSM = this->SoundScapeManagers.begin() ; SSM != this->SoundScapeManagers.end() ; ++SSM )
                 {
-                    if( static_cast<OALS::SoundScapeManager*>(Manager) == (*SSM) )
-                    {
+                    if( static_cast<OALS::SoundScapeManager*>(Manager) == (*SSM) ) {
                         this->SoundScapeManagers.erase(SSM);
                         return;
                     }

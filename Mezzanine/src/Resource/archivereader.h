@@ -70,8 +70,12 @@ namespace Mezzanine
             /// @param Identifier A string identifying the buffer to be used as the archive.
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
-            /// @param Owner A bool to indicate if the archive should become the owner of the buffer, deleting it when it closes.
-            virtual void Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner) = 0;
+            /// @param Owner Indicates if the reader should become the owner of the buffer, deleting it when it closes.
+            virtual void Open(const String& Identifier,
+                              Char8* Buffer,
+                              const size_t BufferSize,
+                              const Boole Owner) = 0;
+
             /// @brief Gets whether or not this archive is open for I/O operations.
             /// @return Returns true if this archive is open and in use, false otherwise.
             virtual Boole IsOpen() const = 0;
@@ -80,14 +84,18 @@ namespace Mezzanine
             virtual void Close() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // File and Directory Query
+            // Utility Queries
+
+            /// @brief Gets the identifier string passed into the last call to Open.
+            /// @return Returns the identifier of this reader, or an empty string if the reader isn't open.
+            virtual const String& GetIdentifier() const = 0;
 
             /// @brief Checks to see if a directory exists within the archive.
-            /// @param DirectoryPath The path to the directory (or just name of the directory if it's at the root) to check for.
+            /// @param DirectoryPath The path to the directory to check for.
             /// @return Returns true if the operation was successful, false otherwise.
             virtual Boole DirectoryExists(const String& DirectoryPath) const = 0;
             /// @brief Checks to see if a file exists within the archive.
-            /// @param PathAndFile The path and name of the file (or just name of the file if it's at the root) to check for.
+            /// @param PathAndFile The path and name of the file to check for.
             /// @return Returns true if the operation was successful, false otherwise.
             virtual Boole FileExists(const String& PathAndFile) const = 0;
 
@@ -97,7 +105,7 @@ namespace Mezzanine
             /// @brief Opens a stream to a resource in the archive.
             /// @remarks See StreamFlags enum for information on valid flags.
             /// @param Identifier The unique identifier for the resource in the archive.
-            /// @param Flags A bitmask of the options to open the stream with.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
             /// @return Returns a pointer to the opened stream.
             virtual IStreamPtr OpenIStream(const String& Identifier,
@@ -106,7 +114,7 @@ namespace Mezzanine
             /// @brief Opens a stream to a resource in the archive.
             /// @param Identifier The unique identifier for the resource in the archive.
             /// @param Password The password needed to access/decrypt the resource in the archive.
-            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for information on valid flags.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no decompression or decryption on the data before emitting.
             /// @return Returns a pointer to the opened stream.
             virtual IStreamPtr OpenEncryptedIStream(const String& Identifier,
@@ -118,21 +126,22 @@ namespace Mezzanine
             // Reading / Entry Query
 
             /// @brief Gets the number of entries contained in the archive.
-            /// @remarks Not all archives support getting the file count up front.  A file count can still be retrieved
-            /// by getting all entries in the archive (pattern "*"), but doing so may be slow depending on the number
-            /// of entries retrieved.  This method is meant to be a simple and fast number retrieval.  If it can't do
-            /// that with the archive in question, it'll return -1.
-            /// @return Returns the total number of entries stored in this archive, -1 if the archive doesn't support known file counts.
+            /// @remarks Not all archives support getting the file count up front.  A file count can still be
+            /// retrieved by getting all entries in the archive (pattern "*"), but doing so may be slow depending
+            /// on the number of entries retrieved.  This method is meant to be a simple and fast number
+            /// retrieval.  If it can't do that with the archive in question, it'll return -1.
+            /// @return Returns the number of entries in this archive, or -1 if known file counts isn't supported.
             virtual Int64 GetEntryCount() const = 0;
             /// @brief Gets the archive entry for a file at the specified index.
             /// @param Index The index of the entry to retrieve.
-            /// @return Returns an ArchiveEntryPtr to file metadata at the specified index, or a nullptr if this is not supported.
+            /// @return Returns the metadata of the file at the specified index, or a nullptr if this is not supported.
             virtual ArchiveEntryPtr GetEntry(const UInt64 Index) const = 0;
             /// @brief Gets the archive entry for a file at the specified index.
-            /// @remarks In archives where multiple files of the same name exist, this will return the first such file found.  If
-            /// finding a version other than the first is desired, the pattern matching "GetEntries" should be used instead.
+            /// @remarks In archives where multiple files of the same name exist, this will return the first such
+            /// file found.  If finding a version other than the first is desired, the pattern matching "GetEntries"
+            /// should be used instead.
             /// @param FileName The name of the file to retrieve the entry for.
-            /// @return Returns an ArchiveEntryPtr to file metadata belonging to the specified file, or a nullptr if the file was not found.
+            /// @return Returns the metadata belonging to the specified file, or a nullptr if the file wasn't found.
             virtual ArchiveEntryPtr GetEntry(const String& FileName) const = 0;
             /// @brief Gets all the archive entries matching a name pattern.
             /// @remarks The Pattern works best when the path pattern is relative (not absolute).

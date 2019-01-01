@@ -48,12 +48,7 @@
 #include "Resource/resourceenumerations.h"
 
 /// @file
-/// @brief The defintion of the Resource Manager.
-
-namespace Ogre
-{
-    class ResourceGroupManager;
-}
+/// @brief This file contains the definition of the Resource Manager.
 
 namespace Mezzanine
 {
@@ -77,39 +72,21 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for AssetGroup storage in this class.
-            typedef std::map<String,AssetGroup*>               AssetGroupContainer;
+            typedef std::vector<AssetGroup*>                   AssetGroupContainer;
             /// @brief Iterator type for AssetGroup instances stored in this class.
             typedef AssetGroupContainer::iterator              AssetGroupIterator;
             /// @brief Const Iterator type for AssetGroup instances stored in this class.
             typedef AssetGroupContainer::const_iterator        ConstAssetGroupIterator;
-
-            /// @brief Basic container type for @ref DataStream storage by this class.
-            typedef std::vector<DataStreamPtr>       DataStreamContainer;
-            /// @brief Iterator type for @ref DataStream instances stored by this class.
-            typedef DataStreamContainer::iterator              DataStreamIterator;
-            /// @brief Const Iterator type for @ref DataStream instances stored by this class.
-            typedef DataStreamContainer::const_iterator        ConstDataStreamIterator;
-            /// @brief Basic container type for named @ref DataStream storage by this class.
-            typedef std::map<String,DataStreamPtr>   NamedDataStreamContainer;
-            /// @brief Iterator type for named @ref DataStream instances stored by this class.
-            typedef NamedDataStreamContainer::iterator         NamedDataStreamIterator;
-            /// @brief Const Iterator type for named @ref DataStream instances stored by this class.
-            typedef NamedDataStreamContainer::const_iterator   ConstNamedDataStreamIterator;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
         protected:
-            /// @internal
             /// @brief Container storing all of the asset groups created and managed by this manager.
             AssetGroupContainer AssetGroups;
-            /// @internal
             /// @brief The location of engine data.
             String EngineDataDir;
-            /// @internal
-            /// @brief Encapsulates the functionality of the ogre resource group manager.
-            Ogre::ResourceGroupManager* OgreResource;
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
@@ -123,48 +100,13 @@ namespace Mezzanine
             virtual ~ResourceManager();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Stream Management
-
-            /// @brief Opens a stream to an asset in an AssetGroup.
-            /// @param AssetName The identity of the asset to be opened (commonly a file name).
-            /// @param GroupName The name of the AssetGroup where the Asset can be found.
-            DataStreamPtr OpenAssetStream(const String& AssetName, const String& GroupName);
-
-            /// @brief Creates a stream from a memory buffer.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            DataStreamPtr CreateDataStream(void* Buffer, const UInt32 BufferSize);
-            /// @brief Creates a named stream from a memory buffer.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param AssetName The name to be given to the created stream.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            DataStreamPtr CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize);
-            /// @brief Creates a named stream from a memory buffer and adds it to the named AssetGroup.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param AssetName The name to be given to the created stream.
-            /// @param GroupName The name of the AssetGroup this stream will be added to.
-            /// @param Buffer A pointer to the memory to stream from.
-            /// @param BufferSize The size of the provided buffer in bytes.
-            /// @return Returns a @ref CountedPtr to the stream to the provided buffer.
-            DataStreamPtr CreateDataStream(const String& AssetName, const String& GroupName, void* Buffer, const UInt32 BufferSize);
-
-            ///////////////////////////////////////////////////////////////////////////////
             // AssetGroup Management
 
             /// @brief Adds a location for graphical resources.
-            /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects. Once an asset is added it must be initalized using
-            /// ResourceManager::InitResourceGroup(String Group).
             /// @param Location The location on the file system the asset can be found.
-            /// @param Type The kind of file system the location can be found in. @n
-            /// Options are: filesystem, zip.
-            /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
-            /// @param Recursive Whether or not to search sub-directories.
-            void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const Boole Recursive = false);
+            /// @param Type The kind of file system the location can be found in.
+            /// @param GroupName The name of the group that will have it's locations updated.
+            void AddAssetLocation(const String& Location, const ArchiveType Type, const String& GroupName);
 
             /// @brief Creates a new asset group.
             /// @param GroupName The name to be given to the created asset group.
@@ -192,13 +134,60 @@ namespace Mezzanine
             /// @brief Destroys all asset groups being stored by this manager.
             void DestroyAllAssetGroups();
 
-            /// @brief Makes a asset group ready to use.
-            /// @details After adding all of your assets and declaring them as nessessary, this function
-            /// is the final step.  After calling this function any and all assets within the defined group
-            /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
-            /// take up memory and drop performance.
-            /// @param GroupName Name of the asset group.
-            void InitAssetGroup(const String& GroupName);
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Management
+
+            /// @brief Opens an asset from an archive location in this group.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr OpenAsset(const String& Identifier,
+                                 const String& GroupName,
+                                 const Whole Flags = SF_Read,
+                                 const Boole Raw = false);
+            /// @brief Opens an encrypted asset from an archive location in this group.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr OpenEncryptedAsset(const String& Identifier,
+                                          const String& Password,
+                                          const String& GroupName,
+                                          const Whole Flags = SF_Read,
+                                          const Boole Raw = false);
+
+            /// @brief Opens an asset from a location in this group and pre-loads it all into a memory buffer.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr BufferAsset(const String& Identifier,
+                                   const String& GroupName,
+                                   const Whole Flags = SF_Read,
+                                   const Boole Raw = false);
+            /// @brief Opens an encrypted asset from a location in this group and pre-loads it all into a memory buffer.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr BufferEncryptedAsset(const String& Identifier,
+                                            const String& Password,
+                                            const String& GroupName,
+                                            const Whole Flags = SF_Read,
+                                            const Boole Raw = false);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Asset Query
@@ -206,20 +195,20 @@ namespace Mezzanine
             /// @brief Gets the actual path to an asset.
             /// @note This function currently only returns the first match, and doesn't check for multiple matches.
             /// @param FileName The name of the file to search for.
-            /// @param Group The asset group to search in for the file.
-            /// @return Returns a string containing the path to the file.
-            String GetAssetPath(const String& FileName, const String& Group);
+            /// @param GroupName The asset group to search in for the file.
+            /// @return Returns a string containing the path to the file, or an empty string if no such file was found.
+            String GetAssetPath(const String& FileName, const String& GroupName);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Get the pathname where engine data is stored.
             /// @return A String that contains the path to where the engine data is stored.
-            String GetEngineDataDirectory() const;
+            const String& GetEngineDataDirectory() const;
 
-            /// @brief Gets the dot-and-extention of this platforms plugins.
-            /// @return Returns the platform appropriate extention for plugin files.
-            String GetPluginExtension() const;
+            /// @brief Gets the dot-and-extension of this platforms plugins.
+            /// @return Returns the platform appropriate extension for plugin files.
+            static String GetPluginExtension();
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
@@ -245,8 +234,6 @@ namespace Mezzanine
         };//ResourceManager
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class DefaultResourceManagerFactory
-        /// @headerfile resourcemanager.h
         /// @brief A factory responsible for the creation and destruction of the default resourcemanager.
         ///////////////////////////////////////
         class MEZZ_LIB DefaultResourceManagerFactory : public EntresolManagerFactory

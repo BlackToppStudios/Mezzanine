@@ -340,12 +340,8 @@ namespace Mezzanine
                 CurrAttrib = (*GroupIt).GetAttribute("GroupName");
                 if(!CurrAttrib.Empty())
                     GroupName = CurrAttrib.AsString();
-                // Get whether this is recursive
-                CurrAttrib = (*GroupIt).GetAttribute("Recursive");
-                if(!CurrAttrib.Empty())
-                    GroupRecursive = StringTools::ConvertToBool(CurrAttrib.AsString());
                 // Finally create the resource location.
-                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName);
             }
             // Get what resource groups should be initialized.
             XML::Node InitGroups = ResourceDoc.GetChild("InitGroups");
@@ -355,7 +351,6 @@ namespace Mezzanine
                 CurrAttrib = (*InitIt).GetAttribute("GroupName");
                 if(!CurrAttrib.Empty())
                     GroupName = CurrAttrib.AsString();
-                ResourceMan->InitAssetGroup(GroupName);
             }
         }
 

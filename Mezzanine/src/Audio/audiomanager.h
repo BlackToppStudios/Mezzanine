@@ -143,42 +143,23 @@ namespace Mezzanine
             virtual iSound* CreateSound(const UInt16 Type) = 0;
             /// @brief Creates a new @ref iSound from a custom stream that is encoded.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
-            /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
+            /// @param Stream A Stream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const Audio::Encoding Encode) = 0;
+            virtual iSound* CreateSound(const UInt16 Type, IStreamPtr Stream, const Audio::Encoding Encode) = 0;
             /// @brief Creates a new @ref iSound from a custom stream that is unencoded.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
-            /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
+            /// @param Stream A Stream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
+            virtual iSound* CreateSound(const UInt16 Type, IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Creates a new @ref iSound from a file.
             /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
             /// @param FileName The name of the file to read audio data from.
             /// @param Group The resource group in which the file resides.
             /// @return Returns a pointer to the @ref iSound instance that was created.
             virtual iSound* CreateSound(const UInt16 Type, const String& FileName, const String& Group) = 0;
-            /// @brief Creates a new @ref iSound from a memory buffer that is encoded.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode) = 0;
-            /// @brief Creates a new @ref iSound from a memory buffer that is unencoded.
-            /// @note The created stream will take ownership of the buffer you provide.  If you want it to have a separate buffer then create a copy and pass that in.
-            /// @param Type A UInt16 that is the ID for the type of sound the created @ref iSound is to be categorized as.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateSound(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config) = 0;
             /// @brief Gets an @ref iSound instance by index.
             /// @param Index The index of the @ref iSound to be retrieved.
             /// @return Returns a pointer to the @ref iSound at the specified index.
@@ -212,47 +193,47 @@ namespace Mezzanine
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateAmbientSound(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual iSound* CreateAmbientSound(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Dialog @ref iSound from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateDialogSound(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual iSound* CreateDialogSound(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Effect @ref iSound from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateEffectSound(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual iSound* CreateEffectSound(IStreamPtr Stream, const Audio::Encoding Encode);
             /// @brief Creates a new Music @ref iSound from a custom stream that is encoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateMusicSound(DataStreamPtr Stream, const Audio::Encoding Encode);
+            virtual iSound* CreateMusicSound(IStreamPtr Stream, const Audio::Encoding Encode);
 
             /// @brief Creates a new Ambient @ref iSound from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateAmbientSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual iSound* CreateAmbientSound(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Dialog @ref iSound from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateDialogSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual iSound* CreateDialogSound(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Effect @ref iSound from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateEffectSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual iSound* CreateEffectSound(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
             /// @brief Creates a new Music @ref iSound from a custom stream that is unencoded.
             /// @param Stream A Datastream containing the data to be streamed for this @ref iSound.
             /// @param Frequency The frequency (or sample rate) of the audio data.
             /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
             /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateMusicSound(DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
+            virtual iSound* CreateMusicSound(IStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config);
 
             /// @brief Creates a new Ambient @ref iSound from a file.
             /// @param FileName The name of the file to read audio data from.
@@ -274,76 +255,6 @@ namespace Mezzanine
             /// @param Group The resource group in which the file resides.
             /// @return Returns a pointer to the @ref iSound instance that was created.
             virtual iSound* CreateMusicSound(const String& FileName, const String& Group);
-
-            /// @brief Creates a new Ambient @ref iSound from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateAmbientSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Dialog @ref iSound from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name of the @ref iSound instance.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateDialogSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Effect @ref iSound from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateEffectSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-            /// @brief Creates a new Music @ref iSound from a memory buffer that is encoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateMusicSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
-
-            /// @brief Creates a new Ambient @ref iSound from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateAmbientSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Dialog @ref iSound from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateDialogSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Effect @ref iSound from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateEffectSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
-            /// @brief Creates a new Music @ref iSound from a memory buffer that is unencoded.
-            /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param StreamName The name to be given to the stream being created.
-            /// @param Buffer A pointer to the buffer where the audio data is located.
-            /// @param Length The length of the buffer provided to this method(in bytes).
-            /// @param Frequency The frequency (or sample rate) of the audio data.
-            /// @param Config The bit configuration of the audio data.  Helps to determine sample size.
-            /// @return Returns a pointer to the @ref iSound instance that was created.
-            virtual iSound* CreateMusicSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Volume Management
