@@ -133,8 +133,8 @@ THE SOFTWARE.
 namespace Ogre {
     class GLES2GpuProgram;
     class GLES2Texture;
-    typedef SharedPtr<GLES2GpuProgram> GLES2GpuProgramPtr;
-    typedef SharedPtr<GLES2Texture> GLES2TexturePtr;
+    typedef std::shared_ptr<GLES2GpuProgram> GLES2GpuProgramPtr;
+    typedef std::shared_ptr<GLES2Texture> GLES2TexturePtr;
 };
 
 // Apple doesn't define this in their extension.  We'll do it just for convenience.

@@ -323,7 +323,7 @@ bool CompositionPass::_isSupported(void)
 
     if (mType == PT_RENDERQUAD)
     {
-        if (mMaterial.isNull())
+        if (!mMaterial)
         {
             return false;
         }

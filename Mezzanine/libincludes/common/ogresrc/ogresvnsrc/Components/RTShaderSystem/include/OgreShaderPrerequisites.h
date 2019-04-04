@@ -71,8 +71,8 @@ class SGMaterialSerializerListener;
 class ProgramWriterFactory;
 class ProgramWriterManager;
 
-typedef SharedPtr<Parameter>        ParameterPtr;
-typedef SharedPtr<UniformParameter> UniformParameterPtr;
+typedef std::shared_ptr<Parameter>        ParameterPtr;
+typedef std::shared_ptr<UniformParameter> UniformParameterPtr;
 typedef vector<ParameterPtr>::type  ShaderParameterList;
 
 /// Utility function with same style as boost::hash_combine

@@ -81,7 +81,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     MaterialManager::~MaterialManager()
     {
-        mDefaultSettings.setNull();
+        mDefaultSettings.reset();
         // Resources cleared by superclass
         // Unregister with resource group manager
         ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);
@@ -103,12 +103,12 @@ namespace Ogre {
                                     bool isManual, ManualResourceLoader* loader,
                                     const NameValuePairList* createParams)
     {
-        return createResource(name,group,isManual,loader,createParams).staticCast<Material>();
+        return std::static_pointer_cast<Material>( createResource(name,group,isManual,loader,createParams) );
     }
     //-----------------------------------------------------------------------
     MaterialPtr MaterialManager::getByName(const String& name, const String& groupName)
     {
-        return getResourceByName(name, groupName).staticCast<Material>();
+        return std::static_pointer_cast<Material>( getResourceByName(name, groupName) );
     }
     //-----------------------------------------------------------------------
     void MaterialManager::initialise(void)
@@ -244,7 +244,7 @@ namespace Ogre {
     void MaterialManager::setActiveScheme(const String& schemeName)
     {
         if (mActiveSchemeName != schemeName)
-        {   
+        {
             // Allow the creation of new scheme indexes on demand
             // even if they're not specified in any Technique
             mActiveSchemeIndex = _getSchemeIndex(schemeName);
@@ -267,12 +267,12 @@ namespace Ogre {
     {
         //First, check the scheme specific listeners
         ListenerMap::iterator it = mListenerMap.find(mActiveSchemeName);
-        if (it != mListenerMap.end()) 
+        if (it != mListenerMap.end())
         {
             ListenerList& listenerList = it->second;
             for (ListenerList::iterator i = listenerList.begin(); i != listenerList.end(); ++i)
             {
-                Technique* t = (*i)->handleSchemeNotFound(mActiveSchemeIndex, 
+                Technique* t = (*i)->handleSchemeNotFound(mActiveSchemeIndex,
                     mActiveSchemeName, mat, lodIndex, rend);
                 if (t)
                     return t;
@@ -281,18 +281,18 @@ namespace Ogre {
 
         //If no success, check generic listeners
         it = mListenerMap.find(BLANKSTRING);
-        if (it != mListenerMap.end()) 
+        if (it != mListenerMap.end())
         {
             ListenerList& listenerList = it->second;
             for (ListenerList::iterator i = listenerList.begin(); i != listenerList.end(); ++i)
             {
-                Technique* t = (*i)->handleSchemeNotFound(mActiveSchemeIndex, 
+                Technique* t = (*i)->handleSchemeNotFound(mActiveSchemeIndex,
                     mActiveSchemeName, mat, lodIndex, rend);
                 if (t)
                     return t;
             }
         }
-        
+
 
         return 0;
 

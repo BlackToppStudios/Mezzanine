@@ -57,7 +57,7 @@ struct ComparisonResult
 };
 
 typedef std::vector<ComparisonResult> ComparisonResultVector;
-typedef Ogre::SharedPtr<ComparisonResultVector> ComparisonResultVectorPtr;
+typedef std::shared_ptr<ComparisonResultVector> ComparisonResultVectorPtr;
 
 /** Simple object for doing image comparison between two image sets */
 class ImageValidator

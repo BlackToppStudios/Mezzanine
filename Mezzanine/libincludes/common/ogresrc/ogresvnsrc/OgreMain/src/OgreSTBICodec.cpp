@@ -152,7 +152,7 @@ namespace Ogre {
         
         size_t dstPitch = imgData->width * PixelUtil::getNumElemBytes(imgData->format);
         imgData->size = dstPitch * imgData->height;
-        output.bind(OGRE_NEW MemoryDataStream(imgData->size));
+        output.reset(OGRE_NEW MemoryDataStream(imgData->size));
         
         uchar* pDst = output->getPtr();
         memcpy(pDst, pixelData, imgData->size);

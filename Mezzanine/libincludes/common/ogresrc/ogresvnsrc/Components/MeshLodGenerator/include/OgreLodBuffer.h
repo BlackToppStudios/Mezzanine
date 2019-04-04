@@ -40,14 +40,14 @@ struct _OgreLodExport LodIndexBuffer {
     size_t indexCount; /// index count from indexStart.
     size_t indexStart; /// Offset from the start of the indexBuffer
     size_t indexBufferSize; /// size of the index buffer in bytes
-    Ogre::SharedPtr<unsigned char> indexBuffer; /// if NULL, then the previous Lod level's buffer is used. (compression)
+    std::shared_ptr<unsigned char> indexBuffer; /// if NULL, then the previous Lod level's buffer is used. (compression)
     void fillBuffer(Ogre::IndexData* data); /// Fills the buffer from an Ogre::IndexData. Call this on Ogre main thread only
 };
 /// Thread-safe buffer for storing Hardware vertex buffer
 struct _OgreLodExport LodVertexBuffer {
     size_t vertexCount;
-    Ogre::SharedPtr<Vector3> vertexBuffer;
-    Ogre::SharedPtr<Vector3> vertexNormalBuffer;
+    std::shared_ptr<Vector3> vertexBuffer;
+    std::shared_ptr<Vector3> vertexNormalBuffer;
     void fillBuffer(Ogre::VertexData* data);
 };
 /// Data representing all required information from a Mesh. Used by LodInputProviderBuffer.

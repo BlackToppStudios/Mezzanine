@@ -51,7 +51,7 @@ namespace Ogre {
         // Create the 'main' queue up-front since we'll always need that
         mGroups.insert(
             RenderQueueGroupMap::value_type(
-                RENDER_QUEUE_MAIN, 
+                RENDER_QUEUE_MAIN,
                 OGRE_NEW RenderQueueGroup(this,
                     mSplitPassesByLightingType,
                     mSplitNoShadowPasses,
@@ -67,10 +67,10 @@ namespace Ogre {
     //---------------------------------------------------------------------
     RenderQueue::~RenderQueue()
     {
-        
+
         // trigger the pending pass updates, otherwise we could leak
         Pass::processPendingPassUpdates();
-        
+
         // Destroy the queues for good
         RenderQueueGroupMap::iterator i, iend;
         i = mGroups.begin();
@@ -90,12 +90,12 @@ namespace Ogre {
         Technique* pTech;
 
         // tell material it's been used
-        if (!pRend->getMaterial().isNull())
+        if (pRend->getMaterial())
             pRend->getMaterial()->touch();
 
         // Check material & technique supplied (the former since the default implementation
         // of getTechnique is based on it for backwards compatibility
-        if(pRend->getMaterial().isNull() || !pRend->getTechnique())
+        if(pRend->getMaterial() || !pRend->getTechnique())
         {
             // Use default base white, with lighting only if vertices has normals
             RenderOperation op;
@@ -110,14 +110,14 @@ namespace Ogre {
         if (mRenderableListener)
         {
             // Allow listener to override technique and to abort
-            if (!mRenderableListener->renderableQueued(pRend, groupID, priority, 
+            if (!mRenderableListener->renderableQueued(pRend, groupID, priority,
                 &pTech, this))
                 return; // rejected
 
             // tell material it's been used (incase changed)
             pTech->getParent()->touch();
         }
-        
+
         pGroup->addRenderable(pRend, pTech, priority);
 
     }
@@ -128,7 +128,7 @@ namespace Ogre {
         SceneManagerEnumerator::SceneManagerIterator scnIt =
             SceneManagerEnumerator::getSingleton().getSceneManagerIterator();
 
-        // Note: We clear dirty passes from all RenderQueues in all 
+        // Note: We clear dirty passes from all RenderQueues in all
         // SceneManagers, because the following recalculation of pass hashes
         // also considers all RenderQueues and could become inconsistent, otherwise.
         while (scnIt.hasMoreElements())
@@ -149,7 +149,7 @@ namespace Ogre {
         Pass::processPendingPassUpdates();
 
         // NB this leaves the items present (but empty)
-        // We're assuming that frame-by-frame, the same groups are likely to 
+        // We're assuming that frame-by-frame, the same groups are likely to
         //  be used, so no point destroying the vectors and incurring the overhead
         //  that would cause, let them be destroyed in the destructor.
     }
@@ -193,8 +193,8 @@ namespace Ogre {
     {
         mDefaultRenderablePriority = priority;
     }
-    
-    
+
+
     //-----------------------------------------------------------------------
     RenderQueueGroup* RenderQueue::getQueueGroup(uint8 groupID)
     {
@@ -290,9 +290,9 @@ namespace Ogre {
     }
 
     //---------------------------------------------------------------------
-    void RenderQueue::processVisibleObject(MovableObject* mo, 
-        Camera* cam, 
-        bool onlyShadowCasters, 
+    void RenderQueue::processVisibleObject(MovableObject* mo,
+        Camera* cam,
+        bool onlyShadowCasters,
         VisibleObjectsBoundsInfo* visibleBounds)
     {
         mo->_notifyCurrentCamera(cam);
@@ -306,16 +306,16 @@ namespace Ogre {
                 mo -> _updateRenderQueue( this );
                 if (visibleBounds)
                 {
-                    visibleBounds->merge(mo->getWorldBoundingBox(true), 
-                        mo->getWorldBoundingSphere(true), cam, 
+                    visibleBounds->merge(mo->getWorldBoundingBox(true),
+                        mo->getWorldBoundingSphere(true), cam,
                         receiveShadows);
                 }
             }
             // not shadow caster, receiver only?
-            else if (onlyShadowCasters && !mo->getCastShadows() && 
+            else if (onlyShadowCasters && !mo->getCastShadows() &&
                 receiveShadows)
             {
-                visibleBounds->mergeNonRenderedButInFrustum(mo->getWorldBoundingBox(true), 
+                visibleBounds->mergeNonRenderedButInFrustum(mo->getWorldBoundingBox(true),
                     mo->getWorldBoundingSphere(true), cam);
             }
         }

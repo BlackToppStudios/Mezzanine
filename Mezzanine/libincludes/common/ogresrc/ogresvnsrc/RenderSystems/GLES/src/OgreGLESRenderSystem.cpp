@@ -973,7 +973,7 @@ namespace Ogre {
 
     void GLESRenderSystem::_setTexture(size_t stage, bool enabled, const TexturePtr &texPtr)
     {
-        GLESTexturePtr tex = texPtr.staticCast<GLESTexture>();
+        GLESTexturePtr tex = std::static_pointer_cast<GLESTexture>( texPtr );
 
         if (!mStateCacheManager->activateGLTextureUnit(stage))
             return;
@@ -983,7 +983,7 @@ namespace Ogre {
 #if OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
             mCurTexMipCount = 0;
 #endif
-            if (!tex.isNull())
+            if (tex)
             {
                 // Note used
                 tex->touch();

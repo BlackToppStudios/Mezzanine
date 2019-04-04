@@ -153,7 +153,7 @@ namespace Ogre {
         _unload();
     }
     //-----------------------------------------------------------------------
-    TextureUnitState & TextureUnitState::operator = ( 
+    TextureUnitState & TextureUnitState::operator = (
         const TextureUnitState &oth )
     {
         assert(mAnimController == 0);
@@ -215,7 +215,7 @@ namespace Ogre {
             mFrames.resize(1);
             mFramePtrs.resize(1);
             mFrames[0] = name;
-            mFramePtrs[0].setNull();
+            mFramePtrs[0].reset();
             // defer load until used, so don't grab pointer yet
             mCurrentFrame = 0;
             mCubic = false;
@@ -225,7 +225,7 @@ namespace Ogre {
                 return;
             }
 
-            
+
             // Load immediately ?
             if (isLoaded())
             {
@@ -242,7 +242,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     void TextureUnitState::setTexture( const TexturePtr& texPtr)
     {
-        if (texPtr.isNull())
+        if (!texPtr)
         {
             OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND,
                 "Texture Pointer is empty.",
@@ -301,7 +301,7 @@ namespace Ogre {
             mFrames.clear();
             // One reference space, set manually through _setTexturePtr
             mFramePtrs.resize(1);
-            mFramePtrs[0].setNull();
+            mFramePtrs[0].reset();
         }
     }
     //-----------------------------------------------------------------------
@@ -358,7 +358,7 @@ namespace Ogre {
         for (unsigned int i = 0; i < mFrames.size(); ++i)
         {
             mFrames[i] = names[i];
-            mFramePtrs[i].setNull();
+            mFramePtrs[i].reset();
         }
         // Tell parent we need recompiling, will cause reload too
         mParent->_notifyNeedsRecompile();
@@ -409,7 +409,7 @@ namespace Ogre {
         {
             mFrames[frameNumber] = name;
             // reset pointer (don't populate until requested)
-            mFramePtrs[frameNumber].setNull();  
+            mFramePtrs[frameNumber].reset();
 
             if (isLoaded())
             {
@@ -501,7 +501,7 @@ namespace Ogre {
             StringStream str;
             str << baseName << "_" << i << ext;
             mFrames[i] = str.str();
-            mFramePtrs[i].setNull();
+            mFramePtrs[i].reset();
         }
 
         // Load immediately if Material loaded
@@ -532,7 +532,7 @@ namespace Ogre {
         for (unsigned int i = 0; i < mFrames.size(); ++i)
         {
             mFrames[i] = names[i];
-            mFramePtrs[i].setNull();
+            mFramePtrs[i].reset();
         }
 
         // Load immediately if Material loaded
@@ -549,9 +549,9 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     std::pair< size_t, size_t > TextureUnitState::getTextureDimensions( unsigned int frame ) const
     {
-        
+
         TexturePtr tex = _getTexturePtr(frame);
-        if (tex.isNull())
+        if (!tex)
             OGRE_EXCEPT( Exception::ERR_ITEM_NOT_FOUND, "Could not find texture " + mFrames[ frame ],
             "TextureUnitState::getTextureDimensions" );
 
@@ -715,7 +715,7 @@ namespace Ogre {
         // Ensure controller pointer is null
         effect.controller = 0;
 
-        if (effect.type == ET_ENVIRONMENT_MAP 
+        if (effect.type == ET_ENVIRONMENT_MAP
             || effect.type == ET_UVSCROLL
             || effect.type == ET_USCROLL
             || effect.type == ET_VSCROLL
@@ -794,7 +794,7 @@ namespace Ogre {
         return mAlphaBlendMode;
     }
     //-----------------------------------------------------------------------
-    const TextureUnitState::UVWAddressingMode& 
+    const TextureUnitState::UVWAddressingMode&
     TextureUnitState::getTextureAddressingMode(void) const
     {
         return mAddressMode;
@@ -809,7 +809,7 @@ namespace Ogre {
     }
     //-----------------------------------------------------------------------
     void TextureUnitState::setTextureAddressingMode(
-        TextureUnitState::TextureAddressingMode u, 
+        TextureUnitState::TextureAddressingMode u,
         TextureUnitState::TextureAddressingMode v,
         TextureUnitState::TextureAddressingMode w)
     {
@@ -853,7 +853,7 @@ namespace Ogre {
     void TextureUnitState::removeEffect(TextureEffectType type)
     {
         // Get range of items matching this effect
-        std::pair< EffectMap::iterator, EffectMap::iterator > remPair = 
+        std::pair< EffectMap::iterator, EffectMap::iterator > remPair =
             mEffects.equal_range( type );
         // Remove controllers
         for (EffectMap::iterator i = remPair.first; i != remPair.second; ++i)
@@ -863,7 +863,7 @@ namespace Ogre {
                 ControllerManager::getSingleton().destroyController(i->second.controller);
             }
         }
-        // Erase         
+        // Erase
         mEffects.erase( remPair.first, remPair.second );
     }
     //-----------------------------------------------------------------------
@@ -987,14 +987,14 @@ namespace Ogre {
         removeEffect(ET_VSCROLL);
 
         // don't create an effect if the speeds are both 0
-        if(uSpeed == 0.0f && vSpeed == 0.0f) 
+        if(uSpeed == 0.0f && vSpeed == 0.0f)
         {
           return;
         }
 
         // Create new effect
         TextureEffect eff;
-    if(uSpeed == vSpeed) 
+    if(uSpeed == vSpeed)
     {
         eff.type = ET_UVSCROLL;
         eff.arg1 = uSpeed;
@@ -1022,7 +1022,7 @@ namespace Ogre {
         // Remove existing effect
         removeEffect(ET_ROTATE);
         // don't create an effect if the speed is 0
-        if(speed == 0.0f) 
+        if(speed == 0.0f)
         {
           return;
         }
@@ -1056,7 +1056,7 @@ namespace Ogre {
         }
 
     // don't create an effect if the given values are all 0
-    if(base == 0.0f && phase == 0.0f && frequency == 0.0f && amplitude == 0.0f) 
+    if(base == 0.0f && phase == 0.0f && frequency == 0.0f && amplitude == 0.0f)
     {
       return;
     }
@@ -1133,7 +1133,7 @@ namespace Ogre {
             return mFramePtrs[frame];
 
         }
-        
+
     }
     //-----------------------------------------------------------------------
     void TextureUnitState::_setTexturePtr(const TexturePtr& texptr)
@@ -1153,23 +1153,23 @@ namespace Ogre {
         {
             // Ensure texture is loaded, specified number of mipmaps and
             // priority
-            if (mFramePtrs[frame].isNull())
+            if (!mFramePtrs[frame])
             {
                 try {
-                    mFramePtrs[frame] = 
-                        TextureManager::getSingleton().prepare(mFrames[frame], 
-                            mParent->getResourceGroup(), mTextureType, 
+                    mFramePtrs[frame] =
+                        TextureManager::getSingleton().prepare(mFrames[frame],
+                            mParent->getResourceGroup(), mTextureType,
                             mTextureSrcMipmaps, mGamma, mIsAlpha, mDesiredFormat, mHwGamma);
                 }
                 catch (Exception &e) {
                     String msg;
-                    msg = msg + "Error loading texture " + mFrames[frame]  + 
+                    msg = msg + "Error loading texture " + mFrames[frame]  +
                         ". Texture layer will be blank. Loading the texture "
-                        "failed with the following exception: " 
+                        "failed with the following exception: "
                         + e.getFullDescription();
                     LogManager::getSingleton().logMessage(msg, LML_CRITICAL);
                     mTextureLoadFailed = true;
-                }   
+                }
             }
             else
             {
@@ -1185,19 +1185,19 @@ namespace Ogre {
         {
             // Ensure texture is loaded, specified number of mipmaps and
             // priority
-            if (mFramePtrs[frame].isNull())
+            if (!mFramePtrs[frame])
             {
                 try {
-                    mFramePtrs[frame] = 
-                        TextureManager::getSingleton().load(mFrames[frame], 
-                            mParent->getResourceGroup(), mTextureType, 
+                    mFramePtrs[frame] =
+                        TextureManager::getSingleton().load(mFrames[frame],
+                            mParent->getResourceGroup(), mTextureType,
                             mTextureSrcMipmaps, mGamma, mIsAlpha, mDesiredFormat, mHwGamma);
                 }
                 catch (Exception &e) {
                     String msg;
-                    msg = msg + "Error loading texture " + mFrames[frame]  + 
+                    msg = msg + "Error loading texture " + mFrames[frame]  +
                         ". Texture layer will be blank. Loading the texture "
-                        "failed with the following exception: " 
+                        "failed with the following exception: "
                         + e.getFullDescription();
                     LogManager::getSingleton().logMessage(msg, LML_CRITICAL);
                     mTextureLoadFailed = true;
@@ -1283,7 +1283,7 @@ namespace Ogre {
     {
         return mRotate;
     }
-    
+
     //-----------------------------------------------------------------------
     Real TextureUnitState::getAnimationDuration(void) const
     {
@@ -1334,7 +1334,7 @@ namespace Ogre {
         mIsDefaultFiltering = false;
     }
     //-----------------------------------------------------------------------
-    void TextureUnitState::setTextureFiltering(FilterOptions minFilter, 
+    void TextureUnitState::setTextureFiltering(FilterOptions minFilter,
         FilterOptions magFilter, FilterOptions mipFilter)
     {
         mMinFilter = minFilter;
@@ -1349,13 +1349,13 @@ namespace Ogre {
         switch (ft)
         {
         case FT_MIN:
-            return mIsDefaultFiltering ? 
+            return mIsDefaultFiltering ?
                 MaterialManager::getSingleton().getDefaultTextureFiltering(FT_MIN) : mMinFilter;
         case FT_MAG:
-            return mIsDefaultFiltering ? 
+            return mIsDefaultFiltering ?
                 MaterialManager::getSingleton().getDefaultTextureFiltering(FT_MAG) : mMagFilter;
         case FT_MIP:
-            return mIsDefaultFiltering ? 
+            return mIsDefaultFiltering ?
                 MaterialManager::getSingleton().getDefaultTextureFiltering(FT_MIP) : mMipFilter;
         }
         // to keep compiler happy
@@ -1401,7 +1401,7 @@ namespace Ogre {
         tiend = mFramePtrs.end();
         for (ti = mFramePtrs.begin(); ti != tiend; ++ti)
         {
-            ti->setNull();
+            ti->reset();
         }
     }
     //-----------------------------------------------------------------------
@@ -1429,7 +1429,7 @@ namespace Ogre {
         tiend = mFramePtrs.end();
         for (ti = mFramePtrs.begin(); ti != tiend; ++ti)
         {
-            ti->setNull();
+            ti->reset();
         }
     }
     //-----------------------------------------------------------------------------
@@ -1449,7 +1449,7 @@ namespace Ogre {
 
         EffectMap::const_iterator i, iend;
         iend = mEffects.end();
-        
+
         for(i = mEffects.find(ET_ENVIRONMENT_MAP); i != iend; ++i)
         {
             if (i->second.subtype == ENV_REFLECTION)
@@ -1464,7 +1464,7 @@ namespace Ogre {
         return false;
     }
     //-----------------------------------------------------------------------
-    void TextureUnitState::setProjectiveTexturing(bool enable, 
+    void TextureUnitState::setProjectiveTexturing(bool enable,
         const Frustum* projectionSettings)
     {
         if (enable)
@@ -1513,7 +1513,7 @@ namespace Ogre {
                 {
                     // currently assumes animated frames are sequentially numbered
                     // cubic, 1d, 2d, and 3d textures are determined from current TUS state
-                    
+
                     // if cubic or 3D
                     if (mCubic)
                     {
@@ -1523,13 +1523,13 @@ namespace Ogre {
                     {
                         // if more than one frame then assume animated frames
                         if (mFrames.size() > 1)
-                            setAnimatedTextureName(aliasEntry->second, 
+                            setAnimatedTextureName(aliasEntry->second,
                                 static_cast<unsigned int>(mFrames.size()), mAnimDuration);
                         else
                             setTextureName(aliasEntry->second, mTextureType);
                     }
                 }
-                
+
             }
         }
 
@@ -1542,10 +1542,10 @@ namespace Ogre {
     }
     //-----------------------------------------------------------------------------
     void TextureUnitState::setCompositorReference(const String& compositorName, const String& textureName, size_t mrtIndex)
-    {  
-        mCompositorRefName = compositorName; 
-        mCompositorRefTexName = textureName; 
-        mCompositorRefMrtIndex = mrtIndex; 
+    {
+        mCompositorRefName = compositorName;
+        mCompositorRefTexName = textureName;
+        mCompositorRefMrtIndex = mrtIndex;
     }
     //-----------------------------------------------------------------------
     size_t TextureUnitState::calculateSize(void) const

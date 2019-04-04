@@ -130,32 +130,32 @@ public:
     {
         if (slider->getName() == "tessellationAmount")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_tessellationAmount", slider->getValue() );
         }
         if (slider->getName() == "ridgeOctaves")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_ridgeOctaves", slider->getValue() );
         }
         if (slider->getName() == "fBmOctaves")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_fBmOctaves", slider->getValue() );
         }
         if (slider->getName() == "TwistOctaves")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_TwistOctaves", slider->getValue() );
         }
         if (slider->getName() == "detailNoiseScale")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_detailNoiseScale", slider->getValue() );
         }
         if (slider->getName() == "targetTrianglesWidth")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "TerrainTessellation" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "TerrainTessellation" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_targetTrianglesWidth", slider->getValue() );
         }
     }
@@ -199,7 +199,7 @@ protected:
 
         // Set Ogre Material  with the name "TerrainMaterial" in constructor
         TerrainTessellationMaterialGenerator *terrainMaterial = OGRE_NEW TerrainTessellationMaterialGenerator("Ogre/TerrainTessellation/Terrain");         
-        terrainMaterialGenerator.bind( terrainMaterial );  
+        terrainMaterialGenerator.reset( terrainMaterial );  
                        
         mTerrainGlobals->setDefaultMaterialGenerator( terrainMaterialGenerator );
     }

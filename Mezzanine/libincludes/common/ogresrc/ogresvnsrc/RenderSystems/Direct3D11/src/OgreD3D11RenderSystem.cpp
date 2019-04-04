@@ -1658,7 +1658,7 @@ bail:
     //-----------------------------------------------------------------------
     void D3D11RenderSystem::freeDevice(void)
     {
-        if (!mDevice.isNull() && mCurrentCapabilities)
+        if (mDevice && mCurrentCapabilities)
         {
             // Set all texture units to nothing to release texture surfaces
             _disableTextureUnitsFrom(0);
@@ -1818,8 +1818,8 @@ bail:
     void D3D11RenderSystem::_setTexture( size_t stage, bool enabled, const TexturePtr& tex )
     {
         static D3D11TexturePtr dt;
-        dt = tex.staticCast<D3D11Texture>();
-        if (enabled && !dt.isNull() && dt->getSize() > 0)
+        dt = std::static_pointer_cast<D3D11Texture>( tex );
+        if (enabled && dt && dt->getSize() > 0)
         {
             // note used
             dt->touch();
@@ -1846,7 +1846,7 @@ bail:
     //---------------------------------------------------------------------
     void D3D11RenderSystem::_setVertexTexture(size_t stage, const TexturePtr& tex)
     {
-        if (tex.isNull())
+        if (!tex)
             _setTexture(stage, false, tex);
         else
             _setTexture(stage, true, tex);  
@@ -1854,7 +1854,7 @@ bail:
     //---------------------------------------------------------------------
     void D3D11RenderSystem::_setGeometryTexture(size_t stage, const TexturePtr& tex)
     {
-        if (tex.isNull())
+        if (!tex)
             _setTexture(stage, false, tex);
         else
             _setTexture(stage, true, tex);  
@@ -1862,7 +1862,7 @@ bail:
     //---------------------------------------------------------------------
     void D3D11RenderSystem::_setComputeTexture(size_t stage, const TexturePtr& tex)
     {
-        if (tex.isNull())
+        if (!tex)
             _setTexture(stage, false, tex);
         else
             _setTexture(stage, true, tex);  
@@ -1870,7 +1870,7 @@ bail:
     //---------------------------------------------------------------------
     void D3D11RenderSystem::_setTesselationHullTexture(size_t stage, const TexturePtr& tex)
     {
-        if (tex.isNull())
+        if (!tex)
             _setTexture(stage, false, tex);
         else
             _setTexture(stage, true, tex);  
@@ -1878,7 +1878,7 @@ bail:
     //---------------------------------------------------------------------
     void D3D11RenderSystem::_setTesselationDomainTexture(size_t stage, const TexturePtr& tex)
     {
-        if (tex.isNull())
+        if (!tex)
             _setTexture(stage, false, tex);
         else
             _setTexture(stage, true, tex);  
@@ -2391,7 +2391,7 @@ bail:
         VertexDeclaration* globalVertexDeclaration = getGlobalInstanceVertexBufferVertexDeclaration();
 
         bool hasInstanceData = op.useGlobalInstancingVertexBufferIsAvailable &&
-                    !globalInstanceVertexBuffer.isNull() && globalVertexDeclaration != NULL 
+                    globalInstanceVertexBuffer && globalVertexDeclaration != NULL 
                 || op.vertexData->vertexBufferBinding->getHasInstanceData();
 
         size_t numberOfInstances = op.numberOfInstances;
@@ -3302,7 +3302,7 @@ bail:
         {
         case GPT_VERTEX_PROGRAM:
             {
-                mActiveVertexGpuProgramParameters.setNull();
+                mActiveVertexGpuProgramParameters.reset();
                 mBoundVertexProgram = NULL;
                 //mDevice->VSSetShader(NULL);
                 mDevice.GetImmediateContext()->VSSetShader(NULL, NULL, 0);
@@ -3310,7 +3310,7 @@ bail:
             break;
         case GPT_FRAGMENT_PROGRAM:
             {
-                mActiveFragmentGpuProgramParameters.setNull();
+                mActiveFragmentGpuProgramParameters.reset();
                 mBoundFragmentProgram = NULL;
                 //mDevice->PSSetShader(NULL);
                 mDevice.GetImmediateContext()->PSSetShader(NULL, NULL, 0);
@@ -3319,28 +3319,28 @@ bail:
             break;
         case GPT_GEOMETRY_PROGRAM:
             {
-                mActiveGeometryGpuProgramParameters.setNull();
+                mActiveGeometryGpuProgramParameters.reset();
                 mBoundGeometryProgram = NULL;
                 mDevice.GetImmediateContext()->GSSetShader( NULL, NULL, 0 );
             }
             break;
         case GPT_HULL_PROGRAM:
             {
-                mActiveTessellationHullGpuProgramParameters.setNull();
+                mActiveTessellationHullGpuProgramParameters.reset();
                 mBoundTessellationHullProgram = NULL;
                 mDevice.GetImmediateContext()->HSSetShader( NULL, NULL, 0 );
             }
             break;
         case GPT_DOMAIN_PROGRAM:
             {
-                mActiveTessellationDomainGpuProgramParameters.setNull();
+                mActiveTessellationDomainGpuProgramParameters.reset();
                 mBoundTessellationDomainProgram = NULL;
                 mDevice.GetImmediateContext()->DSSetShader( NULL, NULL, 0 );
             }
             break;
         case GPT_COMPUTE_PROGRAM:
             {
-                mActiveComputeGpuProgramParameters.setNull();
+                mActiveComputeGpuProgramParameters.reset();
                 mBoundComputeProgram = NULL;
                 mDevice.GetImmediateContext()->CSSetShader( NULL, NULL, 0 );
             }

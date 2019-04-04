@@ -153,7 +153,7 @@ namespace Ogre {
     {
         float *pVert;
 
-        if (mFont.isNull())
+        if (!mFont)
         {
             // not initialised yet, probably due to the order of creation in a template
             return;
@@ -355,7 +355,7 @@ namespace Ogre {
     void TextAreaOverlayElement::setFontName( const String& font )
     {
         mFont = FontManager::getSingleton().getByName( font );
-        if (mFont.isNull())
+        if (!mFont)
             OGRE_EXCEPT( Exception::ERR_ITEM_NOT_FOUND, "Could not find font " + font,
                 "TextAreaOverlayElement::setFontName" );
         
@@ -432,7 +432,7 @@ namespace Ogre {
     {
         // On-demand load
         // Moved from setFontName to avoid issues with background parsing of scripts
-        if (mMaterial.isNull() && !mFont.isNull())
+        if (!mMaterial && mFont)
         {
             mFont->load();
             // Ugly hack, but we need to override for lazy-load

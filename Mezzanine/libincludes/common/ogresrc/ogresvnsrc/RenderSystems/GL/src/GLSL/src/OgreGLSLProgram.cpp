@@ -205,7 +205,7 @@ namespace Ogre {
         // We didn't create mAssemblerProgram through a manager, so override this
         // implementation so that we don't try to remove it from one. Since getCreator()
         // is used, it might target a different matching handle!
-        mAssemblerProgram.setNull();
+        mAssemblerProgram.reset();
 
         unloadHighLevel();
     }
@@ -344,7 +344,7 @@ namespace Ogre {
         // is the name valid and already loaded?
         // check with the high level program manager to see if it was loaded
         HighLevelGpuProgramPtr hlProgram = HighLevelGpuProgramManager::getSingleton().getByName(name);
-        if (!hlProgram.isNull())
+        if (hlProgram)
         {
             if (hlProgram->getSyntaxCode() == "glsl")
             {
@@ -352,7 +352,7 @@ namespace Ogre {
                 // don't need a low level implementation for attached shader objects
                 // loadHighLevelImpl will only load the source and compile once
                 // so don't worry about calling it several times
-                GLSLProgram* childShader = static_cast<GLSLProgram*>(hlProgram.getPointer());
+                GLSLProgram* childShader = static_cast<GLSLProgram*>(hlProgram.get());
                 // load the source and attach the child shader only if supported
                 if (isSupported())
                 {

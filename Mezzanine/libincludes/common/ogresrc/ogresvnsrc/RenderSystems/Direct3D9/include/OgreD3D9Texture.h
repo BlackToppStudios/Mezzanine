@@ -80,7 +80,7 @@ namespace Ogre {
         DWORD mFSAAQuality;
         
         // needed to store data between prepareImpl and loadImpl
-        typedef SharedPtr<vector<MemoryDataStreamPtr>::type > LoadedStreams;
+        typedef std::shared_ptr<vector<MemoryDataStreamPtr>::type > LoadedStreams;
 
         /// internal method, load a cube texture
         void _loadCubeTex(IDirect3DDevice9* d3d9Device, const LoadedStreams &loadedStreams);

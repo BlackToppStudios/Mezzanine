@@ -82,7 +82,7 @@ namespace Ogre
             indexCount = std::max<size_t>(indexCount, 3);
             prevLod.indexCount = std::max<size_t>(data->mIndexBufferInfoList[i].prevIndexCount, 3u);
             prevLod.indexBufferSize = indexCount;
-            prevLod.indexBuffer = Ogre::SharedPtr<unsigned char>(new unsigned char[indexCount * data->mIndexBufferInfoList[i].indexSize]);
+            prevLod.indexBuffer = std::shared_ptr<unsigned char>(new unsigned char[indexCount * data->mIndexBufferInfoList[i].indexSize]);
             data->mIndexBufferInfoList[i].buf.pshort = (unsigned short*)prevLod.indexBuffer.get();
 
             //Check if we should fill it with a "dummy" triangle.

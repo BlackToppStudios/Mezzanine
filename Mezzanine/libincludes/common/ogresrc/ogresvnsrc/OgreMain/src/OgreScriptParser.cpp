@@ -39,7 +39,7 @@ namespace Ogre
     ConcreteNodeListPtr ScriptParser::parse(const ScriptTokenListPtr &tokens)
     {
         // MEMCATEGORY_GENERAL because SharedPtr can only free using that category
-        ConcreteNodeListPtr nodes(OGRE_NEW_T(ConcreteNodeList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        ConcreteNodeListPtr nodes(OGRE_NEW_T(ConcreteNodeList, MEMCATEGORY_GENERAL)(), [](ConcreteNodeList* Ptr){ OGRE_DELETE_T(Ptr,ConcreteNodeList,MEMCATEGORY_GENERAL); });
 
         enum{READY, OBJECT};
         uint32 state = READY;
@@ -446,7 +446,7 @@ namespace Ogre
     ConcreteNodeListPtr ScriptParser::parseChunk(const ScriptTokenListPtr &tokens)
     {
         // MEMCATEGORY_GENERAL because SharedPtr can only free using that category
-        ConcreteNodeListPtr nodes(OGRE_NEW_T(ConcreteNodeList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        ConcreteNodeListPtr nodes(OGRE_NEW_T(ConcreteNodeList, MEMCATEGORY_GENERAL)(), [](ConcreteNodeList* Ptr){ OGRE_DELETE_T(Ptr,ConcreteNodeList,MEMCATEGORY_GENERAL); });
 
         ConcreteNodePtr node;
         ScriptToken *token = 0;
@@ -486,7 +486,7 @@ namespace Ogre
                     "ScriptParser::parseChunk");
             }
 
-            if(!node.isNull())
+            if(node)
                 nodes->push_back(node);
         }
 

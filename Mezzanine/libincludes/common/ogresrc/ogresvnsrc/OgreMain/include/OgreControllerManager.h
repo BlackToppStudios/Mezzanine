@@ -44,8 +44,8 @@ namespace Ogre {
     *  @{
     */
 
-    typedef SharedPtr< ControllerValue<Real> > ControllerValueRealPtr;
-    typedef SharedPtr< ControllerFunction<Real> > ControllerFunctionRealPtr;
+    typedef std::shared_ptr< ControllerValue<Real> > ControllerValueRealPtr;
+    typedef std::shared_ptr< ControllerFunction<Real> > ControllerFunctionRealPtr;
 
     /** Class for managing Controller instances.
     @remarks

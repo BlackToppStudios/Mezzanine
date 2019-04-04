@@ -264,11 +264,11 @@ protected:
 #endif
 
         // if originalMat doesn't exists use "Instancing" material name
-        const String instancedMaterialName (originalMaterial.isNull() ? "Instancing" : originalMaterialName + "/Instanced");
+        const String instancedMaterialName (!originalMaterial ? "Instancing" : originalMaterialName + "/Instanced");
         MaterialPtr  instancedMaterial = MaterialManager::getSingleton ().getByName (instancedMaterialName);
 
         // already exists ?
-        if (instancedMaterial.isNull())
+        if (!instancedMaterial)
         {
             instancedMaterial = originalMaterial->clone(instancedMaterialName);
             instancedMaterial->load();

@@ -40,7 +40,7 @@ namespace RTShader {
 *  @{
 */
 
-typedef SharedPtr<SubRenderStateAccessor>   SubRenderStateAccessorPtr; 
+typedef std::shared_ptr<SubRenderStateAccessor>   SubRenderStateAccessorPtr; 
 
 
 /** This class is the base interface of sub part from a shader based rendering pipeline.

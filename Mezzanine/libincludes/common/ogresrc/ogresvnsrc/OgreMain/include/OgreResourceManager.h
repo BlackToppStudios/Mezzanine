@@ -106,12 +106,12 @@ namespace Ogre {
         resources of the same priority.
     @par
         Resources can be loaded using the generalised load interface,
-        and they can be unloaded and removed. In addition, each 
+        and they can be unloaded and removed. In addition, each
         subclass of ResourceManager will likely define custom 'load' methods
         which take explicit parameters depending on the kind of resource
         being created.
     @note
-        Resources can be loaded and unloaded through the Resource class, 
+        Resources can be loaded and unloaded through the Resource class,
         but they can only be removed (and thus eventually destroyed) using
         their parent ResourceManager.
     @note
@@ -127,24 +127,24 @@ namespace Ogre {
         /** Creates a new blank resource, but does not immediately load it.
         @remarks
             Resource managers handle disparate types of resources, so if you want
-            to get at the detailed interface of this resource, you'll have to 
-            cast the result to the subclass you know you're creating. 
+            to get at the detailed interface of this resource, you'll have to
+            cast the result to the subclass you know you're creating.
         @param name The unique name of the resource
         @param group The name of the resource group to attach this new resource to
         @param isManual Is this resource manually loaded? If so, you should really
             populate the loader parameter in order that the load process
-            can call the loader back when loading is required. 
+            can call the loader back when loading is required.
         @param loader Pointer to a ManualLoader implementation which will be called
             when the Resource wishes to load (should be supplied if you set
-            isManual to true). You can in fact leave this parameter null 
-            if you wish, but the Resource will never be able to reload if 
+            isManual to true). You can in fact leave this parameter null
+            if you wish, but the Resource will never be able to reload if
             anything ever causes it to unload. Therefore provision of a proper
             ManualLoader instance is strongly recommended.
         @param createParams If any parameters are required to create an instance,
             they should be supplied here as name / value pairs
         */
         virtual ResourcePtr createResource(const String& name, const String& group,
-            bool isManual = false, ManualResourceLoader* loader = 0, 
+            bool isManual = false, ManualResourceLoader* loader = 0,
             const NameValuePairList* createParams = 0);
 
         typedef std::pair<ResourcePtr, bool> ResourceCreateOrRetrieveResult;
@@ -158,14 +158,14 @@ namespace Ogre {
             fail because another thread created a resource in between.
         @see ResourceManager::createResource
         @see ResourceManager::getResourceByName
-        @return A pair, the first element being the pointer, and the second being 
+        @return A pair, the first element being the pointer, and the second being
             an indicator specifying whether the resource was newly created.
         */
-        virtual ResourceCreateOrRetrieveResult createOrRetrieve(const String& name, 
-            const String& group, bool isManual = false, 
-            ManualResourceLoader* loader = 0, 
+        virtual ResourceCreateOrRetrieveResult createOrRetrieve(const String& name,
+            const String& group, bool isManual = false,
+            ManualResourceLoader* loader = 0,
             const NameValuePairList* createParams = 0);
-        
+
         /** Set a limit on the amount of memory this resource handler may use.
             @remarks
                 If, when asked to load a new resource, the manager believes it will exceed this memory
@@ -189,7 +189,7 @@ namespace Ogre {
             @see ResourceGroupManager for unloading of resource groups.
         */
         virtual void unload(const String& name);
-        
+
         /** Unloads a single resource by handle.
         @remarks
             Unloaded resources are not removed, they simply free up their memory
@@ -259,14 +259,14 @@ namespace Ogre {
         /** Remove a single resource.
         @remarks
             Removes a single resource, meaning it will be removed from the list
-            of valid resources in this manager, also causing it to be unloaded. 
+            of valid resources in this manager, also causing it to be unloaded.
         @note
             The word 'Destroy' is not used here, since
             if any other pointers are referring to this resource, it will persist
             until they have finished with it; however to all intents and purposes
             it no longer exists and will likely get destroyed imminently.
         @note
-            If you do have shared pointers to resources hanging around after the 
+            If you do have shared pointers to resources hanging around after the
             ResourceManager is destroyed, you may get problems on destruction of
             these resources if they were relying on the manager (especially if
             it is a plugin). If you find you get problems on shutdown in the
@@ -278,14 +278,14 @@ namespace Ogre {
         /** Remove a single resource by name.
         @remarks
             Removes a single resource, meaning it will be removed from the list
-            of valid resources in this manager, also causing it to be unloaded. 
+            of valid resources in this manager, also causing it to be unloaded.
         @note
             The word 'Destroy' is not used here, since
             if any other pointers are referring to this resource, it will persist
             until they have finished with it; however to all intents and purposes
             it no longer exists and will likely get destroyed imminently.
         @note
-            If you do have shared pointers to resources hanging around after the 
+            If you do have shared pointers to resources hanging around after the
             ResourceManager is destroyed, you may get problems on destruction of
             these resources if they were relying on the manager (especially if
             it is a plugin). If you find you get problems on shutdown in the
@@ -293,18 +293,18 @@ namespace Ogre {
             shared pointers before you shutdown OGRE.
         */
         virtual void remove(const String& name);
-        
+
         /** Remove a single resource by handle.
         @remarks
             Removes a single resource, meaning it will be removed from the list
-            of valid resources in this manager, also causing it to be unloaded. 
+            of valid resources in this manager, also causing it to be unloaded.
         @note
             The word 'Destroy' is not used here, since
             if any other pointers are referring to this resource, it will persist
             until they have finished with it; however to all intents and purposes
             it no longer exists and will likely get destroyed imminently.
         @note
-            If you do have shared pointers to resources hanging around after the 
+            If you do have shared pointers to resources hanging around after the
             ResourceManager is destroyed, you may get problems on destruction of
             these resources if they were relying on the manager (especially if
             it is a plugin). If you find you get problems on shutdown in the
@@ -319,7 +319,7 @@ namespace Ogre {
             until they have been finished with; however to all intents and purposes
             the resources no longer exist and will get destroyed imminently.
         @note
-            If you do have shared pointers to resources hanging around after the 
+            If you do have shared pointers to resources hanging around after the
             ResourceManager is destroyed, you may get problems on destruction of
             these resources if they were relying on the manager (especially if
             it is a plugin). If you find you get problems on shutdown in the
@@ -350,34 +350,34 @@ namespace Ogre {
         /** Retrieves a pointer to a resource by handle, or null if the resource does not exist.
         */
         virtual ResourcePtr getByHandle(ResourceHandle handle);
-        
+
         /// Returns whether the named resource exists in this manager
         virtual bool resourceExists(const String& name)
         {
-            return !getResourceByName(name).isNull();
+            return getResourceByName(name) != nullptr;
         }
         /// Returns whether a resource with the given handle exists in this manager
         virtual bool resourceExists(ResourceHandle handle)
         {
-            return !getByHandle(handle).isNull();
+            return getByHandle(handle) != nullptr;
         }
 
-        /** Notify this manager that a resource which it manages has been 
-            'touched', i.e. used. 
+        /** Notify this manager that a resource which it manages has been
+            'touched', i.e. used.
         */
         virtual void _notifyResourceTouched(Resource* res);
 
-        /** Notify this manager that a resource which it manages has been 
-            loaded. 
+        /** Notify this manager that a resource which it manages has been
+            loaded.
         */
         virtual void _notifyResourceLoaded(Resource* res);
 
-        /** Notify this manager that a resource which it manages has been 
+        /** Notify this manager that a resource which it manages has been
             unloaded.
         */
         virtual void _notifyResourceUnloaded(Resource* res);
 
-        /** Generic prepare method, used to create a Resource specific to this 
+        /** Generic prepare method, used to create a Resource specific to this
             ResourceManager without using one of the specialised 'prepare' methods
             (containing per-Resource-type parameters).
         @param name The name of the Resource
@@ -387,17 +387,17 @@ namespace Ogre {
         @param loader The manual loader which is to perform the required actions
             when this resource is loaded; only applicable when you specify true
             for the previous parameter
-        @param loadParams Optional pointer to a list of name/value pairs 
+        @param loadParams Optional pointer to a list of name/value pairs
             containing loading parameters for this type of resource.
         @param backgroundThread Optional boolean which lets the load routine know if it
             is being run on the background resource loading thread
         */
-        virtual ResourcePtr prepare(const String& name, 
-            const String& group, bool isManual = false, 
+        virtual ResourcePtr prepare(const String& name,
+            const String& group, bool isManual = false,
             ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0,
             bool backgroundThread = false);
 
-        /** Generic load method, used to create a Resource specific to this 
+        /** Generic load method, used to create a Resource specific to this
             ResourceManager without using one of the specialised 'load' methods
             (containing per-Resource-type parameters).
         @param name The name of the Resource
@@ -407,13 +407,13 @@ namespace Ogre {
         @param loader The manual loader which is to perform the required actions
             when this resource is loaded; only applicable when you specify true
             for the previous parameter
-        @param loadParams Optional pointer to a list of name/value pairs 
+        @param loadParams Optional pointer to a list of name/value pairs
             containing loading parameters for this type of resource.
         @param backgroundThread Optional boolean which lets the load routine know if it
             is being run on the background resource loading thread
         */
-        virtual ResourcePtr load(const String& name, 
-            const String& group, bool isManual = false, 
+        virtual ResourcePtr load(const String& name,
+            const String& group, bool isManual = false,
             ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0,
             bool backgroundThread = false);
 
@@ -423,7 +423,7 @@ namespace Ogre {
             Some resource managers can read script files in order to define
             resources ahead of time. These resources are added to the available
             list inside the manager, but none are loaded initially. This allows
-            you to load the items that are used on demand, or to load them all 
+            you to load the items that are used on demand, or to load them all
             as a group if you wish (through ResourceGroupManager).
         @par
             This method lets you determine the file pattern which will be used
@@ -439,11 +439,11 @@ namespace Ogre {
             Some resource managers can read script files in order to define
             resources ahead of time. These resources are added to the available
             list inside the manager, but none are loaded initially. This allows
-            you to load the items that are used on demand, or to load them all 
+            you to load the items that are used on demand, or to load them all
             as a group if you wish (through ResourceGroupManager).
         @param stream Weak reference to a data stream which is the source of the script
         @param groupName The name of the resource group that resources which are
-            parsed are to become a member of. If this group is loaded or unloaded, 
+            parsed are to become a member of. If this group is loaded or unloaded,
             then the resources discovered in this script will be loaded / unloaded
             with it.
         */
@@ -471,7 +471,7 @@ namespace Ogre {
             resources many times without destroying and recreating them.
         @remarks
             This is a simple utility class which allows the reuse of resources
-            between code which has a changing need for them. For example, 
+            between code which has a changing need for them. For example,
         */
         class _OgreExport ResourcePool : public Pool<ResourcePtr>, public ResourceAlloc
         {
@@ -484,7 +484,7 @@ namespace Ogre {
             const String& getName() const;
             void clear();
         };
-        
+
         /// Create a resource pool, or reuse one that already exists
         ResourcePool* getResourcePool(const String& name);
         /// Destroy a resource pool
@@ -502,29 +502,29 @@ namespace Ogre {
         /** Allocates the next handle. */
         ResourceHandle getNextHandle(void);
 
-        /** Create a new resource instance compatible with this manager (no custom 
-            parameters are populated at this point). 
+        /** Create a new resource instance compatible with this manager (no custom
+            parameters are populated at this point).
         @remarks
             Subclasses must override this method and create a subclass of Resource.
         @param name The unique name of the resource
         @param group The name of the resource group to attach this new resource to
         @param isManual Is this resource manually loaded? If so, you should really
             populate the loader parameter in order that the load process
-            can call the loader back when loading is required. 
+            can call the loader back when loading is required.
         @param loader Pointer to a ManualLoader implementation which will be called
             when the Resource wishes to load (should be supplied if you set
-            isManual to true). You can in fact leave this parameter null 
-            if you wish, but the Resource will never be able to reload if 
+            isManual to true). You can in fact leave this parameter null
+            if you wish, but the Resource will never be able to reload if
             anything ever causes it to unload. Therefore provision of a proper
             ManualLoader instance is strongly recommended.
         @param createParams If any parameters are required to create an instance,
-            they should be supplied here as name / value pairs. These do not need 
+            they should be supplied here as name / value pairs. These do not need
             to be set on the instance (handled elsewhere), just used if required
             to differentiate which concrete class is created.
 
         */
-        virtual Resource* createImpl(const String& name, ResourceHandle handle, 
-            const String& group, bool isManual, ManualResourceLoader* loader, 
+        virtual Resource* createImpl(const String& name, ResourceHandle handle,
+            const String& group, bool isManual, ManualResourceLoader* loader,
             const NameValuePairList* createParams) = 0;
         /** Add a newly created resource to the manager (note weak reference) */
         virtual void addImpl( ResourcePtr& res );
@@ -552,19 +552,19 @@ namespace Ogre {
         // IMPORTANT - all subclasses must populate the fields below
 
         /// Patterns to use to look for scripts if supported (e.g. *.overlay)
-        StringVector mScriptPatterns; 
+        StringVector mScriptPatterns;
         /// Loading order relative to other managers, higher is later
-        Real mLoadOrder; 
+        Real mLoadOrder;
         /// String identifying the resource type this manager handles
-        String mResourceType; 
+        String mResourceType;
 
     public:
         typedef MapIterator<ResourceHandleMap> ResourceMapIterator;
-        /** Returns an iterator over all resources in this manager. 
+        /** Returns an iterator over all resources in this manager.
         @note
             Use of this iterator is NOT thread safe!
         */
-        ResourceMapIterator getResourceIterator(void) 
+        ResourceMapIterator getResourceIterator(void)
         {
             return ResourceMapIterator(mResourcesByHandle.begin(), mResourcesByHandle.end());
         }

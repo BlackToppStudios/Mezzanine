@@ -153,7 +153,7 @@ void Sample_MeshLod::changeSelectedMesh( const String& name )
         saveConfig();
     }
     mLodConfig.mesh = MeshManager::getSingleton().load(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-    if(mLodConfig.mesh->getBounds().isNull() || mLodConfig.mesh->getBoundingSphereRadius() == 0.0){
+    if(mLodConfig.mesh->getBounds || mLodConfig.mesh->getBoundingSphereRadius() == 0.0){
         mTrayMgr->showOkDialog("Error", "Failed to load mesh!");
         return;
     }

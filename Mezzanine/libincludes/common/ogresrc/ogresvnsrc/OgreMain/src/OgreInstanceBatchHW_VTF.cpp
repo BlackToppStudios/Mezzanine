@@ -39,11 +39,11 @@ namespace Ogre
     static const uint16 c_maxTexWidthHW = 4096;
     static const uint16 c_maxTexHeightHW    = 4096;
 
-    InstanceBatchHW_VTF::InstanceBatchHW_VTF( 
-        InstanceManager *creator, MeshPtr &meshReference, 
-        const MaterialPtr &material, size_t instancesPerBatch, 
+    InstanceBatchHW_VTF::InstanceBatchHW_VTF(
+        InstanceManager *creator, MeshPtr &meshReference,
+        const MaterialPtr &material, size_t instancesPerBatch,
         const Mesh::IndexMap *indexToBoneMap, const String &batchName )
-            : BaseInstanceBatchVTF( creator, meshReference, material, 
+            : BaseInstanceBatchVTF( creator, meshReference, material,
                                     instancesPerBatch, indexToBoneMap, batchName),
               mKeepStatic( false )
     {
@@ -51,7 +51,7 @@ namespace Ogre
     //-----------------------------------------------------------------------
     InstanceBatchHW_VTF::~InstanceBatchHW_VTF()
     {
-    }   
+    }
     //-----------------------------------------------------------------------
     void InstanceBatchHW_VTF::setupVertices( const SubMesh* baseSubMesh )
     {
@@ -88,7 +88,7 @@ namespace Ogre
 
         //Blend weights may not be present because HW_VTF does not require to be skeletally animated
         const VertexElement *veWeights = baseVertexData->vertexDeclaration->
-                                                        findElementBySemantic( VES_BLEND_WEIGHTS ); 
+                                                        findElementBySemantic( VES_BLEND_WEIGHTS );
         if( veWeights )
             mWeightCount = forceOneWeight() ? 1 : veWeights->getSize() / sizeof(float);
         else
@@ -96,7 +96,7 @@ namespace Ogre
 
         hwBoneIdx.resize( baseVertexData->vertexCount * mWeightCount, 0 );
 
-        if( mMeshReference->hasSkeleton() && !mMeshReference->getSkeleton().isNull() )
+        if( mMeshReference->hasSkeleton() && mMeshReference->getSkeleton() )
         {
             if(mWeightCount > 1)
             {
@@ -110,7 +110,7 @@ namespace Ogre
 
             const VertexElement* pElement = thisVertexData->vertexDeclaration->findElementBySemantic
                                                                                     (VES_BLEND_INDICES);
-            if (pElement) 
+            if (pElement)
             {
                 unsigned short skelDataSource = pElement->getSource();
                 thisVertexData->vertexDeclaration->removeElement( VES_BLEND_INDICES );
@@ -165,7 +165,7 @@ namespace Ogre
             thisVertexData->vertexDeclaration->addElement(newSource, offset, VET_FLOAT4, VES_BLEND_WEIGHTS,
                                         0 ).getSize();
         }
-        
+
         //Create our own vertex buffer
         HardwareVertexBufferSharedPtr vertexBuffer =
             HardwareBufferManager::getSingleton().createVertexBuffer(
@@ -180,7 +180,7 @@ namespace Ogre
         for( size_t j=0; j < baseVertexData->vertexCount * mWeightCount; j += mWeightCount)
         {
             size_t numberOfMatricesInLine = 0;
-            
+
             //Write the matrices, adding padding as needed
             for(size_t i = 0; i < mWeightCount; ++i)
             {
@@ -267,7 +267,7 @@ namespace Ogre
         bool useMatrixLookup = useBoneMatrixLookup();
         if (isFirstTime ^ useMatrixLookup)
         {
-            //update the mTransformLookupNumber value in the entities if needed 
+            //update the mTransformLookupNumber value in the entities if needed
             updateSharedLookupIndexes();
 
             const float texWidth  = static_cast<float>(mMatrixTexture->getWidth());
@@ -288,9 +288,9 @@ namespace Ogre
             for( size_t i=0; i<mInstancesPerBatch; ++i )
             {
                 InstancedEntity* entity = useMatrixLookup ? mInstancedEntities[i] : NULL;
-                if  //Update if we are not using a lookup bone matrix method. In this case the function will 
+                if  //Update if we are not using a lookup bone matrix method. In this case the function will
                     //be called only once
-                    (!useMatrixLookup || 
+                    (!useMatrixLookup ||
                     //Update if we are in the visible range of the camera (for look up bone matrix method
                     //and static mode).
                     (entity->findVisible(currentCamera)))
@@ -337,7 +337,7 @@ namespace Ogre
         }
         return visibleEntityCount;
     }
-    
+
     //-----------------------------------------------------------------------
     bool InstanceBatchHW_VTF::checkSubMeshCompatibility( const SubMesh* baseSubMesh )
     {
@@ -350,8 +350,8 @@ namespace Ogre
         }
         if( baseSubMesh->vertexData->vertexDeclaration->getNextFreeTextureCoordinate() > 8 - neededTextureCoord )
         {
-            OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, 
-                    String("Given mesh must have at least ") + 
+            OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED,
+                    String("Given mesh must have at least ") +
                     StringConverter::toString(neededTextureCoord) + "free TEXCOORDs",
                     "InstanceBatchHW_VTF::checkSubMeshCompatibility");
         }
@@ -359,7 +359,7 @@ namespace Ogre
         return InstanceBatch::checkSubMeshCompatibility( baseSubMesh );
     }
     //-----------------------------------------------------------------------
-    size_t InstanceBatchHW_VTF::calculateMaxNumInstances( 
+    size_t InstanceBatchHW_VTF::calculateMaxNumInstances(
                     const SubMesh *baseSubMesh, uint16 flags ) const
     {
         size_t retVal = 0;
@@ -407,15 +407,15 @@ namespace Ogre
         bool useMatrixLookup = useBoneMatrixLookup();
         if (useMatrixLookup)
         {
-            //if we are using bone matrix look up we have to update the instance buffer for the 
+            //if we are using bone matrix look up we have to update the instance buffer for the
             //vertex texture to be relevant
 
-            //also note that in this case the number of instances to render comes directly from the 
+            //also note that in this case the number of instances to render comes directly from the
             //updateInstanceDataBuffer() function, not from this function.
             renderedInstances = updateInstanceDataBuffer(false, currentCamera);
         }
 
-        
+
         mDirtyAnimation = false;
 
         //Now lock the texture and copy the 4x3 matrices!
@@ -423,14 +423,14 @@ namespace Ogre
         const PixelBox &pixelBox = mMatrixTexture->getBuffer()->getCurrentLock();
 
         float *pSource = static_cast<float*>(pixelBox.data);
-        
+
         InstancedEntityVec::const_iterator itor = mInstancedEntities.begin();
-        
+
         vector<bool>::type writtenPositions(getMaxLookupTableInstances(), false);
 
         size_t floatPerEntity = mMatricesPerInstance * mRowLength * 4;
         size_t entitiesPerPadding = (size_t)(mMaxFloatsPerLine / floatPerEntity);
-        
+
         size_t instanceCount = mInstancedEntities.size();
         size_t updatedInstances = 0;
 
@@ -440,7 +440,7 @@ namespace Ogre
         {
             transforms = mTempTransformsArray3x4;
         }
-        
+
         for(size_t i = 0 ; i < instanceCount ; ++i)
         {
             InstancedEntity* entity = mInstancedEntities[i];
@@ -456,14 +456,14 @@ namespace Ogre
                 //No need to use null matrices at all!
                 (entity->findVisible( currentCamera )))
             {
-                float* pDest = pSource + floatPerEntity * textureLookupPosition + 
+                float* pDest = pSource + floatPerEntity * textureLookupPosition +
                     (size_t)(textureLookupPosition / entitiesPerPadding) * mWidthFloatsPadding;
 
                 if(!mUseBoneDualQuaternions)
                 {
                     transforms = pDest;
                 }
-                
+
                 if( mMeshReference->hasSkeleton() )
                     mDirtyAnimation |= entity->_updateAnimation();
 

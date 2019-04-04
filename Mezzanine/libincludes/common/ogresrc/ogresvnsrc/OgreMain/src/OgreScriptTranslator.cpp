@@ -2527,7 +2527,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2553,7 +2553,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2579,7 +2579,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2605,7 +2605,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2631,7 +2631,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2657,7 +2657,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2683,7 +2683,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2709,7 +2709,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2735,7 +2735,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -2761,7 +2761,7 @@ namespace Ogre{
         ProcessResourceNameScriptCompilerEvent evt(ProcessResourceNameScriptCompilerEvent::GPU_PROGRAM, node->name);
         compiler->_fireEvent(&evt, 0);
 
-        if (GpuProgramManager::getSingleton().getByName(evt.mName).isNull())
+        if (!GpuProgramManager::getSingleton().getByName(evt.mName))
         {
             compiler->addError(ScriptCompiler::CE_REFERENCETOANONEXISTINGOBJECT, node->file, node->line);
             return;
@@ -4444,8 +4444,8 @@ namespace Ogre{
             compiler->addError(ScriptCompiler::CE_UNSUPPORTEDBYRENDERSYSTEM, obj->file, obj->line, ", Shader name: " + obj->name);
             // Register the unsupported program so that materials that use it know that
             // it exists but is unsupported.
-            GpuProgramPtr unsupportedProg = GpuProgramManager::getSingleton().create(obj->name,
-                                                                                     compiler->getResourceGroup(), translateIDToGpuProgramType(obj->id), syntax).staticCast<GpuProgram>();
+            GpuProgramPtr unsupportedProg = std::static_pointer_cast<GpuProgram>( GpuProgramManager::getSingleton().create(obj->name,
+                                                                                     compiler->getResourceGroup(), translateIDToGpuProgramType(obj->id), syntax) );
             return;
         }
 
@@ -4479,7 +4479,7 @@ namespace Ogre{
             prog->setParameter(i->first, i->second);
 
         // Set up default parameters
-        if(prog->isSupported() && !params.isNull())
+        if(prog->isSupported() && params)
         {
             GpuProgramParametersSharedPtr ptr = prog->getDefaultParameters();
             GpuProgramTranslator::translateProgramParameters(compiler, ptr, static_cast<ObjectAbstractNode*>(params.get()));
@@ -4563,7 +4563,7 @@ namespace Ogre{
             prog->setParameter(i->first, i->second);
 
         // Set up default parameters
-        if(prog->isSupported() && !params.isNull())
+        if(prog->isSupported() && params)
         {
             GpuProgramParametersSharedPtr ptr = prog->getDefaultParameters();
             GpuProgramTranslator::translateProgramParameters(compiler, ptr, static_cast<ObjectAbstractNode*>(params.get()));
@@ -4678,7 +4678,7 @@ namespace Ogre{
             prog->setParameter(i->first, i->second);
 
         // Set up default parameters
-        if(prog->isSupported() && !params.isNull())
+        if(prog->isSupported() && params)
         {
             GpuProgramParametersSharedPtr ptr = prog->getDefaultParameters();
             GpuProgramTranslator::translateProgramParameters(compiler, ptr, static_cast<ObjectAbstractNode*>(params.get()));

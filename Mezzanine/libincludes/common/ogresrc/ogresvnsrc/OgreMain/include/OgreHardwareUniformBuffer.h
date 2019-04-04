@@ -63,10 +63,10 @@ namespace Ogre {
     };
 
     /** Shared pointer implementation used to share uniform buffers. */
-    class _OgreExport HardwareUniformBufferSharedPtr : public SharedPtr<HardwareUniformBuffer>
+    class _OgreExport HardwareUniformBufferSharedPtr : public std::shared_ptr<HardwareUniformBuffer>
     {
     public:
-        HardwareUniformBufferSharedPtr() : SharedPtr<HardwareUniformBuffer>() {}
+        HardwareUniformBufferSharedPtr() : std::shared_ptr<HardwareUniformBuffer>() {}
         explicit HardwareUniformBufferSharedPtr(HardwareUniformBuffer* buf);
     };
 

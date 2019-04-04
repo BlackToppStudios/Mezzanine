@@ -52,8 +52,8 @@ namespace Ogre {
           mTempVertexPending(false),
           mTempVertexBuffer(0), mTempVertexSize(TEMP_INITIAL_VERTEX_SIZE),
           mTempIndexBuffer(0), mTempIndexSize(TEMP_INITIAL_INDEX_SIZE),
-          mDeclSize(0), mEstVertexCount(0), mEstIndexCount(0), mTexCoordIndex(0), 
-          mRadius(0), mAnyIndexed(false), mEdgeList(0), 
+          mDeclSize(0), mEstVertexCount(0), mEstIndexCount(0), mTexCoordIndex(0),
+          mRadius(0), mAnyIndexed(false), mEdgeList(0),
           mUseIdentityProjection(false), mUseIdentityView(false), mKeepDeclarationOrder(false)
     {
     }
@@ -188,7 +188,7 @@ namespace Ogre {
         // Check that a valid material was provided
         MaterialPtr material = MaterialManager::getSingleton().getByName(materialName, groupName);
 
-        if( material.isNull() )
+        if( !material )
         {
             LogManager::getSingleton().logMessage("Can't assign material " + materialName +
                                                   " to the ManualObject " + mName + " because this "
@@ -197,7 +197,7 @@ namespace Ogre {
 
             material = MaterialManager::getSingleton().getByName("BaseWhite");
 
-            if (material.isNull())
+            if (!material)
             {
                 OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Can't assign default material "
                             "to the ManualObject " + mName + ". Did "
@@ -528,7 +528,7 @@ namespace Ogre {
     {
         if (!mCurrentSection)
             return 0;
-        
+
         RenderOperation* rop = mCurrentSection->getRenderOperation();
 
         // There's an unfinished vertex being defined, so include it in count
@@ -536,7 +536,7 @@ namespace Ogre {
             return rop->vertexData->vertexCount + 1;
         else
             return rop->vertexData->vertexCount;
-        
+
     }
     //-----------------------------------------------------------------------------
     size_t ManualObject::getCurrentIndexCount() const
@@ -698,7 +698,7 @@ namespace Ogre {
             bool vbufNeedsCreating = true;
             bool ibufNeedsCreating = rop->useIndexes;
             // Work out if we require 16 or 32-bit index buffers
-            HardwareIndexBuffer::IndexType indexType = mCurrentSection->get32BitIndices()?  
+            HardwareIndexBuffer::IndexType indexType = mCurrentSection->get32BitIndices()?
                 HardwareIndexBuffer::IT_32BIT : HardwareIndexBuffer::IT_16BIT;
             if (mCurrentUpdating)
             {
@@ -719,13 +719,13 @@ namespace Ogre {
             {
                 // Make the vertex buffer larger if estimated vertex count higher
                 // to allow for user-configured growth area
-                size_t vertexCount = std::max(rop->vertexData->vertexCount, 
+                size_t vertexCount = std::max(rop->vertexData->vertexCount,
                     mEstVertexCount);
                 vbuf =
                     HardwareBufferManager::getSingleton().createVertexBuffer(
                         mDeclSize,
                         vertexCount,
-                        mDynamic? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY : 
+                        mDynamic? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY :
                             HardwareBuffer::HBU_STATIC_WRITE_ONLY);
                 rop->vertexData->vertexBufferBinding->setBinding(0, vbuf);
             }
@@ -733,18 +733,18 @@ namespace Ogre {
             {
                 // Make the index buffer larger if estimated index count higher
                 // to allow for user-configured growth area
-                size_t indexCount = std::max(rop->indexData->indexCount, 
+                size_t indexCount = std::max(rop->indexData->indexCount,
                     mEstIndexCount);
                 rop->indexData->indexBuffer =
                     HardwareBufferManager::getSingleton().createIndexBuffer(
                         indexType,
                         indexCount,
-                        mDynamic? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY : 
+                        mDynamic? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY :
                             HardwareBuffer::HBU_STATIC_WRITE_ONLY);
             }
             // Write vertex data
             vbuf->writeData(
-                0, rop->vertexData->vertexCount * vbuf->getVertexSize(), 
+                0, rop->vertexData->vertexCount * vbuf->getVertexSize(),
                 mTempVertexBuffer, true);
             // Write index data
             if(rop->useIndexes)
@@ -753,8 +753,8 @@ namespace Ogre {
                 {
                     // direct copy from the mTempIndexBuffer
                     rop->indexData->indexBuffer->writeData(
-                        0, 
-                        rop->indexData->indexCount 
+                        0,
+                        rop->indexData->indexCount
                             * rop->indexData->indexBuffer->getIndexSize(),
                         mTempIndexBuffer, true);
                 }
@@ -858,7 +858,7 @@ namespace Ogre {
         {
             (*i)->setUseIdentityProjection(useIdentityProjection);
         }
-        
+
         // Save setting for future sections
         mUseIdentityProjection = useIdentityProjection;
     }
@@ -916,7 +916,7 @@ namespace Ogre {
             if (rop->vertexData->vertexCount == 0 ||
                 (rop->useIndexes && rop->indexData->indexCount == 0))
                 continue;
-            
+
             if (mRenderQueuePrioritySet)
             {
                 assert(mRenderQueueIDSet == true);
@@ -929,7 +929,7 @@ namespace Ogre {
         }
     }
     //-----------------------------------------------------------------------------
-    void ManualObject::visitRenderables(Renderable::Visitor* visitor, 
+    void ManualObject::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (SectionList::iterator i = mSectionList.begin(); i != mSectionList.end(); ++i)
@@ -951,7 +951,7 @@ namespace Ogre {
             {
                 RenderOperation* rop = (*i)->getRenderOperation();
                 // Only indexed triangle geometry supported for stencil shadows
-                if (rop->useIndexes && rop->indexData->indexCount != 0 && 
+                if (rop->useIndexes && rop->indexData->indexCount != 0 &&
                     (rop->operationType == RenderOperation::OT_TRIANGLE_FAN ||
                      rop->operationType == RenderOperation::OT_TRIANGLE_LIST ||
                      rop->operationType == RenderOperation::OT_TRIANGLE_STRIP))
@@ -980,7 +980,7 @@ namespace Ogre {
         HardwareIndexBufferSharedPtr* indexBuffer, size_t* indexBufferUsedSize,
         bool extrude, Real extrusionDistance, unsigned long flags)
     {
-        assert(indexBuffer && "Only external index buffers are supported right now");       
+        assert(indexBuffer && "Only external index buffers are supported right now");
 
         EdgeData* edgeList = getEdgeList();
         if (!edgeList)
@@ -1059,7 +1059,7 @@ namespace Ogre {
         updateEdgeListLightFacing(edgeList, lightPos);
 
         // Generate indexes and update renderables
-        generateShadowVolume(edgeList, *indexBuffer, *indexBufferUsedSize, 
+        generateShadowVolume(edgeList, *indexBuffer, *indexBufferUsedSize,
             light, mShadowRenderables, flags);
 
 
@@ -1097,11 +1097,11 @@ namespace Ogre {
     //-----------------------------------------------------------------------------
     const MaterialPtr& ManualObject::ManualObjectSection::getMaterial(void) const
     {
-        if (mMaterial.isNull())
+        if (!mMaterial)
         {
             // Load from default group. If user wants to use alternate groups,
             // they can define it and preload
-            mMaterial = MaterialManager::getSingleton().load(mMaterialName, mGroupName).staticCast<Material>();
+            mMaterial = std::static_pointer_cast<Material>( MaterialManager::getSingleton().load(mMaterialName, mGroupName) );
         }
         return mMaterial;
     }
@@ -1112,7 +1112,7 @@ namespace Ogre {
         {
             mMaterialName = name;
             mGroupName = groupName;
-            mMaterial.setNull();
+            mMaterial.reset();
         }
     }
     //-----------------------------------------------------------------------------
@@ -1161,7 +1161,7 @@ namespace Ogre {
         mPositionBuffer = vertexData->vertexBufferBinding->getBuffer(origPosBind);
         mRenderOp.vertexData->vertexBufferBinding->setBinding(0, mPositionBuffer);
         // Map in w-coord buffer (if present)
-        if(!vertexData->hardwareShadowVolWBuffer.isNull())
+        if(vertexData->hardwareShadowVolWBuffer)
         {
             mRenderOp.vertexData->vertexDeclaration->addElement(1,0,VET_FLOAT1, VES_TEXTURE_COORDINATES, 0);
             mWBuffer = vertexData->hardwareShadowVolWBuffer;

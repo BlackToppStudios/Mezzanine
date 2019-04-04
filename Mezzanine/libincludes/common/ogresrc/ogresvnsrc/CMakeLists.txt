@@ -51,6 +51,8 @@ endif ()
 
 project(OGRE)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+
 # Include necessary submodules
 set(CMAKE_MODULE_PATH
   "${OGRE_SOURCE_DIR}/CMake"

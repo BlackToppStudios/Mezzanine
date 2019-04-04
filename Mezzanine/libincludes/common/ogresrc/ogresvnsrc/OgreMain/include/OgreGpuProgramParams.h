@@ -1532,13 +1532,13 @@ namespace Ogre {
 
 
         /// Does this parameter set include named parameters?
-        bool hasNamedParameters() const { return !mNamedConstants.isNull(); }
+        bool hasNamedParameters() const { return mNamedConstants != nullptr; }
         /** Does this parameter set include logically indexed parameters?
             @note Not mutually exclusive with hasNamedParameters since some high-level
             programs still use logical indexes to set the parameters on the
             rendersystem.
         */
-        bool hasLogicalIndexedParameters() const { return !mFloatLogicalToPhysical.isNull(); }
+        bool hasLogicalIndexedParameters() const { return mFloatLogicalToPhysical != nullptr; }
 
         /** Sets a 4-element floating-point parameter to the program.
             @param index The logical constant index at which to place the parameter
@@ -2274,8 +2274,8 @@ namespace Ogre {
             @remarks
             Vertex and fragment programs often need parameters which are to do with the
             current render state, or particular values which may very well change over time,
-            and often between objects which are being rendered. This feature allows you 
-            to set up a certain number of predefined parameter mappings that are kept up to 
+            and often between objects which are being rendered. This feature allows you
+            to set up a certain number of predefined parameter mappings that are kept up to
             date for you.
             @note
             This named option will only work if you are using a parameters object created
@@ -2293,7 +2293,7 @@ namespace Ogre {
             from a high-level program (HighLevelGpuProgram).
             @param name The name of the parameter
             @param factor The amount by which to scale the time value
-        */  
+        */
         void setNamedConstantFromTime(const String& name, Real factor);
 
         /** Unbind an auto constant so that the constant is manually controlled again. */

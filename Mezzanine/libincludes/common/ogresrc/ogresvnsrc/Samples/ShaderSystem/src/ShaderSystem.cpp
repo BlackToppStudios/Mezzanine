@@ -1336,7 +1336,7 @@ void Sample_ShaderSystem::updateTargetObjInfo()
     {       
         MaterialPtr matMainEnt        = MaterialManager::getSingleton().getByName(targetObjMaterialName);
 
-        if (matMainEnt.isNull() == false)
+        if (matMainEnt)
         {
             Technique* shaderGeneratedTech = NULL;
 

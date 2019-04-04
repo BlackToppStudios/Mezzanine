@@ -345,7 +345,7 @@ namespace Ogre {
         program.
      */
     virtual void setComputeGroupDimensions(Vector3 dimensions) { mComputeGroupDimensions = dimensions; }
-    /** Returns the number of process groups dispatched by this compute 
+    /** Returns the number of process groups dispatched by this compute
         program.
      */
     virtual Vector3 getComputeGroupDimensions(void) const { return mComputeGroupDimensions; }
@@ -364,7 +364,7 @@ namespace Ogre {
 
     /** Returns true if default parameters have been set up.
      */
-    virtual bool hasDefaultParameters(void) const { return !mDefaultParams.isNull(); }
+    virtual bool hasDefaultParameters(void) const { return mDefaultParams != nullptr; }
 
     /** Returns whether a vertex program wants light and material states to be passed
         through fixed pipeline low level API rendering calls (default false, subclasses can override)

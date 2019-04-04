@@ -69,14 +69,14 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     const String& SubEntity::getMaterialName(void) const
     {
-        return !mMaterialPtr.isNull() ? mMaterialPtr->getName() : BLANKSTRING;
+        return mMaterialPtr ? mMaterialPtr->getName() : BLANKSTRING;
     }
     //-----------------------------------------------------------------------
     void SubEntity::setMaterialName( const String& name, const String& groupName /* = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME */)
     {
         MaterialPtr material = MaterialManager::getSingleton().getByName(name, groupName);
 
-        if( material.isNull() )
+        if( !material )
         {
             LogManager::getSingleton().logMessage("Can't assign material " + name +
                 " to SubEntity of " + mParentEntity->getName() + " because this "
@@ -85,7 +85,7 @@ namespace Ogre {
 
             material = MaterialManager::getSingleton().getByName("BaseWhite");
 
-            if (material.isNull())
+            if (!material)
             {
                 OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Can't assign default material "
                     "to SubEntity of " + mParentEntity->getName() + ". Did "
@@ -101,7 +101,7 @@ namespace Ogre {
     {
         mMaterialPtr = material;
         
-        if (mMaterialPtr.isNull())
+        if (!mMaterialPtr)
         {
             LogManager::getSingleton().logMessage("Can't assign material "  
                 " to SubEntity of " + mParentEntity->getName() + " because this "
@@ -110,7 +110,7 @@ namespace Ogre {
             
             mMaterialPtr = MaterialManager::getSingleton().getByName("BaseWhite");
             
-            if (mMaterialPtr.isNull())
+            if (!mMaterialPtr)
             {
                 OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Can't assign default material "
                     "to SubEntity of " + mParentEntity->getName() + ". Did "

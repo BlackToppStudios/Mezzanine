@@ -186,7 +186,7 @@ namespace OgreBites
         -----------------------------------------------------------------------------*/
         static Ogre::Real getCaptionWidth(const Ogre::DisplayString& caption, Ogre::TextAreaOverlayElement* area)
         {
-            Ogre::Font* font = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(area->getFontName()).getPointer();
+            Ogre::Font* font = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(area->getFontName()).get();
             Ogre::String current = DISPLAY_STRING_TO_STRING(caption);
             Ogre::Real lineWidth = 0;
 
@@ -211,7 +211,7 @@ namespace OgreBites
         -----------------------------------------------------------------------------*/
         static void fitCaptionToArea(const Ogre::DisplayString& caption, Ogre::TextAreaOverlayElement* area, Ogre::Real maxWidth)
         {
-            Ogre::Font* f = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(area->getFontName()).getPointer();
+            Ogre::Font* f = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(area->getFontName()).get();
             Ogre::String s = DISPLAY_STRING_TO_STRING(caption);
 
             size_t nl = s.find('\n');
@@ -457,7 +457,7 @@ namespace OgreBites
             mText = text;
             mLines.clear();
 
-            Ogre::Font* font = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(mTextArea->getFontName()).getPointer();
+            Ogre::Font* font = (Ogre::Font*)Ogre::FontManager::getSingleton().getByName(mTextArea->getFontName()).get();
             
             Ogre::String current = DISPLAY_STRING_TO_STRING(text);
             bool firstWord = true;

@@ -37,7 +37,7 @@ namespace Ogre
     //---------------------------------------------------------------------
     D3D11TextureManager::D3D11TextureManager( D3D11Device & device ) : TextureManager(), mDevice (device)
     {
-        if( mDevice.isNull())
+        if( !mDevice)
             OGRE_EXCEPT( Exception::ERR_INVALIDPARAMS, "Invalid Direct3DDevice passed", "D3D11TextureManager::D3D11TextureManager" );
         // register with group manager
         ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType, this);

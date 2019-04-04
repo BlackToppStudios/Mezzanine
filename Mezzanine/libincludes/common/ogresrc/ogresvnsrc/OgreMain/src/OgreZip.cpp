@@ -198,7 +198,7 @@ namespace Ogre {
     StringVectorPtr ZipArchive::list(bool recursive, bool dirs)
     {
         OGRE_LOCK_AUTO_MUTEX;
-        StringVectorPtr ret = StringVectorPtr(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        StringVectorPtr ret = StringVectorPtr(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), [](StringVector* Ptr){ OGRE_DELETE_T(Ptr,StringVector,MEMCATEGORY_GENERAL); });
 
         FileInfoList::iterator i, iend;
         iend = mFileList.end();
@@ -227,7 +227,7 @@ namespace Ogre {
     StringVectorPtr ZipArchive::find(const String& pattern, bool recursive, bool dirs)
     {
         OGRE_LOCK_AUTO_MUTEX;
-        StringVectorPtr ret = StringVectorPtr(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        StringVectorPtr ret = StringVectorPtr(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), [](StringVector* Ptr){ OGRE_DELETE_T(Ptr,StringVector,MEMCATEGORY_GENERAL); });
         // If pattern contains a directory name, do a full match
         bool full_match = (pattern.find ('/') != String::npos) ||
                           (pattern.find ('\\') != String::npos);
@@ -249,7 +249,7 @@ namespace Ogre {
         bool recursive, bool dirs)
     {
         OGRE_LOCK_AUTO_MUTEX;
-        FileInfoListPtr ret = FileInfoListPtr(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        FileInfoListPtr ret = FileInfoListPtr(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), [](FileInfoList* Ptr){ OGRE_DELETE_T(Ptr,FileInfoList,MEMCATEGORY_GENERAL); });
         // If pattern contains a directory name, do a full match
         bool full_match = (pattern.find ('/') != String::npos) ||
                           (pattern.find ('\\') != String::npos);

@@ -48,7 +48,7 @@ namespace Ogre {
 
     //-----------------------------------------------------------------------
     BillboardSet::BillboardSet() :
-        mBoundingRadius(0.0f), 
+        mBoundingRadius(0.0f),
         mOriginType( BBO_CENTER ),
         mRotationType( BBR_TEXCOORD ),
         mAllDefaultSize( true ),
@@ -82,7 +82,7 @@ namespace Ogre {
         unsigned int poolSize,
         bool externalData) :
         MovableObject(name),
-        mBoundingRadius(0.0f), 
+        mBoundingRadius(0.0f),
         mOriginType( BBO_CENTER ),
         mRotationType( BBR_TEXCOORD ),
         mAllDefaultSize( true ),
@@ -306,7 +306,7 @@ namespace Ogre {
 
         mMaterial = MaterialManager::getSingleton().getByName(name, groupName);
 
-        if (mMaterial.isNull())
+        if (!mMaterial)
             OGRE_EXCEPT( Exception::ERR_ITEM_NOT_FOUND, "Could not find material " + name,
                 "BillboardSet::setMaterialName" );
 
@@ -426,7 +426,7 @@ namespace Ogre {
 
             // Generate axes etc up-front if not oriented per-billboard
             if (mBillboardType != BBT_ORIENTED_SELF &&
-                mBillboardType != BBT_PERPENDICULAR_SELF && 
+                mBillboardType != BBT_PERPENDICULAR_SELF &&
                 !(mAccurateFacing && mBillboardType != BBT_PERPENDICULAR_COMMON))
             {
                 genBillboardAxes(&mCamX, &mCamY);
@@ -464,7 +464,7 @@ namespace Ogre {
             assert (numBillboards * billboardSize <= mMainBuf->getSizeInBytes());
 
             mLockPtr = static_cast<float*>(
-                mMainBuf->lock(0, numBillboards * billboardSize, 
+                mMainBuf->lock(0, numBillboards * billboardSize,
                 mMainBuf->getUsage() & HardwareBuffer::HBU_DYNAMIC ?
                 HardwareBuffer::HBL_DISCARD : HardwareBuffer::HBL_NORMAL,
                 mAutoUpdate ? Root::getSingleton().getFreqUpdatedBuffersUploadOption() : HardwareBuffer::HBU_DEFAULT) );
@@ -647,17 +647,17 @@ namespace Ogre {
     void BillboardSet::setMaterial( const MaterialPtr& material )
     {
         mMaterial = material;
-        
-        if (mMaterial.isNull())
+
+        if (!mMaterial)
         {
-            LogManager::getSingleton().logMessage("Can't assign material "  
+            LogManager::getSingleton().logMessage("Can't assign material "
                                                   " to BillboardSet of " + getName() + " because this "
                                                   "Material does not exist. Have you forgotten to define it in a "
                                                   ".material script?", LML_CRITICAL);
-            
+
             mMaterial = MaterialManager::getSingleton().getByName("BaseWhite");
-            
-            if (mMaterial.isNull())
+
+            if (!mMaterial)
             {
                 OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Can't assign default material "
                             "to BillboardSet " + getName() + ". Did "
@@ -665,9 +665,9 @@ namespace Ogre {
                             "BillboardSet::setMaterial");
             }
         }
-        
+
         mMaterialName = mMaterial->getName();
-        
+
         // Ensure new material loaded (will not load again if already loaded)
         mMaterial->load();
     }
@@ -814,7 +814,7 @@ namespace Ogre {
             HardwareBufferManager::getSingleton().createVertexBuffer(
                 decl->getVertexSize(0),
                 mVertexData->vertexCount,
-                mAutoUpdate ? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE : 
+                mAutoUpdate ? HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE :
                 HardwareBuffer::HBU_STATIC_WRITE_ONLY);
         // bind position and diffuses
         binding->setBinding(0, mMainBuf);
@@ -883,7 +883,7 @@ namespace Ogre {
             mIndexData = 0;
         }
 
-        mMainBuf.setNull();
+        mMainBuf.reset();
 
         mBuffersCreated = false;
 
@@ -1030,8 +1030,8 @@ namespace Ogre {
     void BillboardSet::genBillboardAxes(Vector3* pX, Vector3 *pY, const Billboard* bb)
     {
         // If we're using accurate facing, recalculate camera direction per BB
-        if (mAccurateFacing && 
-            (mBillboardType == BBT_POINT || 
+        if (mAccurateFacing &&
+            (mBillboardType == BBT_POINT ||
             mBillboardType == BBT_ORIENTED_COMMON ||
             mBillboardType == BBT_ORIENTED_SELF))
         {
@@ -1417,7 +1417,7 @@ namespace Ogre {
         return queryLights();
     }
     //---------------------------------------------------------------------
-    void BillboardSet::visitRenderables(Renderable::Visitor* visitor, 
+    void BillboardSet::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         // only one renderable

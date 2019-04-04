@@ -114,7 +114,7 @@ namespace Ogre
             }
 
             //Reaching here means material is supported, but malformed
-            OGRE_EXCEPT( Exception::ERR_INVALIDPARAMS, 
+            OGRE_EXCEPT( Exception::ERR_INVALIDPARAMS,
             "Material '" + mMaterial->getName() + "' is malformed for this instancing technique",
             "InstanceBatchShader::calculateMaxNumInstances");
         }
@@ -126,7 +126,7 @@ namespace Ogre
     //-----------------------------------------------------------------------
     void InstanceBatchShader::buildFrom( const SubMesh *baseSubMesh, const RenderOperation &renderOperation )
     {
-        if( mMeshReference->hasSkeleton() && !mMeshReference->getSkeleton().isNull() )
+        if( mMeshReference->hasSkeleton() && mMeshReference->getSkeleton() )
             mNumWorldMatrices = mInstancesPerBatch * baseSubMesh->blendIndexToBoneIndexMap.size();
         InstanceBatch::buildFrom( baseSubMesh, renderOperation );
     }
@@ -145,7 +145,7 @@ namespace Ogre
         HardwareBufferManager::getSingleton().destroyVertexDeclaration( thisVertexData->vertexDeclaration );
         thisVertexData->vertexDeclaration = baseVertexData->vertexDeclaration->clone();
 
-        if( mMeshReference->hasSkeleton() && !mMeshReference->getSkeleton().isNull() )
+        if( mMeshReference->hasSkeleton() && mMeshReference->getSkeleton() )
         {
             //Building hw skinned batches follow a different path
             setupHardwareSkinned( baseSubMesh, thisVertexData, baseVertexData );

@@ -442,7 +442,7 @@ Ogre::MeshPtr LodOutsideMarker::createConvexHullMesh(const String& meshName, con
     // Based on the wiki sample: http://www.ogre3d.org/tikiwiki/tiki-index.php?page=Generating+A+Mesh
 
     // Resource with given name should not exist!
-    assert(MeshManager::getSingleton().getByName(meshName).isNull());
+    assert(!MeshManager::getSingleton().getByName(meshName));
 
     generateHull(); // calculate mHull triangles.
 
@@ -490,23 +490,23 @@ Ogre::MeshPtr LodOutsideMarker::createConvexHullMesh(const String& meshName, con
     decl->addElement(0, offset, VET_FLOAT3, VES_POSITION);
     offset += VertexElement::getTypeSize(VET_FLOAT3);
 
-    /// Allocate vertex buffer of the requested number of vertices (vertexCount) 
+    /// Allocate vertex buffer of the requested number of vertices (vertexCount)
     /// and bytes per vertex (offset)
-    HardwareVertexBufferSharedPtr vbuf = 
+    HardwareVertexBufferSharedPtr vbuf =
         HardwareBufferManager::getSingleton().createVertexBuffer(
         offset, mesh->sharedVertexData->vertexCount, HardwareBuffer::HBU_STATIC_WRITE_ONLY);
     /// Upload the vertex data to the card
     vbuf->writeData(0, vbuf->getSizeInBytes(), &vertexBuffer[0], true);
 
     /// Set vertex buffer binding so buffer 0 is bound to our vertex buffer
-    VertexBufferBinding* bind = mesh->sharedVertexData->vertexBufferBinding; 
+    VertexBufferBinding* bind = mesh->sharedVertexData->vertexBufferBinding;
     bind->setBinding(0, vbuf);
 
-    /// Allocate index buffer of the requested number of vertices (ibufCount) 
+    /// Allocate index buffer of the requested number of vertices (ibufCount)
     HardwareIndexBufferSharedPtr ibuf = HardwareBufferManager::getSingleton().
         createIndexBuffer(
-        HardwareIndexBuffer::IT_16BIT, 
-        indexBuffer.size(), 
+        HardwareIndexBuffer::IT_16BIT,
+        indexBuffer.size(),
         HardwareBuffer::HBU_STATIC_WRITE_ONLY);
 
     /// Upload the index data to the card

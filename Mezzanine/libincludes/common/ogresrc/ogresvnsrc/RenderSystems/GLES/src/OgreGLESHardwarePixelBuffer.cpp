@@ -446,7 +446,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------------  
     void GLESTextureBuffer::blit(const HardwarePixelBufferSharedPtr &src, const Image::Box &srcBox, const Image::Box &dstBox)
     {
-        GLESTextureBuffer *srct = static_cast<GLESTextureBuffer *>(src.getPointer());
+        GLESTextureBuffer *srct = static_cast<GLESTextureBuffer *>(src.get());
         // TODO: Check for FBO support first
         // Destination texture must be 2D
         // Source texture must be 2D
@@ -687,7 +687,7 @@ namespace Ogre {
         if(GLESPixelUtil::getGLOriginFormat(src_orig.format) == 0)
         {
             // Convert to buffer internal format
-            buf.bind(OGRE_NEW MemoryDataStream(PixelUtil::getMemorySize(src_orig.getWidth(), src_orig.getHeight(), src_orig.getDepth(),
+            buf.reset(OGRE_NEW MemoryDataStream(PixelUtil::getMemorySize(src_orig.getWidth(), src_orig.getHeight(), src_orig.getDepth(),
                                                                    mFormat)));
             src = PixelBox(src_orig.getWidth(), src_orig.getHeight(), src_orig.getDepth(), mFormat, buf->getPtr());
             PixelUtil::bulkPixelConversion(src_orig, src);

@@ -399,8 +399,8 @@ namespace Ogre {
         if (use32bitIndexes)
         {
             uint32 *p32 = static_cast<uint32*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             buildIndexRemap(p32, id->indexCount, indexRemap);
             id->indexBuffer->unlock();
@@ -408,8 +408,8 @@ namespace Ogre {
         else
         {
             uint16 *p16 = static_cast<uint16*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             buildIndexRemap(p16, id->indexCount, indexRemap);
             id->indexBuffer->unlock();
@@ -486,8 +486,8 @@ namespace Ogre {
         {
             uint32 *pSrc32, *pDst32;
             pSrc32 = static_cast<uint32*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             pDst32 = static_cast<uint32*>(ibuf->lock(
                 HardwareBuffer::HBL_DISCARD));
@@ -499,8 +499,8 @@ namespace Ogre {
         {
             uint16 *pSrc16, *pDst16;
             pSrc16 = static_cast<uint16*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             pDst16 = static_cast<uint16*>(ibuf->lock(
                 HardwareBuffer::HBL_DISCARD));
@@ -570,7 +570,7 @@ namespace Ogre {
             ri != mRegionMap.end(); ++ri)
         {
             ri->second->build(stencilShadows);
-            
+
             // Set the visibility flags on these regions
             ri->second->setVisibilityFlags(mVisibilityFlags);
         }
@@ -695,7 +695,7 @@ namespace Ogre {
         of << "-------------------------------------------------" << std::endl;
     }
     //---------------------------------------------------------------------
-    void StaticGeometry::visitRenderables(Renderable::Visitor* visitor, 
+    void StaticGeometry::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (RegionMap::const_iterator ri = mRegionMap.begin();
@@ -868,7 +868,7 @@ namespace Ogre {
             mLodValue);
     }
     //---------------------------------------------------------------------
-    void StaticGeometry::Region::visitRenderables(Renderable::Visitor* visitor, 
+    void StaticGeometry::Region::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (LODBucketList::iterator i = mLodBucketList.begin(); i != mLodBucketList.end(); ++i)
@@ -913,7 +913,7 @@ namespace Ogre {
         // per-LOD shadow lists & edge data
         mLodBucketList[mCurrentLod]->updateShadowRenderables(
             shadowTechnique, lightPos, indexBuffer, extrude, extrusionDistance, flags);
-        
+
         EdgeData* edgeList = mLodBucketList[mCurrentLod]->getEdgeList();
         ShadowRenderableList& shadowRendList = mLodBucketList[mCurrentLod]->getShadowRenderableList();
 
@@ -978,7 +978,7 @@ namespace Ogre {
         mPositionBuffer = vertexData->vertexBufferBinding->getBuffer(origPosBind);
         mRenderOp.vertexData->vertexBufferBinding->setBinding(0, mPositionBuffer);
         // Map in w-coord buffer (if present)
-        if(!vertexData->hardwareShadowVolWBuffer.isNull())
+        if(vertexData->hardwareShadowVolWBuffer)
         {
             mRenderOp.vertexData->vertexDeclaration->addElement(1,0,VET_FLOAT1, VES_TEXTURE_COORDINATES, 0);
             mWBuffer = vertexData->hardwareShadowVolWBuffer;
@@ -1184,7 +1184,7 @@ namespace Ogre {
 
     }
     //---------------------------------------------------------------------
-    void StaticGeometry::LODBucket::visitRenderables(Renderable::Visitor* visitor, 
+    void StaticGeometry::LODBucket::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (MaterialBucketMap::const_iterator i = mMaterialBucketMap.begin();
@@ -1196,8 +1196,8 @@ namespace Ogre {
     }
     //---------------------------------------------------------------------
     void StaticGeometry::LODBucket::updateShadowRenderables(
-        ShadowTechnique shadowTechnique, const Vector4& lightPos, 
-        HardwareIndexBufferSharedPtr* indexBuffer, bool extrude, 
+        ShadowTechnique shadowTechnique, const Vector4& lightPos,
+        HardwareIndexBufferSharedPtr* indexBuffer, bool extrude,
         Real extrusionDistance, unsigned long flags /* = 0  */)
     {
         assert(indexBuffer && "Only external index buffers are supported right now");
@@ -1310,7 +1310,7 @@ namespace Ogre {
     {
         mTechnique = 0;
         mMaterial = MaterialManager::getSingleton().getByName(mMaterialName);
-        if (mMaterial.isNull())
+        if (!mMaterial)
         {
             OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND,
                 "Material '" + mMaterialName + "' not found.",
@@ -1402,7 +1402,7 @@ namespace Ogre {
 
     }
     //---------------------------------------------------------------------
-    void StaticGeometry::MaterialBucket::visitRenderables(Renderable::Visitor* visitor, 
+    void StaticGeometry::MaterialBucket::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (GeometryBucketList::const_iterator i = mGeometryBucketList.begin();
@@ -1604,7 +1604,7 @@ namespace Ogre {
                 // Lock source indexes
                 uint32* pSrc = static_cast<uint32*>(
                     srcIdxData->indexBuffer->lock(
-                        srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(), 
+                        srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(),
                         srcIdxData->indexCount * srcIdxData->indexBuffer->getIndexSize(),
                         HardwareBuffer::HBL_READ_ONLY));
 
@@ -1617,7 +1617,7 @@ namespace Ogre {
                 // Lock source indexes
                 uint16* pSrc = static_cast<uint16*>(
                     srcIdxData->indexBuffer->lock(
-                    srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(), 
+                    srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(),
                     srcIdxData->indexCount * srcIdxData->indexBuffer->getIndexSize(),
                     HardwareBuffer::HBL_READ_ONLY));
 

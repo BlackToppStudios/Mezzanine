@@ -52,12 +52,12 @@ THE SOFTWARE
 #define OGRE_LOCK_RW_MUTEX_READ(name) Poco::RWLock::ScopedLock OGRE_TOKEN_PASTE_EXTRA(ogrenameLock, __LINE__) (name, false)
 #define OGRE_LOCK_RW_MUTEX_WRITE(name) Poco::RWLock::ScopedLock OGRE_TOKEN_PASTE_EXTRA(ogrenameLock, __LINE__) (name, true)
 // Thread-local pointer
-#define OGRE_THREAD_POINTER(T, var) Poco::ThreadLocal<SharedPtr<T> > var
+#define OGRE_THREAD_POINTER(T, var) Poco::ThreadLocal<std::shared_ptr<T> > var
 #define OGRE_THREAD_POINTER_INIT(var) var()
-#define OGRE_THREAD_POINTER_VAR(T, var) Poco::ThreadLocal<SharedPtr<T> > var
+#define OGRE_THREAD_POINTER_VAR(T, var) Poco::ThreadLocal<std::shared_ptr<T> > var
 #define OGRE_THREAD_POINTER_GET(var) var.get().get()
-#define OGRE_THREAD_POINTER_SET(var, expr) do { var.get().setNull(); var.get().bind(expr); } while (0)
-#define OGRE_THREAD_POINTER_DELETE(var) var.get().setNull()
+#define OGRE_THREAD_POINTER_SET(var, expr) do { var.get().reset(); var.get().reset(expr); } while (0)
+#define OGRE_THREAD_POINTER_DELETE(var) var.get().reset()
 // Thread objects and related functions
 #define OGRE_THREAD_TYPE Poco::Thread
 #define OGRE_THREAD_CREATE(name, worker) Poco::Thread* name = OGRE_NEW_T(Poco::Thread, MEMCATEGORY_GENERAL)(); name->start(worker)

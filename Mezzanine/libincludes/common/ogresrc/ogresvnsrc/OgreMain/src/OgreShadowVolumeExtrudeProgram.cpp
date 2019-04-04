@@ -36,7 +36,7 @@ THE SOFTWARE.
 namespace Ogre {
 
     // c4 is the light position/direction in these
-    String ShadowVolumeExtrudeProgram::mPointArbvp1 = 
+    String ShadowVolumeExtrudeProgram::mPointArbvp1 =
         "!!ARBvp1.0\n"
         "PARAM c5 = { 0, 0, 0, 0 };\n"
         "TEMP R0;\n"
@@ -53,7 +53,7 @@ namespace Ogre {
         "DP4 result.position.w, c0[3], R0;\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_1_1 = 
+    String ShadowVolumeExtrudeProgram::mPointVs_1_1 =
         "vs_1_1\n"
         "def c5, 0, 0, 0, 0\n"
         "dcl_texcoord0 v7\n"
@@ -66,7 +66,7 @@ namespace Ogre {
         "dp4 oPos.z, c2, r0\n"
         "dp4 oPos.w, c3, r0\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_4_0 = 
+    String ShadowVolumeExtrudeProgram::mPointVs_4_0 =
         "// Point light shadow volume extrude\n"
         "struct VS_OUTPUT\n"
         "{\n"
@@ -90,7 +90,7 @@ namespace Ogre {
         "    return output;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_glsl = 
+    String ShadowVolumeExtrudeProgram::mPointVs_glsl =
         "#version 150\n"
         "// Point light shadow volume extrude\n"
         "in vec4 uv0;\n"
@@ -108,7 +108,7 @@ namespace Ogre {
         "    gl_Position = worldviewproj_matrix * newpos;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_glsles = 
+    String ShadowVolumeExtrudeProgram::mPointVs_glsles =
         "#version 100\n"
         "precision highp float;\n"
         "precision highp int;\n"
@@ -130,7 +130,7 @@ namespace Ogre {
         "    gl_Position = worldviewproj_matrix * newpos;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirArbvp1 = 
+    String ShadowVolumeExtrudeProgram::mDirArbvp1 =
         "!!ARBvp1.0\n"
         "TEMP R0;\n"
         "ATTRIB v24 = vertex.texcoord[0];\n"
@@ -145,7 +145,7 @@ namespace Ogre {
         "DP4 result.position.w, c0[3], R0;\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_1_1 = 
+    String ShadowVolumeExtrudeProgram::mDirVs_1_1 =
         "vs_1_1\n"
         "dcl_texcoord0 v7\n"
         "dcl_position v0\n"
@@ -156,7 +156,7 @@ namespace Ogre {
         "dp4 oPos.z, c2, r0\n"
         "dp4 oPos.w, c3, r0\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_4_0 = 
+    String ShadowVolumeExtrudeProgram::mDirVs_4_0 =
         "// Directional light extrude\n"
         "struct VS_OUTPUT\n"
         "{\n"
@@ -180,7 +180,7 @@ namespace Ogre {
         "    return output;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_glsl = 
+    String ShadowVolumeExtrudeProgram::mDirVs_glsl =
         "#version 150\n"
         "// Directional light extrude\n"
         "in vec4 uv0;\n"
@@ -197,7 +197,7 @@ namespace Ogre {
         "    gl_Position = worldviewproj_matrix * newpos;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_glsles = 
+    String ShadowVolumeExtrudeProgram::mDirVs_glsles =
         "#version 100\n"
         "precision highp float;\n"
         "precision highp int;\n"
@@ -219,7 +219,7 @@ namespace Ogre {
         "}\n";
 
 
-    String ShadowVolumeExtrudeProgram::mPointArbvp1Debug = 
+    String ShadowVolumeExtrudeProgram::mPointArbvp1Debug =
         "!!ARBvp1.0\n"
         "PARAM c5 = { 0, 0, 0, 0 };\n"
         "PARAM c6 = { 1, 1, 1, 1 };\n"
@@ -238,7 +238,7 @@ namespace Ogre {
         "MOV result.color.front.primary, c6.x;\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_1_1Debug = 
+    String ShadowVolumeExtrudeProgram::mPointVs_1_1Debug =
         "vs_1_1\n"
         "def c5, 0, 0, 0, 0\n"
         "def c6, 1, 1, 1, 1\n"
@@ -257,7 +257,7 @@ namespace Ogre {
     String ShadowVolumeExtrudeProgram::mPointVs_glslDebug = mPointVs_glsl;
     String ShadowVolumeExtrudeProgram::mPointVs_glslesDebug = mPointVs_glsles;
 
-    String ShadowVolumeExtrudeProgram::mDirArbvp1Debug = 
+    String ShadowVolumeExtrudeProgram::mDirArbvp1Debug =
         "!!ARBvp1.0\n"
         "PARAM c5 = { 1, 1, 1, 1};\n"
         "TEMP R0;\n"
@@ -274,7 +274,7 @@ namespace Ogre {
         "MOV result.color.front.primary, c5.x;"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_1_1Debug = 
+    String ShadowVolumeExtrudeProgram::mDirVs_1_1Debug =
         "vs_1_1\n"
         "def c5, 1, 1, 1, 1\n"
         "dcl_texcoord0 v7\n"
@@ -294,8 +294,8 @@ namespace Ogre {
 
     // c4 is the light position/direction in these
     // c5 is extrusion distance
-    String ShadowVolumeExtrudeProgram::mPointArbvp1Finite = 
-        "!!ARBvp1.0\n" 
+    String ShadowVolumeExtrudeProgram::mPointArbvp1Finite =
+        "!!ARBvp1.0\n"
         "PARAM c6 = { 1, 0, 0, 0 };\n"
         "TEMP R0, R1;\n"
         "ATTRIB v24 = vertex.texcoord[0];\n"
@@ -316,7 +316,7 @@ namespace Ogre {
         "DPH result.position.w, R0.xyzz, c0[3];\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_1_1Finite = 
+    String ShadowVolumeExtrudeProgram::mPointVs_1_1Finite =
         "vs_1_1\n"
         "def c6, 1, 0, 0, 0\n"
         "dcl_texcoord0 v7\n"
@@ -334,7 +334,7 @@ namespace Ogre {
         "dp4 oPos.z, c2, r0\n"
         "dp4 oPos.w, c3, r0\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_4_0Finite = 
+    String ShadowVolumeExtrudeProgram::mPointVs_4_0Finite =
         "// Point light shadow volume extrude - FINITE\n"
         "struct VS_OUTPUT\n"
         "{\n"
@@ -363,7 +363,7 @@ namespace Ogre {
         "\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_glslFinite = 
+    String ShadowVolumeExtrudeProgram::mPointVs_glslFinite =
         "#version 150\n"
         "// Point light shadow volume extrude - FINITE\n"
         "in vec4 uv0;\n"
@@ -384,7 +384,7 @@ namespace Ogre {
         "    gl_Position = worldviewproj_matrix * newpos;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_glslesFinite = 
+    String ShadowVolumeExtrudeProgram::mPointVs_glslesFinite =
         "#version 100\n"
         "precision highp float;\n"
         "precision highp int;\n"
@@ -409,7 +409,7 @@ namespace Ogre {
         "    gl_Position = worldviewproj_matrix * newpos;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirArbvp1Finite = 
+    String ShadowVolumeExtrudeProgram::mDirArbvp1Finite =
         "!!ARBvp1.0\n"
         "PARAM c6 = { 1, 0, 0, 0 };\n"
         "TEMP R0, R1;\n"
@@ -430,7 +430,7 @@ namespace Ogre {
         "DPH result.position.w, R0.xyzz, c0[3];\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_1_1Finite = 
+    String ShadowVolumeExtrudeProgram::mDirVs_1_1Finite =
         "vs_1_1\n"
         "def c6, 1, 0, 0, 0\n"
         "dcl_texcoord0 v7\n"
@@ -447,7 +447,7 @@ namespace Ogre {
         "dp4 oPos.z, c2, r0\n"
         "dp4 oPos.w, c3, r0\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_4_0Finite = 
+    String ShadowVolumeExtrudeProgram::mDirVs_4_0Finite =
         "// Directional light extrude - FINITE\n"
         "struct VS_OUTPUT\n"
         "{\n"
@@ -476,7 +476,7 @@ namespace Ogre {
         "\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_glslFinite = 
+    String ShadowVolumeExtrudeProgram::mDirVs_glslFinite =
         "#version 150\n"
         "// Directional light extrude - FINITE\n"
         "in vec4 uv0;\n"
@@ -498,7 +498,7 @@ namespace Ogre {
         "\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_glslesFinite = 
+    String ShadowVolumeExtrudeProgram::mDirVs_glslesFinite =
         "#version 100\n"
         "precision highp float;\n"
         "precision highp int;\n"
@@ -524,7 +524,7 @@ namespace Ogre {
         "\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mPointArbvp1FiniteDebug = 
+    String ShadowVolumeExtrudeProgram::mPointArbvp1FiniteDebug =
         "!!ARBvp1.0\n"
         "PARAM c6 = { 1, 0, 0, 0 };\n"
         "TEMP R0, R1;\n"
@@ -547,7 +547,7 @@ namespace Ogre {
         "DPH result.position.w, R0.xyzz, c0[3];\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mPointVs_1_1FiniteDebug = 
+    String ShadowVolumeExtrudeProgram::mPointVs_1_1FiniteDebug =
         "vs_1_1\n"
         "def c6, 1, 0, 0, 0\n"
         "dcl_texcoord0 v7\n"
@@ -570,7 +570,7 @@ namespace Ogre {
     String ShadowVolumeExtrudeProgram::mPointVs_glslFiniteDebug = mPointVs_glslFinite;
     String ShadowVolumeExtrudeProgram::mPointVs_glslesFiniteDebug = mPointVs_glslesFinite;
 
-    String ShadowVolumeExtrudeProgram::mDirArbvp1FiniteDebug = 
+    String ShadowVolumeExtrudeProgram::mDirArbvp1FiniteDebug =
         "!!ARBvp1.0\n"
         "PARAM c6 = { 1, 0, 0, 0 };\n"
         "TEMP R0, R1;\n"
@@ -592,7 +592,7 @@ namespace Ogre {
         "DPH result.position.w, R0.xyzz, c0[3];\n"
         "END\n";
 
-    String ShadowVolumeExtrudeProgram::mDirVs_1_1FiniteDebug = 
+    String ShadowVolumeExtrudeProgram::mDirVs_1_1FiniteDebug =
         "vs_1_1\n"
         "def c6, 1, 0, 0, 0\n"
         "dcl_texcoord0 v7\n"
@@ -616,7 +616,7 @@ namespace Ogre {
     String ShadowVolumeExtrudeProgram::mDirVs_glslesFiniteDebug = mDirVs_glslesFinite;
 
 
-    String ShadowVolumeExtrudeProgram::mGeneralFs_4_0 = 
+    String ShadowVolumeExtrudeProgram::mGeneralFs_4_0 =
         "struct VS_OUTPUT\n"
         "{\n"
         "\tfloat4 Pos : SV_POSITION;\n"
@@ -627,7 +627,7 @@ namespace Ogre {
         "    return finalColor;\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mGeneralFs_glsl = 
+    String ShadowVolumeExtrudeProgram::mGeneralFs_glsl =
         "#version 150\n"
         "out vec4 fragColour;\n"
         "void main()\n"
@@ -635,7 +635,7 @@ namespace Ogre {
         "    fragColour = vec4(1.0);\n"
         "}\n";
 
-    String ShadowVolumeExtrudeProgram::mGeneralFs_glsles = 
+    String ShadowVolumeExtrudeProgram::mGeneralFs_glsles =
         "#version 100\n"
         "precision highp float;\n"
         "precision highp int;\n"
@@ -648,7 +648,7 @@ namespace Ogre {
 
 
 
-	 String ShadowVolumeExtrudeProgram::mModulate_Fs_hlsl_4_0 = 
+	 String ShadowVolumeExtrudeProgram::mModulate_Fs_hlsl_4_0 =
 		"Texture2D RT : register(t0);\
 		SamplerState RTState : register(s0);\
 		uniform float4 shadowColor;\
@@ -724,7 +724,7 @@ static const String glsles_prefix = "precision highp float;\
 
 
 
-    const String ShadowVolumeExtrudeProgram::programNames[OGRE_NUM_SHADOW_EXTRUDER_PROGRAMS] = 
+    const String ShadowVolumeExtrudeProgram::programNames[OGRE_NUM_SHADOW_EXTRUDER_PROGRAMS] =
     {
 		"Ogre/ShadowExtrudePointLight",
         "Ogre/ShadowExtrudePointLightDebug",
@@ -858,9 +858,9 @@ static const String glsles_prefix = "precision highp float;\
 			Light::LightTypes vertexProgramLightTypes[OGRE_NUM_SHADOW_EXTRUDER_PROGRAMS] =
 			{
 				Light::LT_POINT, Light::LT_POINT,
-				Light::LT_DIRECTIONAL, Light::LT_DIRECTIONAL, 
-				Light::LT_POINT, Light::LT_POINT, 
-				Light::LT_DIRECTIONAL, Light::LT_DIRECTIONAL 
+				Light::LT_DIRECTIONAL, Light::LT_DIRECTIONAL,
+				Light::LT_POINT, Light::LT_POINT,
+				Light::LT_DIRECTIONAL, Light::LT_DIRECTIONAL
 			};
 
 			// load hardware extrusion programs for point & dir lights
@@ -898,8 +898,7 @@ static const String glsles_prefix = "precision highp float;\
 			for (unsigned short v = 0; v < OGRE_NUM_SHADOW_EXTRUDER_PROGRAMS; ++v)
 			{
 				// Create debug extruders
-				if (GpuProgramManager::getSingleton().getByName(
-					programNames[v]).isNull())
+				if (!GpuProgramManager::getSingleton().getByName(programNames[v]))
 				{
 					if (syntax == "vs_4_0")
 					{
@@ -1024,7 +1023,7 @@ static const String glsles_prefix = "precision highp float;\
                 {
                     return debug ? getDirectionalLightExtruderArbvp1Debug() : getDirectionalLightExtruderArbvp1();
                 }
-            } 
+            }
             else if (syntax == "vs_1_1")
             {
                 if (finite)
@@ -1071,9 +1070,9 @@ static const String glsles_prefix = "precision highp float;\
             }
             else
             {
-                OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, 
+                OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR,
                     "Vertex programs are supposedly supported, but neither "
-                    "arbvp1, glsl, glsles, vs_1_1 nor vs_4_0 syntaxes are present.", 
+                    "arbvp1, glsl, glsles, vs_1_1 nor vs_4_0 syntaxes are present.",
                     "SceneManager::getProgramSource");
             }
         }
@@ -1136,9 +1135,9 @@ static const String glsles_prefix = "precision highp float;\
 			}
             else
             {
-                OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, 
+                OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR,
                     "Vertex programs are supposedly supported, but neither "
-                    "arbvp1, glsl, glsles, vs_1_1 nor vs_4_0 syntaxes are present.", 
+                    "arbvp1, glsl, glsles, vs_1_1 nor vs_4_0 syntaxes are present.",
                     "SceneManager::getProgramSource");
             }
         }

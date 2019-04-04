@@ -69,7 +69,7 @@ namespace Ogre {
             */
             virtual String dataType() const { return "CodecData"; }
         };
-        typedef SharedPtr<CodecData> CodecDataPtr;
+        typedef std::shared_ptr<CodecData> CodecDataPtr;
 
         typedef ConstMapIterator<CodecList> CodecIterator;
 

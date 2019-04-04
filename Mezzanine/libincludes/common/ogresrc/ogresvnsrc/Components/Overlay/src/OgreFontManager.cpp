@@ -80,14 +80,14 @@ namespace Ogre
     //-----------------------------------------------------------------------
     FontPtr FontManager::getByName(const String& name, const String& groupName)
     {
-        return getResourceByName(name, groupName).staticCast<Font>();
+        return std::static_pointer_cast<Font> getResourceByName(name, groupName) ;
     }
     //---------------------------------------------------------------------
     FontPtr FontManager::create (const String& name, const String& group,
                                     bool isManual, ManualResourceLoader* loader,
                                     const NameValuePairList* createParams)
     {
-        return createResource(name,group,isManual,loader,createParams).staticCast<Font>();
+        return std::static_pointer_cast<Font> createResource(name,group,isManual,loader,createParams) ;
     }
     //---------------------------------------------------------------------
     void FontManager::parseScript(DataStreamPtr& stream, const String& groupName)
@@ -105,7 +105,7 @@ namespace Ogre
             }
             else
             {
-                if (pFont.isNull())
+                if (!pFont)
                 {
                     // No current font
                     // So first valid data should be font name
@@ -125,7 +125,7 @@ namespace Ogre
                     if (line == "}")
                     {
                         // Finished 
-                        pFont.setNull();
+                        pFont.reset();
                         // NB font isn't loaded until required
                     }
                     else

@@ -34,7 +34,7 @@ THE SOFTWARE.
 
 class TestBatch;
 typedef std::set<TestBatch,std::greater<TestBatch> > TestBatchSet;
-typedef Ogre::SharedPtr<TestBatchSet> TestBatchSetPtr;
+typedef std::shared_ptr<TestBatchSet> TestBatchSetPtr;
 
 /** Represents the output from running a batch of tests
  *        (i.e. a single run of the TestContext) */
@@ -129,7 +129,7 @@ public:
         ComparisonResultVectorPtr out(OGRE_NEW_T(ComparisonResultVector, Ogre::MEMCATEGORY_GENERAL)(), Ogre::SPFM_DELETE_T);
         if (!canCompareWith(other))
         {
-            out.setNull();
+            out.reset();
         }
         else
         {

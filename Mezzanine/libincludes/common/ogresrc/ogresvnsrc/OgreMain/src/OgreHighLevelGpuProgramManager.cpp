@@ -56,8 +56,8 @@ namespace Ogre {
             // do nothing
         }
     public:
-        NullProgram(ResourceManager* creator, 
-            const String& name, ResourceHandle handle, const String& group, 
+        NullProgram(ResourceManager* creator,
+            const String& name, ResourceHandle handle, const String& group,
             bool isManual, ManualResourceLoader* loader)
             : HighLevelGpuProgram(creator, name, handle, group, isManual, loader){}
         ~NullProgram() {}
@@ -82,11 +82,11 @@ namespace Ogre {
         NullProgramFactory() {}
         ~NullProgramFactory() {}
         /// Get the name of the language this factory creates programs for
-        const String& getLanguage(void) const 
-        { 
+        const String& getLanguage(void) const
+        {
             return sNullLang;
         }
-        HighLevelGpuProgram* create(ResourceManager* creator, 
+        HighLevelGpuProgram* create(ResourceManager* creator,
             const String& name, ResourceHandle handle,
             const String& group, bool isManual, ManualResourceLoader* loader)
         {
@@ -99,15 +99,15 @@ namespace Ogre {
 
     };
     //-----------------------------------------------------------------------
-    template<> HighLevelGpuProgramManager* 
+    template<> HighLevelGpuProgramManager*
     Singleton<HighLevelGpuProgramManager>::msSingleton = 0;
     HighLevelGpuProgramManager* HighLevelGpuProgramManager::getSingletonPtr(void)
     {
         return msSingleton;
     }
     HighLevelGpuProgramManager& HighLevelGpuProgramManager::getSingleton(void)
-    {  
-        assert( msSingleton );  return ( *msSingleton );  
+    {
+        assert( msSingleton );  return ( *msSingleton );
     }
     //-----------------------------------------------------------------------
     HighLevelGpuProgramManager::HighLevelGpuProgramManager()
@@ -117,7 +117,7 @@ namespace Ogre {
         // Resource type
         mResourceType = "HighLevelGpuProgram";
 
-        ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType, this);    
+        ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType, this);
 
         mNullFactory = OGRE_NEW NullProgramFactory();
         addFactory(mNullFactory);
@@ -129,7 +129,7 @@ namespace Ogre {
     {
         OGRE_DELETE mUnifiedFactory;
         OGRE_DELETE mNullFactory;
-        ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);    
+        ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);
     }
     //---------------------------------------------------------------------------
     void HighLevelGpuProgramManager::addFactory(HighLevelGpuProgramFactory* factory)
@@ -169,7 +169,7 @@ namespace Ogre {
 
     }
     //---------------------------------------------------------------------------
-    Resource* HighLevelGpuProgramManager::createImpl(const String& name, ResourceHandle handle, 
+    Resource* HighLevelGpuProgramManager::createImpl(const String& name, ResourceHandle handle,
         const String& group, bool isManual, ManualResourceLoader* loader,
         const NameValuePairList* params)
     {
@@ -177,29 +177,29 @@ namespace Ogre {
 
         if (!params || (paramIt = params->find("language")) == params->end())
         {
-            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
                 "You must supply a 'language' parameter",
                 "HighLevelGpuProgramManager::createImpl");
         }
 
-        return getFactory(paramIt->second)->create(this, name, getNextHandle(), 
+        return getFactory(paramIt->second)->create(this, name, getNextHandle(),
             group, isManual, loader);
     }
     //-----------------------------------------------------------------------
     HighLevelGpuProgramPtr HighLevelGpuProgramManager::getByName(const String& name, const String& groupName)
     {
-        return getResourceByName(name, groupName).staticCast<HighLevelGpuProgram>();
+        return std::static_pointer_cast<HighLevelGpuProgram>( getResourceByName(name, groupName) );
     }
     //---------------------------------------------------------------------------
     HighLevelGpuProgramPtr HighLevelGpuProgramManager::createProgram(
-            const String& name, const String& groupName, 
+            const String& name, const String& groupName,
             const String& language, GpuProgramType gptype)
     {
         ResourcePtr ret = ResourcePtr(
-            getFactory(language)->create(this, name, getNextHandle(), 
+            getFactory(language)->create(this, name, getNextHandle(),
             groupName, false, 0));
 
-        HighLevelGpuProgramPtr prg = ret.staticCast<HighLevelGpuProgram>();
+        HighLevelGpuProgramPtr prg = std::static_pointer_cast<HighLevelGpuProgram>( ret );
         prg->setType(gptype);
         prg->setSyntaxCode(language);
 
@@ -209,7 +209,7 @@ namespace Ogre {
         return prg;
     }
     //---------------------------------------------------------------------------
-    HighLevelGpuProgramFactory::~HighLevelGpuProgramFactory() 
+    HighLevelGpuProgramFactory::~HighLevelGpuProgramFactory()
     {
     }
 }

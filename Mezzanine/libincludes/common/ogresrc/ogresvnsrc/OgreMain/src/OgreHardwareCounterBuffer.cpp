@@ -59,7 +59,7 @@ namespace Ogre {
 
     //-----------------------------------------------------------------------------
     HardwareCounterBufferSharedPtr::HardwareCounterBufferSharedPtr(HardwareCounterBuffer* buf)
-        : SharedPtr<HardwareCounterBuffer>(buf)
+        : std::shared_ptr<HardwareCounterBuffer>(buf)
     {
 
     }

@@ -83,7 +83,7 @@ namespace Ogre {
             void _createSurfaceList();
         
             /// Used to hold images between calls to prepare and load.
-            typedef SharedPtr<std::vector<Image> > LoadedImages;
+            typedef std::shared_ptr<std::vector<Image> > LoadedImages;
             
             /** Vector of images that were pulled from disk by
              prepareLoad but have yet to be pushed into texture memory

@@ -153,7 +153,7 @@ namespace Ogre {
     */
     //-----------------------------------------------------------------------------
     HardwareUniformBufferSharedPtr::HardwareUniformBufferSharedPtr(HardwareUniformBuffer* buf)
-        : SharedPtr<HardwareUniformBuffer>(buf)
+        : std::shared_ptr<HardwareUniformBuffer>(buf)
     {
 
     }

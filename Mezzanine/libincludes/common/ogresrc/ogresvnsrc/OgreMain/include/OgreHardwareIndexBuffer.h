@@ -76,10 +76,10 @@ namespace Ogre {
 
 
     /** Shared pointer implementation used to share index buffers. */
-    class _OgreExport HardwareIndexBufferSharedPtr : public SharedPtr<HardwareIndexBuffer>
+    class _OgreExport HardwareIndexBufferSharedPtr : public std::shared_ptr<HardwareIndexBuffer>
     {
     public:
-        HardwareIndexBufferSharedPtr() : SharedPtr<HardwareIndexBuffer>() {}
+        HardwareIndexBufferSharedPtr() : std::shared_ptr<HardwareIndexBuffer>() {}
         explicit HardwareIndexBufferSharedPtr(HardwareIndexBuffer* buf);
     };
     

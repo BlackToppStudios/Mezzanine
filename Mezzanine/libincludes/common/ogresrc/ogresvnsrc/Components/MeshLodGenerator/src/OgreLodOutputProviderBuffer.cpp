@@ -82,7 +82,7 @@ namespace Ogre
             curLod.indexStart = 0;
             curLod.indexSize = data->mIndexBufferInfoList[i].indexSize;
             curLod.indexBufferSize = 0; // It means same as index count
-            curLod.indexBuffer = Ogre::SharedPtr<unsigned char>(new unsigned char[curLod.indexCount * curLod.indexSize]);
+            curLod.indexBuffer = std::shared_ptr<unsigned char>(new unsigned char[curLod.indexCount * curLod.indexSize]);
             // buf is an union, so pint=pshort
             data->mIndexBufferInfoList[i].buf.pshort = (unsigned short*) curLod.indexBuffer.get();
 

@@ -60,9 +60,9 @@ namespace Ogre
 
     /** The ConcreteNode is the struct that holds an un-conditioned sub-tree of parsed input */
     struct ConcreteNode;
-    typedef SharedPtr<ConcreteNode> ConcreteNodePtr;
+    typedef std::shared_ptr<ConcreteNode> ConcreteNodePtr;
     typedef list<ConcreteNodePtr>::type ConcreteNodeList;
-    typedef SharedPtr<ConcreteNodeList> ConcreteNodeListPtr;
+    typedef std::shared_ptr<ConcreteNodeList> ConcreteNodeListPtr;
     struct ConcreteNode : public ScriptCompilerAlloc
     {
         String token, file;
@@ -84,9 +84,9 @@ namespace Ogre
         ANT_VARIABLE_ACCESS
     };
     class AbstractNode;
-    typedef SharedPtr<AbstractNode> AbstractNodePtr;
+    typedef std::shared_ptr<AbstractNode> AbstractNodePtr;
     typedef list<AbstractNodePtr>::type AbstractNodeList;
-    typedef SharedPtr<AbstractNodeList> AbstractNodeListPtr;
+    typedef std::shared_ptr<AbstractNodeList> AbstractNodeListPtr;
 
     class _OgreExport AbstractNode : public AbstractNodeAlloc
     {
@@ -198,7 +198,7 @@ namespace Ogre
             int line;
             uint32 code;
         };
-        typedef SharedPtr<Error> ErrorPtr;
+        typedef std::shared_ptr<Error> ErrorPtr;
         typedef list<ErrorPtr>::type ErrorList;
 
         // These are the built-in error codes

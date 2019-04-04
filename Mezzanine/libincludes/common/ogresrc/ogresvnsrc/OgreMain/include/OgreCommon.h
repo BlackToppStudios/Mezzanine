@@ -604,7 +604,7 @@ namespace Ogre {
               {
                   *this = rhs;
               }
-              else if (!rhs.isNull())
+              else if (rhs)
               {
                   left = std::min(left, rhs.left);
                   right = std::max(right, rhs.right);
@@ -618,7 +618,7 @@ namespace Ogre {
           TRect intersect(const TRect& rhs) const
           {
               TRect ret;
-              if (isNull() || rhs.isNull())
+              if (isNull() || !rhs)
               {
                   // empty
                   return ret;

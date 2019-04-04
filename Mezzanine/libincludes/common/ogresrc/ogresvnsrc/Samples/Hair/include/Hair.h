@@ -101,28 +101,28 @@ public:
         {
             mRenderMStrands = !mRenderMStrands;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_RenderMStrands", mRenderMStrands );
         }
         if (box->getName() == "RenderSStrands")
         {
             mRenderSStrands = !mRenderSStrands;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_RenderSStrands", mRenderSStrands );
         }
         if (box->getName() == "HWTessellation")
         {
             mHWTessellation = !mHWTessellation;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_HWTessellation", mHWTessellation );
         }
         if (box->getName() == "DynamicLOD" && mHWTessellation)
         {
             mDynamicLOD = !mDynamicLOD;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_DynamicLOD", mDynamicLOD );
         }
         if (box->getName() == "WindForce")
@@ -156,24 +156,24 @@ public:
         if (slider->getName() == "tessellationLOD")
             if (!mDynamicLOD && mHWTessellation)
             {
-                MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+                MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
                 lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_ManualLOD", slider->getValue() );
             }
         if (slider->getName() == "HairWidth")
             if (!mDynamicLOD && mHWTessellation)
             {
-                MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+                MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
                 lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_HairWidth", slider->getValue() );
             }
         if (slider->getName()=="LODRate")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_LODRate", slider->getValue() );
         }
         if (slider->getName()=="WindStrength")
             if (mAddWindForce)
             {
-                MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Hair" ).staticCast<Material>();
+                MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Hair" ) );
                 lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_WindStrength", slider->getValue() );
             }
     }

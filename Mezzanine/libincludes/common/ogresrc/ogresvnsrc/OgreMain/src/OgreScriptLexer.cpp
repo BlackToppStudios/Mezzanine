@@ -46,7 +46,7 @@ namespace Ogre{
 
         String lexeme;
         uint32 line = 1, state = READY, lastQuote = 0;
-        ScriptTokenListPtr tokens(OGRE_NEW_T(ScriptTokenList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        ScriptTokenListPtr tokens(OGRE_NEW_T(ScriptTokenList, MEMCATEGORY_GENERAL)(), [](ScriptTokenList* Ptr){ OGRE_DELETE_T(Ptr,ScriptTokenList,MEMCATEGORY_GENERAL); });
 
         // Iterate over the input
         String::const_iterator i = str.begin(), end = str.end();
@@ -235,7 +235,7 @@ namespace Ogre{
         const char openBracket = '{', closeBracket = '}', colon = ':',
             quote = '\"', var = '$';
 
-        ScriptTokenPtr token(OGRE_NEW_T(ScriptToken, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        ScriptTokenPtr token(OGRE_NEW_T(ScriptToken, MEMCATEGORY_GENERAL)(), [](ScriptToken* Ptr){ OGRE_DELETE_T(Ptr,ScriptToken,MEMCATEGORY_GENERAL); });
         token->lexeme = lexeme;
         token->line = line;
         token->file = source;

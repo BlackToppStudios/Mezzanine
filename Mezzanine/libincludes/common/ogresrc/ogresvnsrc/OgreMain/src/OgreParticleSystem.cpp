@@ -76,7 +76,7 @@ namespace Ogre {
 
     };
     //-----------------------------------------------------------------------
-    ParticleSystem::ParticleSystem() 
+    ParticleSystem::ParticleSystem()
       : mAABB(),
         mBoundingRadius(1.0f),
         mBoundsAutoUpdate(true),
@@ -129,7 +129,7 @@ namespace Ogre {
         mTimeController(0),
         mEmittedEmitterPoolInitialised(false),
         mIsEmitting(true),
-        mRenderer(0), 
+        mRenderer(0),
         mCullIndividual(false),
         mPoolSize(0),
         mEmittedEmitterPoolSize(0)
@@ -178,7 +178,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     ParticleEmitter* ParticleSystem::addEmitter(const String& emitterType)
     {
-        ParticleEmitter* em = 
+        ParticleEmitter* em =
             ParticleSystemManager::getSingleton()._createEmitter(emitterType, this);
         mEmitters.push_back(em);
         return em;
@@ -227,7 +227,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     ParticleAffector* ParticleSystem::addAffector(const String& affectorType)
     {
-        ParticleAffector* af = 
+        ParticleAffector* af =
             ParticleSystemManager::getSingleton()._createAffector(affectorType, this);
         mAffectors.push_back(af);
         return af;
@@ -327,7 +327,7 @@ namespace Ogre {
         {
             // Will allocate particles on demand
             mPoolSize = size;
-            
+
         }
     }
     //-----------------------------------------------------------------------
@@ -399,7 +399,7 @@ namespace Ogre {
         // Initialise emitted emitters list if not done already
         initialiseEmittedEmitters();
 
-        Real iterationInterval = mIterationIntervalSet ? 
+        Real iterationInterval = mIterationIntervalSet ?
             mIterationInterval : msDefaultIterationInterval;
         if (iterationInterval > 0)
         {
@@ -436,7 +436,7 @@ namespace Ogre {
         }
 
         if (!mBoundsAutoUpdate && mBoundsUpdateTime > 0.0f)
-            mBoundsUpdateTime -= timeElapsed; // count down 
+            mBoundsUpdateTime -= timeElapsed; // count down
         _updateBounds();
 
     }
@@ -549,7 +549,7 @@ namespace Ogre {
         // emitted in a single frame
         for (itEmit = mEmitters.begin(), i = 0; itEmit != iEmitEnd; ++itEmit, ++i)
         {
-            // Trigger the emitters, but exclude the emitters that are already in the emitted emitters list; 
+            // Trigger the emitters, but exclude the emitters that are already in the emitted emitters list;
             // they are handled in a separate loop
             if (!(*itEmit)->isEmitted())
                 _executeTriggerEmitters (*itEmit, static_cast<unsigned>(requested[i]), timeElapsed);
@@ -567,7 +567,7 @@ namespace Ogre {
 
 
         // avoid any divide by zero conditions
-        if(!requested) 
+        if(!requested)
             return;
 
         Real timeInc = timeElapsed / requested;
@@ -575,7 +575,7 @@ namespace Ogre {
         for (unsigned int j = 0; j < requested; ++j)
         {
             // Create a new particle & init using emitter
-            // The particle is a visual particle if the emit_emitter property of the emitter isn't set 
+            // The particle is a visual particle if the emit_emitter property of the emitter isn't set
             Particle* p = 0;
             String  emitterName = emitter->getEmittedEmitter();
             if (emitterName == BLANKSTRING)
@@ -614,7 +614,7 @@ namespace Ogre {
             if (p->mParticleType == Particle::Emitter)
             {
                 // If the particle is an emitter, the position on the emitter side must also be initialised
-                // Note, that position of the emitter becomes a position in worldspace if mLocalSpace is set 
+                // Note, that position of the emitter becomes a position in worldspace if mLocalSpace is set
                 // to false (will this become a problem?)
                 ParticleEmitter* pParticleEmitter = static_cast<ParticleEmitter*>(p);
                 pParticleEmitter->setPosition(p->mPosition);
@@ -640,7 +640,7 @@ namespace Ogre {
             if (pParticle->mParticleType == Particle::Emitter)
             {
                 // If it is an emitter, the emitter position must also be updated
-                // Note, that position of the emitter becomes a position in worldspace if mLocalSpace is set 
+                // Note, that position of the emitter becomes a position in worldspace if mLocalSpace is set
                 // to false (will this become a problem?)
                 pParticleEmitter = static_cast<ParticleEmitter*>(*i);
                 pParticleEmitter->setPosition(pParticle->mPosition);
@@ -654,7 +654,7 @@ namespace Ogre {
     void ParticleSystem::_triggerAffectors(Real timeElapsed)
     {
         ParticleAffectorList::iterator i, itEnd;
-        
+
         itEnd = mAffectors.end();
         for (i = mAffectors.begin(); i != itEnd; ++i)
         {
@@ -690,7 +690,7 @@ namespace Ogre {
         return ParticleIterator(mActiveParticles.begin(), mActiveParticles.end());
     }
     //-----------------------------------------------------------------------
-    Particle* ParticleSystem::getParticle(size_t index) 
+    Particle* ParticleSystem::getParticle(size_t index)
     {
         assert (index < mActiveParticles.size() && "Index out of bounds!");
         ActiveParticleList::iterator i = mActiveParticles.begin();
@@ -716,7 +716,7 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     Particle* ParticleSystem::createEmitterParticle(const String& emitterName)
     {
-        // Get the appropriate list and retrieve an emitter 
+        // Get the appropriate list and retrieve an emitter
         Particle* p = 0;
         list<ParticleEmitter*>::type* fee = findFreeEmittedEmitter(emitterName);
         if (fee && !fee->empty())
@@ -730,7 +730,7 @@ namespace Ogre {
             // that are emitted. Don't use mActiveParticles for that (although they are added to
             // mActiveParticles also), because it would take too long to traverse.
             mActiveEmittedEmitters.push_back(static_cast<ParticleEmitter*>(p));
-            
+
             p->_notifyOwner(this);
         }
 
@@ -745,7 +745,7 @@ namespace Ogre {
         }
     }
     //---------------------------------------------------------------------
-    void ParticleSystem::visitRenderables(Renderable::Visitor* visitor, 
+    void ParticleSystem::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         if (mRenderer)
@@ -760,58 +760,58 @@ namespace Ogre {
         {
             ParamDictionary* dict = getParamDictionary();
 
-            dict->addParameter(ParameterDef("quota", 
+            dict->addParameter(ParameterDef("quota",
                 "The maximum number of particles allowed at once in this system.",
                 PT_UNSIGNED_INT),
                 &msQuotaCmd);
 
-            dict->addParameter(ParameterDef("emit_emitter_quota", 
+            dict->addParameter(ParameterDef("emit_emitter_quota",
                 "The maximum number of emitters to be emitted at once in this system.",
                 PT_UNSIGNED_INT),
                 &msEmittedEmitterQuotaCmd);
 
-            dict->addParameter(ParameterDef("material", 
+            dict->addParameter(ParameterDef("material",
                 "The name of the material to be used to render all particles in this system.",
                 PT_STRING),
                 &msMaterialCmd);
 
-            dict->addParameter(ParameterDef("particle_width", 
+            dict->addParameter(ParameterDef("particle_width",
                 "The width of particles in world units.",
                 PT_REAL),
                 &msWidthCmd);
 
-            dict->addParameter(ParameterDef("particle_height", 
+            dict->addParameter(ParameterDef("particle_height",
                 "The height of particles in world units.",
                 PT_REAL),
                 &msHeightCmd);
 
-            dict->addParameter(ParameterDef("cull_each", 
+            dict->addParameter(ParameterDef("cull_each",
                 "If true, each particle is culled in it's own right. If false, the entire system is culled as a whole.",
                 PT_BOOL),
                 &msCullCmd);
 
-            dict->addParameter(ParameterDef("renderer", 
+            dict->addParameter(ParameterDef("renderer",
                 "Sets the particle system renderer to use (default 'billboard').",
                 PT_STRING),
                 &msRendererCmd);
 
-            dict->addParameter(ParameterDef("sorted", 
+            dict->addParameter(ParameterDef("sorted",
                 "Sets whether particles should be sorted relative to the camera. ",
                 PT_BOOL),
                 &msSortedCmd);
 
-            dict->addParameter(ParameterDef("local_space", 
+            dict->addParameter(ParameterDef("local_space",
                 "Sets whether particles should be kept in local space rather than "
                 "emitted into world space. ",
                 PT_BOOL),
                 &msLocalSpaceCmd);
 
-            dict->addParameter(ParameterDef("iteration_interval", 
+            dict->addParameter(ParameterDef("iteration_interval",
                 "Sets a fixed update interval for the system, or 0 for the frame rate. ",
                 PT_REAL),
                 &msIterationIntervalCmd);
 
-            dict->addParameter(ParameterDef("nonvisible_update_timeout", 
+            dict->addParameter(ParameterDef("nonvisible_update_timeout",
                 "Sets a timeout on updates to the system if the system is not visible "
                 "for the given number of seconds (0 to always update)",
                 PT_REAL),
@@ -851,13 +851,13 @@ namespace Ogre {
                 }
                 ActiveParticleList::iterator p;
                 Vector3 halfScale = Vector3::UNIT_SCALE * 0.5;
-                Vector3 defaultPadding = 
+                Vector3 defaultPadding =
                     halfScale * std::max(mDefaultHeight, mDefaultWidth);
                 for (p = mActiveParticles.begin(); p != mActiveParticles.end(); ++p)
                 {
                     if ((*p)->mOwnDimensions)
                     {
-                        Vector3 padding = 
+                        Vector3 padding =
                             halfScale * std::max((*p)->mWidth, (*p)->mHeight);
                         min.makeFloor((*p)->mPosition - padding);
                         max.makeCeil((*p)->mPosition + padding);
@@ -880,7 +880,7 @@ namespace Ogre {
             else
             {
                 // We've already put particles in world space to decouple them from the
-                // node transform, so reverse transform back since we're expected to 
+                // node transform, so reverse transform back since we're expected to
                 // provide a local AABB
                 AxisAlignedBox newAABB(mWorldAABB);
                 newAABB.transformAffine(mParentNode->_getFullTransform().inverseAffine());
@@ -981,7 +981,7 @@ namespace Ogre {
 
         // Record visible
         if (isVisible())
-        {           
+        {
             mLastVisibleFrame = Root::getSingleton().getNextFrameNumber();
             mTimeSinceLastVisible = 0.0f;
 
@@ -1015,7 +1015,7 @@ namespace Ogre {
             mLastVisibleFrame = Root::getSingleton().getNextFrameNumber();
 
             // Create time controller when attached
-            ControllerManager& mgr = ControllerManager::getSingleton(); 
+            ControllerManager& mgr = ControllerManager::getSingleton();
             ControllerValueRealPtr updValue(OGRE_NEW ParticleSystemUpdateValue(this));
             mTimeController = mgr.createFrameTimePassthroughController(updValue);
         }
@@ -1032,8 +1032,8 @@ namespace Ogre {
         mMaterialName = name;
         if (mIsRendererConfigured)
         {
-            MaterialPtr mat = MaterialManager::getSingleton().load(
-                mMaterialName, mResourceGroupName).staticCast<Material>();
+            MaterialPtr mat = std::static_pointer_cast<Material>( MaterialManager::getSingleton().load(
+                mMaterialName, mResourceGroupName) );
             mRenderer->_setMaterial(mat);
         }
     }
@@ -1109,8 +1109,8 @@ namespace Ogre {
             mRenderer->_notifyAttached(mParentNode, mParentIsTagPoint);
             mRenderer->_notifyDefaultDimensions(mDefaultWidth, mDefaultHeight);
             createVisualParticles(0, mParticlePool.size());
-            MaterialPtr mat = MaterialManager::getSingleton().load(
-                mMaterialName, mResourceGroupName).staticCast<Material>();
+            MaterialPtr mat = std::static_pointer_cast<Material>( MaterialManager::getSingleton().load(
+                mMaterialName, mResourceGroupName) );
             mRenderer->_setMaterial(mat);
             if (mRenderQueueIDSet)
                 mRenderer->setRenderQueueGroup(mRenderQueueID);
@@ -1293,7 +1293,7 @@ namespace Ogre {
         {
             // Increase the pool. Equally distribute over all vectors in the map
             increaseEmittedEmitterPool(size);
-            
+
             // Add new items to the free list
             addFreeEmittedEmitters();
         }
@@ -1324,9 +1324,9 @@ namespace Ogre {
             for (emitterIteratorInner = mEmitters.begin(); emitterIteratorInner != mEmitters.end(); ++emitterIteratorInner)
             {
                 emitterInner = *emitterIteratorInner;
-                if (emitter && 
-                    emitterInner && 
-                    emitter->getName() != BLANKSTRING && 
+                if (emitter &&
+                    emitterInner &&
+                    emitter->getName() != BLANKSTRING &&
                     emitter->getName() == emitterInner->getEmittedEmitter())
                 {
                     emitter->setEmitted(true);
@@ -1356,7 +1356,7 @@ namespace Ogre {
         EmittedEmitterList* e = 0;
         size_t maxNumberOfEmitters = size / mEmittedEmitterPool.size(); // equally distribute the number for each emitted emitter list
         size_t oldSize = 0;
-    
+
         // Run through mEmittedEmitterPool and search for every key (=name) its corresponding emitter in mEmitters
         for (emittedEmitterPoolIterator = mEmittedEmitterPool.begin(); emittedEmitterPoolIterator != mEmittedEmitterPool.end(); ++emittedEmitterPoolIterator)
         {
@@ -1367,10 +1367,10 @@ namespace Ogre {
             for (emitterIterator = mEmitters.begin(); emitterIterator != mEmitters.end(); ++emitterIterator)
             {
                 ParticleEmitter* emitter = *emitterIterator;
-                if (emitter && 
-                    name != BLANKSTRING && 
+                if (emitter &&
+                    name != BLANKSTRING &&
                     name == emitter->getName())
-                {       
+                {
                     // Found the right emitter, clone each emitter a number of times
                     oldSize = e->size();
                     for (size_t t = oldSize; t < maxNumberOfEmitters; ++t)
@@ -1380,7 +1380,7 @@ namespace Ogre {
                         clonedEmitter->setEmitted(emitter->isEmitted()); // is always 'true' by the way, but just in case
 
                         // Initially deactivate the emitted emitter if duration/repeat_delay are set
-                        if (clonedEmitter->getDuration() > 0.0f && 
+                        if (clonedEmitter->getDuration() > 0.0f &&
                             (clonedEmitter->getRepeatDelay() > 0.0f || clonedEmitter->getMinRepeatDelay() > 0.0f))
                             clonedEmitter->setEnabled(false);
 
@@ -1614,11 +1614,11 @@ namespace Ogre {
             StringConverter::parseReal(val));
     }
    //-----------------------------------------------------------------------
-    ParticleAffector::~ParticleAffector() 
+    ParticleAffector::~ParticleAffector()
     {
     }
     //-----------------------------------------------------------------------
-    ParticleAffectorFactory::~ParticleAffectorFactory() 
+    ParticleAffectorFactory::~ParticleAffectorFactory()
     {
         // Destroy all affectors
         vector<ParticleAffector*>::type::iterator i;
@@ -1626,7 +1626,7 @@ namespace Ogre {
         {
             OGRE_DELETE (*i);
         }
-            
+
         mAffectors.clear();
 
     }

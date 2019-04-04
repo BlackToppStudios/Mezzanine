@@ -61,7 +61,7 @@ namespace Ogre {
         : Archive(name, archType)
     {
         // Even failed attempt to write to read only location violates Apple AppStore validation process.
-        // And successful writing to some probe file does not prove that whole location with subfolders 
+        // And successful writing to some probe file does not prove that whole location with subfolders
         // is writable. Therefore we accept read only flag from outside and do not try to be too smart.
         mReadOnly = readOnly;
     }
@@ -98,7 +98,7 @@ namespace Ogre {
             return base + '/' + name;
     }
     //-----------------------------------------------------------------------
-    void FileSystemArchive::findFiles(const String& pattern, bool recursive, 
+    void FileSystemArchive::findFiles(const String& pattern, bool recursive,
         bool dirs, StringVector* simpleList, FileInfoList* detailList)
     {
         intptr_t lHandle, res;
@@ -204,7 +204,7 @@ namespace Ogre {
     {
         String full_path = concatenate_path(mName, filename);
 
-        // Use filesystem to determine size 
+        // Use filesystem to determine size
         // (quicker than streaming to the end and back)
         struct stat tagStat;
         int ret = stat(full_path.c_str(), &tagStat);
@@ -254,7 +254,7 @@ namespace Ogre {
         FileStreamDataStream* stream = 0;
         if (rwStream)
         {
-            // use the writeable stream 
+            // use the writeable stream
             stream = OGRE_NEW FileStreamDataStream(filename,
                 rwStream, (size_t)tagStat.st_size, true);
         }
@@ -271,8 +271,8 @@ namespace Ogre {
     {
         if (isReadOnly())
         {
-            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
-                "Cannot create a file in a read-only archive", 
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "Cannot create a file in a read-only archive",
                 "FileSystemArchive::remove");
         }
 
@@ -304,8 +304,8 @@ namespace Ogre {
     {
         if (isReadOnly())
         {
-            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
-                "Cannot remove a file from a read-only archive", 
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "Cannot remove a file from a read-only archive",
                 "FileSystemArchive::remove");
         }
         String full_path = concatenate_path(mName, filename);
@@ -317,9 +317,9 @@ namespace Ogre {
     {
         // directory change requires locking due to saved returns
         // Note that we have to tell the SharedPtr to use OGRE_DELETE_T not OGRE_DELETE by passing category
-        StringVectorPtr ret(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        StringVectorPtr ret(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), [](StringVector* Ptr){ OGRE_DELETE_T(Ptr,StringVector,MEMCATEGORY_GENERAL); });
 
-        findFiles("*", recursive, dirs, ret.getPointer(), 0);
+        findFiles("*", recursive, dirs, ret.get(), 0);
 
         return ret;
     }
@@ -327,9 +327,9 @@ namespace Ogre {
     FileInfoListPtr FileSystemArchive::listFileInfo(bool recursive, bool dirs)
     {
         // Note that we have to tell the SharedPtr to use OGRE_DELETE_T not OGRE_DELETE by passing category
-        FileInfoListPtr ret(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        FileInfoListPtr ret(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), [](FileInfoList* Ptr){ OGRE_DELETE_T(Ptr,FileInfoList,MEMCATEGORY_GENERAL); });
 
-        findFiles("*", recursive, dirs, 0, ret.getPointer());
+        findFiles("*", recursive, dirs, 0, ret.get());
 
         return ret;
     }
@@ -338,21 +338,21 @@ namespace Ogre {
                                             bool recursive, bool dirs)
     {
         // Note that we have to tell the SharedPtr to use OGRE_DELETE_T not OGRE_DELETE by passing category
-        StringVectorPtr ret(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        StringVectorPtr ret(OGRE_NEW_T(StringVector, MEMCATEGORY_GENERAL)(), [](StringVector* Ptr){ OGRE_DELETE_T(Ptr,StringVector,MEMCATEGORY_GENERAL); });
 
-        findFiles(pattern, recursive, dirs, ret.getPointer(), 0);
+        findFiles(pattern, recursive, dirs, ret.get(), 0);
 
         return ret;
 
     }
     //-----------------------------------------------------------------------
-    FileInfoListPtr FileSystemArchive::findFileInfo(const String& pattern, 
+    FileInfoListPtr FileSystemArchive::findFileInfo(const String& pattern,
         bool recursive, bool dirs)
     {
         // Note that we have to tell the SharedPtr to use OGRE_DELETE_T not OGRE_DELETE by passing category
-        FileInfoListPtr ret(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
+        FileInfoListPtr ret(OGRE_NEW_T(FileInfoList, MEMCATEGORY_GENERAL)(), [](FileInfoList* Ptr){ OGRE_DELETE_T(Ptr,FileInfoList,MEMCATEGORY_GENERAL); });
 
-        findFiles(pattern, recursive, dirs, 0, ret.getPointer());
+        findFiles(pattern, recursive, dirs, 0, ret.get());
 
         return ret;
     }

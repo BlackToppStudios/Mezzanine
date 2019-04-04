@@ -51,7 +51,7 @@ namespace Ogre
     void logParseError(const String& error, const MaterialScriptContext& context)
     {
         // log material name only if filename not specified
-        if (context.filename.empty() && !context.material.isNull())
+        if (context.filename.empty() && context.material)
         {
             LogManager::getSingleton().logMessage(
                 "Error in material " + context.material->getName() +
@@ -59,7 +59,7 @@ namespace Ogre
         }
         else
         {
-            if (!context.material.isNull())
+            if (context.material)
             {
                 LogManager::getSingleton().logMessage(
                     "Error in material " + context.material->getName() +
@@ -349,7 +349,7 @@ namespace Ogre
                     context);
                 return false;
             }
-            
+
             context.pass->setSeparateSceneBlending(stype, stypea);
         }
         else if (vecparams.size() == 4)
@@ -641,7 +641,7 @@ namespace Ogre
                         if (vecparams.size() < 3)
                         {
                             logParseError(
-                                "Bad iteration attribute, expected number of lights.", 
+                                "Bad iteration attribute, expected number of lights.",
                                 context);
                         }
                         else
@@ -876,7 +876,7 @@ namespace Ogre
     bool parseCompareTest(String& params, MaterialScriptContext& context)
     {
         StringUtil::toLowerCase(params);
-        try 
+        try
         {
             if(params == "on")
             {
@@ -1750,7 +1750,7 @@ namespace Ogre
             }
             else if (vecparams.size() == 4)
             {
-                context.textureUnit->setCompositorReference(vecparams[1], vecparams[2], 
+                context.textureUnit->setCompositorReference(vecparams[1], vecparams[2],
                     StringConverter::parseUnsignedInt(vecparams[3]));
             }
             else
@@ -1932,7 +1932,7 @@ namespace Ogre
                 start = dimensions.find_first_of("[", start);
             }
         }
-        
+
         return dims;
     }
     //-----------------------------------------------------------------------
@@ -1960,19 +1960,19 @@ namespace Ogre
         }
         else if (vecparams[1].find("float") != String::npos)
         {
-            dims = parseParamDimensions(vecparams[1], 
+            dims = parseParamDimensions(vecparams[1],
                                         vecparams[1].find_first_not_of("float"));
             isReal = true;
         }
         else if (vecparams[1].find("double") != String::npos)
         {
-            dims = parseParamDimensions(vecparams[1], 
+            dims = parseParamDimensions(vecparams[1],
                                         vecparams[1].find_first_not_of("double"));
             isReal = true;
         }
         else if (vecparams[1].find("int") != String::npos)
         {
-            dims = parseParamDimensions(vecparams[1], 
+            dims = parseParamDimensions(vecparams[1],
                                         vecparams[1].find_first_not_of("int"));
             isReal = false;
             isInt = true;
@@ -1986,7 +1986,7 @@ namespace Ogre
         }
         else if (vecparams[1].find("bool") != String::npos)
         {
-            dims = parseParamDimensions(vecparams[1], 
+            dims = parseParamDimensions(vecparams[1],
                                         vecparams[1].find_first_not_of("bool"));
             isReal = false;
         }
@@ -2261,10 +2261,10 @@ namespace Ogre
                     }
 
                     if (isNamed)
-                        context.programParams->setNamedAutoConstantReal(paramName, 
+                        context.programParams->setNamedAutoConstantReal(paramName,
                             autoConstantDef->acType, factor);
                     else
-                        context.programParams->setAutoConstantReal(index, 
+                        context.programParams->setAutoConstantReal(index,
                             autoConstantDef->acType, factor);
                 }
                 else // normal processing for auto constants that take an extra real value
@@ -2278,10 +2278,10 @@ namespace Ogre
 
                     Real rData = StringConverter::parseReal(vecparams[2]);
                     if (isNamed)
-                        context.programParams->setNamedAutoConstantReal(paramName, 
+                        context.programParams->setNamedAutoConstantReal(paramName,
                             autoConstantDef->acType, rData);
                     else
-                        context.programParams->setAutoConstantReal(index, 
+                        context.programParams->setAutoConstantReal(index,
                             autoConstantDef->acType, rData);
                 }
             }
@@ -2296,7 +2296,7 @@ namespace Ogre
     bool parseParamIndexed(String& params, MaterialScriptContext& context)
     {
         // NB skip this if the program is not supported or could not be found
-        if (context.program.isNull() || !context.program->isSupported())
+        if (!context.program || !context.program->isSupported())
         {
             return false;
         }
@@ -2321,7 +2321,7 @@ namespace Ogre
     bool parseParamIndexedAuto(String& params, MaterialScriptContext& context)
     {
         // NB skip this if the program is not supported or could not be found
-        if (context.program.isNull() || !context.program->isSupported())
+        if (!context.program || !context.program->isSupported())
         {
             return false;
         }
@@ -2346,7 +2346,7 @@ namespace Ogre
     bool parseParamNamed(String& params, MaterialScriptContext& context)
     {
         // NB skip this if the program is not supported or could not be found
-        if (context.program.isNull() || !context.program->isSupported())
+        if (!context.program || !context.program->isSupported())
         {
             return false;
         }
@@ -2360,7 +2360,7 @@ namespace Ogre
         }
 
         try {
-            const GpuConstantDefinition& def = 
+            const GpuConstantDefinition& def =
                 context.programParams->getConstantDefinition(vecparams[0]);
             (void)def; // Silence warning
         }
@@ -2378,7 +2378,7 @@ namespace Ogre
     bool parseParamNamedAuto(String& params, MaterialScriptContext& context)
     {
         // NB skip this if the program is not supported or could not be found
-        if (context.program.isNull() || !context.program->isSupported())
+        if (!context.program || !context.program->isSupported())
         {
             return false;
         }
@@ -2393,7 +2393,7 @@ namespace Ogre
 
         // Get start index from name
         try {
-            const GpuConstantDefinition& def = 
+            const GpuConstantDefinition& def =
                 context.programParams->getConstantDefinition(vecparams[0]);
             (void)def; // Silence warning
         }
@@ -2426,7 +2426,7 @@ namespace Ogre
             // make sure base material exists
             basematerial = MaterialManager::getSingleton().getByName(vecparams[1]);
             // if it doesn't exist then report error in log and just create a new material
-            if (basematerial.isNull())
+            if (!basematerial)
             {
                 logParseError("parent material: " + vecparams[1] + " not found for new material:"
                     + vecparams[0], context);
@@ -2439,7 +2439,7 @@ namespace Ogre
         context.material =
             MaterialManager::getSingleton().create(vecparams[0], context.groupName);
 
-        if (!basematerial.isNull())
+        if (basematerial)
         {
             // copy parent material details to new material
             basematerial->copyDetailsTo(context.material);
@@ -2629,10 +2629,10 @@ namespace Ogre
 
         // if context.program was not set then try to get the vertex program using the name
         // passed in params
-        if (context.program.isNull())
+        if (!context.program)
         {
             context.program = GpuProgramManager::getSingleton().getByName(params);
-            if (context.program.isNull())
+            if (!context.program)
             {
                 // Unknown program
                 logParseError("Invalid vertex_program_ref entry - vertex program "
@@ -2678,10 +2678,10 @@ namespace Ogre
 
         // if context.program was not set then try to get the geometry program using the name
         // passed in params
-        if (context.program.isNull())
+        if (!context.program)
         {
             context.program = GpuProgramManager::getSingleton().getByName(params);
-            if (context.program.isNull())
+            if (!context.program)
             {
                 // Unknown program
                 logParseError("Invalid geometry_program_ref entry - vertex program "
@@ -2715,7 +2715,7 @@ namespace Ogre
         context.section = MSS_PROGRAM_REF;
 
         context.program = GpuProgramManager::getSingleton().getByName(params);
-        if (context.program.isNull())
+        if (!context.program)
         {
             // Unknown program
             logParseError("Invalid shadow_caster_vertex_program_ref entry - vertex program "
@@ -2748,7 +2748,7 @@ namespace Ogre
         context.section = MSS_PROGRAM_REF;
 
         context.program = GpuProgramManager::getSingleton().getByName(params);
-        if (context.program.isNull())
+        if (!context.program)
         {
             // Unknown program
             logParseError("Invalid shadow_caster_fragment_program_ref entry - fragment program "
@@ -2781,7 +2781,7 @@ namespace Ogre
         context.section = MSS_PROGRAM_REF;
 
         context.program = GpuProgramManager::getSingleton().getByName(params);
-        if (context.program.isNull())
+        if (!context.program)
         {
             // Unknown program
             logParseError("Invalid shadow_receiver_vertex_program_ref entry - vertex program "
@@ -2815,7 +2815,7 @@ namespace Ogre
         context.section = MSS_PROGRAM_REF;
 
         context.program = GpuProgramManager::getSingleton().getByName(params);
-        if (context.program.isNull())
+        if (!context.program)
         {
             // Unknown program
             logParseError("Invalid shadow_receiver_fragment_program_ref entry - fragment program "
@@ -2861,10 +2861,10 @@ namespace Ogre
 
         // if context.program was not set then try to get the fragment program using the name
         // passed in params
-        if (context.program.isNull())
+        if (!context.program)
         {
             context.program = GpuProgramManager::getSingleton().getByName(params);
-            if (context.program.isNull())
+            if (!context.program)
             {
                 // Unknown program
                 logParseError("Invalid fragment_program_ref entry - fragment program "
@@ -3144,7 +3144,7 @@ namespace Ogre
     bool parseLodStrategy(String& params, MaterialScriptContext& context)
     {
         LodStrategy *strategy = LodStrategyManager::getSingleton().getStrategy(params);
-        
+
         if (strategy == 0)
             logParseError(
             "Bad lod_strategy attribute, available LOD strategy name expected.",
@@ -3298,11 +3298,11 @@ namespace Ogre
         mProgramDefaultParamAttribParsers.insert(AttribParserList::value_type("param_named_auto", (ATTRIBUTE_PARSER)parseParamNamedAuto));
 
         mScriptContext.section = MSS_NONE;
-        mScriptContext.material.setNull();
+        mScriptContext.material.reset();
         mScriptContext.technique = 0;
         mScriptContext.pass = 0;
         mScriptContext.textureUnit = 0;
-        mScriptContext.program.setNull();
+        mScriptContext.program.reset();
         mScriptContext.lineNo = 0;
         mScriptContext.filename.clear();
         mScriptContext.techLev = -1;
@@ -3320,11 +3320,11 @@ namespace Ogre
         bool nextIsOpenBrace = false;
 
         mScriptContext.section = MSS_NONE;
-        mScriptContext.material.setNull();
+        mScriptContext.material.reset();
         mScriptContext.technique = 0;
         mScriptContext.pass = 0;
         mScriptContext.textureUnit = 0;
-        mScriptContext.program.setNull();
+        mScriptContext.program.reset();
         mScriptContext.lineNo = 0;
         mScriptContext.techLev = -1;
         mScriptContext.passLev = -1;
@@ -3368,7 +3368,7 @@ namespace Ogre
         }
 
         // Make sure we invalidate our context shared pointer (don't want to hold on)
-        mScriptContext.material.setNull();
+        mScriptContext.material.reset();
 
     }
     //-----------------------------------------------------------------------
@@ -3402,7 +3402,7 @@ namespace Ogre
                 }
 
                 mScriptContext.section = MSS_NONE;
-                mScriptContext.material.setNull();
+                mScriptContext.material.reset();
                 //Reset all levels for next material
                 mScriptContext.passLev = -1;
                 mScriptContext.stateLev= -1;
@@ -3479,7 +3479,7 @@ namespace Ogre
             {
                 // End of program
                 mScriptContext.section = MSS_PASS;
-                mScriptContext.program.setNull();
+                mScriptContext.program.reset();
             }
             else
             {
@@ -3602,8 +3602,8 @@ namespace Ogre
             {
                 logParseError("Could not create GPU program '"
                     + def->name + "', error reported was: " + e.getDescription(), mScriptContext);
-                mScriptContext.program.setNull();
-                mScriptContext.programParams.setNull();
+                mScriptContext.program.reset();
+                mScriptContext.programParams.reset();
                 return;
             }
         }
@@ -3647,8 +3647,8 @@ namespace Ogre
 
             }
             // Reset
-            mScriptContext.program.setNull();
-            mScriptContext.programParams.setNull();
+            mScriptContext.program.reset();
+            mScriptContext.programParams.reset();
         }
 
     }
@@ -3768,13 +3768,13 @@ namespace Ogre
 
         // Fire pre-write event.
         fireMaterialEvent(MSE_PRE_WRITE, skipWriting, pMat.get());
-        if (skipWriting)        
-            return;     
+        if (skipWriting)
+            return;
 
         // Material name
         writeAttribute(0, "material");
         writeValue(quoteWord(outMaterialName));
-        
+
         beginSection(0);
         {
             // Fire write begin event.
@@ -3839,9 +3839,9 @@ namespace Ogre
 
         // Fire pre-write event.
         fireTechniqueEvent(MSE_PRE_WRITE, skipWriting, pTech);
-        if (skipWriting)        
-            return; 
-        
+        if (skipWriting)
+            return;
+
         // Technique header
         writeAttribute(1, "technique");
         // only output technique name if it exists.
@@ -3870,13 +3870,13 @@ namespace Ogre
             }
 
             // ShadowCasterMaterial name
-            if (!pTech->getShadowCasterMaterial().isNull())
+            if (pTech->getShadowCasterMaterial())
             {
                 writeAttribute(2, "shadow_caster_material");
                 writeValue(quoteWord(pTech->getShadowCasterMaterial()->getName()));
             }
             // ShadowReceiverMaterial name
-            if (!pTech->getShadowReceiverMaterial().isNull())
+            if (pTech->getShadowReceiverMaterial())
             {
                 writeAttribute(2, "shadow_receiver_material");
                 writeValue(quoteWord(pTech->getShadowReceiverMaterial()->getName()));
@@ -3930,9 +3930,9 @@ namespace Ogre
 
         // Fire pre-write event.
         firePassEvent(MSE_PRE_WRITE, skipWriting, pPass);
-        if (skipWriting)        
+        if (skipWriting)
             return;
-        
+
         writeAttribute(2, "pass");
         // only output pass name if its not the default name
         if (pPass->getName() != StringConverter::toString(pPass->getIndex()))
@@ -4144,7 +4144,7 @@ namespace Ogre
                     pPass->getDestBlendFactorAlpha() != SBF_ZERO)
                 {
                     writeAttribute(3, "separate_scene_blend");
-                    writeSceneBlendFactor(pPass->getSourceBlendFactor(), pPass->getDestBlendFactor(), 
+                    writeSceneBlendFactor(pPass->getSourceBlendFactor(), pPass->getDestBlendFactor(),
                         pPass->getSourceBlendFactorAlpha(), pPass->getDestBlendFactorAlpha());
                 }
             }
@@ -4411,7 +4411,7 @@ namespace Ogre
             {
                 writeTesselationDomainProgramRef(pPass);
             }
-            
+
             if (pPass->hasGeometryProgram())
             {
                 writeGeometryProgramRef(pPass);
@@ -4443,10 +4443,10 @@ namespace Ogre
             firePassEvent(MSE_WRITE_END, skipWriting, pPass);
         }
         endSection(2);
-        
+
         // Fire post section write event.
         firePassEvent(MSE_POST_WRITE, skipWriting, pPass);
-        
+
         LogManager::getSingleton().logMessage("MaterialSerializer : done.", LML_NORMAL);
     }
     //-----------------------------------------------------------------------
@@ -4491,9 +4491,9 @@ namespace Ogre
 
         // Fire pre-write event.
         fireTextureUnitStateEvent(MSE_PRE_WRITE, skipWriting, pTex);
-        if (skipWriting)        
+        if (skipWriting)
             return;
-    
+
         LogManager::getSingleton().logMessage("MaterialSerializer : parsing texture layer.", LML_NORMAL);
         mBuffer += "\n";
         writeAttribute(3, "texture_unit");
@@ -4807,7 +4807,7 @@ namespace Ogre
                     writeValue("compute");
                     break;
                 };
-        
+
             }
             // Content type
             if (mDefaults ||
@@ -4987,7 +4987,7 @@ namespace Ogre
     }
     //-----------------------------------------------------------------------
     void MaterialSerializer::writeSceneBlendFactor(
-        const SceneBlendFactor c_src, const SceneBlendFactor c_dest, 
+        const SceneBlendFactor c_src, const SceneBlendFactor c_dest,
         const SceneBlendFactor a_src, const SceneBlendFactor a_dest)
     {
         writeSceneBlendFactor(c_src, c_dest);
@@ -5165,12 +5165,12 @@ namespace Ogre
     //-----------------------------------------------------------------------
     void MaterialSerializer::writeGpuProgramRef(const String& attrib,
                                                 const GpuProgramPtr& program, const GpuProgramParametersSharedPtr& params)
-    {       
+    {
         bool skipWriting = false;
 
         // Fire pre-write event.
         fireGpuProgramRefEvent(MSE_PRE_WRITE, skipWriting, attrib, program, params, NULL);
-        if (skipWriting)        
+        if (skipWriting)
             return;
 
         mBuffer += "\n";
@@ -5182,7 +5182,7 @@ namespace Ogre
             GpuProgramParameters* defaultParams = 0;
             // does the GPU program have default parameters?
             if (program->hasDefaultParameters())
-                defaultParams = program->getDefaultParameters().getPointer();
+                defaultParams = program->getDefaultParameters().get();
 
             // Fire write begin event.
             fireGpuProgramRefEvent(MSE_WRITE_BEGIN, skipWriting, attrib, program, params, defaultParams);
@@ -5198,7 +5198,7 @@ namespace Ogre
         mGpuProgramDefinitionContainer.insert(program->getName());
 
         // Fire post section write event.
-        fireGpuProgramRefEvent(MSE_POST_WRITE, skipWriting, attrib, program, params, NULL);     
+        fireGpuProgramRefEvent(MSE_POST_WRITE, skipWriting, attrib, program, params, NULL);
     }
     //-----------------------------------------------------------------------
     void MaterialSerializer::writeGPUProgramParameters(
@@ -5231,17 +5231,17 @@ namespace Ogre
                 constIt.getNext();
 
             // get any auto-link
-            const GpuProgramParameters::AutoConstantEntry* autoEntry = 
+            const GpuProgramParameters::AutoConstantEntry* autoEntry =
                 params->findAutoConstantEntry(paramName);
             const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry = 0;
             if (defaultParams)
             {
-                defaultAutoEntry = 
+                defaultAutoEntry =
                     defaultParams->findAutoConstantEntry(paramName);
             }
 
-            writeGpuProgramParameter("param_named", 
-                                     paramName, autoEntry, defaultAutoEntry, 
+            writeGpuProgramParameter("param_named",
+                                     paramName, autoEntry, defaultAutoEntry,
                                      def.isFloat(), def.isDouble(), (def.isInt() || def.isSampler()), def.isUnsignedInt(),
                                      def.physicalIndex, def.elementSize * def.arraySize,
                                      params, defaultParams, level, useMainBuffer);
@@ -5259,7 +5259,7 @@ namespace Ogre
 
         // float params
         GpuLogicalBufferStructPtr floatLogical = params->getFloatLogicalBufferStruct();
-        if( !floatLogical.isNull() )
+        if( floatLogical )
         {
             OGRE_LOCK_MUTEX(floatLogical->mutex);
 
@@ -5269,7 +5269,7 @@ namespace Ogre
                 size_t logicalIndex = i->first;
                 const GpuLogicalIndexUse& logicalUse = i->second;
 
-                const GpuProgramParameters::AutoConstantEntry* autoEntry = 
+                const GpuProgramParameters::AutoConstantEntry* autoEntry =
                     params->findFloatAutoConstantEntry(logicalIndex);
                 const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry = 0;
                 if (defaultParams)
@@ -5277,8 +5277,8 @@ namespace Ogre
                     defaultAutoEntry = defaultParams->findFloatAutoConstantEntry(logicalIndex);
                 }
 
-                writeGpuProgramParameter("param_indexed", 
-                                         StringConverter::toString(logicalIndex), autoEntry, 
+                writeGpuProgramParameter("param_indexed",
+                                         StringConverter::toString(logicalIndex), autoEntry,
                                          defaultAutoEntry, true, false, false, false,
                                          logicalUse.physicalIndex, logicalUse.currentSize,
                                          params, defaultParams, level, useMainBuffer);
@@ -5287,7 +5287,7 @@ namespace Ogre
 
         // double params
         GpuLogicalBufferStructPtr doubleLogical = params->getDoubleLogicalBufferStruct();
-        if( !doubleLogical.isNull() )
+        if( doubleLogical )
         {
             OGRE_LOCK_MUTEX(floatLogical->mutex);
 
@@ -5315,7 +5315,7 @@ namespace Ogre
 
         // int params
         GpuLogicalBufferStructPtr intLogical = params->getIntLogicalBufferStruct();
-        if( !intLogical.isNull() )
+        if( intLogical )
         {
             OGRE_LOCK_MUTEX(intLogical->mutex);
 
@@ -5325,7 +5325,7 @@ namespace Ogre
                 size_t logicalIndex = i->first;
                 const GpuLogicalIndexUse& logicalUse = i->second;
 
-                const GpuProgramParameters::AutoConstantEntry* autoEntry = 
+                const GpuProgramParameters::AutoConstantEntry* autoEntry =
                     params->findIntAutoConstantEntry(logicalIndex);
                 const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry = 0;
                 if (defaultParams)
@@ -5333,8 +5333,8 @@ namespace Ogre
                     defaultAutoEntry = defaultParams->findIntAutoConstantEntry(logicalIndex);
                 }
 
-                writeGpuProgramParameter("param_indexed", 
-                                         StringConverter::toString(logicalIndex), autoEntry, 
+                writeGpuProgramParameter("param_indexed",
+                                         StringConverter::toString(logicalIndex), autoEntry,
                                          defaultAutoEntry, false, false, true, false,
                                          logicalUse.physicalIndex, logicalUse.currentSize,
                                          params, defaultParams, level, useMainBuffer);
@@ -5344,7 +5344,7 @@ namespace Ogre
 
         // uint params
         GpuLogicalBufferStructPtr uintLogical = params->getUnsignedIntLogicalBufferStruct();
-        if( !uintLogical.isNull() )
+        if( uintLogical )
         {
             OGRE_LOCK_MUTEX(uintLogical->mutex);
 
@@ -5354,7 +5354,7 @@ namespace Ogre
                 size_t logicalIndex = i->first;
                 const GpuLogicalIndexUse& logicalUse = i->second;
 
-                const GpuProgramParameters::AutoConstantEntry* autoEntry = 
+                const GpuProgramParameters::AutoConstantEntry* autoEntry =
                     params->findUnsignedIntAutoConstantEntry(logicalIndex);
                 const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry = 0;
                 if (defaultParams)
@@ -5362,8 +5362,8 @@ namespace Ogre
                     defaultAutoEntry = defaultParams->findUnsignedIntAutoConstantEntry(logicalIndex);
                 }
 
-                writeGpuProgramParameter("param_indexed", 
-                                         StringConverter::toString(logicalIndex), autoEntry, 
+                writeGpuProgramParameter("param_indexed",
+                                         StringConverter::toString(logicalIndex), autoEntry,
                                          defaultAutoEntry, false, false, false, true,
                                          logicalUse.physicalIndex, logicalUse.currentSize,
                                          params, defaultParams, level, useMainBuffer);
@@ -5373,7 +5373,7 @@ namespace Ogre
 
         // // bool params
         // GpuLogicalBufferStructPtr boolLogical = params->getBoolLogicalBufferStruct();
-        // if( !boolLogical.isNull() )
+        // if( boolLogical )
         // {
         //     OGRE_LOCK_MUTEX(boolLogical->mutex);
 
@@ -5383,7 +5383,7 @@ namespace Ogre
         //         size_t logicalIndex = i->first;
         //         const GpuLogicalIndexUse& logicalUse = i->second;
 
-        //         const GpuProgramParameters::AutoConstantEntry* autoEntry = 
+        //         const GpuProgramParameters::AutoConstantEntry* autoEntry =
         //             params->findBoolAutoConstantEntry(logicalIndex);
         //         const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry = 0;
         //         if (defaultParams)
@@ -5391,8 +5391,8 @@ namespace Ogre
         //             defaultAutoEntry = defaultParams->findBoolAutoConstantEntry(logicalIndex);
         //         }
 
-        //         writeGpuProgramParameter("param_indexed", 
-        //                                  StringConverter::toString(logicalIndex), autoEntry, 
+        //         writeGpuProgramParameter("param_indexed",
+        //                                  StringConverter::toString(logicalIndex), autoEntry,
         //                                  defaultAutoEntry, false, false, false, false,
         //                                  logicalUse.physicalIndex, logicalUse.currentSize,
         //                                  params, defaultParams, level, useMainBuffer);
@@ -5403,9 +5403,9 @@ namespace Ogre
     }
     //-----------------------------------------------------------------------
     void MaterialSerializer::writeGpuProgramParameter(
-        const String& commandName, const String& identifier, 
-        const GpuProgramParameters::AutoConstantEntry* autoEntry, 
-        const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry, 
+        const String& commandName, const String& identifier,
+        const GpuProgramParameters::AutoConstantEntry* autoEntry,
+        const GpuProgramParameters::AutoConstantEntry* defaultAutoEntry,
         bool isFloat, bool isDouble, bool isInt, bool isUnsignedInt,
         size_t physicalIndex, size_t physicalSize,
         const GpuProgramParametersSharedPtr& params, GpuProgramParameters* defaultParams,
@@ -5444,7 +5444,7 @@ namespace Ogre
                 if (isFloat)
                 {
                     different = memcmp(
-                        params->getFloatPointer(physicalIndex), 
+                        params->getFloatPointer(physicalIndex),
                         defaultParams->getFloatPointer(physicalIndex),
                         sizeof(float) * physicalSize) != 0;
                 }
@@ -5458,7 +5458,7 @@ namespace Ogre
                 else if (isInt)
                 {
                     different = memcmp(
-                        params->getIntPointer(physicalIndex), 
+                        params->getIntPointer(physicalIndex),
                         defaultParams->getIntPointer(physicalIndex),
                         sizeof(int) * physicalSize) != 0;
                 }
@@ -5472,11 +5472,11 @@ namespace Ogre
                 //else if (isBool)
                 //{
                 //    // different = memcmp(
-                //    //     params->getBoolPointer(physicalIndex), 
+                //    //     params->getBoolPointer(physicalIndex),
                 //    //     defaultParams->getBoolPointer(physicalIndex),
                 //    //     sizeof(bool) * physicalSize) != 0;
                 //    different = memcmp(
-                //        params->getUnsignedIntPointer(physicalIndex), 
+                //        params->getUnsignedIntPointer(physicalIndex),
                 //        defaultParams->getUnsignedIntPointer(physicalIndex),
                 //        sizeof(uint) * physicalSize) != 0;
                 //}
@@ -5563,7 +5563,7 @@ namespace Ogre
                         writeValue(StringConverter::toString(*pInt++), useMainBuffer);
                     }
                 }
-                else if (isUnsignedInt) 
+                else if (isUnsignedInt)
                 {
                     // Get pointer to start of values
                     const uint* pUInt = params->getUnsignedIntPointer(physicalIndex);
@@ -5707,11 +5707,11 @@ namespace Ogre
 
         while (it != itEnd)
         {
-            (*it)->materialEventRaised(this, event, skip, mat);         
+            (*it)->materialEventRaised(this, event, skip, mat);
             if (skip)
                 break;
             ++it;
-        }       
+        }
     }
 
     //---------------------------------------------------------------------
@@ -5746,8 +5746,8 @@ namespace Ogre
 
     //---------------------------------------------------------------------
     void MaterialSerializer::fireGpuProgramRefEvent(SerializeEvent event, bool& skip,
-        const String& attrib, 
-        const GpuProgramPtr& program, 
+        const String& attrib,
+        const GpuProgramPtr& program,
         const GpuProgramParametersSharedPtr& params,
         GpuProgramParameters* defaultParams)
     {
@@ -5761,7 +5761,7 @@ namespace Ogre
                 break;
             ++it;
         }
-    }   
+    }
 
     //---------------------------------------------------------------------
     void MaterialSerializer::fireTextureUnitStateEvent(SerializeEvent event, bool& skip,
@@ -5777,5 +5777,5 @@ namespace Ogre
                 break;
             ++it;
         }
-    }   
+    }
 }

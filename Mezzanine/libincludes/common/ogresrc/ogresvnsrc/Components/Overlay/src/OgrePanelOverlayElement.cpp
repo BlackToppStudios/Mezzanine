@@ -180,7 +180,7 @@ namespace Ogre {
         if (mVisible)
         {
 
-            if (!mTransparent && !mMaterial.isNull())
+            if (!mTransparent && mMaterial)
             {
                 OverlayElement::_updateRenderQueue(queue);
             }
@@ -248,7 +248,7 @@ namespace Ogre {
     void PanelOverlayElement::updateTextureGeometry(void)
     {
         // Generate for as many texture layers as there are in material
-        if (!mMaterial.isNull() && mInitialised)
+        if (mMaterial && mInitialised)
         {
             // Assume one technique and pass for the moment
             size_t numLayers = mMaterial->getTechnique(0)->getPass(0)->getNumTextureUnitStates();

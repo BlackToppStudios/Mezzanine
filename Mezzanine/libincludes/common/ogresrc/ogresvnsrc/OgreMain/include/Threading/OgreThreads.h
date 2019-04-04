@@ -117,7 +117,7 @@ namespace Ogre
 #endif
     };
 
-    typedef SharedPtr<ThreadHandle> ThreadHandlePtr;
+    typedef std::shared_ptr<ThreadHandle> ThreadHandlePtr;
     typedef vector<ThreadHandlePtr>::type ThreadHandleVec;
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32

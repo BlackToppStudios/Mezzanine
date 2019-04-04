@@ -64,21 +64,21 @@ public:
         {
             g_UseDynamicLOD = !g_UseDynamicLOD;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Island" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Island" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_UseDynamicLOD", g_UseDynamicLOD );
         }
         if (box->getName() == "FrustumCull")
         {
             g_FrustumCullInHS = !g_FrustumCullInHS;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Island" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Island" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_FrustumCullInHS", g_FrustumCullInHS );
         }
         if (box->getName() == "RenderRefraction")
         {
             g_RenderCaustics = !g_RenderCaustics;
             
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Island" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Island" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_RenderCaustics", g_RenderCaustics );
         }
     }
@@ -87,12 +87,12 @@ public:
     {
         if (slider->getName() == "tessellationLOD")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Island" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Island" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_DynamicTessFactor", slider->getValue() );
         }
         if (slider->getName() == "tessellationFactor")
         {
-            MaterialPtr lMaterialPtr = MaterialManager::getSingleton().getByName( "Island" ).staticCast<Material>();
+            MaterialPtr lMaterialPtr = std::static_pointer_cast<Material>( MaterialManager::getSingleton().getByName( "Island" ) );
             lMaterialPtr->getTechnique(0)->getPass(0)->getTessellationHullProgramParameters()->setNamedConstant( "g_StaticTessFactor", slider->getValue() );        
         }
     }

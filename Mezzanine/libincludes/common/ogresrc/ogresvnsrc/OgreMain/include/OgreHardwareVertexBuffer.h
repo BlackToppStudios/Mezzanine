@@ -53,7 +53,7 @@ namespace Ogre {
             size_t mNumVertices;
             size_t mVertexSize;
             bool mIsInstanceData;
-            size_t mInstanceDataStepRate;           
+            size_t mInstanceDataStepRate;
             /// Checks if vertex instance data is supported by the render system
             virtual bool checkIfVertexInstanceDataIsSupported();
 
@@ -83,16 +83,16 @@ namespace Ogre {
     };
 
     /** Shared pointer implementation used to share vertex buffers. */
-    class _OgreExport HardwareVertexBufferSharedPtr : public SharedPtr<HardwareVertexBuffer>
+    class _OgreExport HardwareVertexBufferSharedPtr : public std::shared_ptr<HardwareVertexBuffer>
     {
     public:
-        HardwareVertexBufferSharedPtr() : SharedPtr<HardwareVertexBuffer>() {}
+        HardwareVertexBufferSharedPtr() : std::shared_ptr<HardwareVertexBuffer>() {}
         explicit HardwareVertexBufferSharedPtr(HardwareVertexBuffer* buf);
 
 
     };
 
-    /** Locking helper. */    
+    /** Locking helper. */
     typedef HardwareBufferLockGuard<HardwareVertexBufferSharedPtr> HardwareVertexBufferLockGuard;
 
     /// Vertex element semantics, used to identify the meaning of vertex buffer contents
@@ -115,7 +115,7 @@ namespace Ogre {
         VES_BINORMAL = 8,
         /// Tangent (X axis if normal is Z)
         VES_TANGENT = 9,
-        /// The  number of VertexElementSemantic elements (note - the first value VES_POSITION is 1) 
+        /// The  number of VertexElementSemantic elements (note - the first value VES_POSITION is 1)
         VES_COUNT = 9
     };
 
@@ -144,7 +144,7 @@ namespace Ogre {
         VET_USHORT1 = 16,
         VET_USHORT2 = 17,
         VET_USHORT3 = 18,
-        VET_USHORT4 = 19,      
+        VET_USHORT4 = 19,
         VET_INT1 = 20,
         VET_INT2 = 21,
         VET_INT3 = 22,
@@ -469,13 +469,13 @@ namespace Ogre {
 
         /** Gets the vertex size defined by this declaration for a given source. */
         virtual size_t getVertexSize(unsigned short source) const;
-        
+
         /** Return the index of the next free texture coordinate set which may be added
             to this declaration.
         */
         virtual unsigned short getNextFreeTextureCoordinate() const;
 
-        /** Clones this declaration. 
+        /** Clones this declaration.
         @param mgr Optional HardwareBufferManager to use for creating the clone
             (if null, use the current default).
         */

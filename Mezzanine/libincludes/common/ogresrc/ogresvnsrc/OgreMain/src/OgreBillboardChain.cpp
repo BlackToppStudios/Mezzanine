@@ -420,7 +420,7 @@ namespace Ogre {
                 "BillboardChain::getNumChainElements");
         }
         const ChainSegment& seg = mChainSegmentList[chainIndex];
-        
+
         if( seg.tail < seg.head )
         {
             return seg.tail - seg.head + mMaxElementsPerChain + 1;
@@ -484,9 +484,9 @@ namespace Ogre {
     void BillboardChain::updateVertexBuffer(Camera* cam)
     {
         setupBuffers();
-        
+
         // The contents of the vertex buffer are correct if they are not dirty
-        // and the camera used to build the vertex buffer is still the current 
+        // and the camera used to build the vertex buffer is still the current
         // camera.
         if (!mVertexContentDirty && mVertexCameraUsed == cam)
             return;
@@ -730,14 +730,14 @@ namespace Ogre {
         mMaterialName = name;
         mMaterial = MaterialManager::getSingleton().getByName(mMaterialName, groupName);
 
-        if (mMaterial.isNull())
+        if (!mMaterial)
         {
             LogManager::getSingleton().logMessage("Can't assign material " + name +
                 " to BillboardChain " + mName + " because this "
                 "Material does not exist. Have you forgotten to define it in a "
                 ".material script?", LML_CRITICAL);
             mMaterial = MaterialManager::getSingleton().getByName("BaseWhiteNoLighting");
-            if (mMaterial.isNull())
+            if (!mMaterial)
             {
                 OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Can't assign default material "
                     "to BillboardChain of " + mName + ". Did "
@@ -801,7 +801,7 @@ namespace Ogre {
         return queryLights();
     }
     //---------------------------------------------------------------------
-    void BillboardChain::visitRenderables(Renderable::Visitor* visitor, 
+    void BillboardChain::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         // only one renderable

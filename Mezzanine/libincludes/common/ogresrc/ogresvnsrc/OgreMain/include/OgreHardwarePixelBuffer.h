@@ -189,10 +189,10 @@ namespace Ogre {
     };
 
     /** Shared pointer implementation used to share pixel buffers. */
-    class _OgreExport HardwarePixelBufferSharedPtr : public SharedPtr<HardwarePixelBuffer>
+    class _OgreExport HardwarePixelBufferSharedPtr : public std::shared_ptr<HardwarePixelBuffer>
     {
     public:
-        HardwarePixelBufferSharedPtr() : SharedPtr<HardwarePixelBuffer>() {}
+        HardwarePixelBufferSharedPtr() : std::shared_ptr<HardwarePixelBuffer>() {}
         explicit HardwarePixelBufferSharedPtr(HardwarePixelBuffer* buf);
 
 

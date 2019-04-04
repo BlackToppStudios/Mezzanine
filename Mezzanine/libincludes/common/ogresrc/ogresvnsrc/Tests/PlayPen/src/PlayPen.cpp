@@ -246,7 +246,7 @@ extern "C" _OgreSampleExport void dllStopPlugin()
 //
 //    bool frameStarted(const FrameEvent& evt)
 //    {
-//        if (!vertParams.isNull())
+//        if (vertParams)
 //        {
 //            Matrix4 scaleMat = Matrix4::IDENTITY;
 //            scaleMat[0][0] = 0.5f;
@@ -3562,7 +3562,7 @@ extern "C" _OgreSampleExport void dllStopPlugin()
 //      mSceneMgr->setWorldGeometry("terrain.cfg");
 //
 //      AxisAlignedBox b1; // null
-//      assert( b1.isNull() );
+//      assert( !b1 );
 //      
 //      AxisAlignedBox b2(Vector3::ZERO, 5.0 * Vector3::UNIT_SCALE); // finite
 //      assert( b2.isFinite() );
@@ -4943,7 +4943,7 @@ extern "C" _OgreSampleExport void dllStopPlugin()
 //
 //  }
 //
-//  map<SharedPtr<int>, int>::type testMap;
+//  map<std::shared_ptr<int>, int>::type testMap;
 //
 //  void testFloat32DDS()
 //  {
@@ -5486,7 +5486,7 @@ extern "C" _OgreSampleExport void dllStopPlugin()
 //
 //      MeshPtr mesh = man->convertToMesh("colourtest.mesh");
 //      MeshSerializer ms;
-//      ms.exportMesh(mesh.getPointer(), "colourtest.mesh");
+//      ms.exportMesh(mesh.get(), "colourtest.mesh");
 //
 //      mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(man);
 //      */
@@ -7102,12 +7102,12 @@ extern "C" _OgreSampleExport void dllStopPlugin()
 //  };
 //  /** SharedPtr of CollisionShape
 //  */
-//  class CollisionShapePtr : public SharedPtr<CollisionShape>
+//  class CollisionShapePtr : public std::shared_ptr<CollisionShape>
 //  {
 //  public:
-//      CollisionShapePtr() : SharedPtr<CollisionShape>() {}
-//      CollisionShapePtr(CollisionShape* rep) : SharedPtr<CollisionShape>(rep) {}
-//      CollisionShapePtr(const CollisionShapePtr& r) : SharedPtr<CollisionShape>(r) {}
+//      CollisionShapePtr() : std::shared_ptr<CollisionShape>() {}
+//      CollisionShapePtr(CollisionShape* rep) : std::shared_ptr<CollisionShape>(rep) {}
+//      CollisionShapePtr(const CollisionShapePtr& r) : std::shared_ptr<CollisionShape>(r) {}
 //  };
 //  
 //  void testSharedPtrBug()

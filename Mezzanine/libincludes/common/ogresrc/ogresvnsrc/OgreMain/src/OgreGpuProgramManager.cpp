@@ -40,13 +40,13 @@ namespace Ogre {
         return msSingleton;
     }
     GpuProgramManager& GpuProgramManager::getSingleton(void)
-    {  
-        assert( msSingleton );  return ( *msSingleton );  
+    {
+        assert( msSingleton );  return ( *msSingleton );
     }
     //-----------------------------------------------------------------------
     GpuProgramPtr GpuProgramManager::getByName(const String& name, bool preferHighLevelPrograms)
     {
-        return getResourceByName(name, preferHighLevelPrograms).staticCast<GpuProgram>();
+        return std::static_pointer_cast<GpuProgram>( getResourceByName(name, preferHighLevelPrograms) );
     }
     //---------------------------------------------------------------------------
     GpuProgramManager::GpuProgramManager()
@@ -67,14 +67,14 @@ namespace Ogre {
     }
     //---------------------------------------------------------------------------
     GpuProgramPtr GpuProgramManager::load(const String& name,
-        const String& groupName, const String& filename, 
+        const String& groupName, const String& filename,
         GpuProgramType gptype, const String& syntaxCode)
     {
         GpuProgramPtr prg;
         {
                     OGRE_LOCK_AUTO_MUTEX;
             prg = getByName(name);
-            if (prg.isNull())
+            if (!prg)
             {
                 prg = createProgram(name, groupName, filename, gptype, syntaxCode);
             }
@@ -84,15 +84,15 @@ namespace Ogre {
         return prg;
     }
     //---------------------------------------------------------------------------
-    GpuProgramPtr GpuProgramManager::loadFromString(const String& name, 
-        const String& groupName, const String& code, 
+    GpuProgramPtr GpuProgramManager::loadFromString(const String& name,
+        const String& groupName, const String& code,
         GpuProgramType gptype, const String& syntaxCode)
     {
         GpuProgramPtr prg;
         {
                     OGRE_LOCK_AUTO_MUTEX;
             prg = getByName(name);
-            if (prg.isNull())
+            if (!prg)
             {
                 prg = createProgramFromString(name, groupName, code, gptype, syntaxCode);
             }
@@ -102,8 +102,8 @@ namespace Ogre {
         return prg;
     }
     //---------------------------------------------------------------------------
-    ResourcePtr GpuProgramManager::create(const String& name, const String& group, 
-        GpuProgramType gptype, const String& syntaxCode, bool isManual, 
+    ResourcePtr GpuProgramManager::create(const String& name, const String& group,
+        GpuProgramType gptype, const String& syntaxCode, bool isManual,
         ManualResourceLoader* loader)
     {
         // Call creation implementation
@@ -116,11 +116,11 @@ namespace Ogre {
         return ret;
     }
     //---------------------------------------------------------------------------
-    GpuProgramPtr GpuProgramManager::createProgram(const String& name, 
-        const String& groupName, const String& filename, 
+    GpuProgramPtr GpuProgramManager::createProgram(const String& name,
+        const String& groupName, const String& filename,
         GpuProgramType gptype, const String& syntaxCode)
     {
-        GpuProgramPtr prg = create(name, groupName, gptype, syntaxCode).staticCast<GpuProgram>();
+        GpuProgramPtr prg = std::static_pointer_cast<GpuProgram>( create(name, groupName, gptype, syntaxCode) );
         // Set all prarmeters (create does not set, just determines factory)
         prg->setType(gptype);
         prg->setSyntaxCode(syntaxCode);
@@ -128,11 +128,11 @@ namespace Ogre {
         return prg;
     }
     //---------------------------------------------------------------------------
-    GpuProgramPtr GpuProgramManager::createProgramFromString(const String& name, 
-        const String& groupName, const String& code, GpuProgramType gptype, 
+    GpuProgramPtr GpuProgramManager::createProgramFromString(const String& name,
+        const String& groupName, const String& code, GpuProgramType gptype,
         const String& syntaxCode)
     {
-        GpuProgramPtr prg = create(name, groupName, gptype, syntaxCode).staticCast<GpuProgram>();
+        GpuProgramPtr prg = std::static_pointer_cast<GpuProgram>( create(name, groupName, gptype, syntaxCode) );
         // Set all prarmeters (create does not set, just determines factory)
         prg->setType(gptype);
         prg->setSyntaxCode(syntaxCode);
@@ -145,7 +145,7 @@ namespace Ogre {
         // Use the current render system
         RenderSystem* rs = Root::getSingleton().getRenderSystem();
 
-        // Get the supported syntaxed from RenderSystemCapabilities 
+        // Get the supported syntaxed from RenderSystemCapabilities
         return rs->getCapabilities()->getSupportedShaderProfiles();
     }
 
@@ -155,7 +155,7 @@ namespace Ogre {
         // Use the current render system
         RenderSystem* rs = Root::getSingleton().getRenderSystem();
 
-        // Get the supported syntax from RenderSystemCapabilities 
+        // Get the supported syntax from RenderSystemCapabilities
         return rs->getCapabilities()->isShaderProfileSupported(syntaxCode);
     }
     //---------------------------------------------------------------------------
@@ -165,7 +165,7 @@ namespace Ogre {
         if (preferHighLevelPrograms)
         {
             ret = HighLevelGpuProgramManager::getSingleton().getResourceByName(name);
-            if (!ret.isNull())
+            if (ret)
                 return ret;
         }
         return ResourceManager::getResourceByName(name);
@@ -180,8 +180,8 @@ namespace Ogre {
     {
         if (mSharedParametersMap.find(name) != mSharedParametersMap.end())
         {
-            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
-                "The shared parameter set '" + name + "' already exists!", 
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "The shared parameter set '" + name + "' already exists!",
                 "GpuProgramManager::createSharedParameters");
         }
         GpuSharedParametersPtr ret(OGRE_NEW GpuSharedParameters(name));
@@ -194,14 +194,14 @@ namespace Ogre {
         SharedParametersMap::const_iterator i = mSharedParametersMap.find(name);
         if (i == mSharedParametersMap.end())
         {
-            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
-                "No shared parameter set with name '" + name + "'!", 
+            OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
+                "No shared parameter set with name '" + name + "'!",
                 "GpuProgramManager::createSharedParameters");
         }
         return i->second;
     }
     //---------------------------------------------------------------------
-    const GpuProgramManager::SharedParametersMap& 
+    const GpuProgramManager::SharedParametersMap&
     GpuProgramManager::getAvailableSharedParameters() const
     {
         return mSharedParametersMap;
@@ -217,7 +217,7 @@ namespace Ogre {
         // Use the current render system
         RenderSystem* rs = Root::getSingleton().getRenderSystem();
 
-        // Check if the supported  
+        // Check if the supported
         return rs->getCapabilities()->hasCapability(RSC_CAN_GET_COMPILED_SHADER_BUFFER);
     }
     //---------------------------------------------------------------------
@@ -232,7 +232,7 @@ namespace Ogre {
     //---------------------------------------------------------------------
     bool GpuProgramManager::isCacheDirty( void ) const
     {
-        return mCacheDirty;     
+        return mCacheDirty;
     }
     //---------------------------------------------------------------------
     String GpuProgramManager::addRenderSystemToName( const String & name )
@@ -254,12 +254,12 @@ namespace Ogre {
     }
     //---------------------------------------------------------------------
     GpuProgramManager::Microcode GpuProgramManager::createMicrocode( const uint32 size ) const
-    {   
-        return Microcode(OGRE_NEW MemoryDataStream(size));  
+    {
+        return Microcode(OGRE_NEW MemoryDataStream(size));
     }
     //---------------------------------------------------------------------
     void GpuProgramManager::addMicrocodeToCache( const String & name, const GpuProgramManager::Microcode & microcode )
-    {   
+    {
         String nameWithRenderSystem = addRenderSystemToName(name);
         MicrocodeMap::iterator foundIter = mMicrocodeCache.find(nameWithRenderSystem);
         if ( foundIter == mMicrocodeCache.end() )
@@ -272,7 +272,7 @@ namespace Ogre {
         {
             foundIter->second = microcode;
 
-        }       
+        }
     }
     //---------------------------------------------------------------------
     void GpuProgramManager::removeMicrocodeFromCache( const String & name )
@@ -290,7 +290,7 @@ namespace Ogre {
     void GpuProgramManager::saveMicrocodeCache( DataStreamPtr stream ) const
     {
         if (!mCacheDirty)
-            return; 
+            return;
 
         if (!stream->isWriteable())
         {
@@ -298,11 +298,11 @@ namespace Ogre {
                 "Unable to write to stream " + stream->getName(),
                 "GpuProgramManager::saveMicrocodeCache");
         }
-        
+
         // write the size of the array
         uint32 sizeOfArray = static_cast<uint32>(mMicrocodeCache.size());
         stream->write(&sizeOfArray, sizeof(uint32));
-        
+
         // loop the array and save it
         MicrocodeMap::const_iterator iter = mMicrocodeCache.begin();
         MicrocodeMap::const_iterator iterE = mMicrocodeCache.end();
@@ -312,14 +312,14 @@ namespace Ogre {
             {
                 const String & nameOfShader = iter->first;
                 uint32 stringLength = static_cast<uint32>(nameOfShader.size());
-                stream->write(&stringLength, sizeof(uint32));               
+                stream->write(&stringLength, sizeof(uint32));
                 stream->write(&nameOfShader[0], stringLength);
             }
             // saves the microcode
             {
                 const Microcode & microcodeOfShader = iter->second;
                 uint32 microcodeLength = static_cast<uint32>(microcodeOfShader->size());
-                stream->write(&microcodeLength, sizeof(uint32));                
+                stream->write(&microcodeLength, sizeof(uint32));
                 stream->write(microcodeOfShader->getPtr(), microcodeLength);
             }
         }
@@ -332,7 +332,7 @@ namespace Ogre {
         // write the size of the array
         uint32 sizeOfArray = 0;
         stream->read(&sizeOfArray, sizeof(uint32));
-        
+
         // loop the array and load it
 
         for ( uint32 i = 0 ; i < sizeOfArray ; i++ )
@@ -341,14 +341,14 @@ namespace Ogre {
             // loads the name of the shader
             uint32 stringLength  = 0;
             stream->read(&stringLength, sizeof(uint32));
-            nameOfShader.resize(stringLength);              
+            nameOfShader.resize(stringLength);
             stream->read(&nameOfShader[0], stringLength);
 
             // loads the microcode
             uint32 microcodeLength = 0;
-            stream->read(&microcodeLength, sizeof(uint32));     
+            stream->read(&microcodeLength, sizeof(uint32));
 
-            Microcode microcodeOfShader(OGRE_NEW MemoryDataStream(nameOfShader, microcodeLength));      
+            Microcode microcodeOfShader(OGRE_NEW MemoryDataStream(nameOfShader, microcodeLength));
             microcodeOfShader->seek(0);
             stream->read(microcodeOfShader->getPtr(), microcodeLength);
 
@@ -357,7 +357,7 @@ namespace Ogre {
 
         // if cache is not modified, mark it as clean.
         mCacheDirty = false;
-        
+
     }
     //---------------------------------------------------------------------
 

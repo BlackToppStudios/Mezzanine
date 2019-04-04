@@ -409,7 +409,7 @@ namespace Ogre
 
     };
 
-    typedef SharedPtr<TerrainMaterialGenerator> TerrainMaterialGeneratorPtr;
+    typedef std::shared_ptr<TerrainMaterialGenerator> TerrainMaterialGeneratorPtr;
 
     /** @} */
     /** @} */

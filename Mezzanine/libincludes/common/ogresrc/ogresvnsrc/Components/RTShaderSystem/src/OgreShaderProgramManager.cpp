@@ -132,14 +132,14 @@ void ProgramManager::releasePrograms(Pass* pass, TargetRenderState* renderState)
         GpuProgramPtr vsProgram(programSet->getGpuVertexProgram());
         GpuProgramPtr psProgram(programSet->getGpuFragmentProgram());
 
-        GpuProgramsMapIterator itVsGpuProgram = vsProgram.isNull() ? mVertexShaderMap.end() : mVertexShaderMap.find(vsProgram->getName());
-        GpuProgramsMapIterator itFsGpuProgram = psProgram.isNull() ? mFragmentShaderMap.end() : mFragmentShaderMap.find(psProgram->getName());
+        GpuProgramsMapIterator itVsGpuProgram = !vsProgram ? mVertexShaderMap.end() : mVertexShaderMap.find(vsProgram->getName());
+        GpuProgramsMapIterator itFsGpuProgram = !psProgram ? mFragmentShaderMap.end() : mFragmentShaderMap.find(psProgram->getName());
 
         renderState->destroyProgramSet();
 
         if (itVsGpuProgram != mVertexShaderMap.end())
         {
-            if (itVsGpuProgram->second.useCount() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
+            if (itVsGpuProgram->second.use_count() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
             {
                 destroyGpuProgram(itVsGpuProgram->second);
                 mVertexShaderMap.erase(itVsGpuProgram);
@@ -148,7 +148,7 @@ void ProgramManager::releasePrograms(Pass* pass, TargetRenderState* renderState)
 
         if (itFsGpuProgram != mFragmentShaderMap.end())
         {
-            if (itFsGpuProgram->second.useCount() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
+            if (itFsGpuProgram->second.use_count() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
             {
                 destroyGpuProgram(itFsGpuProgram->second);
                 mFragmentShaderMap.erase(itFsGpuProgram);
@@ -330,7 +330,7 @@ bool ProgramManager::createGpuPrograms(ProgramSet* programSet)
         ShaderGenerator::getSingleton().getVertexShaderProfilesList(),
         ShaderGenerator::getSingleton().getShaderCachePath());
 
-    if (vsGpuProgram.isNull())  
+    if (!vsGpuProgram)  
         return false;
 
     programSet->setGpuVertexProgram(vsGpuProgram);
@@ -348,7 +348,7 @@ bool ProgramManager::createGpuPrograms(ProgramSet* programSet)
         ShaderGenerator::getSingleton().getFragmentShaderProfilesList(),
         ShaderGenerator::getSingleton().getShaderCachePath());
 
-    if (psGpuProgram.isNull())  
+    if (!psGpuProgram)  
         return false;
 
     programSet->setGpuFragmentProgram(psGpuProgram);
@@ -419,7 +419,7 @@ GpuProgramPtr ProgramManager::createGpuProgram(Program* shaderProgram,
     HighLevelGpuProgramPtr pGpuProgram = HighLevelGpuProgramManager::getSingleton().getByName(programName);
 
     // Case the program doesn't exist yet.
-    if (pGpuProgram.isNull())
+    if (!pGpuProgram)
     {
         // Create new GPU program.
         pGpuProgram = HighLevelGpuProgramManager::getSingleton().createProgram(programName,
@@ -497,7 +497,7 @@ GpuProgramPtr ProgramManager::createGpuProgram(Program* shaderProgram,
         // Case an error occurred.
         if (pGpuProgram->hasCompileError())
         {
-            pGpuProgram.setNull();
+            pGpuProgram.reset();
             return GpuProgramPtr(pGpuProgram);
         }
 
@@ -602,7 +602,7 @@ void ProgramManager::destroyGpuProgram(GpuProgramPtr& gpuProgram)
     const String& programName = gpuProgram->getName();
     ResourcePtr res           = HighLevelGpuProgramManager::getSingleton().getByName(programName);  
 
-    if (res.isNull() == false)
+    if (res)
     {       
         HighLevelGpuProgramManager::getSingleton().remove(programName);
     }
@@ -674,7 +674,7 @@ void ProgramManager::synchronizePixelnToBeVertexOut( ProgramSet* programSet )
                     curOutParemter->getSemantic(), 
                     curOutParemter->getIndex());
 
-                if (paramToAdd.isNull())
+                if (!paramToAdd)
                 {
                     // param not found - we will add the one from the vertex shader
                     paramToAdd = curOutParemter; 

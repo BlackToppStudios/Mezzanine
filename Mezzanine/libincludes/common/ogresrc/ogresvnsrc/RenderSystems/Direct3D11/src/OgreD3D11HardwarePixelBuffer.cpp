@@ -579,7 +579,7 @@ namespace Ogre {
         // convert to pixelbuffer's native format if necessary
         if (src.format != mFormat)
         {
-            buf.bind(new MemoryDataStream(
+            buf.reset(new MemoryDataStream(
                 PixelUtil::getMemorySize(src.getWidth(), src.getHeight(), src.getDepth(),
                 mFormat)));
             converted = PixelBox(src.getWidth(), src.getHeight(), src.getDepth(), mFormat, buf->getPtr());

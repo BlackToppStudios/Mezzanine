@@ -156,7 +156,7 @@ namespace Ogre {
             // do this before asking for load to happen to avoid race
             mMesh->addListener(this);
         }
-        
+
         // On-demand load
         mMesh->load();
         // If loading failed, or deferred loading isn't done yet, defer
@@ -166,7 +166,7 @@ namespace Ogre {
             return;
 
         // Is mesh skeletally animated?
-        if (mMesh->hasSkeleton() && !mMesh->getSkeleton().isNull())
+        if (mMesh->hasSkeleton() && mMesh->getSkeleton())
         {
             mSkeletonInstance = OGRE_NEW SkeletonInstance(mMesh->getSkeleton());
             mSkeletonInstance->load();
@@ -226,7 +226,7 @@ namespace Ogre {
         }
 
         reevaluateVertexProcessing();
-        
+
         // Update of bounds of the parent SceneNode, if Entity already attached
         // this can happen if Mesh is loaded in background or after reinitialisation
         if( mParentNode )
@@ -277,7 +277,7 @@ namespace Ogre {
             *si = 0;
         }
         mShadowRenderables.clear();
-        
+
         // Detach all child objects, do this manually to avoid needUpdate() call
         // which can fail because of deleted items
         detachAllObjectsImpl();
@@ -364,7 +364,7 @@ namespace Ogre {
     {
         if (!mManager)
         {
-            OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND, 
+            OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND,
                         "Cannot clone an Entity that wasn't created through a "
                         "SceneManager", "Entity::clone");
         }
@@ -459,10 +459,10 @@ namespace Ogre {
 #if !OGRE_NO_MESHLOD
                 // Get sub-entity material
                 const MaterialPtr& material = (*i)->getMaterial();
-                
+
                 // Get material LOD strategy
                 const LodStrategy *materialStrategy = material->getLodStrategy();
-                
+
                 // Recalculate LOD value if strategies do not match
                 Real biasedMaterialLodValue;
                 if (meshStrategy == materialStrategy)
@@ -572,7 +572,7 @@ namespace Ogre {
                     }
                 }
                 // unless all bones were scaled to zero,
-                if (! bbox.isNull())
+                if ( !bbox.isNull() )
                 {
                     // inflate the bounding box
                     float r = mMesh->getBoneBoundingRadius() * maxScale;  // adjust bone bounding radius by max scale of any bone
@@ -734,7 +734,7 @@ namespace Ogre {
             if (cacheBoneMatrices())
             {
                 getSkeleton()->_updateTransforms();
-                //We will mark the skeleton as dirty. Otherwise, if in the same frame the entity will 
+                //We will mark the skeleton as dirty. Otherwise, if in the same frame the entity will
                 //be rendered first with a low LOD and then with a high LOD the system wont know that
                 //the bone matrices has changed and there for will not update the vertex buffers
                 getSkeleton()->_notifyManualBonesDirty();
@@ -770,7 +770,7 @@ namespace Ogre {
                 if (visible)
                 {
                     child->_updateRenderQueue(queue);
-                }   
+                }
             }
         }
 
@@ -791,8 +791,8 @@ namespace Ogre {
                 else if(mRenderQueueIDSet)
                 {
                     queue->addRenderable(bone->getDebugRenderable(1), mRenderQueueID);
-                } 
-                else 
+                }
+                else
                 {
                     queue->addRenderable(bone->getDebugRenderable(1));
                 }
@@ -891,7 +891,7 @@ namespace Ogre {
         bool animationDirty =
             (mFrameAnimationLastUpdated != mAnimationState->getDirtyFrameNumber()) ||
             (hasSkeleton() && getSkeleton()->getManualBonesDirty());
-        
+
         //update the current hardware animation state
         mCurrentHWAnimationState = hwAnimation;
 
@@ -1006,8 +1006,8 @@ namespace Ogre {
 
         // Need to update the child object's transforms when animation dirty
         // or parent node transform has altered.
-        if (hasSkeleton() && 
-            (isNeedUpdateHardwareAnim || 
+        if (hasSkeleton() &&
+            (isNeedUpdateHardwareAnim ||
              animationDirty || mLastParentXform != _getParentNodeFullTransform()))
         {
             // Cache last parent transform for next frame use too.
@@ -1048,7 +1048,7 @@ namespace Ogre {
         ushort elemsSupported = numberOfElements;
         if (vdata->hwAnimationDataList.size() < numberOfElements)
         {
-            elemsSupported = 
+            elemsSupported =
                 vdata->allocateHardwareAnimationElements(numberOfElements, animateNormals);
         }
         // Initialise parametrics in case we don't use all of them
@@ -1058,7 +1058,7 @@ namespace Ogre {
         }
         // reset used count
         vdata->hwAnimDataItemsUsed = 0;
-                
+
         return elemsSupported;
 
     }
@@ -1077,20 +1077,20 @@ namespace Ogre {
                 ushort supportedCount =
                     initHardwareAnimationElements(mHardwareVertexAnimVertexData,
                                                   (msh->getSharedVertexDataAnimationType() == VAT_POSE)
-                                                  ? mHardwarePoseCount : 1, 
+                                                  ? mHardwarePoseCount : 1,
                                                   msh->getSharedVertexDataAnimationIncludesNormals());
-                
-                if (msh->getSharedVertexDataAnimationType() == VAT_POSE && 
+
+                if (msh->getSharedVertexDataAnimationType() == VAT_POSE &&
                     supportedCount < mHardwarePoseCount)
                 {
                     LogManager::getSingleton().stream() <<
-                        "Vertex program assigned to Entity '" << mName << 
-                        "' claimed to support " << mHardwarePoseCount << 
+                        "Vertex program assigned to Entity '" << mName <<
+                        "' claimed to support " << mHardwarePoseCount <<
                         " morph/pose vertex sets, but in fact only " << supportedCount <<
                         " were able to be supported in the shared mesh data.";
                     mHardwarePoseCount = supportedCount;
                 }
-                    
+
 }
             for (SubEntityList::iterator si = mSubEntityList.begin();
                 si != mSubEntityList.end(); ++si)
@@ -1105,17 +1105,17 @@ namespace Ogre {
                         ? sub->mHardwarePoseCount : 1,
                         sub->getSubMesh()->getVertexAnimationIncludesNormals());
 
-                    if (sub->getSubMesh()->getVertexAnimationType() == VAT_POSE && 
+                    if (sub->getSubMesh()->getVertexAnimationType() == VAT_POSE &&
                         supportedCount < sub->mHardwarePoseCount)
                     {
                         LogManager::getSingleton().stream() <<
-                        "Vertex program assigned to SubEntity of '" << mName << 
-                        "' claimed to support " << sub->mHardwarePoseCount << 
+                        "Vertex program assigned to SubEntity of '" << mName <<
+                        "' claimed to support " << sub->mHardwarePoseCount <<
                         " morph/pose vertex sets, but in fact only " << supportedCount <<
                         " were able to be supported in the mesh data.";
                         sub->mHardwarePoseCount = supportedCount;
                     }
-                    
+
                 }
             }
 
@@ -1133,8 +1133,8 @@ namespace Ogre {
                 HardwareVertexBufferSharedPtr buf = mSoftwareVertexAnimVertexData
                     ->vertexBufferBinding->getBuffer(elem->getSource());
                 buf->suppressHardwareUpdate(true);
-                
-                initialisePoseVertexData(mMesh->sharedVertexData, mSoftwareVertexAnimVertexData, 
+
+                initialisePoseVertexData(mMesh->sharedVertexData, mSoftwareVertexAnimVertexData,
                     mMesh->getSharedVertexDataAnimationIncludesNormals());
             }
             for (SubEntityList::iterator si = mSubEntityList.begin();
@@ -1151,7 +1151,7 @@ namespace Ogre {
                         ->vertexBufferBinding->getBuffer(elem->getSource());
                     buf->suppressHardwareUpdate(true);
                     // if we're animating normals, we need to start with zeros
-                    initialisePoseVertexData(sub->getSubMesh()->vertexData, data, 
+                    initialisePoseVertexData(sub->getSubMesh()->vertexData, data,
                         sub->getSubMesh()->getVertexAnimationIncludesNormals());
                 }
             }
@@ -1185,7 +1185,7 @@ namespace Ogre {
                 // if we're animating normals, if pose influence < 1 need to use the base mesh
                 if (mMesh->getSharedVertexDataAnimationIncludesNormals())
                     finalisePoseNormals(mMesh->sharedVertexData, mSoftwareVertexAnimVertexData);
-            
+
                 const VertexElement* elem = mSoftwareVertexAnimVertexData
                     ->vertexDeclaration->findElementBySemantic(VES_POSITION);
                 HardwareVertexBufferSharedPtr buf = mSoftwareVertexAnimVertexData
@@ -1203,7 +1203,7 @@ namespace Ogre {
                     // if we're animating normals, if pose influence < 1 need to use the base mesh
                     if (sub->getSubMesh()->getVertexAnimationIncludesNormals())
                         finalisePoseNormals(sub->getSubMesh()->vertexData, data);
-                    
+
                     const VertexElement* elem = data->vertexDeclaration
                         ->findElementBySemantic(VES_POSITION);
                     HardwareVertexBufferSharedPtr buf = data
@@ -1254,13 +1254,13 @@ namespace Ogre {
                 mSoftwareVertexAnimVertexData->vertexDeclaration->findElementBySemantic(VES_POSITION);
             mSoftwareVertexAnimVertexData->vertexBufferBinding->setBinding(
                 destPosElem->getSource(), srcBuf);
-                
+
         }
 
         // rebind any missing hardware pose buffers
         // Caused by not having any animations enabled, or keyframes which reference
         // no poses
-        if (mMesh->sharedVertexData && hardwareAnimation 
+        if (mMesh->sharedVertexData && hardwareAnimation
             && mMesh->getSharedVertexDataAnimationType() == VAT_POSE)
         {
             bindMissingHardwarePoseBuffers(mMesh->sharedVertexData, mHardwareVertexAnimVertexData);
@@ -1275,7 +1275,7 @@ namespace Ogre {
 
     }
     //---------------------------------------------------------------------
-    void Entity::bindMissingHardwarePoseBuffers(const VertexData* srcData, 
+    void Entity::bindMissingHardwarePoseBuffers(const VertexData* srcData,
         VertexData* destData)
     {
         // For hardware pose animation, also make sure we've bound buffers to all the elements
@@ -1304,35 +1304,35 @@ namespace Ogre {
 
     }
     //-----------------------------------------------------------------------
-    void Entity::initialisePoseVertexData(const VertexData* srcData, 
+    void Entity::initialisePoseVertexData(const VertexData* srcData,
         VertexData* destData, bool animateNormals)
     {
-    
+
         // First time through for a piece of pose animated vertex data
         // We need to copy the original position values to the temp accumulator
-        const VertexElement* origelem = 
+        const VertexElement* origelem =
             srcData->vertexDeclaration->findElementBySemantic(VES_POSITION);
-        const VertexElement* destelem = 
+        const VertexElement* destelem =
             destData->vertexDeclaration->findElementBySemantic(VES_POSITION);
-        HardwareVertexBufferSharedPtr origBuffer = 
+        HardwareVertexBufferSharedPtr origBuffer =
             srcData->vertexBufferBinding->getBuffer(origelem->getSource());
-        HardwareVertexBufferSharedPtr destBuffer = 
+        HardwareVertexBufferSharedPtr destBuffer =
             destData->vertexBufferBinding->getBuffer(destelem->getSource());
         destBuffer->copyData(*origBuffer.get(), 0, 0, destBuffer->getSizeInBytes(), true);
-    
+
         // If normals are included in animation, we want to reset the normals to zero
         if (animateNormals)
         {
             const VertexElement* normElem =
                 destData->vertexDeclaration->findElementBySemantic(VES_NORMAL);
-                
+
             if (normElem)
             {
-                HardwareVertexBufferSharedPtr buf = 
+                HardwareVertexBufferSharedPtr buf =
                     destData->vertexBufferBinding->getBuffer(normElem->getSource());
                 char* pBase = static_cast<char*>(buf->lock(HardwareBuffer::HBL_NORMAL));
                 pBase += destData->vertexStart * buf->getVertexSize();
-                
+
                 for (size_t v = 0; v < destData->vertexCount; ++v)
                 {
                     float* pNorm;
@@ -1340,7 +1340,7 @@ namespace Ogre {
                     *pNorm++ = 0.0f;
                     *pNorm++ = 0.0f;
                     *pNorm++ = 0.0f;
-                    
+
                     pBase += buf->getVertexSize();
                 }
                 buf->unlock();
@@ -1354,20 +1354,20 @@ namespace Ogre {
             destData->vertexDeclaration->findElementBySemantic(VES_NORMAL);
         const VertexElement* srcNormElem =
             srcData->vertexDeclaration->findElementBySemantic(VES_NORMAL);
-            
+
         if (destNormElem && srcNormElem)
         {
-            HardwareVertexBufferSharedPtr srcbuf = 
+            HardwareVertexBufferSharedPtr srcbuf =
                 srcData->vertexBufferBinding->getBuffer(srcNormElem->getSource());
-            HardwareVertexBufferSharedPtr dstbuf = 
+            HardwareVertexBufferSharedPtr dstbuf =
                 destData->vertexBufferBinding->getBuffer(destNormElem->getSource());
             char* pSrcBase = static_cast<char*>(srcbuf->lock(HardwareBuffer::HBL_READ_ONLY));
             char* pDstBase = static_cast<char*>(dstbuf->lock(HardwareBuffer::HBL_NORMAL));
             pSrcBase += srcData->vertexStart * srcbuf->getVertexSize();
             pDstBase += destData->vertexStart * dstbuf->getVertexSize();
-            
+
             // The goal here is to detect the length of the vertices, and to apply
-            // the base mesh vertex normal at one minus that length; this deals with 
+            // the base mesh vertex normal at one minus that length; this deals with
             // any individual vertices which were either not affected by any pose, or
             // were not affected to a complete extent
             // We also normalise every normal to deal with over-weighting
@@ -1389,11 +1389,11 @@ namespace Ogre {
                     norm.z += *pSrcNorm++ * baseWeight;
                 }
                 norm.normalise();
-                
+
                 *pDstNorm++ = (float)norm.x;
                 *pDstNorm++ = (float)norm.y;
                 *pDstNorm++ = (float)norm.z;
-                
+
                 pDstBase += dstbuf->getVertexSize();
                 pSrcBase += dstbuf->getVertexSize();
             }
@@ -1750,7 +1750,7 @@ namespace Ogre {
         VertexData* ret = source->clone(false);
         bool removeIndices = Ogre::Root::getSingleton().isBlendIndicesGpuRedundant();
         bool removeWeights = Ogre::Root::getSingleton().isBlendWeightsGpuRedundant();
-         
+
         unsigned short safeSource = 0xFFFF;
         const VertexElement* blendIndexElem =
             source->vertexDeclaration->findElementBySemantic(VES_BLEND_INDICES);
@@ -1864,7 +1864,7 @@ namespace Ogre {
                     // If one material uses a vertex program, set this flag
                     // Causes some special processing like forcing a separate light cap
                     mVertexProgramInUse = true;
-                    
+
                     // If shadow renderables already created create their light caps
                     ShadowRenderableList::iterator si = mShadowRenderables.begin();
                     ShadowRenderableList::iterator siend = mShadowRenderables.end();
@@ -2244,7 +2244,7 @@ namespace Ogre {
         mPositionBuffer = vertexData->vertexBufferBinding->getBuffer(mOriginalPosBufferBinding);
         mRenderOp.vertexData->vertexBufferBinding->setBinding(0, mPositionBuffer);
         // Map in w-coord buffer (if present)
-        if(!vertexData->hardwareShadowVolWBuffer.isNull())
+        if(vertexData->hardwareShadowVolWBuffer)
         {
             mRenderOp.vertexData->vertexDeclaration->addElement(1,0,VET_FLOAT1, VES_TEXTURE_COORDINATES, 0);
             mWBuffer = vertexData->hardwareShadowVolWBuffer;
@@ -2279,7 +2279,7 @@ namespace Ogre {
             // Create child light cap
             mLightCap = OGRE_NEW EntityShadowRenderable(mParent,
                 &mRenderOp.indexData->indexBuffer, mCurrentVertexData, false, mSubEntity, true);
-        }   
+        }
     }
     //-----------------------------------------------------------------------
     Entity::EntityShadowRenderable::~EntityShadowRenderable()
@@ -2516,7 +2516,7 @@ namespace Ogre {
 
     }
     //---------------------------------------------------------------------
-    void Entity::visitRenderables(Renderable::Visitor* visitor, 
+    void Entity::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         // Visit each SubEntity
@@ -2527,7 +2527,7 @@ namespace Ogre {
 #if !OGRE_NO_MESHLOD
         // if manual LOD is in use, visit those too
         ushort lodi = 1;
-        for (LODEntityList::iterator e = mLodEntityList.begin(); 
+        for (LODEntityList::iterator e = mLodEntityList.begin();
             e != mLodEntityList.end(); ++e, ++lodi)
         {
             if(*e != this) {
@@ -2577,7 +2577,7 @@ namespace Ogre {
             }
 
         }
-        if (pMesh.isNull())
+        if (!pMesh)
         {
             OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
                 "'mesh' parameter required when constructing an Entity.",

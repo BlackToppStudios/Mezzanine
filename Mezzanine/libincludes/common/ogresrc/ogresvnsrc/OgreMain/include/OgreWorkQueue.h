@@ -532,7 +532,7 @@ namespace Ogre
 
         };
         // Hold these by shared pointer so they can be copied keeping same instance
-        typedef SharedPtr<RequestHandlerHolder> RequestHandlerHolderPtr;
+        typedef std::shared_ptr<RequestHandlerHolder> RequestHandlerHolderPtr;
 
         typedef list<RequestHandlerHolderPtr>::type RequestHandlerList;
         typedef list<ResponseHandler*>::type ResponseHandlerList;

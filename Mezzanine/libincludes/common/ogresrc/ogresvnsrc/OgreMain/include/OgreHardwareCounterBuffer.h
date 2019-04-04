@@ -63,10 +63,10 @@ namespace Ogre {
     };
 
     /** Shared pointer implementation used to share counter buffers. */
-    class _OgreExport HardwareCounterBufferSharedPtr : public SharedPtr<HardwareCounterBuffer>
+    class _OgreExport HardwareCounterBufferSharedPtr : public std::shared_ptr<HardwareCounterBuffer>
     {
     public:
-        HardwareCounterBufferSharedPtr() : SharedPtr<HardwareCounterBuffer>() {}
+        HardwareCounterBufferSharedPtr() : std::shared_ptr<HardwareCounterBuffer>() {}
         explicit HardwareCounterBufferSharedPtr(HardwareCounterBuffer* buf);
     };
 

@@ -42,7 +42,7 @@ namespace Ogre
     class OverlayElementFactory;
     class OverlayManager;
 
-    typedef SharedPtr<Font> FontPtr;
+    typedef std::shared_ptr<Font> FontPtr;
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WINRT

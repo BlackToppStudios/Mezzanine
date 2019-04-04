@@ -813,7 +813,7 @@ namespace Ogre {
     }
     //-----------------------------------------------------------------------------
     HardwareVertexBufferSharedPtr::HardwareVertexBufferSharedPtr(HardwareVertexBuffer* buf)
-        : SharedPtr<HardwareVertexBuffer>(buf)
+        : std::shared_ptr<HardwareVertexBuffer>(buf)
     {
 
     }

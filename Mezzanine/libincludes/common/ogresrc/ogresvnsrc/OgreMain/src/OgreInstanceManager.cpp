@@ -61,10 +61,10 @@ namespace Ogre
         if(mMeshReference->sharedVertexData)
             unshareVertices(mMeshReference);
 
-        if( mMeshReference->hasSkeleton() && !mMeshReference->getSkeleton().isNull() )
+        if( mMeshReference->hasSkeleton() && mMeshReference->getSkeleton() )
             mMeshReference->getSubMesh(mSubMeshIdx)->_compileBoneAssignments();
     }
-                
+
     InstanceManager::~InstanceManager()
     {
         //Remove all batches from all materials we created
@@ -105,7 +105,7 @@ namespace Ogre
 
         mMaxLookupTableInstances = maxLookupTableInstances;
     }
-    
+
     //----------------------------------------------------------------------
     void InstanceManager::setNumCustomParams( unsigned char numCustomParams )
     {
@@ -127,7 +127,7 @@ namespace Ogre
         InstanceBatch *batch = 0;
 
         //Base material couldn't be found
-        if( mat.isNull() )
+        if( !mat )
             return 0;
 
         switch( mInstancingTechnique )
@@ -518,14 +518,14 @@ namespace Ogre
     template< typename TIndexType >
     IndicesMap getUsedIndices(IndexData* idxData)
     {
-        TIndexType *data = (TIndexType*)idxData->indexBuffer->lock(idxData->indexStart * sizeof(TIndexType), 
+        TIndexType *data = (TIndexType*)idxData->indexBuffer->lock(idxData->indexStart * sizeof(TIndexType),
             idxData->indexCount * sizeof(TIndexType), HardwareBuffer::HBL_READ_ONLY);
 
         IndicesMap indicesMap;
-        for (size_t i = 0; i < idxData->indexCount; i++) 
+        for (size_t i = 0; i < idxData->indexCount; i++)
         {
             TIndexType index = data[i];
-            if (indicesMap.find(index) == indicesMap.end()) 
+            if (indicesMap.find(index) == indicesMap.end())
             {
                 indicesMap[index] = (uint32)(indicesMap.size());
             }
@@ -538,10 +538,10 @@ namespace Ogre
     template< typename TIndexType >
     void copyIndexBuffer(IndexData* idxData, IndicesMap& indicesMap)
     {
-        TIndexType *data = (TIndexType*)idxData->indexBuffer->lock(idxData->indexStart * sizeof(TIndexType), 
+        TIndexType *data = (TIndexType*)idxData->indexBuffer->lock(idxData->indexStart * sizeof(TIndexType),
             idxData->indexCount * sizeof(TIndexType), HardwareBuffer::HBL_NORMAL);
 
-        for (uint32 i = 0; i < idxData->indexCount; i++) 
+        for (uint32 i = 0; i < idxData->indexCount; i++)
         {
             data[i] = (TIndexType)indicesMap[data[i]];
         }
@@ -574,10 +574,10 @@ namespace Ogre
             newVertexData->vertexCount = indicesMap.size();
             newVertexData->vertexDeclaration = sharedVertexData->vertexDeclaration->clone();
 
-            for (size_t bufIdx = 0; bufIdx < sharedVertexData->vertexBufferBinding->getBufferCount(); bufIdx++) 
+            for (size_t bufIdx = 0; bufIdx < sharedVertexData->vertexBufferBinding->getBufferCount(); bufIdx++)
             {
                 HardwareVertexBufferSharedPtr sharedVertexBuffer = sharedVertexData->vertexBufferBinding->getBuffer(bufIdx);
-                size_t vertexSize = sharedVertexBuffer->getVertexSize();                
+                size_t vertexSize = sharedVertexBuffer->getVertexSize();
 
                 HardwareVertexBufferSharedPtr newVertexBuffer = HardwareBufferManager::getSingleton().createVertexBuffer
                     (vertexSize, newVertexData->vertexCount, sharedVertexBuffer->getUsage(), sharedVertexBuffer->hasShadowBuffer());

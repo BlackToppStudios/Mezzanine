@@ -46,8 +46,8 @@ CompositorManager* CompositorManager::getSingletonPtr(void)
     return msSingleton;
 }
 CompositorManager& CompositorManager::getSingleton(void)
-{  
-    assert( msSingleton );  return ( *msSingleton );  
+{
+    assert( msSingleton );  return ( *msSingleton );
 }//-----------------------------------------------------------------------
 CompositorManager::CompositorManager():
     mRectangle(0)
@@ -88,12 +88,12 @@ CompositorPtr CompositorManager::create (const String& name, const String& group
                                 bool isManual, ManualResourceLoader* loader,
                                 const NameValuePairList* createParams)
 {
-    return createResource(name,group,isManual,loader,createParams).staticCast<Compositor>();
+    return std::static_pointer_cast<Compositor>( createResource(name,group,isManual,loader,createParams) );
 }
 //-----------------------------------------------------------------------
 CompositorPtr CompositorManager::getByName(const String& name, const String& groupName)
 {
-    return getResourceByName(name, groupName).staticCast<Compositor>();
+    return std::static_pointer_cast<Compositor>( getResourceByName(name, groupName) );
 }
 //-----------------------------------------------------------------------
 void CompositorManager::initialise(void)
@@ -169,7 +169,7 @@ Renderable *CompositorManager::_getTexturedRectangle2D()
 CompositorInstance *CompositorManager::addCompositor(Viewport *vp, const String &compositor, int addPosition)
 {
     CompositorPtr comp = getByName(compositor);
-    if(comp.isNull())
+    if(!comp)
         return 0;
     CompositorChain *chain = getCompositorChain(vp);
     return chain->addCompositor(comp, addPosition==-1 ? CompositorChain::LAST : (size_t)addPosition);
@@ -235,13 +235,13 @@ void CompositorManager::_reconstructAllCompositorResources()
     }
 }
 //---------------------------------------------------------------------
-TexturePtr CompositorManager::getPooledTexture(const String& name, 
+TexturePtr CompositorManager::getPooledTexture(const String& name,
     const String& localName,
-    size_t w, size_t h, PixelFormat f, uint aa, const String& aaHint, bool srgb, 
-    CompositorManager::UniqueTextureSet& texturesAssigned, 
+    size_t w, size_t h, PixelFormat f, uint aa, const String& aaHint, bool srgb,
+    CompositorManager::UniqueTextureSet& texturesAssigned,
     CompositorInstance* inst, CompositionTechnique::TextureScope scope)
 {
-    if (scope == CompositionTechnique::TS_GLOBAL) 
+    if (scope == CompositionTechnique::TS_GLOBAL)
     {
         OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
             "Global scope texture can not be pooled.",
@@ -261,8 +261,8 @@ TexturePtr CompositorManager::getPooledTexture(const String& name,
         }
         // ok, we need to create a new one
         TexturePtr newTex = TextureManager::getSingleton().createManual(
-            name, 
-            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
+            name,
+            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME, TEX_TYPE_2D,
             (uint)w, (uint)h, 0, f, TU_RENDERTARGET, 0,
             srgb, aa, aaHint);
         defMap.insert(TextureDefMap::value_type(def, newTex));
@@ -292,7 +292,7 @@ TexturePtr CompositorManager::getPooledTexture(const String& name,
             // however, there is an edge case where if we re-use a texture
             // which has an 'input previous' pass, and it is chained from another
             // compositor, we can end up trying to use the same texture for both
-            // so, never allow a texture with an input previous pass to be 
+            // so, never allow a texture with an input previous pass to be
             // shared with its immediate predecessor in the chain
             if (isInputPreviousTarget(inst, localName))
             {
@@ -305,11 +305,11 @@ TexturePtr CompositorManager::getPooledTexture(const String& name,
             // now check the other way around since we don't know what order they're bound in
             if (isInputToOutputTarget(inst, localName))
             {
-                
+
                 if (next && isInputPreviousTarget(next, tex))
                     allowReuse = false;
             }
-            
+
             if (allowReuse)
             {
                 ret = tex;
@@ -319,14 +319,14 @@ TexturePtr CompositorManager::getPooledTexture(const String& name,
         }
     }
 
-    if (ret.isNull())
+    if (!ret)
     {
         // ok, we need to create a new one
         ret = TextureManager::getSingleton().createManual(
-            name, 
-            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
+            name,
+            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME, TEX_TYPE_2D,
             (uint)w, (uint)h, 0, f, TU_RENDERTARGET, 0,
-            srgb, aa, aaHint); 
+            srgb, aa, aaHint);
 
         texList->push_back(ret);
 
@@ -367,7 +367,7 @@ bool CompositorManager::isInputPreviousTarget(CompositorInstance* inst, TextureP
         {
             // Don't have to worry about an MRT, because no MRT can be input previous
             TexturePtr t = inst->getTextureInstance(tp->getOutputName(), 0);
-            if (!t.isNull() && t.get() == tex.get())
+            if (t && t.get() == tex.get())
                 return true;
         }
 
@@ -407,7 +407,7 @@ bool CompositorManager::isInputToOutputTarget(CompositorInstance* inst, TextureP
         for (size_t i = 0; i < p->getNumInputs(); ++i)
         {
             TexturePtr t = inst->getTextureInstance(p->getInput(i).name, 0);
-            if (!t.isNull() && t.get() == tex.get())
+            if (t && t.get() == tex.get())
                 return true;
         }
     }
@@ -428,7 +428,7 @@ void CompositorManager::freePooledTextures(bool onlyIfUnreferenced)
                 // if the resource system, plus this class, are the only ones to have a reference..
                 // NOTE: any material references will stop this texture getting freed (e.g. compositor demo)
                 // until this routine is called again after the material no longer references the texture
-                if (j->useCount() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
+                if (j->use_count() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
                 {
                     TextureManager::getSingleton().remove((*j)->getHandle());
                     j = texList->erase(j);
@@ -440,10 +440,10 @@ void CompositorManager::freePooledTextures(bool onlyIfUnreferenced)
         for (ChainTexturesByDef::iterator i = mChainTexturesByDef.begin(); i != mChainTexturesByDef.end(); ++i)
         {
             TextureDefMap& texMap = i->second;
-            for (TextureDefMap::iterator j = texMap.begin(); j != texMap.end();) 
+            for (TextureDefMap::iterator j = texMap.begin(); j != texMap.end();)
             {
                 const TexturePtr& tex = j->second;
-                if (tex.useCount() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
+                if (tex.use_count() == ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS + 1)
                 {
                     TextureManager::getSingleton().remove(tex->getHandle());
                     texMap.erase(j++);
@@ -467,8 +467,8 @@ void CompositorManager::freePooledTextures(bool onlyIfUnreferenced)
 }
 //---------------------------------------------------------------------
 void CompositorManager::registerCompositorLogic(const String& name, CompositorLogic* logic)
-{   
-    if (name.empty()) 
+{
+    if (name.empty())
     {
         OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
             "Compositor logic name must not be empty.",
@@ -515,8 +515,8 @@ bool CompositorManager::getHasCompositorLogic(const String& name)
 }
 //---------------------------------------------------------------------
 void CompositorManager::registerCustomCompositionPass(const String& name, CustomCompositionPass* logic)
-{   
-    if (name.empty()) 
+{
+    if (name.empty())
     {
         OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
             "Custom composition pass name must not be empty.",
@@ -532,7 +532,7 @@ void CompositorManager::registerCustomCompositionPass(const String& name, Custom
 }
 //---------------------------------------------------------------------
 void CompositorManager::unRegisterCustomCompositionPass(const String& name)
-{	
+{
 	CustomCompositionPassMap::iterator itor = mCustomCompositionPasses.find(name);
 	if( itor == mCustomCompositionPasses.end() )
 	{

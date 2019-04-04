@@ -721,7 +721,7 @@ static const unsigned char yystos[] =
 
 #define YYFAIL      goto yyerrlab
 
-#define YYRECOVERING()  (!!yyerrstatus)
+#define YYRECOVERING()  (yyerrstatus)
 
 #define YYBACKUP(Token, Value)                  \
 do                              \

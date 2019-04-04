@@ -302,7 +302,7 @@ protected:
 
         // change the value if hardware skinning is enabled
         MaterialPtr entityMaterial = ent->getSubEntity(0)->getMaterial();
-        if(!entityMaterial.isNull())
+        if(entityMaterial)
         {
             Technique* bestTechnique = entityMaterial->getBestTechnique();
             if(bestTechnique)
@@ -324,8 +324,8 @@ protected:
     void tweakSneakAnim()
     {
         // get the skeleton, animation, and the node track iterator
-        SkeletonPtr skel = SkeletonManager::getSingleton().load("jaiqua.skeleton",
-            ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME).staticCast<Skeleton>();
+        SkeletonPtr skel = std::static_pointer_cast<Skeleton>( SkeletonManager::getSingleton().load("jaiqua.skeleton",
+            ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME) );
         Animation* anim = skel->getAnimation("Sneak");
         Animation::NodeTrackIterator tracks = anim->getNodeTrackIterator();
 

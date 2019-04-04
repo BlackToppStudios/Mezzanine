@@ -364,7 +364,7 @@ void CompositorInstance::collectPasses(TargetOperation &finalState, CompositionT
         }
         case CompositionPass::PT_RENDERQUAD: {
             srcmat = pass->getMaterial();
-            if(srcmat.isNull())
+            if(!srcmat)
             {
                 /// No material -- warn user
                 LogManager::getSingleton().logMessage("Warning in compilation of Compositor "
@@ -1015,7 +1015,7 @@ RenderTarget *CompositorInstance::getTargetForTex(const String &name)
         {
             //Still NULL. Try global search.
             const CompositorPtr &refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
-            if(!refComp.isNull())
+            if(refComp)
             {
                 refTexDef = refComp->getSupportedTechnique()->getTextureDefinition(name);
             }
@@ -1069,7 +1069,7 @@ RenderTarget *CompositorInstance::getTargetForTex(const String &name)
             {
                 //Chain and global case - the referenced compositor will know how to handle
                 const CompositorPtr& refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
-                if(refComp.isNull())
+                if(!refComp)
                 {
                     OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND, "Referencing non-existent compositor",
                         "CompositorInstance::getTargetForTex");
@@ -1125,7 +1125,7 @@ const String &CompositorInstance::getSourceForTex(const String &name, size_t mrt
         {
             //Still NULL. Try global search.
             const CompositorPtr &refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
-            if(!refComp.isNull())
+            if(refComp)
             {
                 refTexDef = refComp->getSupportedTechnique()->getTextureDefinition(texDef->refTexName);
             }
@@ -1179,7 +1179,7 @@ const String &CompositorInstance::getSourceForTex(const String &name, size_t mrt
             {
                 //Chain and global case - the referenced compositor will know how to handle
                 const CompositorPtr& refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
-                if(refComp.isNull())
+                if(!refComp)
                 {
                     OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND, "Referencing non-existent compositor",
                         "CompositorInstance::getSourceForTex");

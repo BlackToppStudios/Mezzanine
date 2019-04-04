@@ -180,7 +180,7 @@ namespace Ogre {
     //         for (; texture != end; texture++)
     //         {
     //             //std::cout << "IMAGE LOAD/STORE" << std::endl;
-    //             GL3PlusTexturePtr tex = texture->staticCast<GL3PlusTexture>();
+    //             GL3PlusTexturePtr tex = std::static_pointer_cast<GL3PlusTexture>( texture- );
     //             //TODO This needs to be redone so that:
     //             // * binding point (first parameter) and possibly other parameters come from shader
     //             // * simple conversion of shader format to GLenum format

@@ -928,14 +928,14 @@ namespace Ogre {
 
     void GL3PlusRenderSystem::_setTexture(size_t stage, bool enabled, const TexturePtr &texPtr)
     {
-        GL3PlusTexturePtr tex = texPtr.staticCast<GL3PlusTexture>();
+        GL3PlusTexturePtr tex = std::static_pointer_cast<GL3PlusTexture>( texPtr );
 
         if (!activateGLTextureUnit(stage))
             return;
 
         if (enabled)
         {
-            if (!tex.isNull())
+            if (tex)
             {
                 // Note used
                 tex->touch();
@@ -948,7 +948,7 @@ namespace Ogre {
                 // Assume 2D.
                 mTextureTypes[stage] = GL_TEXTURE_2D;
 
-            if (!tex.isNull())
+            if (tex)
             {
                 OGRE_CHECK_GL_ERROR(glBindTexture( mTextureTypes[stage], tex->getGLID() ));
             }
@@ -1750,7 +1750,7 @@ namespace Ogre {
         HardwareVertexBufferSharedPtr globalInstanceVertexBuffer = getGlobalInstanceVertexBuffer();
         VertexDeclaration* globalVertexDeclaration = getGlobalInstanceVertexBufferVertexDeclaration();
         bool hasInstanceData = (op.useGlobalInstancingVertexBufferIsAvailable &&
-                                !globalInstanceVertexBuffer.isNull() && (globalVertexDeclaration != NULL))
+                                globalInstanceVertexBuffer && (globalVertexDeclaration != NULL))
             || op.vertexData->vertexBufferBinding->getHasInstanceData();
 
         size_t numberOfInstances = op.numberOfInstances;
@@ -1821,7 +1821,7 @@ namespace Ogre {
                                    mRenderAttribsBound, mRenderInstanceAttribsBound, updateVAO);
         }
 
-        if ( !globalInstanceVertexBuffer.isNull() && globalVertexDeclaration != NULL )
+        if ( globalInstanceVertexBuffer && globalVertexDeclaration != NULL )
         {
             elemEnd = globalVertexDeclaration->getElements().end();
             for (elemIter = globalVertexDeclaration->getElements().begin(); elemIter != elemEnd; ++elemIter)
@@ -2529,37 +2529,37 @@ namespace Ogre {
     {
         if (gptype == GPT_VERTEX_PROGRAM && mCurrentVertexShader)
         {
-            mActiveVertexGpuProgramParameters.setNull();
+            mActiveVertexGpuProgramParameters.reset();
             mCurrentVertexShader->unbind();
             mCurrentVertexShader = 0;
         }
         else if (gptype == GPT_GEOMETRY_PROGRAM && mCurrentGeometryShader)
         {
-            mActiveGeometryGpuProgramParameters.setNull();
+            mActiveGeometryGpuProgramParameters.reset();
             mCurrentGeometryShader->unbind();
             mCurrentGeometryShader = 0;
         }
         else if (gptype == GPT_FRAGMENT_PROGRAM && mCurrentFragmentShader)
         {
-            mActiveFragmentGpuProgramParameters.setNull();
+            mActiveFragmentGpuProgramParameters.reset();
             mCurrentFragmentShader->unbind();
             mCurrentFragmentShader = 0;
         }
         else if (gptype == GPT_HULL_PROGRAM && mCurrentHullShader)
         {
-            mActiveTessellationHullGpuProgramParameters.setNull();
+            mActiveTessellationHullGpuProgramParameters.reset();
             mCurrentHullShader->unbind();
             mCurrentHullShader = 0;
         }
         else if (gptype == GPT_DOMAIN_PROGRAM && mCurrentDomainShader)
         {
-            mActiveTessellationDomainGpuProgramParameters.setNull();
+            mActiveTessellationDomainGpuProgramParameters.reset();
             mCurrentDomainShader->unbind();
             mCurrentDomainShader = 0;
         }
         else if (gptype == GPT_COMPUTE_PROGRAM && mCurrentComputeShader)
         {
-            mActiveComputeGpuProgramParameters.setNull();
+            mActiveComputeGpuProgramParameters.reset();
             mCurrentComputeShader->unbind();
             mCurrentComputeShader = 0;
         }

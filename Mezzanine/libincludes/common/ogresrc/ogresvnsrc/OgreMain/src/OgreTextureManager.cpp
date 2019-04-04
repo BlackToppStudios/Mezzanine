@@ -39,8 +39,8 @@ namespace Ogre {
         return msSingleton;
     }
     TextureManager& TextureManager::getSingleton(void)
-    {  
-        assert( msSingleton );  return ( *msSingleton );  
+    {
+        assert( msSingleton );  return ( *msSingleton );
     }
     //-----------------------------------------------------------------------
     TextureManager::TextureManager(void)
@@ -62,14 +62,14 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     TexturePtr TextureManager::getByName(const String& name, const String& groupName)
     {
-        return getResourceByName(name, groupName).staticCast<Texture>();
+        return std::static_pointer_cast<Texture>( getResourceByName(name, groupName) );
     }
     //-----------------------------------------------------------------------
     TexturePtr TextureManager::create (const String& name, const String& group,
                                     bool isManual, ManualResourceLoader* loader,
                                     const NameValuePairList* createParams)
     {
-        return createResource(name,group,isManual,loader,createParams).staticCast<Texture>();
+        return std::static_pointer_cast<Texture>( createResource(name,group,isManual,loader,createParams) );
     }
     //-----------------------------------------------------------------------
     TextureManager::ResourceCreateOrRetrieveResult TextureManager::createOrRetrieve(
@@ -82,7 +82,7 @@ namespace Ogre {
         // Was it created?
         if(res.second)
         {
-            TexturePtr tex = res.first.staticCast<Texture>();
+            TexturePtr tex = std::static_pointer_cast<Texture>( res.first );
             tex->setTextureType(texType);
             tex->setNumMipmaps((numMipmaps == MIP_DEFAULT)? mDefaultNumMipmaps :
                 static_cast<size_t>(numMipmaps));
@@ -100,7 +100,7 @@ namespace Ogre {
     {
         ResourceCreateOrRetrieveResult res =
             createOrRetrieve(name,group,false,0,0,texType,numMipmaps,gamma,isAlpha,desiredFormat,hwGamma);
-        TexturePtr tex = res.first.staticCast<Texture>();
+        TexturePtr tex = std::static_pointer_cast<Texture>( res.first );
         tex->prepare();
         return tex;
     }
@@ -111,17 +111,17 @@ namespace Ogre {
     {
         ResourceCreateOrRetrieveResult res =
             createOrRetrieve(name,group,false,0,0,texType,numMipmaps,gamma,isAlpha,desiredFormat,hwGamma);
-        TexturePtr tex = res.first.staticCast<Texture>();
+        TexturePtr tex = std::static_pointer_cast<Texture>( res.first );
         tex->load();
         return tex;
     }
 
     //-----------------------------------------------------------------------
     TexturePtr TextureManager::loadImage( const String &name, const String& group,
-        const Image &img, TextureType texType, int numMipmaps, Real gamma, bool isAlpha, 
+        const Image &img, TextureType texType, int numMipmaps, Real gamma, bool isAlpha,
         PixelFormat desiredFormat, bool hwGamma)
     {
-        TexturePtr tex = createResource(name, group, true).staticCast<Texture>();
+        TexturePtr tex = std::static_pointer_cast<Texture>( createResource(name, group, true) );
 
         tex->setTextureType(texType);
         tex->setNumMipmaps((numMipmaps == MIP_DEFAULT)? mDefaultNumMipmaps :
@@ -136,11 +136,11 @@ namespace Ogre {
     }
     //-----------------------------------------------------------------------
     TexturePtr TextureManager::loadRawData(const String &name, const String& group,
-        DataStreamPtr& stream, ushort uWidth, ushort uHeight, 
-        PixelFormat format, TextureType texType, 
+        DataStreamPtr& stream, ushort uWidth, ushort uHeight,
+        PixelFormat format, TextureType texType,
         int numMipmaps, Real gamma, bool hwGamma)
     {
-        TexturePtr tex = createResource(name, group, true).staticCast<Texture>();
+        TexturePtr tex = std::static_pointer_cast<Texture>( createResource(name, group, true) );
 
         tex->setTextureType(texType);
         tex->setNumMipmaps((numMipmaps == MIP_DEFAULT)? mDefaultNumMipmaps :
@@ -148,17 +148,17 @@ namespace Ogre {
         tex->setGamma(gamma);
         tex->setHardwareGammaEnabled(hwGamma);
         tex->loadRawData(stream, uWidth, uHeight, format);
-        
+
         return tex;
     }
     //-----------------------------------------------------------------------
     TexturePtr TextureManager::createManual(const String & name, const String& group,
         TextureType texType, uint width, uint height, uint depth, int numMipmaps,
-        PixelFormat format, int usage, ManualResourceLoader* loader, bool hwGamma, 
+        PixelFormat format, int usage, ManualResourceLoader* loader, bool hwGamma,
         uint fsaa, const String& fsaaHint)
     {
         TexturePtr ret;
-        ret.setNull();
+        ret.reset();
 
         // Check for 3D texture support
         const RenderSystemCapabilities* caps =
@@ -171,7 +171,7 @@ namespace Ogre {
         {
             usage = (usage & ~(int)TU_STATIC) | (int)TU_DYNAMIC;
         }
-        ret = createResource(name, group, true, loader).staticCast<Texture>();
+        ret = std::static_pointer_cast<Texture>( createResource(name, group, true, loader) );
         ret->setTextureType(texType);
         ret->setWidth(width);
         ret->setHeight(height);
@@ -288,6 +288,6 @@ namespace Ogre {
 
         // Assume that same or greater number of bits means quality not degraded
         return PixelUtil::getNumElemBits(supportedFormat) >= PixelUtil::getNumElemBits(format);
-        
+
     }
 }

@@ -60,7 +60,7 @@ namespace Ogre
                 mNeedAnimTransformUpdate(true),
                 mUseLocalTransform(false)
 
-    
+
     {
         //Use a static name generator to ensure this name stays unique (which may not happen
         //otherwise due to reparenting when defragmenting)
@@ -87,7 +87,7 @@ namespace Ogre
     bool InstancedEntity::shareTransformWith( InstancedEntity *slave )
     {
         if( !this->mBatchOwner->_getMeshRef()->hasSkeleton() ||
-            this->mBatchOwner->_getMeshRef()->getSkeleton().isNull() ||
+            !this->mBatchOwner->_getMeshRef()->getSkeleton() ||
             !this->mBatchOwner->_supportsSkeletalAnimation() )
         {
             return false;
@@ -113,7 +113,7 @@ namespace Ogre
 
         slave->unlinkTransform();
         slave->destroySkeletonInstance();
-        
+
         slave->mSkeletonInstance    = this->mSkeletonInstance;
         slave->mAnimationState      = this->mAnimationState;
         slave->mBoneMatrices        = this->mBoneMatrices;
@@ -122,9 +122,9 @@ namespace Ogre
             slave->mBoneWorldMatrices   = this->mBoneWorldMatrices;
         }
         slave->mSharedTransformEntity = this;
-        //The sharing partners are kept in the parent entity 
+        //The sharing partners are kept in the parent entity
         this->mSharingPartners.push_back( slave );
-        
+
         slave->mBatchOwner->_markTransformSharingDirty();
 
         return true;
@@ -165,7 +165,7 @@ namespace Ogre
         {
             if( !mSkeletonInstance )
             {
-                *xform = mBatchOwner->useBoneWorldMatrices() ? 
+                *xform = mBatchOwner->useBoneWorldMatrices() ?
                         _getParentNodeFullTransform() : Matrix4::IDENTITY;
             }
             else
@@ -200,7 +200,7 @@ namespace Ogre
         {
             if( !mSkeletonInstance )
             {
-                const Matrix4& mat = mBatchOwner->useBoneWorldMatrices() ? 
+                const Matrix4& mat = mBatchOwner->useBoneWorldMatrices() ?
                     _getParentNodeFullTransform() : Matrix4::IDENTITY;
                 for( int i=0; i<3; ++i )
                 {
@@ -218,7 +218,7 @@ namespace Ogre
                 const Mesh::IndexMap *indexMap = mBatchOwner->_getIndexToBoneMap();
                 Mesh::IndexMap::const_iterator itor = indexMap->begin();
                 Mesh::IndexMap::const_iterator end  = indexMap->end();
-                
+
                 while( itor != end )
                 {
                     const Matrix4 &mat = matrices[*itor++];
@@ -239,7 +239,7 @@ namespace Ogre
                 retVal = mBatchOwner->_getIndexToBoneMap()->size() * 3 * 4;
             else
                 retVal = 12;
-            
+
             std::fill_n( xform, retVal, 0.0f );
         }
 
@@ -250,7 +250,7 @@ namespace Ogre
     {
         //Object is active
         bool retVal = isInScene();
-        if (retVal) 
+        if (retVal)
         {
             //check object is explicitly visible
             retVal = isVisible();
@@ -267,7 +267,7 @@ namespace Ogre
     {
         //Is mesh skeletally animated?
         if( mBatchOwner->_getMeshRef()->hasSkeleton() &&
-            !mBatchOwner->_getMeshRef()->getSkeleton().isNull() &&
+            mBatchOwner->_getMeshRef()->getSkeleton() &&
             mBatchOwner->_supportsSkeletalAnimation() )
         {
             mSkeletonInstance = OGRE_NEW SkeletonInstance( mBatchOwner->_getMeshRef()->getSkeleton() );
@@ -428,7 +428,7 @@ namespace Ogre
                                                     mSkeletonInstance->getNumBones() );
                     mNeedAnimTransformUpdate = false;
                 }
-                
+
                 mFrameAnimationLastUpdated = mAnimationState->getDirtyFrameNumber();
 
                 return true;
@@ -442,50 +442,50 @@ namespace Ogre
     void InstancedEntity::markTransformDirty()
     {
         mNeedTransformUpdate = true;
-        mNeedAnimTransformUpdate = true; 
+        mNeedAnimTransformUpdate = true;
         mBatchOwner->_boundsDirty();
     }
 
     //---------------------------------------------------------------------------
-    void InstancedEntity::setPosition(const Vector3& position, bool doUpdate) 
-    { 
-        mPosition = position; 
+    void InstancedEntity::setPosition(const Vector3& position, bool doUpdate)
+    {
+        mPosition = position;
         mDerivedLocalPosition = position;
         mUseLocalTransform = true;
         markTransformDirty();
         if (doUpdate) updateTransforms();
-    } 
+    }
 
     //---------------------------------------------------------------------------
-    void InstancedEntity::setOrientation(const Quaternion& orientation, bool doUpdate) 
-    { 
-        mOrientation = orientation;  
+    void InstancedEntity::setOrientation(const Quaternion& orientation, bool doUpdate)
+    {
+        mOrientation = orientation;
         mUseLocalTransform = true;
         markTransformDirty();
         if (doUpdate) updateTransforms();
-    } 
+    }
 
     //---------------------------------------------------------------------------
-    void InstancedEntity::setScale(const Vector3& scale, bool doUpdate) 
-    { 
-        mScale = scale; 
+    void InstancedEntity::setScale(const Vector3& scale, bool doUpdate)
+    {
+        mScale = scale;
         mMaxScaleLocal = std::max<Real>(std::max<Real>(
-            Math::Abs(mScale.x), Math::Abs(mScale.y)), Math::Abs(mScale.z)); 
+            Math::Abs(mScale.x), Math::Abs(mScale.y)), Math::Abs(mScale.z));
         mUseLocalTransform = true;
         markTransformDirty();
         if (doUpdate) updateTransforms();
-    } 
+    }
 
     //---------------------------------------------------------------------------
-    Real InstancedEntity::getMaxScaleCoef() const 
-    { 
+    Real InstancedEntity::getMaxScaleCoef() const
+    {
         if (mParentNode)
         {
             const Ogre::Vector3& parentScale = mParentNode->_getDerivedScale();
             return mMaxScaleLocal * std::max<Real>(std::max<Real>(
-                Math::Abs(parentScale.x), Math::Abs(parentScale.y)), Math::Abs(parentScale.z)); 
+                Math::Abs(parentScale.x), Math::Abs(parentScale.y)), Math::Abs(parentScale.z));
         }
-        return mMaxScaleLocal; 
+        return mMaxScaleLocal;
     }
 
     //---------------------------------------------------------------------------
@@ -498,11 +498,11 @@ namespace Ogre
                 const Vector3& parentPosition = mParentNode->_getDerivedPosition();
                 const Quaternion& parentOrientation = mParentNode->_getDerivedOrientation();
                 const Vector3& parentScale = mParentNode->_getDerivedScale();
-                
+
                 Quaternion derivedOrientation = parentOrientation * mOrientation;
                 Vector3 derivedScale = parentScale * mScale;
                 mDerivedLocalPosition = parentOrientation * (parentScale * mPosition) + parentPosition;
-            
+
                 mFullLocalTransform.makeTransform(mDerivedLocalPosition, derivedScale, derivedOrientation);
             }
             else

@@ -75,7 +75,7 @@ namespace Ogre {
     }
     //-----------------------------------------------------------------------------
     HardwareIndexBufferSharedPtr::HardwareIndexBufferSharedPtr(HardwareIndexBuffer* buf)
-        : SharedPtr<HardwareIndexBuffer>(buf)
+        : std::shared_ptr<HardwareIndexBuffer>(buf)
     {
 
     }

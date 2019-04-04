@@ -136,11 +136,11 @@ namespace Ogre {
     {
     protected:
         /// Source value
-        SharedPtr< ControllerValue<T> > mSource;
+        std::shared_ptr< ControllerValue<T> > mSource;
         /// Destination value
-        SharedPtr< ControllerValue<T> > mDest;
+        std::shared_ptr< ControllerValue<T> > mDest;
         /// Function
-        SharedPtr< ControllerFunction<T> > mFunc;
+        std::shared_ptr< ControllerFunction<T> > mFunc;
         /// Controller is enabled or not
         bool mEnabled;
 
@@ -152,8 +152,8 @@ namespace Ogre {
                 Requires source and destination values, and a function object. None of these are destroyed
                 with the Controller when it is deleted (they can be shared) so you must delete these as appropriate.
         */
-        Controller(const SharedPtr< ControllerValue<T> >& src, 
-            const SharedPtr< ControllerValue<T> >& dest, const SharedPtr< ControllerFunction<T> >& func)
+        Controller(const std::shared_ptr< ControllerValue<T> >& src, 
+            const std::shared_ptr< ControllerValue<T> >& dest, const std::shared_ptr< ControllerFunction<T> >& func)
             : mSource(src), mDest(dest), mFunc(func)
         {
             mEnabled = true;
@@ -165,23 +165,23 @@ namespace Ogre {
 
 
         /// Sets the input controller value
-        void setSource(const SharedPtr< ControllerValue<T> >& src)
+        void setSource(const std::shared_ptr< ControllerValue<T> >& src)
         {
             mSource = src;
         }
         /// Gets the input controller value
-        const SharedPtr< ControllerValue<T> >& getSource(void) const
+        const std::shared_ptr< ControllerValue<T> >& getSource(void) const
         {
             return mSource;
         }
         /// Sets the output controller value
-        void setDestination(const SharedPtr< ControllerValue<T> >& dest)
+        void setDestination(const std::shared_ptr< ControllerValue<T> >& dest)
         {
             mDest = dest;
         }
 
         /// Gets the output controller value
-        const SharedPtr< ControllerValue<T> >& getDestination(void) const
+        const std::shared_ptr< ControllerValue<T> >& getDestination(void) const
         {
             return mDest;
         }
@@ -200,14 +200,14 @@ namespace Ogre {
 
         /** Sets the function object to be used by this controller.
         */
-        void setFunction(const SharedPtr< ControllerFunction<T> >& func)
+        void setFunction(const std::shared_ptr< ControllerFunction<T> >& func)
         {
             mFunc = func;
         }
 
         /** Returns a pointer to the function object used by this controller.
         */
-        const SharedPtr< ControllerFunction<T> >& getFunction(void) const
+        const std::shared_ptr< ControllerFunction<T> >& getFunction(void) const
         {
             return mFunc;
         }

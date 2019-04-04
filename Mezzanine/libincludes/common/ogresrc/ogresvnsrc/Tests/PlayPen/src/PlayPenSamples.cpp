@@ -41,8 +41,8 @@ PlayPen_testManualBlend::PlayPen_testManualBlend()
 void PlayPen_testManualBlend::setupContent()
 {
     // create material
-    MaterialPtr mat = MaterialManager::getSingleton().create("TestMat", 
-        TRANSIENT_RESOURCE_GROUP).staticCast<Material>();
+    MaterialPtr mat = std::static_pointer_cast<Material>( MaterialManager::getSingleton().create("TestMat", 
+        TRANSIENT_RESOURCE_GROUP) );
     Pass * p = mat->getTechnique(0)->getPass(0);
     p->setLightingEnabled(false);
     p->createTextureUnitState("Dirt.jpg");
@@ -104,8 +104,8 @@ void PlayPen_testProjectSphere::setupContent()
 
     mSceneMgr->getRootSceneNode()->createChildSceneNode(Vector3(0,2000,0))->attachObject(debugSphere);
 
-    MaterialPtr mat = MaterialManager::getSingleton().create("scissormat", 
-        TRANSIENT_RESOURCE_GROUP).staticCast<Material>();
+    MaterialPtr mat = std::static_pointer_cast<Material>( MaterialManager::getSingleton().create("scissormat", 
+        TRANSIENT_RESOURCE_GROUP) );
     Pass* p = mat->getTechnique(0)->getPass(0);
     p->setDepthWriteEnabled(false);
     p->setSceneBlending(SBT_TRANSPARENT_ALPHA);
@@ -456,7 +456,7 @@ void PlayPen_testMorphAnimationWithNormals::setupContent()
     // Unload old mesh to force reload
     MeshManager::getSingleton().remove(mesh->getHandle());
     mesh->unload();
-    mesh.setNull();
+    mesh.reset();
 
     Entity* e = mSceneMgr->createEntity("test", morphName);
     mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(e);
@@ -597,7 +597,7 @@ void PlayPen_testMorphAnimationWithoutNormals::setupContent()
     // Unload old mesh to force reload
     MeshManager::getSingleton().remove(mesh->getHandle());
     mesh->unload();
-    mesh.setNull();
+    mesh.reset();
 
     Entity* e = mSceneMgr->createEntity("test", morphName);
     mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(e);
@@ -725,7 +725,7 @@ void PlayPen_testPoseAnimationWithNormals::setupContent()
     // Unload old mesh to force reload
     MeshManager::getSingleton().remove(mesh->getHandle());
     mesh->unload();
-    mesh.setNull();
+    mesh.reset();
 
     Entity*  e;
     AnimationState* animState;
@@ -858,7 +858,7 @@ void PlayPen_testPoseAnimationWithoutNormals::setupContent()
     // Unload old mesh to force reload
     MeshManager::getSingleton().remove(mesh->getHandle());
     mesh->unload();
-    mesh.setNull();
+    mesh.reset();
 
     Entity*  e;
     AnimationState* animState;

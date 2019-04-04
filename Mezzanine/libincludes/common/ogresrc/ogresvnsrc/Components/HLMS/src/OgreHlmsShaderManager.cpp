@@ -101,7 +101,7 @@ namespace Ogre
 			// Case an error occurred.
 			if (gpuProgram->hasCompileError())
 			{
-				gpuProgram.setNull();
+				gpuProgram.reset();
 				return Ogre::GpuProgramPtr(gpuProgram);
 			}
 

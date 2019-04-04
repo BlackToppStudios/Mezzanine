@@ -127,7 +127,7 @@ extern PFNGLUNMAPBUFFEROESPROC glUnmapBufferOES;
 
 namespace Ogre {
     class GLESTexture;
-    typedef SharedPtr<GLESTexture> GLESTexturePtr;
+    typedef std::shared_ptr<GLESTexture> GLESTexturePtr;
 };
 
 #if (OGRE_PLATFORM == OGRE_PLATFORM_WIN32) && !defined(__MINGW32__) && !defined(OGRE_STATIC_LIB)

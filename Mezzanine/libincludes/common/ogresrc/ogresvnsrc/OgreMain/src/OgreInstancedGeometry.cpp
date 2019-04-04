@@ -67,7 +67,7 @@ namespace Ogre {
         mSkeletonInstance(0),
         mAnimationState(0)
     {
-        mBaseSkeleton.setNull();
+        mBaseSkeleton.reset();
     }
     //--------------------------------------------------------------------------
     InstancedGeometry::~InstancedGeometry()
@@ -94,8 +94,8 @@ namespace Ogre {
                 mInstancedGeometryInstance->setRenderQueueGroup(mRenderQueueID);
             }
             mBatchInstanceMap[index] = mInstancedGeometryInstance;
-        
-    
+
+
         }
         return mInstancedGeometryInstance;
     }
@@ -323,7 +323,7 @@ namespace Ogre {
         }
 
         //get the skeleton of the entity, if that's not already done
-        if(!ent->getMesh()->getSkeleton().isNull()&&mBaseSkeleton.isNull())
+        if(ent->getMesh()->getSkeleton()&&!mBaseSkeleton)
         {
             mBaseSkeleton=ent->getMesh()->getSkeleton();
             mSkeletonInstance= OGRE_NEW SkeletonInstance(mBaseSkeleton);
@@ -439,8 +439,8 @@ namespace Ogre {
         if (use32bitIndexes)
         {
             uint32 *p32 = static_cast<uint32*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             buildIndexRemap(p32, id->indexCount, indexRemap);
             id->indexBuffer->unlock();
@@ -448,8 +448,8 @@ namespace Ogre {
         else
         {
             uint16 *p16 = static_cast<uint16*>(id->indexBuffer->lock(
-                id->indexStart * id->indexBuffer->getIndexSize(), 
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexStart * id->indexBuffer->getIndexSize(),
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             buildIndexRemap(p16, id->indexCount, indexRemap);
             id->indexBuffer->unlock();
@@ -527,7 +527,7 @@ namespace Ogre {
             uint32 *pSrc32, *pDst32;
             pSrc32 = static_cast<uint32*>(id->indexBuffer->lock(
                 id->indexStart * id->indexBuffer->getIndexSize(),
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             pDst32 = static_cast<uint32*>(ibuf->lock(
                 HardwareBuffer::HBL_DISCARD));
@@ -540,7 +540,7 @@ namespace Ogre {
             uint16 *pSrc16, *pDst16;
             pSrc16 = static_cast<uint16*>(id->indexBuffer->lock(
                 id->indexStart * id->indexBuffer->getIndexSize(),
-                id->indexCount * id->indexBuffer->getIndexSize(), 
+                id->indexCount * id->indexBuffer->getIndexSize(),
                 HardwareBuffer::HBL_READ_ONLY));
             pDst16 = static_cast<uint16*>(ibuf->lock(
                 HardwareBuffer::HBL_DISCARD));
@@ -613,7 +613,7 @@ namespace Ogre {
     //--------------------------------------------------------------------------
     void InstancedGeometry::addBatchInstance(void)
     {
-        
+
 
         BatchInstanceIterator regIt = getBatchInstanceIterator();
         BatchInstance* lastBatchInstance=0 ;
@@ -621,7 +621,7 @@ namespace Ogre {
         {
             lastBatchInstance= regIt.getNext();
         }
-        
+
         if(!lastBatchInstance)
             OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND, "No batch instance found",
                         "InstancedGeometry::addBatchInstance");
@@ -643,7 +643,7 @@ namespace Ogre {
         {
                 ret->setRenderQueueGroup(mRenderQueueID);
         }
-    
+
         const size_t numLod = lastBatchInstance->mLodValues.size();
         ret->mLodValues.resize(numLod);
         for (ushort lod = 0; lod < numLod; lod++)
@@ -653,7 +653,7 @@ namespace Ogre {
         }
 
 
-    
+
         // update bounds
         AxisAlignedBox box(lastBatchInstance->mAABB.getMinimum(),lastBatchInstance->mAABB.getMaximum());
         ret->mAABB.merge(box);
@@ -666,7 +666,7 @@ namespace Ogre {
             InstancedObject* instancedObject = ret->isInstancedObjectPresent(objIt->first);
             if(instancedObject == NULL)
             {
-                if(mBaseSkeleton.isNull())
+                if(!mBaseSkeleton)
                 {
                     instancedObject= OGRE_NEW InstancedObject(objIt->first);
                 }
@@ -685,19 +685,19 @@ namespace Ogre {
         //parse all the LOD buckets of the BatchInstance
         while (lodIterator.hasMoreElements())
         {
-        
+
             LODBucket* lod = lodIterator.getNext();
             //create a new LOD bucket for the new BatchInstance
             LODBucket* lodBucket= OGRE_NEW LODBucket(ret, lod->getLod(), lod->getLodValue());
 
             //add the LODBucket to the BatchInstance list
             ret->updateContainers(lodBucket);
-            
+
             LODBucket::MaterialIterator matIt = lod->getMaterialIterator();
             //parse all the material buckets of the LOD bucket
             while (matIt.hasMoreElements())
             {
-                
+
                 MaterialBucket*mat = matIt.getNext();
                 //create a new material bucket
                 String materialName=mat->getMaterialName();
@@ -712,9 +712,9 @@ namespace Ogre {
                 {
                     //get the source geometry bucket
                     GeometryBucket *geom = geomIt.getNext();
-                    //create a new geometry bucket 
+                    //create a new geometry bucket
                     GeometryBucket *geomBucket = OGRE_NEW GeometryBucket(matBucket,geom->getFormatString(),geom);
-            
+
                     //update the material bucket map of the material bucket
                     matBucket->updateContainers(geomBucket, geomBucket->getFormatString() );
 
@@ -732,9 +732,9 @@ namespace Ogre {
                         if(findIt==obj->getGeometryBucketList().end())
                                 obj->addBucketToList(geomBucket);
                     }
-            
 
-                }   
+
+                }
             }
         }
     }
@@ -779,7 +779,7 @@ namespace Ogre {
         {
             OGRE_DELETE (*it)->vertexData;
             OGRE_DELETE (*it)->indexData;
-    
+
         }
         mRenderOps.clear();
 
@@ -803,7 +803,7 @@ namespace Ogre {
             i != mQueuedSubMeshes.end(); ++i)
         {
             OGRE_DELETE *i;
-            
+
         }
         mQueuedSubMeshes.clear();
         // Delete precached geoemtry lists
@@ -811,7 +811,7 @@ namespace Ogre {
             l != mSubMeshGeometryLookup.end(); ++l)
         {
             OGRE_DELETE_T(l->second, SubMeshLodGeometryLinkList, MEMCATEGORY_GEOMETRY);
-        
+
         }
         mSubMeshGeometryLookup.clear();
         // Delete optimised geometry
@@ -819,7 +819,7 @@ namespace Ogre {
             o != mOptimisedSubMeshGeometryList.end(); ++o)
         {
             OGRE_DELETE *o;
-            
+
         }
         mOptimisedSubMeshGeometryList.clear();
 
@@ -827,14 +827,14 @@ namespace Ogre {
     //--------------------------------------------------------------------------
     void InstancedGeometry::setVisible(bool visible)
     {
-            
+
         mVisible = visible;
         // tell any existing BatchInstances
         for (BatchInstanceMap::iterator ri = mBatchInstanceMap.begin();
             ri != mBatchInstanceMap.end(); ++ri)
         {
 
-            
+
             ri->second->setVisible(visible);
         }
     }
@@ -894,7 +894,7 @@ namespace Ogre {
         mProvideWorldInverses = flag;
     }
     //---------------------------------------------------------------------
-    void InstancedGeometry::visitRenderables(Renderable::Visitor* visitor, 
+    void InstancedGeometry::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         for (BatchInstanceMap::const_iterator ri = mBatchInstanceMap.begin();
@@ -918,9 +918,9 @@ namespace Ogre {
         mFrameAnimationLastUpdated(std::numeric_limits<unsigned long>::max())
 
     {
-            
+
             mSkeletonInstance->load();
-        
+
             mAnimationState = OGRE_NEW AnimationStateSet();
             mNumBoneMatrices = mSkeletonInstance->getNumBones();
             mBoneMatrices = OGRE_ALLOC_T(Matrix4, mNumBoneMatrices, MEMCATEGORY_ANIMATION);
@@ -932,7 +932,7 @@ namespace Ogre {
                 anim->getWeight());
 
             }
-            
+
     }
     //--------------------------------------------------------------------------
     InstancedGeometry::InstancedObject::InstancedObject(unsigned short index)
@@ -1041,19 +1041,19 @@ namespace Ogre {
     //--------------------------------------------------------------------------
     void InstancedGeometry::InstancedObject::rotate(const Quaternion& q)
     {
-    
+
             mOrientation = mOrientation * q;
              needUpdate();
     }
     //--------------------------------------------------------------------------
     void InstancedGeometry::InstancedObject::setOrientation(const Quaternion& q)
-    {   
+    {
         mOrientation = q;
         needUpdate();
     }
     //--------------------------------------------------------------------------
     void InstancedGeometry::InstancedObject::setPositionAndOrientation(const Vector3 &p, const Quaternion& q)
-    {   
+    {
         mPosition = p;
         mOrientation = q;
         needUpdate();
@@ -1074,8 +1074,8 @@ namespace Ogre {
                 mPosition,
                 mScale,
                 mOrientation);
-            
-            
+
+
     }
     //--------------------------------------------------------------------------
     void InstancedGeometry::InstancedObject::updateAnimation(void)
@@ -1097,9 +1097,9 @@ namespace Ogre {
             for (unsigned short i = 0; i < mNumBoneMatrices; ++i)
             {
                 mBoneWorldMatrices[i] =  mTransformation * mBoneMatrices[i];
-            
+
             }
-            
+
 
 
         }
@@ -1118,7 +1118,7 @@ namespace Ogre {
 //      {
 //          AnimationState*anim= it.getNext();
 //
-//          
+//
 //      }
         return mAnimationState->getAnimationState(name);
     }
@@ -1234,7 +1234,7 @@ namespace Ogre {
 
 
     }
-    
+
     //--------------------------------------------------------------------------
     void InstancedGeometry::BatchInstance::updateBoundingBox()
     {
@@ -1243,11 +1243,11 @@ namespace Ogre {
             //Get the first GeometryBucket to get the aabb
             LODIterator lodIterator = getLODIterator();
             if( lodIterator.hasMoreElements() )
-            {           
+            {
                 LODBucket* lod = lodIterator.getNext();
                 LODBucket::MaterialIterator matIt = lod->getMaterialIterator();
                 if( matIt.hasMoreElements() )
-                {                   
+                {
                     MaterialBucket*mat = matIt.getNext();
                     MaterialBucket::GeometryIterator geomIt = mat->getGeometryIterator();
                     if( geomIt.hasMoreElements() )
@@ -1287,11 +1287,11 @@ namespace Ogre {
             //Now apply the bounding box
             lodIterator = getLODIterator();
             while( lodIterator.hasMoreElements() )
-            {           
+            {
                 LODBucket* lod = lodIterator.getNext();
                 LODBucket::MaterialIterator matIt = lod->getMaterialIterator();
                 while (matIt.hasMoreElements())
-                {                   
+                {
                     MaterialBucket*mat = matIt.getNext();
                     MaterialBucket::GeometryIterator geomIt = mat->getGeometryIterator();
                     while( geomIt.hasMoreElements() )
@@ -1318,11 +1318,11 @@ namespace Ogre {
         else return NULL;
     }
     //--------------------------------------------------------------------------
-    InstancedGeometry::BatchInstance::InstancedObjectIterator 
+    InstancedGeometry::BatchInstance::InstancedObjectIterator
     InstancedGeometry::BatchInstance::getObjectIterator()
     {
         return InstancedObjectIterator(mInstancesMap.begin(), mInstancesMap.end());
-    } 
+    }
     //--------------------------------------------------------------------------
     const String& InstancedGeometry::BatchInstance::getMovableType(void) const
     {
@@ -1379,9 +1379,9 @@ namespace Ogre {
         for (it=mInstancesMap.begin();it!=mInstancesMap.end();++it)
         {
             it->second->updateAnimation();
-            
+
         }
-    
+
         mLodBucketList[mCurrentLod]->addRenderables(queue, mRenderQueueID,
             mLodValue);
     }
@@ -1491,7 +1491,7 @@ namespace Ogre {
     void InstancedGeometry::LODBucket::build()
     {
         // Just pass this on to child buckets
-        
+
         for (MaterialBucketMap::iterator i = mMaterialBucketMap.begin();
             i != mMaterialBucketMap.end(); ++i)
         {
@@ -1511,7 +1511,7 @@ namespace Ogre {
         }
     }
     //---------------------------------------------------------------------
-    void InstancedGeometry::LODBucket::visitRenderables(Renderable::Visitor* visitor, 
+    void InstancedGeometry::LODBucket::visitRenderables(Renderable::Visitor* visitor,
         bool debugRenderables)
     {
         MaterialBucketMap::iterator i, iend;
@@ -1606,7 +1606,7 @@ namespace Ogre {
     {
         mTechnique = 0;
         mMaterial = MaterialManager::getSingleton().getByName(mMaterialName);
-        if (mMaterial.isNull())
+        if (!mMaterial)
         {
             OGRE_EXCEPT(Exception::ERR_ITEM_NOT_FOUND,
                 "Material '" + mMaterialName + "' not found.",
@@ -1614,7 +1614,7 @@ namespace Ogre {
         }
         mMaterial->load();
         // tell the geometry buckets to build
-        
+
         for (GeometryBucketList::iterator i = mGeometryBucketList.begin();
             i != mGeometryBucketList.end(); ++i)
         {
@@ -1637,10 +1637,10 @@ namespace Ogre {
 
         // Determine the current material technique
         mTechnique = mMaterial->getBestTechnique(
-            mMaterial->getLodIndex(lodValue));  
+            mMaterial->getLodIndex(lodValue));
         GeometryBucketList::iterator i, iend;
         iend =  mGeometryBucketList.end();
-            
+
         for (i = mGeometryBucketList.begin(); i != iend; ++i)
         {
             queue->addRenderable(*i, group);
@@ -1762,7 +1762,7 @@ namespace Ogre {
     void InstancedGeometry::GeometryBucket::_initGeometryBucket(const VertexData* vData, const IndexData* iData)
     {
         mBatch=mParent->getParent()->getParent()->getParent();
-        if(!mBatch->getBaseSkeleton().isNull())
+        if(mBatch->getBaseSkeleton())
             setCustomParameter(0,Vector4(mBatch->getBaseSkeleton()->getNumBones(),0,0,0));
         //mRenderOperation=OGRE_NEW RenderOperation();
         // Clone the structure from the example
@@ -1776,7 +1776,7 @@ namespace Ogre {
         mRenderOp.vertexData = OGRE_NEW VertexData();
         mRenderOp.vertexData->vertexCount = 0;
 
-        // VertexData constructor creates vertexDeclaration; must release to avoid 
+        // VertexData constructor creates vertexDeclaration; must release to avoid
         // memory leak
         HardwareBufferManager::getSingleton().destroyVertexDeclaration(mRenderOp.vertexData->vertexDeclaration);
         mRenderOp.vertexData->vertexDeclaration = vData->vertexDeclaration->clone();
@@ -1792,12 +1792,12 @@ namespace Ogre {
         }
 
 
-        size_t offset=0;    
+        size_t offset=0;
         unsigned short texCoordOffset=0;
         unsigned short texCoordSource=0;
 
         const Ogre::VertexElement*elem=mRenderOp.vertexData->vertexDeclaration->findElementBySemantic(VES_TEXTURE_COORDINATES);
-    
+
         if (elem != NULL)
         {
             texCoordSource=elem->getSource();
@@ -1812,7 +1812,7 @@ namespace Ogre {
             {
                 offset+= VertexElement::getTypeSize(
                 mRenderOp.vertexData->vertexDeclaration->getElement(i)->getType());
-            }       
+            }
         }
 
         mRenderOp.vertexData->vertexDeclaration->addElement(texCoordSource, offset, VET_FLOAT1, VES_TEXTURE_COORDINATES, texCoordOffset);
@@ -1824,7 +1824,7 @@ namespace Ogre {
     {
 
         mBatch=mParent->getParent()->getParent()->getParent();
-        if(!mBatch->getBaseSkeleton().isNull())
+        if(mBatch->getBaseSkeleton())
             setCustomParameter(0,Vector4(mBatch->getBaseSkeleton()->getNumBones(),0,0,0));
         bucket->getRenderOperation(mRenderOp);
         mVertexData=mRenderOp.vertexData;
@@ -1835,7 +1835,7 @@ namespace Ogre {
     }
     //--------------------------------------------------------------------------
     InstancedGeometry::GeometryBucket::~GeometryBucket()
-    {   
+    {
     }
 
     //--------------------------------------------------------------------------
@@ -1858,7 +1858,7 @@ namespace Ogre {
     {
             // Should be the identity transform, but lets allow transformation of the
         // nodes the BatchInstances are attached to for kicks
-        if(mBatch->getBaseSkeleton().isNull())
+        if(mBatch->getBaseSkeleton())
         {
             BatchInstance::ObjectsMap::iterator it,itbegin,itend,newit;
             itbegin=mParent->getParent()->getParent()->getInstancesMap().begin();
@@ -1874,7 +1874,7 @@ namespace Ogre {
                     it!=itend;
                     ++it,xform+=2)
                 {
-                    
+
                         *xform = it->second->mTransformation;
                         *(xform+1) = xform->inverse();
                 }
@@ -1900,7 +1900,7 @@ namespace Ogre {
                 it!=itend;
                 ++it)
             {
-                
+
                 if( mParent->getParent()->getParent()->getParent()->getProvideWorldInverses() )
                 {
                     for(int i=0;i<it->second->mNumBoneMatrices;++i,xform+=2)
@@ -1917,16 +1917,16 @@ namespace Ogre {
                     }
                 }
             }
-                
+
         }
 
     }
     //--------------------------------------------------------------------------
-    unsigned short InstancedGeometry::GeometryBucket::getNumWorldTransforms(void) const 
+    unsigned short InstancedGeometry::GeometryBucket::getNumWorldTransforms(void) const
     {
         bool bSendInverseXfrm = mParent->getParent()->getParent()->getParent()->getProvideWorldInverses();
 
-        if(mBatch->getBaseSkeleton().isNull())
+        if(mBatch->getBaseSkeleton())
         {
             BatchInstance* batch=mParent->getParent()->getParent();
             return static_cast<ushort>(batch->getInstancesMap().size() * (bSendInverseXfrm ? 2 : 1));
@@ -1979,7 +1979,7 @@ namespace Ogre {
     {
 
 
-    
+
         // Ok, here's where we transfer the vertices and indexes to the shared
         // buffers
         // Shortcuts
@@ -2007,7 +2007,7 @@ namespace Ogre {
         // create all vertex buffers, and lock
         ushort b;
         //ushort posBufferIdx = dcl->findElementBySemantic(VES_POSITION)->getSource();
-    
+
         vector<uchar*>::type destBufferLocks;
         vector<VertexDeclaration::VertexElementList>::type bufferElements;
 
@@ -2038,7 +2038,7 @@ namespace Ogre {
         giend = mQueuedGeometry.end();
 
         // to generate the boundingBox
-        Real Xmin,Ymin,Zmin,Xmax,Ymax,Zmax; 
+        Real Xmin,Ymin,Zmin,Xmax,Ymax,Zmax;
         Xmin=0;
         Ymin=0;
         Zmin=0;
@@ -2061,7 +2061,7 @@ namespace Ogre {
             InstancedObject* instancedObject = mParent->getParent()->getParent()->isInstancedObjectPresent(index);
             if(instancedObject == NULL)
             {
-                if(mBatch->getBaseSkeleton().isNull())
+                if(mBatch->getBaseSkeleton())
                 {
                     instancedObject= OGRE_NEW InstancedObject(index);
                 }
@@ -2076,7 +2076,7 @@ namespace Ogre {
             instancedObject->addBucketToList(this);
 
 
-            
+
             // Copy indexes across with offset
             IndexData* srcIdxData = geom->geometry->indexData;
             if (mIndexType == HardwareIndexBuffer::IT_32BIT)
@@ -2084,7 +2084,7 @@ namespace Ogre {
                 // Lock source indexes
                 uint32* pSrc = static_cast<uint32*>(
                     srcIdxData->indexBuffer->lock(
-                        srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(), 
+                        srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(),
                         srcIdxData->indexCount * srcIdxData->indexBuffer->getIndexSize(),
                         HardwareBuffer::HBL_READ_ONLY));
 
@@ -2094,11 +2094,11 @@ namespace Ogre {
             }
             else
             {
-                
+
                 // Lock source indexes
                 uint16* pSrc = static_cast<uint16*>(
                     srcIdxData->indexBuffer->lock(
-                    srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(), 
+                    srcIdxData->indexStart * srcIdxData->indexBuffer->getIndexSize(),
                     srcIdxData->indexCount * srcIdxData->indexBuffer->getIndexSize(),
                     HardwareBuffer::HBL_READ_ONLY));
 
@@ -2111,7 +2111,7 @@ namespace Ogre {
             // we can rely on buffer counts / formats being the same
             VertexData* srcVData = geom->geometry->vertexData;
             VertexBufferBinding* srcBinds = srcVData->vertexBufferBinding;
-        
+
             for (b = 0; b < binds->getBufferCount(); ++b)
             {
 
@@ -2123,13 +2123,13 @@ namespace Ogre {
                 // Get buffer lock pointer, we'll update this later
                 uchar* pDstBase = destBufferLocks[b];
                 size_t bufInc = srcBuf->getVertexSize();
-            
+
                 // Iterate over vertices
                 float *pSrcReal, *pDstReal;
                 Vector3 tmp;
 
-            
-            
+
+
                 for (size_t v = 0; v < srcVData->vertexCount; ++v)
                 {
                     //to know if the current buffer is the one with the buffer or not
@@ -2138,7 +2138,7 @@ namespace Ogre {
                     VertexDeclaration::VertexElementList& elems =
                         bufferElements[b];
                     VertexDeclaration::VertexElementList::iterator ei;
-                
+
                     for (ei = elems.begin(); ei != elems.end(); ++ei)
                     {
                         VertexElement& elem = *ei;
@@ -2177,7 +2177,7 @@ namespace Ogre {
                             };
 
                         }
-                    
+
 
                     }
                     if (isTheBufferWithIndex)
@@ -2187,12 +2187,12 @@ namespace Ogre {
                     pSrcBase += bufInc;
 
                 }
-    
+
                 // Update pointer
                 destBufferLocks[b] = pDstBase;
                 srcBuf->unlock();
 
-            
+
             }
             indexOffset += geom->geometry->vertexData->vertexCount;
 
@@ -2207,10 +2207,10 @@ namespace Ogre {
         {
             binds->getBuffer(b)->unlock();
         }
-    
+
     OGRE_DELETE mVertexData;
     OGRE_DELETE mIndexData;
-    
+
     mVertexData=mRenderOp.vertexData;
     mIndexData=mRenderOp.indexData;
     mBatch->getRenderOperationVector().push_back(&mRenderOp);

@@ -107,7 +107,7 @@ void CompositorChain::createOriginalScene()
 
     mOriginalSceneScheme = mViewport->getMaterialScheme();
     CompositorPtr scene = CompositorManager::getSingleton().getByName(compName, ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME);
-    if (scene.isNull())
+    if (!scene)
     {
         scene = CompositorManager::getSingleton().create(compName, ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME);
         CompositionTechnique *t = scene->createTechnique();
@@ -128,8 +128,8 @@ void CompositorChain::createOriginalScene()
 
 
         /// Create base "original scene" compositor
-        scene = CompositorManager::getSingleton().load(compName,
-            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME).staticCast<Compositor>();
+        scene = std::static_pointer_cast<Compositor>( CompositorManager::getSingleton().load(compName,
+            ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME) );
 
 
 
@@ -163,13 +163,13 @@ CompositorInstance* CompositorChain::addCompositor(CompositorPtr filter, size_t 
         return 0;
     }
     CompositorInstance *t = OGRE_NEW CompositorInstance(tech, this);
-    
+
     if(addPosition == LAST)
         addPosition = mInstances.size();
     else
         assert(addPosition <= mInstances.size() && "Index out of bounds.");
     mInstances.insert(mInstances.begin()+addPosition, t);
-    
+
     mDirty = true;
     mAnyCompositorsEnabled = true;
     return t;
@@ -181,7 +181,7 @@ void CompositorChain::removeCompositor(size_t index)
     Instances::iterator i = mInstances.begin() + index;
     OGRE_DELETE *i;
     mInstances.erase(i);
-    
+
     mDirty = true;
 }
 //-----------------------------------------------------------------------
@@ -199,7 +199,7 @@ void CompositorChain::removeAllCompositors()
         OGRE_DELETE *i;
     }
     mInstances.clear();
-    
+
     mDirty = true;
 }
 //-----------------------------------------------------------------------
@@ -223,9 +223,9 @@ CompositorInstance *CompositorChain::getCompositor(size_t index)
 //-----------------------------------------------------------------------
 CompositorInstance *CompositorChain::getCompositor(const String& name)
 {
-    for (Instances::iterator it = mInstances.begin(); it != mInstances.end(); ++it) 
+    for (Instances::iterator it = mInstances.begin(); it != mInstances.end(); ++it)
     {
-        if ((*it)->getCompositor()->getName() == name) 
+        if ((*it)->getCompositor()->getName() == name)
         {
             return *it;
         }
@@ -245,7 +245,7 @@ void CompositorChain::setCompositorEnabled(size_t position, bool state)
     {
         // If we're disabling a 'middle' compositor in a chain, we have to be
         // careful about textures which might have been shared by non-adjacent
-        // instances which have now become adjacent. 
+        // instances which have now become adjacent.
         CompositorInstance* nextInstance = getNextInstance(inst, true);
         if (nextInstance)
         {
@@ -283,9 +283,9 @@ void CompositorChain::preRenderTargetUpdate(const RenderTargetEvent& evt)
     }
 
 
-    /// Update dependent render targets; this is done in the preRenderTarget 
+    /// Update dependent render targets; this is done in the preRenderTarget
     /// and not the preViewportUpdate for a reason: at this time, the
-    /// target Rendertarget will not yet have been set as current. 
+    /// target Rendertarget will not yet have been set as current.
     /// ( RenderSystem::setViewport(...) ) if it would have been, the rendering
     /// order would be screwed up and problems would arise with copying rendertextures.
     Camera *cam = mViewport->getCamera();
@@ -373,7 +373,7 @@ void CompositorChain::preTargetOperation(CompositorInstance::TargetOperation &op
     // Set the visibility mask
     mOldVisibilityMask = vp->getVisibilityMask();
     vp->setVisibilityMask(op.visibilityMask);
-    /// Set material scheme 
+    /// Set material scheme
     mOldMaterialScheme = vp->getMaterialScheme();
     vp->setMaterialScheme(op.materialScheme);
     /// Set shadows enabled
@@ -469,7 +469,7 @@ void CompositorChain::_compile()
     MaterialManager& matMgr = MaterialManager::getSingleton();
     String prevMaterialScheme = matMgr.getActiveScheme();
     matMgr.setActiveScheme(MaterialManager::DEFAULT_SCHEME_NAME);
-    
+
     /// Set previous CompositorInstance for each compositor in the list
     CompositorInstance *lastComposition = mOriginalScene;
     mOriginalScene->mPreviousInstance = 0;
@@ -486,11 +486,11 @@ void CompositorChain::_compile()
             lastComposition = (*i);
         }
     }
-    
+
 
     /// Compile misc targets
     lastComposition->_compileTargetOperations(mCompiledState);
-    
+
     /// Final target viewport (0)
     mOutputOperation.renderSystemOperations.clear();
     lastComposition->_compileOutputOperation(mOutputOperation);
@@ -509,7 +509,7 @@ void CompositorChain::_compile()
         else
         {
             // Reset clearing options
-            mViewport->setClearEveryFrame(mOldClearEveryFrameBuffers > 0, 
+            mViewport->setClearEveryFrame(mOldClearEveryFrameBuffers > 0,
                 mOldClearEveryFrameBuffers);
         }
     }
@@ -517,7 +517,7 @@ void CompositorChain::_compile()
     // restore material scheme
     matMgr.setActiveScheme(prevMaterialScheme);
 
-    
+
     mDirty = false;
 }
 //-----------------------------------------------------------------------
@@ -535,12 +535,12 @@ void CompositorChain::_notifyViewport(Viewport* vp)
 {
     if (vp != mViewport)
     {
-        if (mViewport != NULL) 
+        if (mViewport != NULL)
             mViewport->removeListener(this);
 
-        if (vp != NULL) 
+        if (vp != NULL)
             vp->addListener(this);
-        
+
         if (vp->getTarget() != mViewport->getTarget())
         {
             mViewport->getTarget()->removeListener(this);
@@ -548,10 +548,10 @@ void CompositorChain::_notifyViewport(Viewport* vp)
         }
         mOurListener.notifyViewport(vp);
         mViewport = vp;
-    }   
+    }
 }
 //-----------------------------------------------------------------------
-void CompositorChain::RQListener::renderQueueStarted(uint8 id, 
+void CompositorChain::RQListener::renderQueueStarted(uint8 id,
     const String& invocation, bool& skipThisQueue)
 {
     // Skip when not matching viewport
@@ -568,7 +568,7 @@ void CompositorChain::RQListener::renderQueueStarted(uint8 id,
     }
 }
 //-----------------------------------------------------------------------
-void CompositorChain::RQListener::renderQueueEnded(uint8 id, 
+void CompositorChain::RQListener::renderQueueEnded(uint8 id,
     const String& invocation, bool& repeatThisQueue)
 {
 }

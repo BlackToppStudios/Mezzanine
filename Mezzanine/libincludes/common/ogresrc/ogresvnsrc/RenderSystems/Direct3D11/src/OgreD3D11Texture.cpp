@@ -120,7 +120,7 @@ namespace Ogre
         }
 
         // Make sure streams prepared.
-        if (mLoadedStreams.isNull())
+        if (!mLoadedStreams)
         {
             prepareImpl();
         }
@@ -992,7 +992,7 @@ namespace Ogre
     void D3D11Texture::postLoadImpl()
     {
         //D3D11_DEVICE_ACCESS_CRITICAL_SECTION
-        mLoadedStreams.setNull();   
+        mLoadedStreams.reset();   
     }
     //---------------------------------------------------------------------
     // D3D11RenderTexture

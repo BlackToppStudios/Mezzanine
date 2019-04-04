@@ -75,7 +75,7 @@ namespace Ogre {
 
     protected:
         // needed to store data between prepareImpl and loadImpl
-        typedef SharedPtr<vector<MemoryDataStreamPtr>::type > LoadedStreams;
+        typedef std::shared_ptr<vector<MemoryDataStreamPtr>::type > LoadedStreams;
 
         /// D3DDevice pointer
 		D3D11Device	&	mDevice;

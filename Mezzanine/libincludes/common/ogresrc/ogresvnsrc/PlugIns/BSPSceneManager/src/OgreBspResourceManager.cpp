@@ -80,7 +80,7 @@ namespace Ogre {
         removeAll();
 
         ResourcePtr ret = createResource("bsplevel", group, true, 0);
-        BspLevelPtr bspLevel = ret.staticCast<BspLevel>();
+        BspLevelPtr bspLevel = std::static_pointer_cast<BspLevel>( ret );
         bspLevel->load(stream);
         
         return ret;

@@ -39,8 +39,8 @@ namespace Ogre
         return msSingleton;
     }
     SkeletonManager& SkeletonManager::getSingleton(void)
-    {  
-        assert( msSingleton );  return ( *msSingleton );  
+    {
+        assert( msSingleton );  return ( *msSingleton );
     }
     //-----------------------------------------------------------------------
     SkeletonManager::SkeletonManager()
@@ -53,14 +53,14 @@ namespace Ogre
     //-----------------------------------------------------------------------
     SkeletonPtr SkeletonManager::getByName(const String& name, const String& groupName)
     {
-        return getResourceByName(name, groupName).staticCast<Skeleton>();
+        return std::static_pointer_cast<Skeleton>( getResourceByName(name, groupName) );
     }
     //-----------------------------------------------------------------------
     SkeletonPtr SkeletonManager::create (const String& name, const String& group,
                                     bool isManual, ManualResourceLoader* loader,
                                     const NameValuePairList* createParams)
     {
-        return createResource(name,group,isManual,loader,createParams).staticCast<Skeleton>();
+        return std::static_pointer_cast<Skeleton>( createResource(name,group,isManual,loader,createParams) );
     }
     //-----------------------------------------------------------------------
     SkeletonManager::~SkeletonManager()
@@ -68,8 +68,8 @@ namespace Ogre
         ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);
     }
     //-----------------------------------------------------------------------
-    Resource* SkeletonManager::createImpl(const String& name, ResourceHandle handle, 
-        const String& group, bool isManual, ManualResourceLoader* loader, 
+    Resource* SkeletonManager::createImpl(const String& name, ResourceHandle handle,
+        const String& group, bool isManual, ManualResourceLoader* loader,
         const NameValuePairList* createParams)
     {
         return OGRE_NEW Skeleton(this, name, handle, group, isManual, loader);

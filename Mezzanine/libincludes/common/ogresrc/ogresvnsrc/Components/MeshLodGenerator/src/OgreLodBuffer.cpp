@@ -42,7 +42,7 @@ namespace Ogre
             indexSize = hwIndexBuffer->getIndexSize();
             unsigned char* pBuffer = (unsigned char*) hwIndexBuffer->lock(HardwareBuffer::HBL_READ_ONLY);
             size_t offset = data->indexStart * indexSize;
-            indexBuffer = Ogre::SharedPtr<unsigned char>(new unsigned char[indexCount * indexSize]);
+            indexBuffer = std::shared_ptr<unsigned char>(new unsigned char[indexCount * indexSize]);
             indexStart = 0;
             indexBufferSize = 0;
             memcpy(indexBuffer.get(), pBuffer + offset, indexCount * indexSize);
@@ -61,7 +61,7 @@ namespace Ogre
             OgreAssert(elemPos->getSize() == 12, "");
 
             HardwareVertexBufferSharedPtr vbuf = data->vertexBufferBinding->getBuffer(elemPos->getSource());
-            vertexBuffer = Ogre::SharedPtr<Vector3>(new Vector3[vertexCount]);
+            vertexBuffer = std::shared_ptr<Vector3>(new Vector3[vertexCount]);
 
             // Lock the buffer for reading.
             unsigned char* vStart = static_cast<unsigned char*>(vbuf->lock(HardwareBuffer::HBL_READ_ONLY));
@@ -77,7 +77,7 @@ namespace Ogre
             elemNormal = data->vertexDeclaration->findElementBySemantic(VES_NORMAL);
             useVertexNormals = useVertexNormals && (elemNormal != 0);
             if(useVertexNormals){
-                vertexNormalBuffer = Ogre::SharedPtr<Vector3>(new Vector3[vertexCount]);
+                vertexNormalBuffer = std::shared_ptr<Vector3>(new Vector3[vertexCount]);
                 pNormalOut = vertexNormalBuffer.get();
                 if(elemNormal->getSource() == elemPos->getSource()){
                     vNormalBuf = vbuf;

@@ -161,9 +161,9 @@ protected:
     */
     virtual bool addFunctionInvocations(ProgramSet* programSet);
 
-    SharedPtr<LinearSkinning> mLinear;
-    SharedPtr<DualQuaternionSkinning> mDualQuat;
-    SharedPtr<HardwareSkinningTechnique> mActiveTechnique;
+    std::shared_ptr<LinearSkinning> mLinear;
+    std::shared_ptr<DualQuaternionSkinning> mDualQuat;
+    std::shared_ptr<HardwareSkinningTechnique> mActiveTechnique;
     
     ///The factory which created this sub render state
     const HardwareSkinningFactory* mCreator;

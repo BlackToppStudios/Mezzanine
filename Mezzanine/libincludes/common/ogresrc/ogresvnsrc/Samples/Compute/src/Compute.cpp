@@ -162,7 +162,7 @@ class _OgreSampleClassExport Sample_Compute : public SdkSample
         if (renderPass->hasFragmentProgram())
         {
             Ogre::GpuProgramParametersSharedPtr pParams = renderPass->getFragmentProgramParameters();
-            if ( pParams.isNull() )
+            if ( !pParams )
             {
                 //printf("SAD PANDA!");
             }
