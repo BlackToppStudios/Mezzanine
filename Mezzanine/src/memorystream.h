@@ -167,15 +167,15 @@ namespace Mezzanine
         /// @param Size The size of the buffer to be allocated.
         /// @param Mode An open mode describing if this buffer will be configured for reading, writing, or both.
         void CreateBuffer(const Whole Size);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        void CopyBuffer(const char* Buffer, const Whole BufferSize);
         /// @brief Wraps an external buffer for streaming.
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
         void SetBuffer(char* Buffer, const Whole BufferSize, const Boole FreeBuf);
-        /// @brief Copies a pre-existing buffer to this buffer for streaming.
-        /// @param Buffer The buffer to be copied.
-        /// @param BufferSize The size of the buffer to be copied.
-        void CopyBuffer(const char* Buffer, const Whole BufferSize);
 
         /// @brief Gets the start of this buffer.
         /// @return Returns a pointer to the first valid element in this buffer.
@@ -210,29 +210,46 @@ namespace Mezzanine
     protected:
         /// @brief The buffer object being streamed to/from.
         MemoryStreamBuffer Buffer;
-        /// @brief The String uniquely identifying this stream.
+        /// @brief The unique identifier of this stream.
         String BufferIdentifier;
+        /// @brief The unique name of the group this stream was created from.
+        String BufferGroup;
     public:
         /// @brief Blank constructor.
-        /// @param Identifier The unique identity of this stream.
-        MemoryIStream(const String& Identifier);
+        MemoryIStream();
         /// @brief Buffer initialization constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryIStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
+        MemoryIStream(const String& Identifier,
+                      const String& Group,
+                      const Whole BufferSize,
+                      const Whole Flags = Mezzanine::SF_Read);
         /// @brief Buffer copy constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryIStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
+        MemoryIStream(const String& Identifier,
+                      const String& Group,
+                      const void* Buffer,
+                      const Whole BufferSize,
+                      const Whole Flags = Mezzanine::SF_Read);
         /// @brief Buffer wrapper constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryIStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Read);
+        MemoryIStream(const String& Identifier,
+                      const String& Group,
+                      void* Buffer,
+                      const Whole BufferSize,
+                      const Boole FreeAfter,
+                      const Whole Flags = Mezzanine::SF_Read);
         /// @brief Class destructor.
         virtual ~MemoryIStream();
 
@@ -241,20 +258,38 @@ namespace Mezzanine
 
         /// @brief Creates a new memory buffer to stream to/from.
         /// @remarks No changes will be made if the Size is set to 0 or less.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to.
         /// @param Size The size of the buffer to be allocated.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Read);
+        void CreateBuffer(const String& Identifier,
+                          const String& Group,
+                          const Whole Size,
+                          const Whole Flags = Mezzanine::SF_Read);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to.
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const String& Identifier,
+                        const String& Group,
+                        const void* Buffer,
+                        const Whole BufferSize,
+                        const Whole Flags = Mezzanine::SF_Read);
         /// @brief Wraps an external buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to.
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Read);
-        /// @brief Copies a pre-existing buffer to this buffer for streaming.
-        /// @param Buffer The buffer to be copied.
-        /// @param BufferSize The size of the buffer to be copied.
-        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read);
+        void SetBuffer(const String& Identifier,
+                       const String& Group,
+                       void* Buffer,
+                       const Whole BufferSize,
+                       const Boole FreeBuf,
+                       const Whole Flags = Mezzanine::SF_Read);
 
         /// @brief Gets the start of this buffer.
         /// @return Returns a pointer to the first valid element in this buffer.
@@ -270,20 +305,22 @@ namespace Mezzanine
         /// @return Returns true if the internal buffer will be deleted when this is destroyed.
         Boole GetFreeBuffer() const;
 
-        /// @brief Sets the identifier of this stream.
-        /// @remarks This should be used with care and only when/if buffers are being changed.
-        /// @param Identifier The unique identity of this stream.
-        void SetStreamIdentifier(const String& Identifier);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
 
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
     };//MemoryIStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -294,29 +331,45 @@ namespace Mezzanine
     protected:
         /// @brief The buffer object being streamed to/from.
         MemoryStreamBuffer Buffer;
-        /// @brief The String uniquely identifying this stream.
+        /// @brief The unique identifier of this stream.
         String BufferIdentifier;
+        /// @brief The unique name of the group this stream was created from.
+        String BufferGroup;
     public:
         /// @brief Blank constructor.
-        /// @param Identifier The unique identity of this stream.
-        MemoryOStream(const String& Identifier);
+        MemoryOStream();
         /// @brief Buffer initialization constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryOStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+        MemoryOStream(const String& Identifier,
+                      const String& Group,
+                      const Whole BufferSize,
+                      const Whole Flags = Mezzanine::SF_Write);
         /// @brief Buffer copy constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryOStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+        MemoryOStream(const String& Identifier,
+                      const String& Group,
+                      const void* Buffer,
+                      const Whole BufferSize,
+                      const Whole Flags = Mezzanine::SF_Write);
         /// @brief Buffer wrapper constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryOStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Write);
+        MemoryOStream(const String& Identifier,
+                      const String& Group,
+                      void* Buffer,
+                      const Whole BufferSize,
+                      const Boole FreeAfter,
+                      const Whole Flags = Mezzanine::SF_Write);
         /// @brief Class destructor.
         virtual ~MemoryOStream();
 
@@ -325,20 +378,38 @@ namespace Mezzanine
 
         /// @brief Creates a new memory buffer to stream to/from.
         /// @remarks No changes will be made if the Size is set to 0 or less.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Size The size of the buffer to be allocated.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Write);
+        void CreateBuffer(const String& Identifier,
+                          const String& Group,
+                          const Whole Size,
+                          const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const String& Identifier,
+                        const String& Group,
+                        const void* Buffer,
+                        const Whole BufferSize,
+                        const Whole Flags = Mezzanine::SF_Write);
         /// @brief Wraps an external buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Write);
-        /// @brief Copies a pre-existing buffer to this buffer for streaming.
-        /// @param Buffer The buffer to be copied.
-        /// @param BufferSize The size of the buffer to be copied.
-        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Write);
+        void SetBuffer(const String& Identifier,
+                       const String& Group,
+                       void* Buffer,
+                       const Whole BufferSize,
+                       const Boole FreeBuf,
+                       const Whole Flags = Mezzanine::SF_Write);
 
         /// @brief Gets the start of this buffer.
         /// @return Returns a pointer to the first valid element in this buffer.
@@ -354,20 +425,22 @@ namespace Mezzanine
         /// @return Returns true if the internal buffer will be deleted when this is destroyed.
         Boole GetFreeBuffer() const;
 
-        /// @brief Sets the identifier of this stream.
-        /// @remarks This should be used with care and only when/if buffers are being changed.
-        /// @param Identifier The unique identity of this stream.
-        void SetStreamIdentifier(const String& Identifier);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
 
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
     };//MemoryOStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -378,29 +451,46 @@ namespace Mezzanine
     protected:
         /// @brief The buffer object being streamed to/from.
         MemoryStreamBuffer Buffer;
-        /// @brief The String uniquely identifying this stream.
+        /// @brief The unique identifier of this stream.
         String BufferIdentifier;
+        /// @brief The unique name of the group this stream was created from.
+        String BufferGroup;
     public:
         /// @brief Blank constructor.
-        /// @param Identifier The unique identity of this stream.
-        MemoryStream(const String& Identifier);
+        MemoryStream();
         /// @brief Buffer initialization constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryStream(const String& Identifier, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        MemoryStream(const String& Identifier,
+                     const String& Group,
+                     const Whole BufferSize,
+                     const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Buffer copy constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param Buffer The buffer to be copied.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryStream(const String& Identifier, const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        MemoryStream(const String& Identifier,
+                     const String& Group,
+                     const void* Buffer,
+                     const Whole BufferSize,
+                     const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Buffer wrapper constructor.
         /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeAfter Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags The configuration to open the memory buffer with.
-        MemoryStream(const String& Identifier, void* Buffer, const Whole BufferSize, const Boole FreeAfter, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        MemoryStream(const String& Identifier,
+                     const String& Group,
+                     void* Buffer,
+                     const Whole BufferSize,
+                     const Boole FreeAfter,
+                     const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Class destructor.
         virtual ~MemoryStream();
 
@@ -409,20 +499,38 @@ namespace Mezzanine
 
         /// @brief Creates a new memory buffer to stream to/from.
         /// @remarks No changes will be made if the Size is set to 0 or less.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Size The size of the buffer to be allocated.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CreateBuffer(const Whole Size, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        void CreateBuffer(const String& Identifier,
+                          const String& Group,
+                          const Whole Size,
+                          const Whole Flags = Mezzanine::SF_ReadWrite);
+        /// @brief Copies a pre-existing buffer to this buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param Buffer The buffer to be copied.
+        /// @param BufferSize The size of the buffer to be copied.
+        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
+        void CopyBuffer(const String& Identifier,
+                        const String& Group,
+                        const void* Buffer,
+                        const Whole BufferSize,
+                        const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Wraps an external buffer for streaming.
+        /// @param Identifier The unique identity of this stream.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param Buffer The buffer to be wrapped.
         /// @param BufferSize The size of the buffer being wrapped.
         /// @param FreeBuf Whether or not the buffer passed in should be deleted when this stream is destroyed.
         /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void SetBuffer(void* Buffer, const Whole BufferSize, const Boole FreeBuf, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
-        /// @brief Copies a pre-existing buffer to this buffer for streaming.
-        /// @param Buffer The buffer to be copied.
-        /// @param BufferSize The size of the buffer to be copied.
-        /// @param Flags An open mode describing if this buffer will be configured for reading, writing, or both.
-        void CopyBuffer(const void* Buffer, const Whole BufferSize, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write);
+        void SetBuffer(const String& Identifier,
+                       const String& Group,
+                       void* Buffer,
+                       const Whole BufferSize,
+                       const Boole FreeBuf,
+                       const Whole Flags = Mezzanine::SF_ReadWrite);
 
         /// @brief Gets the start of this buffer.
         /// @return Returns a pointer to the first valid element in this buffer.
@@ -438,20 +546,22 @@ namespace Mezzanine
         /// @return Returns true if the internal buffer will be deleted when this is destroyed.
         Boole GetFreeBuffer() const;
 
-        /// @brief Sets the identifier of this stream.
-        /// @remarks This should be used with care and only when/if buffers are being changed.
-        /// @param Identifier The unique identity of this stream.
-        void SetStreamIdentifier(const String& Identifier);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Base Operations
 
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
     };//MemoryStream
 
     /// @brief This is a convenience type for an input memory stream in a shared_ptr.

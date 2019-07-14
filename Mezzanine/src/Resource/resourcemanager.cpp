@@ -64,13 +64,15 @@ namespace Mezzanine
         const String ResourceManager::ImplementationName = "DefaultResourceManager";
         const ManagerBase::ManagerType ResourceManager::InterfaceType = ManagerBase::MT_ResourceManager;
 
-        ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType)
+        ResourceManager::ResourceManager(const String& EngineDataPath, const Resource::ArchiveType ArchType) :
+            ResourcePublisher(0)
         {
             this->EngineDataDir = EngineDataPath;
             this->AddAssetLocation(EngineDataPath, ArchType, "EngineData");
         }
 
-        ResourceManager::ResourceManager(const XML::Node& XMLNode)
+        ResourceManager::ResourceManager(const XML::Node& XMLNode) :
+            ResourcePublisher(0)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
         }
@@ -88,6 +90,7 @@ namespace Mezzanine
         {
             AssetGroup* FoundGroup = this->GetOrCreateAssetGroup(GroupName);
             FoundGroup->AddReadLocation(Location,Type);
+            this->ResourcePublisher.DispatchEvent(&ResourceEventListener::AssetLocationAdded,Location,Type,GroupName);
         }
 
         AssetGroup* ResourceManager::CreateAssetGroup(const String& GroupName)
@@ -100,6 +103,7 @@ namespace Mezzanine
 
             AssetGroup* NewGroup = new AssetGroup(GroupName);
             this->AssetGroups.push_back(NewGroup);
+            this->ResourcePublisher.DispatchEvent(&ResourceEventListener::AssetGroupCreated,GroupName);
             return NewGroup;
         }
 
@@ -140,6 +144,7 @@ namespace Mezzanine
             while( GroupIt != this->AssetGroups.end() )
             {
                 if( (*GroupIt)->GetName() == GroupName ) {
+                    this->ResourcePublisher.DispatchEvent(&ResourceEventListener::AssetGroupDestroyed,GroupName);
                     delete (*GroupIt);
                     this->AssetGroups.erase(GroupIt);
                     return;
@@ -154,6 +159,8 @@ namespace Mezzanine
             while( GroupIt != this->AssetGroups.end() )
             {
                 if( (*GroupIt) == ToBeDestroyed ) {
+                    const String& GroupName = ToBeDestroyed->GetName();
+                    this->ResourcePublisher.DispatchEvent(&ResourceEventListener::AssetGroupDestroyed,GroupName);
                     delete ToBeDestroyed;
                     this->AssetGroups.erase(GroupIt);
                     return;
@@ -172,28 +179,163 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Management
 
-        IStreamPtr ResourceManager::OpenAsset(const String& Identifier, const String& GroupName,
-                                              const Whole Flags, const Boole Raw)
+        IStreamPtr ResourceManager::OpenAsset(const String& Identifier,
+                                              const String& GroupName,
+                                              const Whole Flags,
+                                              const Boole Raw)
         {
-            return this->GetAssetGroupExcept(GroupName)->OpenAsset(Identifier,Flags,Raw);
+            AssetGroup* NamedGroup = this->GetAssetGroup(GroupName);
+            IStreamPtr Ret = NamedGroup->OpenAsset(Identifier,Flags,Raw);
+            if( !Ret && !this->LimitedSearches ) {
+                for( AssetGroup* CurrGroup : this->AssetGroups )
+                {
+                    if( CurrGroup != NamedGroup ) {
+                        Ret = CurrGroup->OpenAsset(Identifier,Flags,Raw);
+                        if( Ret ) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if( !Ret ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File/Asset \"" << Identifier << "\" in Group \""
+                                << GroupName << "\" could not be found.";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return Ret;
         }
 
-        IStreamPtr ResourceManager::OpenEncryptedAsset(const String& Identifier, const String& Password,
-                                                       const String& GroupName, const Whole Flags, const Boole Raw)
+        IStreamPtr ResourceManager::BufferAsset(const String& Identifier,
+                                                const String& GroupName,
+                                                const Whole Flags,
+                                                const Boole Raw)
         {
-            return this->GetAssetGroupExcept(GroupName)->OpenEncryptedAsset(Identifier,Password,Flags,Raw);
+            AssetGroup* NamedGroup = this->GetAssetGroup(GroupName);
+            IStreamPtr Ret = NamedGroup->BufferAsset(Identifier,Flags,Raw);
+            if( !Ret && !this->LimitedSearches ) {
+                for( AssetGroup* CurrGroup : this->AssetGroups )
+                {
+                    if( CurrGroup != NamedGroup ) {
+                        Ret = CurrGroup->BufferAsset(Identifier,Flags,Raw);
+                        if( Ret ) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if( !Ret ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File/Asset \"" << Identifier << "\" in Group \""
+                                << GroupName << "\" could not be found.";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return Ret;
         }
 
-        IStreamPtr ResourceManager::BufferAsset(const String& Identifier, const String& GroupName,
-                                                const Whole Flags, const Boole Raw)
+        IStreamPtr ResourceManager::OpenChildAsset(const String& ParentIdentifier,
+                                                   const String& ParentGroupName,
+                                                   const String& ChildIdentifier,
+                                                   const String& ChildGroupName,
+                                                   const Whole Flags,
+                                                   const Boole Raw)
         {
-            return this->GetAssetGroupExcept(GroupName)->BufferAsset(Identifier,Flags,Raw);
+            /// @todo Use this method to generate a manifest of dependent resources.
+            return this->OpenAsset(ChildIdentifier,ChildGroupName,Flags,Raw);
         }
 
-        IStreamPtr ResourceManager::BufferEncryptedAsset(const String& Identifier, const String& Password,
-                                                         const String& GroupName, const Whole Flags, const Boole Raw)
+        IStreamPtr ResourceManager::BufferChildAsset(const String& ParentIdentifier,
+                                                     const String& ParentGroupName,
+                                                     const String& ChildIdentifier,
+                                                     const String& ChildGroupName,
+                                                     const Whole Flags,
+                                                     const Boole Raw)
         {
-            return this->GetAssetGroupExcept(GroupName)->BufferEncryptedAsset(Identifier,Password,Flags,Raw);
+            /// @todo Use this method to generate a manifest of dependent resources.
+            return this->BufferAsset(ChildIdentifier,ChildGroupName,Flags,Raw);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Encrypted Stream Management
+
+        IStreamPtr ResourceManager::OpenEncryptedAsset(const String& Identifier,
+                                                       const String& GroupName,
+                                                       const String& Password,
+                                                       const Whole Flags,
+                                                       const Boole Raw)
+        {
+            AssetGroup* NamedGroup = this->GetAssetGroup(GroupName);
+            IStreamPtr Ret = NamedGroup->OpenEncryptedAsset(Identifier,Password,Flags,Raw);
+            if( !Ret && !this->LimitedSearches ) {
+                for( AssetGroup* CurrGroup : this->AssetGroups )
+                {
+                    if( CurrGroup != NamedGroup ) {
+                        Ret = CurrGroup->OpenEncryptedAsset(Identifier,Password,Flags,Raw);
+                        if( Ret ) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if( !Ret ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File/Asset \"" << Identifier << "\" in Group \""
+                                << GroupName << "\" could not be found.";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return Ret;
+        }
+
+        IStreamPtr ResourceManager::BufferEncryptedAsset(const String& Identifier,
+                                                         const String& GroupName,
+                                                         const String& Password,
+                                                         const Whole Flags,
+                                                         const Boole Raw)
+        {
+            AssetGroup* NamedGroup = this->GetAssetGroup(GroupName);
+            IStreamPtr Ret = NamedGroup->BufferEncryptedAsset(Identifier,Password,Flags,Raw);
+            if( !Ret && !this->LimitedSearches ) {
+                for( AssetGroup* CurrGroup : this->AssetGroups )
+                {
+                    if( CurrGroup != NamedGroup ) {
+                        Ret = CurrGroup->BufferEncryptedAsset(Identifier,Password,Flags,Raw);
+                        if( Ret ) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if( !Ret ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "File/Asset \"" << Identifier << "\" in Group \""
+                                << GroupName << "\" could not be found.";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return Ret;
+        }
+
+        IStreamPtr ResourceManager::OpenEncryptedChildAsset(const String& ParentIdentifier,
+                                                            const String& ParentGroupName,
+                                                            const String& ChildIdentifier,
+                                                            const String& ChildGroupName,
+                                                            const String& Password,
+                                                            const Whole Flags,
+                                                            const Boole Raw)
+        {
+            /// @todo Use this method to generate a manifest of dependent resources.
+            return this->OpenEncryptedAsset(ChildIdentifier,ChildGroupName,Password,Flags,Raw);
+        }
+
+        IStreamPtr ResourceManager::BufferEncryptedChildAsset(const String& ParentIdentifier,
+                                                              const String& ParentGroupName,
+                                                              const String& ChildIdentifier,
+                                                              const String& ChildGroupName,
+                                                              const String& Password,
+                                                              const Whole Flags,
+                                                              const Boole Raw)
+        {
+            /// @todo Use this method to generate a manifest of dependent resources.
+            return this->BufferEncryptedAsset(ChildIdentifier,ChildGroupName,Password,Flags,Raw);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -210,7 +352,17 @@ namespace Mezzanine
             return this->EngineDataDir;
         }
 
-        String ResourceManager::GetPluginExtension()
+        void ResourceManager::SetLimitedSearches(const Boole Limited)
+        {
+            this->LimitedSearches = Limited;
+        }
+
+        Boole ResourceManager::GetLimitedSearches() const
+        {
+            return this->LimitedSearches;
+        }
+
+        String ResourceManager::GetPlatformPluginExtension()
         {
             #ifdef MEZZ_WINDOWS
             return ".dll";

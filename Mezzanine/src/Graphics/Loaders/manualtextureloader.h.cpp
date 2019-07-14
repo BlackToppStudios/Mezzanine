@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,51 +37,54 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internalmeshloaderlistener_h_cpp
-#define _internalmeshloaderlistener_h_cpp
+#ifndef _manualtextureloader_h_cpp
+#define _manualtextureloader_h_cpp
 
-// Keeps this file form being documented by doxygen
+// Keeps this file from being documented by doxygen
 /// @cond DontDocumentInternal
 
 #include "datatypes.h"
 
-#include <OgreDataStream.h>
-#include <OgreIteratorWrapper.h>
-#include <OgreMeshSerializer.h>
+#include <OgreResource.h>
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Resource
+    {
+        class ResourceManager;
+    }
+    namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief A set of callbacks for different stages of internal mesh deserialization.
-        /// @details
+        /// @brief A manual loader for the loading of Texture files into Ogre.
+        /// @details ManualResourceLoaders in Ogre are meant to facilitate the loading of resources in
+        /// any custom way that may be needed.  This specific implementation is meant to direct the
+        /// loading of textures through the Mezzanine resource system, bypassing Ogre's system entirely.
+        /// @n @n
+        /// When creating an instance of a manual loader, it must remain valid and initialized for
+        /// the entire duration of any and all resources that were loaded using in, just in case the
+        /// resource needs to be reloaded.
         ///////////////////////////////////////
-        class MEZZ_LIB MeshLoaderListener : public Ogre::MeshSerializerListener
+        class MEZZ_LIB ManualTextureLoader : public Ogre::ManualResourceLoader
         {
         protected:
+            /// @brief A pointer to the ResourceManager we're loading from.
+            Resource::ResourceManager* ResourceMan = nullptr;
         public:
             /// @brief Class constructor.
-            MeshLoaderListener();
+            /// @param Manager A pointer to the manager providing streams to load from.
+            ManualTextureLoader(Resource::ResourceManager* Manager);
             /// @brief Class destructor.
-            virtual ~MeshLoaderListener();
+            virtual ~ManualTextureLoader() = default;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Callbacks
+            // Overrides
 
-            /// @brief Callback for when the material is decoded and applied.
-            /// @param mesh A pointer to the mesh being decoded.
-            /// @param name The name of the material (not the file) being assigned.
-            virtual void processMaterialName(Ogre::Mesh* mesh, Ogre::String* name);
-            /// @brief Callback for when the skeleton is decoded and applied.
-            /// @param mesh A pointer to the mesh being decoded.
-            /// @param name The name of the skeleton being assigned.
-            virtual void processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name);
-            /// @brief Callback for when mesh deseriailzation is completed.
-            /// @param mesh A pointer to the fully decoded mesh.
-            virtual void processMeshCompleted(Ogre::Mesh* mesh);
-        };//MeshLoaderListener
-    }//Internal
+            /// @brief Loads a resource into a ready state.
+            /// @param resource The resource to be populated.
+            virtual void loadResource(Ogre::Resource* resource) override;
+        };//ManualTextureLoader
+    }//Graphics
 }//Mezzanine
 
 /// @endcond

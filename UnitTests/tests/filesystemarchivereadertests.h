@@ -93,8 +93,16 @@ public:
 
         TEST( TestReader.GetIdentifier().empty(),
               "FileSystemArchiveReader::GetIdentifier()_const-Empty" );
+        #ifdef MEZZ_WINDOWS
+        TEST( TestReader.IsCaseSensitive() == false,
+              "FileSystemArchiveReader::IsCaseSensitive()_const" );
+        #else
+        TEST( TestReader.IsCaseSensitive() == true,
+              "FileSystemArchiveReader::IsCaseSensitive()_const" );
+        #endif
 
-        TestReader.Open(ArchivePath);
+        String BlankStr;
+        TestReader.Open(ArchivePath,BlankStr);
         TEST( TestReader.IsOpen(),
               "FileSystemArchiveReader::Open(const_String&)" );
 
@@ -215,7 +223,7 @@ public:
             FileIStreamPtr FirstTestStream = Upcast( TestReader.OpenIStream(FirstFilePath,SF_Read,false) );
             TEST( FirstTestStream->IsOpenToFile(),
                   "FileIStream-Construct/Open-First" );
-            TEST( FirstTestStream->GetStreamIdentifier() == FirstFilePath,
+            TEST( FirstTestStream->GetIdentifier() == FirstFilePath,
                   "FileIStream::GetStreamIdentifier()_const-First" );
             TEST( FirstTestStream->GetFullIdentifier() == ( ArchivePath + FirstFilePath ),
                   "FileIStream::GetFullIdentifier()_const-First" );
@@ -240,7 +248,7 @@ public:
             FileIStreamPtr SecondTestStream = Upcast( TestReader.OpenIStream(SecondFilePath,SF_Read,false) );
             TEST( SecondTestStream->IsOpenToFile(),
                   "FileIStream-Construct/Open-Second" );
-            TEST( SecondTestStream->GetStreamIdentifier() == SecondFilePath,
+            TEST( SecondTestStream->GetIdentifier() == SecondFilePath,
                   "FileIStream::GetStreamIdentifier()_const-Second" );
             TEST( SecondTestStream->GetFullIdentifier() == ( ArchivePath + SecondFilePath ),
                   "FileIStream::GetFullIdentifier()_const-Second" );
@@ -265,7 +273,7 @@ public:
             FileIStreamPtr SubDirTestStream = Upcast( TestReader.OpenIStream(SubDirFilePath,SF_Read,false) );
             TEST( SubDirTestStream->IsOpenToFile(),
                   "FileIStream-Construct/Open-SubDir" );
-            TEST( SubDirTestStream->GetStreamIdentifier() == SubDirFilePath,
+            TEST( SubDirTestStream->GetIdentifier() == SubDirFilePath,
                   "FileIStream::GetStreamIdentifier()_const-SubDir" );
             TEST( SubDirTestStream->GetFullIdentifier() == ( ArchivePath + SubDirFilePath ),
                   "FileIStream::GetFullIdentifier()_const-SubDir" );

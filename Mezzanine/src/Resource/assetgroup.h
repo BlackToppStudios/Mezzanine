@@ -78,12 +78,12 @@ namespace Mezzanine
             /// @brief Convenience method for locating the reader containing the specified asset.
             /// @param Identifier A string identifying (such as path and filename) the asset to locate.
             /// @return Returns a pointer to the ArchiveReader that has the specified Asset, or nullptr if not found.
-            ArchiveReader* FindAsset(const String& Identifier) const;
+            ArchiveReader* FindAssetReader(const String& Identifier) const;
             /// @brief Convenience method for locating the reader containing the specified asset.
-            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the file isn't located.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
             /// @param Identifier A string identifying (such as path and filename) the asset to locate.
             /// @return Returns a pointer to the ArchiveReader that has the specified Asset.
-            ArchiveReader* FindAssetExcept(const String& Identifier) const;
+            ArchiveReader* FindAssetReaderOrThrow(const String& Identifier) const;
         public:
             /// @brief Class constructor.
             /// @param GroupName The name to be given to this group.
@@ -102,6 +102,11 @@ namespace Mezzanine
             /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
             /// @return Returns the path to the specified Asset, or an empty String if it wasn't found.
             String GetAssetPath(const String& Identifier);
+
+            /// @brief Gets an already opened stream.
+            /// @param Identifier The identifier for the stream to be retrieved.
+            /// @return Returns an IStreamPtr to the specified stream or nullptr if no such stream is currently open.
+            IStreamPtr GetInputStream(const String& Identifier);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Locations
@@ -136,7 +141,7 @@ namespace Mezzanine
             /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
-            /// @return Returns a shared pointer to an IStream to the opened asset.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
             IStreamPtr OpenAsset(const String& Identifier,
                                  const Whole Flags = SF_Read,
                                  const Boole Raw = false);
@@ -146,7 +151,7 @@ namespace Mezzanine
             /// @param Password The password necessary to decrypt the asset.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
-            /// @return Returns a shared pointer to an IStream to the opened asset.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
             IStreamPtr OpenEncryptedAsset(const String& Identifier,
                                           const String& Password,
                                           const Whole Flags = SF_Read,
@@ -158,7 +163,7 @@ namespace Mezzanine
             /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
-            /// @return Returns a shared pointer to an IStream to the opened asset.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
             IStreamPtr BufferAsset(const String& Identifier,
                                    const Whole Flags = SF_Read,
                                    const Boole Raw = false);
@@ -169,11 +174,62 @@ namespace Mezzanine
             /// @param Password The password necessary to decrypt the asset.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
-            /// @return Returns a shared pointer to an IStream to the opened asset.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
             IStreamPtr BufferEncryptedAsset(const String& Identifier,
                                             const String& Password,
                                             const Whole Flags = SF_Read,
                                             const Boole Raw = false);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Management With Throwing
+
+            /// @brief Opens an asset from an archive location in this group.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
+            IStreamPtr OpenAssetOrThrow(const String& Identifier,
+                                        const Whole Flags = SF_Read,
+                                        const Boole Raw = false);
+            /// @brief Opens an encrypted asset from an archive location in this group.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
+            IStreamPtr OpenEncryptedAssetOrThrow(const String& Identifier,
+                                                 const String& Password,
+                                                 const Whole Flags = SF_Read,
+                                                 const Boole Raw = false);
+
+            /// @brief Opens an asset from a location in this group and pre-loads it all into a memory buffer.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
+            IStreamPtr BufferAssetOrThrow(const String& Identifier,
+                                          const Whole Flags = SF_Read,
+                                          const Boole Raw = false);
+            /// @brief Opens an encrypted asset from a location in this group and pre-loads it all into a memory buffer.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
+            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset, or null if no asset was found.
+            IStreamPtr BufferEncryptedAssetOrThrow(const String& Identifier,
+                                                   const String& Password,
+                                                   const Whole Flags = SF_Read,
+                                                   const Boole Raw = false);
         };//AssetGroup
     }//Resource
 }//Mezzanine

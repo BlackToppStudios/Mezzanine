@@ -81,6 +81,8 @@ namespace Mezzanine
         protected:
             /// @brief A buffer or buffer meta-data structure to the archive that will be streamed.
             BufferType ArchiveBuffer;
+            /// @brief The unique name of the group this stream was created from.
+            String GroupName;
         public:
             /// @brief Variadic constructor.
             /// @tparam ArgTypes The types for each argument to be passed to the buffer used.
@@ -99,28 +101,34 @@ namespace Mezzanine
 
             /// @brief Opens this stream to a file in an archive.
             /// @remarks The StreamFlags value SF_Write will be ignored if used.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const String& Group,
+                          const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
             {
                 const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
                 this->ArchiveBuffer.OpenFile(Identifier,FilteredFlags,Raw);
+                this->GroupName = Group;
             }
             /// @brief Opens this stream to a password protected file in an archive.
             /// @remarks The StreamFlags value SF_Write will be ignored if used.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Password The password to access the file.
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Group, const String& Password,
+                                   const Whole Flags = Mezzanine::SF_Read, const Boole Raw = false)
             {
                 const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
                 this->ArchiveBuffer.OpenEncryptedFile(Identifier,Password,FilteredFlags,Raw);
+                this->GroupName = Group;
             }
             /// @brief Gets whether or not this stream is currently open to a archive.
             /// @return Returns true if this is streaming to/from a archive.  False otherwise.
@@ -131,7 +139,8 @@ namespace Mezzanine
                 { this->ArchiveBuffer.CloseFile(); }
 
             /// @brief Gets the flags that were used to open the archive.
-            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            /// @remarks If this stream is not open to a archive it will return Resource::SF_None.
+            /// @return Returns a bitfield describing the flags used to open the archive.
             Whole GetStreamFlags() const
                 { return this->ArchiveBuffer.GetStreamFlags(); }
 
@@ -147,15 +156,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::GetStreamIdentifier() const
-            String GetStreamIdentifier() const
-                { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
+            /// @copydoc StreamBase::GetIdentifier() const
+            String GetIdentifier() const override
+                { return std::move( this->ArchiveBuffer.GetIdentifier() ); }
+            /// @copydoc StreamBase::GetGroup() const
+            String GetGroup() const override
+                { return this->GroupName; }
+
+            /// @copydoc StreamBase::GetSize() const
+            StreamSize GetSize() const override
+                { return this->ArchiveBuffer.GetSize(); }
             /// @copydoc StreamBase::CanSeek() const
             Boole CanSeek() const override
                 { return this->ArchiveBuffer.CanSeek(); }
-            /// @copydoc StreamBase::GetSize() const
-            virtual StreamSize GetSize() const
-                { return this->ArchiveBuffer.GetSize(); }
+            /// @copydoc StreamBase::IsEncrypted() const
+            Boole IsEncrypted() const override
+                { return this->ArchiveBuffer.IsEncrypted(); }
+            /// @copydoc StreamBase::IsRaw() const
+            Boole IsRaw() const override
+                { return this->ArchiveBuffer.IsRaw(); }
         };//ArchiveIStream
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -184,28 +203,34 @@ namespace Mezzanine
 
             /// @brief Opens this stream to a file in an archive.
             /// @remarks The StreamFlags value SF_Read will be ignored if used.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const String& Group,
+                          const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
             {
                 const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
                 this->OpenFile(Identifier,FilteredFlags,Raw);
+                this->GroupName = Group;
             }
             /// @brief Opens this stream to a password protected file in an archive.
             /// @remarks The StreamFlags value SF_Read will be ignored if used.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Password The password to access the file.
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Group, const String& Password,
+                                   const Whole Flags = Mezzanine::SF_Write, const Boole Raw = false)
             {
                 const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
                 this->OpenEncryptedFile(Identifier,Password,FilteredFlags,Raw);
+                this->GroupName = Group;
             }
             /// @brief Gets whether or not this stream is currently open to a archive.
             /// @return Returns true if this is streaming to/from a archive.  False otherwise.
@@ -216,7 +241,8 @@ namespace Mezzanine
                 { this->ArchiveBuffer.CloseFile(); }
 
             /// @brief Gets the flags that were used to open the archive.
-            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            /// @remarks If this stream is not open to a archive it will return Resource::SF_None.
+            /// @return Returns a bitfield describing the flags used to open the archive.
             Whole GetStreamFlags() const
                 { return this->ArchiveBuffer.GetStreamFlags(); }
 
@@ -232,15 +258,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::GetStreamIdentifier() const
-            String GetStreamIdentifier() const
-                { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
+            /// @copydoc StreamBase::GetIdentifier() const
+            String GetIdentifier() const override
+                { return this->ArchiveBuffer.GetStreamIdentifier(); }
+            /// @copydoc StreamBase::GetGroup() const
+            String GetGroup() const override
+                { return this->GroupName; }
+
+            /// @copydoc StreamBase::GetSize() const
+            StreamSize GetSize() const override
+                { return this->ArchiveBuffer.GetSize(); }
             /// @copydoc StreamBase::CanSeek() const
             Boole CanSeek() const override
                 { return this->ArchiveBuffer.CanSeek(); }
-            /// @copydoc StreamBase::GetSize() const
-            StreamSize GetSize() const
-                { return this->ArchiveBuffer.GetSize(); }
+            /// @copydoc StreamBase::IsEncrypted() const
+            Boole IsEncrypted() const override
+                { return this->ArchiveBuffer.IsEncrypted(); }
+            /// @copydoc StreamBase::IsRaw() const
+            Boole IsRaw() const override
+                { return this->ArchiveBuffer.IsRaw(); }
         };//ArchiveOStream
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -268,22 +304,32 @@ namespace Mezzanine
             // Utility
 
             /// @brief Opens this stream to a file in an archive.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenFile(const String& Identifier, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write, const Boole Raw = false)
-                { this->OpenFile(Identifier,Flags,Raw); }
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenFile(const String& Identifier, const String& Group,
+                          const Whole Flags = Mezzanine::SF_ReadWrite, const Boole Raw = false)
+            {
+                this->OpenFile(Identifier,Flags,Raw);
+                this->GroupName = Group;
+            }
             /// @brief Opens this stream to a password protected file in an archive.
-            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes wrong.
-            /// Be sure to consult the documentation of the used streambuf class to see what can be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// @exception It is very likely the method invoked on the streambuf class will throw if something goes
+            /// wrong.  Be sure to consult the documentation of the used streambuf class to see what can be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
+            /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
             /// @param Password The password to access the file.
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags = Mezzanine::SF_Read | Mezzanine::SF_Write, const Boole Raw = false)
-                { this->OpenEncryptedFile(Identifier,Password,Flags,Raw); }
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Group, const String& Password,
+                                   const Whole Flags = Mezzanine::SF_ReadWrite, const Boole Raw = false)
+            {
+                this->OpenEncryptedFile(Identifier,Password,Flags,Raw);
+                this->GroupName = Group;
+            }
             /// @brief Gets whether or not this stream is currently open to a archive.
             /// @return Returns true if this is streaming to/from a archive.  False otherwise.
             Boole IsOpenToFile() const
@@ -293,7 +339,8 @@ namespace Mezzanine
                 { this->ArchiveBuffer.CloseFile(); }
 
             /// @brief Gets the flags that were used to open the archive.
-            /// @return Returns a bitfield describing the flags used to open the archive.  If this stream is not open to a archive it will return Resource::SF_None.
+            /// @remarks If this stream is not open to a archive it will return Resource::SF_None.
+            /// @return Returns a bitfield describing the flags used to open the archive.
             Whole GetStreamFlags() const
                 { return this->ArchiveBuffer.GetStreamFlags(); }
 
@@ -309,15 +356,25 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Base Operations
 
-            /// @copydoc StreamBase::GetStreamIdentifier() const
-            String GetStreamIdentifier() const
+            /// @copydoc StreamBase::GetIdentifier() const
+            String GetIdentifier() const override
                 { return std::move( this->ArchiveBuffer.GetStreamIdentifier() ); }
-            /// @copydoc StreamBase::CanSeek() const
-            Boole CanSeek() const override
-                { return this->ArchiveBuffer.CanSeek(); }
+            /// @copydoc StreamBase::GetGroup() const
+            String GetGroup() const override
+                { return this->GroupName; }
+
             /// @copydoc StreamBase::GetSize() const
             StreamSize GetSize() const override
                 { return this->ArchiveBuffer.GetSize(); }
+            /// @copydoc StreamBase::CanSeek() const
+            Boole CanSeek() const override
+                { return this->ArchiveBuffer.CanSeek(); }
+            /// @copydoc StreamBase::IsEncrypted() const
+            Boole IsEncrypted() const override
+                { return this->ArchiveBuffer.IsEncrypted(); }
+            /// @copydoc StreamBase::IsRaw() const
+            Boole IsRaw() const override
+                { return this->ArchiveBuffer.IsRaw(); }
         };//ArchiveStream
 
         /// @brief Convenience type for an Archive input stream in a std::shared_ptr.

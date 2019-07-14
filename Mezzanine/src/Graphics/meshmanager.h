@@ -48,18 +48,15 @@
 
 namespace Ogre
 {
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Mesh;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Mesh> MeshPtr;
+    typedef std::shared_ptr<Mesh> MeshPtr;
     class MeshManager;
 }
 
 namespace Mezzanine
 {
-    namespace Physics
-    {
-        class CollisionShape;
-    }
     namespace Graphics
     {
         class Mesh;
@@ -69,15 +66,18 @@ namespace Mezzanine
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class MeshManager
         /// @brief This manager handles the storage, generation, and query of of Graphics Meshes.
-        /// @details
+        /// @details Design note about loading: @n
+        /// The internal mesh formats .mesh (Binary) and .mesh.xml (Text/XML) do not permit the storing of multiple
+        /// meshes in one file, nor the naming of a mesh within the file.  So the name of the Mesh will always be the
+        /// filename that it was loaded from.  The format does support multiple named submeshes in the file but not
+        /// naming of the root mesh.  The MeshManager uses a simple loading and saving API that reflects this.
         ///////////////////////////////////////
         class MEZZ_LIB MeshManager : public EntresolManager, public Singleton<MeshManager>
         {
         public:
             /// @brief Basic container type for Mesh storage in this class.
-            typedef std::map< String, Mesh* >              MeshContainer;
+            typedef std::vector< Mesh* >                   MeshContainer;
             /// @brief Iterator type for Mesh instances stored in this class.
             typedef MeshContainer::iterator                MeshIterator;
             /// @brief Const Iterator type for Mesh instances stored in this class.
@@ -88,15 +88,25 @@ namespace Mezzanine
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
         protected:
-            /// @internal
             /// @brief Container storing all of the currently loaded Meshes.
             MeshContainer Meshes;
+            /// @brief A pointer to the internal manager being wrapped by this manager.
+            Ogre::MeshManager* InternalManager;
 
-            /// @internal
+            /// @brief Loads an Mesh from an input stream.
+            /// @param Stream A pointer to the stream to load the Mesh from.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMeshNoCheck(IStreamPtr Stream);
             /// @brief Adds a Mesh to this manager.
             /// @exception If the name of the Mesh being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
             /// @param ToAdd The Mesh to be added.
-            virtual void AddMesh(Mesh* ToAdd);
+            void AddMesh(Mesh* ToAdd);
+            /// @brief Loads a Material that is referenced by a Mesh.
+            /// @param ParentMesh The Mesh referencing the Material to be loaded.
+            void LoadChildMaterial(Mesh* ParentMesh);
+            /// @brief Loads a Skeleton that is referenced by a Mesh.
+            /// @param ParentMesh The Mesh referencing the Skeleton to be loaded.
+            void LoadChildSkeleton(Mesh* ParentMesh);
         public:
             /// @brief Class constructor.
             MeshManager();
@@ -109,55 +119,61 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 
-            /// @brief Loads a Mesh file from an asset group and prepares it for use.
-            /// @param ResourceName The name of the Mesh file to be loaded.
-            /// @param ResourceGroup The resource group from which the Mesh file should be loaded.
-            /// @return Returns a pointer to the loaded Mesh.
-            Mesh* LoadMesh(const String& ResourceName, const String& ResourceGroup);
-            /// @brief Loads a Mesh file from disk and prepares it for use.
-            /// @param FilePathAndName The full path and filename of the Mesh to be read.
-            /// @return Returns a pointer to the loaded Mesh.
-            Mesh* LoadMesh(const String& FilePathAndName);
+            /// @brief Creates a new blank Mesh that can be built upon.
+            /// @param Name The new to be given to the new Mesh.
+            /// @return Returns a pointer to the created Mesh.
+            Mesh* CreateMesh(const String& Name);
 
+            /// @brief Gets a Mesh stored in this manager.
+            /// @param Name The name of the Mesh to retrieve.
+            /// @return Returns a pointer to the requested Mesh.
+            Mesh* GetMesh(const String& Name);
+            /// @brief Gets the number of currently loaded Meshes.
+            /// @return Returns a Whole representing the number of Meshes currently loaded.
+            Whole GetNumMeshes();
+
+            /// @brief Removes a Mesh from this manager.
+            /// @remarks Due to the shared use of Meshes in objects this method cannot outright destroy
+            /// any Mesh object.  Instead it can remove the Mesh from this manager and it will be
+            /// destroyed when no objects reference it.
+            /// @param ToBeRemoved The Mesh to be removed from this manager.
+            void RemoveMesh(Mesh* ToBeRemoved);
+            /// @brief Removes every Mesh from this manager.
+            /// @remarks Due to the shared use of Meshes in objects this method cannot outright destroy
+            /// any Mesh object.  Instead it can remove the Mesh from this manager and it will be
+            /// destroyed when no objects reference it.
+            void RemoveAllMeshes();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Mesh I/O
+
+            /// @brief Loads a Mesh file from an asset group and prepares it for use.
+            /// @param AssetIdentifier The identifier of the Mesh file to be loaded.
+            /// @param GroupName The asset group from which the Mesh file should be loaded.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(const String& AssetIdentifier, const String& GroupName);
+            /// @brief Loads a Mesh file from disk and prepares it for use.
+            /// @param LocalPath The full path and filename of the Mesh to be read on the local disk.
+            /// @return Returns a pointer to the loaded Mesh.
+            Mesh* LoadMesh(const String& LocalPath);
             /// @brief Loads an Mesh from an input stream.
             /// @param Stream A pointer to the stream to load the Mesh from.
             /// @return Returns a pointer to the loaded Mesh.
-            Mesh* LoadMesh(std::istream* Stream);
-
-            /// @brief Unloads a Mesh from memory.
-            /// @param MeshName The name of the Mesh to be unloaded.
-            void UnloadMesh(const String& MeshName);
-            /// @brief Unloads every Mesh that is currently loaded.
-            void UnloadAllMeshes();
-
-            /// @brief Removes a Mesh from this manager.
-            /// @param MeshName The name of the Mesh to be removed.
-            void RemoveMesh(const String& MeshName);
-            /// @brief Removes all Meshes from this manager.
-            void RemoveAllMeshes();
+            Mesh* LoadMesh(IStreamPtr Stream);
 
             /// @brief Writes a Mesh to the asset group.
             /// @param ToSave The Mesh to be saved.
-            /// @param FileName The name of the file to save the Mesh as.
+            /// @param AssetIdentifier The identifier of the file to save the Mesh as.
             /// @param GroupName The name of the asset group to save the Mesh to.
-            void SaveMesh(Mesh* ToSave, const String& FileName, const String& GroupName);
+            void SaveMesh(Mesh* ToSave, const String& AssetIdentifier, const String& GroupName);
             /// @brief Writes a Mesh to the disk.
             /// @param ToSave The Mesh to be saved.
-            /// @param FilePathAndName The full path and filename of the Mesh to be written.
-            void SaveMesh(Mesh* ToSave, const String& FilePathAndName);
-
+            /// @param LocalPath The full path and filename of the Mesh to be written.
+            void SaveMesh(Mesh* ToSave, const String& LocalPath);
             /// @brief Writes a Mesh in a final serializable form to an output stream.
             /// @param ToSave The Mesh to be saved.
             /// @param Stream A pointer to the stream to save the Mesh to.
-            void SaveMesh(Mesh* ToSave, std::ostream* Stream);
-
-            /// @brief Gets a Mesh stored in this manager.
-            /// @param MeshName The name of the Mesh to retrieve.
-            /// @return Returns a pointer to the requested Mesh.
-            Mesh* GetMesh(const String& MeshName);
-            /// @brief Gets the number of currently loaded meshes.
-            /// @return Returns a Whole representing the number of meshes currently loaded.
-            Whole GetNumMeshes();
+            void SaveMesh(Mesh* ToSave, OStreamPtr Stream);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -178,11 +194,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @internal
-            /// @brief Wraps and stores an Ogre Mesh instance.
-            /// @param ToWrap The Ogre Mesh to get wrapped.
-            /// @return Returns a pointer to the wrapped Mesh.
-            Mesh* _WrapInternalMesh(Ogre::MeshPtr ToWrap);
             /// @internal
             /// @brief Gets the internal MeshManager.
             /// @return Returns a pointer to the internal MeshManager.

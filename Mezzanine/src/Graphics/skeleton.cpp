@@ -50,34 +50,25 @@ namespace Mezzanine
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This class is used to store the internal structures needed by the Skeleton class.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB InternalSkeletonData
-        {
-            public:
-                Ogre::SkeletonPtr GraphicsSkeleton;
-        };//InternalSkeletonData
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Skeleton Methods
 
-        Skeleton::Skeleton(Ogre::SkeletonPtr InternalSkeleton)
+        Skeleton::Skeleton(Ogre::SkeletonPtr ToWrap, ManualSkeletonLoader* Loader) :
+            InternalSkeleton(ToWrap),
+            InternalLoader(Loader)
         {
-            this->ISD = new InternalSkeletonData();
-            this->ISD->GraphicsSkeleton = InternalSkeleton;
-
-            Ogre::Skeleton::BoneIterator BoneIt = this->ISD->GraphicsSkeleton->getBoneIterator();
+            Ogre::Skeleton::BoneIterator BoneIt = this->InternalSkeleton->getBoneIterator();
             while( BoneIt.hasMoreElements() )
             {
                 Ogre::Bone* InternalBone = BoneIt.getNext();
-                Bones.push_back( this->_CreateBoneWrapper( InternalBone ) );
+                this->Bones.push_back( this->_CreateBoneWrapper( InternalBone ) );
             }
         }
 
         Skeleton::~Skeleton()
         {
-            delete ISD;
+            if( this->InternalLoader ) {
+                delete this->InternalLoader;
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -121,12 +112,12 @@ namespace Mezzanine
 
         ConstString& Skeleton::GetName() const
         {
-            return this->_GetInternalSkeleton()->getName();
+            return this->InternalSkeleton->getName();
         }
 
         ConstString& Skeleton::GetGroup() const
         {
-            return this->_GetInternalSkeleton()->getGroup();
+            return this->InternalSkeleton->getGroup();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -141,8 +132,11 @@ namespace Mezzanine
 
         Ogre::SkeletonPtr Skeleton::_GetInternalSkeleton() const
         {
-            return this->ISD->GraphicsSkeleton;
+            return this->InternalSkeleton;
         }
+
+        Ogre::SkeletonPtr Skeleton::_Upcast(Ogre::ResourcePtr ToCast)
+            { return std::static_pointer_cast<Ogre::Skeleton>(ToCast); }
     }//Graphics
 }//Mezzanine
 

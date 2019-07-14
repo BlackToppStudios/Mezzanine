@@ -87,11 +87,11 @@ namespace Mezzanine
             /// @brief Class constructor.
             TextureAtlasInternalData()
             {
-                TATexture.setNull();
-                Mat2D.setNull();
-                Mat3D.setNull();
-                Pass2D = NULL;
-                Pass3D = NULL;
+                TATexture.reset();
+                Mat2D.reset();
+                Mat3D.reset();
+                Pass2D = nullptr;
+                Pass3D = nullptr;
             }
         };//TextureAtlasInternalData
 
@@ -172,8 +172,7 @@ namespace Mezzanine
 
             // Setup the texture
             this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->getByName(FileName,GroupName);
-            if(this->TAID->TATexture.isNull())
-            {
+            if( !this->TAID->TATexture ) {
                 this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->load(FileName,GroupName,Ogre::TEX_TYPE_2D,0);
             }
 
@@ -440,8 +439,7 @@ namespace Mezzanine
         {
             String MatName = "Mezz2D." + this->TAID->TATexture->getName();
             this->TAID->Mat2D = Ogre::MaterialManager::getSingletonPtr()->getByName(MatName);
-            if(!this->TAID->Mat2D.isNull())
-            {
+            if( this->TAID->Mat2D ) {
                 return;
             }
 
@@ -454,8 +452,7 @@ namespace Mezzanine
         {
             String MatName = "Mezz3D." + this->TAID->TATexture->getName();
             this->TAID->Mat3D = Ogre::MaterialManager::getSingletonPtr()->getByName(MatName);
-            if(!this->TAID->Mat3D.isNull())
-            {
+            if( this->TAID->Mat3D ) {
                 return;
             }
 
@@ -467,18 +464,15 @@ namespace Mezzanine
         Ogre::MaterialPtr TextureAtlas::GetOrCreate2DMasterMaterial()
         {
             Ogre::MaterialPtr Material2D = Ogre::MaterialManager::getSingletonPtr()->getByName("Mezz2D");
-            if(Material2D.isNull() == false)
-            {
+            if( Material2D ) {
                 Ogre::Pass* MatPass = Material2D->getTechnique(0)->getPass(0);
 
-                if(MatPass->hasVertexProgram())
-                {
+                if( MatPass->hasVertexProgram() ) {
                     Ogre::GpuProgramPtr gpuPtr = MatPass->getVertexProgram();
                     gpuPtr->load();
                 }
 
-                if(MatPass->hasFragmentProgram())
-                {
+                if( MatPass->hasFragmentProgram() ) {
                     Ogre::GpuProgramPtr gpuPtr = MatPass->getFragmentProgram();
                     gpuPtr->load();
                 }
@@ -503,18 +497,16 @@ namespace Mezzanine
         Ogre::MaterialPtr TextureAtlas::GetOrCreate3DMasterMaterial()
         {
             Ogre::MaterialPtr Material3D = Ogre::MaterialManager::getSingletonPtr()->getByName("Mezz3D");
-            if(Material3D.isNull() == false)
+            if( Material3D )
             {
                 Ogre::Pass* MatPass = Material3D->getTechnique(0)->getPass(0);
 
-                if(MatPass->hasVertexProgram())
-                {
+                if( MatPass->hasVertexProgram() ) {
                     Ogre::GpuProgramPtr gpuPtr = MatPass->getVertexProgram();
                     gpuPtr->load();
                 }
 
-                if(MatPass->hasFragmentProgram())
-                {
+                if( MatPass->hasFragmentProgram() ) {
                     Ogre::GpuProgramPtr gpuPtr = MatPass->getFragmentProgram();
                     gpuPtr->load();
                 }
@@ -594,7 +586,7 @@ namespace Mezzanine
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate2DMaterial()
         {
-            if(this->TAID->Mat2D.isNull()) {
+            if( !this->TAID->Mat2D ) {
                 Create2DMaterial();
             }
             return this->TAID->Mat2D;
@@ -602,7 +594,7 @@ namespace Mezzanine
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate3DMaterial()
         {
-            if(this->TAID->Mat3D.isNull()) {
+            if( !this->TAID->Mat3D ) {
                 Create3DMaterial();
             }
             return this->TAID->Mat3D;

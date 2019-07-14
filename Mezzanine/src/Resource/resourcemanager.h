@@ -40,11 +40,12 @@
 #ifndef _resourcemanager_h
 #define _resourcemanager_h
 
-#include "datatypes.h"
 #include "datastream.h"
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
+#include "eventpublisher.h"
 #include "singleton.h"
+
 #include "Resource/resourceenumerations.h"
 
 /// @file
@@ -56,14 +57,66 @@ namespace Mezzanine
     {
         class AssetGroup;
 
-        // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+        // Used by the scripting language binder to help create bindings for this class.
         #ifdef SWIG
         %template(SingletonResourceManager) Singleton<ResourceManager>;
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ResourceManager
-        /// @headerfile resourcemanager.h
+        /// @brief This is the interface class for all resource management listeners.
+        /// @remarks Adding a callback for Stream creation was considered, but given the potential frequency of stream
+        /// creation it may have too great of a negative performance impact to allow.
+        ///////////////////////////////////////
+        class MEZZ_LIB ResourceEventListener
+        {
+        public:
+            /// @brief The type to use for uniquely identifying ResourceEventListener instances.
+            using IDType = EventSubscriberID;
+
+            /// @brief Gets the ID of this listener.
+            /// @return Returns an EventSubscriberID uniquely identifying this listener.
+            virtual IDType GetID() const = 0;
+
+            /// @brief Notifies the listener that a new location is being added to an AssetGroup.
+            /// @param Location The identifier (usually a path) of the location being added.
+            /// @param Type The type of group the location is being added to.
+            /// @param GroupName The name of the group the location is being added to.
+            virtual void AssetLocationAdded(const String& Location, const ArchiveType Type, const String& GroupName) = 0;
+            /// @brief Notifies the listener that an AssetGroup has been created.
+            /// @param GroupName The name of the group being created.
+            virtual void AssetGroupCreated(const String& GroupName) = 0;
+            /// @brief Notifies the listener that an AssetGroup will be destroyed.
+            /// @param GroupName The name of the group being destroyed.
+            virtual void AssetGroupDestroyed(const String& GroupName) = 0;
+        };//ResourceEventListener
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A config/traits class for configuration of the event publisher used by a ResourceManager.
+        ///////////////////////////////////////
+        struct MEZZ_LIB ResourceEventTableConfig : public EventSubscriptionTableConfig< ResourceEventListener* >
+        {
+            ///////////////////////////////////////////////////////////////////////////////
+            // Factory Traits
+
+            /// @brief Use bindings to help manage lifetime where appropriate.
+            static const SubscriptionFactoryType FactoryType = SubscriptionFactoryType::SFT_Binding;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Storage Traits
+
+            /// @brief Use a dynamic sizing unsorted container because we want minimum restrictions for the subscribers.
+            static const SubscriptionContainerType ContainerType = SubscriptionContainerType::SCT_Unsorted;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Dispatch Traits
+
+            /// @brief Don't need anything fancy for the dispatcher (yet).
+            static const EventDispatcherType DispatcherType = EventDispatcherType::EDT_Empty;
+            /// @brief EventID works fine for dispatch.
+            using DispatchIDType = EventID;
+        };//ResourceEventTableConfig
+
+        ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the manager responsible for the loading and unloading of files.
         /// @details This class is responsible for the reading and writing of files of all kinds, be
         /// it graphical meshes, physics data, or XMl files.
@@ -72,21 +125,30 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for AssetGroup storage in this class.
-            typedef std::vector<AssetGroup*>                   AssetGroupContainer;
+            using AssetGroupContainer = std::vector<AssetGroup*>;
             /// @brief Iterator type for AssetGroup instances stored in this class.
-            typedef AssetGroupContainer::iterator              AssetGroupIterator;
+            using AssetGroupIterator = AssetGroupContainer::iterator;
             /// @brief Const Iterator type for AssetGroup instances stored in this class.
-            typedef AssetGroupContainer::const_iterator        ConstAssetGroupIterator;
+            using ConstAssetGroupIterator = AssetGroupContainer::const_iterator;
+
+            /// @brief Convenience type for the event publisher config used by ResourceManagers.
+            using ResourceEventPublisher = EventSubscriptionTable<ResourceEventTableConfig>;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
             /// @brief A ManagerType enum value used to describe the type of interface/functionality this manager provides.
             static const ManagerBase::ManagerType InterfaceType;
         protected:
+            /// @brief Event publisher used to dispatch high level resource events.
+            ResourceEventPublisher ResourcePublisher;
             /// @brief Container storing all of the asset groups created and managed by this manager.
             AssetGroupContainer AssetGroups;
             /// @brief The location of engine data.
             String EngineDataDir;
+            /// @brief Whether or not asset lookup should be restricted to explicitly specified groups.
+            /// @remarks If false, this will permit searching for an asset in other groups if it wasn't
+            /// found in the group specified.
+            Boole LimitedSearches = true;
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
@@ -139,7 +201,7 @@ namespace Mezzanine
 
             /// @brief Opens an asset from an archive location in this group.
             /// @remarks Locations are not searched in any particular order, the first match will be returned.
-            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Identifier The full path within the group specified to the resource.
             /// @param GroupName The AssetGroup to open the Asset from.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
@@ -148,24 +210,10 @@ namespace Mezzanine
                                  const String& GroupName,
                                  const Whole Flags = SF_Read,
                                  const Boole Raw = false);
-            /// @brief Opens an encrypted asset from an archive location in this group.
-            /// @remarks Locations are not searched in any particular order, the first match will be returned.
-            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
-            /// @param Password The password necessary to decrypt the asset.
-            /// @param GroupName The AssetGroup to open the Asset from.
-            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
-            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
-            /// @return Returns a shared pointer to an IStream to the opened asset.
-            IStreamPtr OpenEncryptedAsset(const String& Identifier,
-                                          const String& Password,
-                                          const String& GroupName,
-                                          const Whole Flags = SF_Read,
-                                          const Boole Raw = false);
-
             /// @brief Opens an asset from a location in this group and pre-loads it all into a memory buffer.
             /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
             /// @remarks Locations are not searched in any particular order, the first match will be returned.
-            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
+            /// @param Identifier The full path within the group specified to the resource.
             /// @param GroupName The AssetGroup to open the Asset from.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
@@ -174,20 +222,103 @@ namespace Mezzanine
                                    const String& GroupName,
                                    const Whole Flags = SF_Read,
                                    const Boole Raw = false);
+            /// @brief Does the same as OpenAsset, but will mark the asset as a child for another asset.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param ParentIdentifier The full path within the parent group specified to the parent resource.
+            /// @param ParentGroupName The AssetGroup to open the parent Asset from.
+            /// @param ChildIdentifier The full path within the child group specified to the child resource.
+            /// @param ChildGroupName The AssetGroup to open the child Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr OpenChildAsset(const String& ParentIdentifier,
+                                      const String& ParentGroupName,
+                                      const String& ChildIdentifier,
+                                      const String& ChildGroupName,
+                                      const Whole Flags = SF_Read,
+                                      const Boole Raw = false);
+            /// @brief Does the same as BufferAsset, but will mark the asset as a child for another asset.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param ParentIdentifier The full path within the parent group specified to the parent resource.
+            /// @param ParentGroupName The AssetGroup to open the parent Asset from.
+            /// @param ChildIdentifier The full path within the child group specified to the child resource.
+            /// @param ChildGroupName The AssetGroup to open the child Asset from.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr BufferChildAsset(const String& ParentIdentifier,
+                                        const String& ParentGroupName,
+                                        const String& ChildIdentifier,
+                                        const String& ChildGroupName,
+                                        const Whole Flags = SF_Read,
+                                        const Boole Raw = false);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Encrypted Stream Management
+
+            /// @brief Opens an encrypted asset from an archive location in this group.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param Identifier The full path within the group specified to the resource.
+            /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr OpenEncryptedAsset(const String& Identifier,
+                                          const String& GroupName,
+                                          const String& Password,
+                                          const Whole Flags = SF_Read,
+                                          const Boole Raw = false);
             /// @brief Opens an encrypted asset from a location in this group and pre-loads it all into a memory buffer.
             /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
             /// @remarks Locations are not searched in any particular order, the first match will be returned.
-            /// @param Identifier Usually a path and filename, but can be any unique identifier the archive can use.
-            /// @param Password The password necessary to decrypt the asset.
+            /// @param Identifier The full path within the group specified to the resource.
             /// @param GroupName The AssetGroup to open the Asset from.
+            /// @param Password The password necessary to decrypt the asset.
             /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
             /// @param Raw If true, the stream will perform no processing on the raw data before returning.
             /// @return Returns a shared pointer to an IStream to the opened asset.
             IStreamPtr BufferEncryptedAsset(const String& Identifier,
-                                            const String& Password,
                                             const String& GroupName,
+                                            const String& Password,
                                             const Whole Flags = SF_Read,
                                             const Boole Raw = false);
+            /// @brief Does the same as OpenEncryptedAsset, but will mark the asset as a child for another asset.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param ParentIdentifier The full path within the parent group specified to the parent resource.
+            /// @param ParentGroupName The AssetGroup to open the parent Asset from.
+            /// @param ChildIdentifier The full path within the child group specified to the child resource.
+            /// @param ChildGroupName The AssetGroup to open the child Asset from.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr OpenEncryptedChildAsset(const String& ParentIdentifier,
+                                               const String& ParentGroupName,
+                                               const String& ChildIdentifier,
+                                               const String& ChildGroupName,
+                                               const String& Password,
+                                               const Whole Flags = SF_Read,
+                                               const Boole Raw = false);
+            /// @brief Does the same as BufferEncryptedAsset, but will mark the asset as a child for another asset.
+            /// @warning This will completely load the asset into memory.  Be mindful of file sizes.
+            /// @remarks Locations are not searched in any particular order, the first match will be returned.
+            /// @param ParentIdentifier The full path within the parent group specified to the parent resource.
+            /// @param ParentGroupName The AssetGroup to open the parent Asset from.
+            /// @param ChildIdentifier The full path within the child group specified to the child resource.
+            /// @param ChildGroupName The AssetGroup to open the child Asset from.
+            /// @param Password The password necessary to decrypt the asset.
+            /// @param Flags A bitmask of the options to open the stream with.  See StreamFlags enum for more info.
+            /// @param Raw If true, the stream will perform no processing on the raw data before returning.
+            /// @return Returns a shared pointer to an IStream to the opened asset.
+            IStreamPtr BufferEncryptedChildAsset(const String& ParentIdentifier,
+                                                 const String& ParentGroupName,
+                                                 const String& ChildIdentifier,
+                                                 const String& ChildGroupName,
+                                                 const String& Password,
+                                                 const Whole Flags = SF_Read,
+                                                 const Boole Raw = false);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Asset Query
@@ -206,9 +337,19 @@ namespace Mezzanine
             /// @return A String that contains the path to where the engine data is stored.
             const String& GetEngineDataDirectory() const;
 
+            /// @brief Sets whether or not asset searching will be limited to a group specified.
+            /// @remarks The searches this method (and the accompanying get method) are referring to is any method on
+            /// this manager where you specify an asset as well as it's group.  Including but not limited to all the
+            /// open methods on this manager.
+            /// @param Limited If false, assets will be searched for in all groups until found.
+            void SetLimitedSearches(const Boole Limited);
+            /// @brief Gets whether or not asset searching will be limited to a group specified.
+            /// @return Returns true if only the asset group specified will be searched, false otherwise.
+            Boole GetLimitedSearches() const;
+
             /// @brief Gets the dot-and-extension of this platforms plugins.
             /// @return Returns the platform appropriate extension for plugin files.
-            static String GetPluginExtension();
+            static String GetPlatformPluginExtension();
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();

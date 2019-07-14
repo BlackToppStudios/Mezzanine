@@ -134,7 +134,8 @@ namespace Mezzanine
             this->RawStream = Raw;
         }
 
-        void ZipStreamBuffer::OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw)
+        void ZipStreamBuffer::OpenEncryptedFile(const String& Identifier, const String& Password,
+                                                const Whole Flags, const Boole Raw)
         {
             zip_flags_t LocateFlags = ZIP_FL_ENC_GUESS;
             zip_int64_t FileIdx = zip_name_locate(this->InternalArchive,Identifier.c_str(),LocateFlags);
@@ -198,7 +199,7 @@ namespace Mezzanine
             return 0;
         }
 
-        String ZipStreamBuffer::GetStreamIdentifier() const
+        String ZipStreamBuffer::GetIdentifier() const
         {
             String Ret;
             if( this->FileIndex >= 0 ) {
@@ -206,6 +207,15 @@ namespace Mezzanine
                 Ret.assign( zip_get_name(this->InternalArchive,this->FileIndex,NameFlags) );
             }
             return Ret;
+        }
+
+        StreamSize ZipStreamBuffer::GetSize() const
+        {
+            if( this->RawStream ) {
+                return this->GetCompressedSize();
+            }else{
+                return this->GetUncompressedSize();
+            }
         }
 
         Boole ZipStreamBuffer::CanSeek() const
@@ -221,13 +231,20 @@ namespace Mezzanine
             return false;
         }
 
-        StreamSize ZipStreamBuffer::GetSize() const
+        Boole ZipStreamBuffer::IsEncrypted() const
         {
-            if( this->RawStream ) {
-                return this->GetCompressedSize();
-            }else{
-                return this->GetUncompressedSize();
+            if( this->FileIndex >= 0 ) {
+                zip_stat_t FileStat;
+                zip_stat_init(&FileStat);
+                zip_stat_index(this->InternalArchive,this->FileIndex,0,&FileStat);
+                return ( FileStat.encryption_method != ZIP_EM_NONE );
             }
+            return false;
+        }
+
+        Boole ZipStreamBuffer::IsRaw() const
+        {
+            return this->RawStream;
         }
     }//Resource
 }//Mezzanine

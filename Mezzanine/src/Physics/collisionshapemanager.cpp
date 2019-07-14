@@ -124,8 +124,7 @@ namespace Mezzanine
             unsigned long* indices = NULL;
             Boole SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
-            if(UseAllSubmeshes)
-            {
+            if(UseAllSubmeshes) {
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
                     vCount += SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(X)->vertexData->vertexCount;
@@ -177,8 +176,7 @@ namespace Mezzanine
                 unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
                 unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
 
-                if( use32bitindexes )
-                {
+                if( use32bitindexes ) {
                     for (size_t k = 0; k < triCount*3; ++k)
                     {
                         indices[index_offset+IndiPrevSize] = pLong[k];
@@ -464,8 +462,7 @@ namespace Mezzanine
 
             Whole* VertPerSubMesh = NULL;
 
-            if(UseAllSubmeshes)
-            {
+            if(UseAllSubmeshes) {
                 VertPerSubMesh = new Whole[myMesh->getNumSubMeshes()];
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
@@ -514,8 +511,7 @@ namespace Mezzanine
                 unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
                 unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
 
-                if( use32bitindexes )
-                {
+                if( use32bitindexes ) {
                     for (size_t k = 0; k < currtriCount*3; ++k)
                     {
                         if(SubMeshIndex > 0 && VertPerSubMesh) {
@@ -589,11 +585,10 @@ namespace Mezzanine
 
         void CollisionShapeManager::LoadAllShapesFromXMLFile(const String& FileName, const String& Group)
         {
-            /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
             Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
-            FileStream ShapesStream( Resource::CombinePathAndFileName( ResourceMan->GetAssetPath(FileName,Group), FileName ) );
+            IStreamPtr ShapesStream = ResourceMan->OpenAsset(FileName,Group);
             XML::Document ShapesDoc;
-            XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
+            XML::ParseResult DocResult = ShapesDoc.Load(*ShapesStream.get());
             if( DocResult.Status != XML::StatusOk ) {
                 MEZZ_EXCEPTION(ExceptionBase::SYNTAX_ERROR_EXCEPTION_XML,"Failed to parse XML file \"" + FileName + "\".");
             }
@@ -623,7 +618,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                FileStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
+                FileOStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -644,7 +639,7 @@ namespace Mezzanine
                 }
 
                 /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-                FileStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
+                FileOStream SettingsStream(FileName,0,Mezzanine::SF_Truncate | Mezzanine::SF_Write);
                 ShapesDoc.Save(SettingsStream,"\t",XML::FormatIndent);
             }else{
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Failed to create XML document declaration for file \"" + FileName + "\".");
@@ -654,10 +649,10 @@ namespace Mezzanine
         void CollisionShapeManager::LoadAllShapesFromBinaryFile(const String& FileName, const String& Group)
         {
             btBulletWorldImporter Importer;
-            Ogre::DataStreamPtr Stream = Ogre::ResourceGroupManager::getSingleton().openResource(FileName,Group);
-            char* buffer = new char[Stream->size()];
-            Stream->read((void*)buffer, Stream->size());
-            if( !Importer.loadFileFromMemory(buffer, Stream->size()) ) {
+            IStreamPtr ShapeStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(FileName,Group);
+            char* buffer = new char[ShapeStream->GetSize()];
+            ShapeStream->Read((void*)buffer, ShapeStream->GetSize());
+            if( !Importer.loadFileFromMemory(buffer, ShapeStream->GetSize()) ) {
                 MEZZ_EXCEPTION(ExceptionBase::IO_FILE_EXCEPTION,"Failed to load file: " + FileName + ".")
             }
             delete[] buffer;

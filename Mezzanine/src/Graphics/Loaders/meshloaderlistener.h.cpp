@@ -37,39 +37,53 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _meshloaderlistener_h_cpp
+#define _meshloaderlistener_h_cpp
+
+// Keeps this file form being documented by doxygen
+/// @cond DontDocumentInternal
+
+#include <OgreDataStream.h>
+#include <OgreIteratorWrapper.h>
+#include <OgreMeshSerializer.h>
+
+#include "datatypes.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Graphics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A set of callbacks for different stages of internal mesh deserialization.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MeshLoaderListener : public Ogre::MeshSerializerListener
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            MeshLoaderListener();
+            /// @brief Class destructor.
+            virtual ~MeshLoaderListener();
 
-    }
-}
+            ///////////////////////////////////////////////////////////////////////////////
+            // Callbacks
 
-#include "Resource/resourceenumerations.h"
-#include "Resource/resourcemanager.h"
+            /// @brief Callback for when the material is decoded and applied.
+            /// @param mesh A pointer to the mesh being decoded.
+            /// @param name The name of the material (not the file) being assigned.
+            virtual void processMaterialName(Ogre::Mesh* mesh, Ogre::String* name);
+            /// @brief Callback for when the skeleton is decoded and applied.
+            /// @param mesh A pointer to the mesh being decoded.
+            /// @param name The name of the skeleton being assigned.
+            virtual void processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name);
+            /// @brief Callback for when mesh deseriailzation is completed.
+            /// @param mesh A pointer to the fully decoded mesh.
+            virtual void processMeshCompleted(Ogre::Mesh* mesh);
+        };//MeshLoaderListener
+    }//Graphics
+}//Mezzanine
 
-#include "Resource/archiveentry.h"
-#include "Resource/archivereader.h"
-#include "Resource/archivestream.h"
-#include "Resource/archivewriter.h"
-#include "Resource/assetgroup.h"
-#include "Resource/deflatecodec.h"
-#include "Resource/directorycontents.h"
-#include "Resource/filesystemarchivereader.h"
-#include "Resource/filesystemarchivewriter.h"
-#include "Resource/filesystemmanagement.h"
-#include "Resource/pathutilities.h"
-#include "Resource/specialdirectoryutilities.h"
-#include "Resource/systempathutilities.h"
-#include "Resource/ziparchivereader.h"
-#include "Resource/ziparchivewriter.h"
-#include "Resource/zipstream.h"
+/// @endcond
 
 #endif

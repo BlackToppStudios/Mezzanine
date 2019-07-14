@@ -50,33 +50,20 @@ namespace Mezzanine
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This class is used to store the internal structures needed by the Mesh class.
-        /// @details Specifically, this class stores a shared pointer to the Ogre Mesh and only
-        /// exists because shared pointers can't be forward declared without compromising how they
-        /// work.
-        ///////////////////////////////////////
-        class MEZZ_LIB InternalMeshData
-        {
-        public:
-            /// @internal
-            /// @brief The internal representation of the Mesh.
-            Ogre::MeshPtr GraphicsMesh;
-        };//InternalMeshData
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Mesh Methods
 
-        Mesh::Mesh(Ogre::MeshPtr InternalMesh)
+        Mesh::Mesh(Ogre::MeshPtr ToWrap, ManualMeshLoader* Loader) :
+            InternalMesh(ToWrap),
+            InternalLoader(Loader)
         {
-            this->IMD = new InternalMeshData();
-            this->IMD->GraphicsMesh = InternalMesh;
-
             this->WrapAllSubMeshes();
         }
 
         Mesh::~Mesh()
         {
-            delete this->IMD;
+            if( this->InternalLoader ) {
+                delete this->InternalLoader;
+            }
             this->DestroyAllWrappedSubMeshes();
         }
 
@@ -86,12 +73,11 @@ namespace Mezzanine
             this->DestroyAllWrappedSubMeshes();
 
             // Go over each SubMesh and wrap them all.
-            Ogre::MeshPtr InternalMesh = this->IMD->GraphicsMesh;
-            if( !InternalMesh.isNull() ) {
-                Whole SubMeshCount = InternalMesh->getNumSubMeshes();
+            if( this->InternalMesh ) {
+                Whole SubMeshCount = this->InternalMesh->getNumSubMeshes();
                 for( Whole SubMeshIndex = 0 ; SubMeshIndex < SubMeshCount ; ++SubMeshIndex )
                 {
-                    this->SubMeshes.push_back( new SubMesh( InternalMesh->getSubMesh(SubMeshIndex) ) );
+                    this->SubMeshes.push_back( new SubMesh( this->InternalMesh->getSubMesh(SubMeshIndex) ) );
                 }
             }
         }
@@ -102,6 +88,15 @@ namespace Mezzanine
                 { delete (*SubMeshIt); }
             this->SubMeshes.clear();
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Asset Methods
+
+        const String& Mesh::GetName() const
+            { return this->InternalMesh->getName(); }
+
+        const String& Mesh::GetGroup() const
+            { return this->InternalMesh->getGroup(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
@@ -137,19 +132,13 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Asset Methods
-
-        ConstString& Mesh::GetName() const
-            { return this->_GetInternalMesh()->getName(); }
-
-        ConstString& Mesh::GetGroup() const
-            { return this->_GetInternalMesh()->getGroup(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         Ogre::MeshPtr Mesh::_GetInternalMesh() const
-            { return this->IMD->GraphicsMesh; }
+            { return this->InternalMesh; }
+
+        Ogre::MeshPtr Mesh::_Upcast(Ogre::ResourcePtr ToCast)
+            { return std::static_pointer_cast<Ogre::Mesh>(ToCast); }
     }//Graphics
 }//Mezzanine
 

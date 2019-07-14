@@ -101,7 +101,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
-        void ZipArchiveReader::Open(const String& Identifier)
+        void ZipArchiveReader::Open(const String& Identifier, const String& Group)
         {
             if( this->IsOpen() ) {
                 StringStream ExceptionStream;
@@ -124,9 +124,14 @@ namespace Mezzanine
             this->InternalSource = TempSource;
             this->InternalArchive = TempArchive;
             this->ArchiveIdentifier.assign(Identifier);
+            this->ArchiveGroup.assign(Group);
         }
 
-        void ZipArchiveReader::Open(const String& Identifier, Char8* Buffer, const size_t BufferSize, const Boole Owner)
+        void ZipArchiveReader::Open(const String& Identifier,
+                                    const String& Group,
+                                    Char8* Buffer,
+                                    const size_t BufferSize,
+                                    const Boole Owner)
         {
             if( this->IsOpen() ) {
                 StringStream ExceptionStream;
@@ -149,6 +154,24 @@ namespace Mezzanine
             this->InternalSource = TempSource;
             this->InternalArchive = TempArchive;
             this->ArchiveIdentifier.assign(Identifier);
+            this->ArchiveGroup.assign(Group);
+        }
+
+        void ZipArchiveReader::Open(const String& Identifier, const String& Group, const String& Password)
+        {
+            this->Open(Identifier,Group);
+            this->SetDefaultPassword(Password);
+        }
+
+        void ZipArchiveReader::Open(const String& Identifier,
+                                    const String& Group,
+                                    const String& Password,
+                                    Char8* Buffer,
+                                    const size_t BufferSize,
+                                    const Boole Owner)
+        {
+            this->Open(Identifier,Group,Buffer,BufferSize,Owner);
+            this->SetDefaultPassword(Password);
         }
 
         Boole ZipArchiveReader::IsOpen() const
@@ -167,11 +190,32 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Default Password
+
+        void ZipArchiveReader::SetDefaultPassword(const String& Password)
+        {
+            if( zip_set_default_password(this->InternalArchive,Password.c_str()) != 0 ) {
+                MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,"Invalid Archive for Default Password.");
+            }
+            this->DefaultPassword = Password;
+        }
+
+        String ZipArchiveReader::GetDefaultPassword() const
+        {
+            return this->DefaultPassword;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Utility Queries
 
         const String& ZipArchiveReader::GetIdentifier() const
         {
             return this->ArchiveIdentifier;
+        }
+
+        Boole ZipArchiveReader::IsCaseSensitive() const
+        {
+            return true;
         }
 
         Boole ZipArchiveReader::DirectoryExists(const String& DirectoryPath) const
@@ -220,7 +264,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             }
             ZipIStreamPtr NewStream = std::make_shared<ZipIStream>(this->InternalArchive);
-            NewStream->OpenFile(Identifier,Flags,Raw);
+            NewStream->OpenFile(Identifier,this->ArchiveGroup,Flags,Raw);
             return NewStream;
         }
 
@@ -233,7 +277,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             }
             ZipIStreamPtr NewStream = std::make_shared<ZipIStream>(this->InternalArchive);
-            NewStream->OpenEncryptedFile(Identifier,Password,Flags,Raw);
+            NewStream->OpenEncryptedFile(Identifier,this->ArchiveGroup,Password,Flags,Raw);
             return NewStream;
         }
 

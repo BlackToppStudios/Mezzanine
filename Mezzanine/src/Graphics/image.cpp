@@ -45,9 +45,9 @@
 #include "Graphics/texture.h"
 #include "Graphics/graphicsutilities.h"
 
-#include "stringtool.h"
+#include "Graphics/Loaders/iostreamwrapper.h.cpp"
 
-#include "Internal/iostreamwrapper.h.cpp"
+#include "stringtool.h"
 
 #include <OgreColourValue.h>
 #include <OgreImage.h>
@@ -312,7 +312,7 @@ namespace Mezzanine
 
         Image& Image::Load(std::istream* Stream, const String& ExtensionHint)
         {
-            Ogre::DataStreamPtr OgreStreamPtr(new Internal::IStreamWrapper(Stream,false));
+            Ogre::DataStreamPtr OgreStreamPtr(new STDIStreamWrapper(Stream,false));
             this->IID->GraphicsImage.load(OgreStreamPtr,ExtensionHint);
             return *this;
         }
@@ -342,7 +342,7 @@ namespace Mezzanine
         Image& Image::Save(const String& Extension, std::ostream* Stream)
         {
             Ogre::DataStreamPtr OgreStream = this->IID->GraphicsImage.encode(Extension);
-            Ogre::MemoryDataStream* RawOgreStream = static_cast<Ogre::MemoryDataStream*>( OgreStream.getPointer() );
+            Ogre::MemoryDataStream* RawOgreStream = static_cast<Ogre::MemoryDataStream*>( OgreStream.get() );
             Stream->write(reinterpret_cast<char*>(RawOgreStream->getPtr()),RawOgreStream->size());
             return *this;
         }

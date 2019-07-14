@@ -56,11 +56,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A stream buffer object to a file in z zip archive.
         ///////////////////////////////////////
-        class MEZZ_LIB ZipStreamBuffer : public std::streambuf
+        class MEZZ_LIB ZipStreamBuffer final : public std::streambuf
         {
         protected:
             /// @brief The size of the automatically allocated internal buffer.
-            static const UInt32 BufferSize = 1 * 1024;
+            static constexpr UInt32 BufferSize = 1 * 1024;
 
             /// @brief The internal buffer string get/put areas.
             Char8 Buffer[BufferSize];
@@ -75,15 +75,18 @@ namespace Mezzanine
             /// @brief Whether or not this stream should perform decompression or stream raw from the archive.
             Boole RawStream;
 
-            /// @brief Called after a stream is opened to see if there is an error.  If an error is found an exception is thrown.
-            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown. @n
+            /// @brief Called after a stream is opened.  If an error is found an exception is thrown.
+            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be
+            /// thrown. @n
             /// If an archive password isn't specified or is wrong, a IO_FILE_PERMISSION_EXCEPTION will be thrown. @n
             /// If the stream fails to read or seek when being initialized, a IO_FILE_READ_EXCEPTION will be thrown. @n
             /// If ZLIB fails for any reason, a INTERNAL_EXCEPTION will be thrown. @n
-            /// If the compression method or encryption method aren't supported, or any other failure occurs, a IO_FILE_EXCEPTION will be thrown.
+            /// If the compression method or encryption method aren't supported, or any other failure occurs, a
+            /// IO_FILE_EXCEPTION will be thrown.
             void CheckOpenError();
             /// @brief Gets the value at the current read position without incrementing the read position.
-            /// @details This will also update the internal buffers with new data if the end of the current read buffer has been reached.
+            /// @details This will also update the internal buffers with new data if the end of the current
+            /// read buffer has been reached.
             /// @return Returns the value at the current read position, or EOF if no more data is available.
             int underflow();
         public:
@@ -91,32 +94,37 @@ namespace Mezzanine
             /// @param Arch A pointer to the internal archive.
             ZipStreamBuffer(zip* Arch);
             /// @brief Class destructor.
-            virtual ~ZipStreamBuffer();
+            ~ZipStreamBuffer();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Opens this stream to a file in an archive.
-            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown. @n
+            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be
+            /// thrown. @n
             /// If an archive password isn't specified or is wrong, a IO_FILE_PERMISSION_EXCEPTION will be thrown. @n
             /// If the stream fails to read or seek when being initialized, a IO_FILE_READ_EXCEPTION will be thrown. @n
             /// If ZLIB fails for any reason, a INTERNAL_EXCEPTION will be thrown. @n
-            /// If the compression method or encryption method aren't supported, or any other failure occurs, a IO_FILE_EXCEPTION will be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// If the compression method or encryption method aren't supported, or any other failure occurs, a
+            /// IO_FILE_EXCEPTION will be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
             void OpenFile(const String& Identifier, const Whole Flags, const Boole Raw);
             /// @brief Opens this stream to a password protected file in an archive.
-            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown. @n
+            /// @exception If the stream fails to find the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be
+            /// thrown. @n
             /// If an archive password isn't specified or is wrong, a IO_FILE_PERMISSION_EXCEPTION will be thrown. @n
             /// If the stream fails to read or seek when being initialized, a IO_FILE_READ_EXCEPTION will be thrown. @n
             /// If ZLIB fails for any reason, a INTERNAL_EXCEPTION will be thrown. @n
-            /// If the compression method or encryption method aren't supported, or any other failure occurs, a IO_FILE_EXCEPTION will be thrown.
-            /// @param File The combined name and path to the file to be opened.
+            /// If the compression method or encryption method aren't supported, or any other failure occurs, a
+            /// IO_FILE_EXCEPTION will be thrown.
+            /// @param Identifier The combined name and path to the file to be opened.
             /// @param Password The password to access the file.
             /// @param Flags The configuration to open the file with.  Use StreamFlags enum values for this field.
-            /// @param Raw Whether or not the data in the opened file should be decompressed when read.  False to decompress on the fly, true to read data as it exists on disk.
-            void OpenEncryptedFile(const String& Identifier, const String& Password, const Whole Flags, const Boole Raw);
+            /// @param Raw False to decompress on the fly (normal behavior), true to read data as it exists on disk.
+            void OpenEncryptedFile(const String& Identifier, const String& Password,
+                                   const Whole Flags, const Boole Raw);
             /// @brief Gets whether or not this stream is currently open to a archive.
             /// @return Returns true if this is streaming to/from a archive.  False otherwise.
             Boole IsOpenToFile() const;
@@ -137,14 +145,27 @@ namespace Mezzanine
 
             /// @brief Gets the path and name of the file that this stream is currently open to.
             /// @return Returns a const String reference containing the path and name of the currently open file.
-            String GetStreamIdentifier() const;
-            /// @brief Gets whether or not seeking can be performed on the stream to/from the file.
-            /// @return Returns true if this buffer allows seeking throughout the stream, false otherwise.
-            Boole CanSeek() const;
+            String GetIdentifier() const;
+
             /// @brief Gets the size of the stream after extraction.
             /// @return Returns a StreamSize containing the number of bytes in this stream.
             StreamSize GetSize() const;
+            /// @brief Gets whether or not seeking can be performed on the stream to/from the file.
+            /// @return Returns true if this buffer allows seeking throughout the stream, false otherwise.
+            Boole CanSeek() const;
+            /// @brief Checks to see if the archive entry being streamed from is encrypted.
+            /// @return Returns true if the source entry is encrypted, false otherwise.
+            Boole IsEncrypted() const;
+            /// @brief Checks to see if the archive is streaming without any changes to the source data.
+            /// @return Returns true if the source data is not being decompressed or decrypted, false otherwise.
+            Boole IsRaw() const;
         };//ZipStreamBuffer
+
+        /// @brief Gets the type of location the asset is residing.
+        /// @return Returns an @ref AssetSourceType describing the location the asset is being streamed from.
+
+        /// @brief Gets the description of the stream qualifiers.
+        /// @return Returns an @ref AssetStreamDesc describing the compression and/or encryption on the stream.
 
         using ZipIStream = ArchiveIStream<ZipStreamBuffer>;
         using ZipIStreamPtr = std::shared_ptr<ZipIStream>;

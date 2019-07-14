@@ -64,7 +64,7 @@ namespace Mezzanine
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
         /// @brief The type to use for uniquely identifying instances of subscribers.
-        using SubscriberIDType = typename Interface::IDType;
+        using SubscriberIDType = typename std::remove_pointer<Interface>::type::IDType;
         /// @brief Convenience type for retrieving the subscriber.
         using SubscriberRet = typename std::conditional<std::is_pointer<SubscriberType>::value,SubscriberType,SubscriberType&>::type;
     protected:
@@ -152,7 +152,7 @@ namespace Mezzanine
         /// @brief Retrievable type for querying the type of callable interface this table works with.
         using SubscriberType = Interface;
         /// @brief The type to use for uniquely identifying instances of subscribers.
-        using SubscriberIDType = typename Interface::IDType;
+        using SubscriberIDType = typename std::remove_pointer<Interface>::type::IDType;
     protected:
         /// @brief A pointer to the EventSubscriberTable we are subscribed to.
         TableType* EventTable;

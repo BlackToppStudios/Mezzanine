@@ -44,10 +44,11 @@
 
 namespace Ogre
 {
-    class Bone;
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Skeleton;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Skeleton> SkeletonPtr;
+    typedef std::shared_ptr<Skeleton> SkeletonPtr;
+    class Bone;
 }
 
 namespace Mezzanine
@@ -55,81 +56,97 @@ namespace Mezzanine
     namespace Graphics
     {
         class Bone;
-        class InternalSkeletonData;
+        class ManualSkeletonLoader;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class encapsulates the Skeletal animation functionality of a Mesh.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Skeleton
         {
-            public:
-                typedef std::vector<Bone*>                  BoneContainer;
-                typedef BoneContainer::iterator             BoneIterator;
-                typedef BoneContainer::const_iterator       ConstBoneIterator;
-                typedef std::map<String,Bone*>              NamedBoneContainer;
-                typedef NamedBoneContainer::iterator        NamedBoneIterator;
-                typedef NamedBoneContainer::const_iterator  ConstNamedBoneIterator;
-            protected:
-                InternalSkeletonData* ISD;
-                BoneContainer Bones;
-            public:
-                /// @internal
-                /// @brief Internal constructor.
-                /// @param InternalSkeleton The internal skeleton this skeleton is based upon.
-                Skeleton(Ogre::SkeletonPtr InternalSkeleton);
-                /// @brief Class destructor.
-                ~Skeleton();
+        public:
+            /// @brief Convenience type for the container storing the bones of the skeleton.
+            typedef std::vector<Bone*>                  BoneContainer;
+            /// @brief Iterator type for the bones stored in this skeleton.
+            typedef BoneContainer::iterator             BoneIterator;
+            /// @brief Const Iterator type for the bones stored in this skeleton.
+            typedef BoneContainer::const_iterator       ConstBoneIterator;
+            /*
+            /// @brief Convenience type for the container storing the named bones of this skeleton.
+            typedef std::map<String,Bone*>              NamedBoneContainer;
+            /// @brief Iterator type for the named bones stored in this skeleton.
+            typedef NamedBoneContainer::iterator        NamedBoneIterator;
+            /// @brief Const Iterator type for the named bones stored in this skeleton.
+            typedef NamedBoneContainer::const_iterator  ConstNamedBoneIterator;//*/
+        protected:
+            /// @brief A container of all the bones in this skeleton.
+            BoneContainer Bones;
+            /// @brief A pointer to the internal data this Skeleton is based on.
+            Ogre::SkeletonPtr InternalSkeleton;
+            /// @brief A pointer to the loader that will make the Skeleton data available to the graphics system.
+            ManualSkeletonLoader* InternalLoader;
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param ToWrap The internal Skeleton the instance will wrap.
+            /// @param Loader The loader that will make the Skeleton data available to the graphics system.
+            Skeleton(Ogre::SkeletonPtr ToWrap, ManualSkeletonLoader* Loader);
+            /// @brief Class destructor.
+            ~Skeleton();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Bone Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Bone Methods
 
-                /// @brief Gets the number of bones contained in this skeleton.
-                /// @return Returns a UInt16 representing the number of bones in this skeleton.
-                UInt16 GetNumBones() const;
+            /// @brief Gets the number of bones contained in this skeleton.
+            /// @return Returns a UInt16 representing the number of bones in this skeleton.
+            UInt16 GetNumBones() const;
 
-                /// @brief Gets an iterator to the first Bone.
-                /// @return Returns an iterator to the first Bone being stored by this Skeleton.
-                BoneIterator BoneBegin();
-                /// @brief Gets an iterator to one passed the last Bone.
-                /// @return Returns an iterator to one passed the last Bone being stored by this Skeleton.
-                BoneIterator BoneEnd();
-                /// @brief Gets a const iterator to the first Bone.
-                /// @return Returns a const iterator to the first Bone being stored by this Skeleton.
-                ConstBoneIterator BoneBegin() const;
-                /// @brief Gets an iterator to one passed the last Bone.
-                /// @return Returns an iterator to one passed the last Bone being stored by this Skeleton.
-                ConstBoneIterator BoneEnd() const;
+            /// @brief Gets an iterator to the first Bone.
+            /// @return Returns an iterator to the first Bone being stored by this Skeleton.
+            BoneIterator BoneBegin();
+            /// @brief Gets an iterator to one passed the last Bone.
+            /// @return Returns an iterator to one passed the last Bone being stored by this Skeleton.
+            BoneIterator BoneEnd();
+            /// @brief Gets a const iterator to the first Bone.
+            /// @return Returns a const iterator to the first Bone being stored by this Skeleton.
+            ConstBoneIterator BoneBegin() const;
+            /// @brief Gets an iterator to one passed the last Bone.
+            /// @return Returns an iterator to one passed the last Bone being stored by this Skeleton.
+            ConstBoneIterator BoneEnd() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Animation Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Animation Methods
 
-                /// @todo Implement these
+            /// @todo Implement these
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Asset Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Methods
 
-                /// @brief Gets the Name of this Skeleton.
-                /// @note If this Skeleton originated from a file, usually the name of the Skeleton will be the file name.
-                /// @return Returns a const string reference containing the name of this Skeleton.
-                ConstString& GetName() const;
-                /// @brief Gets the resource group this Skeleton belongs to.
-                /// @return Returns a const string reference containing the group this Skeleton belongs to.
-                ConstString& GetGroup() const;
+            /// @brief Gets the Name of this Skeleton.
+            /// @note If this Skeleton originated from a file, usually the name of the Skeleton will be the file name.
+            /// @return Returns a const string reference containing the name of this Skeleton.
+            ConstString& GetName() const;
+            /// @brief Gets the resource group this Skeleton belongs to.
+            /// @return Returns a const string reference containing the group this Skeleton belongs to.
+            ConstString& GetGroup() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
 
-                /// @internal
-                /// @brief Creates a bone wrapper for a pre-made internal bone.
-                /// @param InternalBone The internal bone this Bone is based on.
-                Bone* _CreateBoneWrapper(Ogre::Bone* InternalBone);
-                /// @internal
-                /// @brief Gets the internal Skeleton pointer.
-                /// @return Returns a shared pointer pointing to the internal Skeleton.
-                Ogre::SkeletonPtr _GetInternalSkeleton() const;
+            /// @internal
+            /// @brief Creates a bone wrapper for a pre-made internal bone.
+            /// @param InternalBone The internal bone this Bone is based on.
+            Bone* _CreateBoneWrapper(Ogre::Bone* InternalBone);
+            /// @internal
+            /// @brief Gets the internal Skeleton pointer.
+            /// @return Returns a shared pointer pointing to the internal Skeleton.
+            Ogre::SkeletonPtr _GetInternalSkeleton() const;
+            /// @internal
+            /// @brief Casts an internal resource pointer to a SkeletonPtr.
+            /// @param ToCast The pointer to be casted.
+            /// @return Returns the casted SkeletonPtr.
+            static Ogre::SkeletonPtr _Upcast(Ogre::ResourcePtr ToCast);
         };//Skeleton
     }//Graphics
 }//Mezzanine

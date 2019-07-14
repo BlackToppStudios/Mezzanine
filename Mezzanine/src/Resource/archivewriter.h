@@ -113,6 +113,9 @@ namespace Mezzanine
             /// @brief Gets the identifier string passed into the last call to Open.
             /// @return Returns the identifier of this reader, or an empty string if the reader isn't open.
             virtual String GetIdentifier() const = 0;
+            /// @brief Checks whether or not the implementation requires case sensitive identifiers.
+            /// @return Returns true if the archive requires identifiers, paths, and file names to be case sensitive.
+            virtual Boole IsCaseSensitive() const = 0;
 
             /// @brief Checks to see if a directory exists within the archive.
             /// @param DirectoryPath The path to the directory (or just name of the directory if it's at the root) to check for.

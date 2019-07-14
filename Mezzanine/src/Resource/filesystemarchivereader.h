@@ -55,6 +55,8 @@ namespace Mezzanine
         protected:
             /// @brief The full path and name of the Archive.
             String ArchiveIdentifier;
+            /// @brief The unique name of the group this reader belongs to.
+            String ArchiveGroup;
 
             /// @brief Verifies a given path is valid to use with this archive.
             /// @param PathStr A String containing the path to check.
@@ -74,10 +76,21 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Open / Close
 
-            /// @copydoc ArchiveReader::Open(const String&)
-            void Open(const String& Identifier) override;
-            /// @copydoc ArchiveReader::Open(const String&, Char8*, const size_t, const Boole)
+            /// @copydoc ArchiveReader::Open(const String&,const String&)
+            void Open(const String& Identifier, const String& Group) override;
+            /// @copydoc ArchiveReader::Open(const String&,const String&, Char8*, const size_t, const Boole)
             void Open(const String& Identifier,
+                      const String& Group,
+                      Char8* Buffer,
+                      const size_t BufferSize,
+                      const Boole Owner) override;
+
+            /// @copydoc ArchiveReader::Open(const String&,const String&,const String&)
+            void Open(const String& Identifier, const String& Group, const String& Password) override;
+            /// @copydoc ArchiveReader::Open(const String&,const String&,const String&,Char8*,const size_t,const Boole)
+            void Open(const String& Identifier,
+                      const String& Group,
+                      const String& Password,
                       Char8* Buffer,
                       const size_t BufferSize,
                       const Boole Owner) override;
@@ -88,10 +101,20 @@ namespace Mezzanine
             void Close();
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Default Password
+
+            /// @copydoc ArchiveReader::SetDefaultPassword(const String&)
+            void SetDefaultPassword(const String& Password) override;
+            /// @copydoc ArchiveReader::GetDefaultPassword() const
+            String GetDefaultPassword() const override;
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Utility Queries
 
             /// @copydoc ArchiveReader::GetIdentifier() const
             const String& GetIdentifier() const override;
+            /// @copydoc ArchiveReader::IsCaseSensitive() const
+            Boole IsCaseSensitive() const override;
 
             /// @copydoc ArchiveReader::DirectoryExists(const String&) const
             Boole DirectoryExists(const String& DirectoryPath) const override;

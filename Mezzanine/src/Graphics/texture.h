@@ -46,29 +46,33 @@
 
 namespace Ogre
 {
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Texture;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Texture> TexturePtr;
+    typedef std::shared_ptr<Texture> TexturePtr;
 }//Ogre
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        class InternalTextureData;
+        class ManualTextureLoader;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class represents a texture loaded into video memory.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Texture
         {
         protected:
-            /// @internal
-            /// @brief A pointer to the internal implementation of the Texture.
-            InternalTextureData* ITD;
+            /// @brief A pointer to the internal data this Texture is based on.
+            Ogre::TexturePtr InternalTexture;
+            /// @brief A pointer to the loader that will make the Texture data available to the graphics system.
+            ManualTextureLoader* InternalLoader;
         public:
-            /// @brief Class Constructor.
-            Texture(Ogre::TexturePtr InternalTexture);
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param ToWrap The internal Texture the instance will wrap.
+            /// @param Loader The loader that will make the Texture data available to the graphics system.
+            Texture(Ogre::TexturePtr ToWrap, ManualTextureLoader* Loader);
             /// @brief Class Destructor.
             ~Texture();
 
@@ -135,6 +139,11 @@ namespace Mezzanine
             /// @brief Gets the internal Texture pointer.
             /// @return Returns a shared pointer pointing to the internal Texture.
             Ogre::TexturePtr _GetInternalTexture() const;
+            /// @internal
+            /// @brief Casts an internal resource pointer to a TexturePtr.
+            /// @param ToCast The pointer to be casted.
+            /// @return Returns the casted TexturePtr.
+            static Ogre::TexturePtr _Upcast(Ogre::ResourcePtr ToCast);
         };//Texture
     }//Graphics
 }//Mezzanine

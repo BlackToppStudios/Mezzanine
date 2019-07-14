@@ -54,61 +54,51 @@ namespace Mezzanine
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class InternalTextureData
-        /// @brief This class is used to store the internal structures needed by the Texture class.
-        /// @details Specifically, this class stores a shared pointer to the Ogre Texture and only
-        /// exists because shared pointers can't be forward declared without compromising how they
-        /// work.
-        ///////////////////////////////////////
-        class MEZZ_LIB InternalTextureData
-        {
-        public:
-            /// @internal
-            /// @brief The internal representation of the Texture.
-            Ogre::TexturePtr GraphicsTexture;
-        };//InternalTextureData
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Texture Methods
 
-        Texture::Texture(Ogre::TexturePtr InternalTexture)
+        Texture::Texture(Ogre::TexturePtr ToWrap, ManualTextureLoader* Loader) :
+            InternalTexture(ToWrap),
+            InternalLoader(Loader)
         {
-            this->ITD = new InternalTextureData();
-            this->ITD->GraphicsTexture = InternalTexture;
+
         }
 
         Texture::~Texture()
-            { delete this->ITD; }
+        {
+            if( this->InternalLoader ) {
+                delete this->InternalLoader;
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
         UInt32 Texture::GetOriginalWidth() const
-            { return this->_GetInternalTexture()->getSrcWidth(); }
+            { return this->InternalTexture->getSrcWidth(); }
 
         UInt32 Texture::GetOriginalHeight() const
-            { return this->_GetInternalTexture()->getSrcHeight(); }
+            { return this->InternalTexture->getSrcHeight(); }
 
         UInt32 Texture::GetOriginalDepth() const
-            { return this->_GetInternalTexture()->getSrcDepth(); }
+            { return this->InternalTexture->getSrcDepth(); }
 
         Graphics::PixelFormat Texture::GetFormat() const
-            { return static_cast<Graphics::PixelFormat>( this->_GetInternalTexture()->getFormat() ); }
+            { return static_cast<Graphics::PixelFormat>( this->InternalTexture->getFormat() ); }
 
         Whole Texture::GetNumMipMaps() const
-            { return this->_GetInternalTexture()->getNumMipmaps(); }
+            { return this->InternalTexture->getNumMipmaps(); }
 
         Whole Texture::GetSize() const
-            { return this->_GetInternalTexture()->getSize(); }
+            { return this->InternalTexture->getSize(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // AssetMethods
 
         const String& Texture::GetName() const
-            { return this->_GetInternalTexture()->getName(); }
+            { return this->InternalTexture->getName(); }
 
         const String& Texture::GetGroup() const
-            { return this->_GetInternalTexture()->getGroup(); }
+            { return this->InternalTexture->getGroup(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Buffer Manipulation Methods
@@ -120,7 +110,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Destination buffer is too small to fit all texture pixel data.");
             }
 
-            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();
+            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->InternalTexture->getBuffer();
 
             // Lock the pixel buffer and get a pixel box
             PixelBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
@@ -128,7 +118,7 @@ namespace Mezzanine
 
             UInt8* SrcBuf = static_cast<UInt8*>(Box.data);
 
-            Ogre::PixelUtil::bulkPixelConversion(SrcBuf,this->_GetInternalTexture()->getFormat(),DestBuffer,this->_GetInternalTexture()->getFormat(),TexSize);
+            Ogre::PixelUtil::bulkPixelConversion(SrcBuf,this->InternalTexture->getFormat(),DestBuffer,this->InternalTexture->getFormat(),TexSize);
             //memcpy(DestBuffer,SrcBuf,TexSize);
 
             PixelBuffer->unlock();
@@ -142,7 +132,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(ExceptionBase::PARAMETERS_EXCEPTION,"Texture and write buffer are different sizes.  Sizes must match.");
             }
 
-            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->_GetInternalTexture()->getBuffer();
+            Ogre::HardwarePixelBufferSharedPtr PixelBuffer = this->InternalTexture->getBuffer();
 
             // Lock the pixel buffer and get a pixel box
             PixelBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
@@ -150,7 +140,7 @@ namespace Mezzanine
 
             UInt8* DestBuf = static_cast<UInt8*>(Box.data);
             Whole PixelCount = BufferSize / Ogre::PixelUtil::getNumElemBytes(static_cast<Ogre::PixelFormat>(SrcFormat));
-            Ogre::PixelUtil::bulkPixelConversion(const_cast<UInt8*>(SrcBuffer),static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->_GetInternalTexture()->getFormat(),PixelCount);
+            Ogre::PixelUtil::bulkPixelConversion(const_cast<UInt8*>(SrcBuffer),static_cast<Ogre::PixelFormat>(SrcFormat),DestBuf,this->InternalTexture->getFormat(),PixelCount);
 
             // Unlock the pixel buffer
             PixelBuffer->unlock();
@@ -160,7 +150,10 @@ namespace Mezzanine
         // Internal Methods
 
         Ogre::TexturePtr Texture::_GetInternalTexture() const
-            { return this->ITD->GraphicsTexture; }
+            { return this->InternalTexture; }
+
+        Ogre::TexturePtr Texture::_Upcast(Ogre::ResourcePtr ToCast)
+            { return std::static_pointer_cast<Ogre::Texture>(ToCast); }
     }//Graphics
 }//Mezzanine
 

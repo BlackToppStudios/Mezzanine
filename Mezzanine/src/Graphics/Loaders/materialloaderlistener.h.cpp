@@ -37,17 +37,45 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchivestream_cpp
-#define _resourcearchivestream_cpp
+#ifndef _materialloaderlistener_h_cpp
+#define _materialloaderlistener_h_cpp
 
-#include "Resource/archivestream.h"
+// Keeps this file form being documented by doxygen
+/// @cond DontDocumentInternal
+
+#include <OgreScriptCompiler.h>
+#include "datatypes.h"
 
 namespace Mezzanine
 {
-    namespace Resource
+    namespace Graphics
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief A set of callbacks for different stages of internal material parsing.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MaterialLoaderListener : public Ogre::ScriptCompilerListener
+        {
+        protected:
+        public:
+            /// @brief Class constructor.
+            MaterialLoaderListener();
+            /// @brief Class destructor.
+            virtual ~MaterialLoaderListener();
 
-    }//Resource
+            ///////////////////////////////////////////////////////////////////////////////
+            // Callbacks
+
+            /// @brief Handles a single event that occurs in a ScriptCompiler.
+            /// @param compiler A pointer to the compiler that is firing the event.
+            /// @param evt A pointer to the specific event being fired.
+            /// @param retval A utility pointer to some event specific metadata.  Listeners are expected to know exactly what type this is to use it.
+            /// @return If the return is true, then that will indicate the script is done being processed.  This always retruns false.
+            virtual bool handleEvent(Ogre::ScriptCompiler* compiler, Ogre::ScriptCompilerEvent* evt, void* retval);
+        };//MaterialLoaderListener
+    }//Graphics
 }//Mezzanine
+
+/// @endcond
 
 #endif

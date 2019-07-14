@@ -139,29 +139,27 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XMLStreamWrapper
         /// @brief This represents a simple wrapper that makes data streams compatible with the XML API.
-        /// @details
         /// @todo Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.
         ///////////////////////////////////////
         class MEZZ_LIB XMLStreamWrapper : public Writer
         {
-            protected:
-                /// @brief This is the stream that will be used for output.
-                DataStream* WrappedStream;
-            public:
-                /// @brief Class constructor.
-                /// @param Stream The stream to be wrapped.
-                XMLStreamWrapper(DataStream* Stream) : WrappedStream(Stream) {}
+        protected:
+            /// @brief This is the stream that will be used for output.
+            OStreamPtr WrappedStream;
+        public:
+            /// @brief Class constructor.
+            /// @param Stream The stream to be wrapped.
+            XMLStreamWrapper(OStreamPtr Stream) : WrappedStream(Stream) {}
 
-                /// @brief Class destructor.
-                virtual ~XMLStreamWrapper() {}
+            /// @brief Class destructor.
+            virtual ~XMLStreamWrapper() {}
 
-                /// @brief Writes data to the stream.
-                /// @param data The data to be written.
-                /// @param size The number of bytes to be written.
-                void Write(const void* data, StreamSize size)
-                    { WrappedStream->Write(data,size); }
+            /// @brief Writes data to the stream.
+            /// @param data The data to be written.
+            /// @param size The number of bytes to be written.
+            void Write(const void* data, StreamSize size)
+                { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
 

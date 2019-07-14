@@ -53,21 +53,24 @@ namespace Mezzanine
     /// @brief An enum used to describe (at a high level) where the asset is coming from.
     enum class AssetSourceType : UInt16
     {
-        AST_FileSystem, ///< The asset is coming from a locally mounted drive.
-        AST_Network,    ///< The asset is coming from a remote host.
-        AST_Memory      ///< The asset is coming local system memory.
+        Unknown,           ///< Error Value.
+        FileSystem,        ///< The asset is coming from a locally mounted drive.
+        Network,           ///< The asset is coming from a remote host.
+        Memory             ///< The asset is coming local system memory.
     };
 
     /// @brief An enum used to describe additional details about the stream to the asset.
+    /// @remarks The details are (currently) exclusively additional operations the stream performs on the data
+    /// before the data is returned.
     enum class AssetStreamDesc : UInt16
     {
-        ASD_Unknown,       ///< Error value.
-        ASD_Raw,           ///< The stream is not from an archive.
-        ASD_Raw_Encrypted, ///< The stream is not from an archive but is encrypted.
-        ASD_Zip,           ///< The stream is from a zip archive.
-        ASD_Zip_Encrypted, ///< The stream is from a zip archive and is encrypted.
-        ASD_7z,            ///< The stream is from a 7z archive.
-        ASD_7z_Encrypted   ///< The stream is from a 7z archive and is encrypted.
+        Unknown,           ///< Error value.
+        Raw,               ///< The stream is not from an archive.
+        Raw_Encrypted,     ///< The stream is not from an archive but is encrypted.
+        Zip,               ///< The stream is from a zip archive.
+        Zip_Encrypted,     ///< The stream is from a zip archive and is encrypted.
+        SevenZ,            ///< The stream is from a 7z archive.
+        SevenZ_Encrypted   ///< The stream is from a 7z archive and is encrypted.
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -79,15 +82,15 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
 
+        /// @brief A string containing the path and name of the Asset.
+        String Identifier;
         /// @brief A string containing the name of the resource group the Asset was loaded from.
         /// @remarks This string is optional and only needed when using the resource system.
         String GroupName;
-        /// @brief A string containing the path and name of the Asset.
-        String Identifier;
         /// @brief The type of storage the asset is being streamed from.
-        AssetSourceType SourceType = AssetSourceType::AST_Memory;
+        AssetSourceType SourceType = AssetSourceType::Memory;
         /// @brief Additional details for the stream to the asset.
-        AssetStreamDesc StreamDesc = AssetStreamDesc::ASD_Unknown;
+        AssetStreamDesc StreamDesc = AssetStreamDesc::Unknown;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Construction and Destruction
@@ -129,20 +132,65 @@ namespace Mezzanine
         /// @param ID The unique identifier for the asset.
         /// @param Group The resource group where the asset can be found.
         AssetID(const AssetSourceType Source, const AssetStreamDesc Stream, const String& ID, const String& Group) :
-            GroupName(Group),
             Identifier(ID),
+            GroupName(Group),
             SourceType(Source),
             StreamDesc(Stream)
             {  }
         /// @brief Serialization constructor.
         /// @param SelfRoot An XML::Node containing the data to populate the new instance with.
         AssetID(const XML::Node& SelfRoot) :
-            SourceType(AssetSourceType::AST_Memory),
-            StreamDesc(AssetStreamDesc::ASD_Unknown)
+            SourceType(AssetSourceType::Unknown),
+            StreamDesc(AssetStreamDesc::Unknown)
             { this->ProtoDeSerialize(SelfRoot); }
         /// @brief Class destructor.
         ~AssetID()
             {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Convenience Checks
+
+        /// @brief Checks to see if this AssetID has been initialized.
+        /// @return Returns true if this AssetID has no error/placeholder values, false otherwise.
+        Boole IsValid() const
+        {
+            return ( !this->Identifier.empty() &&
+                     this->SourceType != AssetSourceType::Unknown &&
+                     this->StreamDesc != AssetStreamDesc::Unknown );
+        }
+
+        /// @brief Checks to see if the stream this AssetID refers to is encrypted.
+        /// @return Returns true if this AssetID refers to an encrypted Asset, false otherwise.
+        Boole IsEncrypted() const
+        {
+            return ( this->StreamDesc == AssetStreamDesc::Raw_Encrypted ||
+                     this->StreamDesc == AssetStreamDesc::Zip_Encrypted ||
+                     this->StreamDesc == AssetStreamDesc::SevenZ_Encrypted );
+        }
+
+        /// @brief Checks to see if the stream this AssetID refers to is uncompressed.
+        /// @return Returns true if this AssetID refers to an uncompressed Asset, false otherwise.
+        Boole IsStreamRaw() const
+        {
+            return ( this->StreamDesc == AssetStreamDesc::Raw ||
+                     this->StreamDesc == AssetStreamDesc::Raw_Encrypted );
+        }
+
+        /// @brief Checks to see if the stream this AssetID refers to is compressed within a Zip archive.
+        /// @return Returns true if this AssetID refers to an Asset compressed into a Zip archive, false otherwise.
+        Boole IsStreamZip() const
+        {
+            return ( this->StreamDesc == AssetStreamDesc::Zip ||
+                     this->StreamDesc == AssetStreamDesc::Zip_Encrypted );
+        }
+
+        /// @brief Checks to see if the stream this AssetID refers to is compressed within a 7Zip archive.
+        /// @return Returns true if this AssetID refers to an Asset compressed into a 7Zip archive, false otherwise.
+        Boole IsStreamSevenZ() const
+        {
+            return ( this->StreamDesc == AssetStreamDesc::SevenZ ||
+                     this->StreamDesc == AssetStreamDesc::SevenZ_Encrypted );
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators

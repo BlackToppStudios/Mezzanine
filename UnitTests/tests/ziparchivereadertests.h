@@ -96,8 +96,11 @@ public:
 
         TEST( TestReader.GetIdentifier().empty(),
               "ZipArchiveReader::GetIdentifier()_const-Empty" );
+        TEST( TestReader.IsCaseSensitive() == true,
+              "ZipArchiveReader::IsCaseSensitive()_const" );
 
-        TestReader.Open(ArchivePath);
+        String BlankStr;
+        TestReader.Open(ArchivePath,BlankStr);
         TEST( TestReader.IsOpen(),
               "ZipArchiveReader::Open(const_String&)" );
 
@@ -201,7 +204,7 @@ public:
             ZipIStreamPtr FirstTestStream = Upcast( TestReader.OpenIStream(FirstFilePath,SF_Read,false) );
             TEST( FirstTestStream->IsOpenToFile(),
                   "ZipIStream-Construct/Open-First" );
-            TEST( FirstTestStream->GetStreamIdentifier() == FirstFilePath,
+            TEST( FirstTestStream->GetIdentifier() == FirstFilePath,
                   "ZipIStream::GetStreamIdentifier()_const-First" );
             TEST( FirstTestStream->GetStreamFlags() == SF_Read,
                   "ZipIStream::GetStreamFlags()_const-First" );
@@ -228,7 +231,7 @@ public:
             ZipIStreamPtr SecondTestStream = Upcast( TestReader.OpenIStream(SecondFilePath,SF_Read,false) );
             TEST( SecondTestStream->IsOpenToFile(),
                   "ZipIStream-Construct/Open-Second" );
-            TEST( SecondTestStream->GetStreamIdentifier() == SecondFilePath,
+            TEST( SecondTestStream->GetIdentifier() == SecondFilePath,
                   "ZipIStream::GetStreamIdentifier()_const-Second" );
             TEST( SecondTestStream->GetStreamFlags() == SF_Read,
                   "ZipIStream::GetStreamFlags()_const-Second" );
@@ -255,7 +258,7 @@ public:
             ZipIStreamPtr SubDirTestStream = Upcast( TestReader.OpenIStream(SubDirFilePath,SF_Read,false) );
             TEST( SubDirTestStream->IsOpenToFile(),
                   "ZipIStream-Construct/Open-SubDir" );
-            TEST( SubDirTestStream->GetStreamIdentifier() == SubDirFilePath,
+            TEST( SubDirTestStream->GetIdentifier() == SubDirFilePath,
                   "ZipIStream::GetStreamIdentifier()_const-SubDir" );
             TEST( SubDirTestStream->GetStreamFlags() == SF_Read,
                   "ZipIStream::GetStreamFlags()_const-SubDir" );

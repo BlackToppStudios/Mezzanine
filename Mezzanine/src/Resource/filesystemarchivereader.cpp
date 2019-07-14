@@ -113,7 +113,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
-        void FileSystemArchiveReader::Open(const String& Identifier)
+        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group)
         {
             Boole DirExists = Resource::DirectoryExists(Identifier);
             if( !DirExists ) {
@@ -123,15 +123,33 @@ namespace Mezzanine
             }
 
             this->ArchiveIdentifier.assign(Identifier);
+            this->ArchiveGroup.assign(Group);
             if( !Resource::IsDirectorySeparator( this->ArchiveIdentifier.back() ) ) {
                 this->ArchiveIdentifier.append(1,Resource::GetDirectorySeparator_Universal());
             }
         }
 
-        void FileSystemArchiveReader::Open(const String& Identifier, Char8* Buffer,
+        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group, Char8* Buffer,
                                            const size_t BufferSize, const Boole Owner)
         {
             String ExceptionMsg("FileSystem Archives do not support initializing from a memory buffer.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
+        }
+
+        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group, const String& Password)
+        {
+            String ExceptionMsg("FileSystem password protection isn't supported.");
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
+        }
+
+        void FileSystemArchiveReader::Open(const String& Identifier,
+                                           const String& Group,
+                                           const String& Password,
+                                           Char8* Buffer,
+                                           const size_t BufferSize,
+                                           const Boole Owner)
+        {
+            String ExceptionMsg("FileSystem password protection isn't supported.");
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
         }
 
@@ -146,11 +164,33 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Default Password
+
+        void FileSystemArchiveReader::SetDefaultPassword(const String& Password)
+        {
+            MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"FileSystem password protection isn't supported.");
+        }
+
+        String FileSystemArchiveReader::GetDefaultPassword() const
+        {
+            return String();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Utility Queries
 
         const String& FileSystemArchiveReader::GetIdentifier() const
         {
             return this->ArchiveIdentifier;
+        }
+
+        Boole FileSystemArchiveReader::IsCaseSensitive() const
+        {
+        #ifdef MEZZ_WINDOWS
+            return false;
+        #else
+            return true;
+        #endif
         }
 
         Boole FileSystemArchiveReader::DirectoryExists(const String& DirectoryPath) const
@@ -191,7 +231,7 @@ namespace Mezzanine
                     }
                     ++SplitIdx;
                 }
-                Ret->OpenFile(Identifier,SplitIdx,Flags);
+                Ret->OpenFile(Identifier,this->ArchiveGroup,SplitIdx,Flags);
             }
             return Ret;
         }

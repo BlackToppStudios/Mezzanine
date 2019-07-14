@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,53 +37,55 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _manualskeletonloader_h_cpp
+#define _manualskeletonloader_h_cpp
 
-#ifndef _graphicsmaterial_cpp
-#define _graphicsmaterial_cpp
+// Keeps this file from being documented by doxygen
+/// @cond DontDocumentInternal
 
-#include "Graphics/material.h"
+#include "datastream.h"
 
-#include <OgreMaterial.h>
+#include <OgreResource.h>
 
 namespace Mezzanine
 {
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // Material Methods
-
-        Material::Material(Ogre::MaterialPtr ToWrap, ManualMaterialLoader* Loader) :
-            InternalMaterial(ToWrap),
-            InternalLoader(Loader)
+        /// @brief A manual loader for the loading of Skeleton files into Ogre.
+        /// @details ManualResourceLoaders in Ogre are meant to facilitate the loading of resources in
+        /// any custom way that may be needed.  This specific implementation is meant to direct the
+        /// loading of skeletons through the Mezzanine resource system, bypassing Ogre's system entirely.
+        /// @n @n
+        /// When creating an instance of a manual loader, it must remain valid and initialized for
+        /// the entire duration of any and all resources that were loaded using in, just in case the
+        /// resource needs to be reloaded.
+        ///////////////////////////////////////
+        class MEZZ_LIB ManualSkeletonLoader : public Ogre::ManualResourceLoader
         {
+        public:
+            /// @brief A shared pointer to the stream we're loading from.
+            IStreamPtr LoadStream;
 
-        }
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
-        Material::~Material()
-        {
-            if( this->InternalLoader ) {
-                delete this->InternalLoader;
-            }
-        }
+            /// @brief Class constructor.
+            /// @param Stream A shared pointer to the input stream being loaded from.
+            ManualSkeletonLoader(IStreamPtr Stream);
+            /// @brief Class destructor.
+            virtual ~ManualSkeletonLoader() = default;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Asset Query
+            ///////////////////////////////////////////////////////////////////////////////
+            // Overrides
 
-        const String& Material::GetName() const
-            { return this->InternalMaterial->getName(); }
-
-        const String& Material::GetGroup() const
-            { return this->InternalMaterial->getGroup(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        Ogre::MaterialPtr Material::_GetInternalMaterial() const
-            { return this->InternalMaterial; }
-
-        Ogre::MaterialPtr Material::_Upcast(Ogre::ResourcePtr ToCast)
-            { return std::static_pointer_cast<Ogre::Material>(ToCast); }
+            /// @brief Loads a resource into a ready state.
+            /// @param resource The resource to be populated.
+            virtual void loadResource(Ogre::Resource* resource) override;
+        };//ManualSkeletonManager
     }//Graphics
 }//Mezzanine
+
+/// @endcond
 
 #endif

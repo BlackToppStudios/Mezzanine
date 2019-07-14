@@ -44,9 +44,10 @@
 
 namespace Ogre
 {
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Mesh;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Mesh> MeshPtr;
+    typedef std::shared_ptr<Mesh> MeshPtr;
 }//Ogre
 
 namespace Mezzanine
@@ -55,10 +56,9 @@ namespace Mezzanine
     {
         class SubMesh;
         class Skeleton;
-        class InternalMeshData;
+        class ManualMeshLoader;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is used to check and modify the properties of a graphics mesh.
-        /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Mesh
         {
@@ -70,29 +70,38 @@ namespace Mezzanine
             /// @brief A const iterator type for SubMeshes being stored by this class.
             typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
         protected:
-            /// @internal
             /// @brief A pointer to the internal data this Mesh is based on.
-            InternalMeshData* IMD;
-            /// @internal
+            Ogre::MeshPtr InternalMesh;
+            /// @brief A pointer to the loader that will make the Mesh data available to the graphics system.
+            ManualMeshLoader* InternalLoader;
             /// @brief If Skeletal animations are enabled on this Mesh, this is a pointer to the Skeleton being used.
             Skeleton* MeshSkel;
-            /// @internal
             /// @brief A container storing all the SubMeshes in this Mesh.
             SubMeshContainer SubMeshes;
 
-            /// @internal
             /// @brief Constructs a Mezzanine wrapper for every SubMesh in the internal Mesh.
             void WrapAllSubMeshes();
-            /// @internal
             /// @brief Destroys every wrapped (but not the underlying instance) SubMesh in this Mesh.
             void DestroyAllWrappedSubMeshes();
         public:
             /// @internal
             /// @brief Internal Constructor.
-            /// @param InternalMesh The internal Mesh this Mesh class is based on.
-            Mesh(Ogre::MeshPtr InternalMesh);
+            /// @param ToWrap The internal Mesh the instance will wrap.
+            /// @param Loader The loader that will make the Mesh data available to the graphics system.
+            Mesh(Ogre::MeshPtr ToWrap, ManualMeshLoader* Loader);
             /// @brief Class Destructor.
             ~Mesh();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Query
+
+            /// @brief Gets the Name of this Mesh.
+            /// @note If this Mesh originated from a file, usually the name of the Mesh will be the file name.
+            /// @return Returns a const string reference containing the name of this Mesh.
+            const String& GetName() const;
+            /// @brief Gets the resource group this Mesh belongs to.
+            /// @return Returns a const string reference containing the group this Mesh belongs to.
+            const String& GetGroup() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
@@ -116,20 +125,7 @@ namespace Mezzanine
             Whole GetNumSubMeshes() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Skeleton Methods
-
-
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Asset Methods
-
-            /// @brief Gets the Name of this Mesh.
-            /// @note If this Mesh originated from a file, usually the name of the Mesh will be the file name.
-            /// @return Returns a const string reference containing the name of this Mesh.
-            ConstString& GetName() const;
-            /// @brief Gets the resource group this Mesh belongs to.
-            /// @return Returns a const string reference containing the group this Mesh belongs to.
-            ConstString& GetGroup() const;
+            // Skeleton Methods\
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
@@ -138,6 +134,11 @@ namespace Mezzanine
             /// @brief Gets the internal Mesh pointer.
             /// @return Returns a shared pointer pointing to the internal Mesh.
             Ogre::MeshPtr _GetInternalMesh() const;
+            /// @internal
+            /// @brief Casts an internal resource pointer to a MeshPtr.
+            /// @param ToCast The pointer to be casted.
+            /// @return Returns the casted MeshPtr.
+            static Ogre::MeshPtr _Upcast(Ogre::ResourcePtr ToCast);
         };//Mesh
     }//Graphics
 }//Mezzanine

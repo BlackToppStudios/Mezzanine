@@ -46,15 +46,8 @@
 
 namespace Mezzanine
 {
-    ManagerBase::ManagerBase() :
-        TheEntresol(NULL),
-        Initialized(false)
-    {
-        this->TheEntresol = Entresol::GetSingletonPtr();
-    }
-
-    ManagerBase::~ManagerBase()
-        {}
+    ManagerBase::ManagerBase()
+        { this->TheEntresol = Entresol::GetSingletonPtr(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
@@ -107,8 +100,12 @@ namespace Mezzanine
                 return "SceneManager";  break;
             case ManagerBase::MT_ScriptingManager:
                 return "ScriptingManager";  break;
+            case ManagerBase::MT_SkeletonManager:
+                return "SkeletonManager";  break;
             case ManagerBase::MT_SoundScapeManager:
                 return "SoundScapeManager";  break;
+            case ManagerBase::MT_TextureAtlasManager:
+                return "TextureAtlasManager";  break;
             case ManagerBase::MT_TextureManager:
                 return "TextureManager";  break;
             case ManagerBase::MT_UIManager:
@@ -181,7 +178,9 @@ namespace Mezzanine
             {
                 if( 'o' == Lower.at(1) ) {
                     return ManagerBase::MT_SoundScapeManager;
-                }else{
+                }else if( 'k' == Lower.at(1) ) {
+                    return ManagerBase::MT_SkeletonManager;
+                }else if( 'c' == Lower.at(1) ) {
                     // Both of these start with the same two letters, so skip to the third.
                     if( 'e' == Lower.at(2) ) return ManagerBase::MT_SceneManager;
                     else if( 'r' == Lower.at(2) ) return ManagerBase::MT_ScriptingManager;
@@ -190,7 +189,8 @@ namespace Mezzanine
             }
             case 't':
             {
-                return ManagerBase::MT_TextureManager;
+                if( 'a' == Lower.at(7) ) return ManagerBase::MT_TextureAtlasManager;
+                else if( 'm' == Lower.at(7) ) return ManagerBase::MT_TextureManager;
                 break;
             }
             case 'u':

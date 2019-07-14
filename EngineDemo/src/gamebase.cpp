@@ -461,7 +461,7 @@ void LoadContent()
     ResourceMan->AddAssetLocation("data/common/", Resource::AT_FileSystem, groupname);
     ResourceMan->AddAssetLocation("data/common/music/", Resource::AT_FileSystem, groupname);
     ResourceMan->AddAssetLocation("data/common/sounds/", Resource::AT_FileSystem, groupname);
-    ResourceMan->AddAssetLocation("", Resource::AT_FileSystem, groupname);
+    ResourceMan->AddAssetLocation(".", Resource::AT_FileSystem, groupname);
 
     Vector3 grav( 0.0, -400.0, 0.0 );
     PhysMan->SetWorldGravity(grav);

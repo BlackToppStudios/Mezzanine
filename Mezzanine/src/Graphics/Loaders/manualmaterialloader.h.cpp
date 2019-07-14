@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,61 +37,54 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internalmeshloaderlistener_cpp
-#define _internalmeshloaderlistener_cpp
+#ifndef _manualmaterialloader_h_cpp
+#define _manualmaterialloader_h_cpp
 
-// Keeps this file form being documented by doxygen
+// Keeps this file from being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include "Internal/meshloaderlistener.h.cpp"
-#include "Internal/iostreamwrapper.h.cpp"
+#include "datatypes.h"
 
-#include "Resource/resourcemanager.h"
-
-#include <OgreMesh.h>
-#include <OgreSkeleton.h>
-#include <OgreSkeletonManager.h>
-#include <OgreSkeletonSerializer.h>
+#include <OgreResource.h>
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Resource
     {
-        MeshLoaderListener::MeshLoaderListener()
-            {  }
-
-        MeshLoaderListener::~MeshLoaderListener()
-            {  }
-
+        class ResourceManager;
+    }
+    namespace Graphics
+    {
         ///////////////////////////////////////////////////////////////////////////////
-        // Callbacks
-
-        void MeshLoaderListener::processMaterialName(Ogre::Mesh* mesh, Ogre::String* name)
+        /// @brief A manual loader for the loading of Material files into Ogre.
+        /// @details ManualResourceLoaders in Ogre are meant to facilitate the loading of resources in
+        /// any custom way that may be needed.  This specific implementation is meant to direct the
+        /// loading of materials through the Mezzanine resource system, bypassing Ogre's system entirely.
+        /// @n @n
+        /// When creating an instance of a manual loader, it must remain valid and initialized for
+        /// the entire duration of any and all resources that were loaded using in, just in case the
+        /// resource needs to be reloaded.
+        ///////////////////////////////////////
+        class MEZZ_LIB ManualMaterialLoader : public Ogre::ManualResourceLoader
         {
-            // I don't think we need to actually do anything here, since materials are parsed at resource group init.
-        }
+        protected:
+            /// @brief A pointer to the ResourceManager we're loading from.
+            Resource::ResourceManager* ResourceMan = nullptr;
+        public:
+            /// @brief Class constructor.
+            /// @param Manager A pointer to the manager providing streams to load from.
+            ManualMaterialLoader(Resource::ResourceManager* Manager);
+            /// @brief Class destructor.
+            virtual ~ManualMaterialLoader() = default;
 
-        void MeshLoaderListener::processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name)
-        {
-            String GroupName = mesh->getGroup();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Overrides
 
-            IStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(*name,GroupName);
-            Ogre::DataStreamPtr SkeletonWrapper(new IStreamWrapper(SkeletonStream.get(),false));
-
-            // Verify it's not already loaded.
-            Ogre::SkeletonPtr NewSkel = Ogre::SkeletonManager::getSingletonPtr()->getByName(*name,GroupName);
-            if( NewSkel.isNull() ) {
-                NewSkel = static_cast<Ogre::SkeletonPtr>( Ogre::SkeletonManager::getSingletonPtr()->create(*name,GroupName,true));
-                Ogre::SkeletonSerializer SkelSerial;
-                SkelSerial.importSkeleton(SkeletonWrapper,NewSkel.get());
-            }
-        }
-
-        void MeshLoaderListener::processMeshCompleted(Ogre::Mesh* mesh)
-        {
-            /*  \o/  */
-        }
-    }//Internal
+            /// @brief Loads a resource into a ready state.
+            /// @param resource The resource to be populated.
+            virtual void loadResource(Ogre::Resource* resource) override;
+        };//ManualMaterialManager
+    }//Graphics
 }//Mezzanine
 
 /// @endcond

@@ -37,53 +37,63 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _meshloaderlistener_cpp
+#define _meshloaderlistener_cpp
 
-#ifndef _graphicsmaterial_cpp
-#define _graphicsmaterial_cpp
+// Keeps this file form being documented by doxygen
+/// @cond DontDocumentInternal
 
-#include "Graphics/material.h"
+#include <OgreMesh.h>
+#include <OgreSkeleton.h>
+#include <OgreSkeletonManager.h>
+#include <OgreSkeletonSerializer.h>
 
-#include <OgreMaterial.h>
+#include "Graphics/Loaders/meshloaderlistener.h.cpp"
+#include "Graphics/Loaders/iostreamwrapper.h.cpp"
+
+#include "Resource/resourcemanager.h"
 
 namespace Mezzanine
 {
     namespace Graphics
     {
+        MeshLoaderListener::MeshLoaderListener()
+            {  }
+
+        MeshLoaderListener::~MeshLoaderListener()
+            {  }
+
         ///////////////////////////////////////////////////////////////////////////////
-        // Material Methods
+        // Callbacks
 
-        Material::Material(Ogre::MaterialPtr ToWrap, ManualMaterialLoader* Loader) :
-            InternalMaterial(ToWrap),
-            InternalLoader(Loader)
+        void MeshLoaderListener::processMaterialName(Ogre::Mesh* mesh, Ogre::String* name)
         {
-
+            // I don't think we need to actually do anything here, since materials are parsed at resource group init.
         }
 
-        Material::~Material()
+        void MeshLoaderListener::processSkeletonName(Ogre::Mesh* mesh, Ogre::String* name)
         {
-            if( this->InternalLoader ) {
-                delete this->InternalLoader;
+            String GroupName = mesh->getGroup();
+
+            IStreamPtr SkeletonStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(*name,GroupName);
+            Ogre::DataStreamPtr SkeletonWrapper(new STDIStreamWrapper(SkeletonStream.get(),false));
+
+            // Verify it's not already loaded.
+            Ogre::SkeletonPtr NewSkel = Ogre::SkeletonManager::getSingletonPtr()->getByName(*name,GroupName);
+            if( !NewSkel ) {
+                NewSkel = static_cast<Ogre::SkeletonPtr>( Ogre::SkeletonManager::getSingletonPtr()->create(*name,GroupName,true));
+                Ogre::SkeletonSerializer SkelSerial;
+                SkelSerial.importSkeleton(SkeletonWrapper,NewSkel.get());
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Asset Query
-
-        const String& Material::GetName() const
-            { return this->InternalMaterial->getName(); }
-
-        const String& Material::GetGroup() const
-            { return this->InternalMaterial->getGroup(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        Ogre::MaterialPtr Material::_GetInternalMaterial() const
-            { return this->InternalMaterial; }
-
-        Ogre::MaterialPtr Material::_Upcast(Ogre::ResourcePtr ToCast)
-            { return std::static_pointer_cast<Ogre::Material>(ToCast); }
+        void MeshLoaderListener::processMeshCompleted(Ogre::Mesh* mesh)
+        {
+            /*  \o/  */
+        }
     }//Graphics
 }//Mezzanine
+
+/// @endcond
 
 #endif

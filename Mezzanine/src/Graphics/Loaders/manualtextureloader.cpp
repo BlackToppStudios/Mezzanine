@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,45 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internalmaterialloaderlistener_h_cpp
-#define _internalmaterialloaderlistener_h_cpp
+#ifndef _manualtextureloader_cpp
+#define _manualtextureloader_cpp
 
-// Keeps this file form being documented by doxygen
-/// @cond DontDocumentInternal
-
-#include <OgreScriptCompiler.h>
-#include "datatypes.h"
+#include "Graphics/Loaders/manualtextureloader.h.cpp"
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Graphics
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief A set of callbacks for different stages of internal material parsing.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB MaterialLoaderListener : public Ogre::ScriptCompilerListener
+        ManualTextureLoader::ManualTextureLoader(Resource::ResourceManager* Manager) :
+            ResourceMan(Manager)
         {
-        protected:
-        public:
-            /// @brief Class constructor.
-            MaterialLoaderListener();
-            /// @brief Class destructor.
-            virtual ~MaterialLoaderListener();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Callbacks
+        }
 
-            /// @brief Handles a single event that occurs in a ScriptCompiler.
-            /// @param compiler A pointer to the compiler that is firing the event.
-            /// @param evt A pointer to the specific event being fired.
-            /// @param retval A utility pointer to some event specific metadata.  Listeners are expected to know exactly what type this is to use it.
-            /// @return If the return is true, then that will indicate the script is done being processed.  This always retruns false.
-            virtual bool handleEvent(Ogre::ScriptCompiler* compiler, Ogre::ScriptCompilerEvent* evt, void* retval);
-        };//MaterialLoaderListener
-    }//Internal
+        void ManualTextureLoader::loadResource(Ogre::Resource* resource)
+        {
+
+        }
+    }//Graphics
 }//Mezzanine
-
-/// @endcond
 
 #endif

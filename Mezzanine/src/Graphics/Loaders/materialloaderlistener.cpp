@@ -37,25 +37,25 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internalmaterialloaderlistener_cpp
-#define _internalmaterialloaderlistener_cpp
+#ifndef _materialloaderlistener_cpp
+#define _materialloaderlistener_cpp
 
 // Keeps this file form being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include "Internal/materialloaderlistener.h.cpp"
-#include "Internal/iostreamwrapper.h.cpp"
-
 #include <OgreTextureManager.h>
 #include <OgreCodec.h>
 #include <OgreImageCodec.h>
+
+#include "Graphics/Loaders/materialloaderlistener.h.cpp"
+#include "Graphics/Loaders/iostreamwrapper.h.cpp"
 
 #include "Resource/resourcemanager.h"
 #include "exception.h"
 
 namespace Mezzanine
 {
-    namespace Internal
+    namespace Graphics
     {
         MaterialLoaderListener::MaterialLoaderListener()
             {  }
@@ -77,10 +77,10 @@ namespace Mezzanine
 
                     // Verify the texture doesn't already exist.
                     Ogre::TexturePtr NewTexture = Ogre::TextureManager::getSingletonPtr()->getByName(Casted->mName,GroupName);
-                    if( NewTexture.isNull() ) {
+                    if( !NewTexture ) {
                         // Get our stream and make it usable to Ogre.
                         IStreamPtr TextureStream = Resource::ResourceManager::GetSingletonPtr()->OpenAsset(Casted->mName,GroupName);
-                        Ogre::DataStreamPtr TextureWrapper(new IStreamWrapper(TextureStream.get(),false));
+                        Ogre::DataStreamPtr TextureWrapper(new IStreamWrapper(TextureStream));
 
                         // Textures are a bit more complicated given they don't have a convenient serialized class like Skeletons and Meshes.
                         // Maybe because there isn't an official Ogre texture format, which is probably for the best.
@@ -108,7 +108,7 @@ namespace Mezzanine
                         // Ok, finally lets decode.
                         Ogre::Codec::DecodeResult Result = TextureCodec->decode(TextureWrapper);
                         // Woo!  Cast the image data and pass it along to the texture manager to make our texture.
-                        Ogre::ImageCodec::ImageData* TexData = static_cast<Ogre::ImageCodec::ImageData*>(Result.second.getPointer());
+                        Ogre::ImageCodec::ImageData* TexData = static_cast<Ogre::ImageCodec::ImageData*>(Result.second.get());
                         Ogre::DataStreamPtr CastedTexStream = Result.first;
                         Ogre::TextureManager::getSingletonPtr()->loadRawData(Casted->mName,GroupName,CastedTexStream,TexData->width,TexData->height,TexData->format,( TexData->depth == 1 ? Ogre::TEX_TYPE_2D : Ogre::TEX_TYPE_3D ),TexData->num_mipmaps);
                     }
@@ -116,7 +116,7 @@ namespace Mezzanine
             }
             return false;
         }
-    }//Internal
+    }//Graphics
 }//Mezzanine
 
 /// @endcond

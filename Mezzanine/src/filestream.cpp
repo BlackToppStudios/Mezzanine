@@ -56,9 +56,13 @@ namespace Mezzanine
         IStream(&this->FileBuffer)
         {  }
 
-    FileIStream::FileIStream(const String& FilePath, const Whole SplitIdx, const Whole Flags) :
+    FileIStream::FileIStream(const String& Identifier, const Whole SplitIdx, const Whole Flags) :
         IStream(&this->FileBuffer)
-        { this->OpenFile(FilePath,SplitIdx,Flags); }
+        { this->OpenFile(Identifier,SplitIdx,Flags); }
+
+    FileIStream::FileIStream(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags) :
+        IStream(&this->FileBuffer)
+        { this->OpenFile(Identifier,Group,SplitIdx,Flags); }
 
     FileIStream::~FileIStream()
         { if( this->IsOpenToFile() ) this->CloseFile(); }
@@ -66,25 +70,33 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Methods
 
-    void FileIStream::OpenFile(const String& FilePath, const Whole SplitIdx, const Whole Flags)
+    void FileIStream::OpenFile(const String& Identifier, const Whole SplitIdx, const Whole Flags)
     {
         const Whole FilteredFlags = Flags & ~Mezzanine::SF_Write;
-        if( !this->FileBuffer.open(FilePath.c_str(),static_cast<const std::ios_base::openmode>(FilteredFlags)) ) {
+        if( !this->FileBuffer.open(Identifier.c_str(),static_cast<const std::ios_base::openmode>(FilteredFlags)) ) {
             this->setstate(std::ios_base::failbit);
         }else{
             this->clear();
         }
 
         if( !this->IsOpenToFile() ) {
-            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + FilePath + "\".");
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create or locate file \"" << Identifier << "\".";
+            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
         }
 
-        this->OpenFileName = FilePath;
+        this->OpenFileName = Identifier;
         this->SetReadPosition(0,Mezzanine::SO_End);
         this->Size = static_cast<StreamSize>( this->GetReadPosition() );
         this->SetReadPosition(0,Mezzanine::SO_Beginning);
         this->StreamFlags = FilteredFlags;
         this->ArchiveEndIndex = SplitIdx;
+    }
+
+    void FileIStream::OpenFile(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags)
+    {
+        this->OpenFile(Identifier,SplitIdx,Flags);
+        this->OpenFileGroup = Group;
     }
 
     Boole FileIStream::IsOpenToFile() const
@@ -96,6 +108,8 @@ namespace Mezzanine
     {
         if( this->IsOpenToFile() ) {
             this->OpenFileName.clear();
+            this->OpenFileGroup.clear();
+            this->ArchiveEndIndex = 0;
             this->StreamFlags = Mezzanine::SF_None;
 
             if( !this->FileBuffer.close() ) {
@@ -113,14 +127,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // StreamBase Methods
 
-    String FileIStream::GetStreamIdentifier() const
+    String FileIStream::GetIdentifier() const
         { return this->OpenFileName.substr(this->ArchiveEndIndex); }
+
+    String FileIStream::GetGroup() const
+        { return this->OpenFileGroup; }
+
+    StreamSize FileIStream::GetSize() const
+        { return this->Size; }
 
     Boole FileIStream::CanSeek() const
         { return true; }
 
-    StreamSize FileIStream::GetSize() const
-        { return this->Size; }
+    Boole FileIStream::IsEncrypted() const
+        { return false; } // We don't yet support encryption on raw filesystems. May never.
+
+    Boole FileIStream::IsRaw() const
+        { return true; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // FileOStream Methods
@@ -129,9 +152,13 @@ namespace Mezzanine
         OStream(&this->FileBuffer)
         {  }
 
-    FileOStream::FileOStream(const String& FilePath, const Whole SplitIdx, const Whole Flags) :
+    FileOStream::FileOStream(const String& Identifier, const Whole SplitIdx, const Whole Flags) :
         OStream(&this->FileBuffer)
-        { this->OpenFile(FilePath,SplitIdx,Flags); }
+        { this->OpenFile(Identifier,SplitIdx,Flags); }
+
+    FileOStream::FileOStream(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags) :
+        OStream(&this->FileBuffer)
+        { this->OpenFile(Identifier,Group,SplitIdx,Flags); }
 
     FileOStream::~FileOStream()
         { if( this->IsOpenToFile() ) this->CloseFile(); }
@@ -139,25 +166,33 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Methods
 
-    void FileOStream::OpenFile(const String& FilePath, const Whole SplitIdx, const Whole Flags)
+    void FileOStream::OpenFile(const String& Identifier, const Whole SplitIdx, const Whole Flags)
     {
         const Whole FilteredFlags = Flags & ~Mezzanine::SF_Read;
-        if( !this->FileBuffer.open(FilePath.c_str(),static_cast<const std::ios_base::openmode>(FilteredFlags)) ) {
+        if( !this->FileBuffer.open(Identifier.c_str(),static_cast<const std::ios_base::openmode>(FilteredFlags)) ) {
             this->setstate(std::ios_base::failbit);
         }else{
             this->clear();
         }
 
         if( !this->IsOpenToFile() ) {
-            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + FilePath + "\".");
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create or locate file \"" << Identifier << "\".";
+            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
         }
 
-        this->OpenFileName = FilePath;
+        this->OpenFileName = Identifier;
         this->SetWritePosition(0,Mezzanine::SO_End);
         this->Size = static_cast<StreamSize>( this->GetWritePosition() );
         this->SetWritePosition(0,Mezzanine::SO_Beginning);
         this->StreamFlags = FilteredFlags;
         this->ArchiveEndIndex = SplitIdx;
+    }
+
+    void FileOStream::OpenFile(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags)
+    {
+        this->OpenFile(Identifier,SplitIdx,Flags);
+        this->OpenFileGroup = Group;
     }
 
     Boole FileOStream::IsOpenToFile() const
@@ -169,6 +204,8 @@ namespace Mezzanine
     {
         if( this->IsOpenToFile() ) {
             this->OpenFileName.clear();
+            this->OpenFileGroup.clear();
+            this->ArchiveEndIndex = 0;
             this->StreamFlags = Mezzanine::SF_None;
 
             if( !this->FileBuffer.close() ) {
@@ -186,14 +223,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // StreamBase Methods
 
-    String FileOStream::GetStreamIdentifier() const
+    String FileOStream::GetIdentifier() const
         { return this->OpenFileName.substr(this->ArchiveEndIndex); }
+
+    String FileOStream::GetGroup() const
+        { return this->OpenFileGroup; }
+
+    StreamSize FileOStream::GetSize() const
+        { return this->Size; }
 
     Boole FileOStream::CanSeek() const
         { return true; }
 
-    StreamSize FileOStream::GetSize() const
-        { return this->Size; }
+    Boole FileOStream::IsEncrypted() const
+        { return false; } // We don't yet support encryption on raw filesystems. May never.
+
+    Boole FileOStream::IsRaw() const
+        { return true; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // FileStream Methods
@@ -202,9 +248,13 @@ namespace Mezzanine
         IOStream(&this->FileBuffer)
         {  }
 
-    FileStream::FileStream(const String& FilePath, const Whole SplitIdx, const Whole Flags) :
+    FileStream::FileStream(const String& Identifier, const Whole SplitIdx, const Whole Flags) :
         IOStream(&this->FileBuffer)
-        { this->OpenFile(FilePath,SplitIdx,Flags); }
+        { this->OpenFile(Identifier,SplitIdx,Flags); }
+
+    FileStream::FileStream(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags) :
+        IOStream(&this->FileBuffer)
+        { this->OpenFile(Identifier,Group,SplitIdx,Flags); }
 
     FileStream::~FileStream()
         { if( this->IsOpenToFile() ) this->CloseFile(); }
@@ -212,24 +262,32 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Methods
 
-    void FileStream::OpenFile(const String& FilePath, const Whole SplitIdx, const Whole Flags)
+    void FileStream::OpenFile(const String& Identifier, const Whole SplitIdx, const Whole Flags)
     {
-        if( !this->FileBuffer.open(FilePath.c_str(),static_cast<const std::ios_base::openmode>(Flags)) ) {
+        if( !this->FileBuffer.open(Identifier.c_str(),static_cast<const std::ios_base::openmode>(Flags)) ) {
             this->setstate(std::ios_base::failbit);
         }else{
             this->clear();
         }
 
         if( !this->IsOpenToFile() ) {
-            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \"" + FilePath + "\".");
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create or locate file \"" << Identifier << "\".";
+            MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
         }
 
-        this->OpenFileName = FilePath;
+        this->OpenFileName = Identifier;
         this->SetReadPosition(0,Mezzanine::SO_End);
         this->Size = static_cast<StreamSize>( this->GetReadPosition() );
         this->SetStreamPosition(0);
         this->StreamFlags = Flags;
         this->ArchiveEndIndex = SplitIdx;
+    }
+
+    void FileStream::OpenFile(const String& Identifier, const String& Group, const Whole SplitIdx, const Whole Flags)
+    {
+        this->OpenFile(Identifier,SplitIdx,Flags);
+        this->OpenFileGroup = Group;
     }
 
     Boole FileStream::IsOpenToFile() const
@@ -241,6 +299,8 @@ namespace Mezzanine
     {
         if( this->IsOpenToFile() ) {
             this->OpenFileName.clear();
+            this->OpenFileGroup.clear();
+            this->ArchiveEndIndex = 0;
             this->StreamFlags = Mezzanine::SF_None;
 
             if( !this->FileBuffer.close() ) {
@@ -258,14 +318,23 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // StreamBase Methods
 
-    String FileStream::GetStreamIdentifier() const
+    String FileStream::GetIdentifier() const
         { return this->OpenFileName.substr(this->ArchiveEndIndex); }
+
+    String FileStream::GetGroup() const
+        { return this->OpenFileGroup; }
+
+    StreamSize FileStream::GetSize() const
+        { return this->Size; }
 
     Boole FileStream::CanSeek() const
         { return true; }
 
-    StreamSize FileStream::GetSize() const
-        { return this->Size; }
+    Boole FileStream::IsEncrypted() const
+        { return false; } // We don't yet support encryption on raw filesystems. May never.
+
+    Boole FileStream::IsRaw() const
+        { return true; }
 }//Mezzanine
 
 #endif

@@ -47,9 +47,10 @@
 
 namespace Ogre
 {
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Texture;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Texture> TexturePtr;
+    typedef std::shared_ptr<Texture> TexturePtr;
     class TextureManager;
 }
 
@@ -64,7 +65,6 @@ namespace Mezzanine
         #endif
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class TextureManager
         /// @brief This manager handles the storage and query of of Graphics Textures.
         /// @details
         ///////////////////////////////////////

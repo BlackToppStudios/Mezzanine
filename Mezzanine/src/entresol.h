@@ -602,11 +602,22 @@ namespace Mezzanine
         /// @brief This removes a manager by finding the matching pointer.
         /// @param ManagerToRemove A pointer to the manager to be removed.
         void RemoveManager(EntresolManager* ManagerToRemove);
-        /// @brief This is will find the manager of a given type.
+        /// @brief Retrieves the N-th manager of a specific type.
         /// @param RetrieveType The type ID of the manager to get.  Use ManagerBase::ManagerType enum values for this.
-        /// @param WhichOne If not getting the first/only manager of the given type, get one.
-        /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
-        EntresolManager* GetManager(const Whole RetrieveType, UInt16 WhichOne = 0);
+        /// @param WhichOne If multiple managers of the same type are stored, get the N-th manager of that type.
+        /// @return This returns a pointer to a EntresolManager, or nullptr if no matching manager exists.
+        EntresolManager* GetManager(const Whole RetrieveType, UInt16 WhichOne = 0) const;
+        /// @brief Retrieves the N-th manager of a specific type.
+        /// @tparam ManagerType The manager type to retrieve.
+        /// @remarks This is a convenience version of the non-template GetManager that does a pointer cast.
+        /// @param WhichOne If multiple managers of the same type are stored, get the N-th manager of that type.
+        /// @return This returns a pointer to the ManagerType specified, or nullptr if no matching manager exists.
+        template<class ManagerType>
+        ManagerType GetManager(UInt16 WhichOne = 0) const
+        {
+            static_assert( std::is_base_of<EntresolManager,ManagerType>::value, "Invalid Manager Type Specified." );
+            return static_cast<ManagerType>( this->GetManager(ManagerType::InterfaceType,WhichOne) );
+        }
         /// @brief This removes a manager of a specific type from the list.
         /// @param RemoveType The type ID of the manager to remove.  Use ManagerBase::ManagerType enum values for this.
         /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.

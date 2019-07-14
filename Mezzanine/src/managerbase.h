@@ -86,8 +86,10 @@ namespace Mezzanine
             MT_PlayerManager           = 12,  // Mezzanine
             MT_ResourceManager         = 13,  // Resource
             MT_ScriptingManager        = 14,  // Scripting
-            MT_TextureManager          = 15,  // Graphics
-            MT_UIManager               = 16,  // UI
+            MT_SkeletonManager         = 15,  // Graphics
+            MT_TextureAtlasManager     = 17,  // UI
+            MT_TextureManager          = 16,  // Graphics
+            MT_UIManager               = 18,  // UI
 
             // World Managers                 // Namespaces
 
@@ -107,17 +109,15 @@ namespace Mezzanine
             MT_UserCreated             = 1001
         };
     protected:
-        /// @internal
         /// @brief The actual pointer to the Entresol core class.
-        Entresol* TheEntresol;
-        /// @internal
+        Entresol* TheEntresol = nullptr;
         /// @brief Simple Boole indicating whether or not this manager has been initialized.
-        Boole Initialized;
+        Boole Initialized = false;
     public:
         /// @brief Class constructor.
         ManagerBase();
         /// @brief Class destructor.
-        virtual ~ManagerBase();
+        virtual ~ManagerBase() = default;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

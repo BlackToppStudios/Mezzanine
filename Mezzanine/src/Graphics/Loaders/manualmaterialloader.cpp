@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,27 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourceasset_h
-#define _resourceasset_h
+#ifndef _manualmaterialloader_cpp
+#define _manualmaterialloader_cpp
+
+#include "Graphics/Loaders/manualmaterialloader.h.cpp"
 
 namespace Mezzanine
 {
-    namespace Resource
+    namespace Graphics
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief
-        /// @details
-        ///////////////////////////////////////
-        class AssetHandler
+        ManualMaterialLoader::ManualMaterialLoader(Resource::ResourceManager* Manager) :
+            ResourceMan(Manager)
         {
-        protected:
-        public:
-            /// @brief Class constructor.
-            AssetHandler();
-            /// @brief Class destructor.
-            ~AssetHandler();
-        };//AssetHandler
-    }//Resource
+
+        }
+
+        void ManualMaterialLoader::loadResource(Ogre::Resource* resource)
+        {
+
+        }
+    }//Graphics
 }//Mezzanine
 
 #endif

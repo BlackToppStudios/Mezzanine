@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,39 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _manualmeshloader_cpp
+#define _manualmeshloader_cpp
+
+#include "Graphics/Loaders/manualmeshloader.h.cpp"
+#include "Graphics/Loaders/iostreamwrapper.h.cpp"
+
+#include "Resource/resourcemanager.h"
+#include "Graphics/materialmanager.h"
+#include "Graphics/skeletonmanager.h"
+
+#include <OgreMesh.h>
+#include <OgreMeshSerializer.h>
+#include <OgreSubMesh.h>
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Graphics
     {
+        ManualMeshLoader::ManualMeshLoader(IStreamPtr Stream) :
+            LoadStream(Stream)
+            {  }
 
-    }
-}
+        void ManualMeshLoader::loadResource(Ogre::Resource* resource)
+        {
+            Ogre::Mesh* NewMesh = static_cast<Ogre::Mesh*>(resource);
+            Ogre::DataStreamPtr WrappedStream(new IStreamWrapper(LoadStream));
 
-#include "Resource/resourceenumerations.h"
-#include "Resource/resourcemanager.h"
+            Ogre::MeshSerializer MeshMaker;
+            MeshMaker.importMesh(WrappedStream,NewMesh);
 
-#include "Resource/archiveentry.h"
-#include "Resource/archivereader.h"
-#include "Resource/archivestream.h"
-#include "Resource/archivewriter.h"
-#include "Resource/assetgroup.h"
-#include "Resource/deflatecodec.h"
-#include "Resource/directorycontents.h"
-#include "Resource/filesystemarchivereader.h"
-#include "Resource/filesystemarchivewriter.h"
-#include "Resource/filesystemmanagement.h"
-#include "Resource/pathutilities.h"
-#include "Resource/specialdirectoryutilities.h"
-#include "Resource/systempathutilities.h"
-#include "Resource/ziparchivereader.h"
-#include "Resource/ziparchivewriter.h"
-#include "Resource/zipstream.h"
+            /*String NewMeshName = NewMesh->getName();
+            String NewMeshGroup = NewMesh->getGroup();
+
+            Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
+            /// @todo The lines below naively load an asset without regard for skeleton/materials
+            /// having a different asset group from the mesh.  This needs to be addressed.
+            ResourceMan->OpenChildAsset(NewMeshName,NewMeshGroup,NewMesh->getSkeletonName(),NewMeshGroup);
+            for( unsigned short SubMeshIdx = 0 ; SubMeshIdx < NewMesh->getNumSubMeshes() ; ++SubMeshIdx )
+            {
+                Ogre::SubMesh* CurrSubMesh = NewMesh->getSubMesh(SubMeshIdx);
+                ResourceMan->OpenChildAsset(NewMeshName,NewMeshGroup,CurrSubMesh->getMaterialName(),NewMeshGroup);
+            }//*/
+        }
+    }//Graphics
+}//Mezzanine
 
 #endif

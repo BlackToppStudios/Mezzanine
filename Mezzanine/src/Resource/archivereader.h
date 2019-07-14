@@ -65,13 +65,35 @@ namespace Mezzanine
 
             /// @brief Opens an archive for IO operations.
             /// @param Identifier The path and name to the archive to be opened.
-            virtual void Open(const String& Identifier) = 0;
+            /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
+            virtual void Open(const String& Identifier, const String& Group) = 0;
             /// @brief Open an archive to a memory buffer.
             /// @param Identifier A string identifying the buffer to be used as the archive.
+            /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
             /// @param Owner Indicates if the reader should become the owner of the buffer, deleting it when it closes.
             virtual void Open(const String& Identifier,
+                              const String& Group,
+                              Char8* Buffer,
+                              const size_t BufferSize,
+                              const Boole Owner) = 0;
+
+            /// @brief Opens an archive for IO operations.
+            /// @param Identifier The path and name to the archive to be opened.
+            /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
+            /// @param Password The password necessary to open the archive.
+            virtual void Open(const String& Identifier, const String& Group, const String& Password) = 0;
+            /// @brief Open an archive to a memory buffer.
+            /// @param Identifier A string identifying the buffer to be used as the archive.
+            /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
+            /// @param Password The password necessary to open the archive.
+            /// @param Buffer A pointer to the buffer containing the archive.
+            /// @param BufferSize The size of the buffer container the archive.
+            /// @param Owner Indicates if the reader should become the owner of the buffer, deleting it when it closes.
+            virtual void Open(const String& Identifier,
+                              const String& Group,
+                              const String& Password,
                               Char8* Buffer,
                               const size_t BufferSize,
                               const Boole Owner) = 0;
@@ -84,11 +106,24 @@ namespace Mezzanine
             virtual void Close() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Default Password
+
+            /// @brief Sets the Password to use for protected files when one isn't explicitly provided.
+            /// @param Password The default password to use for protected files.
+            virtual void SetDefaultPassword(const String& Password) = 0;
+            /// @brief Gets the Password to use for protected files when one isn't explicitly provided.
+            /// @return Returns a String containing the default password used.
+            virtual String GetDefaultPassword() const = 0;
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Utility Queries
 
             /// @brief Gets the identifier string passed into the last call to Open.
             /// @return Returns the identifier of this reader, or an empty string if the reader isn't open.
             virtual const String& GetIdentifier() const = 0;
+            /// @brief Checks whether or not the implementation requires case sensitive identifiers.
+            /// @return Returns true if the archive requires identifiers, paths, and file names to be case sensitive.
+            virtual Boole IsCaseSensitive() const = 0;
 
             /// @brief Checks to see if a directory exists within the archive.
             /// @param DirectoryPath The path to the directory to check for.

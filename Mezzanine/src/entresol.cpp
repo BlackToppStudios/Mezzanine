@@ -92,7 +92,7 @@
 
 namespace Mezzanine
 {
-    template<> Entresol* Singleton<Entresol>::SingletonPtr = NULL;
+    template<> Entresol* Singleton<Entresol>::SingletonPtr = nullptr;
     Entresol::ManagerFactoryMap Entresol::ManagerFactories;
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ namespace Mezzanine
 
     void Entresol::SetupOgre()
     {
-        if( Ogre::Root::getSingletonPtr() == NULL ) {
+        if( Ogre::Root::getSingletonPtr() == nullptr ) {
             Ogre::Root* OgreCore = new Ogre::Root("","","");
             // Sanity checks for Ogre here?  It's a singleton so don't need to worry about storing the pointer.
         }
@@ -375,10 +375,10 @@ namespace Mezzanine
         #ifdef MEZZ_LINUX
         //assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
         #endif
-        if( Ogre::Root::getSingletonPtr() != NULL ) {
+        if( Ogre::Root::getSingletonPtr() != nullptr ) {
             delete Ogre::Root::getSingletonPtr();
         }
-        if( this->SubSystemParticleFXPlugin != NULL ) {
+        if( this->SubSystemParticleFXPlugin != nullptr ) {
             delete this->SubSystemParticleFXPlugin;
         }
     }
@@ -387,7 +387,7 @@ namespace Mezzanine
     {
         #ifdef MEZZ_LINUX
         // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
-        assert( NULL == Ogre::Root::getSingletonPtr() // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
+        assert( nullptr == Ogre::Root::getSingletonPtr() // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
                 && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
         #endif
         SDL_Quit();
@@ -403,7 +403,7 @@ namespace Mezzanine
     {
         /// @todo Allow the FrameScheduler Log target to be inspected and changed here
         Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
-        if( NULL == OgreLogs ) {
+        if( nullptr == OgreLogs ) {
             OgreLogs = new Ogre::LogManager();
         }
 
@@ -781,16 +781,16 @@ namespace Mezzanine
         this->ManagerList.push_back(ManagerToAdd);
     }
 
-    EntresolManager* Entresol::GetManager(const Whole RetrieveType, UInt16 WhichOne)
+    EntresolManager* Entresol::GetManager(const Whole RetrieveType, UInt16 WhichOne) const
     {
-        for(ManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        for( ConstManagerIterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
         {
             if( (*ManIter)->GetInterfaceType() == RetrieveType ) {
-                if( 0 == WhichOne ) return *ManIter; // we use our copy of WhichOne as a countdown to 0
+                if( 0 == WhichOne ) return *ManIter;
                 else --WhichOne;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     void Entresol::RemoveManager(EntresolManager* ManagerToRemove)
@@ -865,7 +865,7 @@ namespace Mezzanine
                 return w;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     World* Entresol::GetWorld(const Whole Index)
@@ -888,7 +888,7 @@ namespace Mezzanine
                 return w;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     World* Entresol::RemoveWorldByName(const String& WorldName)
@@ -901,7 +901,7 @@ namespace Mezzanine
                 return w;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     void Entresol::RemoveAllWorlds()

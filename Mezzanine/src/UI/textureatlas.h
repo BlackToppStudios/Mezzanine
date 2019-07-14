@@ -50,9 +50,11 @@ namespace Ogre
     class Pass;
     class Material;
     class Texture;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Material> MaterialPtr;
-    typedef SharedPtr<Texture> TexturePtr;
+    //template<typename T> class SharedPtr;
+    //typedef SharedPtr<Material> MaterialPtr;
+    //typedef SharedPtr<Texture> TexturePtr;
+    typedef std::shared_ptr<Material> MaterialPtr;
+    typedef std::shared_ptr<Texture> TexturePtr;
 }
 
 namespace Mezzanine

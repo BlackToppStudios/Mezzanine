@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,25 +37,31 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourceassethandler_cpp
-#define _resourceassethandler_cpp
+#ifndef _manualskeletonloader_cpp
+#define _manualskeletonloader_cpp
 
-#include "Resource/assethandler.h"
+#include "Graphics/Loaders/manualskeletonloader.h.cpp"
+#include "Graphics/Loaders/iostreamwrapper.h.cpp"
+
+#include "Resource/resourcemanager.h"
+#include "Graphics/skeletonmanager.h"
+
+#include <OgreSkeleton.h>
+#include <OgreSkeletonSerializer.h>
 
 namespace Mezzanine
 {
-    namespace Resource
+    namespace Graphics
     {
-        AssetHandler::AssetHandler()
+        ManualSkeletonLoader::ManualSkeletonLoader(IStreamPtr Stream) :
+            LoadStream(Stream)
+            {  }
+
+        void ManualSkeletonLoader::loadResource(Ogre::Resource* resource)
         {
 
         }
-
-        AssetHandler::~AssetHandler()
-        {
-
-        }
-    }//Resource
+    }//Graphics
 }//Mezzanine
 
 #endif

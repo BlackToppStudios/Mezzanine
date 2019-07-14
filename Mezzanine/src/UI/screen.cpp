@@ -333,12 +333,12 @@ namespace Mezzanine
         {
             OGRE_DELETE this->SID->RenderOp.vertexData;
             this->SID->RenderOp.vertexData = 0;
-            this->SID->VertexBuffer.setNull();
+            this->SID->VertexBuffer.reset();
         }
 
         void Screen::ResizeVertexBuffer(const Whole& RequestedSize)
         {
-            if( this->SID->VertexBuffer.isNull() )
+            if( !this->SID->VertexBuffer )
                 this->CreateVertexBuffer(RequestedSize);
 
             if(RequestedSize > this->SID->VertexBuffer->getNumVertices() ) {

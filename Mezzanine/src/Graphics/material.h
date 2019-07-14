@@ -45,38 +45,63 @@
 
 namespace Ogre
 {
+    class Resource;
+    typedef std::shared_ptr<Resource> ResourcePtr;
     class Material;
-    template<typename T> class SharedPtr;
-    typedef SharedPtr<Material> MaterialPtr;
+    typedef std::shared_ptr<Material> MaterialPtr;
 }//Ogre
 
 namespace Mezzanine
 {
     namespace Graphics
     {
-        class MaterialInternalData;
+        class ManualMaterialLoader;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Material
-        /// @headerfile material.h
         /// @brief This class represents all the rendering passes a rendered object has.
         /// @details Materials are composed of techniques which define all the passes an object can have.
         /// Materials can be attached to any renderable geometry and are quite flexible.
         ///////////////////////////////////////
         class MEZZ_LIB Material
         {
-            protected:
-                MaterialInternalData* MID;
-            public:
-                /// @brief Class Constructor.
-                Material();
-                /// @brief Class Destructor.
-                ~Material();
+        protected:
+            /// @brief A pointer to the internal data this Material is based on.
+            Ogre::MaterialPtr InternalMaterial;
+            /// @brief A pointer to the loader that will make the Material data available to the graphics system.
+            ManualMaterialLoader* InternalLoader;
+        public:
+            /// @internal
+            /// @brief Internal Constructor.
+            /// @param ToWrap The internal Material the instance will wrap.
+            /// @param Loader The loader that will make the Material data available to the graphics system.
+            Material(Ogre::MaterialPtr ToWrap, ManualMaterialLoader* Loader);
+            /// @brief Class Destructor.
+            ~Material();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // AssetMethods
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Query
+
+            /// @brief Gets the Name of this Material.
+            /// @note If this Material originated from a file, usually the name of the Material will be the file name.
+            /// @return Returns a const string reference containing the name of this Material.
+            const String& GetName() const;
+            /// @brief Gets the resource group this Material belongs to.
+            /// @return Returns a const string reference containing the group this Material belongs to.
+            const String& GetGroup() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal Material pointer.
+            /// @return Returns a shared pointer pointing to the internal Material.
+            Ogre::MaterialPtr _GetInternalMaterial() const;
+            /// @internal
+            /// @brief Casts an internal resource pointer to a MaterialPtr.
+            /// @param ToCast The pointer to be casted.
+            /// @return Returns the casted MaterialPtr.
+            static Ogre::MaterialPtr _Upcast(Ogre::ResourcePtr ToCast);
         };//Material
     }//Graphics
 }//Mezzanine

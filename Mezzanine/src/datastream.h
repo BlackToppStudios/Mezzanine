@@ -41,7 +41,7 @@
 #define _datastream_h
 
 #include "datatypes.h"
-#include "countedptr.h"
+//#include "assetid.h"
 
 #include <iostream>
 
@@ -98,13 +98,26 @@ namespace Mezzanine
         /// as a file name or URI.  This is meant to be more flexible than that though as it may
         /// need to be used to identify a memory buffer in some cases.
         /// @return Returns a String containing the identifier for the stream.
-        virtual String GetStreamIdentifier() const = 0;
+        virtual String GetIdentifier() const = 0;
+        /// @brief Gets the name of the AssetGroup this stream is streaming to/from.
+        /// @remarks The returned stream can be empty, which usually means it wasn't created by the resource system.
+        /// @return Returns a String containing the name of the AssetGroup associated with this Stream.
+        virtual String GetGroup() const = 0;
+
         /// @brief Gets the size of the stream.
         /// @return Returns the size of this stream in bytes.
         virtual StreamSize GetSize() const = 0;
         /// @brief Gets whether or not this stream supports seeking.
         /// @return Returns true if this stream supports seeking to any point in the stream, false otherwise.
         virtual Boole CanSeek() const = 0;
+        /// @brief Gets whether or not the source of this stream is encrypted.
+        /// @return Returns true if the original data being streamed is encrypted, false otherwise.
+        virtual Boole IsEncrypted() const = 0;
+        /// @brief Gets whether or not this stream is decompressing/decrypting the source data.
+        /// @remarks A Raw stream is fairly common for file system and memory streams.  Even with Zip or other
+        /// similar archive streams it can be useful if custom operations are desired, but less common.
+        /// @return Returns true if the source data is being streamed without being altered, false otherwise.
+        virtual Boole IsRaw() const = 0;
 
         /// @brief Gets whether or not the current position is at the end of the stream.
         /// @return Returns true if the current position has reached the end of the stream, false otherwise.
@@ -405,7 +418,10 @@ namespace Mezzanine
     using IStreamPtr = std::shared_ptr<IStream>;
     /// @brief Convenience type for a standard output stream in a shared_ptr.
     using OStreamPtr = std::shared_ptr<OStream>;
-    /// @brief This is a convenience type for a data stream in a shared_ptr.
+    /// @brief Convenience type for a standard input/output stream in a shared_ptr.
+    using IOStreamPtr = std::shared_ptr<IOStream>;
+    /// @brief This is a convenience type for a DataStream in a shared_ptr.
+    /// @remarks This is the same as IOStreamPtr, but exists for some legacy code.
     using DataStreamPtr = std::shared_ptr<DataStream>;
 }//Mezzanine
 

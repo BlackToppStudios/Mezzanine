@@ -58,6 +58,8 @@ namespace Mezzanine
 
         /// @brief The path and name of the file this stream is currently open to.
         String OpenFileName;
+        /// @brief The unique name of the group this stream was created from.
+        String OpenFileGroup;
         /// @brief The type of access this stream has to the file.
         Whole StreamFlags;
         /// @brief The index of the character where the archive path ends and the file sub-path begins.
@@ -68,10 +70,21 @@ namespace Mezzanine
         /// @brief Blank constructor.
         FileIStream();
         /// @brief Open constructor.
-        /// @param FilePath The full path to the file to be opened.
+        /// @param Identifier The full path to the file to be opened.
         /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
         /// @param Mode The configuration to open the file with.
-        FileIStream(const String& FilePath, const Whole SplitIdx = 0, const Whole Mode = Mezzanine::SF_Read);
+        FileIStream(const String& Identifier,
+                    const Whole SplitIdx = 0,
+                    const Whole Mode = Mezzanine::SF_Read);
+        /// @brief Open from group constructor.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Mode The configuration to open the file with.
+        FileIStream(const String& Identifier,
+                    const String& Group,
+                    const Whole SplitIdx = 0,
+                    const Whole Mode = Mezzanine::SF_Read);
         /// @brief Class destructor.
         virtual ~FileIStream();
 
@@ -81,72 +94,23 @@ namespace Mezzanine
         /// @brief Opens this stream to a file.
         /// @remarks The StreamFlags value SF_Write will be ignored if used.
         /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
-        /// @param FilePath The full path to the file to be opened.
+        /// @param Identifier The full path to the file to be opened.
         /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
         /// @param Mode The configuration to open the file with.
-        void OpenFile(const String& FilePath, const Whole SplitIdx = 0, const Whole Mode = Mezzanine::SF_Read);
-        /// @brief Gets whether or not this stream is currently open to a file.
-        /// @return Returns true if this is streaming to/from a file.  False otherwise.
-        Boole IsOpenToFile() const;
-        /// @brief Closes the file that is currently opened.
-        void CloseFile();
-
-        /// @brief Gets the path and name of the file that this stream is currently open to.
-        /// @return Returns a const String reference containing the path and name of the currently open file.
-        const String& GetFullIdentifier() const;
-        /// @brief Gets the flags that were used to open the file.
-        /// @return Returns a bitfield describing the flags used to open the file.  If this stream is not open to a file it will return Resource::SF_None.
-        Whole GetStreamFlags() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // StreamBase Methods
-
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
-        /// @copydoc StreamBase::GetSize() const
-        virtual StreamSize GetSize() const override;
-    };//FileIStream
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This represents an output stream to a file on disk using the C++ file stream API.
-    ///////////////////////////////////////
-    class MEZZ_LIB FileOStream : public Mezzanine::OStream
-    {
-    protected:
-        /// @brief The buffer object containing most or all of the functionality for this stream.
-        std::filebuf FileBuffer;
-
-        /// @brief The path and name of the file this stream is currently open to.
-        String OpenFileName;
-        /// @brief The type of access this stream has to the file.
-        Whole StreamFlags;
-        /// @brief The index of the character where the archive path ends and the file sub-path begins.
-        Whole ArchiveEndIndex;
-        /// @brief The size of the stream.
-        StreamSize Size;
-    public:
-        /// @brief Blank constructor.
-        FileOStream();
-        /// @brief Open constructor.
-        /// @param FilePath The full path to the file to be opened.
-        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
-        /// @param Flags The configuration to open the file with.
-        FileOStream(const String& FilePath, const Whole SplitIdx = 0, const Whole Flags = Mezzanine::SF_Write);
-        /// @brief Class destructor.
-        virtual ~FileOStream();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility Methods
-
+        void OpenFile(const String& Identifier,
+                      const Whole SplitIdx = 0,
+                      const Whole Mode = Mezzanine::SF_Read);
         /// @brief Opens this stream to a file.
-        /// @remarks The StreamFlags value SF_Read will be ignored if used.
+        /// @remarks The StreamFlags value SF_Write will be ignored if used.
         /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
-        /// @param FilePath The full path to the file to be opened.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
         /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
-        /// @param Flags The configuration to open the file with.
-        void OpenFile(const String& FilePath, const Whole SplitIdx = 0, const Whole Flags = Mezzanine::SF_Write);
+        /// @param Mode The configuration to open the file with.
+        void OpenFile(const String& Identifier,
+                      const String& Group,
+                      const Whole SplitIdx = 0,
+                      const Whole Mode = Mezzanine::SF_Read);
         /// @brief Gets whether or not this stream is currently open to a file.
         /// @return Returns true if this is streaming to/from a file.  False otherwise.
         Boole IsOpenToFile() const;
@@ -164,12 +128,115 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // StreamBase Methods
 
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
+    };//FileIStream
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief This represents an output stream to a file on disk using the C++ file stream API.
+    ///////////////////////////////////////
+    class MEZZ_LIB FileOStream : public Mezzanine::OStream
+    {
+    protected:
+        /// @brief The buffer object containing most or all of the functionality for this stream.
+        std::filebuf FileBuffer;
+
+        /// @brief The path and name of the file this stream is currently open to.
+        String OpenFileName;
+        /// @brief The unique name of the group this stream was created from.
+        String OpenFileGroup;
+        /// @brief The type of access this stream has to the file.
+        Whole StreamFlags;
+        /// @brief The index of the character where the archive path ends and the file sub-path begins.
+        Whole ArchiveEndIndex;
+        /// @brief The size of the stream.
+        StreamSize Size;
+    public:
+        /// @brief Blank constructor.
+        FileOStream();
+        /// @brief Open constructor.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        FileOStream(const String& Identifier,
+                    const Whole SplitIdx = 0,
+                    const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Open constructor.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        FileOStream(const String& Identifier,
+                    const String& Group,
+                    const Whole SplitIdx = 0,
+                    const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Class destructor.
+        virtual ~FileOStream();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        /// @brief Opens this stream to a file.
+        /// @remarks The StreamFlags value SF_Read will be ignored if used.
+        /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        void OpenFile(const String& Identifier,
+                      const Whole SplitIdx = 0,
+                      const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Opens this stream to a file.
+        /// @remarks The StreamFlags value SF_Read will be ignored if used.
+        /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        void OpenFile(const String& Identifier,
+                      const String& Group,
+                      const Whole SplitIdx = 0,
+                      const Whole Flags = Mezzanine::SF_Write);
+        /// @brief Gets whether or not this stream is currently open to a file.
+        /// @return Returns true if this is streaming to/from a file.  False otherwise.
+        Boole IsOpenToFile() const;
+        /// @brief Closes the file that is currently opened.
+        void CloseFile();
+
+        /// @brief Gets the path and name of the file that this stream is currently open to.
+        /// @return Returns a const String reference containing the path and name of the currently open file.
+        const String& GetFullIdentifier() const;
+        /// @brief Gets the flags that were used to open the file.
+        /// @remarks If this stream is not open to a file it will return Resource::SF_None.
+        /// @return Returns a bitfield describing the flags used to open the file.
+        Whole GetStreamFlags() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // StreamBase Methods
+
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
+        /// @copydoc StreamBase::GetSize() const
+        virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
     };//FileOStream
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -183,6 +250,8 @@ namespace Mezzanine
 
         /// @brief The path and name of the file this stream is currently open to.
         String OpenFileName;
+        /// @brief The unique name of the group this stream was created from.
+        String OpenFileGroup;
         /// @brief The type of access this stream has to the file.
         Whole StreamFlags;
         /// @brief The index of the character where the archive path ends and the file sub-path begins.
@@ -193,10 +262,21 @@ namespace Mezzanine
         /// @brief Blank constructor.
         FileStream();
         /// @brief Open constructor.
-        /// @param FilePath The full path to the file to be opened.
+        /// @param Identifier The full path to the file to be opened.
         /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
         /// @param Flags The configuration to open the file with.
-        FileStream(const String& FilePath, const Whole SplitIdx = 0, const Whole Flags = Mezzanine::SF_ReadWrite);
+        FileStream(const String& Identifier,
+                   const Whole SplitIdx = 0,
+                   const Whole Flags = Mezzanine::SF_ReadWrite);
+        /// @brief Open constructor.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        FileStream(const String& Identifier,
+                   const String& Group,
+                   const Whole SplitIdx = 0,
+                   const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Class destructor.
         virtual ~FileStream();
 
@@ -205,10 +285,22 @@ namespace Mezzanine
 
         /// @brief Opens this stream to a file.
         /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
-        /// @param FilePath The full path to the file to be opened.
+        /// @param Identifier The full path to the file to be opened.
         /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
         /// @param Flags The configuration to open the file with.
-        void OpenFile(const String& FilePath, const Whole SplitIdx = 0, const Whole Flags = Mezzanine::SF_ReadWrite);
+        void OpenFile(const String& Identifier,
+                      const Whole SplitIdx = 0,
+                      const Whole Flags = Mezzanine::SF_ReadWrite);
+        /// @brief Opens this stream to a file.
+        /// @exception If the stream fails to open the file specified, a IO_FILE_NOT_FOUND_EXCEPTION will be thrown.
+        /// @param Identifier The full path to the file to be opened.
+        /// @param Group The unique name of the AssetGroup this stream belongs to (or can be empty).
+        /// @param SplitIdx The index of the character where the archive path ends and the file sub-path begins.
+        /// @param Flags The configuration to open the file with.
+        void OpenFile(const String& Identifier,
+                      const String& Group,
+                      const Whole SplitIdx = 0,
+                      const Whole Flags = Mezzanine::SF_ReadWrite);
         /// @brief Gets whether or not this stream is currently open to a file.
         /// @return Returns true if this is streaming to/from a file.  False otherwise.
         Boole IsOpenToFile() const;
@@ -225,12 +317,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // StreamBase Methods
 
-        /// @copydoc StreamBase::GetStreamIdentifier() const
-        virtual String GetStreamIdentifier() const override;
-        /// @copydoc StreamBase::CanSeek() const
-        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::GetIdentifier() const
+        virtual String GetIdentifier() const override;
+        /// @copydoc StreamBase::GetGroup() const
+        virtual String GetGroup() const override;
+
         /// @copydoc StreamBase::GetSize() const
         virtual StreamSize GetSize() const override;
+        /// @copydoc StreamBase::CanSeek() const
+        virtual Boole CanSeek() const override;
+        /// @copydoc StreamBase::IsEncrypted() const
+        virtual Boole IsEncrypted() const override;
+        /// @copydoc StreamBase::IsRaw() const
+        virtual Boole IsRaw() const override;
     };//FileStream
 
     /// @brief Convenience type for an output file stream in a shared_ptr.
