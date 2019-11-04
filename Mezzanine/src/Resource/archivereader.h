@@ -66,24 +66,24 @@ namespace Mezzanine
             /// @brief Opens an archive for IO operations.
             /// @param Identifier The path and name to the archive to be opened.
             /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
-            virtual void Open(const String& Identifier, const String& Group) = 0;
+            virtual void OpenReader(const String& Identifier, const String& Group) = 0;
             /// @brief Open an archive to a memory buffer.
             /// @param Identifier A string identifying the buffer to be used as the archive.
             /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
             /// @param Owner Indicates if the reader should become the owner of the buffer, deleting it when it closes.
-            virtual void Open(const String& Identifier,
-                              const String& Group,
-                              Char8* Buffer,
-                              const size_t BufferSize,
-                              const Boole Owner) = 0;
+            virtual void OpenReader(const String& Identifier,
+                                    const String& Group,
+                                    Char8* Buffer,
+                                    const size_t BufferSize,
+                                    const Boole Owner) = 0;
 
             /// @brief Opens an archive for IO operations.
             /// @param Identifier The path and name to the archive to be opened.
             /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
             /// @param Password The password necessary to open the archive.
-            virtual void Open(const String& Identifier, const String& Group, const String& Password) = 0;
+            virtual void OpenReader(const String& Identifier, const String& Group, const String& Password) = 0;
             /// @brief Open an archive to a memory buffer.
             /// @param Identifier A string identifying the buffer to be used as the archive.
             /// @param Group The unique name of the AssetGroup this reader belongs to (or can be empty).
@@ -91,19 +91,19 @@ namespace Mezzanine
             /// @param Buffer A pointer to the buffer containing the archive.
             /// @param BufferSize The size of the buffer container the archive.
             /// @param Owner Indicates if the reader should become the owner of the buffer, deleting it when it closes.
-            virtual void Open(const String& Identifier,
-                              const String& Group,
-                              const String& Password,
-                              Char8* Buffer,
-                              const size_t BufferSize,
-                              const Boole Owner) = 0;
+            virtual void OpenReader(const String& Identifier,
+                                    const String& Group,
+                                    const String& Password,
+                                    Char8* Buffer,
+                                    const size_t BufferSize,
+                                    const Boole Owner) = 0;
 
             /// @brief Gets whether or not this archive is open for I/O operations.
             /// @return Returns true if this archive is open and in use, false otherwise.
-            virtual Boole IsOpen() const = 0;
+            virtual Boole IsReaderOpen() const = 0;
             /// @brief Closes the archive and removes all streams to it.
             /// @remarks The archive will be set back to a pre-open state and can be reopened.
-            virtual void Close() = 0;
+            virtual void CloseReader() = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Default Password

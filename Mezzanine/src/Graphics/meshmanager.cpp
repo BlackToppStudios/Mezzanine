@@ -41,6 +41,8 @@
 #define _graphicsmeshmanager_cpp
 
 #include "Graphics/meshmanager.h"
+#include "Graphics/materialmanager.h"
+#include "Graphics/skeletonmanager.h"
 #include "Graphics/mesh.h"
 
 #include "Graphics/Loaders/iostreamwrapper.h.cpp"
@@ -48,7 +50,10 @@
 
 #include "Resource/pathutilities.h"
 
+#include "datastream.h"
+#include "filestream.h"
 #include "exception.h"
+#include "entresol.h"
 
 #include <OgreMeshManager.h>
 #include <OgreMeshSerializer.h>
@@ -83,32 +88,37 @@ namespace Mezzanine
 
         Mesh* MeshManager::LoadMeshNoCheck(IStreamPtr Stream)
         {
-            if( Stream.IsValid() ) {
+            if( Stream->IsValid() ) {
+                String MeshName = Resource::GetBaseName(Stream->GetIdentifier());
                 ManualMeshLoader* NewLoader = new ManualMeshLoader(Stream);
-                Ret = new Mesh(this->InternalManager->load(MeshName,"Mezzanine",true,NewLoader),NewLoader);
-                this->AddMesh(Ret);
+                Mesh* Ret = new Mesh(this->InternalManager->load(MeshName,"Mezzanine",true,NewLoader),NewLoader);
+                this->Meshes.push_back(Ret);
+                this->LoadChildMaterials(Ret);
+                this->LoadChildSkeleton(Ret);
+                return Ret;
             }
             return nullptr;
         }
 
-        void MeshManager::AddMesh(Mesh* ToAdd)
+        void MeshManager::LoadChildMaterials(Mesh* ParentMesh)
         {
-            MeshIterator MeshIt = std::find(this->Meshes.begin(),this->Meshes.end(),ToBeRemoved);
-            if( MeshIt == this->Meshes.end() ) {
-                this->Meshes.push_back(ToAdd);
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Meshes must have unique names!");
-            }
-        }
-
-        void MeshManager::LoadChildMaterial(Mesh* ParentMesh)
-        {
-
+            MaterialManager* MaterialMan = this->TheEntresol->GetManager<MaterialManager>();
+            for( Whole SubMeshIdx = 0 ; SubMeshIdx < ParentMesh->GetNumSubMeshes() ; ++SubMeshIdx )
+            {
+                String MaterialName = ParentMesh->GetSubMesh( SubMeshIdx )->GetMaterialName();
+                if( !MaterialName.empty() ) {
+                    MaterialMan->LoadMaterials( MaterialName, ParentMesh->GetGroup() );
+                }
+            }//*/
         }
 
         void MeshManager::LoadChildSkeleton(Mesh* ParentMesh)
         {
-
+            String SkeletonName = ParentMesh->GetSkeletonName();
+            if( !SkeletonName.empty() ) {
+                SkeletonManager* SkeletonMan = this->TheEntresol->GetManager<SkeletonManager>();
+                SkeletonMan->LoadSkeleton(SkeletonName);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,15 +126,21 @@ namespace Mezzanine
 
         Mesh* MeshManager::CreateMesh(const String& Name)
         {
+            Mesh* Ret = GetMesh(Name);
+            if( Ret != nullptr ) {
+                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"A Mesh with that name already exists.");
+            }
+
             Ogre::MeshPtr NewInternalMesh = this->InternalManager->create(Name,"Internal",true,nullptr,nullptr);
-            return this->_WrapInternalMesh( NewInternalMesh );
+            Ret = new Mesh(NewInternalMesh,nullptr);
+            this->Meshes.push_back(Ret);
+            return Ret;
         }
 
         Mesh* MeshManager::GetMesh(const String& Name)
         {
-            MeshIterator MeshIt = std::find_if(this->Meshes.begin(),this->Meshes.end(),[&](Mesh* ToCheck) {
-                return ToCheck->GetName() == Name;
-            });
+            auto Finder = [&](Mesh* ToCheck) -> Boole { return ToCheck->GetName() == Name; };
+            MeshIterator MeshIt = std::find_if(this->Meshes.begin(),this->Meshes.end(),Finder);
             if( MeshIt != this->Meshes.end() ) {
                 return (*MeshIt);
             }
@@ -162,7 +178,7 @@ namespace Mezzanine
             String MeshName = Resource::GetBaseName(AssetIdentifier);
             Mesh* Ret = this->GetMesh(MeshName);
             if( Ret == nullptr ) {
-                ResourceManager* ResourceMan = this->TheEntresol->GetManager<ResourceManager::InterfaceType>();
+                Resource::ResourceManager* ResourceMan = this->TheEntresol->GetManager<Resource::ResourceManager>();
                 IStreamPtr MeshStream = ResourceMan->OpenAsset(AssetIdentifier,GroupName);
                 Ret = this->LoadMeshNoCheck(MeshStream);
             }
@@ -171,11 +187,11 @@ namespace Mezzanine
 
         Mesh* MeshManager::LoadMesh(const String& LocalPath)
         {
-            String MeshName = Resource::GetBaseName(AssetIdentifier);
+            size_t Slash = LocalPath.find_last_of("\\/");
+            String MeshName = Resource::GetBaseName(LocalPath.substr(Slash + 1));
             Mesh* Ret = this->GetMesh(MeshName);
             if( Ret == nullptr ) {
-                size_t Slash = LocalPath.find_last_of("\\/");
-                Resource::FileIStreamPtr MeshStream = std::make_shared<Resource::FileIStream>();
+                FileIStreamPtr MeshStream = std::make_shared<FileIStream>();
                 MeshStream->OpenFile(LocalPath,Slash);
                 Ret = this->LoadMeshNoCheck(MeshStream);
             }
@@ -183,14 +199,10 @@ namespace Mezzanine
 
         Mesh* MeshManager::LoadMesh(IStreamPtr Stream)
         {
-            Mesh* Ret = nullptr;
-            if( Stream.IsValid() ) {
-                String MeshName = Resource::GetBaseName(Stream->GetIdentifier());
-                Ret = this->GetMesh(MeshName);
-                if( Ret == nullptr ) {
-                    ManualMeshLoader* NewLoader = new ManualMeshLoader(Stream);
-                    Ret = this->LoadMeshNoCheck(Stream);
-                }
+            String MeshName = Resource::GetBaseName(Stream->GetIdentifier());
+            Mesh* Ret = this->GetMesh(MeshName);
+            if( Ret == nullptr ) {
+                Ret = this->LoadMeshNoCheck(Stream);
             }
             return Ret;
         }

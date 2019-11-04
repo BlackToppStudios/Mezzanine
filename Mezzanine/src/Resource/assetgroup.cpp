@@ -103,31 +103,7 @@ namespace Mezzanine
             {  }
 
         AssetGroup::~AssetGroup()
-        {
-            this->RemoveAllReadLocations();
-        }
-
-        ArchiveReader* AssetGroup::FindAssetReader(const String& Identifier) const
-        {
-            for( ArchiveReader* CurrReader : this->Readers )
-            {
-                if( CurrReader->FileExists(Identifier) ) {
-                    return CurrReader;
-                }
-            }
-            return nullptr;
-        }
-
-        ArchiveReader* AssetGroup::FindAssetReaderOrThrow(const String& Identifier) const
-        {
-            ArchiveReader* FoundReader = this->FindAssetReader(Identifier);
-            if( FoundReader == nullptr ) {
-                StringStream ExceptionStream;
-                ExceptionStream << "Asset \"" << Identifier << "\" was not found in group \"" << this->Name << "\".";
-                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
-            }
-            return FoundReader;
-        }
+            { this->RemoveAllReadLocations(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -154,6 +130,28 @@ namespace Mezzanine
                 }
             }
             return nullptr;
+        }
+
+        ArchiveReader* AssetGroup::GetAssetReader(const String& Identifier) const
+        {
+            for( ArchiveReader* CurrReader : this->Readers )
+            {
+                if( CurrReader->FileExists(Identifier) ) {
+                    return CurrReader;
+                }
+            }
+            return nullptr;
+        }
+
+        ArchiveReader* AssetGroup::GetAssetReaderOrThrow(const String& Identifier) const
+        {
+            ArchiveReader* FoundReader = this->GetAssetReader(Identifier);
+            if( FoundReader == nullptr ) {
+                StringStream ExceptionStream;
+                ExceptionStream << "Asset \"" << Identifier << "\" was not found in group \"" << this->Name << "\".";
+                MEZZ_EXCEPTION(ExceptionBase::IO_FILE_NOT_FOUND_EXCEPTION,ExceptionStream.str());
+            }
+            return FoundReader;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -198,11 +196,11 @@ namespace Mezzanine
 
         IStreamPtr AssetGroup::OpenAsset(const String& Identifier, const Whole Flags, const Boole Raw )
         {
-            IStreamPtr ReturnStream = GetInputStream(Identifier);
+            IStreamPtr ReturnStream = this->GetInputStream(Identifier);
             if( ReturnStream ) {
                 return ReturnStream;
             }
-            ArchiveReader* FoundReader = this->FindAssetReader(Identifier);
+            ArchiveReader* FoundReader = this->GetAssetReader(Identifier);
             if( FoundReader != nullptr ) {
                 ReturnStream = FoundReader->OpenIStream(Identifier,Flags,Raw);
                 this->InputStreams.push_back(ReturnStream);
@@ -218,7 +216,7 @@ namespace Mezzanine
             if( ReturnStream ) {
                 return ReturnStream;
             }
-            ArchiveReader* FoundReader = this->FindAssetReader(Identifier);
+            ArchiveReader* FoundReader = this->GetAssetReader(Identifier);
             if( FoundReader != nullptr ) {
                 ReturnStream = FoundReader->OpenEncryptedIStream(Identifier,Password,Flags,Raw);
                 this->InputStreams.push_back(ReturnStream);
@@ -232,7 +230,7 @@ namespace Mezzanine
             if( IStreamPtr ReturnStream = GetInputStream(Identifier) ) {
                 return ReturnStream;
             }
-            ArchiveReader* FoundReader = this->FindAssetReader(Identifier);
+            ArchiveReader* FoundReader = this->GetAssetReader(Identifier);
             if( FoundReader != nullptr ) {
                 IStreamPtr TempStream = FoundReader->OpenIStream(Identifier,Flags,Raw);
 
@@ -252,7 +250,7 @@ namespace Mezzanine
             if( IStreamPtr ReturnStream = GetInputStream(Identifier) ) {
                 return ReturnStream;
             }
-            ArchiveReader* FoundReader = this->FindAssetReader(Identifier);
+            ArchiveReader* FoundReader = this->GetAssetReader(Identifier);
             if( FoundReader != nullptr ) {
                 IStreamPtr TempStream = FoundReader->OpenEncryptedIStream(Identifier,Password,Flags,Raw);
 

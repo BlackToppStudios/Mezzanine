@@ -1,4 +1,4 @@
-// Â© Copyright 2010 - 2017 BlackTopp Studios Inc.
+// © Copyright 2010 - 2019 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,55 +37,28 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _assetloader_h
+#define _assetloader_h
 
-#ifndef _graphicsmaterial_cpp
-#define _graphicsmaterial_cpp
-
-#include "Graphics/material.h"
-
-#include "Graphics/Loaders/manualmaterialloader.h.cpp"
-
-#include <OgreMaterial.h>
+#include "datastream.h"
 
 namespace Mezzanine
 {
-    namespace Graphics
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A base class for loaders of specific assets.
+    /// @tparam AssetType The final in-memory type of the Asset.
+    ///////////////////////////////////////
+    template<class AssetType>
+    class MEZZ_LIB AssetLoader
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // Material Methods
+    public:
+        using LoadedType = AssetType;
 
-        Material::Material(Ogre::MaterialPtr ToWrap, ManualMaterialLoader* Loader) :
-            InternalMaterial(ToWrap),
-            InternalLoader(Loader)
-        {
-
-        }
-
-        Material::~Material()
-        {
-            if( this->InternalLoader ) {
-                delete this->InternalLoader;
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Asset Query
-
-        const String& Material::GetName() const
-            { return this->InternalMaterial->getName(); }
-
-        const String& Material::GetGroup() const
-            { return this->InternalMaterial->getGroup(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        Ogre::MaterialPtr Material::_GetInternalMaterial() const
-            { return this->InternalMaterial; }
-
-        Ogre::MaterialPtr Material::_Upcast(Ogre::ResourcePtr ToCast)
-            { return std::static_pointer_cast<Ogre::Material>(ToCast); }
-    }//Graphics
-}//Mezzanine
+        virtual String GetAssetPattern() const = 0;
+        virtual Boole IsAssetContainer() const = 0;
+        virtual std::vector<LoadedType*> LoadAssets(IStreamPtr Stream) = 0;
+        virtual void SaveAssets(const std::vector<LoadedType*> ToSave, OStreamPtr Stream) = 0;
+    };//AssetLoader
+}
 
 #endif

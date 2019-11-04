@@ -81,13 +81,13 @@ namespace Mezzanine
             /// @param Location The identifier (usually a path) of the location being added.
             /// @param Type The type of group the location is being added to.
             /// @param GroupName The name of the group the location is being added to.
-            virtual void AssetLocationAdded(const String& Location, const ArchiveType Type, const String& GroupName) = 0;
+            virtual void OnAssetLocationAdded(const String& Location, const ArchiveType Type, const String& GroupName) = 0;
             /// @brief Notifies the listener that an AssetGroup has been created.
             /// @param GroupName The name of the group being created.
-            virtual void AssetGroupCreated(const String& GroupName) = 0;
+            virtual void OnAssetGroupCreated(const String& GroupName) = 0;
             /// @brief Notifies the listener that an AssetGroup will be destroyed.
             /// @param GroupName The name of the group being destroyed.
-            virtual void AssetGroupDestroyed(const String& GroupName) = 0;
+            virtual void OnAssetGroupDestroyed(const String& GroupName) = 0;
         };//ResourceEventListener
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -359,11 +359,11 @@ namespace Mezzanine
             /// @brief Gets a string that describes an @ref ArchiveType.
             /// @param ArchType A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
             /// @return A String that represents the @ref ArchiveType passed.
-            static String GetStringFromArchiveType(const Resource::ArchiveType ArchType);
+            static String GetStringFromArchiveType(const ArchiveType ArchType);
             /// @brief Gets an @ref ArchiveType from a string.
             /// @param FromString The string to be converted to an archive type.
             /// @return Returns a @ref ArchiveType corresponding to the string provided, or AT_Invalid if it is invalid.
-            static Resource::ArchiveType GetArchiveTypeFromString(const String& FromString);
+            static ArchiveType GetArchiveTypeFromString(const String& FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

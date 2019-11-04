@@ -42,19 +42,27 @@
 
 #include "Graphics/Loaders/manualmaterialloader.h.cpp"
 
+#include <OgreMaterial.h>
+#include <OgreMaterialManager.h>
+#include <OgreMaterialSerializer.h>
+
 namespace Mezzanine
 {
     namespace Graphics
     {
-        ManualMaterialLoader::ManualMaterialLoader(Resource::ResourceManager* Manager) :
-            ResourceMan(Manager)
-        {
-
-        }
+        ManualMaterialLoader::ManualMaterialLoader(IStreamPtr Stream) :
+            LoadStream(Stream)
+            {  }
 
         void ManualMaterialLoader::loadResource(Ogre::Resource* resource)
         {
+            Ogre::Material* NewMaterial = static_cast<Ogre::Material*>(resource);
+            Ogre::DataStreamPtr WrappedStream = std::make_shared<IStreamWrapper>(LoadStream);
 
+            //Ogre::MaterialSerializer MaterialMaker;
+            //MaterialMaker.parseScript(WrappedStream,"Mezzanine");
+
+            Ogre::MaterialManager::getSingleton().parseScript(WrappedStream,"Mezzanine");
         }
     }//Graphics
 }//Mezzanine

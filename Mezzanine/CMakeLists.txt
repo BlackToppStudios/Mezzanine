@@ -80,6 +80,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}appeventdispatcher.h"
         "${${PROJECT_NAME}_SRC_DIR}areaeffect.h"
         "${${PROJECT_NAME}_SRC_DIR}assetid.h"
+        "${${PROJECT_NAME}_SRC_DIR}assetloader.h"
         "${${PROJECT_NAME}_SRC_DIR}axisalignedbox.h"
         "${${PROJECT_NAME}_SRC_DIR}binarybuffer.h"
         "${${PROJECT_NAME}_SRC_DIR}binaryfind.h"

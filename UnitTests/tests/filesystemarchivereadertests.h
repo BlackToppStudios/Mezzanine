@@ -88,7 +88,7 @@ public:
                                         "Multiple sentences deliberately put on a single line.");
 
         FileSystemArchiveReader TestReader;
-        TEST( !TestReader.IsOpen(),
+        TEST( !TestReader.IsReaderOpen(),
               "FileSystemArchiveReader::FileSystemArchiveReader()" );
 
         TEST( TestReader.GetIdentifier().empty(),
@@ -102,9 +102,9 @@ public:
         #endif
 
         String BlankStr;
-        TestReader.Open(ArchivePath,BlankStr);
-        TEST( TestReader.IsOpen(),
-              "FileSystemArchiveReader::Open(const_String&)" );
+        TestReader.OpenReader(ArchivePath,BlankStr);
+        TEST( TestReader.IsReaderOpen(),
+              "FileSystemArchiveReader::OpenReader(const_String&)" );
 
         TEST( TestReader.GetIdentifier() == ArchivePath,
               "FileSystemArchiveReader::GetIdentifier()_const" );
@@ -294,9 +294,9 @@ public:
                   "FileIStream::CloseFile()-SubDir" );
         }// Streaming - SubDir File
 
-        TestReader.Close();
-        TEST( !TestReader.IsOpen(),
-              "FileSystemArchiveReader::Close()" );
+        TestReader.CloseReader();
+        TEST( !TestReader.IsReaderOpen(),
+              "FileSystemArchiveReader::CloseReader()" );
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.

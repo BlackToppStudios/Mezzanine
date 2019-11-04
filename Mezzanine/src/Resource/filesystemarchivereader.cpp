@@ -113,7 +113,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
-        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group)
+        void FileSystemArchiveReader::OpenReader(const String& Identifier, const String& Group)
         {
             Boole DirExists = Resource::DirectoryExists(Identifier);
             if( !DirExists ) {
@@ -129,36 +129,36 @@ namespace Mezzanine
             }
         }
 
-        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group, Char8* Buffer,
-                                           const size_t BufferSize, const Boole Owner)
+        void FileSystemArchiveReader::OpenReader(const String& Identifier, const String& Group, Char8* Buffer,
+                                                 const size_t BufferSize, const Boole Owner)
         {
             String ExceptionMsg("FileSystem Archives do not support initializing from a memory buffer.");
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
         }
 
-        void FileSystemArchiveReader::Open(const String& Identifier, const String& Group, const String& Password)
+        void FileSystemArchiveReader::OpenReader(const String& Identifier, const String& Group, const String& Password)
         {
             String ExceptionMsg("FileSystem password protection isn't supported.");
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
         }
 
-        void FileSystemArchiveReader::Open(const String& Identifier,
-                                           const String& Group,
-                                           const String& Password,
-                                           Char8* Buffer,
-                                           const size_t BufferSize,
-                                           const Boole Owner)
+        void FileSystemArchiveReader::OpenReader(const String& Identifier,
+                                                 const String& Group,
+                                                 const String& Password,
+                                                 Char8* Buffer,
+                                                 const size_t BufferSize,
+                                                 const Boole Owner)
         {
             String ExceptionMsg("FileSystem password protection isn't supported.");
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,ExceptionMsg);
         }
 
-        Boole FileSystemArchiveReader::IsOpen() const
+        Boole FileSystemArchiveReader::IsReaderOpen() const
         {
             return !this->ArchiveIdentifier.empty();
         }
 
-        void FileSystemArchiveReader::Close()
+        void FileSystemArchiveReader::CloseReader()
         {
             this->ArchiveIdentifier.clear();
         }

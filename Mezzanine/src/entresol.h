@@ -386,7 +386,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
         /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
         /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
-        void ConstructFromXML(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile);
+        void ConstructFromXML(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile);
 
         /// @internal
         /// @brief If not already created create an instance of Ogre.
@@ -435,7 +435,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
         /// @brief Factory and initializer file constructor.
         /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
         /// If the file provided is not one of this type this function will throw an exception. @n @n
@@ -444,7 +444,7 @@ namespace Mezzanine
         /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
         /// @param ArchType The type of archive at the path provided.
         /// @param InitializerFile The file that describes how to initialize Mezzanine.
-        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
+        Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
         /// @brief Descriptive constructor With Manager Pointers.
         /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
         /// @param LogFileName This is the place that log messages get sent to.
@@ -613,10 +613,10 @@ namespace Mezzanine
         /// @param WhichOne If multiple managers of the same type are stored, get the N-th manager of that type.
         /// @return This returns a pointer to the ManagerType specified, or nullptr if no matching manager exists.
         template<class ManagerType>
-        ManagerType GetManager(UInt16 WhichOne = 0) const
+        ManagerType* GetManager(UInt16 WhichOne = 0) const
         {
             static_assert( std::is_base_of<EntresolManager,ManagerType>::value, "Invalid Manager Type Specified." );
-            return static_cast<ManagerType>( this->GetManager(ManagerType::InterfaceType,WhichOne) );
+            return static_cast<ManagerType*>( this->GetManager(ManagerType::InterfaceType,WhichOne) );
         }
         /// @brief This removes a manager of a specific type from the list.
         /// @param RemoveType The type ID of the manager to remove.  Use ManagerBase::ManagerType enum values for this.

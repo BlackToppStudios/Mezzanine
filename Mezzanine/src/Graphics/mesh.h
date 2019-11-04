@@ -125,7 +125,11 @@ namespace Mezzanine
             Whole GetNumSubMeshes() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Skeleton Methods\
+            // Skeleton Methods
+
+            /// @brief Gets the name of the Skeleton animating this mesh.
+            /// @return Returns the name of the mesh
+            String GetSkeletonName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

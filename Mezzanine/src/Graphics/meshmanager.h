@@ -97,13 +97,9 @@ namespace Mezzanine
             /// @param Stream A pointer to the stream to load the Mesh from.
             /// @return Returns a pointer to the loaded Mesh.
             Mesh* LoadMeshNoCheck(IStreamPtr Stream);
-            /// @brief Adds a Mesh to this manager.
-            /// @exception If the name of the Mesh being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
-            /// @param ToAdd The Mesh to be added.
-            void AddMesh(Mesh* ToAdd);
-            /// @brief Loads a Material that is referenced by a Mesh.
-            /// @param ParentMesh The Mesh referencing the Material to be loaded.
-            void LoadChildMaterial(Mesh* ParentMesh);
+            /// @brief Loads all Materials that are referenced by a Mesh.
+            /// @param ParentMesh The Mesh referencing the Materials to be loaded.
+            void LoadChildMaterials(Mesh* ParentMesh);
             /// @brief Loads a Skeleton that is referenced by a Mesh.
             /// @param ParentMesh The Mesh referencing the Skeleton to be loaded.
             void LoadChildSkeleton(Mesh* ParentMesh);

@@ -44,12 +44,40 @@
 #include "Graphics/material.h"
 
 #include "Graphics/Loaders/iostreamwrapper.h.cpp"
+#include "Graphics/Loaders/manualmaterialloader.h.cpp"
 
+#include "Resource/archiveentry.h"
+#include "Resource/archivereader.h"
+#include "Resource/assetgroup.h"
+#include "Resource/pathutilities.h"
+
+#include "datastream.h"
+#include "filestream.h"
 #include "exception.h"
+#include "entresol.h"
 
 #include <OgreMaterial.h>
 #include <OgreMaterialManager.h>
+#include <OgreScriptCompiler.h>
 //#include <OgreMaterialSerializer.h>
+
+namespace
+{
+    class MaterialLoaderListener : public Ogre::ScriptCompilerListener
+    {
+    public:
+        MaterialLoaderListener() = default;
+        ~MaterialLoaderListener() = default;
+
+        bool handleEvent(Ogre::ScriptCompiler* Compiler, Ogre::ScriptCompilerEvent* Event, void* RetVal)
+        {
+            if( Event->mType == "createMaterial" ) {
+
+            }
+            return false;
+        }
+    };//MaterialLoaderListener
+}
 
 namespace Mezzanine
 {
@@ -77,15 +105,19 @@ namespace Mezzanine
             this->RemoveAllMaterials();
         }
 
-        void MaterialManager::AddMaterial(Material* ToAdd)
+        Material* MaterialManager::LoadMaterialNoCheck(IStreamPtr Stream)
         {
-            String MaterialName = ToAdd->GetName();
-            MaterialIterator MaterialIt = this->Materials.find( MaterialName );
-            if( MaterialIt == this->Materials.end() ) {
-                this->Materials.insert( std::pair<String,Material*>(MaterialName,ToAdd) );
-            }else{
-                MEZZ_EXCEPTION(ExceptionBase::II_DUPLICATE_IDENTITY_EXCEPTION,"Materials must have unique names when loaded!");
+            if( Stream->IsValid() ) {
+                String MaterialName = Resource::GetBaseName(Stream->GetIdentifier());
+                ManualMaterialLoader* NewLoader = new ManualMaterialLoader(Stream);
+                Material* Ret = new Material(this->InternalManager->load(MaterialName,"Mezzanine",true,NewLoader),NewLoader);
+                this->Materials.push_back(Ret);
+                this->LoadChildMaterials(Ret);
+                this->LoadChildTextures(Ret);
+                this->LoadChildGPUPrograms();
+                return Ret;
             }
+            return nullptr;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -98,9 +130,10 @@ namespace Mezzanine
 
         Material* MaterialManager::GetMaterial(const String& Name)
         {
-            MaterialIterator MaterialIt = this->Materials.find(Name);
+            auto Finder = [&](Material* ToCheck) -> Boole { return ToCheck->GetName() == Name; };
+            MaterialIterator MaterialIt = std::find_if(this->Materials.begin(),this->Materials.end(),Finder);
             if( MaterialIt != this->Materials.end() ) {
-                return (*MaterialIt).second;
+                return (*MaterialIt);
             }
             return nullptr;
         }
@@ -112,67 +145,71 @@ namespace Mezzanine
 
         void MaterialManager::RemoveMaterial(Material* ToBeRemoved)
         {
-            MaterialIterator MaterialIt = this->Materials.find(ToBeRemoved->GetName());
+            MaterialIterator MaterialIt = std::find(this->Materials.begin(),this->Materials.end(),ToBeRemoved);
             if( MaterialIt != this->Materials.end() ) {
-                this->_GetInternalManager()->remove(ToBeRemoved->GetName());
-                delete (*MaterialIt).second;
                 this->Materials.erase(MaterialIt);
+                this->_GetInternalManager()->remove(ToBeRemoved->GetName());
+                delete (*MaterialIt);
             }
         }
 
         void MaterialManager::RemoveAllMaterials()
         {
             for( MaterialIterator MaterialIt = this->Materials.begin() ; MaterialIt != this->Materials.end() ; ++MaterialIt )
-                { delete (*MaterialIt).second; }
+                { delete (*MaterialIt); }
             this->Materials.clear();
-            this->_GetInternalManager()->removeAll();
+            this->InternalManager->removeAll();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Material I/O
 
-        Material* MaterialManager::LoadMaterial(const String& AssetIdentifier, const String& GroupName)
+        MaterialVector MaterialManager::LoadMaterials(const String& AssetIdentifier, const String& GroupName)
         {
-            MaterialIterator MaterialIt = this->Materials.find(AssetIdentifier);
-            if( MaterialIt != this->Materials.end() ) {
-                return (*MaterialIt).second;
+            String MaterialName = Resource::GetBaseName(AssetIdentifier);
+            Material* Ret = this->GetMaterial(MaterialName);
+            if( Ret == nullptr ) {
+                Resource::ResourceManager* ResourceMan = this->TheEntresol->GetManager<Resource::ResourceManager>();
+                IStreamPtr MaterialStream = ResourceMan->OpenAsset(AssetIdentifier,GroupName);
+                Ret = this->LoadMaterialNoCheck(MaterialStream);
             }
-            Ogre::MaterialPtr NewMat = Material::_Upcast( this->_GetInternalManager()->load(AssetIdentifier,GroupName) );
-            return this->_WrapInternalMaterial( NewMat );
+            return Ret;
         }
 
-        Material* MaterialManager::LoadMaterial(const String& LocalPath)
+        MaterialVector MaterialManager::LoadMaterials(const String& LocalPath)
         {
             size_t Slash = LocalPath.find_last_of("\\/");
-            if( Slash != String::npos ) {
-                /*std::ifstream Stream;
-                Stream.open(LocalPath.c_str());
-                Ogre::MaterialSerializer OgreSerializer;
-                Ogre::DataStreamPtr OgreStreamPtr(new STDIStreamWrapper(&Stream,false));
-                Ogre::MaterialPtr NewMaterial = std::static_pointer_cast<Ogre::Material>( Ogre::MaterialManager::getSingleton().create(LocalPath.substr(Slash+1),Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME) );
-                OgreSerializer.importMaterial(OgreStreamPtr,NewMaterial.get());
-                return this->_WrapInternalMaterial(NewMaterial);//*/
+            String MaterialName = Resource::GetBaseName(LocalPath.substr(Slash + 1));
+            Material* Ret = this->GetMaterial(MaterialName);
+            if( Ret == nullptr ) {
+                FileIStreamPtr MaterialStream = std::make_shared<FileIStream>();
+                MaterialStream->OpenFile(LocalPath,Slash);
+                Ret = this->LoadMaterialNoCheck(MaterialStream);
             }
-            return nullptr;
         }
 
-        Material* MaterialManager::LoadMaterial(IStreamPtr Stream)
+        MaterialVector MaterialManager::LoadMaterials(IStreamPtr Stream)
         {
-
+            String MaterialName = Resource::GetBaseName(Stream->GetIdentifier());
+            Material* Ret = this->GetMaterial(MaterialName);
+            if( Ret == nullptr ) {
+                Ret = this->LoadMaterialNoCheck(Stream);
+            }
+            return Ret;
         }
 
-        void MaterialManager::SaveMaterial(Material* ToSave, const String& AssetIdentifier, const String& GroupName)
+        void MaterialManager::SaveMaterials(MaterialVector& ToSave, const String& AssetIdentifier, const String& GroupName)
         {
             MEZZ_EXCEPTION(ExceptionBase::NOT_IMPLEMENTED_EXCEPTION,"Saving Materials via asset groups is not supported yet.");
         }
 
-        void MaterialManager::SaveMaterial(Material* ToSave, const String& LocalPath)
+        void MaterialManager::SaveMaterials(MaterialVector& ToSave, const String& LocalPath)
         {
             //Ogre::MaterialSerializer OgreSerializer;
             //OgreSerializer.exportMaterial(ToSave->_GetInternalMaterial().get(),LocalPath);
         }
 
-        void MaterialManager::SaveMaterial(Material* ToSave, OStreamPtr Stream)
+        void MaterialManager::SaveMaterials(MaterialVector& ToSave, OStreamPtr Stream)
         {
 
         }
@@ -194,6 +231,38 @@ namespace Mezzanine
 
         String MaterialManager::GetImplementationTypeName() const
             { return MaterialManager::ImplementationName; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ResourceEventListener Methods
+
+        Resource::ResourceEventListener::IDType MaterialManager::GetID() const
+            { return IDType(this); }
+
+        void MaterialManager::OnAssetLocationAdded(const String& Location, const ArchiveType Type, const String& GroupName)
+        {
+            Resource::ResourceManager* ResourceMan = this->TheEntresol->GetManager<Resource::ResourceManager>();
+            if( ResourceMan ) {
+                Resource::AssetGroup* Group = ResourceMan->GetAssetGroup(GroupName);
+                if( Group ) {
+                    Resource::ArchiveReader* Reader = Group->GetAssetReader(Location);
+                    if( Reader ) {
+                        Resource::ArchiveEntryVector Results = Reader->GetEntries("*.material",true);
+
+                        for( Resource::ArchiveEntry& Entry : Results)
+                        {
+                            IStreamPtr MatStream = Reader->OpenIStream(Entry.Name);
+                            this->LoadMaterials(MatStream);
+                        }
+                    }
+                }
+            }
+        }
+
+        void MaterialManager::OnAssetGroupCreated(const String& GroupName)
+            { /* We don't care. */ }
+
+        void MaterialManager::OnAssetGroupDestroyed(const String& GroupName)
+            { /* We don't care. */ }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods

@@ -47,17 +47,18 @@
 
 namespace Mezzanine
 {
+    /// @brief Indicates the type of archive I/O is being performed to/from.
+    /// @remarks This is placed in the main Mezzanine namespace for convenience.
+    enum ArchiveType
+    {
+        AT_Invalid     = 0,    ///< Indicates an error condition of some kind.
+        AT_FileSystem  = 1,    ///< No archive format, raw binary on disk.
+        AT_Zip         = 2,    ///< Archive abiding by the PKWARE Zip format.
+        AT_7z          = 3     ///< Archive abiding by the 7zip format.
+    };
+
     namespace Resource
     {
-        /// @brief Used to indicate what kind of resources the Entresol should look for
-        enum ArchiveType
-        {
-            AT_Invalid     = 0,    ///< Indicates an error condition of some kind.
-            AT_FileSystem  = 1,    ///< No archive format, raw binary on disk.
-            AT_Zip         = 2,    ///< Archive abiding by the PKWARE Zip format.
-            AT_7z          = 3     ///< Archive abiding by the 7zip format.
-        };
-
         /// @brief Used to indicate an algorithm of compression.
         enum CompressionMethod
         {

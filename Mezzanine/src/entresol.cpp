@@ -105,7 +105,7 @@ namespace Mezzanine
         this->Construct(".","Mezzanine.log",temp);
     }
 
-    Entresol::Entresol(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
+    Entresol::Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile)
     {
         if( String::npos != InitializerFile.find(".mxi") ) {
             this->ConstructFromXML(EngineDataPath, ArchType, InitializerFile);
@@ -114,7 +114,7 @@ namespace Mezzanine
         }
     }
 
-    Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
+    Entresol::Entresol(ManagerFactoryVec& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile)
     {
         for(ManagerFactoryVec::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
         {
@@ -219,7 +219,7 @@ namespace Mezzanine
         this->SanityChecks();
     }
 
-    void Entresol::ConstructFromXML(const String& EngineDataPath, const Resource::ArchiveType ArchType, const String& InitializerFile)
+    void Entresol::ConstructFromXML(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile)
     {
         //Add default manager factories
         Entresol::AddAllEngineDefaultManagerFactories();
@@ -326,8 +326,8 @@ namespace Mezzanine
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupPath;
-                Resource::ArchiveType GroupType = Resource::AT_Invalid;
-                Boole GroupRecursive = false;
+                ArchiveType GroupType = Mezzanine::AT_Invalid;
+                //Boole GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
                 if(!CurrAttrib.Empty())

@@ -103,6 +103,9 @@ namespace Mezzanine
             /// @return Returns the casted MaterialPtr.
             static Ogre::MaterialPtr _Upcast(Ogre::ResourcePtr ToCast);
         };//Material
+
+        /// @brief A convenience type for a vector of pointers to Materials.
+        using MaterialVector = std::vector<Material*>;
     }//Graphics
 }//Mezzanine
 

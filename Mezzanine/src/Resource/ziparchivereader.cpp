@@ -96,14 +96,14 @@ namespace Mezzanine
             {  }
 
         ZipArchiveReader::~ZipArchiveReader()
-            { this->Close(); }
+            { this->CloseReader(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Open / Close
 
         void ZipArchiveReader::Open(const String& Identifier, const String& Group)
         {
-            if( this->IsOpen() ) {
+            if( this->IsReaderOpen() ) {
                 StringStream ExceptionStream;
                 ExceptionStream << "Attempting to open an already opened Archive: \"";
                 ExceptionStream << this->ArchiveIdentifier << "\".";
@@ -133,7 +133,7 @@ namespace Mezzanine
                                     const size_t BufferSize,
                                     const Boole Owner)
         {
-            if( this->IsOpen() ) {
+            if( this->IsReaderOpen() ) {
                 StringStream ExceptionStream;
                 ExceptionStream << "Attempting to open an already opened Archive: \"";
                 ExceptionStream << this->ArchiveIdentifier << "\".";
@@ -157,31 +157,31 @@ namespace Mezzanine
             this->ArchiveGroup.assign(Group);
         }
 
-        void ZipArchiveReader::Open(const String& Identifier, const String& Group, const String& Password)
+        void ZipArchiveReader::OpenReader(const String& Identifier, const String& Group, const String& Password)
         {
-            this->Open(Identifier,Group);
+            this->OpenReader(Identifier,Group);
             this->SetDefaultPassword(Password);
         }
 
-        void ZipArchiveReader::Open(const String& Identifier,
-                                    const String& Group,
-                                    const String& Password,
-                                    Char8* Buffer,
-                                    const size_t BufferSize,
-                                    const Boole Owner)
+        void ZipArchiveReader::OpenReader(const String& Identifier,
+                                          const String& Group,
+                                          const String& Password,
+                                          Char8* Buffer,
+                                          const size_t BufferSize,
+                                          const Boole Owner)
         {
-            this->Open(Identifier,Group,Buffer,BufferSize,Owner);
+            this->OpenReader(Identifier,Group,Buffer,BufferSize,Owner);
             this->SetDefaultPassword(Password);
         }
 
-        Boole ZipArchiveReader::IsOpen() const
+        Boole ZipArchiveReader::IsReaderOpen() const
         {
             return this->InternalArchive != nullptr;
         }
 
-        void ZipArchiveReader::Close()
+        void ZipArchiveReader::CloseReader()
         {
-            if( this->IsOpen() ) {
+            if( this->IsReaderOpen() ) {
                 zip_close(this->InternalArchive);
                 this->InternalArchive = nullptr;
                 this->InternalSource = nullptr;

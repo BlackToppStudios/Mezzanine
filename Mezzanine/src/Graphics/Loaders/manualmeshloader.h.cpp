@@ -70,7 +70,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
 
-            /// @brief Class constructor.
+            /// @brief Stream constructor.
             /// @param Stream A shared pointer to the input stream being loaded from.
             ManualMeshLoader(IStreamPtr Stream);
             /// @brief Class destructor.

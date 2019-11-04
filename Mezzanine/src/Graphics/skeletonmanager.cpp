@@ -44,6 +44,7 @@
 #include "Graphics/skeleton.h"
 
 #include "Graphics/Loaders/iostreamwrapper.h.cpp"
+#include "Graphics/Loaders/manualskeletonloader.h.cpp"
 
 #include "exception.h"
 

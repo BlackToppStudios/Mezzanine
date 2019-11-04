@@ -76,31 +76,31 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Open / Close
 
-            /// @copydoc ArchiveReader::Open(const String&,const String&)
-            void Open(const String& Identifier, const String& Group) override;
-            /// @copydoc ArchiveReader::Open(const String&,const String&, Char8*, const size_t, const Boole)
-            void Open(const String& Identifier,
-                      const String& Group,
-                      Char8* Buffer,
-                      const size_t BufferSize,
-                      const Boole Owner) override;
+            /// @copydoc ArchiveReader::OpenReader(const String&,const String&)
+            void OpenReader(const String& Identifier, const String& Group) override;
+            /// @copydoc ArchiveReader::OpenReader(const String&,const String&, Char8*, const size_t, const Boole)
+            void OpenReader(const String& Identifier,
+                            const String& Group,
+                            Char8* Buffer,
+                            const size_t BufferSize,
+                            const Boole Owner) override;
 
-            /// @copydoc ArchiveReader::Open(const String&,const String&,const String&)
+            /// @copydoc ArchiveReader::OpenReader(const String&,const String&,const String&)
             /// @remarks The Password provided here will also be used as the default password for file I/O.
-            void Open(const String& Identifier, const String& Group, const String& Password) override;
-            /// @copydoc ArchiveReader::Open(const String&,const String&,const String&,Char8*,const size_t,const Boole)
+            void OpenReader(const String& Identifier, const String& Group, const String& Password) override;
+            /// @copydoc ArchiveReader::OpenReader(const String&,const String&,const String&,Char8*,const size_t,const Boole)
             /// @remarks The Password provided here will also be used as the default password for file I/O.
-            void Open(const String& Identifier,
-                      const String& Group,
-                      const String& Password,
-                      Char8* Buffer,
-                      const size_t BufferSize,
-                      const Boole Owner) override;
+            void OpenReader(const String& Identifier,
+                            const String& Group,
+                            const String& Password,
+                            Char8* Buffer,
+                            const size_t BufferSize,
+                            const Boole Owner) override;
 
-            /// @copydoc ArchiveReader::IsOpen() const
-            Boole IsOpen() const override;
-            /// @copydoc ArchiveReader::Close()
-            void Close() override;
+            /// @copydoc ArchiveReader::IsReaderOpen() const
+            Boole IsReaderOpen() const override;
+            /// @copydoc ArchiveReader::CloseReader()
+            void CloseReader() override;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Default Password

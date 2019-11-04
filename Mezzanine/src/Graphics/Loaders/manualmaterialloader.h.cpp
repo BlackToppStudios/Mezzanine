@@ -43,7 +43,7 @@
 // Keeps this file from being documented by doxygen
 /// @cond DontDocumentInternal
 
-#include "datatypes.h"
+#include "datastream.h"
 
 #include <OgreResource.h>
 
@@ -67,13 +67,16 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB ManualMaterialLoader : public Ogre::ManualResourceLoader
         {
-        protected:
-            /// @brief A pointer to the ResourceManager we're loading from.
-            Resource::ResourceManager* ResourceMan = nullptr;
         public:
-            /// @brief Class constructor.
-            /// @param Manager A pointer to the manager providing streams to load from.
-            ManualMaterialLoader(Resource::ResourceManager* Manager);
+            /// @brief A shared pointer to the stream we're loading from.
+            IStreamPtr LoadStream;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Stream constructor.
+            /// @param Stream A shared pointer to the input stream being loaded from.
+            ManualMaterialLoader(IStreamPtr Stream);
             /// @brief Class destructor.
             virtual ~ManualMaterialLoader() = default;
 

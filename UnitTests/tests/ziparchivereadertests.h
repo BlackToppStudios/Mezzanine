@@ -91,7 +91,7 @@ public:
                                         "Multiple sentences deliberately put on a single line.");
 
         ZipArchiveReader TestReader;
-        TEST( !TestReader.IsOpen(),
+        TEST( !TestReader.IsReaderOpen(),
               "ZipArchiveReader::ZipArchiveReader()" );
 
         TEST( TestReader.GetIdentifier().empty(),
@@ -100,9 +100,9 @@ public:
               "ZipArchiveReader::IsCaseSensitive()_const" );
 
         String BlankStr;
-        TestReader.Open(ArchivePath,BlankStr);
-        TEST( TestReader.IsOpen(),
-              "ZipArchiveReader::Open(const_String&)" );
+        TestReader.OpenReader(ArchivePath,BlankStr);
+        TEST( TestReader.IsReaderOpen(),
+              "ZipArchiveReader::OpenReader(const_String&)" );
 
         TEST( TestReader.GetIdentifier() == ArchivePath,
               "ZipArchiveReader::GetIdentifier()_const" );
@@ -281,9 +281,9 @@ public:
                   "ZipIStream::CloseFile()-SubDir" );
         }// Streaming - SubDir File
 
-        TestReader.Close();
-        TEST( !TestReader.IsOpen(),
-              "ZipArchiveReader::Close()" );
+        TestReader.CloseReader();
+        TEST( !TestReader.IsReaderOpen(),
+              "ZipArchiveReader::CloseReader()" );
     }
 
     /// @brief Since RunAutomaticTests is implemented so is this.

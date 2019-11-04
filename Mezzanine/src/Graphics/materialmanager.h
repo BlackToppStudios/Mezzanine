@@ -44,6 +44,7 @@
 #include "entresolmanager.h"
 #include "entresolmanagerfactory.h"
 #include "singleton.h"
+#include "Resource/resourcemanager.h"
 
 namespace Ogre
 {
@@ -62,24 +63,29 @@ namespace Mezzanine
     }
     namespace Graphics
     {
-        class Material;
         // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
         #ifdef SWIG
         %template(SingletonMaterialManager) Singleton<MaterialManager>;
         #endif
 
+        // Forward declare for Material
+        class Material;
+
+        /// @brief Convenience type for a Vector of materials.
+        using MaterialVector = std::vector< Material* >;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This manager handles the storage, generation, and query of of Graphics Materials.
         ///////////////////////////////////////
-        class MEZZ_LIB MaterialManager : public EntresolManager, public Singleton<MaterialManager>
+        class MEZZ_LIB MaterialManager : public EntresolManager, public Resource::ResourceEventListener, public Singleton<MaterialManager>
         {
         public:
             /// @brief Basic container type for Material storage in this class.
-            typedef std::map< String, Material* >             MaterialContainer;
+            using MaterialContainer = std::vector< Material* >;
             /// @brief Iterator type for Material instances stored in this class.
-            typedef MaterialContainer::iterator               MaterialIterator;
+            using MaterialIterator = MaterialContainer::iterator;
             /// @brief Const Iterator type for Material instances stored in this class.
-            typedef MaterialContainer::const_iterator         ConstMaterialIterator;
+            using ConstMaterialIterator = MaterialContainer::const_iterator;
 
             /// @brief A String containing the name of this manager implementation.
             static const String ImplementationName;
@@ -88,11 +94,13 @@ namespace Mezzanine
         protected:
             /// @brief Container storing all of the currently loaded Materials.
             MaterialContainer Materials;
+            /// @brief A pointer to the internal manager being wrapped by this manager.
+            Ogre::MaterialManager* InternalManager;
 
-            /// @brief Adds a Material to this manager.
-            /// @exception If the name of the Material being added is not unique a II_DUPLICATE_IDENTITY_EXCEPTION will be thrown.
-            /// @param ToAdd The Material to be added.
-            void AddMaterial(Material* ToAdd);
+            /// @brief Loads an Material from an input stream.
+            /// @param Stream A pointer to the stream to load the Material from.
+            /// @return Returns a pointer to the loaded Material.
+            Material* LoadMaterialNoCheck(IStreamPtr Stream);
         public:
             /// @brief Class constructor.
             MaterialManager();
@@ -134,33 +142,33 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Material I/O
 
-            /// @brief Loads a Material file from an asset group and prepares it for use.
+            /// @brief Loads a Material file from an asset group and prepares the materials in it for use.
             /// @param AssetIdentifier The identifier of the Material file to be loaded.
             /// @param GroupName The resource group from which the Material file should be loaded.
+            /// @return Returns a container of the materials loaded.
+            MaterialVector LoadMaterials(const String& AssetIdentifier, const String& GroupName);
+            /// @brief Loads a Material file from disk and prepares the materials in it for use.
+            /// @param LocalPath The full path and filename of the Material file to be read on the local disk.
             /// @return Returns a pointer to the loaded Material.
-            Material* LoadMaterial(const String& AssetIdentifier, const String& GroupName);
-            /// @brief Loads a Material file from disk and prepares it for use.
-            /// @param LocalPath The full path and filename of the Material to be read on the local disk.
+            MaterialVector LoadMaterials(const String& LocalPath);
+            /// @brief Loads an Material file from an input stream and prepares the materials in it for use.
+            /// @param Stream A pointer to the stream to load the Material file from.
             /// @return Returns a pointer to the loaded Material.
-            Material* LoadMaterial(const String& LocalPath);
-            /// @brief Loads an Material from an input stream.
-            /// @param Stream A pointer to the stream to load the Material from.
-            /// @return Returns a pointer to the loaded Material.
-            Material* LoadMaterial(IStreamPtr Stream);
+            MaterialVector LoadMaterials(IStreamPtr Stream);
 
             /// @brief Writes a Material to the asset group.
             /// @param ToSave The Material to be saved.
             /// @param AssetIdentifier The identifier of the file to save the Material as.
             /// @param GroupName The name of the asset group to save the Material to.
-            void SaveMaterial(Material* ToSave, const String& AssetIdentifier, const String& GroupName);
+            void SaveMaterials(const MaterialVector& ToSave, const String& AssetIdentifier, const String& GroupName);
             /// @brief Writes a Material to the disk.
             /// @param ToSave The Material to be saved.
             /// @param LocalPath The full path and filename of the Material to be written.
-            void SaveMaterial(Material* ToSave, const String& LocalPath);
+            void SaveMaterials(const MaterialVector& ToSave, const String& LocalPath);
             /// @brief Writes a Material in a final serializable form to an output stream.
             /// @param ToSave The Material to be saved.
             /// @param Stream A pointer to the stream to save the Material to.
-            void SaveMaterial(Material* ToSave, OStreamPtr Stream);
+            void SaveMaterials(const MaterialVector& ToSave, OStreamPtr Stream);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -179,7 +187,20 @@ namespace Mezzanine
             virtual String GetImplementationTypeName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // ResourceEventListener Methods
+
+            /// @copydoc ResourceEventListener::GetID() const
+            virtual IDType GetID() const;
+            /// @copydoc ResourceEventListener::OnAssetLocationAdded(const String&, const ArchiveType, const String&)
+            virtual void OnAssetLocationAdded(const String& Location, const ArchiveType Type, const String& GroupName);
+            /// @copydoc ResourceEventListener::OnAssetGroupCreated(const String&)
+            virtual void OnAssetGroupCreated(const String& GroupName);
+            /// @copydoc ResourceEventListener::OnAssetGroupDestroyed(const String&)
+            virtual void OnAssetGroupDestroyed(const String& GroupName);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
+
             /// @internal
             /// @brief Gets the internal MaterialManager.
             /// @return Returns a pointer to the internal MaterialManager.

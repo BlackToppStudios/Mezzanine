@@ -43,13 +43,8 @@
 #include "Graphics/Loaders/manualmeshloader.h.cpp"
 #include "Graphics/Loaders/iostreamwrapper.h.cpp"
 
-#include "Resource/resourcemanager.h"
-#include "Graphics/materialmanager.h"
-#include "Graphics/skeletonmanager.h"
-
 #include <OgreMesh.h>
 #include <OgreMeshSerializer.h>
-#include <OgreSubMesh.h>
 
 namespace Mezzanine
 {
@@ -62,7 +57,7 @@ namespace Mezzanine
         void ManualMeshLoader::loadResource(Ogre::Resource* resource)
         {
             Ogre::Mesh* NewMesh = static_cast<Ogre::Mesh*>(resource);
-            Ogre::DataStreamPtr WrappedStream(new IStreamWrapper(LoadStream));
+            Ogre::DataStreamPtr WrappedStream = std::make_shared<IStreamWrapper>(LoadStream);
 
             Ogre::MeshSerializer MeshMaker;
             MeshMaker.importMesh(WrappedStream,NewMesh);

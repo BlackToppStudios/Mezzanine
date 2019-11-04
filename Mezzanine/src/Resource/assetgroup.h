@@ -74,16 +74,6 @@ namespace Mezzanine
             IStreamContainer InputStreams;
             /// @brief The name of this group.
             String Name;
-
-            /// @brief Convenience method for locating the reader containing the specified asset.
-            /// @param Identifier A string identifying (such as path and filename) the asset to locate.
-            /// @return Returns a pointer to the ArchiveReader that has the specified Asset, or nullptr if not found.
-            ArchiveReader* FindAssetReader(const String& Identifier) const;
-            /// @brief Convenience method for locating the reader containing the specified asset.
-            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
-            /// @param Identifier A string identifying (such as path and filename) the asset to locate.
-            /// @return Returns a pointer to the ArchiveReader that has the specified Asset.
-            ArchiveReader* FindAssetReaderOrThrow(const String& Identifier) const;
         public:
             /// @brief Class constructor.
             /// @param GroupName The name to be given to this group.
@@ -107,6 +97,16 @@ namespace Mezzanine
             /// @param Identifier The identifier for the stream to be retrieved.
             /// @return Returns an IStreamPtr to the specified stream or nullptr if no such stream is currently open.
             IStreamPtr GetInputStream(const String& Identifier);
+
+            /// @brief Convenience method for locating the reader containing the specified asset.
+            /// @param Identifier A string identifying (such as path and filename) the asset to locate.
+            /// @return Returns a pointer to the ArchiveReader that has the specified Asset, or nullptr if not found.
+            ArchiveReader* GetAssetReader(const String& Identifier) const;
+            /// @brief Convenience method for locating the reader containing the specified asset.
+            /// @exception A IO_FILE_NOT_FOUND_EXCEPTION will be thrown if the asset isn't located.
+            /// @param Identifier A string identifying (such as path and filename) the asset to locate.
+            /// @return Returns a pointer to the ArchiveReader that has the specified Asset.
+            ArchiveReader* GetAssetReaderOrThrow(const String& Identifier) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Locations
