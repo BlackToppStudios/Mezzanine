@@ -63,7 +63,7 @@ CatchApp::CatchApp() :
                              new PlaneDragger(PlaneOfPlay) );
     RayQuery::FilterFunction QueryFilter = [this](EntityProxy* ToFilter) {
         Entity* ParentObject = ToFilter->GetParentEntity();
-        if( ParentObject->GetEntityType() & Mezzanine::ET_AllDebris ) {
+        if( ParentObject != nullptr && ParentObject->GetEntityType() & Mezzanine::ET_AllDebris ) {
             return this->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
         }
         return false;
@@ -1622,7 +1622,7 @@ void CatchApp::VerifySettings()
     if( !GraphicsSettingFile ) {
         GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
         // Create the window
-        Graphics::GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,Graphics::GameWindow::WF_FSAA_4);
+        Graphics::GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",1024,768,Graphics::GameWindow::WF_FSAA_4);
         //Graphics::Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
         MainWin->CreateViewport(NULL,0);
         // Set the file to save.

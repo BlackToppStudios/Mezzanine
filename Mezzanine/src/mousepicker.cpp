@@ -70,6 +70,24 @@ namespace Mezzanine
         Dragger(WorldDragger)
         {  }
 
+    Boole MousePicker::IsUsableResult(const RayQueryHit& ToCheck, const FilterBeginDelegate& Filter) const
+    {
+        if( Filter ) {
+            return ( ToCheck.IsDynamic() && Filter(ToCheck) );
+        }else{
+            return ToCheck.IsDynamic();
+        }
+    }
+
+    Boole MousePicker::IsUsableResult(const Ray& MouseRay, EntityProxy* CurrentTarget, const FilterContinueDelegate& Filter) const
+    {
+        if( Filter ) {
+            return ( !CurrentTarget->IsStatic() && Filter(MouseRay,CurrentTarget) );
+        }else{
+            return !CurrentTarget->IsStatic();
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Initialization and Deinitialization
 
@@ -124,22 +142,37 @@ namespace Mezzanine
         return NULL;
     }
 
-    void MousePicker::Execute(const FilterDelegate& Filter)
+    void MousePicker::Execute()
+        { this->Execute(nullptr,nullptr); }
+
+    void MousePicker::Execute(const FilterBeginDelegate& StartFilter)
+        { this->Execute(StartFilter,nullptr); }
+
+    void MousePicker::Execute(const FilterContinueDelegate& ContinueFilter)
+        { this->Execute(nullptr,ContinueFilter); }
+
+    void MousePicker::Execute(const FilterBeginDelegate& StartFilter, const FilterContinueDelegate& ContinueFilter)
     {
+        World* VisitingWorld = this->GetMouseWorld();
+        if( VisitingWorld == NULL ) {
+            return;
+        }
+
         Input::ButtonState LeftClickState = this->Selector->GetButtonState(1);
         if( LeftClickState >= Input::BUTTON_PRESSING ) {
             Ray MouseRay = this->GetMouseRay();
             if( LeftClickState == Input::BUTTON_PRESSING && !this->Dragger->IsDragging() ) {
-                World* VisitingWorld = this->GetMouseWorld();
-                if( VisitingWorld != NULL ) {
-                    this->Query->SetWorld(VisitingWorld);
-                    RayQueryHit Result = this->Query->GetFirstShapeResult(MouseRay);
-                    if( Filter ? Result.IsDynamic() && Filter(Result) : Result.IsDynamic() ) {
-                        this->Dragger->StartDragging(this->Dragger->GetBestProxy(Result.Object),Result.GetLocalHitLocation(),MouseRay);
-                    }
+                this->Query->SetWorld(VisitingWorld);
+                RayQueryHit Result = this->Query->GetFirstShapeResult(MouseRay);
+                if( this->IsUsableResult(Result,StartFilter) ) {
+                    this->Dragger->StartDragging(this->Dragger->GetBestProxy(Result.Object),Result.GetLocalHitLocation(),MouseRay);
                 }
-            }else if( LeftClickState == Input::BUTTON_DOWN ) {
-                this->Dragger->ContinueDragging(MouseRay,this->Selector);
+            }else if( LeftClickState == Input::BUTTON_DOWN && this->Dragger->IsDragging() ) {
+                if( this->IsUsableResult(MouseRay,this->Dragger->GetCurrentTarget(),ContinueFilter) ) {
+                    this->Dragger->ContinueDragging(MouseRay,this->Selector);
+                }else{
+                    this->Dragger->StopDragging();
+                }
             }
         }else if( this->Dragger->IsDragging() ) {
             this->Dragger->StopDragging();

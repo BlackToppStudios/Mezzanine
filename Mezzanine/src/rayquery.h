@@ -59,6 +59,7 @@ namespace Mezzanine
         /// @brief The distance the hit was from the Ray origin.
         Real Distance;
         /// @brief The index of the child item of the hit Object.
+        /// @remarks This exists for proxies that are further subdivided into smaller parts, such as Meshes vs Submeshes.
         Integer SubObject;
         /// @brief A pointer to the object hit.
         EntityProxy* Object;

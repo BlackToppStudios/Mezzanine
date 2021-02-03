@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <ResourceLocations>
-	<ResourceLocation GroupPath="Data/Common.zip" GroupType="Zip" GroupName="Common" />
-	<ResourceLocation GroupPath="Data/UI.zip" GroupType="Zip" GroupName="Common" />
-	<ResourceLocation GroupPath="Data/AdvThrowables.zip" GroupType="Zip" GroupName="Common" />
-	<ResourceLocation GroupPath="Data/Music.zip" GroupType="Zip" GroupName="Common" />
-	<ResourceLocation GroupPath="Previews/" GroupType="FileSystem" GroupName="Common" />
+	<ResourceLocation GroupPath="Data/Common/" GroupType="FileSystem" GroupName="Common" />
+	<ResourceLocation GroupPath="Data/UI/" GroupType="FileSystem" GroupName="Common" />
+	<ResourceLocation GroupPath="Data/AdvThrowables/" GroupType="FileSystem" GroupName="Common" />
+	<ResourceLocation GroupPath="Data/Music/" GroupType="FileSystem" GroupName="Common" />
 </ResourceLocations>
 <InitGroups>
 	<InitGroup GroupName="Common" />

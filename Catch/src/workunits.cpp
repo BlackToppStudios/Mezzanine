@@ -274,7 +274,13 @@ CatchPostUIWorkUnit::~CatchPostUIWorkUnit()
 void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     if( !UIMan->MouseIsInUISystem() ) {
-        this->CatchApplication->GetPicker().Execute(nullptr);
+        this->CatchApplication->GetPicker().Execute( [&](const Ray& MouseRay, EntityProxy* Object) {
+            Entity* ParentObject = Object->GetParentEntity();
+            if( ParentObject != nullptr && ParentObject->GetEntityType() & Mezzanine::ET_AllDebris ) {
+                return CatchApplication->IsInsideAnyStartZone( static_cast<Debris*>( ParentObject ) );
+            }
+            return false;
+        } );
     }
 }
 

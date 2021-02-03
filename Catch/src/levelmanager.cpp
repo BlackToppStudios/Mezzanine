@@ -26,7 +26,7 @@ void LoadFerris()
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", Resource::AT_Zip, FerrisGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Ferris/", Resource::AT_FileSystem, FerrisGroup, false);
     ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
@@ -38,14 +38,19 @@ void LoadFerris()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,250,-200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
-    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
-    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1));
+    DLight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1));
+    DLight->Activate();
+
+    // Shadows Setup
+    SceneMan->SetSceneShadowTechnique(Graphics::SceneManager::SST_Texture_Additive);
+    SceneMan->SetShadowFarDistance(1000);
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -60,7 +65,7 @@ void LoadFerris()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromBinaryFile("Ferris.bullet",FerrisGroup);
 
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
     for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
     {
@@ -77,7 +82,7 @@ void LoadFerris()
     }
     Unnamed.clear();
     CShapeMan->SaveAllStoredShapesToFile("Ferris2.bullet");// */
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
 
     // Create the Wheel
     RigidDebris* FerrisWheel = EntMan->CreateRigidDebris(100.0);
@@ -319,7 +324,7 @@ void LoadBigCurve()
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", Resource::AT_Zip, BigCurveGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve/", Resource::AT_FileSystem, BigCurveGroup, false);
     ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
@@ -331,7 +336,7 @@ void LoadBigCurve()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,200,200);
     DLight->SetLocation(Loc);
@@ -339,6 +344,7 @@ void LoadBigCurve()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->Activate();
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -446,7 +452,7 @@ void LoadBlowsNotSucks()
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", Resource::AT_Zip, BlowsNotSucksGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks/", Resource::AT_FileSystem, BlowsNotSucksGroup, false);
     ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
@@ -458,7 +464,7 @@ void LoadBlowsNotSucks()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,200,200);
     DLight->SetLocation(Loc);
@@ -466,6 +472,7 @@ void LoadBlowsNotSucks()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->Activate();
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -480,7 +487,7 @@ void LoadBlowsNotSucks()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromBinaryFile("BlowsNotSucks.bullet",BlowsNotSucksGroup);
 
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
     for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
     {
@@ -492,7 +499,7 @@ void LoadBlowsNotSucks()
     }
     Unnamed.clear();
     CShapeMan->SaveAllStoredShapesToFile("BlowsNotSucks.bullet");// */
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
 
     // Create the fan
     RigidDebris* Fan = EntMan->CreateRigidDebris(25);
@@ -672,7 +679,7 @@ void LoadJustice()
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", Resource::AT_Zip, JusticeGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Justice/", Resource::AT_FileSystem, JusticeGroup, false);
     ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
@@ -684,7 +691,7 @@ void LoadJustice()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
@@ -692,6 +699,7 @@ void LoadJustice()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->Activate();
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -706,7 +714,7 @@ void LoadJustice()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromBinaryFile("Justice.bullet",JusticeGroup);
 
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
     for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
     {
@@ -723,7 +731,7 @@ void LoadJustice()
     }
     Unnamed.clear();
     CShapeMan->SaveAllStoredShapesToFile("Justice.bullet");// */
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
 
     // Create Lady Justice
     RigidDebris* LadyJustice = EntMan->CreateRigidDebris(0);
@@ -911,7 +919,7 @@ void LoadRollers()
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", Resource::AT_Zip, RollersGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"Rollers/", Resource::AT_FileSystem, RollersGroup, false);
     ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
@@ -923,7 +931,7 @@ void LoadRollers()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
@@ -931,6 +939,7 @@ void LoadRollers()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->Activate();
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -1056,7 +1065,7 @@ void LoadJustBounce()
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", Resource::AT_Zip, JustBounceGroup, false);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce/", Resource::AT_FileSystem, JustBounceGroup, false);
     ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
@@ -1068,7 +1077,7 @@ void LoadJustBounce()
     GameApp->GetPlayer()->GetControl().GetCamera()->SetLocation(Vector3(0,0,425));
 
     // Lights Setup
-    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    SceneMan->SetAmbientLight(0.7,0.7,0.7,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
     DLight->SetLocation(Loc);
@@ -1076,6 +1085,7 @@ void LoadJustBounce()
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
     DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
     DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->Activate();
 
     // Physics Setup
     PhysMan->SetWorldGravity(Vector3(0,-1000,0));
@@ -1090,7 +1100,7 @@ void LoadJustBounce()
     // Setup and Create the shapes that will be used.
     CShapeMan->LoadAllShapesFromBinaryFile("JustBounce.bullet",JustBounceGroup);
 
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
     /*std::set<CollisionShape*>& Unnamed = CShapeMan->GetUnnamedShapes();
     for( std::set<CollisionShape*>::iterator CSit = Unnamed.begin() ; CSit != Unnamed.end() ; CSit++ )
     {
@@ -1105,7 +1115,7 @@ void LoadJustBounce()
     }
     Unnamed.clear();
     CShapeMan->SaveAllStoredShapesToFile("JustBounce.bullet");// */
-    //----------
+    //----  ----------------------------------------------------------------------------------------------------
 
     // Create the basic terrain that will be used
     RigidDebris* TopWall = EntMan->CreateRigidDebris(0);
@@ -1372,12 +1382,13 @@ Whole LevelManager::DetectLevels()
     for( StringVector::iterator LvlIt = LevelSet.begin() ; LvlIt != LevelSet.end() ; LvlIt++ )
     {
         const String& FileName = (*LvlIt);
-        if( String::npos != FileName.find(".lvl") ) {
+        //if( String::npos != FileName.find(".lvl") ) {
+        if( FileName != "." && FileName != ".." ) {
             ++Detected;
 
             const String AssetGroupName = FileName.substr(0,FileName.find_last_of('.'));
             const String CompletePath = this->LevelPath + FileName;
-            ResourceMan->AddAssetLocation(CompletePath,Resource::AT_Zip,AssetGroupName);
+            ResourceMan->AddAssetLocation(CompletePath,Resource::AT_FileSystem,AssetGroupName);
 
             LevelDoc.Reset();
             DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);

@@ -46,6 +46,7 @@ namespace Mezzanine
 {
     class World;
     class Entity;
+    class EntityProxy;
     class MousePickDragger;
     class RayQuery;
     class RayQueryHit;
@@ -60,8 +61,10 @@ namespace Mezzanine
     class MEZZ_LIB MousePicker
     {
     public:
-        /// @brief Convenience type for the delegate to use for custom filter of pickable bodies.
-        using FilterDelegate = std::function< Boole(const RayQueryHit&) >;
+        /// @brief Convenience type for the delegate to use for a custom filter of pickable bodies on initial click.
+        using FilterBeginDelegate = std::function< Boole(const RayQueryHit&) >;
+        /// @brief Convenience type for the delegate to use for a custom filter of pickable bodies during drag.
+        using FilterContinueDelegate = std::function< Boole(const Ray&,EntityProxy*) >;
     protected:
         /// @brief A pointer to the mouse being used for selection.
         Input::Mouse* Selector;
@@ -69,6 +72,18 @@ namespace Mezzanine
         RayQuery* Query;
         /// @brief A pointer to the dragger that will move the selected object.
         MousePickDragger* Dragger;
+
+        /// @brief Checks a RayQueryHit to see if it is actionable.
+        /// @param ToCheck The RayQuery being checked.
+        /// @param Filter The custom filter that will be applied to the ray query (if it is valid).
+        /// @return Returns true if the RayQueryHit can be worked with and selected by this picker.
+        Boole IsUsableResult(const RayQueryHit& ToCheck, const FilterBeginDelegate& Filter) const;
+        /// @brief Checks a RayQueryHit to see if it is actionable.
+        /// @param MouseRay The ray the mouse is casting into the world.
+        /// @param CurrentTarget The object currently being dragged.
+        /// @param Filter The custom filter that will be applied to the ray query (if it is valid).
+        /// @return Returns true if the RayQueryHit can be worked with and selected by this picker.
+        Boole IsUsableResult(const Ray& MouseRay, EntityProxy* CurrentTarget, const FilterContinueDelegate& Filter) const;
     public:
         /// @brief Blank constructor.
         /// @details The mouse, ray query, and dragger MUST be set before using this class.  This constructor
@@ -119,11 +134,29 @@ namespace Mezzanine
         World* GetMouseWorld() const;
 
         /// @brief Performs all the checks and updates to drag a target under the mouse.
-        /// @note When implementing the delegate return true to allow picking to proceed, false to prevent it.  The
-        /// delegate will be run on the results of the RayQuery.  If you want to filter sooner than that there you
-        /// can pass a filter into the RayQuery itself.
-        /// @param Filter A delegate to perform custom filtering of which bodies should and shouldn't be pickable.
-        void Execute(const FilterDelegate& Filter);
+        /// @note A raycast will only be performed once per click.
+        void Execute();
+        /// @brief Performs all the checks and updates to drag a target under the mouse.
+        /// @remarks When implementing the start delegate return true to allow picking to proceed, false to prevent
+        /// it.  The delegate will be run on the results of the RayQuery.  If you want to filter sooner than that
+        /// there you can pass a filter into the RayQuery itself.
+        /// @param StartFilter A delegate to perform custom filtering of which bodies should and shouldn't be pickable.
+        void Execute(const FilterBeginDelegate& StartFilter);
+        /// @brief Performs all the checks and updates to drag a target under the mouse.
+        /// @remarks The continue delegate will provide less information than a start delegate to determining if an object
+        /// should be dragged.  This is because a raycast will only be performed once per click.
+        /// @param ContinueFilter A delegate to perform custom filtering of which bodies should and shouldn't be dragable.
+        void Execute(const FilterContinueDelegate& ContinueFilter);
+        /// @brief Performs all the checks and updates to drag a target under the mouse.
+        /// @remarks When implementing the start delegate return true to allow picking to proceed, false to prevent
+        /// it.  The delegate will be run on the results of the RayQuery.  If you want to filter sooner than that
+        /// there you can pass a filter into the RayQuery itself.
+        /// @n @n
+        /// The continue delegate will provide less information than a start delegate to determining if an object
+        /// should be dragged.  This is because a raycast will only be performed once per click.
+        /// @param StartFilter A delegate to perform custom filtering of which bodies should and shouldn't be pickable.
+        /// @param ContinueFilter A delegate to perform custom filtering of which bodies should and shouldn't be dragable.
+        void Execute(const FilterBeginDelegate& StartFilter, const FilterContinueDelegate& ContinueFilter);
     };//MousePicker
 }//Mezzanine
 
